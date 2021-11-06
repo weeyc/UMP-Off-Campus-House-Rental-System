@@ -7,6 +7,12 @@
 
 @import "tailwindcss/utilities";
 
+@import url('https://fonts.googleapis.com/css?family=Montserrat');
+@import url('https://fonts.googleapis.com/css?family=Oswald');
+@import url('https://fonts.googleapis.com/css?family=Poppins');
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+
+
 *{
-    font-family: 'nunito';
+    font-family: 'nunito', 'montserrat','oswald','poppins','roboto';
 }

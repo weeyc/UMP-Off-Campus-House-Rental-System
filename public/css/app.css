@@ -1,4 +1,4 @@
-@import url(https://fonts.googleapis.com/css?family=Nunito);/*! tailwindcss v2.2.19 | MIT License | https://tailwindcss.com */
+@import url(https://fonts.googleapis.com/css?family=Nunito);@import url(https://fonts.googleapis.com/css?family=Montserrat);@import url(https://fonts.googleapis.com/css?family=Oswald);@import url(https://fonts.googleapis.com/css?family=Poppins);@import url(https://fonts.googleapis.com/css?family=Roboto);/*! tailwindcss v2.2.19 | MIT License | https://tailwindcss.com */
 
 /*! modern-normalize v1.1.0 | MIT License | https://github.com/sindresorhus/modern-normalize */
 
@@ -13864,10 +13864,6 @@ video {
   background-image: linear-gradient(to top left, var(--tw-gradient-stops));
 }
 
-.bg-pekan{
-  background-image: url('/images/UMP/wide.jpg');
-}
-
 .from-transparent{
   --tw-gradient-from: transparent;
   --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(0, 0, 0, 0));
@@ -15688,6 +15684,22 @@ video {
 
 .font-mono{
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
+
+.font-poppins{
+  font-family: Poppins;
+}
+
+.font-montserrat{
+  font-family: Montserrat;
+}
+
+.font-oswald{
+  font-family: Oswald;
+}
+
+.font-roboto{
+  font-family: Roboto;
 }
 
 .text-xs{
@@ -19639,7 +19651,7 @@ video {
 }
 
 * {
-  font-family: "nunito";
+  font-family: "nunito", "montserrat", "oswald", "poppins", "roboto";
 }
 
 @media (min-width: 640px){
@@ -32862,10 +32874,6 @@ video {
     background-image: linear-gradient(to top left, var(--tw-gradient-stops));
   }
 
-  .sm\:bg-pekan{
-    background-image: url('/images/UMP/wide.jpg');
-  }
-
   .sm\:from-transparent{
     --tw-gradient-from: transparent;
     --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(0, 0, 0, 0));
@@ -34686,6 +34694,22 @@ video {
 
   .sm\:font-mono{
     font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  }
+
+  .sm\:font-poppins{
+    font-family: Poppins;
+  }
+
+  .sm\:font-montserrat{
+    font-family: Montserrat;
+  }
+
+  .sm\:font-oswald{
+    font-family: Oswald;
+  }
+
+  .sm\:font-roboto{
+    font-family: Roboto;
   }
 
   .sm\:text-xs{
@@ -51844,10 +51868,6 @@ video {
     background-image: linear-gradient(to top left, var(--tw-gradient-stops));
   }
 
-  .md\:bg-pekan{
-    background-image: url('/images/UMP/wide.jpg');
-  }
-
   .md\:from-transparent{
     --tw-gradient-from: transparent;
     --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(0, 0, 0, 0));
@@ -53668,6 +53688,22 @@ video {
 
   .md\:font-mono{
     font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  }
+
+  .md\:font-poppins{
+    font-family: Poppins;
+  }
+
+  .md\:font-montserrat{
+    font-family: Montserrat;
+  }
+
+  .md\:font-oswald{
+    font-family: Oswald;
+  }
+
+  .md\:font-roboto{
+    font-family: Roboto;
   }
 
   .md\:text-xs{
@@ -70826,10 +70862,6 @@ video {
     background-image: linear-gradient(to top left, var(--tw-gradient-stops));
   }
 
-  .lg\:bg-pekan{
-    background-image: url('/images/UMP/wide.jpg');
-  }
-
   .lg\:from-transparent{
     --tw-gradient-from: transparent;
     --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(0, 0, 0, 0));
@@ -72650,6 +72682,22 @@ video {
 
   .lg\:font-mono{
     font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  }
+
+  .lg\:font-poppins{
+    font-family: Poppins;
+  }
+
+  .lg\:font-montserrat{
+    font-family: Montserrat;
+  }
+
+  .lg\:font-oswald{
+    font-family: Oswald;
+  }
+
+  .lg\:font-roboto{
+    font-family: Roboto;
   }
 
   .lg\:text-xs{
@@ -89808,10 +89856,6 @@ video {
     background-image: linear-gradient(to top left, var(--tw-gradient-stops));
   }
 
-  .xl\:bg-pekan{
-    background-image: url('/images/UMP/wide.jpg');
-  }
-
   .xl\:from-transparent{
     --tw-gradient-from: transparent;
     --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(0, 0, 0, 0));
@@ -91632,6 +91676,22 @@ video {
 
   .xl\:font-mono{
     font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  }
+
+  .xl\:font-poppins{
+    font-family: Poppins;
+  }
+
+  .xl\:font-montserrat{
+    font-family: Montserrat;
+  }
+
+  .xl\:font-oswald{
+    font-family: Oswald;
+  }
+
+  .xl\:font-roboto{
+    font-family: Roboto;
   }
 
   .xl\:text-xs{
@@ -108790,10 +108850,6 @@ video {
     background-image: linear-gradient(to top left, var(--tw-gradient-stops));
   }
 
-  .\32xl\:bg-pekan{
-    background-image: url('/images/UMP/wide.jpg');
-  }
-
   .\32xl\:from-transparent{
     --tw-gradient-from: transparent;
     --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(0, 0, 0, 0));
@@ -110614,6 +110670,22 @@ video {
 
   .\32xl\:font-mono{
     font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  }
+
+  .\32xl\:font-poppins{
+    font-family: Poppins;
+  }
+
+  .\32xl\:font-montserrat{
+    font-family: Montserrat;
+  }
+
+  .\32xl\:font-oswald{
+    font-family: Oswald;
+  }
+
+  .\32xl\:font-roboto{
+    font-family: Roboto;
   }
 
   .\32xl\:text-xs{
