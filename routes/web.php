@@ -14,5 +14,15 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/{any}', function () {
-    return view('welcome');
+    return view('ManageRegistrationUsers.Login');
 })->where('any', '.*');
+
+// Route::get('/{any}', function () {
+//     return view('ManageRegistrationUsers.homepage');
+// })-> where('any','.*');
+
+
+//Route::get('/',[UserController::class, 'home'])->name('ManageRegisterUsers.Login');
+
+/*Route::get('/cushomepage',[RegistrationController::class, 'directToCusHome']);
+Route::get('/riderhomepage',[RegistrationController::class, 'directToRiderHome']);
