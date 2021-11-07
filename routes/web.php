@@ -13,13 +13,26 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/{any}', function () {
-    return view('ManageRegistrationUsers.Login');
-})->where('any', '.*');
-
 // Route::get('/{any}', function () {
-//     return view('ManageRegistrationUsers.homepage');
-// })-> where('any','.*');
+//     return view('ManageRegistrationUsers.Login');
+// })->where('any', '.*');
+
+
+Route::get('/', function () {
+    return view('ManageRegistrationUsers.Login');
+});
+
+Route::get('/landlord', function () {
+    return view('ManageRegistrationUsers.Register_Landlord');
+});
+
+Route::get('/student', function () {
+    return view('ManageRegistrationUsers.Register_Student');
+});
+
+
+
+
 
 
 //Route::get('/',[UserController::class, 'home'])->name('ManageRegisterUsers.Login');

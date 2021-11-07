@@ -1,26 +1,18 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-</head>
+<title>Login</title>
 
 @extends('layouts.app')
 @section('content')
 
 
+ <div class="flex items-center justify-center h-screen overflow-hidden bg-gradient-to-b from-green-200 to-green-500" >
 
-
- <body class="flex items-center justify-center h-screen overflow-hidden bg-gradient-to-b from-green-200 to-green-500" >
-    <body>
     <section class="flex items-stretch h-screen w-screen text-white ">
         <div class="relative items-center hidden w-1/2 bg-gray-500 bg-no-repeat bg-cover lg:flex" style="background-image: url(/images/UMP/wide.jpg);">
             <div class="absolute inset-0 z-0 bg-black opacity-25"></div>
             <div class="z-10 w-full px-24 font-black mt-11">
                               {{-- 'nunito', 'montserrat','oswald','poppins','roboto' --}}
-                <h1 class="text-6xl font-roboto tracking-wide bg-black bg-opacity-5 italic">Search Accomodation</h1>
+                <h1 class="text-6xl font-roboto tracking-wide bg-black bg-opacity-5 italic ">Search Accomodation</h1>
                 <p class="my-4 text-3xl font-roboto text-ump-green bg-black bg-opacity-30 italic">Browse your rental house in more secure way, anywhere.</p>
             </div>
             <div class="absolute bottom-0 left-0 right-0 flex justify-center p-4 space-x-4 text-center">
@@ -34,8 +26,8 @@
             </div>
             <div class="absolute top-0 flex justify-right p-4 space-x-4    ">
 
-                <a href="#" class="flex items-center flex-shrink-0 px-5 py-2 border-b-4 hover:text-indigo-400 ">List Your Property</a>
-                <a href="#" class="flex items-center flex-shrink-0 px-5 py-2 border-b-4 hover:text-indigo-400 ">Search Rental House</a>
+                <div class="flex items-center flex-shrink-0 px-5 py-2 border-b-4 hover:text-indigo-400 text-2xl ">Login</div>
+
             </div>
 
             <div class="z-auto w-full">
@@ -60,12 +52,13 @@
                     <div class="pt-1 pb-2">
                         <input class="block w-full p-4 text-lg bg-black rounded-sm" type="password" required name="password" id="password" placeholder="Password">
                     </div>
+
                   <div class="pt-1 pb-2">
                         <select class="block w-full p-4 text-lg bg-black rounded-sm" name="role" required>
                             <option value="">Choose User Type</option>
-                            <option value="Customer">Customer</option>
+                            <option value="Student">Student</option>
+                            <option value="Landlord">Landlord</option>
                             <option value="Staff">Staff</option>
-                            <option value="Rider">Rider</option>
                         </select>
                     </div>
 
@@ -80,7 +73,7 @@
 
                 </form>
                 <p class="px-6 font-nunito text-center ">Don't have an account yet?
-                    <a href="#" class="hover:underline hover:text-indigo-400">Sign up</a>.
+                    <a href="/student" class="hover:underline hover:text-indigo-400">Sign up</a>.
                 </p>
             </div>
 
@@ -90,10 +83,9 @@
                              <p>Copyright © 2021 - All right reserved by Weeyc</p>
                         </div>
                      </footer>
-
         </div>
     </section>
-</body>
+ </div>
 @endsection
 
 
