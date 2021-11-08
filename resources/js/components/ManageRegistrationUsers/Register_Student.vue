@@ -1,19 +1,13 @@
-
-<title>Register</title>
-
-@extends('layouts.app')
-@section('content')
-
-
- <div class="flex items-center justify-center h-screen overflow-hidden bg-gradient-to-b from-green-200 to-green-500" >
+<template>
+   <div class="flex items-center justify-center h-screen overflow-hidden bg-gradient-to-b from-green-200 to-green-500" >
 
     <section class="flex items-stretch h-screen w-screen text-white ">
         <div class="relative items-center hidden w-1/2 bg-gray-500 bg-no-repeat bg-cover lg:flex" style="background-image: url(/images/People/Students.jpg);">
             <div class="absolute inset-0 z-0 bg-black opacity-25"></div>
             <div class="z-10 w-full px-24 font-black ">
-                              {{-- 'nunito', 'montserrat','oswald','poppins','roboto' --}}
+
                 <p class="text-6xl font-roboto tracking-wide bg-black bg-opacity-0 italic "> Register as  <br> Student</p>
-                <p class="my-4 text-3xl font-roboto bg-black bg-opacity-5 italic">Search your rental house in more easuy and secure way</p>
+                <p class="my-4 text-3xl font-roboto bg-black bg-opacity-5 italic">Search your rental house in more easy and secure way</p>
 
             </div>
             <div class="absolute bottom-0 left-0 right-0 flex justify-center p-4 space-x-4 text-center">
@@ -28,19 +22,24 @@
             <div class="absolute top-0 flex justify-right p-4 space-x-4    ">
 
                 <div class="flex items-center -mx-4 overflow-x-auto overflow-y-hidden sm:justify-center flex-nowrap dark:bg-coolGray-800 dark:text-coolGray-100">
-                    <a href="/student" class="flex items-center flex-shrink-0 px-5 py-3 space-x-2 border border-b-0 rounded-t-lg dark:border-coolGray-400 dark:text-coolGray-50">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4">
-                            <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
-                            <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
-                        </svg>
-                        <span>Student</span>
-                    </a>
-                    <a href="/landlord" class="flex items-center flex-shrink-0 px-5 py-3 space-x-2 border-b dark:border-coolGray-400 dark:text-coolGray-400">
+
+
+                        <router-link  to='/student' exact class="flex items-center flex-shrink-0 px-5 py-3 space-x-2 border border-b-0 rounded-t-lg dark:border-coolGray-400 dark:text-coolGray-50">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4">
+                                <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
+                                <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
+                            </svg>
+                            <span>Student</span>
+                          </router-link>
+
+
+                     <router-link to='/landlord' class="flex items-center flex-shrink-0 px-5 py-3 space-x-2 border-b dark:border-coolGray-400 dark:text-coolGray-400">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4">
                             <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
                         </svg>
                         <span>Landlord</span>
-                    </a>
+                    </router-link>
+
 
 
                 </div>
@@ -62,7 +61,8 @@
 
 
 
-                <form action="" class="w-full px-6 mx-auto sm:w-2/3 lg:px-0">
+                <form action="" method="POST" class="w-full px-6 mx-auto sm:w-2/3 lg:px-0">
+
 
                     <div class="pt-1 pb-2">
                         <input type="text" name="name" id="name" placeholder="Name" required class="block w-full p-4 text-lg bg-black rounded-sm">
@@ -75,12 +75,12 @@
                     </div>
 
                     <div class="px-4 pt-4 pb-2">
-                        <button class="block w-full p-4 text-lg uppercase rounded-full  bg-yellow-600 hover:bg-yellow-700 focus:outline-none">sign Up</button>
+                        <button type="submit"  class="block w-full p-4 text-lg uppercase rounded-full  bg-yellow-600 hover:bg-yellow-700 focus:outline-none">sign Up</button>
                     </div>
 
                 </form>
                 <p class="px-6 font-nunito text-center ">Already have an account?
-                    <a href="/" class="hover:underline hover:text-yellow-400">Login Now</a>.
+                    <router-link to='/' class="hover:underline hover:text-yellow-400">Sign-in</router-link>
                 </p>
             </div>
 
@@ -94,7 +94,9 @@
     </section>
  </div>
 
+</template>
+<script>
+export default {
 
-@endsection
-
-
+}
+</script>

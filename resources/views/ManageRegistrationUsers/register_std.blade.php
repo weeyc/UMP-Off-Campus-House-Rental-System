@@ -1,3 +1,4 @@
+
 <title>Register</title>
 
 @extends('layouts.app')
@@ -5,10 +6,25 @@
 
 
 <div id="app">
+
     <router-view> </router-view>
+
 </div>
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 @endsection
+
 
 

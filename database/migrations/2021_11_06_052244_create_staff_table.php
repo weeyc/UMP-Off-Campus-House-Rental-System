@@ -15,17 +15,18 @@ class CreateStaffTable extends Migration
     {
         Schema::create('staff', function (Blueprint $table) {
 
-            $table->id('staff_id');
+            $table->increments('staff_id');
 
-            $table->string('user_name');
-            $table->string('profile_pic');
-            $table->string('password');
-            $table->string('phone_number');
-            $table->string('email');
-            $table->string('chat_id');
-            $table->string('staff_type');
+            $table->string('staff_name');
+            $table->string('staff_email');
+            $table->string('staff_password');
 
-            $table->integer('user_role');
+            $table->string('staff_username')->nullable();
+            $table->string('staff_pic')->nullable();
+            $table->string('staff_phone')->nullable();
+            $table->string('staff_chat_id')->nullable();
+            $table->string('staff_type')->nullable();
+            $table->integer('user_role')->nullable();
 
             // $table->string('cust_status')->default('Active');
             // $table->timestamps();

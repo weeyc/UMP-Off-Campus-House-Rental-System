@@ -1,36 +1,37 @@
 import Home from './components/Home';
 import About from './components/About';
-import Register from './components/Register';
-import Login from './components/Login';
 import Dashboard from './components/Dashboard';
-import NotFound from './components/NotFound';
+//import NotFound from './components/NotFound';
+import Register_Landlord from './components/ManageRegistrationUsers/Register_Landlord';
+import Register_Student from './components/ManageRegistrationUsers/Register_Student';
+import Login from './components/ManageRegistrationUsers/Login';
 
 
 export default{
     mode: 'history',
     linkActiveClass: 'font-semibold',
     routes: [
-        {
-            path: '*',
-            component: NotFound
-        },
+
         {
             path: '/',
-            component: Home,
-            name: "Home"
+            component: Login,
+            name: "Login"
         },
         {
             path: '/about',
             component: About
+
         },
         {
-            path: '/register',
-            component: Register
+            path: '/landlord',
+            component:Register_Landlord,
+
         },
         {
-            path: '/login',
-            component: Login,
-            name: 'Login'
+            name: 'student',
+            path: '/student',
+            component: Register_Student,
+
         },
         {
             path: "/dashboard",
@@ -43,8 +44,8 @@ export default{
                    return next({ name: 'Login'})
                })
            }
-       
+
           }
-          
+
     ]
 }

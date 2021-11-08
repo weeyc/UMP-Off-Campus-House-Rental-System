@@ -14,16 +14,17 @@ class CreateLandlordsTable extends Migration
     public function up()
     {
         Schema::create('landlords', function (Blueprint $table) {
-            $table->id('landlord_id');
+            $table->increments('landlord_id');
 
-            $table->string('user_name');
-            $table->string('profile_pic');
-            $table->string('password');
-            $table->string('phone_number');
-            $table->string('email');
-            $table->string('chat_id');
+            $table->string('landlord_name');
+            $table->string('landlord_password');
+            $table->string('landlord_email');
 
-            $table->integer('user_role');
+            $table->string('landlord_username')->nullable();
+            $table->string('landlord_pic')->nullable();
+            $table->string('landlord_phone')->nullable();
+            $table->string('landlord_chat_id')->nullable();
+            $table->integer('user_role')->nullable();
 
             // $table->string('cust_status')->default('Active');
             // $table->timestamps();

@@ -1,4 +1,5 @@
 <template>
+
  <div class="flex items-center justify-center h-screen overflow-hidden bg-gradient-to-b from-green-200 to-green-500" >
 
     <section class="flex items-stretch h-screen w-screen text-white ">
@@ -22,19 +23,20 @@
 
                 <div class="flex items-center -mx-4 overflow-x-auto overflow-y-hidden sm:justify-center flex-nowrap dark:bg-coolGray-800 dark:text-coolGray-100">
 
-                    <a href="/student" class="flex items-center flex-shrink-0 px-5 py-3 space-x-2 border-b dark:border-coolGray-400 dark:text-coolGray-400">
+                     <router-link  to='/student' exact  class="flex items-center flex-shrink-0 px-5 py-3 space-x-2 border-b dark:border-coolGray-400 dark:text-coolGray-400">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4">
                             <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
                         </svg>
                         <span>Student</span>
-                    </a>
-                    <a href="/landlord" class="flex items-center flex-shrink-0 px-5 py-3 space-x-2 border border-b-0 rounded-t-lg dark:border-coolGray-400 dark:text-coolGray-50">
+                    </router-link>
+
+                    <router-link to='/landlord'  class="flex items-center flex-shrink-0 px-5 py-3 space-x-2 border border-b-0 rounded-t-lg dark:border-coolGray-400 dark:text-coolGray-50">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4">
                             <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
                             <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
                         </svg>
                         <span>Landlord</span>
-                    </a>
+                      </router-link>
 
                 </div>
             </div>
@@ -72,7 +74,7 @@
 
                 </form>
                 <p class="px-6 font-nunito text-center ">Already have an account?
-                    <a href="/" class="hover:underline hover:text-blue-400">Sign-in</a>
+                   <router-link to='/'  class="hover:underline hover:text-blue-400">Sign-in</router-link>
                 </p>
             </div>
 
