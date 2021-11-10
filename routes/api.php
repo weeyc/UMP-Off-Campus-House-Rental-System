@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -14,12 +15,19 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
-Route::middleware('auth:sanctum')->get('/athenticated', function () {
-    return true;
-});
-Route::post('register', 'RegisterController@register');
-Route::post('login', 'LoginController@login');
-Route::post('logout', 'LoginController@logout');
+// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
+// Route::middleware('auth:sanctum')->get('/athenticated', function () {
+//     return true;
+// });
+//Route::post('register', 'RegisterController@register');
+//Route::post('login', 'LoginController@login');
+//Route::post('logout', 'LoginController@logout');
+
+
+
+
+Route::post('register', 'UserController@signUp');
+//Route::post('login', [UserController::class, 'login']); cant use tis format
+//Route::resource('user', UserController::class);

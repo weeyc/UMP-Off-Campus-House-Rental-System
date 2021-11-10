@@ -1,9 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Modules\UserController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -16,41 +16,11 @@ use App\Http\Controllers\Modules\UserController;
 |
 */
 
-// Route::get('/{any}', function () {
-//     return view('ManageRegistrationUsers.Login');
-// })->where('any', '.*');
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
+Route::get('/{any}', function () {
+    return view('ManageRegistrationUsers.login');
+})->where('any', '.*');
 
-// Route::get('/', function () {
-//     return view('ManageRegistrationUsers.Login');
-// });
-
-// Route::view('/', 'ManageRegistrationUsers.login');
-
-// Route::get('/landlord', function () {
-//     return view('ManageRegistrationUsers.register_landlord');
-// });
-
-Route::get('/', function () {
-    return view('ManageRegistrationUsers.register_std');
-});
-
-Route::get('/landlord_register', function () {
-    return view('ManageRegistrationUsers.register_landlord');
-});
-
-// Route::post('/signup',[UserController::class, 'signUp_Student'])->name('signup_std');
-
-// Route::get('/',[UserController::class, 'login'])->name('Login');
-
-
-
-// Route::get('/home_student', function () {
-//     return view('ManageRegistrationUsers.Landing_Student');
-// });
 
 
 

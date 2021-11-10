@@ -5,6 +5,7 @@ import Dashboard from './components/Dashboard';
 import Register_Landlord from './components/ManageRegistrationUsers/Register_Landlord';
 import Register_Student from './components/ManageRegistrationUsers/Register_Student';
 import Login from './components/ManageRegistrationUsers/Login';
+import Home_Student from './components/ManageRegistrationUsers/Home_Student';
 
 
 export default{
@@ -34,16 +35,16 @@ export default{
 
         },
         {
-            path: "/dashboard",
-            name: "Dashboard",
-            component: Dashboard,
-           beforeEnter: (to, form, next) =>{
-               axios.get('/api/athenticated').then(()=>{
-                   next()
-               }).catch(()=>{
-                   return next({ name: 'Login'})
-               })
-           }
+            path: "/home",
+            name: "Home_Student",
+            component: Home_Student,
+        //    beforeEnter: (to, form, next) =>{
+        //        axios.get('/api/athenticated').then(()=>{
+        //            next()
+        //        }).catch(()=>{
+        //            return next({ name: 'Login'})
+        //        })
+        //    }
 
           }
 

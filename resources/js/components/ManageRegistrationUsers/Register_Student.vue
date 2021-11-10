@@ -61,21 +61,20 @@
 
 
 
-                <form action="" method="POST" class="w-full px-6 mx-auto sm:w-2/3 lg:px-0">
-
-
+                <form class="w-full px-6 mx-auto sm:w-2/3 lg:px-0">
                     <div class="pt-1 pb-2">
-                        <input type="text" name="name" id="name" placeholder="Name" required class="block w-full p-4 text-lg bg-black rounded-sm">
+                        <input type="text" name="name" id="name" placeholder="Name" required class="block w-full p-4 text-lg bg-black rounded-sm" v-model="form.name">
+                        <span class="text-red-500" v-if="errors.name">{{errors.name[0]}}</span>
                     </div>
                     <div class="pt-1 pb-2">
-                        <input type="email" name="email" id="email" placeholder="Email" required class="block w-full p-4 text-lg bg-black rounded-sm">
+                        <input type="email" name="email" id="email" placeholder="Email" required class="block w-full p-4 text-lg bg-black rounded-sm" v-model="form.email">
                     </div>
                     <div class="pt-1 pb-2">
-                        <input class="block w-full p-4 text-lg bg-black rounded-sm" type="password" required name="password" id="password" placeholder="Password">
+                        <input class="block w-full p-4 text-lg bg-black rounded-sm" type="password" required name="password" id="password" placeholder="Password" v-model="form.password">
                     </div>
 
                     <div class="px-4 pt-4 pb-2">
-                        <button type="submit"  class="block w-full p-4 text-lg uppercase rounded-full  bg-yellow-600 hover:bg-yellow-700 focus:outline-none">sign Up</button>
+                        <button @click.prevent="saveForm" type="submit"  class="block w-full p-4 text-lg uppercase rounded-full  bg-yellow-600 hover:bg-yellow-700 focus:outline-none">sign Up</button>
                     </div>
 
                 </form>
@@ -95,8 +94,39 @@
  </div>
 
 </template>
+
 <script>
 export default {
+    data(){
+        return{
+            form:{
+                name: '',
+                email: '',
+                password: '',
+            },
+            //name:'',
+            errors:[]
+
+        }
+    },
+    methods:{
+        saveForm(){
+
+
+            //console.log(this.name);
+            // console.warn(this.form);
+
+           // axios.post('/api/user', {title:'something'});
+            axios.post('/api/register', this.form).then(() =>{
+            console.log('saved');
+
+            }).catch((error) =>{
+                this.errors = error.response.data.errors;
+            })
+            console.warn(this.form);
+
+        }
+    }
 
 }
 </script>

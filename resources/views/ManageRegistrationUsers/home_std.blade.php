@@ -1,7 +1,9 @@
-<title>Login</title>
+
+<title>Home</title>
 
 @extends('layouts.app')
 @section('content')
+
 
 <div id="app">
 
@@ -10,6 +12,10 @@
 </div>
 
 
+
+
+
 @endsection
+
 
 

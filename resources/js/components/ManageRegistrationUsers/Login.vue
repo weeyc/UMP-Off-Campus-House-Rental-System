@@ -39,16 +39,17 @@
 
 
 
-                <form action="" class="w-full px-6 mx-auto sm:w-2/3 lg:px-0">
+                <div class="w-full px-6 mx-auto sm:w-2/3 lg:px-0">
                     <div class="pt-1 pb-2">
-                        <input type="email" name="email" id="email" placeholder="Email or Username" required class="block w-full p-4 text-lg bg-black rounded-sm">
+                        <input type="email" name="email" id="email" placeholder="Email" required class="block w-full p-4 text-lg bg-black rounded-sm" v-model="form.email">
+
                     </div>
                     <div class="pt-1 pb-2">
-                        <input class="block w-full p-4 text-lg bg-black rounded-sm" type="password" required name="password" id="password" placeholder="Password">
+                        <input class="block w-full p-4 text-lg bg-black rounded-sm" type="password" required name="password" id="password" placeholder="Password"  v-model="form.password">
                     </div>
 
                   <div class="pt-1 pb-2">
-                        <select class="block w-full p-4 text-lg bg-black rounded-sm" name="role" required>
+                        <select class="block w-full p-4 text-lg bg-black rounded-sm" name="role" required v-model="form.role">
                             <option value="Student">Student</option>
                             <option value="Landlord">Landlord</option>
                             <option value="Staff">Staff</option>
@@ -61,10 +62,10 @@
                         <a href="#">Forgot your password?</a>
                     </div>
                     <div class="px-4 pt-4 pb-2">
-                        <button class="block w-full p-4 text-lg uppercase rounded-full  bg-indigo-500 hover:bg-indigo-600 focus:outline-none">sign in</button>
+                        <button type="submit" @click.prevent="loginUser" class="block w-full p-4 text-lg uppercase rounded-full  bg-indigo-500 hover:bg-indigo-600 focus:outline-none">sign in</button>
                     </div>
 
-                </form>
+                </div>
                 <p class="px-6 font-nunito text-center ">Don't have an account yet?
                      <router-link  to='/student' exact  class="hover:underline hover:text-indigo-400">Sign up. </router-link>
                 </p>
@@ -81,8 +82,35 @@
  </div>
 
 </template>
+
+
 <script>
 export default {
+    data(){
+        return{
+            form:{
+
+                email: '',
+                password: '',
+                role: '',
+            },
+            errors:[]
+
+        }
+    },
+    methods:{
+        loginUser(){
+                    alert('Test');
+             console.log('saved');
+            axios.post('/api/user', {title:'something'});
+            // axios.post('/api/login', this.form).then(() =>{
+            //    this.$router.push({ name: "Home_Student"});
+
+            // }).catch((error) =>{
+            //     this.errors = error.response.data.errors
+            // })
+        }
+    }
 
 }
 </script>
