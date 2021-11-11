@@ -21,10 +21,13 @@ class CreateStudentsTable extends Migration
             $table->string('std_email');
             $table->string('std_password');
 
+            $table->rememberToken();
+
             $table->string('std_pic')->nullable();
             $table->string('std_phone')->nullable();
             $table->string('std_chat_id')->nullable();
             $table->integer('user_role')->nullable();
+
 
             // $table->string('cust_status')->default('Active');
             // $table->timestamps();

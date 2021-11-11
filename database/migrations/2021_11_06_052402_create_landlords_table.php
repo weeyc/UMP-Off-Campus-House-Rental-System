@@ -20,6 +20,8 @@ class CreateLandlordsTable extends Migration
             $table->string('landlord_password');
             $table->string('landlord_email');
 
+            $table->rememberToken();
+
             $table->string('landlord_username')->nullable();
             $table->string('landlord_pic')->nullable();
             $table->string('landlord_phone')->nullable();

@@ -20,6 +20,7 @@ class CreateStaffTable extends Migration
             $table->string('staff_name');
             $table->string('staff_email');
             $table->string('staff_password');
+            $table->rememberToken();
 
             $table->string('staff_username')->nullable();
             $table->string('staff_pic')->nullable();

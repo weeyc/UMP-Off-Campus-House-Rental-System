@@ -23,19 +23,19 @@
 
                 <div class="flex items-center -mx-4 overflow-x-auto overflow-y-hidden sm:justify-center flex-nowrap dark:bg-coolGray-800 dark:text-coolGray-100">
 
-                     <router-link  to='/student' exact  class="flex items-center flex-shrink-0 px-5 py-3 space-x-2 border-b dark:border-coolGray-400 dark:text-coolGray-400">
+                     <router-link  to='/registration-student' exact  class="flex items-center flex-shrink-0 px-5 py-3 space-x-2 border-b dark:border-coolGray-400 dark:text-coolGray-400">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4">
                             <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
                         </svg>
-                        <span>Student</span>
+                        <span class="hover:underline hover:text-yellow-400">Student</span>
                     </router-link>
 
-                    <router-link to='/landlord'  class="flex items-center flex-shrink-0 px-5 py-3 space-x-2 border border-b-0 rounded-t-lg dark:border-coolGray-400 dark:text-coolGray-50">
+                    <router-link to='/registration-landlord'  class="flex items-center flex-shrink-0 px-5 py-3 space-x-2 border border-b-0 rounded-t-lg dark:border-coolGray-400 dark:text-coolGray-50">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4">
                             <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
                             <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
                         </svg>
-                        <span>Landlord</span>
+                        <span class="hover:underline hover:text-blue-400">Landlord</span>
                       </router-link>
 
                 </div>
@@ -75,7 +75,7 @@
 
                 </div>
                 <p class="px-6 font-nunito text-center ">Already have an account?
-                   <router-link to='/'  class="hover:underline hover:text-blue-400">Sign-in</router-link>
+                   <a href="/" class="hover:underline hover:text-blue-400">Sign-in</a>
                 </p>
             </div>
 
@@ -105,12 +105,17 @@ export default {
     },
     methods:{
         saveForm(){
-            axios.post('/api/registeraccount', this.form).then(() =>{
-                console.log('saved');
+                 axios.post('/api/register_landlord', this.form).then(() =>{
+                 this.$toaster.success('Landlord account created successfully!')
+                  window.location.href = '/'
+                  //this.$router.push('/')
+                //  this.$router.push({ name: "Login"});
 
             }).catch((error) =>{
                 this.errors = error.response.data.errors
             })
+
+
         }
     }
 

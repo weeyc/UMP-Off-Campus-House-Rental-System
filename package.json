@@ -28,6 +28,7 @@
         "vue-template-compiler": "^2.6.10"
     },
     "dependencies": {
+        "v-toaster": "^1.0.3",
         "vue-router": "^3.3.4"
     }
 }

@@ -1,30 +1,17 @@
-
-<title>Register</title>
+<title>UOCA</title>
 
 @extends('layouts.app')
 @section('content')
 
-
-<div id="login">
+<div id="app">
 
     <router-view> </router-view>
+
+
 
 </div>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
 @endsection
-
 
 
