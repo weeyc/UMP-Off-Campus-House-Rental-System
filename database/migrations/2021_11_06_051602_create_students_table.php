@@ -18,7 +18,7 @@ class CreateStudentsTable extends Migration
             $table->increments('std_id');
 
             $table->string('std_name');
-            $table->string('std_email');
+            $table->string('std_email')->unique();
             $table->string('std_password');
 
             $table->rememberToken();

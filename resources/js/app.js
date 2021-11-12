@@ -21,9 +21,12 @@ Vue.use(Toaster, {timeout: 5000})
 
 Vue.use(VueRouter);
 
-// Vue.component('std-register',require('./components/Register_Student.vue').default);
- Vue.component('landlord-register',require('./components/ManageRegistrationUsers/Register_Landlord.vue').default);
+
+Vue.component('landlord-register',require('./components/ManageRegistrationUsers/Register_Landlord.vue').default);
 Vue.component('std-register', require('./components/ManageRegistrationUsers/Register_Student.vue').default);
+Vue.component('std-home', require('./components/ManageRegistrationUsers/Home_Student.vue').default);
+Vue.component('landlord-home', require('./components/ManageRegistrationUsers/Home_Landlord.vue').default);
+Vue.component('staff-home', require('./components/ManageRegistrationUsers/Home_Staff.vue').default);
 
 
 const app = new Vue({

@@ -17,52 +17,96 @@ class UserController extends Controller
 
         $request->validate([
             'email' =>'required|email',
-            'password' =>'required',
+            'password' =>'required|min:4|max:12',
+            'role' => 'required'
            ]);
 
-           if(Auth::attempt($request->only('email', 'password'))){
-                return response()->json(Auth::user(),200);
-           }
-           throw ValidationException::withMessages([
-               'email'=> ['The provided credentials are incorrect.']
-           ]);
+        if($request ->role == "Student"){
+            $std_info = Student::where('std_email','=', $request->email)->first();
+
+                if(!$std_info){
+                    return back()->with('fail','Email not recognized !');
+                    //return response()->json(['Message'=>'Wrong Credential']);
+                }
+                else{
+                    if(Hash::check($request->password, $std_info->std_password)){
+
+                        $request->session()->put([
+                            'ID' => $std_info->std_id,
+                            'Role' => 'Student'
+                        ]);
+                        return redirect('/home-student');
+                    }
+                    else{
+                        return back()->with('fail','Incorrect password !');
+                    }
+                }
+        }
+        else if($request ->role == "Landlord"){
+                $landlord_info = Landlord::where('landlord_email','=', $request->email)->first();
+
+                if(!$landlord_info){
+                    return back()->with('fail','Email not recognized !');
+                }
+                else{
+                    if(Hash::check($request->password, $landlord_info->landlord_password)){
+                        $request->session()->put([
+                            'ID' => $landlord_info->landlord_id,
+                            'Role' => 'Landlord'
+                        ]);
+                        return redirect('/home-landlord');
+                    }
+                    else{
+                        return back()->with('fail','Incorrect Password');
+                    }
+                }
+        } else if($request ->role == "Staff"){
+            $Staff_info = Staff::where('staff_email','=', $request->email)->first();
+
+            if(!$Staff_info){
+                return back()->with('fail','Email not recognized !');
+            }
+            else{
+                if($request->password == $Staff_info->staff_password){
+                    $request->session()->put([
+                        'ID' => $Staff_info->staff_id,
+                        'Role' => 'Staff'
+                    ]);
+                    return redirect('/home-staff');
+                }
+                else{
+                    return back()->with('fail','Incorrect Password');
+                }
+            }
+    }
 
     }
 
 
     function logout(){
-        if(session()->has('LoggedUser')){
-            session()->pull('LoggedUser');
-            return redirect('/');
+        if(session()->has('ID')){
+            session()->pull('ID');
         }
     }
 
-    function toStudentHome(){
-        return view('ManageRegistrationUsers.home_std');
-    }
-
-    function toRegistration(){
-        return view('ManageRegistrationUsers.registration');
-    }
-
-
     public function signUp_Std(Request $request){
+        //Valitdate form and return error message if not meet requirement
+        $this->validate($request,[
+            'name' =>'required',
+            'password' =>'required',
+            'email' =>'required|email|unique:students,std_email',  //unique email
+            'password' =>'required|min:4|max:12'
 
-      // return $request ->input();
-         //$Student -> <<table column name>> = $request -> label name
+        ]);
 
-        //  $request->validate([
-        //     'name' =>'required',
-        //     'password' =>'required',
-        //     'email' =>'required|email|unique:students',
-        //     'password' =>'required|min:4|max:12'
-        //    ]);
+        //Insert Student
+        //(FORMAT) $Student -> <<table column name>> = $request -> label name
+            $Student = new Student();
+            $Student->std_name = $request ->name;
+            $Student->std_email = $request ->email;
+            $Student->std_password = Hash::make($request ->password); //PASSWORD HASHED
+            $Student->save();
 
-         $Student = new Student();
-         $Student->std_name = $request ->name;
-         $Student->std_email = $request ->email;
-         $Student->std_password = Hash::make($request ->password); //PASSWORD HASHED
-         $save = $Student->save();
 
       }
 
@@ -70,11 +114,19 @@ class UserController extends Controller
       public function signUp_landlord(Request $request){
 
         //define at <landlord model>   namespace App\Models;
+
+            $request->validate([
+            'name' =>'required',
+            'password' =>'required',
+            'email' =>'required|email|unique:landlords,landlord_email',
+            'password' =>'required|min:4|max:12'
+           ]);
+
             $Landlord = new Landlord();
-           $Landlord->landlord_name = $request ->name;
-           $Landlord->landlord_email = $request ->email;
-           $Landlord->landlord_password = Hash::make($request ->password); //PASSWORD HASHED
-           $save = $Landlord->save();
+            $Landlord->landlord_name = $request ->name;
+            $Landlord->landlord_email = $request ->email;
+            $Landlord->landlord_password = Hash::make($request ->password); //PASSWORD HASHED
+            $Landlord->save();
 
         }
 
@@ -82,42 +134,7 @@ class UserController extends Controller
 
         public function check(Request $request){
 
-            if($request ->role == "Student"){
-                $std_info = Student::where('std_email','=', $request->email)->first();
 
-                    if(!$std_info){
-                        //return back()->with('fail','email not recognized');
-                        return response()->json(['Message'=>'Wrong Credential']);
-                    }
-                    else{
-                        if(Hash::check($request->password, $std_info->std_password)){
-
-                             $request->session()->put('LoggedUser',$std_info->std_id);
-                            return response()->json(['id'=>$std_info->std_id, 'name' => $std_info->std_name ]);
-                              //return redirect('home_student');
-                        }
-                        else{
-                            return response()->json(['Message'=>'Wrong Password']);
-                        }
-                    }
-            }
-            else if($request ->role == "Landlord"){
-                    $landlord_info = Landlord::where('landlord_email','=', $request->email)->first();
-                    return response()->json(['id'=>'2', 'name' => 'Bulba']);
-
-                    if(!$landlord_info){
-                        //return back()->with('fail','email not recognized');
-                    }
-                    else{
-                        if(Hash::check($request->password, $landlord_info->password)){
-                            $request->session()->put('LoggedUser',$landlord_info->landlord_id);
-                            return redirect('/');
-                        }
-                        else{
-                            return back()->with('fail','Incorrect Password');
-                        }
-                    }
-            }
 
 
 

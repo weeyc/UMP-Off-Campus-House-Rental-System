@@ -30,7 +30,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::post('register_std', 'UserController@signUp_Std');
 Route::post('register_landlord', 'UserController@signUp_landlord');
-Route::post('login', 'UserController@check');
+Route::post('logout', 'UserController@logout');
+
 
 //Route::post('login', [UserController::class, 'login']); cant use tis format
 //Route::resource('user', UserController::class);

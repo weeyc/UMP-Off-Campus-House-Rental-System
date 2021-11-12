@@ -18,7 +18,7 @@ class CreateLandlordsTable extends Migration
 
             $table->string('landlord_name');
             $table->string('landlord_password');
-            $table->string('landlord_email');
+            $table->string('landlord_email')->unique();
 
             $table->rememberToken();
 
