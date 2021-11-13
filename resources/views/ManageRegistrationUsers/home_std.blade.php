@@ -6,11 +6,8 @@
 
 
 <div id="app">
-BLADE => ID:
-<?php  echo $user_id ;
-      echo $user_role; ?>
 
-    <std-home ></std-home>
+    <std-home :user_id="{{ $user_id }}"></std-home>
 
 </div>
 

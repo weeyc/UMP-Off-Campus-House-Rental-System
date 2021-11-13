@@ -46,6 +46,21 @@ return [
             'provider' => 'users',
             'hash' => false,
         ],
+        // 'student' => [
+        //     'driver' => 'session',
+        //     'provider' => 'students',
+
+        // ],
+        // 'landlord' => [
+        //     'driver' => 'session',
+        //     'provider' => 'landlords',
+
+        // ],
+        // 'staff' => [
+        //     'driver' => 'session',
+        //     'provider' => 'staff',
+
+        // ],
     ],
 
     /*
@@ -74,6 +89,18 @@ return [
         // 'users' => [
         //     'driver' => 'database',
         //     'table' => 'users',
+        // // ],
+        // 'students' => [
+        //     'driver' => 'eloquent',
+        //     'model' => App\Models\Student::class,
+        // ],
+        // 'landlords' => [
+        //     'driver' => 'eloquent',
+        //     'model' => App\Models\Landlord::class,
+        // ],
+        // 'staff' => [
+        //     'driver' => 'eloquent',
+        //     'model' => App\Models\Staff::class,
         // ],
     ],
 

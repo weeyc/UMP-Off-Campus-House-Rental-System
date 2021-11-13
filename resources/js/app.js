@@ -27,6 +27,7 @@ Vue.component('std-register', require('./components/ManageRegistrationUsers/Regi
 Vue.component('std-home', require('./components/ManageRegistrationUsers/Home_Student.vue').default);
 Vue.component('landlord-home', require('./components/ManageRegistrationUsers/Home_Landlord.vue').default);
 Vue.component('staff-home', require('./components/ManageRegistrationUsers/Home_Staff.vue').default);
+Vue.component('nav-staff', require('./components/Layouts/Nav_Staff.vue').default);
 
 
 const app = new Vue({

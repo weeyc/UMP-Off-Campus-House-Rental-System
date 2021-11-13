@@ -6,10 +6,9 @@
 @section('content')
 
 <div id="app">
-    BLADE => ID:
-    <?php  echo $user_id ;
-          echo $user_role; ?>
-    <staff-home> </staff-home>
+
+        <nav-staff :user_id="{{ $user_id }}"></nav-staff>
+    <staff-home :user_id="{{ $user_id }}"> </staff-home>
 
 </div>
 

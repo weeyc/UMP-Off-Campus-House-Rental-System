@@ -60,7 +60,8 @@ class UserController extends Controller
                         return back()->with('fail','Incorrect Password');
                     }
                 }
-        } else if($request ->role == "Staff"){
+        }
+        else if($request ->role == "Staff"){
             $Staff_info = Staff::where('staff_email','=', $request->email)->first();
 
             if(!$Staff_info){
@@ -78,7 +79,7 @@ class UserController extends Controller
                     return back()->with('fail','Incorrect Password');
                 }
             }
-    }
+        }
 
     }
 
