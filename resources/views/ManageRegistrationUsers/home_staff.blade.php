@@ -8,7 +8,8 @@
 
     <staff-home
         :user_id="{{ $user_id }}"
-        :role="{{ $role }}">
+        :role="{{ $role }}"
+        >
     </staff-home>
 
 

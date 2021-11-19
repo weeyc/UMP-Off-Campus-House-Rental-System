@@ -37,15 +37,6 @@
                                     </svg>
                                     <span class="ml-2 font-bold">Manage Rental Properties</span>
                                 </li>
-                                <li class="border-b border-gray-300 xl:hidden cursor-pointer text-gray-600 text-sm leading-3 tracking-normal pt-2 pb-4 hover:text-indigo-700 flex items-center focus:text-indigo-700 focus:outline-none">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-code" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                        <path stroke="none" d="M0 0h24v24H0z"></path>
-                                        <polyline points="7 8 3 12 7 16"></polyline>
-                                        <polyline points="17 8 21 12 17 16"></polyline>
-                                        <line x1="14" y1="4" x2="10" y2="20"></line>
-                                    </svg>
-                                    <span class="ml-2 font-bold">Deliverables</span>
-                                </li>
                                 <li class="cursor-pointer text-gray-600 text-sm leading-3 tracking-normal mt-2 py-2 hover:text-indigo-700 flex items-center focus:text-indigo-700 focus:outline-none">
                                     <div class="flex items-center">
                                         <div class="w-12 cursor-pointer flex text-sm border-2 border-transparent rounded focus:outline-none focus:border-white transition duration-150 ease-in-out">
@@ -97,8 +88,6 @@
                         </div>
                         <span class="ml-2 font-poppins text-xl font-bold tracking-wide text-ump-green" >UMP Off-Campus Housing</span>
                 </a>
-
-
                 </div>
                 <div class="flex ">
                     <div class="hidden xl:flex md:mr-6 xl:mr-16 ">
@@ -110,7 +99,7 @@
                             </span>
                                 <span class="font-poppins text-base text-pink-300">Manage Property List</span>
                         </a>
-                        <a href="javascript: void(0)" class="flex px-5 items-center py-6 text-sm leading-5 text-gray-700 hover:bg-indigo-900 focus:bg-indigo-900 focus:outline-none transition duration-150 ease-in-out">
+                      <router-link  to='/home-staff/manage-user' class="flex px-5 items-center py-6 text-sm leading-5 text-gray-700 hover:bg-indigo-900 focus:bg-indigo-900 focus:outline-none transition duration-150 ease-in-out">
                             <span class="mr-2">
                                 <svg class="h-6 w-6 text-pink-500"  fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"/>
@@ -118,7 +107,7 @@
                             </span>
                               <span class="font-poppins text-base  text-pink-300">Manage Users</span>
 
-                        </a>
+                        </router-link>
                         <a href="javascript: void(0)" class="flex px-5 items-center py-6 text-sm leading-5 text-gray-700 hover:bg-indigo-900 focus:bg-indigo-900 focus:outline-none transition duration-150 ease-in-out">
                             <span class="mr-2">
                                 <svg class="h-6 w-6 text-pink-500"  width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">  <path stroke="none" d="M0 0h24v24H0z"/>  <polyline points="5 12 3 12 12 3 21 12 19 12" />  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" /></svg>
@@ -173,6 +162,8 @@
                                 </div>
                             </div>
                         </div>
+
+
                     </div>
                 </div>
             </div>
@@ -193,6 +184,7 @@ export default {
             let single = event.currentTarget.getElementsByTagName("ul")[0];
             single.classList.toggle("hidden");
         },
+
         MenuHandler(el, val) {
             let MainList = el.currentTarget.parentElement.getElementsByTagName("ul")[0];
             let closeIcon = el.currentTarget.parentElement.getElementsByClassName("close-m-menu")[0];

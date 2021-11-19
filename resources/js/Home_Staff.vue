@@ -2,6 +2,7 @@
 <div>
     <nav-staff v-cloak> </nav-staff>
     <div class="flex items-center justify-center h-screen overflow-hidden" style="background-image: url(/images/Background/CottonCandy.jpg);">
+    <router-view></router-view>
 
 
     </div>
@@ -10,6 +11,7 @@
 </div>
 </template>
 <script>
+
 
 export default {
 

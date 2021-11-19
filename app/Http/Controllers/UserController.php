@@ -102,6 +102,8 @@ class UserController extends Controller
             $Role = $request -> session()->get('Role');
             $capsule = array('user_id' => $ID, 'role' => $Role);
             return view('ManageRegistrationUsers.home_staff')->with($capsule);
+           // return redirect('/home-staff')->with($capsule);
+
         }
     }
 

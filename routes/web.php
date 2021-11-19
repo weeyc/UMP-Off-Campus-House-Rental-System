@@ -27,22 +27,35 @@ Route::get('/', function () {
 //Auth::routes();
 
 // Route::get('{any}', function () {
-//     return view('ManageRegistrationUsers.registration');
+//     return view('ManageRegistrationUsers.home_staff');
 // })->where('any', '.*');
 
-// Route::any('/registration/{all}', function () {
-//     return view('ManageRegistrationUsers.registration');
+// Route::any('/home-staff/{all}', function () {
+//     return view('ManageRegistrationUsers.home_staff');
 // })
-// ->where(['all' => '.*']); not used
+// ->where(['all' => '.*']);
+
+
+// Route::get('/home-staff', function(){
+//     return view('ManageRegistrationUsers.home_staff');
+// });
+
+// Route::get('/home-staff/{any?}', function() {
+//     return view('ManageRegistrationUsers.home_staff');
+//   })->where('any', '.*');
+
+  Route::get('/home-staff/{any?}', [UserController::class, 'authStaff'])->where('any', '.*');
 
 Route::get('/registration-student', function(){
     return view('ManageRegistrationUsers.registration');
 });
 
 
+
+
 Route::get('/home-landlord', 'UserController@authLandlord');
 Route::get('/home-student', 'UserController@authStudent');
-Route::get('/home-staff', 'UserController@authStaff');
+//Route::get('/home-staff', 'UserController@authStaff');
 
 Route::get('/logout', 'UserController@logout');
 
