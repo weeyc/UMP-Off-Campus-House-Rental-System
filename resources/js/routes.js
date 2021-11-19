@@ -3,9 +3,9 @@
 
 import Register_Landlord from './components/ManageRegistrationUsers/Register_Landlord';
 import Register_Student from './components/ManageRegistrationUsers/Register_Student';
-import Home_Student from './components/ManageRegistrationUsers/Home_Student';
-import Home_Staff from './components/ManageRegistrationUsers/Home_Staff';
-import Home_landlord from './components/ManageRegistrationUsers/Home_landlord';
+import Home_Student from './Home_Student';
+import Home_Staff from './Home_Staff';
+import Home_landlord from './Home_landlord';
 
 
 

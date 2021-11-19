@@ -40,17 +40,11 @@ Route::get('/registration-student', function(){
 });
 
 
-Route::get('/home-student', function(){
-    return view('ManageRegistrationUsers.home_std');
-});
+Route::get('/home-landlord', 'UserController@authLandlord');
+Route::get('/home-student', 'UserController@authStudent');
+Route::get('/home-staff', 'UserController@authStaff');
 
-Route::get('/home-landlord', function(){
-    return view('ManageRegistrationUsers.home_landlord');
-});
-
-Route::get('/home-staff', function(){
-    return view('ManageRegistrationUsers.home_staff');
-});
+Route::get('/logout', 'UserController@logout');
 
 Route::post('/Login', [UserController::class, 'Login'])->name('Sign_In');
 

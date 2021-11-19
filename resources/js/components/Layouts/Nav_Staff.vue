@@ -1,5 +1,6 @@
 <template>
-    <nav class=" shadow" style="background-color: #262d31">
+    <nav class=" shadow"  style="background-image: url(/images/Background/Sunrise.jpg);" v-cloak>
+    <!-- style="background-color: #131c21" -->
         <div class="mx-auto container px-6 py-2 xl:py-0">
             <div class="flex items-center justify-between">
                 <div class="inset-y-0 left-0 flex items-center xl:hidden">
@@ -101,47 +102,38 @@
                 </div>
                 <div class="flex ">
                     <div class="hidden xl:flex md:mr-6 xl:mr-16 ">
-                        <a href="javascript: void(0)" class="flex px-5 items-center py-6 text-sm leading-5 text-gray-700 hover:bg-gray-100 focus:bg-gray-100 focus:outline-none transition duration-150 ease-in-out">
+                        <a href="javascript: void(0)" class="flex px-5 items-center py-6 text-sm leading-5 text-gray-700 hover:bg-indigo-900 focus:bg-indigo-900 focus:outline-none transition duration-150 ease-in-out">
                             <span class="mr-2">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-grid" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                    <path stroke="none" d="M0 0h24v24H0z"></path>
-                                    <rect x="4" y="4" width="6" height="6" rx="1"></rect>
-                                    <rect x="14" y="4" width="6" height="6" rx="1"></rect>
-                                    <rect x="4" y="14" width="6" height="6" rx="1"></rect>
-                                    <rect x="14" y="14" width="6" height="6" rx="1"></rect>
+                                <svg class="h-6 w-6 text-pink-500"  fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"/>
                                 </svg>
                             </span>
-                                <span class="font-poppins text-indigo-500">Manage Property List</span>
+                                <span class="font-poppins text-base text-pink-300">Manage Property List</span>
                         </a>
-                        <a href="javascript: void(0)" class="flex px-5 items-center py-6 text-sm leading-5 text-gray-700 hover:bg-gray-100 focus:bg-gray-100 focus:outline-none transition duration-150 ease-in-out">
+                        <a href="javascript: void(0)" class="flex px-5 items-center py-6 text-sm leading-5 text-gray-700 hover:bg-indigo-900 focus:bg-indigo-900 focus:outline-none transition duration-150 ease-in-out">
                             <span class="mr-2">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-puzzle" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                    <path stroke="none" d="M0 0h24v24H0z"></path>
-                                    <path d="M4 7h3a1 1 0 0 0 1 -1v-1a2 2 0 0 1 4 0v1a1 1 0 0 0 1 1h3a1 1 0 0 1 1 1v3a1 1 0 0 0 1 1h1a2 2 0 0 1 0 4h-1a1 1 0 0 0 -1 1v3a1 1 0 0 1 -1 1h-3a1 1 0 0 1 -1 -1v-1a2 2 0 0 0 -4 0v1a1 1 0 0 1 -1 1h-3a1 1 0 0 1 -1 -1v-3a1 1 0 0 1 1 -1h1a2 2 0 0 0 0 -4h-1a1 1 0 0 1 -1 -1v-3a1 1 0 0 1 1 -1"></path>
+                                <svg class="h-6 w-6 text-pink-500"  fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"/>
                                 </svg>
                             </span>
-                              <span class="font-poppins  text-indigo-500">Manage Users</span>
+                              <span class="font-poppins text-base  text-pink-300">Manage Users</span>
 
                         </a>
-                        <a href="javascript: void(0)" class="flex px-5 items-center py-6 text-sm leading-5 text-gray-700 hover:bg-gray-100 focus:bg-gray-100 focus:outline-none transition duration-150 ease-in-out">
+                        <a href="javascript: void(0)" class="flex px-5 items-center py-6 text-sm leading-5 text-gray-700 hover:bg-indigo-900 focus:bg-indigo-900 focus:outline-none transition duration-150 ease-in-out">
                             <span class="mr-2">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-compass" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                    <path stroke="none" d="M0 0h24v24H0z"></path>
-                                    <polyline points="8 16 10 10 16 8 14 14 8 16"></polyline>
-                                    <circle cx="12" cy="12" r="9"></circle>
-                                </svg>
+                                <svg class="h-6 w-6 text-pink-500"  width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">  <path stroke="none" d="M0 0h24v24H0z"/>  <polyline points="5 12 3 12 12 3 21 12 19 12" />  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" /></svg>
                             </span>
-                              <span class="font-poppins  text-indigo-500">Manage Rental Properties</span>
+                              <span class="font-poppins text-base text-pink-300">Manage Rental Properties</span>
                         </a>
 
                     </div>
                     <div class="hidden xl:flex items-center">
                         <div class="relative md:mr-6 my-2">
-                            <button class="focus:outline-none bg-gray-100 border-gray-300 border transition duration-150 ease-in-out hover:bg-gray-300 rounded text-gray-600 px-5 py-2 text-xs">I'm a Staff</button>
+                            <button class="focus:outline-none bg-pink-200 border-gray-300 border transition duration-150 ease-in-out hover:bg-pink-100 rounded text-gray-600 px-5 py-2 text-xs">I'm a Staff</button>
                         </div>
                         <div class="ml-6 relative">
                             <div class="flex items-center relative" @click="dropdownHandler($event)">
-                                <ul class="p-2 w-40 border-r bg-white absolute rounded right-0 shadow top-0 mt-16 hidden">
+                                <ul class="p-2 w-40 border-r bg-red absolute rounded right-0 shadow top-0 mt-16 hidden">
                                     <li class="cursor-pointer text-gray-600 text-sm leading-3 tracking-normal py-2 hover:text-indigo-700 focus:text-indigo-700 focus:outline-none">
                                         <div class="flex items-center">
                                             <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -149,7 +141,7 @@
                                                 <circle cx="12" cy="7" r="4" />
                                                 <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
                                             </svg>
-                                            <span class="ml-2">My Profile</span>
+                                            <span class="ml-2 ">My Profile</span>
                                         </div>
                                     </li>
                                     <li class="cursor-pointer text-gray-600 text-sm leading-3 tracking-normal mt-2 py-2 hover:text-indigo-700 focus:text-indigo-700 focus:outline-none flex items-center">
@@ -167,13 +159,13 @@
                                             <path d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 0 0 2.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 0 0 1.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 0 0 -1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 0 0 -2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 0 0 -2.573 -1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 0 0 -1.065 -2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 0 0 1.066 -2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
                                             <circle cx="12" cy="12" r="3" />
                                         </svg>
-                                        <span class="ml-2">Account Settings</span>
+                                        <a href="/logout"><span class="ml-2">Log Out</span></a>
                                     </li>
                                 </ul>
                                 <div class="cursor-pointer flex text-sm border-2 border-transparent rounded-full focus:outline-none focus:border-white transition duration-150 ease-in-out">
                                     <img class="rounded-full h-10 w-10 object-cover" :src="profilePhoto" alt="logo" />
                                 </div>
-                                <div class="ml-2 text-gray-600">
+                                <div class="ml-2 text-gray-100">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-down cursor-pointer" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                         <path stroke="none" d="M0 0h24v24H0z"></path>
                                         <polyline points="6 9 12 15 18 9"></polyline>

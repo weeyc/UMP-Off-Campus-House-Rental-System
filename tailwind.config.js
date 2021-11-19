@@ -1,7 +1,9 @@
 const colors = require('tailwindcss/colors');
 
 module.exports = {
-  purge: [],
+  purge: [
+            require('daisyui'),
+  ],
   theme: {
     colors: {
         transparent: 'transparent',

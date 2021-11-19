@@ -31,10 +31,13 @@ class UserController extends Controller
                 else{
                     if(Hash::check($request->password, $std_info->std_password)){
 
-                        $request->session()->put([
-                            'ID' => $std_info->std_id,
-                            'Role' => 'Student'
-                        ]);
+                        // $request->session()->put([
+                        //     'ID' => $std_info->std_id,
+                        //     'Role' => 'Student'
+                        // ]);
+                        $Role = "Student";
+                        $request ->session()->put('ID', $std_info->std_id);
+                        $request ->session()->put('Role', $Role);
                         return redirect('/home-student');
                     }
                     else{
@@ -50,10 +53,13 @@ class UserController extends Controller
                 }
                 else{
                     if(Hash::check($request->password, $landlord_info->landlord_password)){
-                        $request->session()->put([
-                            'ID' => $landlord_info->landlord_id,
-                            'Role' => 'Landlord'
-                        ]);
+                        // $request->session()->put([
+                        //     'ID' => $landlord_info->landlord_id,
+                        //     'Role' => 'Landlord'
+                        // ]);
+                        $Role = "Landlord";
+                        $request ->session()->put('ID', $landlord_info->landlord_id);
+                        $request ->session()->put('Role', $Role);
                         return redirect('/home-landlord');
                     }
                     else{
@@ -69,10 +75,14 @@ class UserController extends Controller
             }
             else{
                 if($request->password == $Staff_info->staff_password){
-                    $request->session()->put([
-                        'ID' => $Staff_info->staff_id,
-                        'Role' => 'Staff'
-                    ]);
+                    // $request->session()->put([
+                    //     'ID' => $Staff_info->staff_id,
+                    //     'Role' => 'Staff'
+                    // ]);
+                    $Role = "Staff";
+                    $request ->session()->put('ID', $Staff_info->staff_id);
+                    $request ->session()->put('Role', $Role);
+
                     return redirect('/home-staff');
                 }
                 else{
@@ -83,11 +93,47 @@ class UserController extends Controller
 
     }
 
-
-    function logout(){
-        if(session()->has('ID')){
-            session()->pull('ID');
+    function authStaff(Request $request){
+        if($request->session()->get('ID')==""){
+            return redirect('/');
         }
+        else{
+            $ID = $request -> session()->get('ID');
+            $Role = $request -> session()->get('Role');
+            $capsule = array('user_id' => $ID, 'role' => $Role);
+            return view('ManageRegistrationUsers.home_staff')->with($capsule);
+        }
+    }
+
+    function authStudent(Request $request){
+        if($request->session()->get('ID')==""){
+            return redirect('/');
+        }
+        else{
+            $ID = $request -> session()->get('ID');
+            $Role = $request -> session()->get('Role');
+            $capsule = array('user_id' => $ID, 'role' => $Role);
+            return view('ManageRegistrationUsers.home_std')->with($capsule);
+        }
+    }
+
+    function authLandlord(Request $request){
+        if($request->session()->get('ID')==""){
+            return redirect('/');
+        }
+        else{
+            $ID = $request -> session()->get('ID');
+            $Role = $request -> session()->get('Role');
+            $capsule = array('user_id' => $ID, 'role' => $Role);
+            return view('ManageRegistrationUsers.home_landlord')->with($capsule);
+        }
+    }
+
+
+    function logout(Request $request){
+      $request->session()->forget('ID');
+      $request->session()->forget('Role');
+      return redirect('/');
     }
 
     public function signUp_Std(Request $request){

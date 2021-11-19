@@ -19,7 +19,7 @@
         {{---------------------------------------------------------------------Right Black---------------------------------------------------------}}
         <div class="z-0 flex items-center justify-center w-full px-0 text-center lg:w-1/2 md:px-16" style="background-color: #161616;">
 
-            <div class="absolute top-0 flex justify-right p-4 space-x-4">
+            <div class="absolute top-0 flex justify-right p-4 space-x-4 invisible sm:invisible  lg:visible   md:visible">
                 <div class="flex items-center flex-shrink-0 px-5 py-2 border-b-4 hover:text-indigo-400 text-2xl ">Login</div>
             </div>
 
@@ -83,7 +83,7 @@
             </div>
 
 
-                 <footer class="px-5 py-4 border-t footer bg-base-200 text-base-content border-base-300 absolute bottom-0 flex justify-center p-4 space-x-4 text-center ">
+                 <footer class="invisible md:visible  px-5 py-4 border-t footer bg-base-200 text-base-content border-base-300 absolute bottom-0 flex justify-center p-4 space-x-4 text-center ">
                         <div>
                             <p>Copyright © 2021 - All right reserved by Weeyc</p>
                         </div>

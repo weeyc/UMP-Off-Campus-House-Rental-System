@@ -6,6 +6,9 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 import routes from './routes';
 
+
+
+
 //----------TOASTER-------------------//
 import Toaster from 'v-toaster'
 // You need a specific loader for CSS files like https://github.com/webpack/css-loader
@@ -21,13 +24,15 @@ Vue.use(Toaster, {timeout: 5000})
 
 Vue.use(VueRouter);
 
+Vue.component('std-home', require('./Home_Student.vue').default);
+Vue.component('landlord-home', require('./Home_Landlord.vue').default);
+Vue.component('staff-home', require('./Home_Staff.vue').default);
 
 Vue.component('landlord-register',require('./components/ManageRegistrationUsers/Register_Landlord.vue').default);
 Vue.component('std-register', require('./components/ManageRegistrationUsers/Register_Student.vue').default);
-Vue.component('std-home', require('./components/ManageRegistrationUsers/Home_Student.vue').default);
-Vue.component('landlord-home', require('./components/ManageRegistrationUsers/Home_Landlord.vue').default);
-Vue.component('staff-home', require('./components/ManageRegistrationUsers/Home_Staff.vue').default);
+
 Vue.component('nav-staff', require('./components/Layouts/Nav_Staff.vue').default);
+Vue.component('foot-staff', require('./components/Layouts/Footer_Staff.vue').default);
 
 
 const app = new Vue({

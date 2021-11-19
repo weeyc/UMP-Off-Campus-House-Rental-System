@@ -131,6 +131,32 @@ export default {
                 }).catch(error =>this.errors.record(error.response.data));
 
 
+
+                // .catch(error => {
+                //     if (error.response) {
+                //     console.log(error.response.data);
+                //     }});
+
+                //.catch(error =>this.errors.record(error.response.data));
+
+
+//                 .catch(function (error) {
+//                 if (error.response) {
+//                 // The request was made and the server responded with a status code
+//                 // that falls out of the range of 2xx
+//                 console.warn(error.response.data.data);
+//                 this.errors.record(error.response.data.data)
+//     }
+//   });
+
+
+
+
+                //
+
+
+
+
            // console.log('This button is pressed')
 
 
