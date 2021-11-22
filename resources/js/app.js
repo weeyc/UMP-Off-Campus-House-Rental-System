@@ -6,7 +6,8 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 import routes from './routes';
 
-
+import Swal from 'sweetalert2'
+window.Swal = Swal
 
 
 //----------TOASTER-------------------//
@@ -22,21 +23,26 @@ Vue.use(Toaster, {timeout: 5000})
 //----------TOASTER-------------------//
 
 
+
+
 Vue.use(VueRouter);
 
-Vue.component('std-home', require('./Home_Student.vue').default);
-Vue.component('landlord-home', require('./Home_Landlord.vue').default);
-Vue.component('staff-home', require('./Home_Staff.vue').default);
+Vue.component('std-app', require('./App_Student.vue').default);
+Vue.component('landlord-app', require('./App_Landlord.vue').default);
+Vue.component('staff-app', require('./App_Staff.vue').default);
 
 Vue.component('nav-staff', require('./components/Layouts/Nav_Staff.vue').default);
 Vue.component('foot-staff', require('./components/Layouts/Footer_Staff.vue').default);
-Vue.component('tab-user-staff', require('./components/Layouts/Tab_Staff_Users.vue').default);
+
+//Vue.component('tab-user-staff', require('./components/Layouts/Tab_Staff_Users.vue').default);
+
+//Vue.component('pagination', require('laravel-vue-pagination'));
 
 
 Vue.component('landlord-register',require('./components/ManageRegistrationUsers/Register_Landlord.vue').default);
 Vue.component('std-register', require('./components/ManageRegistrationUsers/Register_Student.vue').default);
 
-Vue.component('manage-std', require('./components/ManageRegistrationUsers/Manage_Student.vue').default);
+//Vue.component('manage-std', require('./components/ManageRegistrationUsers/Manage_Student.vue').default);
 
 
 

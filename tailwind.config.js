@@ -40,6 +40,7 @@ module.exports = {
            // 'pekan': "url('/images/UMP/wide.jpg')",
 
 
+
            },
 
            fontFamily: {

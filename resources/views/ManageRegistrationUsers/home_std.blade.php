@@ -6,8 +6,8 @@
 
 <div id="app">
     {{ $role }}
-    <std-home :user_id="{{ $user_id }}"
-    :role="{{ $role }}">></std-home>
+    <std-app :user_id="{{ $user_id }}"
+    :role="{{ $role }}">></std-app>
 
 
 </div>

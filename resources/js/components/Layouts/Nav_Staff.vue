@@ -78,7 +78,7 @@
                     </div>
                 </div>
                 <div class="flex w-full sm:w-auto items-center sm:items-stretch justify-end sm:justify-start">
-                 <a href="/home-staff"  class="inline-flex items-center ">
+                 <router-link  :to="{name: 'landing_staff'}"  class="inline-flex items-center ">
 
                        <div class="  row-span-2 justify-self-end animate-bounce">
                            <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
@@ -87,7 +87,7 @@
                             style=" fill:#000000;"><g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><path d="M0,172v-172h172v172z" fill="none"></path><g fill="#6366f1"><path d="M86,14.33333c-1.91435,0.00025 -3.74903,0.76638 -5.09506,2.1276l-72.28255,63.07226c-0.9155,0.67554 -1.45577,1.74571 -1.45573,2.88347c0,1.97902 1.60431,3.58333 3.58333,3.58333h17.91667v57.33333c0,3.956 3.21067,7.16667 7.16667,7.16667h21.5c3.956,0 7.16667,-3.21067 7.16667,-7.16667v-43h43v43c0,3.956 3.21067,7.16667 7.16667,7.16667h21.5c3.956,0 7.16667,-3.21067 7.16667,-7.16667v-57.33333h17.91667c1.97902,0 3.58333,-1.60431 3.58333,-3.58333c0.00004,-1.13776 -0.54023,-2.20792 -1.45573,-2.88347l-27.21094,-23.73958v-19.96029c0,-3.956 -3.21067,-7.16667 -7.16667,-7.16667c-3.956,0 -7.16667,3.21067 -7.16667,7.16667v7.44661l-30.69629,-26.77702c-0.01394,-0.01406 -0.02794,-0.02805 -0.04199,-0.04199c-1.34603,-1.36123 -3.18071,-2.12736 -5.09506,-2.1276z"></path></g></g></svg>
                         </div>
                         <span class="ml-2 font-poppins text-xl font-bold tracking-wide text-ump-green" >UMP Off-Campus Housing</span>
-                </a>
+               </router-link>
                 </div>
                 <div class="flex ">
                     <div class="hidden xl:flex md:mr-6 xl:mr-16 ">
@@ -99,14 +99,13 @@
                             </span>
                                 <span class="font-poppins text-base text-pink-300">Manage Property List</span>
                         </a>
-                      <router-link  to='/home-staff/manage-user' class="flex px-5 items-center py-6 text-sm leading-5 text-gray-700 hover:bg-indigo-900 focus:bg-indigo-900 focus:outline-none transition duration-150 ease-in-out">
+                        <router-link  :to="{name: 'manage_student'}" class="flex px-5 items-center py-6 text-sm leading-5 text-gray-700 hover:bg-indigo-900 focus:bg-indigo-900 focus:outline-none transition duration-150 ease-in-out">
                             <span class="mr-2">
                                 <svg class="h-6 w-6 text-pink-500"  fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"/>
                                 </svg>
                             </span>
                               <span class="font-poppins text-base  text-pink-300">Manage Users</span>
-
                         </router-link>
                         <a href="javascript: void(0)" class="flex px-5 items-center py-6 text-sm leading-5 text-gray-700 hover:bg-indigo-900 focus:bg-indigo-900 focus:outline-none transition duration-150 ease-in-out">
                             <span class="mr-2">
@@ -173,7 +172,7 @@
 
 <script>
 export default {
-    name: "LightWithButton",
+
     data() {
         return {
             profilePhoto: "https://tuk-cdn.s3.amazonaws.com/assets/components/horizontal_navigation/hn_1.png",

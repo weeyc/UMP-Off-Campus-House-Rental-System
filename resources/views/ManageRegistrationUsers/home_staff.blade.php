@@ -1,16 +1,15 @@
 <title>UOCA-Staff</title>
-<?php ?>
 
 @extends('layouts.app')
 @section('content')
 
 <div id="app">
 
-    <staff-home
+    <staff-app
         :user_id="{{ $user_id }}"
         :role="{{ $role }}"
         >
-    </staff-home>
+    </staff-app>
 
 
 </div>

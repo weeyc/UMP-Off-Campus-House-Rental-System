@@ -2,12 +2,16 @@
   <div class="w-10/12 ">
 
       <div class="grid grid-cols-3 gap-5 lex flex-col lg:flex-row p-4 lg:p-8 justify-between items-start">
-        <button
+      <router-link  :to="{name: 'manage_student'}"
           class="
-            text-white
+
             p-4
             rounded
-            bg-indigo-500
+            bg-white
+            text-indigo-500
+            hover:bg-indigo-500 hover:text-white
+            focus:bg-indigo-500 focus:text-white focus:outline-none
+            transition duration-150 ease-in-out
             shadow-md
             flex
             items-center
@@ -29,14 +33,18 @@
             />
           </svg>
           Manage Students
-        </button>
+      </router-link>
+        <router-link  :to="{name: 'manage_landlord'}"
 
-        <button
           class="
             p-4
             rounded
-            bg-white
+           bg-white
             text-indigo-500
+            hover:bg-indigo-500 hover:text-white
+            focus:bg-indigo-500 focus:text-white focus:outline-none
+            transition duration-150 ease-in-out
+
             shadow-md
             flex
             items-center
@@ -58,13 +66,16 @@
             />
           </svg>
           Manage Landlord
-        </button>
+        </router-link>
         <button
           class="
             p-4
             rounded
             bg-white
             text-indigo-500
+            hover:bg-indigo-500 hover:text-white
+            focus:bg-indigo-500 focus:text-white focus:outline-none
+            transition duration-150 ease-in-out
             shadow-md
             flex
             items-center
@@ -88,10 +99,10 @@
           Manage Staff
         </button>
       </div>
-      <div
-        class="container">
 
-        <router-view ></router-view>
+      <div class="">
+
+            <router-view></router-view>
       </div>
 
   </div>

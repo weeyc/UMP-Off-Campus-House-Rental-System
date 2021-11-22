@@ -2,13 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\StudentResource;
+use App\Http\Resources\LandlordResource;
 use Illuminate\Http\Request;
 use App\Models\Student;
 use App\Models\Staff;
 use App\Models\Landlord;
-use Illuminate\Support\Facades\Auth;
+
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Validation\ValidationException;
+
 
 class UserController extends Controller
 {
@@ -38,7 +40,7 @@ class UserController extends Controller
                         $Role = "Student";
                         $request ->session()->put('ID', $std_info->std_id);
                         $request ->session()->put('Role', $Role);
-                        return redirect('/home-student');
+                        return redirect('/student');
                     }
                     else{
                         return back()->with('fail','Incorrect password !');
@@ -60,7 +62,7 @@ class UserController extends Controller
                         $Role = "Landlord";
                         $request ->session()->put('ID', $landlord_info->landlord_id);
                         $request ->session()->put('Role', $Role);
-                        return redirect('/home-landlord');
+                        return redirect('/landlord');
                     }
                     else{
                         return back()->with('fail','Incorrect Password');
@@ -83,7 +85,7 @@ class UserController extends Controller
                     $request ->session()->put('ID', $Staff_info->staff_id);
                     $request ->session()->put('Role', $Role);
 
-                    return redirect('/home-staff');
+                    return redirect('/staff');
                 }
                 else{
                     return back()->with('fail','Incorrect Password');
@@ -144,7 +146,9 @@ class UserController extends Controller
             'name' =>'required',
             'password' =>'required',
             'email' =>'required|email|unique:students,std_email',  //unique email
-            'password' =>'required|min:4|max:12'
+            'password' =>'required|min:4|max:12',
+            'phone_num' => 'required|regex:/(01)[0-9]{8}/'
+
 
         ]);
 
@@ -153,10 +157,10 @@ class UserController extends Controller
             $Student = new Student();
             $Student->std_name = $request ->name;
             $Student->std_email = $request ->email;
-            $Student->std_password = Hash::make($request ->password); //PASSWORD HASHED
+            $Student->std_password = Hash::make($request ->password);
+            $Student->std_gender = $request ->gender;
+            $Student->std_phone_no = $request ->phone_num;
             $Student->save();
-
-
       }
 
 
@@ -168,31 +172,60 @@ class UserController extends Controller
             'name' =>'required',
             'password' =>'required',
             'email' =>'required|email|unique:landlords,landlord_email',
-            'password' =>'required|min:4|max:12'
+            'password' =>'required|min:4|max:12',
+            'phone_num' => 'required|regex:/(01)[0-9]{8}/'
            ]);
 
             $Landlord = new Landlord();
             $Landlord->landlord_name = $request ->name;
             $Landlord->landlord_email = $request ->email;
-            $Landlord->landlord_password = Hash::make($request ->password); //PASSWORD HASHED
+            $Landlord->landlord_password = Hash::make($request ->password);
+            $Landlord->landlord_gender = $request ->gender;
+            $Landlord->landlord_phone_no = $request ->phone_num; //PASSWORD HASHED
             $Landlord->save();
 
         }
 
 
 
-        public function check(Request $request){
+        public function getStudent(){
+             $students = Student::paginate(10);
+             return StudentResource::collection($students);
+
+        }
+
+        public function getLandlord(){
+             $landlord = Landlord::paginate(10);
+             return LandlordResource::collection($landlord);
+
+        }
+
+        public function getStaff(){
+            $staff = Staff::paginate(10);
+            return StaffResource::collection($staff);
+
+       }
+
+
+        public function delete_Student($id){
+            Student::where('std_id', $id)->delete();
+            return response()->json("Student Deleted!");
+
+       }
+
+       public function delete_Landlord($id){
+        Landlord::where('landlord_id', $id)->delete();
+        return response()->json("Landlord Deleted!");
+   }
+
+       public function delete_Staff($id){
+        Staff::where('staff_id', $id)->delete();
+        return response()->json("Staff Deleted!");
+   }
 
 
 
 
-
-
-
-
-
-
-             }
 
 
 

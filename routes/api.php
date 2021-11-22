@@ -3,7 +3,6 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
-
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -15,22 +14,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-//     return $request->user();
-// });
-// Route::middleware('auth:sanctum')->get('/athenticated', function () {
-//     return true;
-// });
-//Route::post('register', 'RegisterController@register');
-//Route::post('login', 'LoginController@login');
-//Route::post('logout', 'LoginController@logout');
-
-
-
 
 Route::post('register_std', 'UserController@signUp_Std');
 Route::post('register_landlord', 'UserController@signUp_landlord');
 Route::post('logout', 'UserController@logout');
+Route::get('get_std', 'UserController@getStudent');
+Route::get('get_landlord', 'UserController@getLandlord');
+Route::delete('delete_std/{id}', 'UserController@delete_Student');
+Route::delete('delete_landlord/{id}', 'UserController@delete_Landlord');
+
+
+
 
 
 //Route::post('login', [UserController::class, 'login']); cant use tis format

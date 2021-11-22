@@ -20,13 +20,11 @@ class CreateLandlordsTable extends Migration
             $table->string('landlord_password');
             $table->string('landlord_email')->unique();
 
-            $table->rememberToken();
+            $table->string('landlord_gender');
+            $table->string('landlord_phone_no');
 
-            $table->string('landlord_username')->nullable();
             $table->string('landlord_pic')->nullable();
-            $table->string('landlord_phone')->nullable();
             $table->string('landlord_chat_id')->nullable();
-            $table->integer('user_role')->nullable();
 
             // $table->string('cust_status')->default('Active');
             // $table->timestamps();

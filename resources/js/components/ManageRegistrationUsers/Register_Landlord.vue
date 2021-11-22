@@ -63,6 +63,16 @@
                         <input class="block w-full p-4 text-lg bg-black rounded-sm" type="password" required name="password" id="password" placeholder="Password" v-model="form.password">
                         <span class="flex text-red-500">{{ errors.get('password')}}</span>
                     </div>
+                     <div class="pt-1 pb-2">
+                        <input class="block w-full p-4 text-lg bg-black rounded-sm" type="text" name="phone_num" placeholder="Phone Number" v-model="form.phone_num" >
+                         <span class="flex text-red-500">{{ errors.get('phone_num')}}</span>
+                    </div>
+                        <div class="pt-1 pb-2">
+                        <select class="block w-full p-4 text-lg bg-black rounded-lg" name="gender" v-model="form.gender" required >
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                        </select>
+                    </div>
                     <div class="px-4 pt-4 pb-2">
                         <button @click.prevent="saveForm" type="submit" class="block w-full p-4 text-lg uppercase rounded-full  bg-blue-600 hover:bg-blue-700 focus:outline-none">sign Up</button>
                     </div>
@@ -104,6 +114,8 @@ export default {
                 name: '',
                 email: '',
                 password: '',
+                gender: '',
+                phone_num: '',
             },
              errors: new Errors()
 

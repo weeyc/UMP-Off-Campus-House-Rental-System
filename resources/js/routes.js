@@ -5,13 +5,9 @@ import Register_Landlord from './components/ManageRegistrationUsers/Register_Lan
 import Register_Student from './components/ManageRegistrationUsers/Register_Student';
 import Tab_Staff_Users from './components/Layouts/Tab_Staff_Users';
 import Manage_Student from './components/ManageRegistrationUsers/Manage_Student';
+import Manage_Landlord from './components/ManageRegistrationUsers/Manage_Landlord';
+import Landing_Staff from './components/ManageRegistrationUsers/Landing_Staff';
 import NotFound from './components/NotFound';
-
-
-
-import Home_Student from './Home_Student';
-import Home_Staff from './Home_Staff';
-import Home_landlord from './Home_landlord';
 
 
 
@@ -37,30 +33,26 @@ export default{
 
         },
         {
-            path: '/home-student',
-            name: 'home_student',
-            component: Home_Student,
+            path: '/staff',
+            name: 'landing_staff',
+            component: Landing_Staff,
         },
         {
-            path: '/home-landlord',
-            name: 'home_landlord',
-            component: Home_landlord,
-        },
-        {
-            path: '/home-staff',
-            name: 'home_staff',
-            component: Home_Staff,
-        },
-        {
-            path: '/home-staff/manage-user',
+            path: '/staff/manage-user',
             name: 'manage_user',
             component: Tab_Staff_Users,
             children: [
                 {
-                    path: 'student',
+                    default: Manage_Student,
+                    path: '/staff/manage-user/student',
                     name: 'manage_student',
                     component: Manage_Student,
-                }
+                },
+                {
+                    path: '/staff/manage-user/landlord',
+                    name: 'manage_landlord',
+                    component: Manage_Landlord,
+                },
 
 
             ]

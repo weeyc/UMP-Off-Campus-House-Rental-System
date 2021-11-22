@@ -6,10 +6,10 @@
 <div id="app">
 
     {{ $role }}
-    <landlord-home
+    <landlord-app
         :user_id="{{ $user_id }}"
         :role="{{ $role }}">
-    </landlord-home>
+    </landlord-app>
 
 </div>
 

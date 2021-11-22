@@ -1,17 +1,18 @@
 <template>
-    <div class="w-full py-10 bg-no-repeat bg-cover" style="background-image: url(/images/BlueCoral.jpg);">
+    <div class="flex justify-center item-center pl-8 pb-10">
         <!-- change background here top table -->
         <div class="mx-auto container bg-white-500 dark:bg-gray-800 dark:bg-gray-800 shadow rounded " >
-            <div class="flex flex-col lg:flex-row p-4 lg:p-8 justify-between items-start lg:items-stretch w-full  shadow-inner" style="background-image: url(/images/BlueCoral.jpg);">
+            <div class="flex flex-col lg:flex-row p-2 lg:p-8 justify-between items-start lg:items-stretch w-full shadow-inner" style="background-image: url(/images/BlueCoral.jpg);">
                 <div class="w-full lg:w-1/5 flex flex-col lg:flex-row items-start lg:items-center">
                     <div class="flex items-center ">
-                        <span class="text-xl font-black">MANAGE USERS</span>
+                        <span class="text-xl font-black">MANAGE STUDENTS</span>
                     </div>
                 </div>
                   <div class="w-full lg:w-1/5 flex flex-col lg:flex-row items-start lg:items-center ">
                     <div class="flex items-center">
                           <p class="font-medium text-dark-600 dark:text-gray-400" >  Showing Page {{ page }} of {{ lastPage }}</p>
                     </div>
+
                 </div>
                 <div class="w-full lg:w-1/5 flex flex-col lg:flex-row items-start lg:items-center justify-end">
 
@@ -40,10 +41,12 @@
                         </div>
                     </div>
                 </div>
+
             </div>
 
 
                 <div class="w-full lg:w-1/5 flex flex-col lg:flex-row items-start lg:items-center lg:ml-20 ">
+
                         <div class="relative w-32 z-10">
                             <div class="pointer-events-none text-dark-800 dark:text-gray-400 absolute mt-3 inset-0 m-auto mr-2 xl:mr-4 z-0 w-5 h-5">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="icon cursor-pointer icon-tabler icon-tabler-chevron-down" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -57,28 +60,20 @@
                                 <option value="female">Female</option>
 
                             </select>
-                            <div class="pointer-events-none text-gray-900 dark:text-gray-400  absolute mt-12 inset-0 m-auto mr-2 xl:mr-4 z-0 w-5 h-5">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="icon cursor-pointer icon-tabler icon-tabler-chevron-down" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                    <path stroke="none" d="M0 0h24v24H0z"></path>
-                                    <polyline points="6 9 12 15 18 9"></polyline>
-                                </svg>
-                            </div>
-                             <select shadow-lg v-model="filterStatus" class="focus:outline-none border-transparent cursor-pointer focus:border-gray-800 hover:bg-blue-200 focus:shadow-outline-gray text-base form-select block w-full py-2 px-2 xl:px-3 rounded font-medium dark:text-gray-400 appearance-none bg-transparent">
-                                <option value="" >Status</option>
-                                <option value="active">Active</option>
-                                <option value="inactive">Inactive</option>
-                            </select>
+
+
                         </div>
-
-
                     </div>
-                    <div class="w-full lg:w-1/5 flex flex-col lg:flex-row items-start lg:items-center ">
+
+                    <div class="w-full lg:w-1/5 flex flex-col lg:flex-row  items-start lg:items-stretch">
                         <button @click="toggleModalCreate = !toggleModalCreate" class="bg-gray-200   hover:bg-blue-200 rounded
                         text-indigo-700 px-5 h-8 shadow-lg ">Create User</button>
-
                     </div>
 
             </div>
+                    <div class="flex justify-center item-center mb-10">
+                        <input type="text" name="name"  v-model="filterName"  placeholder="Search Name"  class="block w-5/12 py-2 px-2 text-lg rounded-lg">
+                    </div>
             <div class="w-full overflow-x-scroll xl:overflow-x-hidden">
                 <!-- change body from  bg-dark-600 dark:bg-gray-800 -->
 
@@ -89,55 +84,54 @@
                                 <th class="py-3 px-6 text-left">User ID</th>
                                 <th class="py-3 px-6 text-left">Name</th>
                                 <th class="py-3 px-6 text-left">Email</th>
+                                <th class="py-3 px-6 text-left">Phone No.</th>
                                 <th class="py-3 px-6 text-left">Gender</th>
-                                <th class="py-3 px-6 text-left">Status</th>
                                 <th class="py-3 px-6 text-center">Actions</th>
                             </tr>
                         </thead>
                         <tbody class="text-dark-600 text-sm font-light">
-                            <tr  v-for= "(user, index) in filterUser" :key="user.id"   class="border-b border-gray-200 hover:bg-green-200" >
+                            <tr  v-for= "(student, index) in filterUser" :key="student.std_id"   class="border-b border-gray-200 hover:bg-green-200" >
                                  <td class="py-3 px-3 text-left whitespace-nowrap">  {{ index + 1 }}</td >
                                 <td class="py-3 px-6 text-left whitespace-nowrap">
                                     <div class="flex items-center">
-                                        <span class="font-medium">{{ user.id }}</span>
+                                        <span class="font-medium">{{ student.std_id }}</span>
                                     </div>
 
                                 </td>
                                 <td class="py-3 px-6 text-left">
                                     <div class="flex items-center">
-                                        <span>{{ user.name }}</span>
+                                          <div class="mr-2">
+                                            <img :src="'/images/Profile/'+student.std_pic"  class="w-6 h-6 rounded-full hover:scale-150 hover:z-10 transform ease-in-out transition duration-500">
+                                        </div>
+                                        <span>{{ student.std_name }}</span>
                                     </div>
                                 </td>
+
                                    <td class="py-3 px-6 text-left">
                                     <div class="flex items-center">
-                                        <span>{{ user.email }}</span>
+                                        <span>{{ student.std_email }}</span>
+                                    </div>
+                                </td>
+                                    <td class="py-3 px-6 text-left">
+                                    <div class="flex items-center">
+                                        <span>{{ student.std_phone_no }}</span>
                                     </div>
                                 </td>
                                 <td class="py-3 px-6 text-left">
-                                      <span v-if="user.gender==='male'">🧑 {{ user.gender }}</span>
-                                      <span v-if="user.gender==='female'">👩‍🦰  {{ user.gender }}</span>
-                                </td>
-                                <td class="py-3 px-6 text-left">
-                                    <span v-if="user.status==='active'" class="bg-green-200 text-green-600 py-1 px-4 rounded-full text-xs">{{ user.status }}</span>
-                                    <span v-if="user.status==='inactive'" class="bg-red-200 text-red-600 py-1 px-3 rounded-full text-xs">{{ user.status }}</span>
+                                      <span v-if="student.std_gender==='male'">🧑 {{ student.std_gender }}</span>
+                                      <span v-if="student.std_gender==='female'">👩‍🦰  {{ student.std_gender }}</span>
                                 </td>
                                 <td class="py-3 px-6 text-center">
                                     <div class="flex item-center justify-center">
                                         <div class="w-4 mr-2 transform hover:text-purple-500 hover:scale-110">
-                                            <button @click="readUser(user); toggleModal = !toggleModal;"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <button @click="readUser(student); toggleModal = !toggleModal;"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
                                             </svg>
                                             </button>
                                         </div>
-                                        <div  class="w-4 mr-2 transform hover:text-purple-500 hover:scale-110">
-                                              <button @click="clickEdit(user); toggleModalEdit = !toggleModalEdit;"> <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
-                                            </svg>
-                                            </button>
-                                        </div>
                                         <div class="w-4 mr-2 transform hover:text-purple-500 hover:scale-110">
-                                             <button @click="deleteUser(user.id);"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                             <button @click="deleteUser(student.std_id, student.std_name);"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
                                             </svg> </button>
                                         </div>
@@ -145,47 +139,171 @@
                                 </td>
                             </tr>
                         </tbody>
+
                 </table>
+
 
             </div>
 
 
+
+
+
         </div>
 
-
+        <ReadModal
+            v-if="toggleModal"
+            :form="profile"
+            :toggle="toggleModal"
+            @closeModal="closeReadModal">
+        </ReadModal>
 
 
     </div>
 
 
+
 </template>
 
 <script>
+import ReadModal from './Modal_Student.vue';
 
 
 export default {
 
     components: {
+        ReadModal,
 
     },
 
     data() {
         return {
+            students:[],
+            page: 1,
+            lastPage: '',
+            filterGender: '',
+            filterName: '',
 
+
+            toggleModal: false,
+            toggleModalCreate: false,
+            toggleModalEdit: false,
+
+                profile:{
+                    id: '',
+                    name: '',
+                    email: '',
+                    phone: '',
+                    gender: '',
+                    pic: '',
+                }
         };
     },
 
     computed:{
+            filterUser: function(){
+            return this.students.filter((user)=>{
+               //return user.gender.match(this.filterGender);
+                if(this.filterGender=="" && this.filterName==""){
+                     return user;
+                }else if(user.std_gender==this.filterGender && user.std_name.match(this.filterName)){
+                    return user;
+                }else if(user.std_gender==this.filterGender && this.filterName==""){
+                    return user;
+                }else if (this.filterGender=="" && user.std_name.toLowerCase().match(this.filterName.toLowerCase()))
+                     return user.std_name.toLowerCase().match(this.filterName.toLowerCase());
+            });
+        },
 
     },
 
      mounted: function(){
-
+            this.getStudent();
+            this.getMeta();
     },
 
     methods: {
+          getStudent(){
+            axios.get('/api/get_std?page='+this.page).then((response)=>{
+                this.students=response.data.data;
+                console.warn(this.students.data);
+                })
+            },
+            getMeta(){
+            axios.get('/api/get_std').then((response)=>{
 
+                this.lastPage=response.data.meta.last_page
+                console.warn(response.data.meta.last_page);
+                })
 
+            },
+        firstPg(){
+                this.page=1;
+                this.getStudent();
+            },
+        currentPg(){
+                this.page=this.page;
+                this.getStudent();
+            },
+        lastPg(){
+                this.page=this.lastPage;
+                this.getStudent();
+            },
+        nextPg(pg){
+               if(pg>=this.lastPage)
+                    this.page=this.lastPage;
+                else
+                     this.page=this.page + 1;
+                 this.getStudent();
+            },
+        previousPg(pg){
+                if(pg<=1){
+                     this.page=1;
+                }
+                else
+                    this.page=this.page -1;
+                 this.getStudent();
+            },
+        readUser(user){
+            this.profile.id = user.std_id;
+            this.profile.name = user.std_name;
+            this.profile.email = user.std_email;
+            this.profile.phone = user.std_phone_no;
+            this.profile.gender = user.std_gender;
+            this.profile.pic = user.std_pic;
+
+        },
+         deleteUser(id, name){
+                Swal.fire({
+                    title: 'Are you sure?',
+                    text: "Delete Student: "+name,
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, delete this student!'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            axios.delete('/api/delete_std/'+id).then((response)=>{
+                                this.getStudent();
+                                console.log(response)
+                                     Swal.fire(
+                                    'Deleted!',
+                                    'Student has been deleted.',
+                                    'success'
+                                    )
+                            }).catch((errors)=> {
+                                console.log(errors)
+                            })
+
+                        }
+                })
+
+        },
+
+           closeReadModal(){
+            this.toggleModal =!  this.toggleModal ;
+        }
 
     },
 

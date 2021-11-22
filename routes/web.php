@@ -44,7 +44,7 @@ Route::get('/', function () {
 //     return view('ManageRegistrationUsers.home_staff');
 //   })->where('any', '.*');
 
-  Route::get('/home-staff/{any?}', [UserController::class, 'authStaff'])->where('any', '.*');
+  Route::get('/staff/{any?}', [UserController::class, 'authStaff'])->where('any', '.*');
 
 Route::get('/registration-student', function(){
     return view('ManageRegistrationUsers.registration');

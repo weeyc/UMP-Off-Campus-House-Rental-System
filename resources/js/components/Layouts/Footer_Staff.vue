@@ -1,8 +1,8 @@
 <template>
-    <div  style="background-image: url(/images/Background/Sunrise.jpg);">
-        <footer id="footer" class="relative z-50  pt-5">
+    <div  class="" style="background-image: url(/images/Background/Sunrise.jpg);">
+        <footer class="relative  pt-5">
 
-            <div class=" flex flex-col justify-center items-center pb-1">
+            <div class="flex flex-col justify-center items-center pb-1">
                    <div class="animate-bounce">
                            <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
                             width="40" height="40"

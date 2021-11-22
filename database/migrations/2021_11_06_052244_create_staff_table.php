@@ -20,14 +20,15 @@ class CreateStaffTable extends Migration
             $table->string('staff_name');
             $table->string('staff_email')->unique();
             $table->string('staff_password');
-            $table->rememberToken();
-
-            $table->string('staff_username')->nullable();
+            $table->string('staff_gender');
             $table->string('staff_pic')->nullable();
-            $table->string('staff_phone')->nullable();
+            $table->string('staff_phone_no')->nullable();
             $table->string('staff_chat_id')->nullable();
             $table->string('staff_type')->nullable();
-            $table->integer('user_role')->nullable();
+
+
+
+
 
             // $table->string('cust_status')->default('Active');
             // $table->timestamps();
