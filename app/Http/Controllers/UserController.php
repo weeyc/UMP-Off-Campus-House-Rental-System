@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Resources\StudentResource;
 use App\Http\Resources\LandlordResource;
+use App\Http\Resources\StaffResource;
 use Illuminate\Http\Request;
 use App\Models\Student;
 use App\Models\Staff;
@@ -148,8 +149,6 @@ class UserController extends Controller
             'email' =>'required|email|unique:students,std_email',  //unique email
             'password' =>'required|min:4|max:12',
             'phone_num' => 'required|regex:/(01)[0-9]{8}/'
-
-
         ]);
 
         //Insert Student
@@ -185,6 +184,30 @@ class UserController extends Controller
             $Landlord->save();
 
         }
+
+        public function create_Staff(Request $request){
+
+            //define at <landlord model>   namespace App\Models;
+
+                $request->validate([
+                'name' =>'required',
+                'password' =>'required',
+                'gender' => 'required',
+                'email' =>'required|email|unique:landlords,landlord_email',
+                'password' =>'required|min:4|max:12',
+                'phone_num' => 'required|regex:/(01)[0-9]{8}/'
+               ]);
+
+                $Staff = new Staff();
+                $Staff->staff_name = $request ->name;
+                $Staff->staff_email = $request ->email;
+                $Staff->staff_password = Hash::make($request ->password);
+                $Staff->staff_gender = $request ->gender;
+                $Staff->staff_phone_no = $request ->phone_num;
+                $Staff->staff_pic = $request ->pic;
+                $Staff->save();
+
+            }
 
 
 

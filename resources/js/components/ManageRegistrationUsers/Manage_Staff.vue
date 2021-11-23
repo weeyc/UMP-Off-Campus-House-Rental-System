@@ -5,7 +5,7 @@
             <div class="flex flex-col lg:flex-row p-2 lg:p-8 justify-between items-start lg:items-stretch w-full shadow-inner" style="background-image: url(/images/BlueCoral.jpg);">
                 <div class="w-full lg:w-1/5 flex flex-col lg:flex-row items-start lg:items-center">
                     <div class="flex items-center ">
-                        <span class="text-xl font-black">MANAGE LANDLORD</span>
+                        <span class="text-xl font-black">MANAGE STAFF</span>
                     </div>
                 </div>
                   <div class="w-full lg:w-1/5 flex flex-col lg:flex-row items-start lg:items-center ">
@@ -45,8 +45,7 @@
             </div>
 
 
-                <div class="w-full lg:w-1/5 flex flex-col lg:flex-row items-start lg:items-center justify-center ">
-
+                <div class="w-full lg:w-1/5 flex flex-col lg:flex-row items-start lg:items-center  justify-center">
                         <div class="relative w-32 z-10">
                             <div class="pointer-events-none text-dark-800 dark:text-gray-400 absolute mt-3 inset-0 m-auto mr-2 xl:mr-4 z-0 w-5 h-5">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="icon cursor-pointer icon-tabler icon-tabler-chevron-down" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -90,52 +89,57 @@
                             </tr>
                         </thead>
                         <tbody class="text-dark-600 text-sm font-light">
-                            <tr  v-for= "(landlord, index) in filterUser" :key="landlord.landlord_id"   class="border-b border-gray-200 hover:bg-green-200" >
+                            <tr  v-for= "(staff, index) in filterUser" :key="staff.staff_id"   class="border-b border-gray-200 hover:bg-green-200" >
                                  <td class="py-3 px-3 text-left whitespace-nowrap">  {{ index + 1 }}</td >
                                 <td class="py-3 px-6 text-left whitespace-nowrap">
                                     <div class="flex items-center">
-                                        <span class="font-medium">{{ landlord.landlord_id }}</span>
+                                        <span class="font-medium">{{ staff.staff_id }}</span>
                                     </div>
 
                                 </td>
                                 <td class="py-3 px-6 text-left">
                                     <div class="flex items-center">
                                           <div class="mr-2">
-                                            <img :src="'/images/Profile/'+landlord.landlord_pic"  class="w-6 h-6 rounded-full hover:scale-150 hover:z-10 transform ease-in-out transition duration-500">
+                                            <img :src="'/images/Profile/'+staff.staff_pic"  class="w-6 h-6 rounded-full hover:scale-150 hover:z-10 transform ease-in-out transition duration-500">
                                         </div>
-                                        <span>{{ landlord.landlord_name }}</span>
+                                        <span>{{ staff.staff_name }}</span>
                                     </div>
                                 </td>
 
                                    <td class="py-3 px-6 text-left">
                                     <div class="flex items-center">
-                                        <span>{{ landlord.landlord_email }}</span>
+                                        <span>{{ staff.staff_email }}</span>
                                     </div>
                                 </td>
                                     <td class="py-3 px-6 text-left">
                                     <div class="flex items-center">
-                                        <span>{{ landlord.landlord_phone_no }}</span>
+                                        <span>{{ staff.staff_phone_no }}</span>
                                     </div>
                                 </td>
                                 <td class="py-3 px-6 text-left">
-                                      <span v-if="landlord.landlord_gender==='male'">🧑 {{ landlord.landlord_gender }}</span>
-                                      <span v-if="landlord.landlord_gender==='female'">👩‍🦰  {{ landlord.landlord_gender }}</span>
+                                      <span v-if="staff.staff_gender==='male'">🧑 {{ staff.staff_gender }}</span>
+                                      <span v-if="staff.staff_gender==='female'">👩‍🦰  {{ staff.staff_gender }}</span>
                                 </td>
                                 <td class="py-3 px-6 text-center">
                                     <div class="flex item-center justify-center">
                                         <div class="w-4 mr-2 transform hover:text-purple-500 hover:scale-110">
-                                            <button @click="readUser(landlord); toggleModal = !toggleModal;"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <button @click="readUser(staff); toggleModal = !toggleModal;"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
                                             </svg>
                                             </button>
                                         </div>
                                         <div class="w-4 mr-2 transform hover:text-purple-500 hover:scale-110">
-                                             <button @click="deleteUser(landlord.landlord_id, landlord.landlord_name);"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                             <button @click="deleteUser(staff.staffid, staff.staff_name);"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
                                             </svg> </button>
                                         </div>
                                     </div>
+                                </td>
+                            </tr>
+                            <tr v-if="filterUser.length==0">
+                                <td colspan="7">
+                                    There is no data!
                                 </td>
                             </tr>
                         </tbody>
@@ -158,6 +162,13 @@
             @closeModal="closeReadModal">
         </ReadModal>
 
+        <CreateModal
+            v-if="toggleModalCreate"
+            :toggle="toggleModalCreate"
+            @refreshData="getStaff"
+            @closeModal="closeCreateModal">
+        </CreateModal>
+
 
     </div>
 
@@ -167,18 +178,20 @@
 
 <script>
 import ReadModal from './Modal_Student.vue';
+import CreateModal from './Create_Modal.vue';
 
 
 export default {
 
     components: {
         ReadModal,
+        CreateModal
 
     },
 
     data() {
         return {
-            landlords:[],
+            staff:[],
             page: 1,
             lastPage: '',
             filterGender: '',
@@ -202,35 +215,35 @@ export default {
 
     computed:{
             filterUser: function(){
-            return this.landlords.filter((user)=>{
+            return this.staff.filter((user)=>{
                //return user.gender.match(this.filterGender);
                 if(this.filterGender=="" && this.filterName==""){
                      return user;
-                }else if(user.landlord_gender==this.filterGender && user.landlord_name.match(this.filterName)){
+                }else if(user.staff_gender==this.filterGender && user.staff_name.match(this.filterName)){
                     return user;
-                }else if(user.landlord_gender==this.filterGender && this.filterName==""){
+                }else if(user.staff_gender==this.filterGender && this.filterName==""){
                     return user;
-                }else if (this.filterGender=="" && user.landlord_name.toLowerCase().match(this.filterName.toLowerCase()))
-                     return user.landlord_name.toLowerCase().match(this.filterName.toLowerCase());
+                }else if (this.filterGender=="" && user.staff_name.toLowerCase().match(this.filterName.toLowerCase()))
+                     return user.staff_name.toLowerCase().match(this.filterName.toLowerCase());
             });
         },
 
     },
 
      mounted: function(){
-            this.getLandlord();
+            this.getStaff();
             this.getMeta();
     },
 
     methods: {
-          getLandlord(){
-            axios.get('/api/get_landlord?page='+this.page).then((response)=>{
-                this.landlords=response.data.data;
-                console.warn(this.landlords.data);
+          getStaff(){
+            axios.get('/api/get_staff?page='+this.page).then((response)=>{
+                this.staff=response.data.data;
+                console.warn(this.staff.data);
                 })
             },
             getMeta(){
-            axios.get('/api/get_landlord').then((response)=>{
+            axios.get('/api/get_staff').then((response)=>{
 
                 this.lastPage=response.data.meta.last_page
                 console.warn(response.data.meta.last_page);
@@ -239,22 +252,22 @@ export default {
             },
         firstPg(){
                 this.page=1;
-                this.getLandlord();
+                this.getStaff();
             },
         currentPg(){
                 this.page=this.page;
-                this.getLandlord();
+                this.getStaff();
             },
         lastPg(){
                 this.page=this.lastPage;
-                this.getLandlord();
+                this.getStaff();
             },
         nextPg(pg){
                if(pg>=this.lastPage)
                     this.page=this.lastPage;
                 else
                      this.page=this.page + 1;
-                 this.getLandlord();
+                 this.getStaff();
             },
         previousPg(pg){
                 if(pg<=1){
@@ -262,34 +275,34 @@ export default {
                 }
                 else
                     this.page=this.page -1;
-                 this.getLandlord();
+                 this.getStaff();
             },
         readUser(user){
-            this.profile.id = user.landlord_id;
-            this.profile.name = user.landlord_name;
-            this.profile.email = user.landlord_email;
-            this.profile.phone = user.landlord_phone_no;
-            this.profile.gender = user.landlord_gender;
-            this.profile.pic = user.landlord_pic;
+            this.profile.id = user.staff_id;
+            this.profile.name = user.staff_name;
+            this.profile.email = user.staff_email;
+            this.profile.phone = user.staff_phone_no;
+            this.profile.gender = user.staff_gender;
+            this.profile.pic = user.staff_pic;
 
         },
          deleteUser(id, name){
                 Swal.fire({
                     title: 'Are you sure?',
-                    text: "Delete Landlord: "+name,
+                    text: "Delete Staff: "+name,
                     icon: 'warning',
                     showCancelButton: true,
                     confirmButtonColor: '#3085d6',
                     cancelButtonColor: '#d33',
-                    confirmButtonText: 'Yes, delete this landlord!'
+                    confirmButtonText: 'Yes, delete this staff!'
                     }).then((result) => {
                         if (result.isConfirmed) {
-                            axios.delete('/api/delete_landlord/'+id).then((response)=>{
-                                this.getLandlord();
+                            axios.delete('/api/delete_staff/'+id).then((response)=>{
+                                this.getStaff();
                                 console.log(response)
                                      Swal.fire(
                                     'Deleted!',
-                                    'Landlord has been deleted.',
+                                    'Staff has been deleted.',
                                     'success'
                                     )
                             }).catch((errors)=> {
@@ -301,9 +314,13 @@ export default {
 
         },
 
-           closeReadModal(){
+        closeReadModal(){
             this.toggleModal =!  this.toggleModal ;
-        }
+        },
+        closeCreateModal(){
+            this.toggleModalCreate =! this.toggleModalCreate;
+        },
+
 
     },
 

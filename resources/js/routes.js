@@ -6,6 +6,7 @@ import Register_Student from './components/ManageRegistrationUsers/Register_Stud
 import Tab_Staff_Users from './components/Layouts/Tab_Staff_Users';
 import Manage_Student from './components/ManageRegistrationUsers/Manage_Student';
 import Manage_Landlord from './components/ManageRegistrationUsers/Manage_Landlord';
+import Manage_Staff from './components/ManageRegistrationUsers/Manage_Staff';
 import Landing_Staff from './components/ManageRegistrationUsers/Landing_Staff';
 import NotFound from './components/NotFound';
 
@@ -52,6 +53,11 @@ export default{
                     path: '/staff/manage-user/landlord',
                     name: 'manage_landlord',
                     component: Manage_Landlord,
+                },
+                {
+                    path: '/staff/manage-user/staff',
+                    name: 'manage_staff',
+                    component: Manage_Staff,
                 },
 
 

@@ -45,7 +45,7 @@
             </div>
 
 
-                <div class="w-full lg:w-1/5 flex flex-col lg:flex-row items-start lg:items-center lg:ml-20 ">
+                <div class="w-full lg:w-1/5 flex flex-col lg:flex-row items-start lg:items-center justify-center">
 
                         <div class="relative w-32 z-10">
                             <div class="pointer-events-none text-dark-800 dark:text-gray-400 absolute mt-3 inset-0 m-auto mr-2 xl:mr-4 z-0 w-5 h-5">
@@ -65,7 +65,7 @@
                         </div>
                     </div>
 
-                    <div class="w-full lg:w-1/5 flex flex-col lg:flex-row  items-start lg:items-stretch">
+                    <div class="w-full lg:w-1/5 flex flex-col lg:flex-row  items-start lg:items-stretch lg:mt-12">
                         <button @click="toggleModalCreate = !toggleModalCreate" class="bg-gray-200   hover:bg-blue-200 rounded
                         text-indigo-700 px-5 h-8 shadow-lg ">Create User</button>
                     </div>

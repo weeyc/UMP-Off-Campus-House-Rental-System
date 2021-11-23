@@ -67,7 +67,7 @@
           </svg>
           Manage Landlord
         </router-link>
-        <button
+         <router-link  :to="{name: 'manage_staff'}"
           class="
             p-4
             rounded
@@ -97,7 +97,7 @@
             />
           </svg>
           Manage Staff
-        </button>
+         </router-link>
       </div>
 
       <div class="">
