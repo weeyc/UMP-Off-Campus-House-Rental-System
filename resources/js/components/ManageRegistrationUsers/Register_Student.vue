@@ -55,19 +55,19 @@
 
              <div  class="w-full px-6 mx-auto sm:w-2/3 lg:px-0">
                     <div class="pt-1 pb-2">
-                        <input type="text"  placeholder="Name" name="name" class="block w-full p-4 text-lg bg-black rounded-sm" v-model="form.name"  >
+                        <input type="text"  placeholder="Name" name="name" class="block w-full p-4 text-lg bg-black rounded-lg" v-model="form.name"  >
                         <span class="flex text-red-500">{{ errors.get('name')}}</span>
                     </div>
                     <div class="pt-1 pb-2">
-                        <input type="email"  placeholder="Email"  name="email" class="block w-full p-4 text-lg bg-black rounded-sm" v-model="form.email" >
+                        <input type="email"  placeholder="Email"  name="email" class="block w-full p-4 text-lg bg-black rounded-lg" v-model="form.email" >
                         <span class="flex text-red-500">{{ errors.get('email')}}</span>
                     </div>
                     <div class="pt-1 pb-2">
-                        <input class="block w-full p-4 text-lg bg-black rounded-sm" type="password" name="password" placeholder="Password" v-model="form.password" >
+                        <input class="block w-full p-4 text-lg bg-black rounded-lg" type="password" name="password" placeholder="Password" v-model="form.password" >
                          <span class="flex text-red-500">{{ errors.get('password')}}</span>
                     </div>
                      <div class="pt-1 pb-2">
-                        <input class="block w-full p-4 text-lg bg-black rounded-sm" type="text" name="phone_num" placeholder="Phone Number" v-model="form.phone_num" >
+                        <input class="block w-full p-4 text-lg bg-black rounded-lg" type="text" name="phone_num" placeholder="Phone Number" v-model="form.phone_num" >
                          <span class="flex text-red-500">{{ errors.get('phone_num')}}</span>
                     </div>
                         <div class="pt-1 pb-2">
@@ -127,7 +127,7 @@ export default {
                 name: '',
                 email: '',
                 password: '',
-                gender: '',
+                gender: 'male',
                 phone_num: '',
             },
             //name:'',

@@ -3,12 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Http\Resources\StudentResource;
+
 use App\Http\Resources\LandlordResource;
 use App\Http\Resources\StaffResource;
 use Illuminate\Http\Request;
 use App\Models\Student;
 use App\Models\Staff;
 use App\Models\Landlord;
+use Illuminate\Support\Str;
 
 use Illuminate\Support\Facades\Hash;
 
@@ -38,7 +40,7 @@ class UserController extends Controller
                         //     'ID' => $std_info->std_id,
                         //     'Role' => 'Student'
                         // ]);
-                        $Role = "Student";
+                        $Role = 1;
                         $request ->session()->put('ID', $std_info->std_id);
                         $request ->session()->put('Role', $Role);
                         return redirect('/student');
@@ -60,7 +62,7 @@ class UserController extends Controller
                         //     'ID' => $landlord_info->landlord_id,
                         //     'Role' => 'Landlord'
                         // ]);
-                        $Role = "Landlord";
+                        $Role = 2;
                         $request ->session()->put('ID', $landlord_info->landlord_id);
                         $request ->session()->put('Role', $Role);
                         return redirect('/landlord');
@@ -82,7 +84,7 @@ class UserController extends Controller
                     //     'ID' => $Staff_info->staff_id,
                     //     'Role' => 'Staff'
                     // ]);
-                    $Role = "Staff";
+                    $Role = 3;
                     $request ->session()->put('ID', $Staff_info->staff_id);
                     $request ->session()->put('Role', $Role);
 
@@ -152,7 +154,7 @@ class UserController extends Controller
         ]);
 
         //Insert Student
-        //(FORMAT) $Student -> <<table column name>> = $request -> label name
+        //(FORMAT) $Student -> <<table column name>> = $request -> input name
             $Student = new Student();
             $Student->std_name = $request ->name;
             $Student->std_email = $request ->email;
@@ -192,8 +194,7 @@ class UserController extends Controller
                 $request->validate([
                 'name' =>'required',
                 'password' =>'required',
-                'gender' => 'required',
-                'email' =>'required|email|unique:landlords,landlord_email',
+                'email' =>'required|email|unique:staff,staff_email',
                 'password' =>'required|min:4|max:12',
                 'phone_num' => 'required|regex:/(01)[0-9]{8}/'
                ]);
@@ -204,8 +205,29 @@ class UserController extends Controller
                 $Staff->staff_password = Hash::make($request ->password);
                 $Staff->staff_gender = $request ->gender;
                 $Staff->staff_phone_no = $request ->phone_num;
-                $Staff->staff_pic = $request ->pic;
+
+                // if picture uploaded
+                if($request->pic!= NULL){
+                  $filename = $this->decodeImage($request->pic);
+                  $Staff->staff_pic = $filename;
+                }
                 $Staff->save();
+
+        }
+
+            public function decodeImage($request_picture){
+
+                $exploded = explode(',', $request_picture);
+                $decoded = base64_decode($exploded[1]);
+                    if(str_contains($exploded[0], 'jpeg')){
+                        $extension = 'jpg';
+                    }else{
+                        $extension = 'png';
+                    }
+                $filename = str_random().'.'.$extension;
+                $path = public_path().'/images/Profile/'.$filename;
+                file_put_contents($path, $decoded);
+                return $filename;
 
             }
 
@@ -245,6 +267,67 @@ class UserController extends Controller
         Staff::where('staff_id', $id)->delete();
         return response()->json("Staff Deleted!");
    }
+
+       public function get_Profile($id, $role){
+
+        if($role==1){
+           $data = Student::where('std_id', $id);
+           return StudentResource::collection($data);
+
+        }else if ($role==2){
+            $data = Landlord::where('landlord_id', $id);
+            return LandlordResource::collection($data);
+        }else{
+             $data =  Staff::where('staff_id', $id)->get();
+            return StaffResource::collection($data);
+        }
+
+   }
+       public function update_Profile($id, $role, Request $request){
+
+            $request->validate([
+                'name' =>'required',
+                'password' =>'required',
+                'email' => 'required|string|email|unique:staff,staff_email,'.$request->id.',staff_id', //update email, ignore registed own email
+                'password' =>'required|min:4|max:12',
+                'phone_num' => 'required|regex:/(01)[0-9]{8}/'
+            ]);
+
+
+               if(strlen($request->pic)>100){
+                $filename = $this->decodeImage($request->pic);
+              }else{
+                 $filename = $request->pic;
+              }
+
+
+
+
+        if($role==1){
+           $data = Student::where('std_id', $id);
+           return StudentResource::collection($data);
+
+        }else if ($role==2){
+            $data = Landlord::where('landlord_id', $id);
+            return LandlordResource::collection($data);
+        }else{
+
+            $data = Staff::where('staff_id',$id)
+            ->update([
+                'staff_name' => $request ->name,
+                'staff_email' => $request ->email,
+                'staff_phone_no' => $request ->phone_num,
+                'staff_password' => $request ->password,
+                'staff_gender' => $request ->gender,
+                'staff_pic' => $filename
+            ]);
+
+            return $data;
+        }
+
+   }
+
+
 
 
 

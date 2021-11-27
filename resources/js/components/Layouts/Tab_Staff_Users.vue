@@ -3,14 +3,15 @@
 
       <div class="grid grid-cols-3 gap-5 lex flex-col lg:flex-row p-4 lg:p-8 justify-between items-start">
       <router-link  :to="{name: 'manage_student'}"
-          class="
-
+            exact-active-class="exact-active"
+            class="
             p-4
             rounded
             bg-white
             text-indigo-500
             hover:bg-indigo-500 hover:text-white
-            focus:bg-indigo-500 focus:text-white focus:outline-none
+
+            :active:bg-indigo-500 active:text-white active:outline-none
             transition duration-150 ease-in-out
             shadow-md
             flex
@@ -35,14 +36,16 @@
           Manage Students
       </router-link>
         <router-link  :to="{name: 'manage_landlord'}"
+            exact-active-class="exact-active"
 
           class="
             p-4
             rounded
-           bg-white
+            bg-white
             text-indigo-500
             hover:bg-indigo-500 hover:text-white
             focus:bg-indigo-500 focus:text-white focus:outline-none
+            active:bg-indigo-500 active:text-white active:outline-none
             transition duration-150 ease-in-out
 
             shadow-md
@@ -68,6 +71,7 @@
           Manage Landlord
         </router-link>
          <router-link  :to="{name: 'manage_staff'}"
+         exact-active-class="exact-active"
           class="
             p-4
             rounded
@@ -75,6 +79,7 @@
             text-indigo-500
             hover:bg-indigo-500 hover:text-white
             focus:bg-indigo-500 focus:text-white focus:outline-none
+            active:bg-indigo-500 active:text-white active:outline-none
             transition duration-150 ease-in-out
             shadow-md
             flex
@@ -116,3 +121,14 @@ export default {
   methods: {},
 };
 </script>
+
+<style scoped>
+.exact-active{
+--tw-bg-opacity: 1;
+background-color: rgba(99, 102, 241, var(--tw-bg-opacity));
+--tw-text-opacity: 1;
+color: rgba(255, 255, 255, var(--tw-text-opacity));
+
+}
+
+</style>

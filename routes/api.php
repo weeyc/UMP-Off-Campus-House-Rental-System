@@ -21,6 +21,12 @@ Route::delete('delete_std/{id}', 'UserController@delete_Student');
 Route::delete('delete_landlord/{id}', 'UserController@delete_Landlord');
 Route::delete('delete_staff/{id}', 'UserController@delete_Staff');
 
+Route::get('get_profile/{id}/{role}', 'UserController@get_Profile');
+Route::post('update_profile/{id}/{role}', 'UserController@update_Profile');
+
+
+
+
 
 
 

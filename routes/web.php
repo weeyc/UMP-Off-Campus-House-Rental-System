@@ -50,6 +50,10 @@ Route::get('/registration-student', function(){
     return view('ManageRegistrationUsers.registration');
 });
 
+Route::get('/registration-landlord', function(){
+    return view('ManageRegistrationUsers.registration');
+});
+
 
 
 

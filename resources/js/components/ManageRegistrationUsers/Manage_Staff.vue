@@ -47,17 +47,10 @@
 
                 <div class="w-full lg:w-1/5 flex flex-col lg:flex-row items-start lg:items-center  justify-center">
                         <div class="relative w-32 z-10">
-                            <div class="pointer-events-none text-dark-800 dark:text-gray-400 absolute mt-3 inset-0 m-auto mr-2 xl:mr-4 z-0 w-5 h-5">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="icon cursor-pointer icon-tabler icon-tabler-chevron-down" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                    <path stroke="none" d="M0 0h24v24H0z"></path>
-                                    <polyline points="6 9 12 15 18 9"></polyline>
-                                </svg>
-                            </div>
                             <select  v-model="filterGender" class="focus:outline-none border-transparent cursor-pointer focus:border-gray-800 hover:bg-blue-200 focus:shadow-outline-gray text-base form-select block w-full py-2 px-2 xl:px-3 rounded font-medium dark:text-gray-400 appearance-none bg-transparent">
                                 <option value="">Gender</option>
                                 <option value="male">Male</option>
                                 <option value="female">Female</option>
-
                             </select>
 
 
@@ -89,48 +82,48 @@
                             </tr>
                         </thead>
                         <tbody class="text-dark-600 text-sm font-light">
-                            <tr  v-for= "(staff, index) in filterUser" :key="staff.staff_id"   class="border-b border-gray-200 hover:bg-green-200" >
+                            <tr  v-for= "(user, index) in filterUser" :key="user.id"   class="border-b border-gray-200 hover:bg-green-200" >
                                  <td class="py-3 px-3 text-left whitespace-nowrap">  {{ index + 1 }}</td >
                                 <td class="py-3 px-6 text-left whitespace-nowrap">
                                     <div class="flex items-center">
-                                        <span class="font-medium">{{ staff.staff_id }}</span>
+                                        <span class="font-medium">{{ user.id }}</span>
                                     </div>
 
                                 </td>
                                 <td class="py-3 px-6 text-left">
                                     <div class="flex items-center">
                                           <div class="mr-2">
-                                            <img :src="'/images/Profile/'+staff.staff_pic"  class="w-6 h-6 rounded-full hover:scale-150 hover:z-10 transform ease-in-out transition duration-500">
+                                            <img :src="'/images/Profile/'+user.pic"  class="w-6 h-6 rounded-full hover:scale-150 hover:z-10 transform ease-in-out transition duration-500">
                                         </div>
-                                        <span>{{ staff.staff_name }}</span>
+                                        <span>{{ user.name }}</span>
                                     </div>
                                 </td>
 
                                    <td class="py-3 px-6 text-left">
                                     <div class="flex items-center">
-                                        <span>{{ staff.staff_email }}</span>
+                                        <span>{{ user.email }}</span>
                                     </div>
                                 </td>
                                     <td class="py-3 px-6 text-left">
                                     <div class="flex items-center">
-                                        <span>{{ staff.staff_phone_no }}</span>
+                                        <span>{{ user.phone_no }}</span>
                                     </div>
                                 </td>
                                 <td class="py-3 px-6 text-left">
-                                      <span v-if="staff.staff_gender==='male'">🧑 {{ staff.staff_gender }}</span>
-                                      <span v-if="staff.staff_gender==='female'">👩‍🦰  {{ staff.staff_gender }}</span>
+                                      <span v-if="user.gender==='male'">🧑 {{ user.gender }}</span>
+                                      <span v-if="user.gender==='female'">👩‍🦰  {{ user.gender }}</span>
                                 </td>
                                 <td class="py-3 px-6 text-center">
                                     <div class="flex item-center justify-center">
                                         <div class="w-4 mr-2 transform hover:text-purple-500 hover:scale-110">
-                                            <button @click="readUser(staff); toggleModal = !toggleModal;"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <button @click="readUser(user); toggleModal = !toggleModal;"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
                                             </svg>
                                             </button>
                                         </div>
                                         <div class="w-4 mr-2 transform hover:text-purple-500 hover:scale-110">
-                                             <button @click="deleteUser(staff.staffid, staff.staff_name);"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                             <button @click="deleteUser(user.id, user.name);"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
                                             </svg> </button>
                                         </div>
@@ -139,7 +132,12 @@
                             </tr>
                             <tr v-if="filterUser.length==0">
                                 <td colspan="7">
-                                    There is no data!
+                                    <div class="bg-indigo-100 border-yellow-600 text-black-600  p-4" role="alert">
+                                        <center><p class="font-bold text-xl">
+                                            No data found!
+                                        </p></center>
+                                    </div>
+
                                 </td>
                             </tr>
                         </tbody>
@@ -186,7 +184,6 @@ export default {
     components: {
         ReadModal,
         CreateModal
-
     },
 
     data() {
@@ -219,12 +216,12 @@ export default {
                //return user.gender.match(this.filterGender);
                 if(this.filterGender=="" && this.filterName==""){
                      return user;
-                }else if(user.staff_gender==this.filterGender && user.staff_name.match(this.filterName)){
+                }else if(user.gender==this.filterGender && user.name.match(this.filterName)){
                     return user;
-                }else if(user.staff_gender==this.filterGender && this.filterName==""){
+                }else if(user.gender==this.filterGender && this.filterName==""){
                     return user;
-                }else if (this.filterGender=="" && user.staff_name.toLowerCase().match(this.filterName.toLowerCase()))
-                     return user.staff_name.toLowerCase().match(this.filterName.toLowerCase());
+                }else if (this.filterGender=="" && user.name.toLowerCase().match(this.filterName.toLowerCase()))
+                     return user.name.toLowerCase().match(this.filterName.toLowerCase());
             });
         },
 
@@ -278,12 +275,12 @@ export default {
                  this.getStaff();
             },
         readUser(user){
-            this.profile.id = user.staff_id;
-            this.profile.name = user.staff_name;
-            this.profile.email = user.staff_email;
-            this.profile.phone = user.staff_phone_no;
-            this.profile.gender = user.staff_gender;
-            this.profile.pic = user.staff_pic;
+            this.profile.id = user.id;
+            this.profile.name = user.name;
+            this.profile.email = user.email;
+            this.profile.phone = user.phone_no;
+            this.profile.gender = user.gender;
+            this.profile.pic = user.pic;
 
         },
          deleteUser(id, name){
@@ -300,11 +297,13 @@ export default {
                             axios.delete('/api/delete_staff/'+id).then((response)=>{
                                 this.getStaff();
                                 console.log(response)
-                                     Swal.fire(
-                                    'Deleted!',
-                                    'Staff has been deleted.',
-                                    'success'
-                                    )
+                                    Swal.fire({
+                                    position: 'center',
+                                    icon: 'success',
+                                    title: 'Staff deleted successfully!',
+                                    showConfirmButton: false,
+                                    timer: 1500
+                                    })
                             }).catch((errors)=> {
                                 console.log(errors)
                             })

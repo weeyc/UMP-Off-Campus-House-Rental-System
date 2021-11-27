@@ -48,12 +48,7 @@
                 <div class="w-full lg:w-1/5 flex flex-col lg:flex-row items-start lg:items-center justify-center ">
 
                         <div class="relative w-32 z-10">
-                            <div class="pointer-events-none text-dark-800 dark:text-gray-400 absolute mt-3 inset-0 m-auto mr-2 xl:mr-4 z-0 w-5 h-5">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="icon cursor-pointer icon-tabler icon-tabler-chevron-down" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                    <path stroke="none" d="M0 0h24v24H0z"></path>
-                                    <polyline points="6 9 12 15 18 9"></polyline>
-                                </svg>
-                            </div>
+
                             <select  v-model="filterGender" class="focus:outline-none border-transparent cursor-pointer focus:border-gray-800 hover:bg-blue-200 focus:shadow-outline-gray text-base form-select block w-full py-2 px-2 xl:px-3 rounded font-medium dark:text-gray-400 appearance-none bg-transparent">
                                 <option value="">Gender</option>
                                 <option value="male">Male</option>
@@ -136,6 +131,16 @@
                                             </svg> </button>
                                         </div>
                                     </div>
+                                </td>
+                            </tr>
+                             <tr v-if="filterUser.length==0">
+                                <td colspan="7">
+                                    <div class="bg-indigo-100 border-yellow-600 text-black-600  p-4" role="alert">
+                                        <center><p class="font-bold text-xl">
+                                            No data found!
+                                        </p></center>
+                                    </div>
+
                                 </td>
                             </tr>
                         </tbody>

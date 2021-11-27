@@ -4,6 +4,9 @@ module.exports = {
   purge: [
             require('daisyui'),
   ],
+  variants: {
+    backgroundColor:['active'],
+  },
   theme: {
     colors: {
         transparent: 'transparent',
@@ -52,7 +55,8 @@ module.exports = {
            }
     },
   },
-  variants: {},
+
+
   plugins: [],
 }
 

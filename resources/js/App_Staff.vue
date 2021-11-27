@@ -1,9 +1,9 @@
 <template>
 <div>
-    <nav-staff> </nav-staff>
+    <nav-staff :user_id="user_id" :role="role"> </nav-staff>
         <div class="bg-gradient-to-r from-pink-300 via-purple-300 to-indigo-400 min-h-screen" >
-             {{ user_id }}
-            <router-view></router-view>
+
+            <router-view :user_id="user_id" :role="role"></router-view>
 
 
 
@@ -18,13 +18,14 @@
 export default {
 
     props: {
+            role: Number,
             user_id: Number,
-            role: String
+
         },
     data(){
 
         return{
-          user: null
+
 
         }
     },

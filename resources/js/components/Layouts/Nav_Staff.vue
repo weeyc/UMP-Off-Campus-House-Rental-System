@@ -39,8 +39,9 @@
                                 </li>
                                 <li class="cursor-pointer text-gray-600 text-sm leading-3 tracking-normal mt-2 py-2 hover:text-indigo-700 flex items-center focus:text-indigo-700 focus:outline-none">
                                     <div class="flex items-center">
-                                        <div class="w-12 cursor-pointer flex text-sm border-2 border-transparent rounded focus:outline-none focus:border-white transition duration-150 ease-in-out">
-                                            <img class="rounded h-10 w-10 object-cover" :src="profilePhoto" alt="logo" />
+                                        <div v-for= "user in userProfile" :key="user.id"  class="w-12 cursor-pointer flex text-sm border-2 border-transparent rounded focus:outline-none focus:border-white transition duration-150 ease-in-out">
+                                            <img class="rounded h-10 w-10 object-cover" :src="'/images/Profile/'+user.pic" alt="logo" />
+
                                         </div>
                                         <p class="text-sm ml-2 cursor-pointer">Jane Doe</p>
                                         <div class="sm:ml-2 text-white relative">
@@ -78,7 +79,7 @@
                     </div>
                 </div>
                 <div class="flex w-full sm:w-auto items-center sm:items-stretch justify-end sm:justify-start">
-                 <router-link  :to="{name: 'landing_staff'}"  class="inline-flex items-center ">
+                 <router-link  :to="{name: 'landing_staff'}"  class="inline-flex items-center" >
 
                        <div class="  row-span-2 justify-self-end animate-bounce">
                            <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
@@ -91,7 +92,7 @@
                 </div>
                 <div class="flex ">
                     <div class="hidden xl:flex md:mr-6 xl:mr-16 ">
-                        <a href="javascript: void(0)" class="flex px-5 items-center py-6 text-sm leading-5 text-gray-700 hover:bg-indigo-900 focus:bg-indigo-900 focus:outline-none transition duration-150 ease-in-out">
+                        <a href="javascript: void(0)"  class="flex px-5 items-center py-6 text-sm leading-5 text-gray-700  hover:bg-indigo-900 focus:bg-indigo-900 focus:outline-none transition duration-150 ease-in-out">
                             <span class="mr-2">
                                 <svg class="h-6 w-6 text-pink-500"  fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"/>
@@ -99,7 +100,7 @@
                             </span>
                                 <span class="font-poppins text-base text-pink-300">Manage Property List</span>
                         </a>
-                        <router-link  :to="{name: 'manage_student'}" class="flex px-5 items-center py-6 text-sm leading-5 text-gray-700 hover:bg-indigo-900 focus:bg-indigo-900 focus:outline-none transition duration-150 ease-in-out">
+                        <router-link  :to="{ path: '/staff/manage-user'}" active-class="active" class="flex px-5 items-center py-6 text-sm leading-5 text-gray-700  hover:bg-indigo-900 focus:bg-indigo-900 focus:outline-none transition duration-150 ease-in-out">
                             <span class="mr-2">
                                 <svg class="h-6 w-6 text-pink-500"  fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"/>
@@ -117,20 +118,22 @@
                     </div>
                     <div class="hidden xl:flex items-center">
                         <div class="relative md:mr-6 my-2">
-                            <button class="focus:outline-none bg-pink-200 border-gray-300 border transition duration-150 ease-in-out hover:bg-pink-100 rounded text-gray-600 px-5 py-2 text-xs">I'm a Staff</button>
+                   <router-link  :to="{name: 'profile'}" class="focus:outline-none bg-pink-200 border-gray-300 border
+                            transition duration-150 ease-in-out active:bg-pink-100 rounded text-gray-600 px-5 py-2 text-xs">I'm a Staff</router-link>
                         </div>
                         <div class="ml-6 relative">
                             <div class="flex items-center relative" @click="dropdownHandler($event)">
                                 <ul class="p-2 w-40 border-r bg-red absolute rounded right-0 shadow top-0 mt-16 hidden">
                                     <li class="cursor-pointer text-gray-600 text-sm leading-3 tracking-normal py-2 hover:text-indigo-700 focus:text-indigo-700 focus:outline-none">
-                                        <div class="flex items-center">
+                                         <router-link  :to="{name: 'profile'}" class="flex items-center">
                                             <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                                 <path stroke="none" d="M0 0h24v24H0z" />
                                                 <circle cx="12" cy="7" r="4" />
                                                 <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
                                             </svg>
                                             <span class="ml-2 ">My Profile</span>
-                                        </div>
+
+                                        </router-link>
                                     </li>
                                     <li class="cursor-pointer text-gray-600 text-sm leading-3 tracking-normal mt-2 py-2 hover:text-indigo-700 focus:text-indigo-700 focus:outline-none flex items-center">
                                         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-help" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -150,9 +153,10 @@
                                         <a href="/logout"><span class="ml-2">Log Out</span></a>
                                     </li>
                                 </ul>
-                                <div class="cursor-pointer flex text-sm border-2 border-transparent rounded-full focus:outline-none focus:border-white transition duration-150 ease-in-out">
-                                    <img class="rounded-full h-10 w-10 object-cover" :src="profilePhoto" alt="logo" />
+                                <div  v-for= "user in userProfile" :key="user.id" class="cursor-pointer flex text-sm border-2 border-transparent rounded-full focus:outline-none focus:border-white transition duration-150 ease-in-out">
+                                    <img class="rounded-full h-10 w-10 object-cover" :src="'/images/Profile/'+user.pic" alt="logo" />
                                 </div>
+
                                 <div class="ml-2 text-gray-100">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-down cursor-pointer" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                         <path stroke="none" d="M0 0h24v24H0z"></path>
@@ -167,15 +171,23 @@
                 </div>
             </div>
         </div>
+
     </nav>
 </template>
 
 <script>
+
 export default {
+
+          props: {
+            user_id: Number,
+            role: Number
+        },
 
     data() {
         return {
-            profilePhoto: "https://tuk-cdn.s3.amazonaws.com/assets/components/horizontal_navigation/hn_1.png",
+
+            userProfile: [],
         };
     },
     methods: {
@@ -198,6 +210,27 @@ export default {
                 el.currentTarget.classList.add("hidden");
             }
         },
+
+        getProfile(){
+            axios.get('/api/get_profile/'+this.user_id+'/'+this.role).then((response)=>{
+                this.userProfile=response.data.data;
+                console.warn(this.userProfile.data);
+                }).catch((errors)=> {console.log(errors)})
+            },
     },
+    mounted: function(){
+            this.getProfile();
+            this.$root.$on('refreshData', data => {
+             this.getProfile();
+          });
+    },
+
 };
 </script>
+
+<style scoped>
+.active{
+    --tw-bg-opacity: 1;
+background-color: rgba(49, 46, 129, var(--tw-bg-opacity));
+}
+</style>

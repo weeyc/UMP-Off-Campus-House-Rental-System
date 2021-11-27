@@ -1,4 +1,11 @@
 {
     "/js/app.js": "/js/app.js",
-    "/css/app.css": "/css/app.css"
+    "/css/app.css": "/css/app.css",
+    "/Landing_Staff.js": "/Landing_Staff.js",
+    "/Manage_Landlord.js": "/Manage_Landlord.js",
+    "/Manage_Staff.js": "/Manage_Staff.js",
+    "/Manage_Student.js": "/Manage_Student.js",
+    "/NotFound.js": "/NotFound.js",
+    "/Tab_Staff_Users.js": "/Tab_Staff_Users.js",
+    "/profile.js": "/profile.js"
 }
