@@ -44,26 +44,15 @@
 
             </div>
 
-
                 <div class="w-full lg:w-1/5 flex flex-col lg:flex-row items-start lg:items-center justify-center">
-
                         <div class="relative w-32 z-10">
                             <select  v-model="filterGender" class="focus:outline-none border-transparent cursor-pointer focus:border-gray-800 hover:bg-blue-200 focus:shadow-outline-gray text-base form-select block w-full py-2 px-2 xl:px-3 rounded font-medium dark:text-gray-400 appearance-none bg-transparent">
                                 <option value="">Gender</option>
                                 <option value="male">Male</option>
                                 <option value="female">Female</option>
-
                             </select>
-
-
                         </div>
                     </div>
-
-                    <div class="w-full lg:w-1/5 flex flex-col lg:flex-row  items-start lg:items-stretch lg:mt-12">
-                        <button @click="toggleModalCreate = !toggleModalCreate" class="bg-gray-200   hover:bg-blue-200 rounded
-                        text-indigo-700 px-5 h-8 shadow-lg ">Create User</button>
-                    </div>
-
             </div>
                     <div class="flex justify-center item-center mb-10">
                         <input type="text" name="name"  v-model="filterName"  placeholder="Search Name"  class="block w-5/12 py-2 px-2 text-lg rounded-lg">
@@ -84,36 +73,37 @@
                             </tr>
                         </thead>
                         <tbody class="text-dark-600 text-sm font-light">
-                            <tr  v-for= "(student, index) in filterUser" :key="student.std_id"   class="border-b border-gray-200 hover:bg-green-200" >
+                            <tr  v-for= "(student, index) in filterUser" :key="student.id"   class="border-b border-gray-200 hover:bg-green-200" >
                                  <td class="py-3 px-3 text-left whitespace-nowrap">  {{ index + 1 }}</td >
                                 <td class="py-3 px-6 text-left whitespace-nowrap">
                                     <div class="flex items-center">
-                                        <span class="font-medium">{{ student.std_id }}</span>
+                                        <span class="font-medium">{{ student.id }}</span>
                                     </div>
 
                                 </td>
                                 <td class="py-3 px-6 text-left">
-                                    <div class="flex items-center">
+
+                                   <router-link :to="{ name: 'profile_view', params:{role: 1, id: student.id}}" target="_blank" class="flex items-center">
                                           <div class="mr-2">
-                                            <img :src="'/images/Profile/'+student.std_pic"  class="w-6 h-6 rounded-full hover:scale-150 hover:z-10 transform ease-in-out transition duration-500">
+                                            <img :src="'/images/Profile/'+student.pic"  class="w-6 h-6 rounded-full hover:scale-150 hover:z-10 transform ease-in-out transition duration-500">
                                         </div>
-                                        <span>{{ student.std_name }}</span>
-                                    </div>
+                                        <span>{{ student.name }}</span>
+                                   </router-link>
                                 </td>
 
                                    <td class="py-3 px-6 text-left">
                                     <div class="flex items-center">
-                                        <span>{{ student.std_email }}</span>
+                                        <span>{{ student.email }}</span>
                                     </div>
                                 </td>
                                     <td class="py-3 px-6 text-left">
                                     <div class="flex items-center">
-                                        <span>{{ student.std_phone_no }}</span>
+                                        <span>{{ student.phone_no }}</span>
                                     </div>
                                 </td>
                                 <td class="py-3 px-6 text-left">
-                                      <span v-if="student.std_gender==='male'">🧑 {{ student.std_gender }}</span>
-                                      <span v-if="student.std_gender==='female'">👩‍🦰  {{ student.std_gender }}</span>
+                                      <span v-if="student.gender==='male'">🧑 {{ student.gender }}</span>
+                                      <span v-if="student.gender==='female'">👩‍🦰  {{ student.gender }}</span>
                                 </td>
                                 <td class="py-3 px-6 text-center">
                                     <div class="flex item-center justify-center">
@@ -125,7 +115,7 @@
                                             </button>
                                         </div>
                                         <div class="w-4 mr-2 transform hover:text-purple-500 hover:scale-110">
-                                             <button @click="deleteUser(student.std_id, student.std_name);"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                             <button @click="deleteUser(student.id, student.name);"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
                                             </svg> </button>
                                         </div>
@@ -143,16 +133,10 @@
                                 </td>
                             </tr>
                         </tbody>
-
                 </table>
 
 
             </div>
-
-
-
-
-
         </div>
 
         <ReadModal
@@ -161,11 +145,7 @@
             :toggle="toggleModal"
             @closeModal="closeReadModal">
         </ReadModal>
-
-
     </div>
-
-
 
 </template>
 
@@ -177,7 +157,6 @@ export default {
 
     components: {
         ReadModal,
-
     },
 
     data() {
@@ -190,8 +169,6 @@ export default {
 
 
             toggleModal: false,
-            toggleModalCreate: false,
-            toggleModalEdit: false,
 
                 profile:{
                     id: '',
@@ -210,12 +187,12 @@ export default {
                //return user.gender.match(this.filterGender);
                 if(this.filterGender=="" && this.filterName==""){
                      return user;
-                }else if(user.std_gender==this.filterGender && user.std_name.match(this.filterName)){
+                }else if(user.gender==this.filterGender && user.name.match(this.filterName)){
                     return user;
-                }else if(user.std_gender==this.filterGender && this.filterName==""){
+                }else if(user.gender==this.filterGender && this.filterName==""){
                     return user;
-                }else if (this.filterGender=="" && user.std_name.toLowerCase().match(this.filterName.toLowerCase()))
-                     return user.std_name.toLowerCase().match(this.filterName.toLowerCase());
+                }else if (this.filterGender=="" && user.name.toLowerCase().match(this.filterName.toLowerCase()))
+                     return user.name.toLowerCase().match(this.filterName.toLowerCase());
             });
         },
 
@@ -269,13 +246,12 @@ export default {
                  this.getStudent();
             },
         readUser(user){
-            this.profile.id = user.std_id;
-            this.profile.name = user.std_name;
-            this.profile.email = user.std_email;
-            this.profile.phone = user.std_phone_no;
-            this.profile.gender = user.std_gender;
-            this.profile.pic = user.std_pic;
-
+            this.profile.id = user.id;
+            this.profile.name = user.name;
+            this.profile.email = user.email;
+            this.profile.phone = user.phone_no;
+            this.profile.gender = user.gender;
+            this.profile.pic = user.pic;
         },
          deleteUser(id, name){
                 Swal.fire({
@@ -307,7 +283,7 @@ export default {
 
            closeReadModal(){
             this.toggleModal =!  this.toggleModal ;
-        }
+        },
 
     },
 

@@ -521,7 +521,6 @@ __webpack_require__.r(__webpack_exports__);
       filterName: '',
       toggleModal: false,
       toggleModalCreate: false,
-      toggleModalEdit: false,
       profile: {
         id: '',
         name: '',
@@ -1654,21 +1653,39 @@ var render = function() {
                               ]
                             ),
                             _vm._v(" "),
-                            _c("td", { staticClass: "py-3 px-6 text-left" }, [
-                              _c("div", { staticClass: "flex items-center" }, [
-                                _c("div", { staticClass: "mr-2" }, [
-                                  _c("img", {
-                                    staticClass:
-                                      "w-6 h-6 rounded-full hover:scale-150 hover:z-10 transform ease-in-out transition duration-500",
+                            _c(
+                              "td",
+                              { staticClass: "py-3 px-6 text-left" },
+                              [
+                                _c(
+                                  "router-link",
+                                  {
+                                    staticClass: "flex items-center",
                                     attrs: {
-                                      src: "/images/Profile/" + user.pic
+                                      to: {
+                                        name: "profile_view",
+                                        params: { role: 3, id: user.id }
+                                      },
+                                      target: "_blank"
                                     }
-                                  })
-                                ]),
-                                _vm._v(" "),
-                                _c("span", [_vm._v(_vm._s(user.name))])
-                              ])
-                            ]),
+                                  },
+                                  [
+                                    _c("div", { staticClass: "mr-2" }, [
+                                      _c("img", {
+                                        staticClass:
+                                          "w-6 h-6 rounded-full hover:scale-150 hover:z-10 transform ease-in-out transition duration-500",
+                                        attrs: {
+                                          src: "/images/Profile/" + user.pic
+                                        }
+                                      })
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("span", [_vm._v(_vm._s(user.name))])
+                                  ]
+                                )
+                              ],
+                              1
+                            ),
                             _vm._v(" "),
                             _c("td", { staticClass: "py-3 px-6 text-left" }, [
                               _c("div", { staticClass: "flex items-center" }, [

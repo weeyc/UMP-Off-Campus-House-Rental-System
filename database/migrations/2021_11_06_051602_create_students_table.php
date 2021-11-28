@@ -26,7 +26,9 @@ class CreateStudentsTable extends Migration
 
             $table->string('std_pic')->nullable();
             $table->string('std_chat_id')->nullable();
+            $table->string('std_description')->nullable();
 
+            $table->string('user_role')->default('student');
 
 
             // $table->string('cust_status')->default('Active');

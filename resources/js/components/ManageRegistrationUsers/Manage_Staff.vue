@@ -91,12 +91,12 @@
 
                                 </td>
                                 <td class="py-3 px-6 text-left">
-                                    <div class="flex items-center">
+                                     <router-link :to="{ name: 'profile_view', params:{role: 3, id: user.id}}" target="_blank" class="flex items-center">
                                           <div class="mr-2">
                                             <img :src="'/images/Profile/'+user.pic"  class="w-6 h-6 rounded-full hover:scale-150 hover:z-10 transform ease-in-out transition duration-500">
                                         </div>
                                         <span>{{ user.name }}</span>
-                                    </div>
+                                    </router-link>
                                 </td>
 
                                    <td class="py-3 px-6 text-left">
@@ -197,7 +197,7 @@ export default {
 
             toggleModal: false,
             toggleModalCreate: false,
-            toggleModalEdit: false,
+
 
                 profile:{
                     id: '',
@@ -241,7 +241,6 @@ export default {
             },
             getMeta(){
             axios.get('/api/get_staff').then((response)=>{
-
                 this.lastPage=response.data.meta.last_page
                 console.warn(response.data.meta.last_page);
                 })

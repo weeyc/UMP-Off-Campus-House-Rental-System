@@ -14,7 +14,7 @@ class StaffSeeder extends Seeder
     {
 
 
-        factory(App\Models\Staff::class, 12)->create();
+        factory(App\Models\Staff::class, 5)->create();
 
 
 

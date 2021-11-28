@@ -22,6 +22,8 @@ class StaffResource extends JsonResource
             'password' => $this->staff_password,
             'phone_no' => $this->staff_phone_no,
             'pic' => $this->staff_pic,
+            'des' => $this->staff_description,
+            'role' => $this->user_role,
         ];
 
 

@@ -43,7 +43,7 @@
 /******/
 /******/ 	// script path function
 /******/ 	function jsonpScriptSrc(chunkId) {
-/******/ 		return __webpack_require__.p + "" + ({"Landing_Staff":"Landing_Staff","Manage_Landlord":"Manage_Landlord","Manage_Staff":"Manage_Staff","Manage_Student":"Manage_Student","NotFound":"NotFound","Tab_Staff_Users":"Tab_Staff_Users","profile":"profile"}[chunkId]||chunkId) + ".js"
+/******/ 		return __webpack_require__.p + "" + ({"Landing_Staff":"Landing_Staff","Manage_Landlord":"Manage_Landlord","Manage_Staff":"Manage_Staff","Manage_Student":"Manage_Student","NotFound":"NotFound","Profile_Edit~Profile_View":"Profile_Edit~Profile_View","Profile_Edit":"Profile_Edit","Profile_View":"Profile_View","Tab_Staff_Users":"Tab_Staff_Users"}[chunkId]||chunkId) + ".js"
 /******/ 	}
 /******/
 /******/ 	// The require function
@@ -42413,8 +42413,12 @@ var Manage_Landlord = function Manage_Landlord() {
   return __webpack_require__.e(/*! import() | Manage_Landlord */ "Manage_Landlord").then(__webpack_require__.bind(null, /*! ./components/ManageRegistrationUsers/Manage_Landlord */ "./resources/js/components/ManageRegistrationUsers/Manage_Landlord.vue"));
 };
 
-var Profile = function Profile() {
-  return __webpack_require__.e(/*! import() | profile */ "profile").then(__webpack_require__.bind(null, /*! ./components/ManageRegistrationUsers/Profile */ "./resources/js/components/ManageRegistrationUsers/Profile.vue"));
+var Profile_Edit = function Profile_Edit() {
+  return Promise.all(/*! import() | Profile_Edit */[__webpack_require__.e("Profile_Edit~Profile_View"), __webpack_require__.e("Profile_Edit")]).then(__webpack_require__.bind(null, /*! ./components/ManageRegistrationUsers/Profile_Edit */ "./resources/js/components/ManageRegistrationUsers/Profile_Edit.vue"));
+};
+
+var Profile_View = function Profile_View() {
+  return Promise.all(/*! import() | Profile_View */[__webpack_require__.e("Profile_Edit~Profile_View"), __webpack_require__.e("Profile_View")]).then(__webpack_require__.bind(null, /*! ./components/ManageRegistrationUsers/Profile_View */ "./resources/js/components/ManageRegistrationUsers/Profile_View.vue"));
 };
 
 var Manage_Staff = function Manage_Staff() {
@@ -42469,7 +42473,11 @@ var NotFound = function NotFound() {
   }, {
     path: '/staff/profile',
     name: 'profile',
-    component: Profile
+    component: Profile_Edit
+  }, {
+    path: '/staff/view-profile/:role/:id',
+    name: 'profile_view',
+    component: Profile_View
   }]
 });
 

@@ -53,18 +53,9 @@
                                 <option value="">Gender</option>
                                 <option value="male">Male</option>
                                 <option value="female">Female</option>
-
                             </select>
-
-
                         </div>
                     </div>
-
-                    <div class="w-full lg:w-1/5 flex flex-col lg:flex-row  items-start lg:items-stretch lg:mt-12">
-                        <button @click="toggleModalCreate = !toggleModalCreate" class="bg-gray-200   hover:bg-blue-200 rounded
-                        text-indigo-700 px-5 h-8 shadow-lg ">Create User</button>
-                    </div>
-
             </div>
                     <div class="flex justify-center item-center mb-10">
                         <input type="text" name="name"  v-model="filterName"  placeholder="Search Name"  class="block w-5/12 py-2 px-2 text-lg rounded-lg">
@@ -85,36 +76,36 @@
                             </tr>
                         </thead>
                         <tbody class="text-dark-600 text-sm font-light">
-                            <tr  v-for= "(landlord, index) in filterUser" :key="landlord.landlord_id"   class="border-b border-gray-200 hover:bg-green-200" >
+                            <tr  v-for= "(landlord, index) in filterUser" :key="landlord.id"   class="border-b border-gray-200 hover:bg-green-200" >
                                  <td class="py-3 px-3 text-left whitespace-nowrap">  {{ index + 1 }}</td >
                                 <td class="py-3 px-6 text-left whitespace-nowrap">
                                     <div class="flex items-center">
-                                        <span class="font-medium">{{ landlord.landlord_id }}</span>
+                                        <span class="font-medium">{{ landlord.id }}</span>
                                     </div>
 
                                 </td>
                                 <td class="py-3 px-6 text-left">
-                                    <div class="flex items-center">
+                                      <router-link :to="{ name: 'profile_view', params:{role: 2, id: landlord.id}}" target="_blank" class="flex items-center">
                                           <div class="mr-2">
-                                            <img :src="'/images/Profile/'+landlord.landlord_pic"  class="w-6 h-6 rounded-full hover:scale-150 hover:z-10 transform ease-in-out transition duration-500">
+                                            <img :src="'/images/Profile/'+landlord.pic"  class="w-6 h-6 rounded-full hover:scale-150 hover:z-10 transform ease-in-out transition duration-500">
                                         </div>
-                                        <span>{{ landlord.landlord_name }}</span>
-                                    </div>
+                                        <span>{{ landlord.name }}</span>
+                                    </router-link>
                                 </td>
 
                                    <td class="py-3 px-6 text-left">
                                     <div class="flex items-center">
-                                        <span>{{ landlord.landlord_email }}</span>
+                                        <span>{{ landlord.email }}</span>
                                     </div>
                                 </td>
                                     <td class="py-3 px-6 text-left">
                                     <div class="flex items-center">
-                                        <span>{{ landlord.landlord_phone_no }}</span>
+                                        <span>{{ landlord.phone_no }}</span>
                                     </div>
                                 </td>
                                 <td class="py-3 px-6 text-left">
-                                      <span v-if="landlord.landlord_gender==='male'">🧑 {{ landlord.landlord_gender }}</span>
-                                      <span v-if="landlord.landlord_gender==='female'">👩‍🦰  {{ landlord.landlord_gender }}</span>
+                                      <span v-if="landlord.gender==='male'">🧑 {{ landlord.gender }}</span>
+                                      <span v-if="landlord.gender==='female'">👩‍🦰  {{ landlord.gender }}</span>
                                 </td>
                                 <td class="py-3 px-6 text-center">
                                     <div class="flex item-center justify-center">
@@ -126,7 +117,7 @@
                                             </button>
                                         </div>
                                         <div class="w-4 mr-2 transform hover:text-purple-500 hover:scale-110">
-                                             <button @click="deleteUser(landlord.landlord_id, landlord.landlord_name);"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                             <button @click="deleteUser(landlord.id, landlord.name);"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
                                             </svg> </button>
                                         </div>
@@ -188,11 +179,8 @@ export default {
             lastPage: '',
             filterGender: '',
             filterName: '',
-
-
             toggleModal: false,
-            toggleModalCreate: false,
-            toggleModalEdit: false,
+
 
                 profile:{
                     id: '',
@@ -211,12 +199,12 @@ export default {
                //return user.gender.match(this.filterGender);
                 if(this.filterGender=="" && this.filterName==""){
                      return user;
-                }else if(user.landlord_gender==this.filterGender && user.landlord_name.match(this.filterName)){
+                }else if(user.gender==this.filterGender && user.name.match(this.filterName)){
                     return user;
-                }else if(user.landlord_gender==this.filterGender && this.filterName==""){
+                }else if(user.gender==this.filterGender && this.filterName==""){
                     return user;
-                }else if (this.filterGender=="" && user.landlord_name.toLowerCase().match(this.filterName.toLowerCase()))
-                     return user.landlord_name.toLowerCase().match(this.filterName.toLowerCase());
+                }else if (this.filterGender=="" && user.name.toLowerCase().match(this.filterName.toLowerCase()))
+                     return user.name.toLowerCase().match(this.filterName.toLowerCase());
             });
         },
 
@@ -270,12 +258,12 @@ export default {
                  this.getLandlord();
             },
         readUser(user){
-            this.profile.id = user.landlord_id;
-            this.profile.name = user.landlord_name;
-            this.profile.email = user.landlord_email;
-            this.profile.phone = user.landlord_phone_no;
-            this.profile.gender = user.landlord_gender;
-            this.profile.pic = user.landlord_pic;
+            this.profile.id = user.id;
+            this.profile.name = user.name;
+            this.profile.email = user.email;
+            this.profile.phone = user.phone_no;
+            this.profile.gender = user.gender;
+            this.profile.pic = user.pic;
 
         },
          deleteUser(id, name){

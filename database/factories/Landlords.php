@@ -10,7 +10,7 @@ use Faker\Generator as Faker;
 
 $factory->define(Landlord::class, function (Faker $faker) {
 
-
+    $faker->addProvider(new \Mmo\Faker\PicsumProvider($faker));
 
     $randomNumber = function($length)
     {
@@ -39,7 +39,9 @@ $factory->define(Landlord::class, function (Faker $faker) {
         'landlord_password' => bcrypt('112233'),
         'landlord_gender' => $gender,
         'landlord_phone_no' => $mobileNumberUnique,
-        'landlord_pic' =>  $faker->image($filePath,400,300, 'people', false)
+        //'landlord_pic' =>  $faker->image($filePath,400,300, 'people', false),
+        'landlord_description' =>$faker-> sentence,
+        'landlord_pic' =>   $faker->picsum($filePath, 400, 300, false),
     ];
 
 

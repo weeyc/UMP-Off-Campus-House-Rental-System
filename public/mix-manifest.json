@@ -6,6 +6,8 @@
     "/Manage_Staff.js": "/Manage_Staff.js",
     "/Manage_Student.js": "/Manage_Student.js",
     "/NotFound.js": "/NotFound.js",
-    "/Tab_Staff_Users.js": "/Tab_Staff_Users.js",
-    "/profile.js": "/profile.js"
+    "/Profile_Edit.js": "/Profile_Edit.js",
+    "/Profile_Edit~Profile_View.js": "/Profile_Edit~Profile_View.js",
+    "/Profile_View.js": "/Profile_View.js",
+    "/Tab_Staff_Users.js": "/Tab_Staff_Users.js"
 }

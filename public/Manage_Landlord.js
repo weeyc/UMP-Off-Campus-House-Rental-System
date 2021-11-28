@@ -173,15 +173,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -195,8 +186,6 @@ __webpack_require__.r(__webpack_exports__);
       filterGender: '',
       filterName: '',
       toggleModal: false,
-      toggleModalCreate: false,
-      toggleModalEdit: false,
       profile: {
         id: '',
         name: '',
@@ -215,11 +204,11 @@ __webpack_require__.r(__webpack_exports__);
         //return user.gender.match(this.filterGender);
         if (_this.filterGender == "" && _this.filterName == "") {
           return user;
-        } else if (user.landlord_gender == _this.filterGender && user.landlord_name.match(_this.filterName)) {
+        } else if (user.gender == _this.filterGender && user.name.match(_this.filterName)) {
           return user;
-        } else if (user.landlord_gender == _this.filterGender && _this.filterName == "") {
+        } else if (user.gender == _this.filterGender && _this.filterName == "") {
           return user;
-        } else if (_this.filterGender == "" && user.landlord_name.toLowerCase().match(_this.filterName.toLowerCase())) return user.landlord_name.toLowerCase().match(_this.filterName.toLowerCase());
+        } else if (_this.filterGender == "" && user.name.toLowerCase().match(_this.filterName.toLowerCase())) return user.name.toLowerCase().match(_this.filterName.toLowerCase());
       });
     }
   },
@@ -268,12 +257,12 @@ __webpack_require__.r(__webpack_exports__);
       this.getLandlord();
     },
     readUser: function readUser(user) {
-      this.profile.id = user.landlord_id;
-      this.profile.name = user.landlord_name;
-      this.profile.email = user.landlord_email;
-      this.profile.phone = user.landlord_phone_no;
-      this.profile.gender = user.landlord_gender;
-      this.profile.pic = user.landlord_pic;
+      this.profile.id = user.id;
+      this.profile.name = user.name;
+      this.profile.email = user.email;
+      this.profile.phone = user.phone_no;
+      this.profile.gender = user.gender;
+      this.profile.pic = user.pic;
     },
     deleteUser: function deleteUser(id, name) {
       var _this4 = this;
@@ -700,29 +689,6 @@ var render = function() {
                     )
                   ])
                 ]
-              ),
-              _vm._v(" "),
-              _c(
-                "div",
-                {
-                  staticClass:
-                    "w-full lg:w-1/5 flex flex-col lg:flex-row  items-start lg:items-stretch lg:mt-12"
-                },
-                [
-                  _c(
-                    "button",
-                    {
-                      staticClass:
-                        "bg-gray-200   hover:bg-blue-200 rounded\n                    text-indigo-700 px-5 h-8 shadow-lg ",
-                      on: {
-                        click: function($event) {
-                          _vm.toggleModalCreate = !_vm.toggleModalCreate
-                        }
-                      }
-                    },
-                    [_vm._v("Create User")]
-                  )
-                ]
               )
             ]
           ),
@@ -774,7 +740,7 @@ var render = function() {
                         return _c(
                           "tr",
                           {
-                            key: landlord.landlord_id,
+                            key: landlord.id,
                             staticClass:
                               "border-b border-gray-200 hover:bg-green-200"
                           },
@@ -800,63 +766,69 @@ var render = function() {
                                   { staticClass: "flex items-center" },
                                   [
                                     _c("span", { staticClass: "font-medium" }, [
-                                      _vm._v(_vm._s(landlord.landlord_id))
+                                      _vm._v(_vm._s(landlord.id))
                                     ])
                                   ]
                                 )
                               ]
                             ),
                             _vm._v(" "),
-                            _c("td", { staticClass: "py-3 px-6 text-left" }, [
-                              _c("div", { staticClass: "flex items-center" }, [
-                                _c("div", { staticClass: "mr-2" }, [
-                                  _c("img", {
-                                    staticClass:
-                                      "w-6 h-6 rounded-full hover:scale-150 hover:z-10 transform ease-in-out transition duration-500",
+                            _c(
+                              "td",
+                              { staticClass: "py-3 px-6 text-left" },
+                              [
+                                _c(
+                                  "router-link",
+                                  {
+                                    staticClass: "flex items-center",
                                     attrs: {
-                                      src:
-                                        "/images/Profile/" +
-                                        landlord.landlord_pic
+                                      to: {
+                                        name: "profile_view",
+                                        params: { role: 2, id: landlord.id }
+                                      },
+                                      target: "_blank"
                                     }
-                                  })
-                                ]),
-                                _vm._v(" "),
-                                _c("span", [
-                                  _vm._v(_vm._s(landlord.landlord_name))
-                                ])
+                                  },
+                                  [
+                                    _c("div", { staticClass: "mr-2" }, [
+                                      _c("img", {
+                                        staticClass:
+                                          "w-6 h-6 rounded-full hover:scale-150 hover:z-10 transform ease-in-out transition duration-500",
+                                        attrs: {
+                                          src: "/images/Profile/" + landlord.pic
+                                        }
+                                      })
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("span", [_vm._v(_vm._s(landlord.name))])
+                                  ]
+                                )
+                              ],
+                              1
+                            ),
+                            _vm._v(" "),
+                            _c("td", { staticClass: "py-3 px-6 text-left" }, [
+                              _c("div", { staticClass: "flex items-center" }, [
+                                _c("span", [_vm._v(_vm._s(landlord.email))])
                               ])
                             ]),
                             _vm._v(" "),
                             _c("td", { staticClass: "py-3 px-6 text-left" }, [
                               _c("div", { staticClass: "flex items-center" }, [
-                                _c("span", [
-                                  _vm._v(_vm._s(landlord.landlord_email))
-                                ])
+                                _c("span", [_vm._v(_vm._s(landlord.phone_no))])
                               ])
                             ]),
                             _vm._v(" "),
                             _c("td", { staticClass: "py-3 px-6 text-left" }, [
-                              _c("div", { staticClass: "flex items-center" }, [
-                                _c("span", [
-                                  _vm._v(_vm._s(landlord.landlord_phone_no))
-                                ])
-                              ])
-                            ]),
-                            _vm._v(" "),
-                            _c("td", { staticClass: "py-3 px-6 text-left" }, [
-                              landlord.landlord_gender === "male"
+                              landlord.gender === "male"
                                 ? _c("span", [
-                                    _vm._v(
-                                      "🧑 " + _vm._s(landlord.landlord_gender)
-                                    )
+                                    _vm._v("🧑 " + _vm._s(landlord.gender))
                                   ])
                                 : _vm._e(),
                               _vm._v(" "),
-                              landlord.landlord_gender === "female"
+                              landlord.gender === "female"
                                 ? _c("span", [
-                                    _vm._v(
-                                      "👩‍🦰  " + _vm._s(landlord.landlord_gender)
-                                    )
+                                    _vm._v("👩‍🦰  " + _vm._s(landlord.gender))
                                   ])
                                 : _vm._e()
                             ]),
@@ -937,8 +909,8 @@ var render = function() {
                                           on: {
                                             click: function($event) {
                                               return _vm.deleteUser(
-                                                landlord.landlord_id,
-                                                landlord.landlord_name
+                                                landlord.id,
+                                                landlord.name
                                               )
                                             }
                                           }

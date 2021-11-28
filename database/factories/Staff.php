@@ -7,10 +7,10 @@ use App\Models\Staff;
 use Faker\Generator as Faker;
 
 
-
 $factory->define(Staff::class, function (Faker $faker) {
 
 
+    $faker->addProvider(new \Mmo\Faker\PicsumProvider($faker));
 
     $randomNumber = function($length)
     {
@@ -39,7 +39,10 @@ $factory->define(Staff::class, function (Faker $faker) {
         'staff_password' => bcrypt('112233'),
         'staff_gender' => $gender,
         'staff_phone_no' => $mobileNumberUnique,
-        'staff_pic' =>  $faker->image($filePath,400,300, 'people', false)
+        //'staff_pic' =>  $faker->image($filePath,400,300, 'people', false),
+        'staff_pic' =>   $faker->picsum($filePath, 400, 300, false),
+        'staff_description' =>$faker-> sentence,
+
     ];
 
 

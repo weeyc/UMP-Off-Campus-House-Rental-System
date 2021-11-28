@@ -15,12 +15,17 @@ class LandlordResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'landlord_id' => $this->landlord_id,
-            'landlord_name' => $this->landlord_name,
-            'landlord_email' => $this->landlord_email,
-            'landlord_gender' => $this->landlord_gender,
-            'landlord_phone_no' => $this->landlord_phone_no,
-            'landlord_pic' => $this->landlord_pic,
+            'id' => $this->landlord_id,
+            'name' => $this->landlord_name,
+            'email' => $this->landlord_email,
+            'gender' => $this->landlord_gender,
+            'password' => $this->landlord_password,
+            'phone_no' => $this->landlord_phone_no,
+            'pic' => $this->landlord_pic,
+            'des' => $this->landlord_description,
+            'role' => $this->user_role,
+
+
         ];
 
 

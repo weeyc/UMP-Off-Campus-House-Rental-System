@@ -10,7 +10,7 @@ use Faker\Generator as Faker;
 
 $factory->define(Student::class, function (Faker $faker) {
 
-
+    $faker->addProvider(new \Mmo\Faker\PicsumProvider($faker));
 
     $randomNumber = function($length)
     {
@@ -38,8 +38,10 @@ $factory->define(Student::class, function (Faker $faker) {
         'std_email' => $faker->unique()->safeEmail,
         'std_password' => bcrypt('112233'),
         'std_gender' => $gender,
+        'std_description' =>$faker-> sentence,
         'std_phone_no' => $mobileNumberUnique,
-        'std_pic' =>  $faker->image($filePath,400,300, 'people', false)
+        //'std_pic' =>  $faker->image($filePath,400,300, 'people', false)
+        'std_pic' =>   $faker->picsum($filePath, 400, 300, false),
     ];
 
 

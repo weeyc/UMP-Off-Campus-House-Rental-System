@@ -3,7 +3,8 @@ const Register_Student = () => import(/* webpackChunkName: "Register_Student" */
 const Tab_Staff_Users = () => import(/* webpackChunkName: "Tab_Staff_Users" */'./components/Layouts/Tab_Staff_Users');
 const Manage_Student = () => import(/* webpackChunkName: "Manage_Student" */'./components/ManageRegistrationUsers/Manage_Student');
 const Manage_Landlord = () => import(/* webpackChunkName: "Manage_Landlord" */'./components/ManageRegistrationUsers/Manage_Landlord');
-const Profile = () => import(/* webpackChunkName: "profile" */'./components/ManageRegistrationUsers/Profile');
+const Profile_Edit = () => import(/* webpackChunkName: "Profile_Edit" */'./components/ManageRegistrationUsers/Profile_Edit');
+const Profile_View = () => import(/* webpackChunkName: "Profile_View" */'./components/ManageRegistrationUsers/Profile_View');
 const Manage_Staff = () => import(/* webpackChunkName: "Manage_Staff" */'./components/ManageRegistrationUsers/Manage_Staff');
 const Landing_Staff = () => import(/* webpackChunkName: "Landing_Staff" */'./components/ManageRegistrationUsers/Landing_Staff');
 const NotFound = () => import(/* webpackChunkName: "NotFound" */'./components/NotFound');
@@ -24,7 +25,6 @@ export default{
             name: 'landlord_register',
             component:Register_Landlord,
         },
-
         {
             path: '/registration-student',
             name: 'registration_student',
@@ -56,14 +56,17 @@ export default{
                     name: 'manage_staff',
                     component: Manage_Staff,
                 },
-
-
             ]
         },
         {
             path: '/staff/profile',
             name: 'profile',
-            component: Profile,
+            component: Profile_Edit,
+        },
+        {
+            path: '/staff/view-profile/:role/:id',
+            name: 'profile_view',
+            component: Profile_View,
         },
 
 

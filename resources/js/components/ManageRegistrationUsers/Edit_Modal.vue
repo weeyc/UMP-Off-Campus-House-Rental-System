@@ -99,8 +99,9 @@
 
                 <div class="flex items-center mb-5">
                     <label for="name" class="inline-block w-20 mr-6 text-right font-bold text-gray-600">Profile Description</label>
-                    <textarea name="description" rows="4" cols="33"  v-model="form.des">
-                    </textarea>
+                    <textarea name="des" rows="4" cols="33" placeholder="Profile descriptions"
+                    class="flex-1 mr-5 px-3 py-2 border-2 border-gray-400 focus:border-green-400 text-gray-600 placeholder-gray-400 outline-none" v-model="form.des"/>
+
                 </div>
 
             </div>

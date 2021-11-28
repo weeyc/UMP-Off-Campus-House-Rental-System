@@ -25,6 +25,8 @@ class CreateStaffTable extends Migration
             $table->string('staff_phone_no')->nullable();
             $table->string('staff_chat_id')->nullable();
             $table->string('staff_type')->nullable();
+            $table->string('staff_description')->nullable();
+            $table->string('user_role')->default('staff');
 
 
 

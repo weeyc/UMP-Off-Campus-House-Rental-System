@@ -161,26 +161,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -194,8 +174,6 @@ __webpack_require__.r(__webpack_exports__);
       filterGender: '',
       filterName: '',
       toggleModal: false,
-      toggleModalCreate: false,
-      toggleModalEdit: false,
       profile: {
         id: '',
         name: '',
@@ -214,11 +192,11 @@ __webpack_require__.r(__webpack_exports__);
         //return user.gender.match(this.filterGender);
         if (_this.filterGender == "" && _this.filterName == "") {
           return user;
-        } else if (user.std_gender == _this.filterGender && user.std_name.match(_this.filterName)) {
+        } else if (user.gender == _this.filterGender && user.name.match(_this.filterName)) {
           return user;
-        } else if (user.std_gender == _this.filterGender && _this.filterName == "") {
+        } else if (user.gender == _this.filterGender && _this.filterName == "") {
           return user;
-        } else if (_this.filterGender == "" && user.std_name.toLowerCase().match(_this.filterName.toLowerCase())) return user.std_name.toLowerCase().match(_this.filterName.toLowerCase());
+        } else if (_this.filterGender == "" && user.name.toLowerCase().match(_this.filterName.toLowerCase())) return user.name.toLowerCase().match(_this.filterName.toLowerCase());
       });
     }
   },
@@ -267,12 +245,12 @@ __webpack_require__.r(__webpack_exports__);
       this.getStudent();
     },
     readUser: function readUser(user) {
-      this.profile.id = user.std_id;
-      this.profile.name = user.std_name;
-      this.profile.email = user.std_email;
-      this.profile.phone = user.std_phone_no;
-      this.profile.gender = user.std_gender;
-      this.profile.pic = user.std_pic;
+      this.profile.id = user.id;
+      this.profile.name = user.name;
+      this.profile.email = user.email;
+      this.profile.phone = user.phone_no;
+      this.profile.gender = user.gender;
+      this.profile.pic = user.pic;
     },
     deleteUser: function deleteUser(id, name) {
       var _this4 = this;
@@ -699,29 +677,6 @@ var render = function() {
                     )
                   ])
                 ]
-              ),
-              _vm._v(" "),
-              _c(
-                "div",
-                {
-                  staticClass:
-                    "w-full lg:w-1/5 flex flex-col lg:flex-row  items-start lg:items-stretch lg:mt-12"
-                },
-                [
-                  _c(
-                    "button",
-                    {
-                      staticClass:
-                        "bg-gray-200   hover:bg-blue-200 rounded\n                    text-indigo-700 px-5 h-8 shadow-lg ",
-                      on: {
-                        click: function($event) {
-                          _vm.toggleModalCreate = !_vm.toggleModalCreate
-                        }
-                      }
-                    },
-                    [_vm._v("Create User")]
-                  )
-                ]
               )
             ]
           ),
@@ -773,7 +728,7 @@ var render = function() {
                         return _c(
                           "tr",
                           {
-                            key: student.std_id,
+                            key: student.id,
                             staticClass:
                               "border-b border-gray-200 hover:bg-green-200"
                           },
@@ -799,53 +754,69 @@ var render = function() {
                                   { staticClass: "flex items-center" },
                                   [
                                     _c("span", { staticClass: "font-medium" }, [
-                                      _vm._v(_vm._s(student.std_id))
+                                      _vm._v(_vm._s(student.id))
                                     ])
                                   ]
                                 )
                               ]
                             ),
                             _vm._v(" "),
-                            _c("td", { staticClass: "py-3 px-6 text-left" }, [
-                              _c("div", { staticClass: "flex items-center" }, [
-                                _c("div", { staticClass: "mr-2" }, [
-                                  _c("img", {
-                                    staticClass:
-                                      "w-6 h-6 rounded-full hover:scale-150 hover:z-10 transform ease-in-out transition duration-500",
+                            _c(
+                              "td",
+                              { staticClass: "py-3 px-6 text-left" },
+                              [
+                                _c(
+                                  "router-link",
+                                  {
+                                    staticClass: "flex items-center",
                                     attrs: {
-                                      src: "/images/Profile/" + student.std_pic
+                                      to: {
+                                        name: "profile_view",
+                                        params: { role: 1, id: student.id }
+                                      },
+                                      target: "_blank"
                                     }
-                                  })
-                                ]),
-                                _vm._v(" "),
-                                _c("span", [_vm._v(_vm._s(student.std_name))])
+                                  },
+                                  [
+                                    _c("div", { staticClass: "mr-2" }, [
+                                      _c("img", {
+                                        staticClass:
+                                          "w-6 h-6 rounded-full hover:scale-150 hover:z-10 transform ease-in-out transition duration-500",
+                                        attrs: {
+                                          src: "/images/Profile/" + student.pic
+                                        }
+                                      })
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("span", [_vm._v(_vm._s(student.name))])
+                                  ]
+                                )
+                              ],
+                              1
+                            ),
+                            _vm._v(" "),
+                            _c("td", { staticClass: "py-3 px-6 text-left" }, [
+                              _c("div", { staticClass: "flex items-center" }, [
+                                _c("span", [_vm._v(_vm._s(student.email))])
                               ])
                             ]),
                             _vm._v(" "),
                             _c("td", { staticClass: "py-3 px-6 text-left" }, [
                               _c("div", { staticClass: "flex items-center" }, [
-                                _c("span", [_vm._v(_vm._s(student.std_email))])
+                                _c("span", [_vm._v(_vm._s(student.phone_no))])
                               ])
                             ]),
                             _vm._v(" "),
                             _c("td", { staticClass: "py-3 px-6 text-left" }, [
-                              _c("div", { staticClass: "flex items-center" }, [
-                                _c("span", [
-                                  _vm._v(_vm._s(student.std_phone_no))
-                                ])
-                              ])
-                            ]),
-                            _vm._v(" "),
-                            _c("td", { staticClass: "py-3 px-6 text-left" }, [
-                              student.std_gender === "male"
+                              student.gender === "male"
                                 ? _c("span", [
-                                    _vm._v("🧑 " + _vm._s(student.std_gender))
+                                    _vm._v("🧑 " + _vm._s(student.gender))
                                   ])
                                 : _vm._e(),
                               _vm._v(" "),
-                              student.std_gender === "female"
+                              student.gender === "female"
                                 ? _c("span", [
-                                    _vm._v("👩‍🦰  " + _vm._s(student.std_gender))
+                                    _vm._v("👩‍🦰  " + _vm._s(student.gender))
                                   ])
                                 : _vm._e()
                             ]),
@@ -926,8 +897,8 @@ var render = function() {
                                           on: {
                                             click: function($event) {
                                               return _vm.deleteUser(
-                                                student.std_id,
-                                                student.std_name
+                                                student.id,
+                                                student.name
                                               )
                                             }
                                           }

@@ -74,7 +74,7 @@ class UserController extends Controller
 
             $SuperStaff = Staff::where([
                 ['staff_email', $request->email],
-                ['staff_type',  'super staff']])
+                ['staff_type',  'super_staff']])
                 ->first();
 
             if(!$Staff_info){
@@ -248,7 +248,6 @@ class UserController extends Controller
         public function getStudent(){
              $students = Student::paginate(10);
              return StudentResource::collection($students);
-
         }
 
         public function getLandlord(){
@@ -282,12 +281,12 @@ class UserController extends Controller
 
        public function get_Profile($id, $role){
 
-        if($role==1){
-           $data = Student::where('std_id', $id);
+        if($role == 1){
+           $data = Student::where('std_id', $id)->get();
            return StudentResource::collection($data);
 
-        }else if ($role==2){
-            $data = Landlord::where('landlord_id', $id);
+        }else if ($role == 2){
+            $data = Landlord::where('landlord_id', $id)->get();
             return LandlordResource::collection($data);
         }else{
              $data =  Staff::where('staff_id', $id)->get();
@@ -305,15 +304,11 @@ class UserController extends Controller
                 'phone_num' => 'required|regex:/(01)[0-9]{8}/'
             ]);
 
-
                if(strlen($request->pic)>100){
                 $filename = $this->decodeImage($request->pic);
               }else{
                  $filename = $request->pic;
               }
-
-
-
 
         if($role==1){
            $data = Student::where('std_id', $id);
@@ -331,7 +326,8 @@ class UserController extends Controller
                 'staff_phone_no' => $request ->phone_num,
                 'staff_password' => $request ->password,
                 'staff_gender' => $request ->gender,
-                'staff_pic' => $filename
+                'staff_pic' => $filename,
+                'staff_description' => $request ->des,
             ]);
 
             return $data;

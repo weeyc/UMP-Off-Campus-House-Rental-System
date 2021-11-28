@@ -25,6 +25,9 @@ class CreateLandlordsTable extends Migration
 
             $table->string('landlord_pic')->nullable();
             $table->string('landlord_chat_id')->nullable();
+            $table->string('landlord_description')->nullable();
+
+            $table->string('user_role')->default('landlord');
 
             // $table->string('cust_status')->default('Active');
             // $table->timestamps();

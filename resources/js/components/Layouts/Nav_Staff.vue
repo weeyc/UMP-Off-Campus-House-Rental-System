@@ -186,7 +186,6 @@ export default {
 
     data() {
         return {
-
             userProfile: [],
         };
     },
