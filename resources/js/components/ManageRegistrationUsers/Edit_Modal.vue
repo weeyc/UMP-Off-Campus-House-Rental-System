@@ -1,3 +1,4 @@
+
 <template>
    <div class="modal h-screen w-full  fixed left-0 top-0 flex justify-center z-10 items-center bg-black bg-opacity-50" >
     <!-- modal -->
@@ -44,12 +45,35 @@
 
                 <div class="flex items-center">
                     <label for="number" class="inline-block w-20 mr-6 text-right font-bold text-gray-600">Password</label>
-                    <input type="password" id="password" name="password" placeholder="password" v-model="form.password"
-                        class="flex-1 mr-5 py-2 border-2 border-gray-400 focus:border-green-400 text-gray-600 placeholder-gray-400 outline-none">
+                    <input :type="type" id="password" name="password" placeholder="password" v-model="form.password"
+                        class="flex-1 py-2 border-2 border-gray-400 focus:border-green-400 text-gray-600 placeholder-gray-400 outline-none">
+                         <button class="mr-2 py-2 px-2 rounded-l-none  border-gray-400 focus:border-green-400 outline-none" @click="showPassword">
+                            <div v-if="isVisible">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z">
+                                    </path>
+                                </svg>
+                            </div>
+
+                            <div v-if="!isVisible">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l3.59 3.59m0 0A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21">
+                                    </path>
+                                </svg>
+                            </div>
+                         </button>
                 </div>
                 <div class="mb-5">
                     <span class="flex text-red-500 ml-24">{{ errors.get('password')}}</span>
                 </div>
+
+
 
                 <div class="flex items-center">
                     <label for="name" class="inline-block w-20 mr-6 text-right font-bold text-gray-600">Phone number</label>
@@ -59,6 +83,7 @@
                 <div class=" mb-5">
                     <span class="flex text-red-500 ml-24">{{ errors.get('phone_num')}}</span>
                 </div>
+
 
                 <div class="flex items-center mb-5">
                     <label for="gender" class="inline-block w-20 mr-6 text-right font-bold text-gray-600">Gender</label>
@@ -71,7 +96,14 @@
                         <div class="title px-2">female</div>
                     </label>
                 </div>
-        </div>
+
+                <div class="flex items-center mb-5">
+                    <label for="name" class="inline-block w-20 mr-6 text-right font-bold text-gray-600">Profile Description</label>
+                    <textarea name="description" rows="4" cols="33"  v-model="form.des">
+                    </textarea>
+                </div>
+
+            </div>
                 <div class="flex justify-end items-center w-100 border-t p-3">
                     <button @click="closeModal" class="bg-red-600 hover:bg-red-700 px-3 py-1 rounded text-white mr-1 close-modal">Cancel</button>
                     <button @click.prevent="editUser" type="submit" class="bg-green-600 hover:bg-green-700 px-3 py-1 rounded text-white">Update</button>
@@ -109,7 +141,9 @@ components: {
     data() {
         return {
             errors: new Errors(),
-
+            type: 'password',
+            btnText: 'Show Password',
+            isVisible: false,
 
         }
     },
@@ -132,6 +166,14 @@ components: {
         }).catch(error =>this.errors.record(error.response.data));
 
         },
+        showPassword() {
+            if(this.type === 'password') {
+                this.type = 'text'
+            } else {
+                this.type = 'password'
+            }
+             this.isVisible =! this.isVisible;
+        },
         getAvatar(event){
             this.form.pic = event;
         },
@@ -152,4 +194,5 @@ components: {
 
     },
 };
+
 </script>

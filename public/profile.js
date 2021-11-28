@@ -189,6 +189,38 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 var Errors = /*#__PURE__*/function () {
   function Errors() {
     _classCallCheck(this, Errors);
@@ -225,7 +257,10 @@ var Errors = /*#__PURE__*/function () {
   },
   data: function data() {
     return {
-      errors: new Errors()
+      errors: new Errors(),
+      type: 'password',
+      btnText: 'Show Password',
+      isVisible: false
     };
   },
   methods: {
@@ -249,6 +284,15 @@ var Errors = /*#__PURE__*/function () {
       })["catch"](function (error) {
         return _this.errors.record(error.response.data);
       });
+    },
+    showPassword: function showPassword() {
+      if (this.type === 'password') {
+        this.type = 'text';
+      } else {
+        this.type = 'password';
+      }
+
+      this.isVisible = !this.isVisible;
     },
     getAvatar: function getAvatar(event) {
       this.form.pic = event;
@@ -436,10 +480,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -460,7 +500,8 @@ __webpack_require__.r(__webpack_exports__);
         gender: '',
         phone_num: '',
         avatar: null,
-        pic: ''
+        pic: '',
+        des: ''
       },
       toggleModal: false
     };
@@ -753,33 +794,181 @@ var render = function() {
                 [_vm._v("Password")]
               ),
               _vm._v(" "),
-              _c("input", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.form.password,
-                    expression: "form.password"
-                  }
-                ],
-                staticClass:
-                  "flex-1 mr-5 py-2 border-2 border-gray-400 focus:border-green-400 text-gray-600 placeholder-gray-400 outline-none",
-                attrs: {
-                  type: "password",
-                  id: "password",
-                  name: "password",
-                  placeholder: "password"
-                },
-                domProps: { value: _vm.form.password },
-                on: {
-                  input: function($event) {
-                    if ($event.target.composing) {
-                      return
+              _vm.type === "checkbox"
+                ? _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.form.password,
+                        expression: "form.password"
+                      }
+                    ],
+                    staticClass:
+                      "flex-1 py-2 border-2 border-gray-400 focus:border-green-400 text-gray-600 placeholder-gray-400 outline-none",
+                    attrs: {
+                      id: "password",
+                      name: "password",
+                      placeholder: "password",
+                      type: "checkbox"
+                    },
+                    domProps: {
+                      checked: Array.isArray(_vm.form.password)
+                        ? _vm._i(_vm.form.password, null) > -1
+                        : _vm.form.password
+                    },
+                    on: {
+                      change: function($event) {
+                        var $$a = _vm.form.password,
+                          $$el = $event.target,
+                          $$c = $$el.checked ? true : false
+                        if (Array.isArray($$a)) {
+                          var $$v = null,
+                            $$i = _vm._i($$a, $$v)
+                          if ($$el.checked) {
+                            $$i < 0 &&
+                              _vm.$set(_vm.form, "password", $$a.concat([$$v]))
+                          } else {
+                            $$i > -1 &&
+                              _vm.$set(
+                                _vm.form,
+                                "password",
+                                $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                              )
+                          }
+                        } else {
+                          _vm.$set(_vm.form, "password", $$c)
+                        }
+                      }
                     }
-                    _vm.$set(_vm.form, "password", $event.target.value)
-                  }
-                }
-              })
+                  })
+                : _vm.type === "radio"
+                ? _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.form.password,
+                        expression: "form.password"
+                      }
+                    ],
+                    staticClass:
+                      "flex-1 py-2 border-2 border-gray-400 focus:border-green-400 text-gray-600 placeholder-gray-400 outline-none",
+                    attrs: {
+                      id: "password",
+                      name: "password",
+                      placeholder: "password",
+                      type: "radio"
+                    },
+                    domProps: { checked: _vm._q(_vm.form.password, null) },
+                    on: {
+                      change: function($event) {
+                        return _vm.$set(_vm.form, "password", null)
+                      }
+                    }
+                  })
+                : _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.form.password,
+                        expression: "form.password"
+                      }
+                    ],
+                    staticClass:
+                      "flex-1 py-2 border-2 border-gray-400 focus:border-green-400 text-gray-600 placeholder-gray-400 outline-none",
+                    attrs: {
+                      id: "password",
+                      name: "password",
+                      placeholder: "password",
+                      type: _vm.type
+                    },
+                    domProps: { value: _vm.form.password },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.form, "password", $event.target.value)
+                      }
+                    }
+                  }),
+              _vm._v(" "),
+              _c(
+                "button",
+                {
+                  staticClass:
+                    "mr-2 py-2 px-2 rounded-l-none  border-gray-400 focus:border-green-400 outline-none",
+                  on: { click: _vm.showPassword }
+                },
+                [
+                  _vm.isVisible
+                    ? _c("div", [
+                        _c(
+                          "svg",
+                          {
+                            staticClass: "w-6 h-6",
+                            attrs: {
+                              fill: "none",
+                              stroke: "currentColor",
+                              viewBox: "0 0 24 24",
+                              xmlns: "http://www.w3.org/2000/svg"
+                            }
+                          },
+                          [
+                            _c("path", {
+                              attrs: {
+                                "stroke-linecap": "round",
+                                "stroke-linejoin": "round",
+                                "stroke-width": "2",
+                                d: "M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                              }
+                            }),
+                            _vm._v(" "),
+                            _c("path", {
+                              attrs: {
+                                "stroke-linecap": "round",
+                                "stroke-linejoin": "round",
+                                "stroke-width": "2",
+                                d:
+                                  "M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
+                              }
+                            })
+                          ]
+                        )
+                      ])
+                    : _vm._e(),
+                  _vm._v(" "),
+                  !_vm.isVisible
+                    ? _c("div", [
+                        _c(
+                          "svg",
+                          {
+                            staticClass: "w-6 h-6",
+                            attrs: {
+                              fill: "none",
+                              stroke: "currentColor",
+                              viewBox: "0 0 24 24",
+                              xmlns: "http://www.w3.org/2000/svg"
+                            }
+                          },
+                          [
+                            _c("path", {
+                              attrs: {
+                                "stroke-linecap": "round",
+                                "stroke-linejoin": "round",
+                                "stroke-width": "2",
+                                d:
+                                  "M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l3.59 3.59m0 0A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21"
+                              }
+                            })
+                          ]
+                        )
+                      ])
+                    : _vm._e()
+                ]
+              )
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "mb-5" }, [
@@ -889,6 +1078,39 @@ var render = function() {
                 _vm._v(" "),
                 _c("div", { staticClass: "title px-2" }, [_vm._v("female")])
               ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "flex items-center mb-5" }, [
+              _c(
+                "label",
+                {
+                  staticClass:
+                    "inline-block w-20 mr-6 text-right font-bold text-gray-600",
+                  attrs: { for: "name" }
+                },
+                [_vm._v("Profile Description")]
+              ),
+              _vm._v(" "),
+              _c("textarea", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.form.des,
+                    expression: "form.des"
+                  }
+                ],
+                attrs: { name: "description", rows: "4", cols: "33" },
+                domProps: { value: _vm.form.des },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(_vm.form, "des", $event.target.value)
+                  }
+                }
+              })
             ])
           ]),
           _vm._v(" "),
@@ -1071,165 +1293,218 @@ var render = function() {
                 "relative flex flex-col min-w-0 break-words bg-pink-200 w-full mb-6 shadow-xl rounded-lg -mt-64"
             },
             [
-              _c("div", { staticClass: "px-6" }, [
-                _c("div", { staticClass: "flex flex-wrap justify-center" }, [
-                  _c(
-                    "div",
-                    {
-                      staticClass:
-                        "w-full lg:w-3/12 px-4 lg:order-2 flex justify-center"
-                    },
-                    _vm._l(_vm.userProfile, function(user) {
-                      return _c(
-                        "div",
-                        { key: user.id, staticClass: "relative" },
-                        [
-                          _c("img", {
-                            staticClass:
-                              "shadow-xl rounded-full h-44  align-middle border-4 border-pink-400 absolute -m-16 -ml-20 lg:-ml-16 max-w-200-px",
-                            attrs: { src: "/images/Profile/" + user.pic }
-                          })
-                        ]
-                      )
-                    }),
-                    0
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "div",
-                    {
-                      staticClass:
-                        "w-full lg:w-4/12 px-4 lg:order-3 lg:text-right lg:self-center"
-                    },
-                    _vm._l(_vm.userProfile, function(user) {
-                      return _c(
-                        "div",
-                        {
-                          key: user.id,
-                          staticClass: "py-6 px-3 mt-32 sm:mt-0"
-                        },
-                        [
-                          _c(
-                            "button",
-                            {
-                              staticClass:
-                                "bg-pink-500 active:bg-pink-600 uppercase text-white font-bold hover:shadow-md shadow text-base px-6 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1 ease-linear transition-all duration-150",
-                              attrs: { type: "button" },
-                              on: {
-                                click: function($event) {
-                                  _vm.clickEdit(user)
-                                  _vm.toggleModal = !_vm.toggleModal
-                                }
-                              }
-                            },
-                            [
-                              _vm._v(
-                                "\n                  Edit\n                "
-                              )
-                            ]
-                          )
-                        ]
-                      )
-                    }),
-                    0
-                  ),
-                  _vm._v(" "),
-                  _vm._m(1)
-                ]),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  { staticClass: "text-center mt-12" },
-                  [
+              _c(
+                "div",
+                { staticClass: "px-6" },
+                [
+                  _c("div", { staticClass: "flex flex-wrap justify-center" }, [
                     _c(
-                      "h3",
+                      "div",
                       {
                         staticClass:
-                          "text-4xl font-semibold leading-normal text-blueGray-700 mb-2"
+                          "w-full lg:w-3/12 px-4 lg:order-2 flex justify-center"
                       },
-                      _vm._l(_vm.userProfile, function(user, i) {
-                        return _c("div", { key: i }, [
-                          _vm._v(
-                            "\n                      " +
-                              _vm._s(user.name) +
-                              "\n                    "
-                          )
-                        ])
+                      _vm._l(_vm.userProfile, function(user) {
+                        return _c(
+                          "div",
+                          { key: user.id, staticClass: "relative" },
+                          [
+                            _c("img", {
+                              staticClass:
+                                "shadow-xl rounded-full h-44  align-middle border-4 border-pink-400 absolute -m-16 -ml-20 lg:-ml-16 max-w-200-px",
+                              attrs: { src: "/images/Profile/" + user.pic }
+                            })
+                          ]
+                        )
                       }),
                       0
                     ),
                     _vm._v(" "),
-                    _vm._m(2),
+                    _c(
+                      "div",
+                      {
+                        staticClass:
+                          "w-full lg:w-4/12 px-4 lg:order-3 lg:text-right lg:self-center"
+                      },
+                      _vm._l(_vm.userProfile, function(user) {
+                        return _c(
+                          "div",
+                          {
+                            key: user.id,
+                            staticClass: "py-6 px-3 mt-32 sm:mt-0"
+                          },
+                          [
+                            _c(
+                              "button",
+                              {
+                                staticClass:
+                                  "bg-pink-500 active:bg-pink-600 uppercase text-white font-bold hover:shadow-md shadow text-base px-6 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1 ease-linear transition-all duration-150",
+                                attrs: { type: "button" },
+                                on: {
+                                  click: function($event) {
+                                    _vm.clickEdit(user)
+                                    _vm.toggleModal = !_vm.toggleModal
+                                  }
+                                }
+                              },
+                              [
+                                _vm._v(
+                                  "\n                  Edit\n                "
+                                )
+                              ]
+                            )
+                          ]
+                        )
+                      }),
+                      0
+                    ),
                     _vm._v(" "),
-                    _vm._l(_vm.userProfile, function(user, i) {
-                      return _c(
-                        "div",
+                    _vm._m(1)
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    { staticClass: "text-center mt-12" },
+                    [
+                      _c(
+                        "h3",
                         {
-                          key: "A" + i,
-                          staticClass: "mb-2 text-blueGray-600 mt-10"
+                          staticClass:
+                            "text-4xl font-semibold leading-normal text-blueGray-700 mb-2"
                         },
-                        [
-                          _c("i", {
-                            staticClass:
-                              "fas fa-id-card mr-2 text-lg text-blueGray-400"
-                          }),
-                          _vm._v("  " + _vm._s(user.id) + "\n            ")
-                        ]
-                      )
-                    }),
-                    _vm._v(" "),
-                    _vm._l(_vm.userProfile, function(user, i) {
-                      return _c(
-                        "div",
-                        { key: "B" + i, staticClass: "mb-2 text-blueGray-600" },
-                        [
-                          _c("i", {
-                            staticClass:
-                              "fas fa-venus-mars mr-2 text-lg text-blueGray-400"
-                          }),
-                          _vm._v("  " + _vm._s(user.gender) + "\n            ")
-                        ]
-                      )
-                    }),
-                    _vm._v(" "),
-                    _vm._l(_vm.userProfile, function(user, i) {
-                      return _c(
-                        "div",
-                        { key: "C" + i, staticClass: "mb-2 text-blueGray-600" },
-                        [
-                          _c("i", {
-                            staticClass:
-                              "fas fa-phone-alt mr-2 text-lg text-blueGray-400"
-                          }),
-                          _vm._v(_vm._s(user.phone_no) + "\n            ")
-                        ]
-                      )
-                    }),
-                    _vm._v(" "),
-                    _vm._l(_vm.userProfile, function(user, i) {
-                      return _c(
-                        "div",
-                        { key: "D" + i, staticClass: "mb-2 text-blueGray-600" },
-                        [
-                          _c("i", {
-                            staticClass:
-                              "fas fa-envelope mr-2 text-lg text-blueGray-400"
-                          }),
-                          _vm._v(_vm._s(user.email) + "\n            ")
-                        ]
-                      )
-                    })
-                  ],
-                  2
-                ),
-                _vm._v(" "),
-                _vm._m(3)
-              ])
+                        _vm._l(_vm.userProfile, function(user, i) {
+                          return _c("div", { key: i }, [
+                            _vm._v(
+                              "\n                      " +
+                                _vm._s(user.name) +
+                                "\n                    "
+                            )
+                          ])
+                        }),
+                        0
+                      ),
+                      _vm._v(" "),
+                      _vm._m(2),
+                      _vm._v(" "),
+                      _vm._l(_vm.userProfile, function(user, i) {
+                        return _c(
+                          "div",
+                          {
+                            key: "A" + i,
+                            staticClass: "mb-2 text-blueGray-600 mt-10"
+                          },
+                          [
+                            _c("i", {
+                              staticClass:
+                                "fas fa-id-card mr-2 text-lg text-blueGray-400"
+                            }),
+                            _vm._v("  " + _vm._s(user.id) + "\n            ")
+                          ]
+                        )
+                      }),
+                      _vm._v(" "),
+                      _vm._l(_vm.userProfile, function(user, i) {
+                        return _c(
+                          "div",
+                          {
+                            key: "B" + i,
+                            staticClass: "mb-2 text-blueGray-600"
+                          },
+                          [
+                            _c("i", {
+                              staticClass:
+                                "fas fa-venus-mars mr-2 text-lg text-blueGray-400"
+                            }),
+                            _vm._v(
+                              "  " + _vm._s(user.gender) + "\n            "
+                            )
+                          ]
+                        )
+                      }),
+                      _vm._v(" "),
+                      _vm._l(_vm.userProfile, function(user, i) {
+                        return _c(
+                          "div",
+                          {
+                            key: "C" + i,
+                            staticClass: "mb-2 text-blueGray-600"
+                          },
+                          [
+                            _c("i", {
+                              staticClass:
+                                "fas fa-phone-alt mr-2 text-lg text-blueGray-400"
+                            }),
+                            _vm._v(_vm._s(user.phone_no) + "\n            ")
+                          ]
+                        )
+                      }),
+                      _vm._v(" "),
+                      _vm._l(_vm.userProfile, function(user, i) {
+                        return _c(
+                          "div",
+                          {
+                            key: "D" + i,
+                            staticClass: "mb-2 text-blueGray-600"
+                          },
+                          [
+                            _c("i", {
+                              staticClass:
+                                "fas fa-envelope mr-2 text-lg text-blueGray-400"
+                            }),
+                            _vm._v(_vm._s(user.email) + "\n            ")
+                          ]
+                        )
+                      })
+                    ],
+                    2
+                  ),
+                  _vm._v(" "),
+                  _vm._l(_vm.userProfile, function(user, i) {
+                    return _c(
+                      "div",
+                      {
+                        key: "E" + i,
+                        staticClass:
+                          "mt-10 py-10 border-t border-blueGray-200 text-center"
+                      },
+                      [
+                        _c(
+                          "div",
+                          { staticClass: "flex flex-wrap justify-center" },
+                          [
+                            _c(
+                              "div",
+                              { staticClass: "w-full lg:w-9/12 px-4" },
+                              [
+                                _c(
+                                  "p",
+                                  {
+                                    staticClass:
+                                      "mb-4 text-lg leading-relaxed text-blueGray-700"
+                                  },
+                                  [
+                                    _vm._v(
+                                      "\n                     " +
+                                        _vm._s(user.des) +
+                                        "\n                "
+                                    )
+                                  ]
+                                )
+                              ]
+                            )
+                          ]
+                        )
+                      ]
+                    )
+                  })
+                ],
+                2
+              )
             ]
           )
         ]),
         _vm._v(" "),
-        _vm._m(4)
+        _vm._m(3)
       ]),
       _vm._v(" "),
       _vm.toggleModal
@@ -1334,30 +1609,6 @@ var staticRenderFns = [
           staticClass: "fas fa-user-cog mr-2 text-lg text-blueGray-400"
         }),
         _vm._v("\n                    Staff\n            ")
-      ]
-    )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      { staticClass: "mt-10 py-10 border-t border-blueGray-200 text-center" },
-      [
-        _c("div", { staticClass: "flex flex-wrap justify-center" }, [
-          _c("div", { staticClass: "w-full lg:w-9/12 px-4" }, [
-            _c(
-              "p",
-              { staticClass: "mb-4 text-lg leading-relaxed text-blueGray-700" },
-              [
-                _vm._v(
-                  "\n                  An artist of considerable range, Jenna the name taken by\n                  Melbourne-raised, Brooklyn-based Nick Murphy writes,\n                  performs and records all of his own music, giving it a\n                  warm, intimate feel with a solid groove structure. An\n                  artist of considerable range.\n                "
-                )
-              ]
-            )
-          ])
-        ])
       ]
     )
   },

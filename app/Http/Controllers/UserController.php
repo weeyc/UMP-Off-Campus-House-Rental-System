@@ -58,10 +58,7 @@ class UserController extends Controller
                 }
                 else{
                     if(Hash::check($request->password, $landlord_info->landlord_password)){
-                        // $request->session()->put([
-                        //     'ID' => $landlord_info->landlord_id,
-                        //     'Role' => 'Landlord'
-                        // ]);
+
                         $Role = 2;
                         $request ->session()->put('ID', $landlord_info->landlord_id);
                         $request ->session()->put('Role', $Role);
@@ -75,24 +72,39 @@ class UserController extends Controller
         else if($request ->role == "Staff"){
             $Staff_info = Staff::where('staff_email','=', $request->email)->first();
 
+            $SuperStaff = Staff::where([
+                ['staff_email', $request->email],
+                ['staff_type',  'super staff']])
+                ->first();
+
             if(!$Staff_info){
                 return back()->with('fail','Email not recognized !');
             }
             else{
-                if($request->password == $Staff_info->staff_password){
-                    // $request->session()->put([
-                    //     'ID' => $Staff_info->staff_id,
-                    //     'Role' => 'Staff'
-                    // ]);
-                    $Role = 3;
-                    $request ->session()->put('ID', $Staff_info->staff_id);
-                    $request ->session()->put('Role', $Role);
+                if($SuperStaff){
+                    if($request->password == $Staff_info->staff_password){
 
-                    return redirect('/staff');
+                        $Role = 3;
+                        $request ->session()->put('ID', $Staff_info->staff_id);
+                        $request ->session()->put('Role', $Role);
+                        return redirect('/staff');
+                    }
+                    else{
+                        return back()->with('fail','Incorrect Super staff Password');
+                    }
+                }else{
+                        if(Hash::check($request->password, $Staff_info->staff_password)){
+                            $Role = 3;
+                            $request ->session()->put('ID', $Staff_info->staff_id);
+                            $request ->session()->put('Role', $Role);
+
+                            return redirect('/staff');
+                        }
+                        else{
+                            return back()->with('fail','Incorrect Hash Password');
+                        }
                 }
-                else{
-                    return back()->with('fail','Incorrect Password');
-                }
+
             }
         }
 
