@@ -116,41 +116,41 @@
                         </a>
 
                     </div>
+
+
+
+            <!-- Dropdown menu -->
+
                     <div class="hidden xl:flex items-center">
                         <div class="relative md:mr-6 my-2">
-                   <router-link  :to="{name: 'profile'}" class="focus:outline-none bg-pink-200 border-gray-300 border
-                            transition duration-150 ease-in-out active:bg-pink-100 rounded text-gray-600 px-5 py-2 text-xs">I'm a Staff</router-link>
+                            <router-link  :to="{name: 'profile'}" class="focus:outline-none bg-pink-200 border-gray-300 border
+                                 transition duration-150 ease-in-out active:bg-pink-100 rounded text-gray-600 px-5 py-2 text-xs">
+                                 I'm a Staff
+                            </router-link>
                         </div>
-                        <div class="ml-6 relative">
+
+                        <div class="ml-6 relative shadow-xl">
                             <div class="flex items-center relative" @click="dropdownHandler($event)">
-                                <ul class="p-2 w-40 border-r bg-red absolute rounded right-0 shadow top-0 mt-16 hidden">
+                                <ul class="w-40 p-2 border-r bg-white absolute rounded right-0 top-0 shadow mt-16 hidden overflow-hidden z-10 ">
+
                                     <li class="cursor-pointer text-gray-600 text-sm leading-3 tracking-normal py-2 hover:text-indigo-700 focus:text-indigo-700 focus:outline-none">
-                                         <router-link  :to="{name: 'profile'}" class="flex items-center">
-                                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                                <path stroke="none" d="M0 0h24v24H0z" />
-                                                <circle cx="12" cy="7" r="4" />
-                                                <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+                                         <router-link  :to="{name: 'profile'}" class="flex items-center px-3 py-2 text-sm text-gray-600 capitalize transition-colors duration-200 transform dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white">
+                                            <svg class="w-5 h-5 mx-1" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M7 8C7 5.23858 9.23858 3 12 3C14.7614 3 17 5.23858 17 8C17 10.7614 14.7614 13 12 13C9.23858 13 7 10.7614 7 8ZM12 11C13.6569 11 15 9.65685 15 8C15 6.34315 13.6569 5 12 5C10.3431 5 9 6.34315 9 8C9 9.65685 10.3431 11 12 11Z" fill="currentColor"></path>
+                                                <path d="M6.34315 16.3431C4.84285 17.8434 4 19.8783 4 22H6C6 20.4087 6.63214 18.8826 7.75736 17.7574C8.88258 16.6321 10.4087 16 12 16C13.5913 16 15.1174 16.6321 16.2426 17.7574C17.3679 18.8826 18 20.4087 18 22H20C20 19.8783 19.1571 17.8434 17.6569 16.3431C16.1566 14.8429 14.1217 14 12 14C9.87827 14 7.84344 14.8429 6.34315 16.3431Z" fill="currentColor"></path>
                                             </svg>
                                             <span class="ml-2 ">My Profile</span>
 
                                         </router-link>
                                     </li>
-                                    <li class="cursor-pointer text-gray-600 text-sm leading-3 tracking-normal mt-2 py-2 hover:text-indigo-700 focus:text-indigo-700 focus:outline-none flex items-center">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-help" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                            <path stroke="none" d="M0 0h24v24H0z" />
-                                            <circle cx="12" cy="12" r="9" />
-                                            <line x1="12" y1="17" x2="12" y2="17.01" />
-                                            <path d="M12 13.5a1.5 1.5 0 0 1 1 -1.5a2.6 2.6 0 1 0 -3 -4" />
-                                        </svg>
-                                        <span class="ml-2">Help Center</span>
-                                    </li>
+                                     <hr class="border-gray-200 dark:border-gray-700 ">
                                     <li class="cursor-pointer text-gray-600 text-sm leading-3 tracking-normal mt-2 py-2 hover:text-indigo-700 flex items-center focus:text-indigo-700 focus:outline-none">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-settings" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                            <path stroke="none" d="M0 0h24v24H0z" />
-                                            <path d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 0 0 2.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 0 0 1.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 0 0 -1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 0 0 -2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 0 0 -2.573 -1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 0 0 -1.065 -2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 0 0 1.066 -2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
-                                            <circle cx="12" cy="12" r="3" />
-                                        </svg>
-                                        <a href="/logout"><span class="ml-2">Log Out</span></a>
+                                        <a  href="/logout" class="flex items-center px-3 py-2 text-sm text-gray-600 capitalize transition-colors duration-200 transform dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white">
+                                            <svg class="w-5 h-5 mx-1" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M19 21H10C8.89543 21 8 20.1046 8 19V15H10V19H19V5H10V9H8V5C8 3.89543 8.89543 3 10 3H19C20.1046 3 21 3.89543 21 5V19C21 20.1046 20.1046 21 19 21ZM12 16V13H3V11H12V8L17 12L12 16Z" fill="currentColor"></path>
+                                            </svg>
+                                            <span class="ml-2">Log Out</span>
+                                        </a>
                                     </li>
                                 </ul>
                                 <div  v-for= "user in userProfile" :key="user.id" class="cursor-pointer flex text-sm border-2 border-transparent rounded-full focus:outline-none focus:border-white transition duration-150 ease-in-out">
