@@ -122,10 +122,6 @@ export default {
      components: {
         EditModal,
     },
-    //   props: {
-    //         user_id: Number,
-    //         role: Number
-    //     },
     data(){
         return{
             userProfile: [],
@@ -144,6 +140,7 @@ export default {
                 avatar: null,
                 pic: '',
                 des: '',
+
             },
              toggleModal: false,
         }
@@ -167,6 +164,7 @@ export default {
                 this.form.phone_num = user.phone_no
                 this.form.pic = user.pic
                 this.form.des = user.des
+
         },
         getRole(){
             if(this.route_role == 1){

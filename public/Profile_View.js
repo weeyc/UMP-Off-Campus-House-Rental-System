@@ -133,10 +133,6 @@ __webpack_require__.r(__webpack_exports__);
   components: {
     EditModal: _Edit_Modal_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
-  //   props: {
-  //         user_id: Number,
-  //         role: Number
-  //     },
   data: function data() {
     return {
       userProfile: [],

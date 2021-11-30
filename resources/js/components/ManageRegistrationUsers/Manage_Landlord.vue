@@ -18,7 +18,7 @@
 
                 <div class="flex flex-col items-center my-12">
                     <div class="flex text-gray-700">
-                        <div class="h-8 w-8 mr-1 flex justify-center items-center rounded-full bg-gray-200 cursor-pointe  shadow-lg hover:bg-blue-200">
+                        <div class="h-8 w-8 mr-1 flex justify-center items-center rounded-full bg-gray-200 cursor-pointe  shadow-lg hover:bg-pink-200">
                             <button  @click="previousPg(page)"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-left w-4 h-4">
                                 <polyline points="15 18 9 12 15 6"></polyline>
                             </svg>
@@ -26,14 +26,14 @@
                         </div>
 
                         <div class="flex h-8  font-medium rounded-full bg-gray-200  shadow-lg ">
-                            <button class="w-8 md:flex justify-center items-center hidden cursor-pointer leading-5 transition duration-150 ease-in  rounded-full hover:bg-blue-200 " @click="firstPg()">1</button>
+                            <button class="w-8 md:flex justify-center items-center hidden cursor-pointer leading-5 transition duration-150 ease-in  rounded-full hover:bg-pink-200 " @click="firstPg()">1</button>
                             <button class="w-8 md:flex justify-center items-center hidden cursor-pointer leading-5 transition duration-150 ease-in  rounded-full  disabled ">...</button>
-                            <button class="w-8 md:flex justify-center items-center hidden cursor-pointer leading-5 transition duration-150 ease-in  rounded-full hover:bg-blue-700 bg-blue-600 text-white " @click="currentPg()">{{ page }}</button>
+                            <button class="w-8 md:flex justify-center items-center hidden cursor-pointer leading-5 transition duration-150 ease-in  rounded-full hover:bg-pink-700 bg-pink-600 text-white " @click="currentPg()">{{ page }}</button>
                             <button class="w-8 md:flex justify-center items-center hidden cursor-pointer leading-5 transition duration-150 ease-in  rounded-full   disabled">...</button>
-                            <button class="w-8 md:flex justify-center items-center hidden cursor-pointer leading-5 transition duration-150 ease-in  rounded-full hover:bg-blue-200"  @click="lastPg()">{{ lastPage }}</button>
-                            <button class="w-8 h-8 md:hidden flex justify-center items-center cursor-pointer leading-5 transition duration-150 ease-in rounded-full bg-blue-600 text-white hover:bg-green-200">{{ page }}</button>
+                            <button class="w-8 md:flex justify-center items-center hidden cursor-pointer leading-5 transition duration-150 ease-in  rounded-full hover:bg-pink-200"  @click="lastPg()">{{ lastPage }}</button>
+                            <button class="w-8 h-8 md:hidden flex justify-center items-center cursor-pointer leading-5 transition duration-150 ease-in rounded-full bg-pink-600 text-white hover:bg-pink-200">{{ page }}</button>
                         </div>
-                        <div class="h-8 w-8 ml-1 flex justify-center items-center rounded-full bg-gray-200 cursor-pointer  shadow-lg hover:bg-blue-200">
+                        <div class="h-8 w-8 ml-1 flex justify-center items-center rounded-full bg-gray-200 cursor-pointer  shadow-lg hover:bg-pink-200">
                               <button  @click="nextPg(page)"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right w-4 h-4">
                                 <polyline points="9 18 15 12 9 6"></polyline>
                             </svg>
@@ -65,7 +65,7 @@
 
                 <table class="min-w-full shadow-lg border-b-2 " style="background-image: url(/images/BlueCoral.jpg);">
                      <thead>
-                            <tr class="border-b bg-blue-400 text-gray-900 uppercase text-base leading-normal"  style="background-image: url(/images/BlueCoral.jpg);">
+                            <tr class="border-b bg-pink-400 text-gray-900 uppercase text-base leading-normal"  style="background-image: url(/images/BlueCoral.jpg);">
                                 <th class="py-3 px-3 text-left">No.</th>
                                 <th class="py-3 px-6 text-left">User ID</th>
                                 <th class="py-3 px-6 text-left">Name</th>
@@ -76,7 +76,7 @@
                             </tr>
                         </thead>
                         <tbody class="text-dark-600 text-sm font-light">
-                            <tr  v-for= "(landlord, index) in filterUser" :key="landlord.id"   class="border-b border-gray-200 hover:bg-green-200" >
+                            <tr  v-for= "(landlord, index) in filterUser" :key="landlord.id"   class="border-b border-gray-200 hover:bg-pink-200" >
                                  <td class="py-3 px-3 text-left whitespace-nowrap">  {{ index + 1 }}</td >
                                 <td class="py-3 px-6 text-left whitespace-nowrap">
                                     <div class="flex items-center">
@@ -189,6 +189,8 @@ export default {
                     phone: '',
                     gender: '',
                     pic: '',
+                    role: '2'
+
                 }
         };
     },

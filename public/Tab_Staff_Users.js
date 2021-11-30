@@ -120,10 +120,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {};
@@ -145,7 +141,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".exact-active[data-v-e5d21d84]{\n  --tw-bg-opacity: 1;\n  background-color: rgba(99, 102, 241, var(--tw-bg-opacity));\n  --tw-text-opacity: 1;\n  color: rgba(255, 255, 255, var(--tw-text-opacity));\n}\n\n", ""]);
+exports.push([module.i, ".exact-active[data-v-e5d21d84]{\n  --tw-bg-opacity: 1;\n  background-color: rgba(236, 72, 153, var(--tw-bg-opacity));\n  --tw-text-opacity: 1;\n  color: rgba(255, 255, 255, var(--tw-text-opacity));\n}\n\n", ""]);
 
 // exports
 
@@ -209,47 +205,9 @@ var render = function() {
           "router-link",
           {
             staticClass:
-              "\n          p-4\n          rounded\n          bg-white\n          text-indigo-500\n          hover:bg-indigo-500 hover:text-white\n\n          :active:bg-indigo-500 active:text-white active:outline-none\n          transition duration-150 ease-in-out\n          shadow-md\n          flex\n          items-center\n          justify-center\n      ",
+              "\n          p-4\n          rounded\n          bg-pink-100\n          text-pink-500\n          hover:bg-pink-500 hover:text-white\n          :active:bg-pink-500 active:text-white active:outline-none\n          transition duration-150 ease-in-out\n          shadow-xl\n          flex\n          items-center\n          justify-center\n      ",
             attrs: {
               to: { name: "manage_student" },
-              "exact-active-class": "exact-active"
-            }
-          },
-          [
-            _c(
-              "svg",
-              {
-                staticClass: "h-6 w-6 mr-2",
-                attrs: {
-                  xmlns: "http://www.w3.org/2000/svg",
-                  fill: "none",
-                  viewBox: "0 0 24 24",
-                  stroke: "currentColor"
-                }
-              },
-              [
-                _c("path", {
-                  attrs: {
-                    "stroke-linecap": "round",
-                    "stroke-linejoin": "round",
-                    "stroke-width": "2",
-                    d:
-                      "M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"
-                  }
-                })
-              ]
-            ),
-            _vm._v("\n        Manage Students\n    ")
-          ]
-        ),
-        _vm._v(" "),
-        _c(
-          "router-link",
-          {
-            staticClass:
-              "\n          p-4\n          rounded\n          bg-white\n          text-indigo-500\n          hover:bg-indigo-500 hover:text-white\n          focus:bg-indigo-500 focus:text-white focus:outline-none\n          active:bg-indigo-500 active:text-white active:outline-none\n          transition duration-150 ease-in-out\n\n          shadow-md\n          flex\n          items-center\n          justify-center\n        ",
-            attrs: {
-              to: { name: "manage_landlord" },
               "exact-active-class": "exact-active"
             }
           },
@@ -277,6 +235,44 @@ var render = function() {
                 })
               ]
             ),
+            _vm._v("\n        Manage Students\n    ")
+          ]
+        ),
+        _vm._v(" "),
+        _c(
+          "router-link",
+          {
+            staticClass:
+              "\n          p-4\n          rounded\n          bg-pink-100\n          text-pink-500\n          hover:bg-pink-500 hover:text-white\n          :active:bg-pink-500 active:text-white active:outline-none\n          transition duration-150 ease-in-out\n          shadow-xl\n          flex\n          items-center\n          justify-center\n        ",
+            attrs: {
+              to: { name: "manage_landlord" },
+              "exact-active-class": "exact-active"
+            }
+          },
+          [
+            _c(
+              "svg",
+              {
+                staticClass: "h-6 w-6 mr-2",
+                attrs: {
+                  xmlns: "http://www.w3.org/2000/svg",
+                  fill: "none",
+                  viewBox: "0 0 24 24",
+                  stroke: "currentColor"
+                }
+              },
+              [
+                _c("path", {
+                  attrs: {
+                    "stroke-linecap": "round",
+                    "stroke-linejoin": "round",
+                    "stroke-width": "2",
+                    d:
+                      "M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"
+                  }
+                })
+              ]
+            ),
             _vm._v("\n        Manage Landlord\n      ")
           ]
         ),
@@ -285,7 +281,7 @@ var render = function() {
           "router-link",
           {
             staticClass:
-              "\n          p-4\n          rounded\n          bg-white\n          text-indigo-500\n          hover:bg-indigo-500 hover:text-white\n          focus:bg-indigo-500 focus:text-white focus:outline-none\n          active:bg-indigo-500 active:text-white active:outline-none\n          transition duration-150 ease-in-out\n          shadow-md\n          flex\n          items-center\n          justify-center\n        ",
+              "\n          p-4\n          rounded\n          bg-pink-100\n          text-pink-500\n          hover:bg-pink-500 hover:text-white\n          :active:bg-pink-500 active:text-white active:outline-none\n          transition duration-150 ease-in-out\n          shadow-xl\n          flex\n          items-center\n          justify-center\n        ",
             attrs: {
               to: { name: "manage_staff" },
               "exact-active-class": "exact-active"

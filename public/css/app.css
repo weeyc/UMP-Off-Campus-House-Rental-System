@@ -21172,7 +21172,7 @@ video {
 }
 
 * {
-  font-family: "nunito", "montserrat", "oswald", "poppins", "roboto";
+  font-family: "poppins", "montserrat", "oswald", "nunito", "roboto";
 }
 
 @media (min-width: 640px){

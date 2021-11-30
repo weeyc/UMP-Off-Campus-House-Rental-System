@@ -43,7 +43,7 @@
 /******/
 /******/ 	// script path function
 /******/ 	function jsonpScriptSrc(chunkId) {
-/******/ 		return __webpack_require__.p + "" + ({"Landing_Staff":"Landing_Staff","Manage_Landlord":"Manage_Landlord","Manage_Staff":"Manage_Staff","Manage_Student":"Manage_Student","NotFound":"NotFound","Profile_Edit~Profile_View":"Profile_Edit~Profile_View","Profile_Edit":"Profile_Edit","Profile_View":"Profile_View","Tab_Staff_Users":"Tab_Staff_Users"}[chunkId]||chunkId) + ".js"
+/******/ 		return __webpack_require__.p + "" + ({"Landing_Staff":"Landing_Staff","Manage_Landlord~Manage_Staff~Manage_Student":"Manage_Landlord~Manage_Staff~Manage_Student","Manage_Landlord":"Manage_Landlord","Manage_Staff":"Manage_Staff","Manage_Student":"Manage_Student","NotFound":"NotFound","Profile_Edit~Profile_View":"Profile_Edit~Profile_View","Profile_Edit":"Profile_Edit","Profile_View":"Profile_View","Tab_Staff_Users":"Tab_Staff_Users"}[chunkId]||chunkId) + ".js"
 /******/ 	}
 /******/
 /******/ 	// The require function
@@ -2154,6 +2154,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({});
 
 /***/ }),
@@ -2167,6 +2168,24 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -2786,7 +2805,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".active[data-v-145b0ea3]{\n  --tw-bg-opacity: 1;\n  background-color: rgba(49, 46, 129, var(--tw-bg-opacity));\n}\n", ""]);
+exports.push([module.i, ".active[data-v-145b0ea3]{\n  --tw-text-opacity: 1;\n  color: rgba(236, 72, 153, var(--tw-text-opacity));\n  border-bottom-width: 4px;\n  --tw-border-opacity: 1;\n  border-color: rgba(236, 72, 153, var(--tw-border-opacity));\n}\n", ""]);
 
 // exports
 
@@ -24527,7 +24546,7 @@ var render = function() {
                       _c("path", {
                         attrs: { d: "M0,172v-172h172v172z", fill: "none" }
                       }),
-                      _c("g", { attrs: { fill: "#6366f1" } }, [
+                      _c("g", { attrs: { fill: "#df2d8a" } }, [
                         _c("path", {
                           attrs: {
                             d:
@@ -24579,7 +24598,7 @@ var render = function() {
   return _c(
     "nav",
     {
-      staticClass: " shadow",
+      staticClass: "shadow",
       staticStyle: { "background-image": "url(/images/Background/Sunrise.jpg)" }
     },
     [
@@ -24681,7 +24700,16 @@ var render = function() {
                               _vm._v(" "),
                               _c("span", { staticClass: "ml-2 font-bold" }, [
                                 _vm._v("Manage Property List")
-                              ])
+                              ]),
+                              _vm._v(" "),
+                              _c(
+                                "button",
+                                {
+                                  staticClass:
+                                    "text-left focus:outline-none pl-3 border-l-4 border-gray-800 focus:border-brand dark:focus:border-brand dark:text-gray-100 text-gray-800 focus:text-brand dark:focus:text-brand hover:text-brand hover:border-brand dark:hover:text-brand flex w-full text-sm xl:text-lg leading-tight tracking-tight capitalize"
+                                },
+                                [_vm._v(" hello")]
+                              )
                             ])
                           ]
                         ),
@@ -25076,7 +25104,7 @@ var render = function() {
                                   fill: "none"
                                 }
                               }),
-                              _c("g", { attrs: { fill: "#6366f1" } }, [
+                              _c("g", { attrs: { fill: "#df2d8a" } }, [
                                 _c("path", {
                                   attrs: {
                                     d:
@@ -25095,7 +25123,7 @@ var render = function() {
                     "span",
                     {
                       staticClass:
-                        "ml-2 font-poppins text-xl font-bold tracking-wide text-ump-green"
+                        "bg-gradient-to-r from-pink-300 via-purple-300 to-indigo-400 text-transparent bg-clip-text   ml-2 font-poppins text-xl font-bold tracking-wide "
                     },
                     [_vm._v("UMP Off-Campus Housing")]
                   )
@@ -25114,7 +25142,7 @@ var render = function() {
                   "a",
                   {
                     staticClass:
-                      "flex px-5 items-center py-6 text-sm leading-5 text-gray-700  hover:bg-indigo-900 focus:bg-indigo-900 focus:outline-none transition duration-150 ease-in-out",
+                      "flex px-5 items-center py-6 leading-5 text-base  text-pink-200  hover:text-pink-500  transition duration-150 ease-in-out hover:border-gray-700 border-transparent border-b-4 hover:border-current",
                     attrs: { href: "javascript: void(0)" }
                   },
                   [
@@ -25122,7 +25150,7 @@ var render = function() {
                       _c(
                         "svg",
                         {
-                          staticClass: "h-6 w-6 text-pink-500",
+                          staticClass: "h-6 w-6",
                           attrs: {
                             fill: "none",
                             viewBox: "0 0 24 24",
@@ -25143,11 +25171,7 @@ var render = function() {
                       )
                     ]),
                     _vm._v(" "),
-                    _c(
-                      "span",
-                      { staticClass: "font-poppins text-base text-pink-300" },
-                      [_vm._v("Manage Property List")]
-                    )
+                    _c("span", [_vm._v("Manage Property List")])
                   ]
                 ),
                 _vm._v(" "),
@@ -25155,7 +25179,7 @@ var render = function() {
                   "router-link",
                   {
                     staticClass:
-                      "flex px-5 items-center py-6 text-sm leading-5 text-gray-700  hover:bg-indigo-900 focus:bg-indigo-900 focus:outline-none transition duration-150 ease-in-out",
+                      "flex px-5 text-base  text-pink-200 items-center py-6 leading-5  hover:text-pink-500 transition duration-150 ease-in-out hover:border-gray-700 border-transparent border-b-4 hover:border-current",
                     attrs: {
                       to: { path: "/staff/manage-user" },
                       "active-class": "active"
@@ -25166,7 +25190,7 @@ var render = function() {
                       _c(
                         "svg",
                         {
-                          staticClass: "h-6 w-6 text-pink-500",
+                          staticClass: "h-6 w-6",
                           attrs: {
                             fill: "none",
                             viewBox: "0 0 24 24",
@@ -25187,11 +25211,7 @@ var render = function() {
                       )
                     ]),
                     _vm._v(" "),
-                    _c(
-                      "span",
-                      { staticClass: "font-poppins text-base  text-pink-300" },
-                      [_vm._v("Manage Users")]
-                    )
+                    _c("span", [_vm._v("Manage Users")])
                   ]
                 ),
                 _vm._v(" "),
@@ -25199,7 +25219,7 @@ var render = function() {
                   "a",
                   {
                     staticClass:
-                      "flex px-5 items-center py-6 text-sm leading-5 text-gray-700 hover:bg-indigo-900 focus:bg-indigo-900 focus:outline-none transition duration-150 ease-in-out",
+                      "flex px-5 items-center py-6 leading-5 text-base text-pink-200  hover:text-pink-500 transition duration-150 ease-in-out hover:border-gray-700 border-transparent border-b-4 hover:border-current",
                     attrs: { href: "javascript: void(0)" }
                   },
                   [
@@ -25207,7 +25227,7 @@ var render = function() {
                       _c(
                         "svg",
                         {
-                          staticClass: "h-6 w-6 text-pink-500",
+                          staticClass: "h-6 w-6",
                           attrs: {
                             width: "24",
                             height: "24",
@@ -25243,18 +25263,14 @@ var render = function() {
                       )
                     ]),
                     _vm._v(" "),
-                    _c(
-                      "span",
-                      { staticClass: "font-poppins text-base text-pink-300" },
-                      [_vm._v("Manage Rental Properties")]
-                    )
+                    _c("span", [_vm._v("Manage Rental Properties")])
                   ]
                 )
               ],
               1
             ),
             _vm._v(" "),
-            _c("div", { staticClass: "hidden xl:flex items-center" }, [
+            _c("div", { staticClass: "hidden xl:flex items-center " }, [
               _c(
                 "div",
                 { staticClass: "relative md:mr-6 my-2" },
@@ -25263,7 +25279,7 @@ var render = function() {
                     "router-link",
                     {
                       staticClass:
-                        "focus:outline-none bg-pink-200 border-gray-300 border\n                             transition duration-150 ease-in-out active:bg-pink-100 rounded text-gray-600 px-5 py-2 text-xs",
+                        "focus:outline-none bg-pink-100 border-gray-300 border\n                             transition duration-150 ease-in-out hover:text-pink-500 rounded text-gray-600 px-5 py-2 text-xs",
                       attrs: { to: { name: "profile" } }
                     },
                     [
@@ -25292,21 +25308,67 @@ var render = function() {
                       "ul",
                       {
                         staticClass:
-                          "w-40 p-2 border-r bg-white absolute rounded right-0 top-0 shadow mt-16 hidden overflow-hidden z-10 "
+                          "w-52 p-2 border-r bg-pink-100 absolute rounded right-0 top-0 shadow mt-16 hidden overflow-hidden z-10 "
                       },
                       [
+                        _vm._l(_vm.userProfile, function(user) {
+                          return _c(
+                            "div",
+                            {
+                              key: user.id,
+                              staticClass:
+                                "cursor-pointer flex items-center p-3 -mt-2 text-sm text-gray-600 transition-colors duration-200 transform dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white"
+                            },
+                            [
+                              _c("img", {
+                                staticClass:
+                                  "flex-shrink-0 object-cover mx-1 rounded-full w-9 h-9",
+                                attrs: {
+                                  src: "/images/Profile/" + user.pic,
+                                  alt: "logo"
+                                }
+                              }),
+                              _vm._v(" "),
+                              _c("div", { staticClass: "mx-1" }, [
+                                _c(
+                                  "h1",
+                                  {
+                                    staticClass:
+                                      "text-xs font-semibold text-gray-700"
+                                  },
+                                  [_vm._v(_vm._s(user.name))]
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "p",
+                                  { staticClass: "text-xs text-gray-500" },
+                                  [_vm._v(_vm._s(user.email))]
+                                )
+                              ])
+                            ]
+                          )
+                        }),
+                        _vm._v(" "),
+                        _c("hr", {
+                          staticClass: "border-gray-200 dark:border-gray-700 "
+                        }),
+                        _vm._v(" "),
+                        _c("hr", {
+                          staticClass: "border-gray-200 dark:border-gray-700 "
+                        }),
+                        _vm._v(" "),
                         _c(
                           "li",
                           {
                             staticClass:
-                              "cursor-pointer text-gray-600 text-sm leading-3 tracking-normal py-2 hover:text-indigo-700 focus:text-indigo-700 focus:outline-none"
+                              "cursor-pointer text-pink-500 text-sm leading-3 tracking-normal py-2"
                           },
                           [
                             _c(
                               "router-link",
                               {
                                 staticClass:
-                                  "flex items-center px-3 py-2 text-sm text-gray-600 capitalize transition-colors duration-200 transform dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white",
+                                  "flex items-center px-3 py-2 text-sm text-gray-600 capitalize transition-colors duration-200 transform dark:text-gray-300 hover:text-pink-500 dark:hover:bg-pink-500",
                                 attrs: { to: { name: "profile" } }
                               },
                               [
@@ -25356,14 +25418,14 @@ var render = function() {
                           "li",
                           {
                             staticClass:
-                              "cursor-pointer text-gray-600 text-sm leading-3 tracking-normal mt-2 py-2 hover:text-indigo-700 flex items-center focus:text-indigo-700 focus:outline-none"
+                              "cursor-pointer text-pink-500 text-sm leading-3 tracking-normal mt-2 py-2 hover:text-indigo-700 flex items-center focus:text-indigo-700 focus:outline-none"
                           },
                           [
                             _c(
                               "a",
                               {
                                 staticClass:
-                                  "flex items-center px-3 py-2 text-sm text-gray-600 capitalize transition-colors duration-200 transform dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white",
+                                  "flex items-center px-3 py-2 text-sm text-gray-600 capitalize transition-colors duration-200 transform dark:text-gray-300 hover:text-pink-500 dark:hover:bg-pink-500",
                                 attrs: { href: "/logout" }
                               },
                               [
@@ -25395,7 +25457,8 @@ var render = function() {
                             )
                           ]
                         )
-                      ]
+                      ],
+                      2
                     ),
                     _vm._v(" "),
                     _vm._l(_vm.userProfile, function(user) {
@@ -25404,7 +25467,7 @@ var render = function() {
                         {
                           key: user.id,
                           staticClass:
-                            "cursor-pointer flex text-sm border-2 border-transparent rounded-full focus:outline-none focus:border-white transition duration-150 ease-in-out"
+                            "cursor-pointer flex text-sm border-2 border-transparent rounded-full "
                         },
                         [
                           _c("img", {
@@ -42338,11 +42401,11 @@ var Tab_Staff_Users = function Tab_Staff_Users() {
 };
 
 var Manage_Student = function Manage_Student() {
-  return __webpack_require__.e(/*! import() | Manage_Student */ "Manage_Student").then(__webpack_require__.bind(null, /*! ./components/ManageRegistrationUsers/Manage_Student */ "./resources/js/components/ManageRegistrationUsers/Manage_Student.vue"));
+  return Promise.all(/*! import() | Manage_Student */[__webpack_require__.e("Manage_Landlord~Manage_Staff~Manage_Student"), __webpack_require__.e("Manage_Student")]).then(__webpack_require__.bind(null, /*! ./components/ManageRegistrationUsers/Manage_Student */ "./resources/js/components/ManageRegistrationUsers/Manage_Student.vue"));
 };
 
 var Manage_Landlord = function Manage_Landlord() {
-  return __webpack_require__.e(/*! import() | Manage_Landlord */ "Manage_Landlord").then(__webpack_require__.bind(null, /*! ./components/ManageRegistrationUsers/Manage_Landlord */ "./resources/js/components/ManageRegistrationUsers/Manage_Landlord.vue"));
+  return Promise.all(/*! import() | Manage_Landlord */[__webpack_require__.e("Manage_Landlord~Manage_Staff~Manage_Student"), __webpack_require__.e("Manage_Landlord")]).then(__webpack_require__.bind(null, /*! ./components/ManageRegistrationUsers/Manage_Landlord */ "./resources/js/components/ManageRegistrationUsers/Manage_Landlord.vue"));
 };
 
 var Profile_Edit = function Profile_Edit() {
@@ -42354,7 +42417,7 @@ var Profile_View = function Profile_View() {
 };
 
 var Manage_Staff = function Manage_Staff() {
-  return __webpack_require__.e(/*! import() | Manage_Staff */ "Manage_Staff").then(__webpack_require__.bind(null, /*! ./components/ManageRegistrationUsers/Manage_Staff */ "./resources/js/components/ManageRegistrationUsers/Manage_Staff.vue"));
+  return Promise.all(/*! import() | Manage_Staff */[__webpack_require__.e("Manage_Landlord~Manage_Staff~Manage_Student"), __webpack_require__.e("Manage_Staff")]).then(__webpack_require__.bind(null, /*! ./components/ManageRegistrationUsers/Manage_Staff */ "./resources/js/components/ManageRegistrationUsers/Manage_Staff.vue"));
 };
 
 var Landing_Staff = function Landing_Staff() {

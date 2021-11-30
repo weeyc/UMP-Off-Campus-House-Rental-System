@@ -57,9 +57,12 @@
                 </tr>
             </table>
       </div>
-      <div class="flex justify-end items-center w-100 border-t p-3">
-        <button @click="closeModal" class="bg-blue-600 hover:bg-blue-700 px-3 py-1 rounded text-white mr-1 close-modal">Okay</button>
 
+
+
+      <div class="flex justify-end items-center w-100 border-t p-3">
+        <router-link :to="{ name: 'profile_view', params:{role: form.role, id: form.id}}" target="_blank" class="bg-pink-600 hover:bg-pink-700 px-3 py-1 rounded text-white mr-1 close-modal">View Profile</router-link >
+        <button @click="closeModal" class="bg-blue-600 hover:bg-blue-700 px-3 py-1 rounded text-white mr-1 close-modal">Okay</button>
       </div>
     </div>
 </div>
@@ -70,6 +73,9 @@ export default {
 
     props: {
         form: Object,
+
+
+
     },
     data() {
         return {
