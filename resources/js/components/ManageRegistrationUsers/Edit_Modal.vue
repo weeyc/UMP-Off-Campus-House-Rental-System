@@ -2,7 +2,7 @@
 <template>
    <div class="modal h-screen w-full  fixed left-0 top-0 flex justify-center z-10 items-center bg-black bg-opacity-50" >
     <!-- modal -->
-    <div class="bg-white rounded max-h-full overflow-y-auto shadow-lg w-11/12 md:w-1/3" >
+    <div class="bg-gradient-to-b from-pink-300 via-purple-300 to-indigo-400 rounded max-h-full overflow-y-auto shadow-lg w-11/12 md:w-1/3" >
       <!-- modal header -->
       <div class="border-b px-4 py-2 flex justify-between items-center">
         <h3 class="font-semibold text-lg">Edit Profile</h3>

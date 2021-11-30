@@ -1,7 +1,7 @@
 <template>
-   <div class="modal h-screen w-full  fixed left-0 top-0 flex justify-center z-10 items-center bg-black bg-opacity-50" >
+   <div class="modal h-screen w-full fixed left-0 top-0 flex justify-center z-10 items-center bg-black bg-opacity-50" >
     <!-- modal -->
-    <div class="bg-white rounded max-h-full overflow-y-auto shadow-lg w-11/12 md:w-1/3" >
+    <div class="bg-gradient-to-br from-pink-300 via-purple-300 to-indigo-400 rounded max-h-full overflow-y-auto shadow-lg w-11/12 md:w-1/3" >
       <!-- modal header -->
       <div class="border-b px-4 py-2 flex justify-between items-center">
         <h3 class="font-semibold text-lg">Create New Staff</h3>
@@ -30,7 +30,7 @@
                         class="flex-1 mr-5 py-2 border-2 border-gray-400 focus:border-green-400 text-gray-600 placeholder-gray-400 outline-none">
                 </div>
                 <div class=" mb-5">
-                    <span class="flex text-red-500 ml-24">{{ errors.get('name')}}</span>
+                    <span class="flex text-red-500 ml-24"> {{ errors.get('name')}}</span>
                 </div>
 
 
@@ -40,7 +40,7 @@
                         class="flex-1 mr-5 py-2 border-2 border-gray-400 focus:border-green-400 text-gray-600 placeholder-gray-400 outline-none">
                 </div>
                 <div class=" mb-5">
-                    <span class="flex text-red-500 ml-24">{{ errors.get('email')}}</span>
+                    <span class="flex text-red-500 ml-24"> {{ errors.get('email')}}</span>
                 </div>
 
                 <div class="flex items-center">
@@ -49,16 +49,16 @@
                         class="flex-1 mr-5 py-2 border-2 border-gray-400 focus:border-green-400 text-gray-600 placeholder-gray-400 outline-none">
                 </div>
                 <div class="mb-5">
-                    <span class="flex text-red-500 ml-24">{{ errors.get('password')}}</span>
+                    <span class="flex text-red-500 ml-24"> {{ errors.get('password')}}</span>
                 </div>
 
                 <div class="flex items-center">
                     <label for="name" class="inline-block w-20 mr-6 text-right font-bold text-gray-600">Phone number</label>
-                    <input type="text" name="phone_num"  v-model="form.phone_num" placeholder="Phone no."
+                    <input type="text" name="phone_num"  v-model="form.phone_num" placeholder="Phone number"
                         class="flex-1 mr-5 py-2 border-2 border-gray-400 focus:border-green-400 text-gray-600 placeholder-gray-400 outline-none">
                 </div>
                 <div class=" mb-5">
-                    <span class="flex text-red-500 ml-24">{{ errors.get('phone_num')}}</span>
+                    <span class="flex text-red-500 ml-24"> {{ errors.get('phone_num')}}</span>
                 </div>
 
                 <div class="flex items-center mb-5">

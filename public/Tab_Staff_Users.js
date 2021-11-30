@@ -107,19 +107,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {};
@@ -291,24 +278,28 @@ var render = function() {
             _c(
               "svg",
               {
-                staticClass: "h-6 w-6 mr-2",
+                staticClass: "h-5 w-5 mr-2",
                 attrs: {
-                  xmlns: "http://www.w3.org/2000/svg",
-                  fill: "none",
+                  width: "24",
+                  height: "24",
                   viewBox: "0 0 24 24",
-                  stroke: "currentColor"
+                  "stroke-width": "2",
+                  stroke: "currentColor",
+                  fill: "none",
+                  "stroke-linecap": "round",
+                  "stroke-linejoin": "round"
                 }
               },
               [
+                _c("path", { attrs: { stroke: "none", d: "M0 0h24v24H0z" } }),
+                _vm._v(" "),
+                _c("circle", { attrs: { cx: "9", cy: "7", r: "4" } }),
+                _vm._v(" "),
                 _c("path", {
-                  attrs: {
-                    "stroke-linecap": "round",
-                    "stroke-linejoin": "round",
-                    "stroke-width": "2",
-                    d:
-                      "M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a1.994 1.994 0 01-1.414-.586m0 0L11 14h4a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2v4l.586-.586z"
-                  }
-                })
+                  attrs: { d: "M3 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" }
+                }),
+                _vm._v(" "),
+                _c("path", { attrs: { d: "M16 11l2 2l4 -4" } })
               ]
             ),
             _vm._v("\n        Manage Staff\n       ")

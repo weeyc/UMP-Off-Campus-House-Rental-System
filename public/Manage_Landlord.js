@@ -297,6 +297,101 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/ManageRegistrationUsers/Modal_Student.vue?vue&type=script&lang=js&":
+/*!************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/ManageRegistrationUsers/Modal_Student.vue?vue&type=script&lang=js& ***!
+  \************************************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: {
+    form: Object
+  },
+  data: function data() {
+    return {};
+  },
+  methods: {
+    closeModal: function closeModal() {
+      this.$emit('closeModal');
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/ManageRegistrationUsers/Manage_Landlord.vue?vue&type=template&id=509dfc8c&":
 /*!******************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/ManageRegistrationUsers/Manage_Landlord.vue?vue&type=template&id=509dfc8c& ***!
@@ -565,7 +660,7 @@ var render = function() {
                           }
                         ],
                         staticClass:
-                          "focus:outline-none border-transparent cursor-pointer focus:border-gray-800 hover:bg-blue-200 focus:shadow-outline-gray text-base form-select block w-full py-2 px-2 xl:px-3 rounded font-medium dark:text-gray-400 appearance-none bg-transparent",
+                          "focus:outline-none border-transparent cursor-pointer focus:border-gray-800 hover:bg-pink-200 focus:shadow-outline-gray text-base form-select block w-full py-2 px-2 xl:px-3 rounded font-medium dark:text-gray-400 appearance-none bg-transparent",
                         on: {
                           change: function($event) {
                             var $$selectedVal = Array.prototype.filter
@@ -630,268 +725,255 @@ var render = function() {
             "div",
             { staticClass: "w-full overflow-x-scroll xl:overflow-x-hidden" },
             [
-              _c(
-                "table",
-                {
-                  staticClass: "min-w-full shadow-lg border-b-2 ",
-                  staticStyle: {
-                    "background-image": "url(/images/BlueCoral.jpg)"
-                  }
-                },
-                [
-                  _vm._m(1),
-                  _vm._v(" "),
-                  _c(
-                    "tbody",
-                    { staticClass: "text-dark-600 text-sm font-light" },
-                    [
-                      _vm._l(_vm.filterUser, function(landlord, index) {
-                        return _c(
-                          "tr",
-                          {
-                            key: landlord.id,
-                            staticClass:
-                              "border-b border-gray-200 hover:bg-pink-200"
-                          },
-                          [
-                            _c(
-                              "td",
-                              {
-                                staticClass:
-                                  "py-3 px-3 text-left whitespace-nowrap"
-                              },
-                              [_vm._v("  " + _vm._s(index + 1))]
-                            ),
+              _c("table", { staticClass: "min-w-full shadow-lg border-b-2 " }, [
+                _vm._m(1),
+                _vm._v(" "),
+                _c(
+                  "tbody",
+                  { staticClass: "text-dark-600 text-sm font-light" },
+                  [
+                    _vm._l(_vm.filterUser, function(landlord, index) {
+                      return _c(
+                        "tr",
+                        {
+                          key: landlord.id,
+                          staticClass:
+                            "border-b border-gray-200 hover:bg-pink-200"
+                        },
+                        [
+                          _c(
+                            "td",
+                            {
+                              staticClass:
+                                "py-3 px-3 text-left whitespace-nowrap"
+                            },
+                            [_vm._v("  " + _vm._s(index + 1))]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "td",
+                            {
+                              staticClass:
+                                "py-3 px-6 text-left whitespace-nowrap"
+                            },
+                            [
+                              _c("div", { staticClass: "flex items-center" }, [
+                                _c("span", { staticClass: "font-medium" }, [
+                                  _vm._v(_vm._s(landlord.id))
+                                ])
+                              ])
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "td",
+                            { staticClass: "py-3 px-6 text-left" },
+                            [
+                              _c(
+                                "router-link",
+                                {
+                                  staticClass: "flex items-center",
+                                  attrs: {
+                                    to: {
+                                      name: "profile_view",
+                                      params: { role: 2, id: landlord.id }
+                                    },
+                                    target: "_blank"
+                                  }
+                                },
+                                [
+                                  _c("div", { staticClass: "mr-2" }, [
+                                    _c("img", {
+                                      staticClass:
+                                        "w-6 h-6 rounded-full hover:scale-150 hover:z-10 transform ease-in-out transition duration-500",
+                                      attrs: {
+                                        src: "/images/Profile/" + landlord.pic
+                                      }
+                                    })
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("span", [_vm._v(_vm._s(landlord.name))])
+                                ]
+                              )
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c("td", { staticClass: "py-3 px-6 text-left" }, [
+                            _c("div", { staticClass: "flex items-center" }, [
+                              _c("span", [_vm._v(_vm._s(landlord.email))])
+                            ])
+                          ]),
+                          _vm._v(" "),
+                          _c("td", { staticClass: "py-3 px-6 text-left" }, [
+                            _c("div", { staticClass: "flex items-center" }, [
+                              _c("span", [_vm._v(_vm._s(landlord.phone_no))])
+                            ])
+                          ]),
+                          _vm._v(" "),
+                          _c("td", { staticClass: "py-3 px-6 text-left" }, [
+                            landlord.gender === "male"
+                              ? _c("span", [
+                                  _vm._v("🧑 " + _vm._s(landlord.gender))
+                                ])
+                              : _vm._e(),
                             _vm._v(" "),
+                            landlord.gender === "female"
+                              ? _c("span", [
+                                  _vm._v("👩‍🦰  " + _vm._s(landlord.gender))
+                                ])
+                              : _vm._e()
+                          ]),
+                          _vm._v(" "),
+                          _c("td", { staticClass: "py-3 px-6 text-center" }, [
                             _c(
-                              "td",
+                              "div",
                               {
-                                staticClass:
-                                  "py-3 px-6 text-left whitespace-nowrap"
+                                staticClass: "flex item-center justify-center"
                               },
                               [
                                 _c(
                                   "div",
-                                  { staticClass: "flex items-center" },
-                                  [
-                                    _c("span", { staticClass: "font-medium" }, [
-                                      _vm._v(_vm._s(landlord.id))
-                                    ])
-                                  ]
-                                )
-                              ]
-                            ),
-                            _vm._v(" "),
-                            _c(
-                              "td",
-                              { staticClass: "py-3 px-6 text-left" },
-                              [
-                                _c(
-                                  "router-link",
                                   {
-                                    staticClass: "flex items-center",
-                                    attrs: {
-                                      to: {
-                                        name: "profile_view",
-                                        params: { role: 2, id: landlord.id }
-                                      },
-                                      target: "_blank"
-                                    }
+                                    staticClass:
+                                      "w-4 mr-2 transform hover:text-purple-500 hover:scale-110"
                                   },
                                   [
-                                    _c("div", { staticClass: "mr-2" }, [
-                                      _c("img", {
-                                        staticClass:
-                                          "w-6 h-6 rounded-full hover:scale-150 hover:z-10 transform ease-in-out transition duration-500",
-                                        attrs: {
-                                          src: "/images/Profile/" + landlord.pic
-                                        }
-                                      })
-                                    ]),
-                                    _vm._v(" "),
-                                    _c("span", [_vm._v(_vm._s(landlord.name))])
-                                  ]
-                                )
-                              ],
-                              1
-                            ),
-                            _vm._v(" "),
-                            _c("td", { staticClass: "py-3 px-6 text-left" }, [
-                              _c("div", { staticClass: "flex items-center" }, [
-                                _c("span", [_vm._v(_vm._s(landlord.email))])
-                              ])
-                            ]),
-                            _vm._v(" "),
-                            _c("td", { staticClass: "py-3 px-6 text-left" }, [
-                              _c("div", { staticClass: "flex items-center" }, [
-                                _c("span", [_vm._v(_vm._s(landlord.phone_no))])
-                              ])
-                            ]),
-                            _vm._v(" "),
-                            _c("td", { staticClass: "py-3 px-6 text-left" }, [
-                              landlord.gender === "male"
-                                ? _c("span", [
-                                    _vm._v("🧑 " + _vm._s(landlord.gender))
-                                  ])
-                                : _vm._e(),
-                              _vm._v(" "),
-                              landlord.gender === "female"
-                                ? _c("span", [
-                                    _vm._v("👩‍🦰  " + _vm._s(landlord.gender))
-                                  ])
-                                : _vm._e()
-                            ]),
-                            _vm._v(" "),
-                            _c("td", { staticClass: "py-3 px-6 text-center" }, [
-                              _c(
-                                "div",
-                                {
-                                  staticClass: "flex item-center justify-center"
-                                },
-                                [
-                                  _c(
-                                    "div",
-                                    {
-                                      staticClass:
-                                        "w-4 mr-2 transform hover:text-purple-500 hover:scale-110"
-                                    },
-                                    [
-                                      _c(
-                                        "button",
-                                        {
-                                          on: {
-                                            click: function($event) {
-                                              _vm.readUser(landlord)
-                                              _vm.toggleModal = !_vm.toggleModal
-                                            }
-                                          }
-                                        },
-                                        [
-                                          _c(
-                                            "svg",
-                                            {
-                                              attrs: {
-                                                xmlns:
-                                                  "http://www.w3.org/2000/svg",
-                                                fill: "none",
-                                                viewBox: "0 0 24 24",
-                                                stroke: "currentColor"
-                                              }
-                                            },
-                                            [
-                                              _c("path", {
-                                                attrs: {
-                                                  "stroke-linecap": "round",
-                                                  "stroke-linejoin": "round",
-                                                  "stroke-width": "2",
-                                                  d:
-                                                    "M15 12a3 3 0 11-6 0 3 3 0 016 0z"
-                                                }
-                                              }),
-                                              _vm._v(" "),
-                                              _c("path", {
-                                                attrs: {
-                                                  "stroke-linecap": "round",
-                                                  "stroke-linejoin": "round",
-                                                  "stroke-width": "2",
-                                                  d:
-                                                    "M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
-                                                }
-                                              })
-                                            ]
-                                          )
-                                        ]
-                                      )
-                                    ]
-                                  ),
-                                  _vm._v(" "),
-                                  _c(
-                                    "div",
-                                    {
-                                      staticClass:
-                                        "w-4 mr-2 transform hover:text-purple-500 hover:scale-110"
-                                    },
-                                    [
-                                      _c(
-                                        "button",
-                                        {
-                                          on: {
-                                            click: function($event) {
-                                              return _vm.deleteUser(
-                                                landlord.id,
-                                                landlord.name
-                                              )
-                                            }
-                                          }
-                                        },
-                                        [
-                                          _c(
-                                            "svg",
-                                            {
-                                              attrs: {
-                                                xmlns:
-                                                  "http://www.w3.org/2000/svg",
-                                                fill: "none",
-                                                viewBox: "0 0 24 24",
-                                                stroke: "currentColor"
-                                              }
-                                            },
-                                            [
-                                              _c("path", {
-                                                attrs: {
-                                                  "stroke-linecap": "round",
-                                                  "stroke-linejoin": "round",
-                                                  "stroke-width": "2",
-                                                  d:
-                                                    "M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
-                                                }
-                                              })
-                                            ]
-                                          )
-                                        ]
-                                      )
-                                    ]
-                                  )
-                                ]
-                              )
-                            ])
-                          ]
-                        )
-                      }),
-                      _vm._v(" "),
-                      _vm.filterUser.length == 0
-                        ? _c("tr", [
-                            _c("td", { attrs: { colspan: "7" } }, [
-                              _c(
-                                "div",
-                                {
-                                  staticClass:
-                                    "bg-indigo-100 border-yellow-600 text-black-600  p-4",
-                                  attrs: { role: "alert" }
-                                },
-                                [
-                                  _c("center", [
                                     _c(
-                                      "p",
-                                      { staticClass: "font-bold text-xl" },
+                                      "button",
+                                      {
+                                        on: {
+                                          click: function($event) {
+                                            _vm.readUser(landlord)
+                                            _vm.toggleModal = !_vm.toggleModal
+                                          }
+                                        }
+                                      },
                                       [
-                                        _vm._v(
-                                          "\n                                        No data found!\n                                    "
+                                        _c(
+                                          "svg",
+                                          {
+                                            attrs: {
+                                              xmlns:
+                                                "http://www.w3.org/2000/svg",
+                                              fill: "none",
+                                              viewBox: "0 0 24 24",
+                                              stroke: "currentColor"
+                                            }
+                                          },
+                                          [
+                                            _c("path", {
+                                              attrs: {
+                                                "stroke-linecap": "round",
+                                                "stroke-linejoin": "round",
+                                                "stroke-width": "2",
+                                                d:
+                                                  "M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                                              }
+                                            }),
+                                            _vm._v(" "),
+                                            _c("path", {
+                                              attrs: {
+                                                "stroke-linecap": "round",
+                                                "stroke-linejoin": "round",
+                                                "stroke-width": "2",
+                                                d:
+                                                  "M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
+                                              }
+                                            })
+                                          ]
                                         )
                                       ]
                                     )
-                                  ])
-                                ],
-                                1
-                              )
-                            ])
+                                  ]
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "div",
+                                  {
+                                    staticClass:
+                                      "w-4 mr-2 transform hover:text-purple-500 hover:scale-110"
+                                  },
+                                  [
+                                    _c(
+                                      "button",
+                                      {
+                                        on: {
+                                          click: function($event) {
+                                            return _vm.deleteUser(
+                                              landlord.id,
+                                              landlord.name
+                                            )
+                                          }
+                                        }
+                                      },
+                                      [
+                                        _c(
+                                          "svg",
+                                          {
+                                            attrs: {
+                                              xmlns:
+                                                "http://www.w3.org/2000/svg",
+                                              fill: "none",
+                                              viewBox: "0 0 24 24",
+                                              stroke: "currentColor"
+                                            }
+                                          },
+                                          [
+                                            _c("path", {
+                                              attrs: {
+                                                "stroke-linecap": "round",
+                                                "stroke-linejoin": "round",
+                                                "stroke-width": "2",
+                                                d:
+                                                  "M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
+                                              }
+                                            })
+                                          ]
+                                        )
+                                      ]
+                                    )
+                                  ]
+                                )
+                              ]
+                            )
                           ])
-                        : _vm._e()
-                    ],
-                    2
-                  )
-                ]
-              )
+                        ]
+                      )
+                    }),
+                    _vm._v(" "),
+                    _vm.filterUser.length == 0
+                      ? _c("tr", [
+                          _c("td", { attrs: { colspan: "7" } }, [
+                            _c(
+                              "div",
+                              {
+                                staticClass:
+                                  "bg-indigo-100 border-yellow-600 text-black-600  p-4",
+                                attrs: { role: "alert" }
+                              },
+                              [
+                                _c("center", [
+                                  _c(
+                                    "p",
+                                    { staticClass: "font-bold text-xl" },
+                                    [
+                                      _vm._v(
+                                        "\n                                        No data found!\n                                    "
+                                      )
+                                    ]
+                                  )
+                                ])
+                              ],
+                              1
+                            )
+                          ])
+                        ])
+                      : _vm._e()
+                  ],
+                  2
+                )
+              ])
             ]
           )
         ]
@@ -968,6 +1050,251 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/ManageRegistrationUsers/Modal_Student.vue?vue&type=template&id=af4a24ae&":
+/*!****************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/ManageRegistrationUsers/Modal_Student.vue?vue&type=template&id=af4a24ae& ***!
+  \****************************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    {
+      staticClass:
+        "modal h-screen w-full fixed left-0 top-0 flex justify-center z-10 items-center bg-black bg-opacity-50"
+    },
+    [
+      _c(
+        "div",
+        {
+          staticClass:
+            "bg-gradient-to-b from-pink-300 via-purple-300 to-indigo-400 rounded shadow-lg w-10/12 md:w-1/3"
+        },
+        [
+          _c(
+            "div",
+            {
+              staticClass:
+                "border-b px-4 py-2 flex justify-between items-center"
+            },
+            [
+              _c("h3", { staticClass: "font-semibold text-lg" }, [
+                _vm._v("View User Details")
+              ]),
+              _vm._v(" "),
+              _c(
+                "button",
+                { staticClass: "text-black ", on: { click: _vm.closeModal } },
+                [_vm._v("✗")]
+              )
+            ]
+          ),
+          _vm._v(" "),
+          _c("div", { staticClass: "p-3" }, [
+            _c("table", { staticClass: "min-w-full px-3 py-3 shadow-lg" }, [
+              _c(
+                "tr",
+                { staticClass: "order-b border-blue-100 hover:bg-pink-100" },
+                [
+                  _c(
+                    "td",
+                    {
+                      staticClass: "place-items-center py-1",
+                      attrs: { colspan: "2" }
+                    },
+                    [
+                      _c("center", [
+                        _c("img", {
+                          staticClass:
+                            "w-32 h-32 rounded-full hover:scale-150 hover:z-10 transform ease-in-out transition duration-500",
+                          attrs: { src: "/images/Profile/" + _vm.form.pic }
+                        })
+                      ])
+                    ],
+                    1
+                  )
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "tr",
+                { staticClass: "border-b border-blue-100 hover:bg-pink-100" },
+                [
+                  _c(
+                    "td",
+                    {
+                      staticClass:
+                        "py-3 px-3 bg-pink-200 text-gray-900 uppercase text-sm leading-normal "
+                    },
+                    [_vm._v("ID: ")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "td",
+                    { staticClass: "py-3 px-6 text-left whitespace-nowrap" },
+                    [
+                      _c("div", { staticClass: "flex items-center" }, [
+                        _c("span", [_vm._v(_vm._s(_vm.form.id))])
+                      ])
+                    ]
+                  )
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "tr",
+                { staticClass: "border-b border-blue-100 hover:bg-pink-100" },
+                [
+                  _c(
+                    "td",
+                    {
+                      staticClass:
+                        "py-3 px-3 bg-pink-200 text-gray-900 uppercase text-sm leading-normal"
+                    },
+                    [_vm._v("Name: ")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "td",
+                    { staticClass: "py-3 px-6 text-left whitespace-nowrap" },
+                    [
+                      _c("div", { staticClass: "flex items-center" }, [
+                        _c("span", [_vm._v(_vm._s(_vm.form.name))])
+                      ])
+                    ]
+                  )
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "tr",
+                { staticClass: "border-b border-blue-100 hover:bg-pink-100" },
+                [
+                  _c(
+                    "td",
+                    {
+                      staticClass:
+                        "py-3 px-3 bg-pink-200 text-gray-900 uppercase text-sm leading-normal"
+                    },
+                    [_vm._v("Email: ")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "td",
+                    { staticClass: "py-3 px-6 text-left whitespace-nowrap" },
+                    [
+                      _c("div", { staticClass: "flex items-center" }, [
+                        _c("span", [_vm._v(_vm._s(_vm.form.email))])
+                      ])
+                    ]
+                  )
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "tr",
+                { staticClass: "border-b border-blue-100 hover:bg-pink-100" },
+                [
+                  _c(
+                    "td",
+                    {
+                      staticClass:
+                        "py-3 px-3 bg-pink-200 text-gray-900 uppercase text-sm leading-normal"
+                    },
+                    [_vm._v("Gender: ")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "td",
+                    { staticClass: "py-3 px-6 text-left whitespace-nowrap" },
+                    [
+                      _c("div", { staticClass: "flex items-center" }, [
+                        _c("span", [_vm._v(_vm._s(_vm.form.gender))])
+                      ])
+                    ]
+                  )
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "tr",
+                { staticClass: "border-b border-blue-100 hover:bg-pink-100" },
+                [
+                  _c(
+                    "td",
+                    {
+                      staticClass:
+                        "py-3 px-3 bg-pink-200 text-gray-900 uppercase text-sm leading-normal"
+                    },
+                    [_vm._v("Phone: ")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "td",
+                    { staticClass: "py-3 px-6 text-left whitespace-nowrap" },
+                    [
+                      _c("div", { staticClass: "flex items-center" }, [
+                        _c("span", [_vm._v(_vm._s(_vm.form.phone))])
+                      ])
+                    ]
+                  )
+                ]
+              )
+            ])
+          ]),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "flex justify-end items-center w-100 border-t p-3" },
+            [
+              _c(
+                "router-link",
+                {
+                  staticClass:
+                    "bg-pink-600 hover:bg-pink-700 px-3 py-1 rounded text-white mr-1 close-modal",
+                  attrs: {
+                    to: {
+                      name: "profile_view",
+                      params: { role: _vm.form.role, id: _vm.form.id }
+                    },
+                    target: "_blank"
+                  }
+                },
+                [_vm._v("View Profile")]
+              ),
+              _vm._v(" "),
+              _c(
+                "button",
+                {
+                  staticClass:
+                    "bg-blue-600 hover:bg-blue-700 px-3 py-1 rounded text-white mr-1 close-modal",
+                  on: { click: _vm.closeModal }
+                },
+                [_vm._v("Okay")]
+              )
+            ],
+            1
+          )
+        ]
+      )
+    ]
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./resources/js/components/ManageRegistrationUsers/Manage_Landlord.vue":
 /*!*****************************************************************************!*\
   !*** ./resources/js/components/ManageRegistrationUsers/Manage_Landlord.vue ***!
@@ -1032,6 +1359,75 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Manage_Landlord_vue_vue_type_template_id_509dfc8c___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Manage_Landlord_vue_vue_type_template_id_509dfc8c___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/ManageRegistrationUsers/Modal_Student.vue":
+/*!***************************************************************************!*\
+  !*** ./resources/js/components/ManageRegistrationUsers/Modal_Student.vue ***!
+  \***************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _Modal_Student_vue_vue_type_template_id_af4a24ae___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Modal_Student.vue?vue&type=template&id=af4a24ae& */ "./resources/js/components/ManageRegistrationUsers/Modal_Student.vue?vue&type=template&id=af4a24ae&");
+/* harmony import */ var _Modal_Student_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Modal_Student.vue?vue&type=script&lang=js& */ "./resources/js/components/ManageRegistrationUsers/Modal_Student.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _Modal_Student_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _Modal_Student_vue_vue_type_template_id_af4a24ae___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _Modal_Student_vue_vue_type_template_id_af4a24ae___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/ManageRegistrationUsers/Modal_Student.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/ManageRegistrationUsers/Modal_Student.vue?vue&type=script&lang=js&":
+/*!****************************************************************************************************!*\
+  !*** ./resources/js/components/ManageRegistrationUsers/Modal_Student.vue?vue&type=script&lang=js& ***!
+  \****************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Modal_Student_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./Modal_Student.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/ManageRegistrationUsers/Modal_Student.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Modal_Student_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/ManageRegistrationUsers/Modal_Student.vue?vue&type=template&id=af4a24ae&":
+/*!**********************************************************************************************************!*\
+  !*** ./resources/js/components/ManageRegistrationUsers/Modal_Student.vue?vue&type=template&id=af4a24ae& ***!
+  \**********************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Modal_Student_vue_vue_type_template_id_af4a24ae___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./Modal_Student.vue?vue&type=template&id=af4a24ae& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/ManageRegistrationUsers/Modal_Student.vue?vue&type=template&id=af4a24ae&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Modal_Student_vue_vue_type_template_id_af4a24ae___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Modal_Student_vue_vue_type_template_id_af4a24ae___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

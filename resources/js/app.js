@@ -34,9 +34,14 @@ Vue.component('staff-app', require('./App_Staff.vue').default);
 Vue.component('nav-staff', require('./components/Layouts/Nav_Staff.vue').default);
 Vue.component('foot-staff', require('./components/Layouts/Footer_Staff.vue').default);
 
-//Vue.component('tab-user-staff', require('./components/Layouts/Tab_Staff_Users.vue').default);
+Vue.component('nav-land', require('./components/Layouts/Nav_Landlord.vue').default);
+Vue.component('nav-lands', require('./components/Layouts/Nav_Landlords.vue').default);
+Vue.component('foot-land', require('./components/Layouts/Footer_Landlord.vue').default);
 
-//Vue.component('pagination', require('laravel-vue-pagination'));
+ Vue.component('nav-std', require('./components/Layouts/Nav_Student.vue').default);
+ Vue.component('foot-std', require('./components/Layouts/Footer_Student.vue').default);
+
+
 
 
 Vue.component('landlord-register',require('./components/ManageRegistrationUsers/Register_Landlord.vue').default);

@@ -1,34 +1,40 @@
 <template>
-   <div class="flex items-center justify-center h-screen overflow-hidden bg-gradient-to-b from-green-200 to-green-500" >
-      <p class="text-lg">Home Student </p> <br>
-        <p class="text-lg">ID: {{ user_id  }}</p>
-            <p class="text-lg">Role: {{ role  }}</p>
-         <button @click.prevent="logout">Logout</button>
-    </div>
+<div>
+    <nav-std :user_id="user_id" :role="role"> </nav-std >
+        <div class="bg-gradient-to-r from-pink-300 via-purple-300 to-indigo-400 min-h-screen" >
+
+            <router-view :user_id="user_id" :role="role"></router-view>
 
 
+
+        </div>
+      <foot-std class="bottom-0 w-full"/>
+
+</div>
 </template>
 <script>
+
+
 export default {
+
     props: {
-        user_id: String,
-        role: String
-    },
+            role: Number,
+            user_id: Number,
+
+        },
     data(){
+
         return{
-          user: null
+
 
         }
     },
-
      methods:{
-           logout(){
 
-                 window.location.href = '/'
-
-        }
     },
+
 
 
 }
 </script>
+

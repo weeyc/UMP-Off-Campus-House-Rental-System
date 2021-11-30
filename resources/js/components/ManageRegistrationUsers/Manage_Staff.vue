@@ -47,7 +47,7 @@
 
                 <div class="w-full lg:w-1/5 flex flex-col lg:flex-row items-start lg:items-center  justify-center">
                         <div class="relative w-32 z-10">
-                            <select  v-model="filterGender" class="focus:outline-none border-transparent cursor-pointer focus:border-gray-800 hover:bg-blue-200 focus:shadow-outline-gray text-base form-select block w-full py-2 px-2 xl:px-3 rounded font-medium dark:text-gray-400 appearance-none bg-transparent">
+                            <select  v-model="filterGender" class="focus:outline-none border-transparent cursor-pointer focus:border-gray-800 hover:bg-pink-200 focus:shadow-outline-gray text-base form-select block w-full py-2 px-2 xl:px-3 rounded font-medium  appearance-none bg-transparent">
                                 <option value="">Gender</option>
                                 <option value="male">Male</option>
                                 <option value="female">Female</option>
@@ -58,8 +58,8 @@
                     </div>
 
                     <div class="w-full lg:w-1/5 flex flex-col lg:flex-row  items-start lg:items-stretch lg:mt-12">
-                        <button @click="toggleModalCreate = !toggleModalCreate" class="bg-gray-200   hover:bg-blue-200 rounded
-                        text-indigo-700 px-5 h-8 shadow-lg ">Create User</button>
+                        <button @click="toggleModalCreate = !toggleModalCreate" class="bg-gray-200   hover:bg-pink-200 rounded
+                        text-pink-700 px-5 h-8 shadow-lg ">Create Staff</button>
                     </div>
 
             </div>
@@ -69,7 +69,7 @@
             <div class="w-full overflow-x-scroll xl:overflow-x-hidden">
                 <!-- change body from  bg-dark-600 dark:bg-gray-800 -->
 
-                <table class="min-w-full shadow-lg border-b-2 " style="background-image: url(/images/BlueCoral.jpg);">
+                <table class="min-w-full shadow-lg border-b-2 ">
                      <thead>
                             <tr class="border-b bg-pink-400 text-gray-900 uppercase text-base leading-normal"  style="background-image: url(/images/BlueCoral.jpg);">
                                 <th class="py-3 px-3 text-left">No.</th>

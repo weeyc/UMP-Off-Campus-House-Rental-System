@@ -458,7 +458,7 @@ var render = function() {
         "div",
         {
           staticClass:
-            "bg-white rounded max-h-full overflow-y-auto shadow-lg w-11/12 md:w-1/3"
+            "bg-gradient-to-b from-pink-300 via-purple-300 to-indigo-400 rounded max-h-full overflow-y-auto shadow-lg w-11/12 md:w-1/3"
         },
         [
           _c(

@@ -119,7 +119,10 @@ var render = function() {
     [
       _c(
         "div",
-        { staticClass: "bg-white rounded shadow-lg w-10/12 md:w-1/3" },
+        {
+          staticClass:
+            "bg-gradient-to-b from-pink-300 via-purple-300 to-indigo-400 rounded shadow-lg w-10/12 md:w-1/3"
+        },
         [
           _c(
             "div",

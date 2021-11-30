@@ -5,11 +5,8 @@
 
 
 <div id="app">
-    {{ $role }}
     <std-app :user_id="{{ $user_id }}"
     :role="{{ $role }}">></std-app>
-
-
 </div>
 
 

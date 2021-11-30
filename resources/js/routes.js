@@ -7,12 +7,18 @@ const Profile_Edit = () => import(/* webpackChunkName: "Profile_Edit" */'./compo
 const Profile_View = () => import(/* webpackChunkName: "Profile_View" */'./components/ManageRegistrationUsers/Profile_View');
 const Manage_Staff = () => import(/* webpackChunkName: "Manage_Staff" */'./components/ManageRegistrationUsers/Manage_Staff');
 const Landing_Staff = () => import(/* webpackChunkName: "Landing_Staff" */'./components/ManageRegistrationUsers/Landing_Staff');
+
+
+const Dashboard_Landlord = () => import(/* webpackChunkName: "Landing_Staff" */'./components/ManageRegistrationUsers/Dashboard_Landlord');
+const Dashboard_Student = () => import(/* webpackChunkName: "Landing_Staff" */'./components/ManageRegistrationUsers/Dashboard_Student');
+
+
 const NotFound = () => import(/* webpackChunkName: "NotFound" */'./components/NotFound');
 
 
 export default{
     mode: 'history',
-    //linkActiveClass: 'font-semibold',
+
 //    linkActiveClass: 'active', // active class for non-exact links.
 //    linkExactActiveClass: 'active', // active class for *exact* links.
     routes: [
@@ -20,6 +26,8 @@ export default{
             path: '*',
             component: NotFound
         },
+
+         // Staff Routes
         {
             path: '/registration-landlord',
             name: 'landlord_register',
@@ -67,6 +75,22 @@ export default{
             path: '/staff/view-profile/:role/:id',
             name: 'profile_view',
             component: Profile_View,
+        },
+
+
+
+        // Landlord Routes
+        {
+            path: '/landlord',
+            name: 'dashboard_landlord',
+            component: Dashboard_Landlord,
+        },
+
+           // Landlord Routes
+           {
+            path: '/student',
+            name: 'dashboard_student',
+            component: Dashboard_Student,
         },
 
 
