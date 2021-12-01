@@ -15,19 +15,19 @@
   </section>
   <section class="relative py-16 bg-blueGray-200">
     <div class="container mx-auto px-4">
-      <div class="relative flex flex-col min-w-0 break-words bg-pink-200 w-full mb-6 shadow-xl rounded-lg -mt-64">
+      <div :class="[background]" class=" relative flex flex-col min-w-0 break-words w-full mb-6 shadow-xl rounded-lg -mt-64">
         <div class="px-6">
           <div class="flex flex-wrap justify-center">
 
             <div class="w-full px-4 lg:order-1 flex justify-center">
 
               <div v-for= "user in userProfile" :key="user.id" class="relative">
-                  <img :src="'/images/Profile/'+user.pic" class="shadow-xl rounded-full h-44  align-middle border-4 border-pink-400 absolute -m-16 -ml-20 lg:-ml-16 max-w-200-px">
+                  <img :src="'/images/Profile/'+user.pic" :class="[borderColor]" class="shadow-xl rounded-full h-48 w-48 object-cover  align-middle border-4 absolute -m-16 -ml-10 lg:-ml-16 max-w-200-px" alt="Profile">
               </div>
             </div>
             <div class="w-full px-4 lg:order-2 lg:text-right lg:self-center">
               <div  v-for= "user in userProfile" :key="user.id" class="py-6 px-3 mt-32 sm:mt-0">
-                <button @click="clickEdit(user); toggleModal = !toggleModal" class="bg-pink-500 active:bg-pink-600 uppercase text-white font-bold hover:shadow-md shadow text-base px-6 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1 ease-linear transition-all duration-150" type="button">
+                <button @click="clickEdit(user); toggleModal = !toggleModal" :class="[buttonColor]" class=" uppercase text-white font-bold hover:shadow-md shadow text-base px-6 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1 ease-linear transition-all duration-150" type="button">
                   Edit
                 </button>
               </div>
@@ -128,7 +128,12 @@ export default {
         },
     data(){
         return{
+            background: '',
+            borderColor: '',
+            buttonColor:'',
             userProfile: [],
+            route_id: this.$route.params.id,
+            route_role: this.$route.params.role,
             userRole: '',
             form:{
                 id: '',
@@ -165,12 +170,23 @@ export default {
                 this.form.des = user.des
         },
         getRole(){
-            if(this.role===1){
+            if(this.role == 1){
                 this.userRole = 'Student'
-            }else if (this.role===2){
+                this.background = 'bg-yellow-200'
+                this.borderColor = 'border-yellow-400'
+                this.buttonColor = 'bg-yellow-500 hover:bg-yellow-600'
+            }else if (this.role == 2){
                 this.userRole = 'Landlord'
-            }else
+                this.background = 'bg-blue-200'
+                this.borderColor = 'border-blue-400'
+                this.buttonColor = 'bg-blue-500 hover:bg-blue-600'
+            }else{
                 this.userRole = 'Staff'
+                this.background = 'bg-pink-200'
+                this.borderColor = 'border-pink-400'
+                this.buttonColor = 'bg-pink-500 hover:bg-pink-600'
+            }
+
         }
     },
 

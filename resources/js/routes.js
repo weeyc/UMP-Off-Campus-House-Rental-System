@@ -82,11 +82,26 @@ export default{
         // Landlord Routes
         {
             path: '/landlord',
+            name: 'landlord_landing',
+            component: Dashboard_Landlord,
+        },
+        {
+            path: '/landlord/dashboard',
             name: 'dashboard_landlord',
             component: Dashboard_Landlord,
         },
+        {
+            path: '/landlord/profile',
+            name: 'profile_landlord',
+            component: Profile_Edit,
+        },
 
-           // Landlord Routes
+
+
+
+
+
+           // Student Routes
            {
             path: '/student',
             name: 'dashboard_student',

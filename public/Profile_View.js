@@ -289,9 +289,12 @@ var render = function() {
                           [
                             _c("img", {
                               staticClass:
-                                "shadow-xl rounded-full h-44  align-middle border-4  absolute -m-16 -ml-20 lg:-ml-16 max-w-200-px",
+                                "shadow-xl rounded-full h-48 w-48 object-cover  align-middle border-4 absolute -m-16 -ml-10 lg:-ml-16 max-w-200-px",
                               class: [_vm.borderColor],
-                              attrs: { src: "/images/Profile/" + user.pic }
+                              attrs: {
+                                src: "/images/Profile/" + user.pic,
+                                alt: "Profile"
+                              }
                             })
                           ]
                         )

@@ -300,7 +300,6 @@ class UserController extends Controller
                 'name' =>'required',
                 'password' =>'required',
                 'email' => 'required|string|email|unique:staff,staff_email,'.$request->id.',staff_id', //update email, ignore registed own email
-                'password' =>'required|min:4|max:12',
                 'phone_num' => 'required|regex:/(01)[0-9]{8}/'
             ]);
 
@@ -311,12 +310,30 @@ class UserController extends Controller
               }
 
         if($role==1){
-           $data = Student::where('std_id', $id);
-           return StudentResource::collection($data);
+            $data = Student::where('std_id',$id)
+            ->update([
+                'std_name' => $request ->name,
+                'std_email' => $request ->email,
+                'std_phone_no' => $request ->phone_num,
+                'std_gender' => $request ->gender,
+                'std_pic' => $filename,
+                'std_description' => $request ->des,
+            ]);
+
+            return $data;
 
         }else if ($role==2){
-            $data = Landlord::where('landlord_id', $id);
-            return LandlordResource::collection($data);
+            $data = Landlord::where('landlord_id',$id)
+            ->update([
+                'landlord_name' => $request ->name,
+                'landlord_email' => $request ->email,
+                'landlord_phone_no' => $request ->phone_num,
+                'landlord_gender' => $request ->gender,
+                'landlord_pic' => $filename,
+                'landlord_description' => $request ->des,
+            ]);
+
+            return $data;
         }else{
 
             $data = Staff::where('staff_id',$id)
@@ -324,7 +341,6 @@ class UserController extends Controller
                 'staff_name' => $request ->name,
                 'staff_email' => $request ->email,
                 'staff_phone_no' => $request ->phone_num,
-                'staff_password' => $request ->password,
                 'staff_gender' => $request ->gender,
                 'staff_pic' => $filename,
                 'staff_description' => $request ->des,

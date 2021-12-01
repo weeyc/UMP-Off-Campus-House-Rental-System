@@ -2147,7 +2147,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 /* harmony default export */ __webpack_exports__["default"] = ({});
 
 /***/ }),
@@ -2256,237 +2255,158 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  data: function data() {
-    return {
-      showSidebar: 'false'
-    };
+  props: {
+    user_id: Number,
+    role: Number
   },
-  methods: {}
-});
-
-/***/ }),
-
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Layouts/Nav_Landlords.vue?vue&type=script&lang=js&":
-/*!********************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Layouts/Nav_Landlords.vue?vue&type=script&lang=js& ***!
-  \********************************************************************************************************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-/* harmony default export */ __webpack_exports__["default"] = ({
-  name: "MyComponent",
   data: function data() {
     return {
-      show: true,
-      mode: "Light",
+      userProfile: [],
       transition: '',
-      indicator: false
+      indicator: false,
+      hover: 'text-blue-200 hover:text-blue-500 focus:text-blue-500 border-l-4 pl-4'
     };
   },
   methods: {
-    showNav: function showNav(flag) {
-      //let Main = this.$refs.Main;
-      var open = this.$refs.open;
-      var close = this.$refs.close;
+    showNav: function showNav() {
+      this.indicator = !this.indicator;
 
-      if (flag) {
-        close.classList.toggle("hidden");
-        open.classList.toggle("hidden");
-
-        if (this.indicator == true) {
-          this.transition = 'fixed -translate-x-full';
-        } else {
-          this.transition = '';
-        }
+      if (this.indicator == true) {
+        this.transition = 'fixed -translate-x-full';
+      } else {
+        this.transition = '';
       }
+    },
+    getProfile: function getProfile() {
+      var _this = this;
+
+      axios.get('/api/get_profile/' + this.user_id + '/' + this.role).then(function (response) {
+        _this.userProfile = response.data.data;
+        console.warn(_this.userProfile.data);
+      })["catch"](function (errors) {
+        console.log(errors);
+      });
     }
   },
-  mounted: function mounted() {}
+  mounted: function mounted() {
+    var _this2 = this;
+
+    this.getProfile();
+    this.$root.$on('refreshData', function (data) {
+      _this2.getProfile();
+    });
+  }
 });
 
 /***/ }),
@@ -3382,10 +3302,10 @@ exports.push([module.i, ".v-toaster{\n  position:fixed;\n  top:50px;\n  right:0;
 
 /***/ }),
 
-/***/ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Layouts/Nav_Landlords.vue?vue&type=style&index=0&id=932b2454&scoped=true&lang=css&":
-/*!***************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Layouts/Nav_Landlords.vue?vue&type=style&index=0&id=932b2454&scoped=true&lang=css& ***!
-  \***************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Layouts/Nav_Landlord.vue?vue&type=style&index=0&id=baa95e26&scoped=true&lang=css&":
+/*!**************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Layouts/Nav_Landlord.vue?vue&type=style&index=0&id=baa95e26&scoped=true&lang=css& ***!
+  \**************************************************************************************************************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -3394,7 +3314,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".checkbox[data-v-932b2454]:checked {\n  /* Apply class right-0*/\n  right: 0;\n  top: 0;\n}\n.checkbox:checked+.toggle-label[data-v-932b2454] {\n  /* Apply class bg-indigo-700 */\n  background-color: #9ab1f3;\n}\n", ""]);
+exports.push([module.i, ".active[data-v-baa95e26]{\n  --tw-text-opacity: 1;\n  color: rgba(59, 130, 246, var(--tw-text-opacity));\n}\n", ""]);
 
 // exports
 
@@ -21084,15 +21004,15 @@ process.umask = function() { return 0; };
 
 /***/ }),
 
-/***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Layouts/Nav_Landlords.vue?vue&type=style&index=0&id=932b2454&scoped=true&lang=css&":
-/*!*******************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/style-loader!./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Layouts/Nav_Landlords.vue?vue&type=style&index=0&id=932b2454&scoped=true&lang=css& ***!
-  \*******************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Layouts/Nav_Landlord.vue?vue&type=style&index=0&id=baa95e26&scoped=true&lang=css&":
+/*!******************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/style-loader!./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Layouts/Nav_Landlord.vue?vue&type=style&index=0&id=baa95e26&scoped=true&lang=css& ***!
+  \******************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 
-var content = __webpack_require__(/*! !../../../../node_modules/css-loader??ref--6-1!../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../node_modules/postcss-loader/src??ref--6-2!../../../../node_modules/vue-loader/lib??vue-loader-options!./Nav_Landlords.vue?vue&type=style&index=0&id=932b2454&scoped=true&lang=css& */ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Layouts/Nav_Landlords.vue?vue&type=style&index=0&id=932b2454&scoped=true&lang=css&");
+var content = __webpack_require__(/*! !../../../../node_modules/css-loader??ref--6-1!../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../node_modules/postcss-loader/src??ref--6-2!../../../../node_modules/vue-loader/lib??vue-loader-options!./Nav_Landlord.vue?vue&type=style&index=0&id=baa95e26&scoped=true&lang=css& */ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Layouts/Nav_Landlord.vue?vue&type=style&index=0&id=baa95e26&scoped=true&lang=css&");
 
 if(typeof content === 'string') content = [[module.i, content, '']];
 
@@ -25031,7 +24951,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    [_c("nav-lands", { attrs: { user_id: _vm.user_id, role: _vm.role } })],
+    [_c("nav-land", { attrs: { user_id: _vm.user_id, role: _vm.role } })],
     1
   )
 }
@@ -25147,72 +25067,74 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    {
-      staticStyle: { "background-image": "url(/images/Background/Sunrise.jpg)" }
-    },
+    { staticClass: "bg-gradient-to-l from-gray-700 via-gray-900 to-black" },
     [
       _c("footer", { staticClass: "relative  pt-5" }, [
         _c(
           "div",
           { staticClass: "flex flex-col justify-center items-center pb-1" },
           [
-            _c("div", { staticClass: "animate-bounce" }, [
-              _c(
-                "svg",
-                {
-                  staticStyle: { fill: "#000000" },
-                  attrs: {
-                    xmlns: "http://www.w3.org/2000/svg",
-                    x: "0px",
-                    y: "0px",
-                    width: "40",
-                    height: "40",
-                    viewBox: "0 0 172 172"
-                  }
-                },
-                [
-                  _c(
-                    "g",
-                    {
-                      staticStyle: { "mix-blend-mode": "normal" },
-                      attrs: {
-                        fill: "none",
-                        "fill-rule": "nonzero",
-                        stroke: "none",
-                        "stroke-width": "1",
-                        "stroke-linecap": "butt",
-                        "stroke-linejoin": "miter",
-                        "stroke-miterlimit": "10",
-                        "stroke-dasharray": "",
-                        "stroke-dashoffset": "0",
-                        "font-family": "none",
-                        "font-weight": "none",
-                        "font-size": "none",
-                        "text-anchor": "none"
-                      }
-                    },
-                    [
-                      _c("path", {
-                        attrs: { d: "M0,172v-172h172v172z", fill: "none" }
-                      }),
-                      _c("g", { attrs: { fill: "#df2d8a" } }, [
+            _c(
+              "div",
+              { staticClass: "  row-span-2 justify-self-end animate-bounce" },
+              [
+                _c(
+                  "svg",
+                  {
+                    staticStyle: { fill: "#000000" },
+                    attrs: {
+                      xmlns: "http://www.w3.org/2000/svg",
+                      x: "0px",
+                      y: "0px",
+                      width: "40",
+                      height: "40",
+                      viewBox: "0 0 172 172"
+                    }
+                  },
+                  [
+                    _c(
+                      "g",
+                      {
+                        staticStyle: { "mix-blend-mode": "normal" },
+                        attrs: {
+                          fill: "none",
+                          "fill-rule": "nonzero",
+                          stroke: "none",
+                          "stroke-width": "1",
+                          "stroke-linecap": "butt",
+                          "stroke-linejoin": "miter",
+                          "stroke-miterlimit": "10",
+                          "stroke-dasharray": "",
+                          "stroke-dashoffset": "0",
+                          "font-family": "none",
+                          "font-weight": "none",
+                          "font-size": "none",
+                          "text-anchor": "none"
+                        }
+                      },
+                      [
                         _c("path", {
-                          attrs: {
-                            d:
-                              "M86,14.33333c-1.91435,0.00025 -3.74903,0.76638 -5.09506,2.1276l-72.28255,63.07226c-0.9155,0.67554 -1.45577,1.74571 -1.45573,2.88347c0,1.97902 1.60431,3.58333 3.58333,3.58333h17.91667v57.33333c0,3.956 3.21067,7.16667 7.16667,7.16667h21.5c3.956,0 7.16667,-3.21067 7.16667,-7.16667v-43h43v43c0,3.956 3.21067,7.16667 7.16667,7.16667h21.5c3.956,0 7.16667,-3.21067 7.16667,-7.16667v-57.33333h17.91667c1.97902,0 3.58333,-1.60431 3.58333,-3.58333c0.00004,-1.13776 -0.54023,-2.20792 -1.45573,-2.88347l-27.21094,-23.73958v-19.96029c0,-3.956 -3.21067,-7.16667 -7.16667,-7.16667c-3.956,0 -7.16667,3.21067 -7.16667,7.16667v7.44661l-30.69629,-26.77702c-0.01394,-0.01406 -0.02794,-0.02805 -0.04199,-0.04199c-1.34603,-1.36123 -3.18071,-2.12736 -5.09506,-2.1276z"
-                          }
-                        })
-                      ])
-                    ]
-                  )
-                ]
-              )
-            ]),
+                          attrs: { d: "M0,172v-172h172v172z", fill: "none" }
+                        }),
+                        _c("g", { attrs: { fill: "#2563eb" } }, [
+                          _c("path", {
+                            attrs: {
+                              d:
+                                "M86,14.33333c-1.91435,0.00025 -3.74903,0.76638 -5.09506,2.1276l-72.28255,63.07226c-0.9155,0.67554 -1.45577,1.74571 -1.45573,2.88347c0,1.97902 1.60431,3.58333 3.58333,3.58333h17.91667v57.33333c0,3.956 3.21067,7.16667 7.16667,7.16667h28.66667c3.956,0 7.16667,-3.21067 7.16667,-7.16667v-43h28.66667v43c0,3.956 3.21067,7.16667 7.16667,7.16667h28.66667c3.956,0 7.16667,-3.21067 7.16667,-7.16667v-57.33333h17.91667c1.97902,0 3.58333,-1.60431 3.58333,-3.58333c0.00004,-1.13776 -0.54023,-2.20792 -1.45573,-2.88347l-72.24056,-63.03027c-0.01394,-0.01406 -0.02794,-0.02805 -0.04199,-0.04199c-1.34603,-1.36123 -3.18071,-2.12736 -5.09506,-2.1276z"
+                            }
+                          })
+                        ])
+                      ]
+                    )
+                  ]
+                )
+              ]
+            ),
             _vm._v(" "),
             _c(
               "p",
               {
-                staticClass: " text-xs text-pink-300 lg:text-sm leading-none "
+                staticClass: " text-xs text-blue-300 lg:text-sm leading-none "
               },
               [_vm._v("Copyright © 2021 - All rights reserved by UOCA.")]
             )
@@ -25427,83 +25349,10 @@ render._withStripped = true
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Layouts/Nav_Landlord.vue?vue&type=template&id=baa95e26&":
-/*!***********************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Layouts/Nav_Landlord.vue?vue&type=template&id=baa95e26& ***!
-  \***********************************************************************************************************************************************************************************************************************/
-/*! exports provided: render, staticRenderFns */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "relative flex min-h-screen " }, [
-    _c(
-      "div",
-      {
-        staticClass:
-          "bg-blue-600 text-blue-100 w-64 space-y-6 px-2 py-4     absolute inset-y-0 left-0 transform -translate-x-full transition duration-200 ease-in-out md:relative md:-translate-x-0"
-      },
-      [_vm._v(" Side ")]
-    ),
-    _vm._v(" "),
-    _c(
-      "div",
-      { staticClass: "flex-1" },
-      [
-        _c("div", { staticClass: "bg-white shadow px-2 py-4" }, [
-          _vm._v("\n\n                header\n                "),
-          _c(
-            "button",
-            {
-              staticClass: "text-pink-500 font-extrabold",
-              on: {
-                click: function($event) {
-                  _vm.showSidebar = !_vm.showSidebar
-                }
-              }
-            },
-            [_vm._v("X")]
-          )
-        ]),
-        _vm._v(" "),
-        _c(
-          "div",
-          {
-            staticClass:
-              "bg-gradient-to-r from-pink-300 via-purple-300 to-indigo-400 min-h-screen"
-          },
-          [
-            _c("router-view", {
-              attrs: { user_id: _vm.user_id, role: _vm.role }
-            }),
-            _vm._v("\n\n                    This is COntent\n\n            ")
-          ],
-          1
-        ),
-        _vm._v(" "),
-        _c("foot-land", { staticClass: "bottom-0 w-full" })
-      ],
-      1
-    )
-  ])
-}
-var staticRenderFns = []
-render._withStripped = true
-
-
-
-/***/ }),
-
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Layouts/Nav_Landlords.vue?vue&type=template&id=932b2454&scoped=true&":
-/*!************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Layouts/Nav_Landlords.vue?vue&type=template&id=932b2454&scoped=true& ***!
-  \************************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Layouts/Nav_Landlord.vue?vue&type=template&id=baa95e26&scoped=true&":
+/*!***********************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Layouts/Nav_Landlord.vue?vue&type=template&id=baa95e26&scoped=true& ***!
+  \***********************************************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -25519,113 +25368,158 @@ var render = function() {
     _c(
       "div",
       {
-        ref: "Main",
         staticClass:
-          "bg-indigo-700 transform  shadow  inset-y-0 left-0 h-auto  ease-in-out transition-none duration-75",
+          " transform  shadow  inset-y-0 left-0 h-auto  ease-in-out transition-none duration-75",
         class: [_vm.transition],
-        attrs: { id: "Main" }
+        staticStyle: { "background-color": "#161616" }
       },
       [
         _c(
-          "button",
+          "router-link",
           {
             staticClass:
-              "hidden focus:outline-none hover:text-indigo-200 focus:text-indigo-200 text-white sm:flex justify-start p-6 items-center space-x-3 w-full"
+              "hidden focus:outline-none hover:text-indigo-200 focus:text-indigo-200 text-white sm:flex justify-start p-6 items-center space-x-3 w-full",
+            attrs: { to: { name: "landlord_landing" } }
           },
           [
             _c(
-              "svg",
-              {
-                attrs: {
-                  width: "34",
-                  height: "34",
-                  viewBox: "0 0 34 34",
-                  fill: "none",
-                  xmlns: "http://www.w3.org/2000/svg"
-                }
-              },
+              "div",
+              { staticClass: "  row-span-2 justify-self-end animate-bounce" },
               [
-                _c("path", {
-                  attrs: {
-                    d:
-                      "M1 17H0H1ZM7 17H6H7ZM17 27V28V27ZM27 17H28H27ZM17 0C12.4913 0 8.1673 1.79107 4.97918 4.97918L6.3934 6.3934C9.20644 3.58035 13.0218 2 17 2V0ZM4.97918 4.97918C1.79107 8.1673 0 12.4913 0 17H2C2 13.0218 3.58035 9.20644 6.3934 6.3934L4.97918 4.97918ZM0 17C0 21.5087 1.79107 25.8327 4.97918 29.0208L6.3934 27.6066C3.58035 24.7936 2 20.9782 2 17H0ZM4.97918 29.0208C8.1673 32.2089 12.4913 34 17 34V32C13.0218 32 9.20644 30.4196 6.3934 27.6066L4.97918 29.0208ZM17 34C21.5087 34 25.8327 32.2089 29.0208 29.0208L27.6066 27.6066C24.7936 30.4196 20.9782 32 17 32V34ZM29.0208 29.0208C32.2089 25.8327 34 21.5087 34 17H32C32 20.9782 30.4196 24.7936 27.6066 27.6066L29.0208 29.0208ZM34 17C34 12.4913 32.2089 8.1673 29.0208 4.97918L27.6066 6.3934C30.4196 9.20644 32 13.0218 32 17H34ZM29.0208 4.97918C25.8327 1.79107 21.5087 0 17 0V2C20.9782 2 24.7936 3.58035 27.6066 6.3934L29.0208 4.97918ZM17 6C14.0826 6 11.2847 7.15893 9.22183 9.22183L10.636 10.636C12.3239 8.94821 14.6131 8 17 8V6ZM9.22183 9.22183C7.15893 11.2847 6 14.0826 6 17H8C8 14.6131 8.94821 12.3239 10.636 10.636L9.22183 9.22183ZM6 17C6 19.9174 7.15893 22.7153 9.22183 24.7782L10.636 23.364C8.94821 21.6761 8 19.3869 8 17H6ZM9.22183 24.7782C11.2847 26.8411 14.0826 28 17 28V26C14.6131 26 12.3239 25.0518 10.636 23.364L9.22183 24.7782ZM17 28C19.9174 28 22.7153 26.8411 24.7782 24.7782L23.364 23.364C21.6761 25.0518 19.3869 26 17 26V28ZM24.7782 24.7782C26.8411 22.7153 28 19.9174 28 17H26C26 19.3869 25.0518 21.6761 23.364 23.364L24.7782 24.7782ZM28 17C28 14.0826 26.8411 11.2847 24.7782 9.22183L23.364 10.636C25.0518 12.3239 26 14.6131 26 17H28ZM24.7782 9.22183C22.7153 7.15893 19.9174 6 17 6V8C19.3869 8 21.6761 8.94821 23.364 10.636L24.7782 9.22183ZM10.3753 8.21913C6.86634 11.0263 4.86605 14.4281 4.50411 18.4095C4.14549 22.3543 5.40799 26.7295 8.13176 31.4961L9.86824 30.5039C7.25868 25.9371 6.18785 21.9791 6.49589 18.5905C6.80061 15.2386 8.46699 12.307 11.6247 9.78087L10.3753 8.21913ZM23.6247 25.7809C27.1294 22.9771 29.1332 19.6127 29.4958 15.6632C29.8549 11.7516 28.5904 7.41119 25.8682 2.64741L24.1318 3.63969C26.7429 8.20923 27.8117 12.1304 27.5042 15.4803C27.2001 18.7924 25.5372 21.6896 22.3753 24.2191L23.6247 25.7809Z",
-                    fill: "currentColor"
-                  }
-                })
+                _c(
+                  "svg",
+                  {
+                    staticStyle: { fill: "#000000" },
+                    attrs: {
+                      xmlns: "http://www.w3.org/2000/svg",
+                      x: "0px",
+                      y: "0px",
+                      width: "40",
+                      height: "40",
+                      viewBox: "0 0 172 172"
+                    }
+                  },
+                  [
+                    _c(
+                      "g",
+                      {
+                        staticStyle: { "mix-blend-mode": "normal" },
+                        attrs: {
+                          fill: "none",
+                          "fill-rule": "nonzero",
+                          stroke: "none",
+                          "stroke-width": "1",
+                          "stroke-linecap": "butt",
+                          "stroke-linejoin": "miter",
+                          "stroke-miterlimit": "10",
+                          "stroke-dasharray": "",
+                          "stroke-dashoffset": "0",
+                          "font-family": "none",
+                          "font-weight": "none",
+                          "font-size": "none",
+                          "text-anchor": "none"
+                        }
+                      },
+                      [
+                        _c("path", {
+                          attrs: { d: "M0,172v-172h172v172z", fill: "none" }
+                        }),
+                        _c("g", { attrs: { fill: "#2563eb" } }, [
+                          _c("path", {
+                            attrs: {
+                              d:
+                                "M86,14.33333c-1.91435,0.00025 -3.74903,0.76638 -5.09506,2.1276l-72.28255,63.07226c-0.9155,0.67554 -1.45577,1.74571 -1.45573,2.88347c0,1.97902 1.60431,3.58333 3.58333,3.58333h17.91667v57.33333c0,3.956 3.21067,7.16667 7.16667,7.16667h28.66667c3.956,0 7.16667,-3.21067 7.16667,-7.16667v-43h28.66667v43c0,3.956 3.21067,7.16667 7.16667,7.16667h28.66667c3.956,0 7.16667,-3.21067 7.16667,-7.16667v-57.33333h17.91667c1.97902,0 3.58333,-1.60431 3.58333,-3.58333c0.00004,-1.13776 -0.54023,-2.20792 -1.45573,-2.88347l-72.24056,-63.03027c-0.01394,-0.01406 -0.02794,-0.02805 -0.04199,-0.04199c-1.34603,-1.36123 -3.18071,-2.12736 -5.09506,-2.1276z"
+                            }
+                          })
+                        ])
+                      ]
+                    )
+                  ]
+                )
               ]
             ),
             _vm._v(" "),
-            _c("p", { staticClass: "text-2xl leading-6" }, [_vm._v("UMP Off")])
-          ]
-        ),
-        _vm._v(" "),
-        _c(
-          "button",
-          {
-            staticClass:
-              "focus:outline-none focus:text-white focus:bg-indigo-900 flex justify-between sm:w-auto items-center space-x-10 text-white mx-6 p-3 rounded hover:bg-indigo-900 bg-indigo-800"
-          },
-          [
-            _vm._m(0),
-            _vm._v(" "),
             _c(
-              "svg",
+              "span",
               {
-                attrs: {
-                  width: "24",
-                  height: "24",
-                  viewBox: "0 0 24 24",
-                  fill: "none",
-                  xmlns: "http://www.w3.org/2000/svg"
-                }
+                staticClass:
+                  "bg-gradient-to-r from-sky-400 to-cyan-300      text-transparent bg-clip-text  text-2xl font-black tracking-wide "
               },
-              [
-                _c("path", {
-                  attrs: {
-                    d: "M5 12H19",
-                    stroke: "currentColor",
-                    "stroke-width": "1.5",
-                    "stroke-linecap": "round",
-                    "stroke-linejoin": "round"
-                  }
-                }),
-                _vm._v(" "),
-                _c("path", {
-                  attrs: {
-                    d: "M13 18L19 12",
-                    stroke: "currentColor",
-                    "stroke-width": "1.5",
-                    "stroke-linecap": "round",
-                    "stroke-linejoin": "round"
-                  }
-                }),
-                _vm._v(" "),
-                _c("path", {
-                  attrs: {
-                    d: "M13 6L19 12",
-                    stroke: "currentColor",
-                    "stroke-width": "1.5",
-                    "stroke-linecap": "round",
-                    "stroke-linejoin": "round"
-                  }
-                })
-              ]
+              [_vm._v("UOCA")]
             )
           ]
         ),
+        _vm._v(" "),
+        _vm._l(_vm.userProfile, function(user) {
+          return _c(
+            "router-link",
+            {
+              key: user.id,
+              staticClass:
+                "focus:outline-none focus:text-white  flex justify-between sm:w-auto items-center space-x-10 text-white mx-6 p-3 rounded focus:bg-blue-800 bg-blue-700 hover:bg-blue-800",
+              attrs: { to: { name: "profile_landlord" } }
+            },
+            [
+              _c(
+                "div",
+                {
+                  staticClass:
+                    "flex justify-start sm:w-auto items-center space-x-2"
+                },
+                [
+                  _c("div", [
+                    _c("img", {
+                      staticClass: "rounded-full h-10 w-10 object-cover",
+                      attrs: {
+                        src: "/images/Profile/" + user.pic,
+                        alt: "Avatar"
+                      }
+                    })
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    {
+                      staticClass:
+                        "flex flex-col justify-items-start text-left space-y-1"
+                    },
+                    [
+                      _c(
+                        "p",
+                        { staticClass: "text-base leading-4 text-white" },
+                        [_vm._v(_vm._s(user.name))]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "p",
+                        { staticClass: "text-xs leading-3 text-indigo-200" },
+                        [_vm._v(_vm._s(user.email))]
+                      )
+                    ]
+                  )
+                ]
+              )
+            ]
+          )
+        }),
         _vm._v(" "),
         _c(
           "div",
           {
             staticClass:
-              "mt-4 flex flex-col px-6 justify-start items-center px-4 w-full"
+              "mt-4 flex flex-col px-6 justify-start items-center  w-full"
           },
           [
             _c(
-              "button",
+              "router-link",
               {
                 staticClass:
-                  "focus:outline-none focus:text-white flex jusitfy-start hover:text-white text-indigo-200 hover:text-white rounded py-3 items-center space-x-6 w-full"
+                  "focus:outline-none flex jusitfy-start  py-3 items-center space-x-6 w-full",
+                class: [_vm.hover],
+                attrs: {
+                  to: { name: "dashboard_landlord" },
+                  "active-class": "active"
+                }
               },
               [
                 _c(
@@ -25687,14 +25581,9 @@ var render = function() {
                   ]
                 ),
                 _vm._v(" "),
-                _c(
-                  "p",
-                  {
-                    staticClass:
-                      "text-base leading-4 border-b border-transparent hover:border-white focus:border-white"
-                  },
-                  [_vm._v("Dashboard")]
-                )
+                _c("p", { staticClass: "text-base leading-4 " }, [
+                  _vm._v("Dashboard")
+                ])
               ]
             ),
             _vm._v(" "),
@@ -25702,7 +25591,8 @@ var render = function() {
               "button",
               {
                 staticClass:
-                  "focus:outline-none focus:text-white flex jusitfy-start hover:text-white text-indigo-200 hover:text-white rounded py-3 items-center w-full space-x-6"
+                  "focus:outline-none flex jusitfy-start  py-3 items-center space-x-6 w-full",
+                class: [_vm.hover]
               },
               [
                 _c(
@@ -25740,14 +25630,9 @@ var render = function() {
                   ]
                 ),
                 _vm._v(" "),
-                _c(
-                  "p",
-                  {
-                    staticClass:
-                      "text-base leading-4 border-b border-transparent hover:border-white focus:border-white"
-                  },
-                  [_vm._v("Email")]
-                )
+                _c("p", { staticClass: "text-base leading-4" }, [
+                  _vm._v("My Property List")
+                ])
               ]
             ),
             _vm._v(" "),
@@ -25755,7 +25640,8 @@ var render = function() {
               "button",
               {
                 staticClass:
-                  "focus:outline-none focus:text-white flex justify-start items-center space-x-6 hover:text-white text-indigo-200 hover:text-white rounded py-3 w-full"
+                  "focus:outline-none flex jusitfy-start  py-3 items-center space-x-6 w-full",
+                class: [_vm.hover]
               },
               [
                 _c(
@@ -25794,14 +25680,9 @@ var render = function() {
                   ]
                 ),
                 _vm._v(" "),
-                _c(
-                  "p",
-                  {
-                    staticClass:
-                      "text-base leading-4 border-b border-transparent hover:border-white focus:border-white"
-                  },
-                  [_vm._v("User Menu")]
-                )
+                _c("p", { staticClass: "text-base leading-4" }, [
+                  _vm._v("My Rental Property")
+                ])
               ]
             ),
             _vm._v(" "),
@@ -25809,61 +25690,8 @@ var render = function() {
               "button",
               {
                 staticClass:
-                  "focus:outline-none focus:text-white flex justify-start items-center space-x-6 hover:text-white text-indigo-200 hover:text-white rounded py-3 w-full"
-              },
-              [
-                _c(
-                  "svg",
-                  {
-                    attrs: {
-                      width: "24",
-                      height: "24",
-                      viewBox: "0 0 24 24",
-                      fill: "none",
-                      xmlns: "http://www.w3.org/2000/svg"
-                    }
-                  },
-                  [
-                    _c("path", {
-                      attrs: {
-                        d:
-                          "M10 6H7C6.46957 6 5.96086 6.21071 5.58579 6.58579C5.21071 6.96086 5 7.46957 5 8V17C5 17.5304 5.21071 18.0391 5.58579 18.4142C5.96086 18.7893 6.46957 19 7 19H16C16.5304 19 17.0391 18.7893 17.4142 18.4142C17.7893 18.0391 18 17.5304 18 17V14",
-                        stroke: "currentColor",
-                        "stroke-width": "1.5",
-                        "stroke-linecap": "round",
-                        "stroke-linejoin": "round"
-                      }
-                    }),
-                    _vm._v(" "),
-                    _c("path", {
-                      attrs: {
-                        d:
-                          "M17 10C18.6569 10 20 8.65685 20 7C20 5.34315 18.6569 4 17 4C15.3431 4 14 5.34315 14 7C14 8.65685 15.3431 10 17 10Z",
-                        stroke: "currentColor",
-                        "stroke-width": "1.5",
-                        "stroke-linecap": "round",
-                        "stroke-linejoin": "round"
-                      }
-                    })
-                  ]
-                ),
-                _vm._v(" "),
-                _c(
-                  "p",
-                  {
-                    staticClass:
-                      "text-base leading-4 border-b border-transparent hover:border-white focus:border-white"
-                  },
-                  [_vm._v("Notifications")]
-                )
-              ]
-            ),
-            _vm._v(" "),
-            _c(
-              "button",
-              {
-                staticClass:
-                  "focus:outline-none focus:text-white flex justify-start items-center space-x-6 hover:text-white text-indigo-200 hover:text-white rounded py-3 w-full"
+                  "focus:outline-none flex jusitfy-start  py-3 items-center space-x-6 w-full",
+                class: [_vm.hover]
               },
               [
                 _c(
@@ -25931,35 +25759,32 @@ var render = function() {
                   ]
                 ),
                 _vm._v(" "),
-                _c(
-                  "p",
-                  {
-                    staticClass:
-                      "text-base leading-4 border-b border-transparent hover:border-white focus:border-white"
-                  },
-                  [_vm._v("Calander")]
-                )
+                _c("p", { staticClass: "text-base leading-4" }, [
+                  _vm._v("Report")
+                ])
               ]
             )
-          ]
+          ],
+          1
         ),
         _vm._v(" "),
-        _vm._m(1),
+        _vm._m(0),
         _vm._v(" "),
-        _vm._m(2),
+        _vm._m(1),
         _vm._v(" "),
         _c(
           "div",
           {
             staticClass:
-              "mt-4 flex flex-col px-6 justify-start items-center px-4 w-full"
+              "mt-4 flex flex-col px-6 justify-start items-center w-full"
           },
           [
             _c(
               "button",
               {
                 staticClass:
-                  "focus:outline-none focus:text-white flex jusitfy-start hover:text-white text-indigo-200 hover:text-white rounded py-3 items-center space-x-6 w-full"
+                  "focus:outline-none flex jusitfy-start  py-3 items-center space-x-6 w-full",
+                class: [_vm.hover]
               },
               [
                 _c(
@@ -25986,14 +25811,9 @@ var render = function() {
                   ]
                 ),
                 _vm._v(" "),
-                _c(
-                  "p",
-                  {
-                    staticClass:
-                      "text-base leading-4 border-b border-transparent hover:border-white focus:border-white"
-                  },
-                  [_vm._v("Chat")]
-                )
+                _c("p", { staticClass: "text-base leading-4" }, [
+                  _vm._v("Chat")
+                ])
               ]
             ),
             _vm._v(" "),
@@ -26001,7 +25821,8 @@ var render = function() {
               "button",
               {
                 staticClass:
-                  "focus:outline-none focus:text-white flex jusitfy-start hover:text-white text-indigo-200 hover:text-white rounded py-3 items-center space-x-6 w-full"
+                  "focus:outline-none flex jusitfy-start  py-3 items-center space-x-6 w-full",
+                class: [_vm.hover]
               },
               [
                 _c(
@@ -26019,7 +25840,7 @@ var render = function() {
                     _c("path", {
                       attrs: {
                         d:
-                          "M10.325 4.317C10.751 2.561 13.249 2.561 13.675 4.317C13.7389 4.5808 13.8642 4.82578 14.0407 5.032C14.2172 5.23822 14.4399 5.39985 14.6907 5.50375C14.9414 5.60764 15.2132 5.65085 15.4838 5.62987C15.7544 5.60889 16.0162 5.5243 16.248 5.383C17.791 4.443 19.558 6.209 18.618 7.753C18.4769 7.98466 18.3924 8.24634 18.3715 8.51677C18.3506 8.78721 18.3938 9.05877 18.4975 9.30938C18.6013 9.55999 18.7627 9.78258 18.9687 9.95905C19.1747 10.1355 19.4194 10.2609 19.683 10.325C21.439 10.751 21.439 13.249 19.683 13.675C19.4192 13.7389 19.1742 13.8642 18.968 14.0407C18.7618 14.2172 18.6001 14.4399 18.4963 14.6907C18.3924 14.9414 18.3491 15.2132 18.3701 15.4838C18.3911 15.7544 18.4757 16.0162 18.617 16.248C19.557 17.791 17.791 19.558 16.247 18.618C16.0153 18.4769 15.7537 18.3924 15.4832 18.3715C15.2128 18.3506 14.9412 18.3938 14.6906 18.4975C14.44 18.6013 14.2174 18.7627 14.0409 18.9687C13.8645 19.1747 13.7391 19.4194 13.675 19.683C13.249 21.439 10.751 21.439 10.325 19.683C10.2611 19.4192 10.1358 19.1742 9.95929 18.968C9.7828 18.7618 9.56011 18.6001 9.30935 18.4963C9.05859 18.3924 8.78683 18.3491 8.51621 18.3701C8.24559 18.3911 7.98375 18.4757 7.752 18.617C6.209 19.557 4.442 17.791 5.382 16.247C5.5231 16.0153 5.60755 15.7537 5.62848 15.4832C5.64942 15.2128 5.60624 14.9412 5.50247 14.6906C5.3987 14.44 5.23726 14.2174 5.03127 14.0409C4.82529 13.8645 4.58056 13.7391 4.317 13.675C2.561 13.249 2.561 10.751 4.317 10.325C4.5808 10.2611 4.82578 10.1358 5.032 9.95929C5.23822 9.7828 5.39985 9.56011 5.50375 9.30935C5.60764 9.05859 5.65085 8.78683 5.62987 8.51621C5.60889 8.24559 5.5243 7.98375 5.383 7.752C4.443 6.209 6.209 4.442 7.753 5.382C8.753 5.99 10.049 5.452 10.325 4.317Z",
+                          "M10 6H7C6.46957 6 5.96086 6.21071 5.58579 6.58579C5.21071 6.96086 5 7.46957 5 8V17C5 17.5304 5.21071 18.0391 5.58579 18.4142C5.96086 18.7893 6.46957 19 7 19H16C16.5304 19 17.0391 18.7893 17.4142 18.4142C17.7893 18.0391 18 17.5304 18 17V14",
                         stroke: "currentColor",
                         "stroke-width": "1.5",
                         "stroke-linecap": "round",
@@ -26030,7 +25851,7 @@ var render = function() {
                     _c("path", {
                       attrs: {
                         d:
-                          "M12 15C13.6569 15 15 13.6569 15 12C15 10.3431 13.6569 9 12 9C10.3431 9 9 10.3431 9 12C9 13.6569 10.3431 15 12 15Z",
+                          "M17 10C18.6569 10 20 8.65685 20 7C20 5.34315 18.6569 4 17 4C15.3431 4 14 5.34315 14 7C14 8.65685 15.3431 10 17 10Z",
                         stroke: "currentColor",
                         "stroke-width": "1.5",
                         "stroke-linecap": "round",
@@ -26040,22 +25861,19 @@ var render = function() {
                   ]
                 ),
                 _vm._v(" "),
-                _c(
-                  "p",
-                  {
-                    staticClass:
-                      "text-base leading-4 border-b border-transparent hover:border-white focus:border-white"
-                  },
-                  [_vm._v("Settings")]
-                )
+                _c("p", { staticClass: "text-base leading-4" }, [
+                  _vm._v("Notifications")
+                ])
               ]
             ),
             _vm._v(" "),
             _c(
-              "button",
+              "a",
               {
                 staticClass:
-                  "focus:outline-none focus:text-white flex justify-start items-center space-x-6 hover:text-white text-indigo-200 hover:text-white rounded py-3 w-full"
+                  "focus:outline-none flex jusitfy-start  py-3 items-center space-x-6 w-full",
+                class: [_vm.hover],
+                attrs: { href: "/logout" }
               },
               [
                 _c(
@@ -26093,23 +25911,15 @@ var render = function() {
                   ]
                 ),
                 _vm._v(" "),
-                _c(
-                  "p",
-                  {
-                    staticClass:
-                      "text-base leading-4 border-b border-transparent hover:border-white focus:border-white"
-                  },
-                  [_vm._v("Logout")]
-                )
+                _c("p", { staticClass: "text-base leading-4" }, [
+                  _vm._v("Logout")
+                ])
               ]
-            ),
-            _vm._v(" "),
-            _vm._m(3)
+            )
           ]
-        ),
-        _vm._v(" "),
-        _vm._m(4)
-      ]
+        )
+      ],
+      2
     ),
     _vm._v(" "),
     _c(
@@ -26120,178 +25930,116 @@ var render = function() {
           "div",
           {
             staticClass:
-              "bg-indigo-700 rounded-r shadow  flex justify-between w-full p-6 items-center border-b border-transparent sm:border-gray-200"
+              " rounded-r shadow  flex justify-between w-full p-6 items-center border-b border-transparent sm:border-gray-200",
+            staticStyle: { "background-color": "#181818" }
           },
           [
+            _c("div", { staticClass: "flex justify-center items-center" }, [
+              _c(
+                "button",
+                {
+                  on: {
+                    click: function($event) {
+                      return _vm.showNav()
+                    }
+                  }
+                },
+                [
+                  _c(
+                    "svg",
+                    {
+                      staticClass: "text-indigo-200",
+                      attrs: {
+                        width: "24",
+                        height: "24",
+                        viewBox: "0 0 24 24",
+                        fill: "none",
+                        xmlns: "http://www.w3.org/2000/svg"
+                      }
+                    },
+                    [
+                      _c("path", {
+                        attrs: {
+                          d: "M4 6H20",
+                          stroke: "currentColor",
+                          "stroke-width": "1.5",
+                          "stroke-linecap": "round",
+                          "stroke-linejoin": "round"
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("path", {
+                        attrs: {
+                          d: "M4 12H20",
+                          stroke: "currentColor",
+                          "stroke-width": "1.5",
+                          "stroke-linecap": "round",
+                          "stroke-linejoin": "round"
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("path", {
+                        attrs: {
+                          d: "M4 18H20",
+                          stroke: "currentColor",
+                          "stroke-width": "1.5",
+                          "stroke-linecap": "round",
+                          "stroke-linejoin": "round"
+                        }
+                      })
+                    ]
+                  )
+                ]
+              )
+            ]),
+            _vm._v(" "),
             _c(
-              "button",
+              "router-link",
               {
                 staticClass:
-                  "flex text-white hover:text-indigo-200 focus:outline-none focus:text-indigo-200 justify-between items-center space-x-3"
+                  "flex text-blue-400 text-2xl font-black tracking-wide hover:text-blue-500 focus:outline-none focus:text-blue-500 justify-between items-center space-x-3",
+                attrs: { to: { name: "landlord_landing" } }
               },
               [
                 _c(
                   "svg",
                   {
+                    staticClass: "h-10 w-10",
                     attrs: {
-                      width: "34",
-                      height: "34",
-                      viewBox: "0 0 34 34",
-                      fill: "none",
-                      xmlns: "http://www.w3.org/2000/svg"
+                      xmlns: "http://www.w3.org/2000/svg",
+                      viewBox: "0 0 20 20",
+                      fill: "currentColor"
                     }
                   },
                   [
                     _c("path", {
                       attrs: {
                         d:
-                          "M1 17H0H1ZM7 17H6H7ZM17 27V28V27ZM27 17H28H27ZM17 0C12.4913 0 8.1673 1.79107 4.97918 4.97918L6.3934 6.3934C9.20644 3.58035 13.0218 2 17 2V0ZM4.97918 4.97918C1.79107 8.1673 0 12.4913 0 17H2C2 13.0218 3.58035 9.20644 6.3934 6.3934L4.97918 4.97918ZM0 17C0 21.5087 1.79107 25.8327 4.97918 29.0208L6.3934 27.6066C3.58035 24.7936 2 20.9782 2 17H0ZM4.97918 29.0208C8.1673 32.2089 12.4913 34 17 34V32C13.0218 32 9.20644 30.4196 6.3934 27.6066L4.97918 29.0208ZM17 34C21.5087 34 25.8327 32.2089 29.0208 29.0208L27.6066 27.6066C24.7936 30.4196 20.9782 32 17 32V34ZM29.0208 29.0208C32.2089 25.8327 34 21.5087 34 17H32C32 20.9782 30.4196 24.7936 27.6066 27.6066L29.0208 29.0208ZM34 17C34 12.4913 32.2089 8.1673 29.0208 4.97918L27.6066 6.3934C30.4196 9.20644 32 13.0218 32 17H34ZM29.0208 4.97918C25.8327 1.79107 21.5087 0 17 0V2C20.9782 2 24.7936 3.58035 27.6066 6.3934L29.0208 4.97918ZM17 6C14.0826 6 11.2847 7.15893 9.22183 9.22183L10.636 10.636C12.3239 8.94821 14.6131 8 17 8V6ZM9.22183 9.22183C7.15893 11.2847 6 14.0826 6 17H8C8 14.6131 8.94821 12.3239 10.636 10.636L9.22183 9.22183ZM6 17C6 19.9174 7.15893 22.7153 9.22183 24.7782L10.636 23.364C8.94821 21.6761 8 19.3869 8 17H6ZM9.22183 24.7782C11.2847 26.8411 14.0826 28 17 28V26C14.6131 26 12.3239 25.0518 10.636 23.364L9.22183 24.7782ZM17 28C19.9174 28 22.7153 26.8411 24.7782 24.7782L23.364 23.364C21.6761 25.0518 19.3869 26 17 26V28ZM24.7782 24.7782C26.8411 22.7153 28 19.9174 28 17H26C26 19.3869 25.0518 21.6761 23.364 23.364L24.7782 24.7782ZM28 17C28 14.0826 26.8411 11.2847 24.7782 9.22183L23.364 10.636C25.0518 12.3239 26 14.6131 26 17H28ZM24.7782 9.22183C22.7153 7.15893 19.9174 6 17 6V8C19.3869 8 21.6761 8.94821 23.364 10.636L24.7782 9.22183ZM10.3753 8.21913C6.86634 11.0263 4.86605 14.4281 4.50411 18.4095C4.14549 22.3543 5.40799 26.7295 8.13176 31.4961L9.86824 30.5039C7.25868 25.9371 6.18785 21.9791 6.49589 18.5905C6.80061 15.2386 8.46699 12.307 11.6247 9.78087L10.3753 8.21913ZM23.6247 25.7809C27.1294 22.9771 29.1332 19.6127 29.4958 15.6632C29.8549 11.7516 28.5904 7.41119 25.8682 2.64741L24.1318 3.63969C26.7429 8.20923 27.8117 12.1304 27.5042 15.4803C27.2001 18.7924 25.5372 21.6896 22.3753 24.2191L23.6247 25.7809Z",
-                        fill: "currentColor"
+                          "M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"
                       }
                     })
                   ]
                 ),
                 _vm._v(" "),
-                _c("p", { staticClass: "text-2xl leading-6" }, [
-                  _vm._v("OvonRueden")
-                ])
+                _c("span", [_vm._v("UMP Off-Campus Accomodation")])
               ]
             ),
             _vm._v(" "),
-            _c(
-              "div",
-              {
-                staticClass: "flex justify-center items-center",
-                attrs: { "aria-label": "toggler" }
-              },
-              [
-                _c(
-                  "button",
-                  {
-                    ref: "open",
-                    staticClass: "hidden focus:outline-none focus:ring-2",
-                    attrs: { id: "open", "aria-label": "open" },
-                    on: {
-                      click: function($event) {
-                        _vm.showNav(true)
-                        _vm.indicator = !_vm.indicator
-                      }
-                    }
-                  },
-                  [
-                    _c(
-                      "svg",
-                      {
-                        staticClass: "text-indigo-200",
-                        attrs: {
-                          width: "24",
-                          height: "24",
-                          viewBox: "0 0 24 24",
-                          fill: "none",
-                          xmlns: "http://www.w3.org/2000/svg"
-                        }
-                      },
-                      [
-                        _c("path", {
-                          attrs: {
-                            d: "M4 6H20",
-                            stroke: "currentColor",
-                            "stroke-width": "1.5",
-                            "stroke-linecap": "round",
-                            "stroke-linejoin": "round"
-                          }
-                        }),
-                        _vm._v(" "),
-                        _c("path", {
-                          attrs: {
-                            d: "M4 12H20",
-                            stroke: "currentColor",
-                            "stroke-width": "1.5",
-                            "stroke-linecap": "round",
-                            "stroke-linejoin": "round"
-                          }
-                        }),
-                        _vm._v(" "),
-                        _c("path", {
-                          attrs: {
-                            d: "M4 18H20",
-                            stroke: "currentColor",
-                            "stroke-width": "1.5",
-                            "stroke-linecap": "round",
-                            "stroke-linejoin": "round"
-                          }
-                        })
-                      ]
-                    )
-                  ]
-                ),
-                _vm._v(" "),
-                _c(
-                  "button",
-                  {
-                    ref: "close",
-                    staticClass: "focus:outline-none focus:ring-2",
-                    attrs: { id: "close", "aria-label": "close" },
-                    on: {
-                      click: function($event) {
-                        _vm.showNav(true)
-                        _vm.indicator = !_vm.indicator
-                      }
-                    }
-                  },
-                  [
-                    _c(
-                      "svg",
-                      {
-                        staticClass: "text-indigo-200",
-                        attrs: {
-                          width: "24",
-                          height: "24",
-                          viewBox: "0 0 24 24",
-                          fill: "none",
-                          xmlns: "http://www.w3.org/2000/svg"
-                        }
-                      },
-                      [
-                        _c("path", {
-                          attrs: {
-                            d: "M18 6L6 18",
-                            stroke: "currentColor",
-                            "stroke-width": "1.5",
-                            "stroke-linecap": "round",
-                            "stroke-linejoin": "round"
-                          }
-                        }),
-                        _vm._v(" "),
-                        _c("path", {
-                          attrs: {
-                            d: "M6 6L18 18",
-                            stroke: "currentColor",
-                            "stroke-width": "1.5",
-                            "stroke-linecap": "round",
-                            "stroke-linejoin": "round"
-                          }
-                        })
-                      ]
-                    )
-                  ]
-                )
-              ]
-            )
-          ]
+            _vm._m(2)
+          ],
+          1
         ),
         _vm._v(" "),
         _c(
           "div",
           {
             staticClass:
-              "bg-gradient-to-r from-pink-300 via-purple-300 to-indigo-400 min-h-screen"
+              "bg-gradient-to-r from-sky-400 to-cyan-300  min-h-screen"
           },
           [
             _c("router-view", {
               attrs: { user_id: _vm.user_id, role: _vm.role }
-            }),
-            _vm._v("\n\n                    This is COntent\n\n            ")
+            })
           ],
           1
         ),
@@ -26303,39 +26051,6 @@ var render = function() {
   ])
 }
 var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      { staticClass: "flex justify-start sm:w-auto items-center space-x-2" },
-      [
-        _c("div", [
-          _c("img", {
-            attrs: {
-              src: "https://i.ibb.co/G2sDV5X/Ellipse-2-4.png",
-              alt: "avatar"
-            }
-          })
-        ]),
-        _vm._v(" "),
-        _c(
-          "div",
-          { staticClass: "flex flex-col justify-start space-y-1 items-center" },
-          [
-            _c("p", { staticClass: "text-base leading-4 text-white" }, [
-              _vm._v("Team One")
-            ]),
-            _vm._v(" "),
-            _c("p", { staticClass: "text-xs leading-3 text-indigo-200" }, [
-              _vm._v("Photo Squad")
-            ])
-          ]
-        )
-      ]
-    )
-  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
@@ -26362,89 +26077,16 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      {
-        staticClass:
-          "shadow mt-3 w-full p-4 bg-indigo-800 flex jusitfy-start items-start flex-col rounded"
-      },
-      [
-        _c("p", { staticClass: "text-base leading-none text-white" }, [
-          _vm._v("Space Utilized")
-        ]),
-        _vm._v(" "),
-        _c("p", { staticClass: "mt-3 text-xs leading-4 text-indigo-200" }, [
-          _vm._v("Total Space Utilized by the "),
-          _c("br"),
-          _vm._v("System till 28th-Mar-2021.")
-        ]),
-        _vm._v(" "),
-        _c(
-          "div",
-          {
-            staticClass: "flex justify-end items-end text-right w-full mt-2.5"
-          },
-          [
-            _c("p", { staticClass: "text-base leading-4 text-white" }, [
-              _vm._v("80%")
-            ])
-          ]
-        ),
-        _vm._v(" "),
-        _c(
-          "div",
-          { staticClass: "flex justify-start w-full items-start mt-2.5" },
-          [
-            _c("div", { staticClass: "w-10/12 h-0.5 bg-white rounded-full" }),
-            _vm._v(" "),
-            _c("div", {
-              staticClass: "w-4/12 h-0.5 bg-indigo-500 rounded-full"
-            })
-          ]
-        )
-      ]
-    )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      {
-        staticClass: "pb-8 mx-6 pt-6 flex justify-start items-center space-x-2"
-      },
-      [
-        _c("div", [
-          _c("img", {
-            attrs: {
-              src: "https://i.ibb.co/54vKnF3/Ellipse-3.png",
-              alt: "avatar"
-            }
-          })
-        ]),
-        _vm._v(" "),
-        _c(
-          "div",
-          { staticClass: "flex flex-col jusitfy-start items-start space-y-1" },
-          [
-            _c(
-              "p",
-              { staticClass: "cursor-pointer text-base leading-4 text-white" },
-              [_vm._v("David Hulk")]
-            ),
-            _vm._v(" "),
-            _c(
-              "p",
-              {
-                staticClass: "cursor-pointer text-xs leading-3 text-indigo-200"
-              },
-              [_vm._v("david@alphahulk.com")]
-            )
-          ]
-        )
-      ]
-    )
+    return _c("div", { staticClass: "flex justify-center items-center" }, [
+      _c(
+        "button",
+        {
+          staticClass:
+            "focus:bg-blue-700 bg-blue-600 hover:bg-blue-700 text-xs text-white px-3 py-3 rounded-md"
+        },
+        [_vm._v("\n                       I'm Landlord\n                ")]
+      )
+    ])
   }
 ]
 render._withStripped = true
@@ -44884,7 +44526,6 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('staff-app', __webpack_requ
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('nav-staff', __webpack_require__(/*! ./components/Layouts/Nav_Staff.vue */ "./resources/js/components/Layouts/Nav_Staff.vue")["default"]);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('foot-staff', __webpack_require__(/*! ./components/Layouts/Footer_Staff.vue */ "./resources/js/components/Layouts/Footer_Staff.vue")["default"]);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('nav-land', __webpack_require__(/*! ./components/Layouts/Nav_Landlord.vue */ "./resources/js/components/Layouts/Nav_Landlord.vue")["default"]);
-vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('nav-lands', __webpack_require__(/*! ./components/Layouts/Nav_Landlords.vue */ "./resources/js/components/Layouts/Nav_Landlords.vue")["default"]);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('foot-land', __webpack_require__(/*! ./components/Layouts/Footer_Landlord.vue */ "./resources/js/components/Layouts/Footer_Landlord.vue")["default"]);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('nav-std', __webpack_require__(/*! ./components/Layouts/Nav_Student.vue */ "./resources/js/components/Layouts/Nav_Student.vue")["default"]);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('foot-std', __webpack_require__(/*! ./components/Layouts/Footer_Student.vue */ "./resources/js/components/Layouts/Footer_Student.vue")["default"]);
@@ -45127,10 +44768,12 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _Nav_Landlord_vue_vue_type_template_id_baa95e26___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Nav_Landlord.vue?vue&type=template&id=baa95e26& */ "./resources/js/components/Layouts/Nav_Landlord.vue?vue&type=template&id=baa95e26&");
+/* harmony import */ var _Nav_Landlord_vue_vue_type_template_id_baa95e26_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Nav_Landlord.vue?vue&type=template&id=baa95e26&scoped=true& */ "./resources/js/components/Layouts/Nav_Landlord.vue?vue&type=template&id=baa95e26&scoped=true&");
 /* harmony import */ var _Nav_Landlord_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Nav_Landlord.vue?vue&type=script&lang=js& */ "./resources/js/components/Layouts/Nav_Landlord.vue?vue&type=script&lang=js&");
 /* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _Nav_Landlord_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _Nav_Landlord_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
-/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* harmony import */ var _Nav_Landlord_vue_vue_type_style_index_0_id_baa95e26_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Nav_Landlord.vue?vue&type=style&index=0&id=baa95e26&scoped=true&lang=css& */ "./resources/js/components/Layouts/Nav_Landlord.vue?vue&type=style&index=0&id=baa95e26&scoped=true&lang=css&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
 
 
 
@@ -45138,13 +44781,13 @@ __webpack_require__.r(__webpack_exports__);
 
 /* normalize component */
 
-var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__["default"])(
   _Nav_Landlord_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _Nav_Landlord_vue_vue_type_template_id_baa95e26___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _Nav_Landlord_vue_vue_type_template_id_baa95e26___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  _Nav_Landlord_vue_vue_type_template_id_baa95e26_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _Nav_Landlord_vue_vue_type_template_id_baa95e26_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
   false,
   null,
-  null,
+  "baa95e26",
   null
   
 )
@@ -45170,106 +44813,35 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/components/Layouts/Nav_Landlord.vue?vue&type=template&id=baa95e26&":
-/*!*****************************************************************************************!*\
-  !*** ./resources/js/components/Layouts/Nav_Landlord.vue?vue&type=template&id=baa95e26& ***!
-  \*****************************************************************************************/
-/*! exports provided: render, staticRenderFns */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Nav_Landlord_vue_vue_type_template_id_baa95e26___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./Nav_Landlord.vue?vue&type=template&id=baa95e26& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Layouts/Nav_Landlord.vue?vue&type=template&id=baa95e26&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Nav_Landlord_vue_vue_type_template_id_baa95e26___WEBPACK_IMPORTED_MODULE_0__["render"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Nav_Landlord_vue_vue_type_template_id_baa95e26___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
-
-
-
-/***/ }),
-
-/***/ "./resources/js/components/Layouts/Nav_Landlords.vue":
-/*!***********************************************************!*\
-  !*** ./resources/js/components/Layouts/Nav_Landlords.vue ***!
-  \***********************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _Nav_Landlords_vue_vue_type_template_id_932b2454_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Nav_Landlords.vue?vue&type=template&id=932b2454&scoped=true& */ "./resources/js/components/Layouts/Nav_Landlords.vue?vue&type=template&id=932b2454&scoped=true&");
-/* harmony import */ var _Nav_Landlords_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Nav_Landlords.vue?vue&type=script&lang=js& */ "./resources/js/components/Layouts/Nav_Landlords.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _Nav_Landlords_vue_vue_type_style_index_0_id_932b2454_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Nav_Landlords.vue?vue&type=style&index=0&id=932b2454&scoped=true&lang=css& */ "./resources/js/components/Layouts/Nav_Landlords.vue?vue&type=style&index=0&id=932b2454&scoped=true&lang=css&");
-/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
-
-
-
-
-
-
-/* normalize component */
-
-var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__["default"])(
-  _Nav_Landlords_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _Nav_Landlords_vue_vue_type_template_id_932b2454_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _Nav_Landlords_vue_vue_type_template_id_932b2454_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
-  false,
-  null,
-  "932b2454",
-  null
-  
-)
-
-/* hot reload */
-if (false) { var api; }
-component.options.__file = "resources/js/components/Layouts/Nav_Landlords.vue"
-/* harmony default export */ __webpack_exports__["default"] = (component.exports);
-
-/***/ }),
-
-/***/ "./resources/js/components/Layouts/Nav_Landlords.vue?vue&type=script&lang=js&":
-/*!************************************************************************************!*\
-  !*** ./resources/js/components/Layouts/Nav_Landlords.vue?vue&type=script&lang=js& ***!
-  \************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Nav_Landlords_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./Nav_Landlords.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Layouts/Nav_Landlords.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Nav_Landlords_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
-
-/***/ }),
-
-/***/ "./resources/js/components/Layouts/Nav_Landlords.vue?vue&type=style&index=0&id=932b2454&scoped=true&lang=css&":
-/*!********************************************************************************************************************!*\
-  !*** ./resources/js/components/Layouts/Nav_Landlords.vue?vue&type=style&index=0&id=932b2454&scoped=true&lang=css& ***!
-  \********************************************************************************************************************/
+/***/ "./resources/js/components/Layouts/Nav_Landlord.vue?vue&type=style&index=0&id=baa95e26&scoped=true&lang=css&":
+/*!*******************************************************************************************************************!*\
+  !*** ./resources/js/components/Layouts/Nav_Landlord.vue?vue&type=style&index=0&id=baa95e26&scoped=true&lang=css& ***!
+  \*******************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Nav_Landlords_vue_vue_type_style_index_0_id_932b2454_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/style-loader!../../../../node_modules/css-loader??ref--6-1!../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../node_modules/postcss-loader/src??ref--6-2!../../../../node_modules/vue-loader/lib??vue-loader-options!./Nav_Landlords.vue?vue&type=style&index=0&id=932b2454&scoped=true&lang=css& */ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Layouts/Nav_Landlords.vue?vue&type=style&index=0&id=932b2454&scoped=true&lang=css&");
-/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Nav_Landlords_vue_vue_type_style_index_0_id_932b2454_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Nav_Landlords_vue_vue_type_style_index_0_id_932b2454_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__);
-/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Nav_Landlords_vue_vue_type_style_index_0_id_932b2454_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Nav_Landlords_vue_vue_type_style_index_0_id_932b2454_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
- /* harmony default export */ __webpack_exports__["default"] = (_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Nav_Landlords_vue_vue_type_style_index_0_id_932b2454_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default.a); 
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Nav_Landlord_vue_vue_type_style_index_0_id_baa95e26_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/style-loader!../../../../node_modules/css-loader??ref--6-1!../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../node_modules/postcss-loader/src??ref--6-2!../../../../node_modules/vue-loader/lib??vue-loader-options!./Nav_Landlord.vue?vue&type=style&index=0&id=baa95e26&scoped=true&lang=css& */ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Layouts/Nav_Landlord.vue?vue&type=style&index=0&id=baa95e26&scoped=true&lang=css&");
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Nav_Landlord_vue_vue_type_style_index_0_id_baa95e26_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Nav_Landlord_vue_vue_type_style_index_0_id_baa95e26_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__);
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Nav_Landlord_vue_vue_type_style_index_0_id_baa95e26_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Nav_Landlord_vue_vue_type_style_index_0_id_baa95e26_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Nav_Landlord_vue_vue_type_style_index_0_id_baa95e26_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default.a); 
 
 /***/ }),
 
-/***/ "./resources/js/components/Layouts/Nav_Landlords.vue?vue&type=template&id=932b2454&scoped=true&":
-/*!******************************************************************************************************!*\
-  !*** ./resources/js/components/Layouts/Nav_Landlords.vue?vue&type=template&id=932b2454&scoped=true& ***!
-  \******************************************************************************************************/
+/***/ "./resources/js/components/Layouts/Nav_Landlord.vue?vue&type=template&id=baa95e26&scoped=true&":
+/*!*****************************************************************************************************!*\
+  !*** ./resources/js/components/Layouts/Nav_Landlord.vue?vue&type=template&id=baa95e26&scoped=true& ***!
+  \*****************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Nav_Landlords_vue_vue_type_template_id_932b2454_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./Nav_Landlords.vue?vue&type=template&id=932b2454&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Layouts/Nav_Landlords.vue?vue&type=template&id=932b2454&scoped=true&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Nav_Landlords_vue_vue_type_template_id_932b2454_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Nav_Landlord_vue_vue_type_template_id_baa95e26_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./Nav_Landlord.vue?vue&type=template&id=baa95e26&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Layouts/Nav_Landlord.vue?vue&type=template&id=baa95e26&scoped=true&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Nav_Landlord_vue_vue_type_template_id_baa95e26_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Nav_Landlords_vue_vue_type_template_id_932b2454_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Nav_Landlord_vue_vue_type_template_id_baa95e26_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 
@@ -45692,9 +45264,17 @@ var NotFound = function NotFound() {
   }, // Landlord Routes
   {
     path: '/landlord',
+    name: 'landlord_landing',
+    component: Dashboard_Landlord
+  }, {
+    path: '/landlord/dashboard',
     name: 'dashboard_landlord',
     component: Dashboard_Landlord
-  }, // Landlord Routes
+  }, {
+    path: '/landlord/profile',
+    name: 'profile_landlord',
+    component: Profile_Edit
+  }, // Student Routes
   {
     path: '/student',
     name: 'dashboard_student',

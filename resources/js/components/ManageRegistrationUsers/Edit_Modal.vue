@@ -2,7 +2,7 @@
 <template>
    <div class="modal h-screen w-full  fixed left-0 top-0 flex justify-center z-10 items-center bg-black bg-opacity-50" >
     <!-- modal -->
-    <div class="bg-gradient-to-b from-pink-300 via-purple-300 to-indigo-400 rounded max-h-full overflow-y-auto shadow-lg w-11/12 md:w-1/3" >
+    <div :class="[modalBackground]" class="rounded max-h-full overflow-y-auto shadow-lg w-11/12 md:w-1/3" >
       <!-- modal header -->
       <div class="border-b px-4 py-2 flex justify-between items-center">
         <h3 class="font-semibold text-lg">Edit Profile</h3>
@@ -43,7 +43,7 @@
                     <span class="flex text-red-500 ml-24">{{ errors.get('email')}}</span>
                 </div>
 
-                <div class="flex items-center">
+                <!-- <div class="flex items-center">
                     <label for="number" class="inline-block w-20 mr-6 text-right font-bold text-gray-600">Password</label>
                     <input :type="type" id="password" name="password" placeholder="password" v-model="form.password"
                         class="flex-1 py-2 border-2 border-gray-400 focus:border-green-400 text-gray-600 placeholder-gray-400 outline-none">
@@ -71,7 +71,7 @@
                 </div>
                 <div class="mb-5">
                     <span class="flex text-red-500 ml-24">{{ errors.get('password')}}</span>
-                </div>
+                </div> -->
 
 
 
@@ -99,7 +99,7 @@
 
                 <div class="flex items-center mb-5">
                     <label for="name" class="inline-block w-20 mr-6 text-right font-bold text-gray-600">Profile Description</label>
-                    <textarea name="des" rows="4" cols="33" placeholder="Profile descriptions"
+                    <textarea name="des" rows="4" cols="20" placeholder="Profile descriptions"
                     class="flex-1 mr-5 px-3 py-2 border-2 border-gray-400 focus:border-green-400 text-gray-600 placeholder-gray-400 outline-none" v-model="form.des"/>
 
                 </div>
@@ -145,6 +145,7 @@ components: {
             type: 'password',
             btnText: 'Show Password',
             isVisible: false,
+            modalBackground: '',
 
         }
     },
@@ -181,18 +182,18 @@ components: {
          closeModal(){
              this.$emit("closeModal");
          },
-
-
-
-
-
-
-
-
-
-
-
-
+        getRole(){
+            if(this.role == 1){
+                this.modalBackground = 'bg-gradient-to-b from-pink-300 via-purple-300 to-indigo-400'
+            }else if (this.role == 2){
+                this.modalBackground = 'bg-gradient-to-br from-sky-400 to-cyan-300'
+            }else{
+                this.modalBackground = 'bg-gradient-to-b from-pink-300 via-purple-300 to-indigo-400'
+            }
+          }
+    },
+    mounted: function(){
+        this.getRole();
     },
 };
 

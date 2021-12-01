@@ -139,7 +139,12 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
+      background: '',
+      borderColor: '',
+      buttonColor: '',
       userProfile: [],
+      route_id: this.$route.params.id,
+      route_role: this.$route.params.role,
       userRole: '',
       form: {
         id: '',
@@ -180,11 +185,22 @@ __webpack_require__.r(__webpack_exports__);
       this.form.des = user.des;
     },
     getRole: function getRole() {
-      if (this.role === 1) {
+      if (this.role == 1) {
         this.userRole = 'Student';
-      } else if (this.role === 2) {
+        this.background = 'bg-yellow-200';
+        this.borderColor = 'border-yellow-400';
+        this.buttonColor = 'bg-yellow-500 hover:bg-yellow-600';
+      } else if (this.role == 2) {
         this.userRole = 'Landlord';
-      } else this.userRole = 'Staff';
+        this.background = 'bg-blue-200';
+        this.borderColor = 'border-blue-400';
+        this.buttonColor = 'bg-blue-500 hover:bg-blue-600';
+      } else {
+        this.userRole = 'Staff';
+        this.background = 'bg-pink-200';
+        this.borderColor = 'border-pink-400';
+        this.buttonColor = 'bg-pink-500 hover:bg-pink-600';
+      }
     }
   },
   mounted: function mounted() {
@@ -255,7 +271,8 @@ var render = function() {
             "div",
             {
               staticClass:
-                "relative flex flex-col min-w-0 break-words bg-pink-200 w-full mb-6 shadow-xl rounded-lg -mt-64"
+                " relative flex flex-col min-w-0 break-words w-full mb-6 shadow-xl rounded-lg -mt-64",
+              class: [_vm.background]
             },
             [
               _c(
@@ -276,8 +293,12 @@ var render = function() {
                           [
                             _c("img", {
                               staticClass:
-                                "shadow-xl rounded-full h-44  align-middle border-4 border-pink-400 absolute -m-16 -ml-20 lg:-ml-16 max-w-200-px",
-                              attrs: { src: "/images/Profile/" + user.pic }
+                                "shadow-xl rounded-full h-48 w-48 object-cover  align-middle border-4 absolute -m-16 -ml-10 lg:-ml-16 max-w-200-px",
+                              class: [_vm.borderColor],
+                              attrs: {
+                                src: "/images/Profile/" + user.pic,
+                                alt: "Profile"
+                              }
                             })
                           ]
                         )
@@ -303,7 +324,8 @@ var render = function() {
                               "button",
                               {
                                 staticClass:
-                                  "bg-pink-500 active:bg-pink-600 uppercase text-white font-bold hover:shadow-md shadow text-base px-6 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1 ease-linear transition-all duration-150",
+                                  " uppercase text-white font-bold hover:shadow-md shadow text-base px-6 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1 ease-linear transition-all duration-150",
+                                class: [_vm.buttonColor],
                                 attrs: { type: "button" },
                                 on: {
                                   click: function($event) {

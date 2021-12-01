@@ -1,7 +1,7 @@
 <template>
 <div>
-    <!-- <nav-land :user_id="user_id" :role="role"> </nav-land> -->
-    <nav-lands :user_id="user_id" :role="role"> </nav-lands>
+
+    <nav-land :user_id="user_id" :role="role"> </nav-land>
 
 
 

@@ -261,7 +261,8 @@ var Errors = /*#__PURE__*/function () {
       errors: new Errors(),
       type: 'password',
       btnText: 'Show Password',
-      isVisible: false
+      isVisible: false,
+      modalBackground: ''
     };
   },
   methods: {
@@ -300,7 +301,19 @@ var Errors = /*#__PURE__*/function () {
     },
     closeModal: function closeModal() {
       this.$emit("closeModal");
+    },
+    getRole: function getRole() {
+      if (this.role == 1) {
+        this.modalBackground = 'bg-gradient-to-b from-pink-300 via-purple-300 to-indigo-400';
+      } else if (this.role == 2) {
+        this.modalBackground = 'bg-gradient-to-br from-sky-400 to-cyan-300';
+      } else {
+        this.modalBackground = 'bg-gradient-to-b from-pink-300 via-purple-300 to-indigo-400';
+      }
     }
+  },
+  mounted: function mounted() {
+    this.getRole();
   }
 });
 
@@ -458,7 +471,8 @@ var render = function() {
         "div",
         {
           staticClass:
-            "bg-gradient-to-b from-pink-300 via-purple-300 to-indigo-400 rounded max-h-full overflow-y-auto shadow-lg w-11/12 md:w-1/3"
+            "rounded max-h-full overflow-y-auto shadow-lg w-11/12 md:w-1/3",
+          class: [_vm.modalBackground]
         },
         [
           _c(
@@ -605,200 +619,6 @@ var render = function() {
                 {
                   staticClass:
                     "inline-block w-20 mr-6 text-right font-bold text-gray-600",
-                  attrs: { for: "number" }
-                },
-                [_vm._v("Password")]
-              ),
-              _vm._v(" "),
-              _vm.type === "checkbox"
-                ? _c("input", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.form.password,
-                        expression: "form.password"
-                      }
-                    ],
-                    staticClass:
-                      "flex-1 py-2 border-2 border-gray-400 focus:border-green-400 text-gray-600 placeholder-gray-400 outline-none",
-                    attrs: {
-                      id: "password",
-                      name: "password",
-                      placeholder: "password",
-                      type: "checkbox"
-                    },
-                    domProps: {
-                      checked: Array.isArray(_vm.form.password)
-                        ? _vm._i(_vm.form.password, null) > -1
-                        : _vm.form.password
-                    },
-                    on: {
-                      change: function($event) {
-                        var $$a = _vm.form.password,
-                          $$el = $event.target,
-                          $$c = $$el.checked ? true : false
-                        if (Array.isArray($$a)) {
-                          var $$v = null,
-                            $$i = _vm._i($$a, $$v)
-                          if ($$el.checked) {
-                            $$i < 0 &&
-                              _vm.$set(_vm.form, "password", $$a.concat([$$v]))
-                          } else {
-                            $$i > -1 &&
-                              _vm.$set(
-                                _vm.form,
-                                "password",
-                                $$a.slice(0, $$i).concat($$a.slice($$i + 1))
-                              )
-                          }
-                        } else {
-                          _vm.$set(_vm.form, "password", $$c)
-                        }
-                      }
-                    }
-                  })
-                : _vm.type === "radio"
-                ? _c("input", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.form.password,
-                        expression: "form.password"
-                      }
-                    ],
-                    staticClass:
-                      "flex-1 py-2 border-2 border-gray-400 focus:border-green-400 text-gray-600 placeholder-gray-400 outline-none",
-                    attrs: {
-                      id: "password",
-                      name: "password",
-                      placeholder: "password",
-                      type: "radio"
-                    },
-                    domProps: { checked: _vm._q(_vm.form.password, null) },
-                    on: {
-                      change: function($event) {
-                        return _vm.$set(_vm.form, "password", null)
-                      }
-                    }
-                  })
-                : _c("input", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.form.password,
-                        expression: "form.password"
-                      }
-                    ],
-                    staticClass:
-                      "flex-1 py-2 border-2 border-gray-400 focus:border-green-400 text-gray-600 placeholder-gray-400 outline-none",
-                    attrs: {
-                      id: "password",
-                      name: "password",
-                      placeholder: "password",
-                      type: _vm.type
-                    },
-                    domProps: { value: _vm.form.password },
-                    on: {
-                      input: function($event) {
-                        if ($event.target.composing) {
-                          return
-                        }
-                        _vm.$set(_vm.form, "password", $event.target.value)
-                      }
-                    }
-                  }),
-              _vm._v(" "),
-              _c(
-                "button",
-                {
-                  staticClass:
-                    "mr-2 py-2 px-2 rounded-l-none  border-gray-400 focus:border-green-400 outline-none",
-                  on: { click: _vm.showPassword }
-                },
-                [
-                  _vm.isVisible
-                    ? _c("div", [
-                        _c(
-                          "svg",
-                          {
-                            staticClass: "w-6 h-6",
-                            attrs: {
-                              fill: "none",
-                              stroke: "currentColor",
-                              viewBox: "0 0 24 24",
-                              xmlns: "http://www.w3.org/2000/svg"
-                            }
-                          },
-                          [
-                            _c("path", {
-                              attrs: {
-                                "stroke-linecap": "round",
-                                "stroke-linejoin": "round",
-                                "stroke-width": "2",
-                                d: "M15 12a3 3 0 11-6 0 3 3 0 016 0z"
-                              }
-                            }),
-                            _vm._v(" "),
-                            _c("path", {
-                              attrs: {
-                                "stroke-linecap": "round",
-                                "stroke-linejoin": "round",
-                                "stroke-width": "2",
-                                d:
-                                  "M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
-                              }
-                            })
-                          ]
-                        )
-                      ])
-                    : _vm._e(),
-                  _vm._v(" "),
-                  !_vm.isVisible
-                    ? _c("div", [
-                        _c(
-                          "svg",
-                          {
-                            staticClass: "w-6 h-6",
-                            attrs: {
-                              fill: "none",
-                              stroke: "currentColor",
-                              viewBox: "0 0 24 24",
-                              xmlns: "http://www.w3.org/2000/svg"
-                            }
-                          },
-                          [
-                            _c("path", {
-                              attrs: {
-                                "stroke-linecap": "round",
-                                "stroke-linejoin": "round",
-                                "stroke-width": "2",
-                                d:
-                                  "M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l3.59 3.59m0 0A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21"
-                              }
-                            })
-                          ]
-                        )
-                      ])
-                    : _vm._e()
-                ]
-              )
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "mb-5" }, [
-              _c("span", { staticClass: "flex text-red-500 ml-24" }, [
-                _vm._v(_vm._s(_vm.errors.get("password")))
-              ])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "flex items-center" }, [
-              _c(
-                "label",
-                {
-                  staticClass:
-                    "inline-block w-20 mr-6 text-right font-bold text-gray-600",
                   attrs: { for: "name" }
                 },
                 [_vm._v("Phone number")]
@@ -921,7 +741,7 @@ var render = function() {
                 attrs: {
                   name: "des",
                   rows: "4",
-                  cols: "33",
+                  cols: "20",
                   placeholder: "Profile descriptions"
                 },
                 domProps: { value: _vm.form.des },

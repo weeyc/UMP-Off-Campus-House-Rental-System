@@ -22,7 +22,7 @@
             <div class="w-full px-4 lg:order-1 flex justify-center">
 
               <div v-for= "user in userProfile" :key="user.id" class="relative">
-                  <img :src="'/images/Profile/'+user.pic" :class="[borderColor]" class="shadow-xl rounded-full h-44  align-middle border-4  absolute -m-16 -ml-20 lg:-ml-16 max-w-200-px">
+                  <img :src="'/images/Profile/'+user.pic" :class="[borderColor]" class="shadow-xl rounded-full h-48 w-48 object-cover  align-middle border-4 absolute -m-16 -ml-10 lg:-ml-16 max-w-200-px" alt="Profile">
               </div>
             </div>
             <div class="w-full px-4 lg:order-2 lg:text-right lg:self-center">

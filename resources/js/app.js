@@ -35,7 +35,6 @@ Vue.component('nav-staff', require('./components/Layouts/Nav_Staff.vue').default
 Vue.component('foot-staff', require('./components/Layouts/Footer_Staff.vue').default);
 
 Vue.component('nav-land', require('./components/Layouts/Nav_Landlord.vue').default);
-Vue.component('nav-lands', require('./components/Layouts/Nav_Landlords.vue').default);
 Vue.component('foot-land', require('./components/Layouts/Footer_Landlord.vue').default);
 
  Vue.component('nav-std', require('./components/Layouts/Nav_Student.vue').default);
