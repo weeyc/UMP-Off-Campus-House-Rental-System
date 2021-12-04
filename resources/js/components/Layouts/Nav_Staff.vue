@@ -240,7 +240,7 @@ export default {
     mounted: function(){
             this.getProfile();
             this.$root.$on('refreshData', data => {
-             this.getProfile();
+            this.getProfile();
           });
     },
 

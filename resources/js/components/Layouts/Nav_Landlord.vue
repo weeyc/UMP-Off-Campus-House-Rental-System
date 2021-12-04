@@ -1,8 +1,11 @@
 <template>
-    <body class="relative flex min-h-screen" >
+    <body class="flex flex-col h-screen" >
 
 <!-- side bar -->
-         <div :class="[transition]" class=" transform  shadow  inset-y-0 left-0 h-auto  ease-in-out transition-none duration-75"  style="background-color: #161616;">
+    <div class="flex flex-1 overflow-hidden">
+
+
+         <div :class="[transition]" class=" transform  shadow  inset-y-0 left-0 h-auto  ease-in-out transition-none duration-75     bg-gradient-to-br from-cool-gray-900 to-bg-gradient-to-r-gray-600"  style="background-color: #2b2a33;">
 
              <router-link  :to="{name: 'landlord_landing'}" class="hidden focus:outline-none hover:text-indigo-200 focus:text-indigo-200 text-white sm:flex justify-start p-6 items-center space-x-3 w-full">
                    <div class="  row-span-2 justify-self-end animate-bounce">
@@ -36,23 +39,24 @@
                         </svg>
                         <p class="text-base leading-4 ">Dashboard</p>
                     </router-link>
-                 <button :class="[hover]" class="focus:outline-none flex jusitfy-start  py-3 items-center space-x-6 w-full">
+
+                  <router-link  :to="{name: 'property_list'}" active-class="active" :class="[hover]" class="focus:outline-none flex jusitfy-start  py-3 items-center space-x-6 w-full">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M19 5H5C3.89543 5 3 5.89543 3 7V17C3 18.1046 3.89543 19 5 19H19C20.1046 19 21 18.1046 21 17V7C21 5.89543 20.1046 5 19 5Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                             <path d="M3 7L12 13L21 7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                         </svg>
                         <p class="text-base leading-4">My Property List</p>
-                    </button>
-                <button :class="[hover]" class="focus:outline-none flex jusitfy-start  py-3 items-center space-x-6 w-full">
+                    </router-link >
+                 <router-link  :to="{name: 'property_list'}" active-class="active" :class="[hover]" class="focus:outline-none flex jusitfy-start  py-3 items-center space-x-6 w-full">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M12 11C14.2091 11 16 9.20914 16 7C16 4.79086 14.2091 3 12 3C9.79086 3 8 4.79086 8 7C8 9.20914 9.79086 11 12 11Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                             <path d="M6 21V19C6 17.9391 6.42143 16.9217 7.17157 16.1716C7.92172 15.4214 8.93913 15 10 15H14C15.0609 15 16.0783 15.4214 16.8284 16.1716C17.5786 16.9217 18 17.9391 18 19V21" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                         </svg>
 
                         <p class="text-base leading-4">My Rental Property</p>
-                    </button>
+                    </router-link>
 
-                  <button :class="[hover]" class="focus:outline-none flex jusitfy-start  py-3 items-center space-x-6 w-full">
+                  <router-link  :to="{name: 'property_list'}" active-class="active" :class="[hover]" class="focus:outline-none flex jusitfy-start  py-3 items-center space-x-6 w-full">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M18 5H6C4.89543 5 4 5.89543 4 7V19C4 20.1046 4.89543 21 6 21H18C19.1046 21 20 20.1046 20 19V7C20 5.89543 19.1046 5 18 5Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                             <path d="M16 3V7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
@@ -61,13 +65,13 @@
                             <path d="M10 16H14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                         </svg>
                         <p class="text-base leading-4">Report</p>
-                    </button>
+                    </router-link>
             </div>
             <div class="px-6 my-4 w-full">
-                <hr class="border-indigo-400 w-full" />
+                <hr class="border-blue-400 w-full" />
             </div>
             <div class="mt-4 px-6 flex justify-start w-full items-start">
-                <p class="text-base leading-4 text-indigo-200">Shortcuts</p>
+                <p class="text-base leading-4 text-blue-500">Shortcuts</p>
             </div>
             <div class="mt-4 flex flex-col px-6 justify-start items-center w-full">
                  <button :class="[hover]" class="focus:outline-none flex jusitfy-start  py-3 items-center space-x-6 w-full">
@@ -97,28 +101,39 @@
 
 
 
-    <div class="flex-1 ">
+    <div class="flex flex-1 flex-col">
         <!-- top bar -->
-        <div class=" rounded-r shadow  flex justify-between w-full p-6 items-center border-b border-transparent sm:border-gray-200" style="background-color: #181818;">
-              <div  class="flex justify-center items-center">
+        <div class=" rounded-r shadow-lg  flex justify-between w-full p-6 items-center border-b border-transparent sm:border-gray-200      bg-gradient-to-br from-cool-gray-900 to-bg-gradient-to-r-gray-600" style="background-color: #23252f;">
+              <div  class="flex justify-start items-center">
                 <button  @click="showNav()" class="">
-                        <svg class="text-indigo-200" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <svg class="text-blue-400 hover:text-blue-500" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M4 6H20" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                             <path d="M4 12H20" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                             <path d="M4 18H20" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                         </svg>
                     </button>
+                    <!-- <button  @click="showNav()" class="ml-24 mr-5">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="text-blue-400 hover:text-blue-500 h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 15l-3-3m0 0l3-3m-3 3h8M3 12a9 9 0 1118 0 9 9 0 01-18 0z" />
+                            </svg>
+                    </button>
+                    <button  @click="showNav()" class="">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="text-blue-400 hover:text-blue-500 h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 9l3 3m0 0l-3 3m3-3H8m13 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                    </button> -->
             </div>
+
              <router-link  :to="{name: 'landlord_landing'}" class="flex text-blue-400 text-2xl font-black tracking-wide hover:text-blue-500 focus:outline-none focus:text-blue-500 justify-between items-center space-x-3">
                    <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" viewBox="0 0 20 20" fill="currentColor">
                         <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z" />
                     </svg>
                      <span>UMP Off-Campus Accomodation</span>
              </router-link >
-            <div  class="flex justify-center items-center">
-                <button  class="focus:bg-blue-700 bg-blue-600 hover:bg-blue-700 text-xs text-white px-3 py-3 rounded-md">
+            <div  class="flex justify-end items-center">
+                 <router-link  :to="{name: 'profile_landlord'}" class=" bg-blue-600 hover:bg-blue-700 text-xs text-white px-3 py-3 rounded-md">
                        I'm Landlord
-                </button>
+                </router-link >
             </div>
         </div>
         <!-- top bar -->
@@ -126,13 +141,19 @@
 
 
         <!-- Content -->
-                <div class="bg-gradient-to-r from-sky-400 to-cyan-300  min-h-screen" >
+                <div class="bg-gradient-to-r from-sky-400 to-cyan-300  overflow-y-auto  min-h-screen" >
                     <router-view :user_id="user_id" :role="role"></router-view>
+
                 </div>
-                    <foot-land class="bottom-0 w-full"/>
+
+                  <foot-land class="bottom-0 w-full hidden"/>
+
+
         <!-- Content -->
 
      </div>
+
+      </div>
 
     </body>
 </template>
@@ -147,8 +168,7 @@ export default {
     data() {
 
         return {
-             userProfile: [],
-
+            userProfile: [],
             transition:'',
             indicator: false,
             hover:'text-blue-200 hover:text-blue-500 focus:text-blue-500 border-l-4 pl-4',

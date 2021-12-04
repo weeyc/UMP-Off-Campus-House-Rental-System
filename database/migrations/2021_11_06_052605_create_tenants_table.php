@@ -15,14 +15,16 @@ class CreateTenantsTable extends Migration
     {
         Schema::create('tenants', function (Blueprint $table) {
 
-            $table->id('tenant_id');
+            $table->increments('tenant_id');
 
             $table->integer('student_id');
-            $table->integer('propertyRental_id');
             $table->integer('property_id');
+            $table->integer('room_id');
 
-            $table->string('tenant_status');
-            $table->string('tenancy_period');
+            $table->string('tenant_status')->nullable();;
+            $table->string('tenancy_period')->nullable();;
+            $table->date('move-in-date')->nullable();;
+            $table->string('tenancy_invitation')->nullable();
 
 
             // $table->string('cust_status')->default('Active');

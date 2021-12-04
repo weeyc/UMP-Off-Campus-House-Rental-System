@@ -15,20 +15,17 @@ class CreateBillsTable extends Migration
     {
         Schema::create('bills', function (Blueprint $table) {
 
-            $table->id('bills_id');
-
+            $table->increments('bills_id');
             $table->integer('tenant_id');
-            $table->integer('propertyRental_id');
-
-            $table->string('landlord_name');
-            $table->string('payment_status');
-
-            $table->float('utilities_bills');
-            $table->float('total_bills');
-
-            $table->date('bills_date');
-
-
+            $table->integer('property_id');
+            $table->integer('room_id');
+            $table->integer('previous_bill_id')->nullable();
+            $table->integer('landlord_id')->nullable();
+            $table->string('payment_status')->default('unpaid');
+            $table->string('bill_status')->nullable();;
+            $table->float('penalty_fees')->nullable();
+            $table->float('total_bills')->nullable();;
+            $table->timestamp('bills_date');
 
             // $table->string('cust_status')->default('Active');
             // $table->timestamps();

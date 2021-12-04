@@ -48,7 +48,16 @@ Vue.component('std-register', require('./components/ManageRegistrationUsers/Regi
 
 //Vue.component('manage-std', require('./components/ManageRegistrationUsers/Manage_Student.vue').default);
 
+import * as VueGoogleMaps from "vue2-google-maps" // Import package
 
+Vue.config.productionTip = false
+
+Vue.use(VueGoogleMaps, {
+  load: {
+    key: "AIzaSyDUQPjmwfkQYvH9DWGcryjB1SagML7bFYA",
+    libraries: "places"
+  }
+});
 
 
 
@@ -57,3 +66,8 @@ const app = new Vue({
     router: new VueRouter(routes)
 });
 
+
+
+// new Vue({
+//   render: h => h(App),
+// }).$mount('#app')

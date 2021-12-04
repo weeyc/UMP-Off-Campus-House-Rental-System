@@ -15,17 +15,15 @@ class CreateBookingsTable extends Migration
     {
         Schema::create('bookings', function (Blueprint $table) {
 
-            $table->id('booking_id');
-
+            $table->increments('booking_id');
             $table->integer('student_id');
             $table->integer('property_id');
-
-            $table->string('period_tenancy');
-            $table->string('phone');
-
+            $table->integer('room_id');
+            $table->string('period_tenancy')->nullable();;
+            $table->timestamp('booking_date');
+            $table->string('phone')->nullable();;
             $table->float('booking_fees');
-
-            $table->date('move_in_date');
+            $table->date('move_in_date')->nullable();;
 
             // $table->string('cust_status')->default('Active');
             // $table->timestamps();

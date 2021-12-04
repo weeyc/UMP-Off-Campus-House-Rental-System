@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Route;
 Route::post('register_std', 'UserController@signUp_Std');
 Route::post('register_landlord', 'UserController@signUp_landlord');
 Route::post('create_staff', 'UserController@create_Staff');
+
 Route::post('logout', 'UserController@logout');
 Route::get('get_std', 'UserController@getStudent');
 Route::get('get_landlord', 'UserController@getLandlord');
@@ -23,6 +24,8 @@ Route::delete('delete_staff/{id}', 'UserController@delete_Staff');
 
 Route::get('get_profile/{id}/{role}', 'UserController@get_Profile');
 Route::post('update_profile/{id}/{role}', 'UserController@update_Profile');
+
+Route::post('create_property', 'PropertyListController@create_Property');
 
 
 

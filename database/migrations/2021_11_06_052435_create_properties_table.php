@@ -14,25 +14,18 @@ class CreatePropertiesTable extends Migration
     public function up()
     {
         Schema::create('properties', function (Blueprint $table) {
-            $table->id('property_id');
-
-
-            $table->integer('landlord_id');
-
-            $table->string('type_of_rental');
-            $table->string('property_name');
-            $table->string('location');
-            $table->string('address');
-            $table->string('listing_status');
-
-            $table->integer('max_num_tenants');
-
-            $table->date('date_appointment');
-
-            $table->float('monthly_rental');
-            $table->float('booking_fees');
-
-
+            $table->increments('property_id');
+            $table->integer('landlord_id')->nullable();
+            $table->string('property_name')->nullable();
+            $table->decimal('latitude', 8, 6)->nullable();
+            $table->decimal('logitude', 9, 6)->nullable();
+            $table->string('address')->nullable();
+            $table->string('postcode')->nullable();
+            $table->string('description')->nullable();
+            $table->string('campus')->nullable();
+            $table->string('property_furnishing')->nullable();
+            $table->string('verify_status')->default('unverified');
+            $table->string('Verify_by')->nullable();
 
             // $table->string('cust_status')->default('Active');
             // $table->timestamps();

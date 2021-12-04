@@ -15,17 +15,12 @@ class CreatePaymentsTable extends Migration
     {
         Schema::create('payments', function (Blueprint $table) {
 
-            $table->id('payment_id');
-
+            $table->increments('payment_id');
             $table->integer('student_id');
-
             $table->string('payment_details');
             $table->string('payment_status');
-
             $table->float('total_payment');
-
-
-            $table->date('payment_date');
+            $table->timestamp('payment_date');
 
             // $table->string('cust_status')->default('Active');
             // $table->timestamps();

@@ -10,6 +10,11 @@ const Landing_Staff = () => import(/* webpackChunkName: "Landing_Staff" */'./com
 
 
 const Dashboard_Landlord = () => import(/* webpackChunkName: "Landing_Staff" */'./components/ManageRegistrationUsers/Dashboard_Landlord');
+const PropertyList_landlord = () => import(/* webpackChunkName: "PropertyList_landlord" */'./components/ManagePropertyList/PropertyList_landlord');
+const Add_Property = () => import(/* webpackChunkName: "Add_Property" */'./components/ManagePropertyList/Add_Property');
+
+
+
 const Dashboard_Student = () => import(/* webpackChunkName: "Landing_Staff" */'./components/ManageRegistrationUsers/Dashboard_Student');
 
 
@@ -17,11 +22,13 @@ const NotFound = () => import(/* webpackChunkName: "NotFound" */'./components/No
 
 
 export default{
+    props: {
+        user_id: Number,
+        role: Number
+    },
     mode: 'history',
-
-//    linkActiveClass: 'active', // active class for non-exact links.
-//    linkExactActiveClass: 'active', // active class for *exact* links.
     routes: [
+
         {
             path: '*',
             component: NotFound
@@ -95,6 +102,16 @@ export default{
             name: 'profile_landlord',
             component: Profile_Edit,
         },
+        {
+            path: '/landlord/property_list',
+            name: 'property_list',
+            component: PropertyList_landlord,
+        },
+        {
+            path: '/landlord/add_property',
+            name: 'add_property',
+            component: Add_Property,
+        },
 
 
 
@@ -104,8 +121,18 @@ export default{
            // Student Routes
            {
             path: '/student',
+            name: 'student_landing',
+            component: Dashboard_Student,
+        },
+        {
+            path: '/student/dashboard',
             name: 'dashboard_student',
             component: Dashboard_Student,
+        },
+        {
+            path: '/student/profile',
+            name: 'profile_student',
+            component: Profile_Edit,
         },
 
 

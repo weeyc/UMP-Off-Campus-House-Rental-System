@@ -1,6 +1,7 @@
 {
     "/js/app.js": "/js/app.js",
     "/css/app.css": "/css/app.css",
+    "/Add_Property.js": "/Add_Property.js",
     "/Landing_Staff.js": "/Landing_Staff.js",
     "/Manage_Landlord.js": "/Manage_Landlord.js",
     "/Manage_Staff.js": "/Manage_Staff.js",
@@ -9,5 +10,6 @@
     "/Profile_Edit.js": "/Profile_Edit.js",
     "/Profile_Edit~Profile_View.js": "/Profile_Edit~Profile_View.js",
     "/Profile_View.js": "/Profile_View.js",
+    "/PropertyList_landlord.js": "/PropertyList_landlord.js",
     "/Tab_Staff_Users.js": "/Tab_Staff_Users.js"
 }

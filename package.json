@@ -34,6 +34,7 @@
         "sweetalert2": "^11.2.0",
         "v-toaster": "^1.0.3",
         "vform": "^2.1.2",
-        "vue-router": "^3.3.4"
+        "vue-router": "^3.3.4",
+        "vue2-google-maps": "^0.10.7"
     }
 }
