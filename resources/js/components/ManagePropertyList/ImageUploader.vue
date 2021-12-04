@@ -30,11 +30,11 @@
                     <span class="size" v-text="getFileSize(files[index].size)"></span>
                     <button @click="removeImage(index)">Remove</button>
                      <select v-model="imageLabel[index]" class="block w-full px-4 py-2 mt-1 text-gray-700 bg-white border border-1  focus:border-blue-500 focus:outline-none focus:ring" name="campus">
+                            <option class="text-Blue-700 text-sm" value="Cover"> Image Cover </option>
                             <option class="text-gray-700 text-sm" value="Living Hall"> Living Hall</option>
                             <option class="text-gray-700 text-sm" value="Toilet"> Toilet </option>
                             <option class="text-gray-700 text-sm" value="Kitchen"> Kitchen </option>
-                            <option class="text-gray-700 text-sm" value="Bakcony"> Balcony </option>
-                            <option class="text-gray-700 text-sm" value="Other"> Other </option>
+                            <option class="text-gray-700 text-sm" value="Balcony"> Balcony </option>
                         </select>
                 </div>
             </div>

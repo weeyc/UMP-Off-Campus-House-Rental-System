@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div>
+    <div class="hidden">
       <h2>Vue Js Search and Add Marker</h2>
 
       <label>
@@ -12,17 +12,23 @@
 
     </div>
     <br>
-    <gmap-map
-        :zoom="16"
-        :center="center"
-        style="width:100%;  height: 200px;"
-      >
-      <gmap-marker
-        :position="center"
-        :draggable="true"
-        @drag="updateCoordinates"
-      ></gmap-marker>
-    </gmap-map>
+
+            <gmap-map
+                :zoom="16"
+                :center="center"
+                style="width:100%;  height: 200px;"
+            >
+            <gmap-marker
+                :position="center"
+                :draggable="true"
+                @drag="updateCoordinates"
+
+            ></gmap-marker>
+            </gmap-map>
+    <!-- :key="index"
+        v-for="(m, index) in locationMarkers"
+        :position="m.position"
+        @click="center=m.position" -->
   </div>
 </template>
 
@@ -39,10 +45,10 @@ export default {
         locPlaces: [],
         existingPlace: null,
         start: 0,
-        coordinate:{
+
             lat: null,
             lng: null,
-        }
+
     };
   },
     mounted:  function(){
@@ -57,15 +63,15 @@ export default {
 
   methods: {
       updateCoordinates(location) {
-            this.center = {
-                lat: location.latLng.lat(),
-                lng: location.latLng.lng(),
-            };
-             this.$emit('getCoordinate', this.center)
+
+                this.lat =  location.latLng.lat(),
+                this.lng = location.latLng.lng(),
+
+             this.$emit('getCoordinate', this.lat, this.lng)
 
         },
         activate() {
-            setTimeout(() => this.$emit('getCoordinate', this.coordinate), 10000);
+            setTimeout(() => this.$emit('getCoordinate', this.lat, this.lng), 10000);
         },
 
     initMarker(loc) {
@@ -89,10 +95,10 @@ export default {
           lat: res.coords.latitude,
           lng: res.coords.longitude
         };
-        this.coordinate = {
-          lat: res.coords.latitude,
-          lng: res.coords.longitude
-        };
+
+          this.lat= res.coords.latitude,
+          this.lng= res.coords.longitude
+
       });
 
 
@@ -100,3 +106,23 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+.centerMarker{
+  position:absolute;
+  /*url of the marker*/
+  background:url(http://maps.gstatic.com/mapfiles/markers2/marker.png) no-repeat;
+  /*center the marker*/
+  top:50%;left:50%;
+
+  z-index:1;
+  /*fix offset when needed*/
+  margin-left:-10px;
+  margin-top:-34px;
+  /*size of the image*/
+  height:34px;
+  width:20px;
+
+  cursor:pointer;
+}
+</style>

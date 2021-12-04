@@ -36,8 +36,6 @@ class PropertyListController extends Controller
 
 
     public function create_Property(Request $request){
-
-
         //     $request->validate([
         //     'name' =>'required',
         //     'password' =>'required',
@@ -45,7 +43,6 @@ class PropertyListController extends Controller
         //     'password' =>'required|min:4|max:12',
         //     'phone_num' => 'required|regex:/(01)[0-9]{8}/'
         //    ]);
-
             $Property = new Property();
             $Property->landlord_id = $request ->id;
             $Property->property_name = $request ->propertyName;
@@ -54,22 +51,51 @@ class PropertyListController extends Controller
             $Property->description = $request ->description;
             $Property->property_furnishing = implode(',', (array) $request ->furnishing);
             $Property->campus =  $request ->campus;
+            $Property->latitude =  $request ->latitude;
+            $Property->logitude =  $request ->logitude;
             $Property->save();
+            $prop_id =  $Property->getKey();
+            // return response()->json([
+            //    $label
+            // ]);
+            $label = [];
+            if ($Property->save()){
+                for ($i = 0; $i < count($request->imageLabel); $i++) {
+                    $label[$i] = $request->imageLabel[$i];
+                }
+                if (count($request->images)) {
+                    $i=0;
+                    foreach ($request->images as $image) {
+                        $Photo =  new Photo();
+                        $filename = $this->decodeImage($image);
+                        $Photo->photo = $filename;
+                        $Photo->property_id =  $prop_id;
+                        $Photo->photo_label = $label[$i];
+                        $Photo->save();
+                        $i++;
+                    }
 
-            // $Property->latitude = $request ->phone_num;
-            // $Property->logitude = $request ->phone_num;
+                }
 
-            // $Photo = new Photo();
-            // $Photo->photo = $request ->images;
-            // $Photo->photo_label = $request ->imageLabel;
-            // $Photo->property_id = $request ->imageLabel;
+            }
 
-            // // if picture uploaded
-            // if($request->pic!= NULL){
-            //   $filename = $this->decodeImage($request->pic);
-            //   $Staff->staff_pic = $filename;
-            // }
 
+    }
+
+
+    public function decodeImage($request_picture){
+
+        $exploded = explode(',', $request_picture);
+        $decoded = base64_decode($exploded[1]);
+            if(str_contains($exploded[0], 'jpeg')){
+                $extension = 'jpg';
+            }else{
+                $extension = 'png';
+            }
+        $filename = str_random().'.'.$extension;
+        $path = public_path().'/images/Properties/'.$filename;
+        file_put_contents($path, $decoded);
+        return $filename;
 
     }
 

@@ -26,9 +26,9 @@ class Property extends Model
         return $this->attributes['property_furnishing'] = json_decode($value);
     }
 
-    public function getPhotoRelation(){
-        return $this->hasMany('App\Models\Photo', 'property_id', 'property_id' );
-    }
+    // public function getPhotoRelation(){
+    //     return $this->hasMany('App\Models\Photo', 'property_id', 'property_id' );
+    // }
 
 
 

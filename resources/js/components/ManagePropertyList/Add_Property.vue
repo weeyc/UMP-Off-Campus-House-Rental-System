@@ -98,6 +98,7 @@
                 <div class="w-full mt-4">
                       <label class="text-gray-700">Address</label>
                     <input type="text" placeholder="eg. Taman Sri Gambang" v-model="form.address" name="name"  class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-black rounded-md   focus:border-blue-500 focus:outline-none focus:ring" readonly>
+                 <span class="mt-5">Please drag the red marker for a accurate location</span>
                  <GoogleMap @getCoordinate="getCoordinates" />
                 </div>
 
@@ -152,7 +153,8 @@ export default {
                 imageLabel: [],
                 description: '',
                 furnishing: [],
-                coordinates: {},
+                latitude: '',
+                logitude: '',
                 id: this.user_id
             },
 
@@ -169,15 +171,17 @@ export default {
 
             this.form.imageLabel = event2
         },
-        getCoordinates(event){
-            this.form.coordinates = event
+        getCoordinates(lat, log){
+            this.form.latitude = lat;
+            this.form.logitude = log;
         },
 
      submitProperty(){
 
              axios.post('/api/create_property',
                 this.form
-                ).then(() =>{
+                )
+                .then(() =>{
                     Swal.fire({
                     position: 'center',
                     icon: 'success',
@@ -193,7 +197,13 @@ export default {
                     this.form.imageLabel=[];
                     this.form.description='';
                     this.$router.push({ name: 'property_list' })
-            }).catch(error =>this.errors.record(error.response.data));
+                    console.log(response.data);
+            })
+            .then(response => {
+            console.log(response.data);
+        })
+
+            // .catch(error =>this.errors.record(error.response.data));
 
         },
     },
