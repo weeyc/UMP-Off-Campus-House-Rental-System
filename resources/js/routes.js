@@ -12,6 +12,7 @@ const Landing_Staff = () => import(/* webpackChunkName: "Landing_Staff" */'./com
 const Dashboard_Landlord = () => import(/* webpackChunkName: "Landing_Staff" */'./components/ManageRegistrationUsers/Dashboard_Landlord');
 const PropertyList_landlord = () => import(/* webpackChunkName: "PropertyList_landlord" */'./components/ManagePropertyList/PropertyList_landlord');
 const Add_Property = () => import(/* webpackChunkName: "Add_Property" */'./components/ManagePropertyList/Add_Property');
+const Property = () => import(/* webpackChunkName: "Registered_Property" */'./components/ManagePropertyList/Property');
 
 
 
@@ -112,6 +113,11 @@ export default{
             name: 'add_property',
             component: Add_Property,
         },
+        {
+            path: '/landlord/property/:property_id',
+            name: 'property',
+            component: Property,
+        },
 
 
 
@@ -137,5 +143,8 @@ export default{
 
 
 
-    ]
+    ],
+
+
 }
+

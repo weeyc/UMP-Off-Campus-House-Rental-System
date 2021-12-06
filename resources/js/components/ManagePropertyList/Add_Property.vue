@@ -99,7 +99,9 @@
                       <label class="text-gray-700">Address</label>
                     <input type="text" placeholder="eg. Taman Sri Gambang" v-model="form.address" name="name"  class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-black rounded-md   focus:border-blue-500 focus:outline-none focus:ring" readonly>
                  <span class="mt-5">Please drag the red marker for a accurate location</span>
-                 <GoogleMap @getCoordinate="getCoordinates" />
+                  <keep-alive>
+                      <GoogleMap @getCoordinate="getCoordinates" />
+                       </keep-alive>
                 </div>
 
                 <div class="flex justify-end mt-6">

@@ -11,5 +11,7 @@
     "/Profile_Edit~Profile_View.js": "/Profile_Edit~Profile_View.js",
     "/Profile_View.js": "/Profile_View.js",
     "/PropertyList_landlord.js": "/PropertyList_landlord.js",
-    "/Tab_Staff_Users.js": "/Tab_Staff_Users.js"
+    "/Registered_Property.js": "/Registered_Property.js",
+    "/Tab_Staff_Users.js": "/Tab_Staff_Users.js",
+    "/vendors~Registered_Property.js": "/vendors~Registered_Property.js"
 }

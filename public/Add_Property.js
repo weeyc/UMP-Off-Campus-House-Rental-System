@@ -135,6 +135,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -1273,7 +1275,15 @@ var render = function() {
                     _vm._v("Please drag the red marker for a accurate location")
                   ]),
                   _vm._v(" "),
-                  _c("GoogleMap", { on: { getCoordinate: _vm.getCoordinates } })
+                  _c(
+                    "keep-alive",
+                    [
+                      _c("GoogleMap", {
+                        on: { getCoordinate: _vm.getCoordinates }
+                      })
+                    ],
+                    1
+                  )
                 ],
                 1
               ),

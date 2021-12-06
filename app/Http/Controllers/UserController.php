@@ -274,12 +274,12 @@ class UserController extends Controller
         return response()->json("Landlord Deleted!");
    }
 
-       public function delete_Staff($id){
+    public function delete_Staff($id){
         Staff::where('staff_id', $id)->delete();
         return response()->json("Staff Deleted!");
    }
 
-       public function get_Profile($id, $role){
+    public function get_Profile($id, $role){
 
         if($role == 1){
            $data = Student::where('std_id', $id)->get();
@@ -294,7 +294,8 @@ class UserController extends Controller
         }
 
    }
-       public function update_Profile($id, $role, Request $request){
+
+    public function update_Profile($id, $role, Request $request){
 
             $request->validate([
                 'name' =>'required',

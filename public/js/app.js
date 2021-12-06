@@ -43,7 +43,7 @@
 /******/
 /******/ 	// script path function
 /******/ 	function jsonpScriptSrc(chunkId) {
-/******/ 		return __webpack_require__.p + "" + ({"Add_Property":"Add_Property","Landing_Staff":"Landing_Staff","Manage_Landlord":"Manage_Landlord","Manage_Staff":"Manage_Staff","Manage_Student":"Manage_Student","NotFound":"NotFound","Profile_Edit~Profile_View":"Profile_Edit~Profile_View","Profile_Edit":"Profile_Edit","Profile_View":"Profile_View","PropertyList_landlord":"PropertyList_landlord","Tab_Staff_Users":"Tab_Staff_Users"}[chunkId]||chunkId) + ".js"
+/******/ 		return __webpack_require__.p + "" + ({"Add_Property":"Add_Property","Landing_Staff":"Landing_Staff","Manage_Landlord":"Manage_Landlord","Manage_Staff":"Manage_Staff","Manage_Student":"Manage_Student","NotFound":"NotFound","Profile_Edit~Profile_View":"Profile_Edit~Profile_View","Profile_Edit":"Profile_Edit","Profile_View":"Profile_View","PropertyList_landlord":"PropertyList_landlord","Tab_Staff_Users":"Tab_Staff_Users","vendors~Registered_Property":"vendors~Registered_Property","Registered_Property":"Registered_Property"}[chunkId]||chunkId) + ".js"
 /******/ 	}
 /******/
 /******/ 	// The require function
@@ -2219,6 +2219,8 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
 //
 //
 //
@@ -25736,7 +25738,7 @@ var render = function() {
                 "span",
                 {
                   staticClass:
-                    "bg-gradient-to-r from-sky-400 to-cyan-300      text-transparent bg-clip-text  text-2xl font-black tracking-wide "
+                    "bg-gradient-to-r from-sky-400 to-cyan-300      text-transparent bg-clip-text text-3xl font-black  "
                 },
                 [_vm._v("UOCA")]
               )
@@ -26227,151 +26229,220 @@ var render = function() {
         2
       ),
       _vm._v(" "),
-      _c(
-        "div",
-        { staticClass: "flex flex-1 flex-col" },
-        [
-          _c(
-            "div",
-            {
-              staticClass:
-                " rounded-r shadow-lg  flex justify-between w-full p-6 items-center border-b border-transparent sm:border-gray-200      bg-gradient-to-br from-cool-gray-900 to-bg-gradient-to-r-gray-600",
-              staticStyle: { "background-color": "#23252f" }
-            },
-            [
-              _c("div", { staticClass: "flex justify-start items-center" }, [
-                _c(
-                  "button",
-                  {
-                    on: {
-                      click: function($event) {
-                        return _vm.showNav()
-                      }
-                    }
-                  },
-                  [
-                    _c(
-                      "svg",
-                      {
-                        staticClass: "text-blue-400 hover:text-blue-500",
-                        attrs: {
-                          width: "24",
-                          height: "24",
-                          viewBox: "0 0 24 24",
-                          fill: "none",
-                          xmlns: "http://www.w3.org/2000/svg"
-                        }
-                      },
-                      [
-                        _c("path", {
-                          attrs: {
-                            d: "M4 6H20",
-                            stroke: "currentColor",
-                            "stroke-width": "1.5",
-                            "stroke-linecap": "round",
-                            "stroke-linejoin": "round"
-                          }
-                        }),
-                        _vm._v(" "),
-                        _c("path", {
-                          attrs: {
-                            d: "M4 12H20",
-                            stroke: "currentColor",
-                            "stroke-width": "1.5",
-                            "stroke-linecap": "round",
-                            "stroke-linejoin": "round"
-                          }
-                        }),
-                        _vm._v(" "),
-                        _c("path", {
-                          attrs: {
-                            d: "M4 18H20",
-                            stroke: "currentColor",
-                            "stroke-width": "1.5",
-                            "stroke-linecap": "round",
-                            "stroke-linejoin": "round"
-                          }
-                        })
-                      ]
-                    )
-                  ]
-                )
-              ]),
-              _vm._v(" "),
+      _c("div", { staticClass: "flex flex-1 flex-col" }, [
+        _c(
+          "div",
+          {
+            staticClass:
+              " rounded-r shadow-lg  flex justify-between w-full p-6 items-center border-b border-transparent sm:border-gray-200      bg-gradient-to-br from-cool-gray-900 to-bg-gradient-to-r-gray-600",
+            staticStyle: { "background-color": "#23252f" }
+          },
+          [
+            _c("div", { staticClass: "flex justify-start items-center" }, [
               _c(
-                "router-link",
+                "button",
                 {
-                  staticClass:
-                    "flex text-blue-400 text-2xl font-black tracking-wide hover:text-blue-500 focus:outline-none focus:text-blue-500 justify-between items-center space-x-3",
-                  attrs: { to: { name: "landlord_landing" } }
+                  on: {
+                    click: function($event) {
+                      return _vm.showNav()
+                    }
+                  }
                 },
                 [
                   _c(
                     "svg",
                     {
-                      staticClass: "h-10 w-10",
+                      staticClass: "text-blue-400 hover:text-blue-500",
                       attrs: {
-                        xmlns: "http://www.w3.org/2000/svg",
-                        viewBox: "0 0 20 20",
-                        fill: "currentColor"
+                        width: "24",
+                        height: "24",
+                        viewBox: "0 0 24 24",
+                        fill: "none",
+                        xmlns: "http://www.w3.org/2000/svg"
                       }
                     },
                     [
                       _c("path", {
                         attrs: {
-                          d:
-                            "M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"
+                          d: "M4 6H20",
+                          stroke: "currentColor",
+                          "stroke-width": "1.5",
+                          "stroke-linecap": "round",
+                          "stroke-linejoin": "round"
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("path", {
+                        attrs: {
+                          d: "M4 12H20",
+                          stroke: "currentColor",
+                          "stroke-width": "1.5",
+                          "stroke-linecap": "round",
+                          "stroke-linejoin": "round"
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("path", {
+                        attrs: {
+                          d: "M4 18H20",
+                          stroke: "currentColor",
+                          "stroke-width": "1.5",
+                          "stroke-linecap": "round",
+                          "stroke-linejoin": "round"
                         }
                       })
                     ]
-                  ),
-                  _vm._v(" "),
-                  _c("span", [_vm._v("UMP Off-Campus Accomodation")])
+                  )
                 ]
               ),
               _vm._v(" "),
               _c(
-                "div",
-                { staticClass: "flex justify-end items-center" },
+                "button",
+                {
+                  staticClass: "ml-24 mr-5",
+                  on: {
+                    click: function($event) {
+                      return _vm.$router.go(-1)
+                    }
+                  }
+                },
                 [
                   _c(
-                    "router-link",
+                    "svg",
                     {
-                      staticClass:
-                        " bg-blue-600 hover:bg-blue-700 text-xs text-white px-3 py-3 rounded-md",
-                      attrs: { to: { name: "profile_landlord" } }
+                      staticClass: "text-blue-400 hover:text-blue-500 h-8 w-8",
+                      attrs: {
+                        xmlns: "http://www.w3.org/2000/svg",
+                        fill: "none",
+                        viewBox: "0 0 24 24",
+                        stroke: "currentColor"
+                      }
                     },
                     [
-                      _vm._v(
-                        "\n                       I'm Landlord\n                "
-                      )
+                      _c("path", {
+                        attrs: {
+                          "stroke-linecap": "round",
+                          "stroke-linejoin": "round",
+                          "stroke-width": "2",
+                          d:
+                            "M11 15l-3-3m0 0l3-3m-3 3h8M3 12a9 9 0 1118 0 9 9 0 01-18 0z"
+                        }
+                      })
                     ]
                   )
-                ],
-                1
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "button",
+                {
+                  on: {
+                    click: function($event) {
+                      return _vm.$router.go(1)
+                    }
+                  }
+                },
+                [
+                  _c(
+                    "svg",
+                    {
+                      staticClass: "text-blue-400 hover:text-blue-500 h-8 w-8",
+                      attrs: {
+                        xmlns: "http://www.w3.org/2000/svg",
+                        fill: "none",
+                        viewBox: "0 0 24 24",
+                        stroke: "currentColor"
+                      }
+                    },
+                    [
+                      _c("path", {
+                        attrs: {
+                          "stroke-linecap": "round",
+                          "stroke-linejoin": "round",
+                          "stroke-width": "2",
+                          d:
+                            "M13 9l3 3m0 0l-3 3m3-3H8m13 0a9 9 0 11-18 0 9 9 0 0118 0z"
+                        }
+                      })
+                    ]
+                  )
+                ]
               )
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "div",
-            {
-              staticClass:
-                "bg-gradient-to-r from-sky-400 to-cyan-300  overflow-y-auto  min-h-screen"
-            },
-            [
-              _c("router-view", {
-                attrs: { user_id: _vm.user_id, role: _vm.role }
-              })
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c("foot-land", { staticClass: "bottom-0 w-full hidden" })
-        ],
-        1
-      )
+            ]),
+            _vm._v(" "),
+            _c(
+              "router-link",
+              {
+                staticClass:
+                  "flex text-blue-400 text-2xl font-black tracking-wide hover:text-blue-500 focus:outline-none focus:text-blue-500 justify-between items-center space-x-3",
+                attrs: { to: { name: "landlord_landing" } }
+              },
+              [
+                _c(
+                  "svg",
+                  {
+                    staticClass: "h-10 w-10",
+                    attrs: {
+                      xmlns: "http://www.w3.org/2000/svg",
+                      viewBox: "0 0 20 20",
+                      fill: "currentColor"
+                    }
+                  },
+                  [
+                    _c("path", {
+                      attrs: {
+                        d:
+                          "M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"
+                      }
+                    })
+                  ]
+                ),
+                _vm._v(" "),
+                _c("span", [_vm._v("UMP Off-Campus Accomodation")])
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "flex justify-end items-center" },
+              [
+                _c(
+                  "router-link",
+                  {
+                    staticClass:
+                      " bg-blue-600 hover:bg-blue-700 text-xs text-white px-3 py-3 rounded-md",
+                    attrs: { to: { name: "profile_landlord" } }
+                  },
+                  [
+                    _vm._v(
+                      "\n                       I'm Landlord\n                "
+                    )
+                  ]
+                )
+              ],
+              1
+            )
+          ],
+          1
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          {
+            staticClass:
+              "bg-gradient-to-r from-sky-400 to-cyan-300  overflow-y-auto"
+          },
+          [
+            _c("router-view", {
+              staticClass: "min-h-screen",
+              attrs: { user_id: _vm.user_id, role: _vm.role }
+            }),
+            _vm._v(" "),
+            _c("foot-land", { staticClass: "bottom-0 w-full" })
+          ],
+          1
+        )
+      ])
     ])
   ])
 }
@@ -47876,6 +47947,10 @@ var Add_Property = function Add_Property() {
   return __webpack_require__.e(/*! import() | Add_Property */ "Add_Property").then(__webpack_require__.bind(null, /*! ./components/ManagePropertyList/Add_Property */ "./resources/js/components/ManagePropertyList/Add_Property.vue"));
 };
 
+var Property = function Property() {
+  return Promise.all(/*! import() | Registered_Property */[__webpack_require__.e("vendors~Registered_Property"), __webpack_require__.e("Registered_Property")]).then(__webpack_require__.bind(null, /*! ./components/ManagePropertyList/Property */ "./resources/js/components/ManagePropertyList/Property.vue"));
+};
+
 var Dashboard_Student = function Dashboard_Student() {
   return __webpack_require__.e(/*! import() | Landing_Staff */ "Landing_Staff").then(__webpack_require__.bind(null, /*! ./components/ManageRegistrationUsers/Dashboard_Student */ "./resources/js/components/ManageRegistrationUsers/Dashboard_Student.vue"));
 };
@@ -47952,6 +48027,10 @@ var NotFound = function NotFound() {
     path: '/landlord/add_property',
     name: 'add_property',
     component: Add_Property
+  }, {
+    path: '/landlord/property/:property_id',
+    name: 'property',
+    component: Property
   }, // Student Routes
   {
     path: '/student',

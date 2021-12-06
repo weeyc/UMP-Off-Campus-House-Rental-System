@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Http\Resources\StudentResource;
-
+use App\Http\Resources\PropertyResource;
 use App\Http\Resources\LandlordResource;
+use App\Http\Resources\PhotoResource;
 use App\Http\Resources\StaffResource;
 use Illuminate\Http\Request;
 use App\Models\Student;
@@ -16,25 +17,6 @@ use App\Models\Photo;
 
 class PropertyListController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-
-
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
-
-    public function index()
-    {
-
-    }
-
-
     public function create_Property(Request $request){
         //     $request->validate([
         //     'name' =>'required',
@@ -82,7 +64,6 @@ class PropertyListController extends Controller
 
     }
 
-
     public function decodeImage($request_picture){
 
         $exploded = explode(',', $request_picture);
@@ -98,6 +79,18 @@ class PropertyListController extends Controller
         return $filename;
 
     }
+    public function get_Properties($id){
+       // $data = Property::where('landlord_id', $id)->get();
+        $data = Property::with('getPhotoRelation')->where('landlord_id', $id)->get();
+        return PropertyResource::collection($data);
+    }
+
+    public function get_Property($id){
+        // $data = Property::where('landlord_id', $id)->get();
+         $data = Property::with('getPhotoRelation')->where('property_id', $id)->get();
+         return PropertyResource::collection($data);
+     }
+
 
 
 

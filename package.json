@@ -25,6 +25,7 @@
         "sass-loader": "^8.0.0",
         "tailwindcss": "^2.2.19",
         "vue": "^2.5.17",
+        "vue-concise-slider": "^4.2.3",
         "vue-template-compiler": "^2.6.10"
     },
     "dependencies": {
@@ -35,6 +36,7 @@
         "v-toaster": "^1.0.3",
         "vform": "^2.1.2",
         "vue-router": "^3.3.4",
-        "vue2-google-maps": "^0.10.7"
+        "vue2-google-maps": "^0.10.7",
+        "vueperslides": "^2.15.2"
     }
 }
