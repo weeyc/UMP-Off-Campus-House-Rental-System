@@ -44,7 +44,7 @@
           <h2 class=" font-bold text-gray-700 capitalize text-center text-base mb-5">-Property Image-</h2>
         <div>
             <keep-alive>
-                <ImageUploader @getImage="getImages"></ImageUploader>
+                <ImageUploader :editImage="true" @getImage="getImages"></ImageUploader>
             </keep-alive>
             <div class="flex justify-end mt-6">
                 <button @click.prevent="goToNext(1)" class="px-6 py-2  mr-5 leading-5 text-white transition-colors duration-200 transform bg-gray-700 rounded-md hover:bg-gray-600 focus:outline-none focus:bg-gray-600">Back</button>
@@ -100,7 +100,7 @@
                     <input type="text" placeholder="eg. Taman Sri Gambang" v-model="form.address" name="name"  class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-black rounded-md   focus:border-blue-500 focus:outline-none focus:ring" readonly>
                  <span class="mt-5">Please drag the red marker for a accurate location</span>
                   <keep-alive>
-                      <GoogleMap @getCoordinate="getCoordinates" />
+                      <GoogleMap @getCoordinate="getCoordinates" :registered="false"/>
                        </keep-alive>
                 </div>
 
@@ -133,8 +133,6 @@ export default {
      components: {
         ImageUploader,
         GoogleMap,
-
-
     },
 
     props: {

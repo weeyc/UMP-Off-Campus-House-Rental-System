@@ -28,6 +28,7 @@ Route::post('update_profile/{id}/{role}', 'UserController@update_Profile');
 Route::post('create_property', 'PropertyListController@create_Property');
 Route::get('get_properties/{id}', 'PropertyListController@get_Properties');
 Route::get('get_property/{id}', 'PropertyListController@get_Property');
+Route::post('update_property/{id}', 'PropertyListController@update_Property');
 
 
 

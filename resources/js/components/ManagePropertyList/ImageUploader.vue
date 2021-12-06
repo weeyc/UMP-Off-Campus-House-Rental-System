@@ -44,6 +44,9 @@
 
 <script>
 export default {
+     props: {
+        editImage: Boolean,
+    },
     data: () => ({
         isDragging: false,
         dragCount: 0,
@@ -53,6 +56,9 @@ export default {
         imageLabel: [],
     }),
     methods: {
+        getRegisteredImage(){
+            //this.images = this.photo[0].photo_name
+        },
         OnDragEnter(e) {
             e.preventDefault();
 
@@ -112,6 +118,9 @@ export default {
     },
      mounted: function(){
          this.$emit('getImage', this.images, this.imageLabel)
+         if(this.editImage){
+             this.getRegisteredImage();
+         }
     },
 }
 </script>

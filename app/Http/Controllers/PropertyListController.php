@@ -91,6 +91,56 @@ class PropertyListController extends Controller
          return PropertyResource::collection($data);
      }
 
+    public function update_Property($id, Request $request){
+
+        // $request->validate([
+        //     'name' =>'required',
+        //     'password' =>'required',
+        //     'email' => 'required|string|email|unique:staff,staff_email,'.$request->id.',staff_id', //update email, ignore registed own email
+        //     'phone_num' => 'required|regex:/(01)[0-9]{8}/'
+        // ]);
+
+
+          $data = Property::where('property_id',$id)
+          ->update([
+              'property_name' => $request ->name,
+              'address' => $request ->address,
+              'postcode' => $request ->postcode,
+              'description' => $request ->des,
+              'property_furnishing' => implode(',', (array) $request ->furnishing),
+              'campus' => $request ->campus,
+              'latitude' => $request ->lat,
+              'logitude' => $request ->log,
+          ]);
+
+
+
+          $label = [];
+          if ($request->images != null){
+                Photo::where('property_id', $id)->delete();
+              for ($i = 0; $i < count($request->imageLabel); $i++) {
+                  $label[$i] = $request->imageLabel[$i];
+              }
+              if (count($request->images)) {
+                  $i=0;
+                  foreach ($request->images as $image) {
+                      $Photo =  new Photo();
+                      $filename = $this->decodeImage($image);
+                      $Photo->photo = $filename;
+                      $Photo->property_id =  $id;
+                      $Photo->photo_label = $label[$i];
+                      $Photo->save();
+                      $i++;
+                  }
+
+              }
+
+          }
+
+          return $data;
+
+     }
+
 
 
 

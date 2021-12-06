@@ -20,7 +20,7 @@
             >
             <gmap-marker
                 :position="center"
-                :draggable="true"
+                :draggable="drag"
                 @drag="updateCoordinates"
 
             ></gmap-marker>
@@ -35,6 +35,11 @@
 <script>
 export default {
   name: "AddGoogleMap",
+      props: {
+            latitude: Number,
+            logitude: Number,
+            registered: Boolean,
+        },
   data() {
     return {
         center: {
@@ -44,31 +49,41 @@ export default {
         locationMarkers: [],
         locPlaces: [],
         existingPlace: null,
-        start: 0,
-
-            lat: null,
-            lng: null,
+        lat: null,
+        lng: null,
+        drag: true,
 
     };
   },
     mounted:  function(){
-        if(this.start == 0){
+        if(this.registered){
+            this.getRegisteredPosition();
+            this.drag = false;
+        }else{
             this.locateGeoLocation();
+            this.drag = true;
             this.activate();
-            this.start ++;
           }
+
+
 
 
       },
 
   methods: {
       updateCoordinates(location) {
+            this.lat =  location.latLng.lat(),
+            this.lng = location.latLng.lng(),
+            this.$emit('getCoordinate', this.lat, this.lng)
 
-                this.lat =  location.latLng.lat(),
-                this.lng = location.latLng.lng(),
-
-             this.$emit('getCoordinate', this.lat, this.lng)
-
+        },
+        getRegisteredPosition(){
+            if(this.latitude != null){
+                this.center = {
+                    lat: this.latitude,
+                    lng: this.logitude
+                   }
+            }
         },
         activate() {
             setTimeout(() => this.$emit('getCoordinate', this.lat, this.lng), 10000);
