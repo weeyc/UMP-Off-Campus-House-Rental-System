@@ -15,13 +15,15 @@ class PhotoResource extends JsonResource
     public function toArray($request)
     {
         $property = $this->whenLoaded('getPropertyRelation');
+        $room = $this->whenLoaded('getRoomRelation');
         return [
             'id' => $this->photo_id,
             'property_id' => $this->property_id,
             'room_id' => $this->room_id,
             'photo_label' => $this->photo_label,
             'photo_name' => $this->photo,
-            'property' => new PropertyResource($property)
+            'property' => new PropertyResource($property),
+            'room' => new RoomResource($room)
         ];
 
 

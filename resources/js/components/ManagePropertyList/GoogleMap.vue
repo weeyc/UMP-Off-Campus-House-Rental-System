@@ -16,6 +16,8 @@
             <gmap-map
                 :zoom="16"
                 :center="center"
+
+
                 style="width:100%;  height: 200px;"
             >
             <gmap-marker
@@ -52,6 +54,9 @@ export default {
         lat: null,
         lng: null,
         drag: true,
+        viewOnly: true,
+        option:  {},
+
 
     };
   },
@@ -59,12 +64,15 @@ export default {
         if(this.registered){
             this.getRegisteredPosition();
             this.drag = false;
+            this.viewOnly = false
+
+
+
         }else{
             this.locateGeoLocation();
             this.drag = true;
             this.activate();
           }
-
 
 
 
@@ -79,12 +87,14 @@ export default {
         },
         getRegisteredPosition(){
             if(this.latitude != null){
+
                 this.center = {
                     lat: this.latitude,
                     lng: this.logitude
                    }
             }
         },
+
         activate() {
             setTimeout(() => this.$emit('getCoordinate', this.lat, this.lng), 10000);
         },

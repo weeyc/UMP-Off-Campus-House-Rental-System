@@ -30,6 +30,10 @@ class Property extends Model
         return $this->hasMany('App\Models\Photo', 'property_id', 'property_id' );
     }
 
+    public function getRoomRelation(){
+        return $this->hasMany('App\Models\Room', 'property_id', 'property_id' );
+    }
+
 
 
 

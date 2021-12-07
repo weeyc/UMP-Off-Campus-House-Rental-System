@@ -84,7 +84,7 @@
                     <h2 class=" font-bold text-gray-700 capitalize text-center text-base mt-6">-Furnishing-</h2>
                         <div class="grid grid-cols-3 gap-4 mt-4 sm:grid-cols-2">
                             <label class="inline-flex items-center cursor-pointer">
-                                <input type="checkbox" class="" v-model="form.furnishing" value="Internet"/>
+                                <input type="checkbox" class="" v-model="form.furnishing"  value="Internet"/>
                                 <span class="ml-2">Internet</span>
                             </label>
                             <label class="inline-flex items-center cursor-pointer">
@@ -102,6 +102,7 @@
                                 <span class="ml-2">Refrigerator</span>
                             </label>
                             </div>
+
                     </div>
                     <div>
                     <h2 class=" font-bold text-gray-700 capitalize text-center text-base mt-6">-Property Description-</h2>
@@ -219,6 +220,7 @@ components: {
                 timer: 1500
                 })
                 this.closeModal();
+                this.$emit("refreshData");
 
         }).catch(error =>this.errors.record(error.response.data));
 
@@ -248,7 +250,8 @@ components: {
           }
     },
     mounted: function(){
-        this.getRole();
+         this.getRole();
+         this.form.furnishing = this.form.furnishing.split(',');
     },
 };
 

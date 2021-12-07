@@ -13,4 +13,8 @@ class Photo extends Model
         return $this->belongsTo('App\Models\Property', 'property_id', 'property_id');
     }
 
+    public function getRoomRelation(){
+        return $this->belongsTo('App\Models\Room', 'room_id', 'room_id');
+    }
+
 }

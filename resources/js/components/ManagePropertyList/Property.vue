@@ -6,9 +6,9 @@
             </button>
         </div>
         <div  class="flex justify-end items-center">
-            <router-link  :to="{name: 'add_property'}" class=" bg-blue-600 shadow-lg hover:bg-blue-700 text-xs text-white px-5 py-3 rounded-md">
+            <button @click="toggleAddModal = !toggleAddModal"  class=" bg-blue-600 shadow-lg hover:bg-blue-700 text-xs text-white px-5 py-3 rounded-md">
                 + Add Room
-            </router-link >
+            </button >
         </div>
         <div  v-for= "house in property" :key="house.id"  class="max-w-2xl px-8 py-4 mx-auto   overflow-hidden bg-white rounded-lg shadow-lg mt-5">
             <div class="w-full p-4 md:p-4">
@@ -46,6 +46,25 @@
             </div>
                 <GoogleMap :latitude="parseFloat(house.lat)" :logitude="parseFloat(house.log)" :registered="true"  />
 
+            <div  v-for= "room in property" :key="room.id"  class="max-w-2xl px-8 py-4 mx-auto flex  overflow-hidden bg-white rounded-lg shadow-lg mt-5">
+                <div class="w-1/3" > <img class="h-70 w-full object-cover" :src="'/images/Properties/'+room.cover.photo_name" alt="Avatar" /></div>
+
+                <div class="w-2/3 p-4 md:p-4">
+                    <div class="flex justify-between item-center">
+                        <h1 class="text-2xl font-bold text-gray-800 dark:text-white">{{ room.name }}</h1>
+                        <router-link :to="{ name: 'property', params:{property_id: room.id}}" class="px-2 py-1 text-xs font-bold text-white uppercase transition-colors duration-200
+                                transform bg-gray-800 rounded hover:bg-gray-700  focus:outline-none focus:bg-gray-700">
+                                View Details
+                        </router-link >
+                    </div>
+                    <p class="mt-2 text-sm text-gray-600 dark:text-gray-400">{{ room.address }}</p>
+                    <div class="flex mt-2 item-center">
+                        <p class="mt-2 text-sm text-gray-600 dark:text-gray-400">{{ room.status }}</p>
+                    </div>
+                </div>
+            </div>
+
+
         </div>
 
     <EditModal
@@ -57,6 +76,14 @@
             @closeModal="closeEditModal">
     </EditModal>
 
+        <AddRoomModal
+            v-if="toggleAddModal"
+            :property_id="parseInt(property_id)"
+            :landlord_id="parseInt(landlord_id)"
+            @refreshData="getProperty"
+            @closeModal="closeAddModal">
+        </AddRoomModal>
+
 
 
 
@@ -65,19 +92,21 @@
 </template>
 
 <script>
-import propertyCard from './PropertyCard.vue';
+import RoomCard from './RoomCard.vue';
 import { slider, slideritem } from 'vue-concise-slider'
 import GoogleMap from "./GoogleMap.vue";
 import EditModal from './EditProperty_Modal.vue';
+import AddRoomModal from './AddRoom_Modal.vue';
 
 // import { VueperSlides, VueperSlide } from 'vueperslides'
 // import 'vueperslides/dist/vueperslides.css'
 
 export default {
     components: {
-        propertyCard,
+        RoomCard,
         GoogleMap,
         EditModal,
+        AddRoomModal,
 
         slider,
         slideritem,
@@ -86,14 +115,15 @@ export default {
 
     },
     props: {
-        user_id: Number,
-        role: Number
+
     },
 
     data(){
         return{
             toggleModal: false,
+            toggleAddModal: false,
             property: [],
+            landlord_id: '',
             property_id: this.$route.params.property_id,
             propertyPhoto:[],
             options: {
@@ -120,11 +150,15 @@ export default {
             axios.get('/api/get_property/'+this.property_id).then((response)=>{
                 this.property=response.data.data;
                 this.propertyPhoto = response.data.data[0].photo;
+                this.landlord_id = response.data.data[0].landlord_id;
                 console.warn(this.property.data);
                 })
             },
         closeEditModal(){
             this.toggleModal =!  this.toggleModal ;
+        },
+        closeAddModal(){
+            this.toggleAddModal =!  this.toggleAddModal ;
         },
         clickEdit(house){
 
@@ -145,7 +179,7 @@ export default {
 
     },
       mounted: function(){
-            this.getProperty();
+        this.getProperty();
     },
 
 

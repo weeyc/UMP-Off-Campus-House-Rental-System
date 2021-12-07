@@ -3,7 +3,6 @@
 namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
-use App\Http\Resources\PhotoResource;
 
 class PropertyResource extends JsonResource
 {
@@ -27,8 +26,6 @@ class PropertyResource extends JsonResource
             'campus' => $this->campus,
             'furnishing' => $this->property_furnishing,
             'status' => $this->verify_status,
-            'photo' => PhotoResource::collection($this->whenLoaded('getPhotoRelation')),
-            'cover' => PhotoResource::collection($this->whenLoaded('getPhotoRelation'))->where('photo_label', 'Cover')->first()
         ];
 
     }

@@ -22,13 +22,12 @@ class CreateRoomsTable extends Migration
             $table->string('listing_name')->nullable();
             $table->string('room_type')->nullable();
             $table->string('room_description')->nullable();
-            $table->string('campus')->nullable();
             $table->float('penalty_fees')->nullable();
             $table->string('room_furnishing')->nullable();
             $table->integer('number_of_tenant')->nullable();
             $table->float('booking_fees')->nullable();
             $table->float('monthly_rent')->nullable();
-            $table->float('room_status')->nullable();
+            $table->String('room_status')->nullable();
 
         });
     }

@@ -44,7 +44,7 @@
           <h2 class=" font-bold text-gray-700 capitalize text-center text-base mb-5">-Property Image-</h2>
         <div>
             <keep-alive>
-                <ImageUploader :editImage="true" @getImage="getImages"></ImageUploader>
+                <ImageUploader :editImage="true" :hideLabel="false" @getImage="getImages"></ImageUploader>
             </keep-alive>
             <div class="flex justify-end mt-6">
                 <button @click.prevent="goToNext(1)" class="px-6 py-2  mr-5 leading-5 text-white transition-colors duration-200 transform bg-gray-700 rounded-md hover:bg-gray-600 focus:outline-none focus:bg-gray-600">Back</button>
@@ -53,7 +53,7 @@
         </div>
     </section>
 
-      <section id="Furnisher" v-if="activePhase == 3"  class="mt-10 max-w-4xl p-6 mx-auto bg-gray-200 rounded-md shadow-md dark:bg-gray-800">
+    <section id="Furnisher" v-if="activePhase == 3"  class="mt-10 max-w-4xl p-6 mx-auto bg-gray-200 rounded-md shadow-md dark:bg-gray-800">
         <h2 class=" font-bold text-gray-700 capitalize text-center text-xl">Furnishing and Description</h2>
             <div>
             <h2 class=" font-bold text-gray-700 capitalize text-center text-base mt-6">-Furnishing-</h2>

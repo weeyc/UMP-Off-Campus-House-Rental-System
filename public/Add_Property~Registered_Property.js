@@ -43,6 +43,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "AddGoogleMap",
   props: {
@@ -61,13 +63,16 @@ __webpack_require__.r(__webpack_exports__);
       existingPlace: null,
       lat: null,
       lng: null,
-      drag: true
+      drag: true,
+      viewOnly: true,
+      option: {}
     };
   },
   mounted: function mounted() {
     if (this.registered) {
       this.getRegisteredPosition();
       this.drag = false;
+      this.viewOnly = false;
     } else {
       this.locateGeoLocation();
       this.drag = true;
@@ -181,7 +186,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
-    editImage: Boolean
+    editImage: Boolean,
+    hideLabel: Boolean
   },
   data: function data() {
     return {
@@ -190,7 +196,8 @@ __webpack_require__.r(__webpack_exports__);
       reloadKey: -1,
       files: [],
       images: [],
-      imageLabel: []
+      imageLabel: [],
+      hide: ''
     };
   },
   methods: {
@@ -268,6 +275,10 @@ __webpack_require__.r(__webpack_exports__);
 
     if (this.editImage) {
       this.getRegisteredImage();
+    }
+
+    if (this.hideLabel) {
+      this.hide = "hidden";
     }
   }
 });
@@ -567,7 +578,8 @@ var render = function() {
                     }
                   ],
                   staticClass:
-                    "block w-full px-4 py-2 mt-1 text-gray-700 bg-white border border-1  focus:border-blue-500 focus:outline-none focus:ring",
+                    " w-full px-4 py-2 mt-1 text-gray-700 bg-white border border-1  focus:border-blue-500 focus:outline-none focus:ring",
+                  class: [_vm.hide],
                   attrs: { name: "campus" },
                   on: {
                     change: function($event) {

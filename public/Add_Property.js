@@ -484,7 +484,7 @@ var render = function() {
                   "keep-alive",
                   [
                     _c("ImageUploader", {
-                      attrs: { editImage: true },
+                      attrs: { editImage: true, hideLabel: false },
                       on: { getImage: _vm.getImages }
                     })
                   ],

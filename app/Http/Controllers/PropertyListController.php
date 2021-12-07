@@ -13,6 +13,7 @@ use App\Models\Staff;
 use App\Models\Landlord;
 use App\Models\Property;
 use App\Models\Photo;
+use App\Models\Room;
 
 
 class PropertyListController extends Controller
@@ -55,6 +56,53 @@ class PropertyListController extends Controller
                         $Photo->photo_label = $label[$i];
                         $Photo->save();
                         $i++;
+                    }
+
+                }
+
+            }
+
+
+    }
+    public function create_Room(Request $request){
+        //     $request->validate([
+        //     'name' =>'required',
+        //     'password' =>'required',
+        //     'email' =>'required|email|unique:staff,staff_email',
+        //     'password' =>'required|min:4|max:12',
+        //     'phone_num' => 'required|regex:/(01)[0-9]{8}/'
+        //    ]);
+
+            $Room = new Room();
+            $Room ->landlord_id = $request ->land_id;
+            $Room ->property_id = $request ->prop_id;
+            $Room ->room_name = $request ->roomName;
+            $Room ->listing_name = $request ->listingName;
+            $Room ->room_type = $request ->description;
+            $Room ->room_furnishing = implode(',', (array) $request ->furnishing);
+            $Room ->penalty_fees =  $request ->campus;
+            $Room ->room_description =  $request ->description;
+            $Room ->number_of_tenant =  $request ->number_tenants;
+            $Room ->booking_fees =  $request ->monthly_rent;
+            $Room ->room_status =  'active';
+            $Room ->monthly_rent =  $request ->monthly_rent;
+            $Room ->save();
+            $Room_id =  $Room->getKey();
+
+            // return response()->json([
+            //    $label
+            // ]);
+
+            if ($Room->save()){
+
+                if (count($request->images)) {
+                    foreach ($request->images as $image) {
+                        $Photo =  new Photo();
+                        $filename = $this->decodeImage($image);
+                        $Photo->photo = $filename;
+                        $Photo->room_id =  $Room_id;
+                        $Photo->save();
+
                     }
 
                 }

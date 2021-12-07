@@ -35,12 +35,12 @@
 
 </template>
 <script>
-import propertyCard from './PropertyCard.vue';
+import RoomCard from './RoomCard.vue';
 
 
 export default {
     components: {
-        propertyCard,
+           RoomCard,
     },
     props: {
         user_id: Number,

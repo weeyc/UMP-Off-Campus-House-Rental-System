@@ -8,4 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class Room extends Model
 {
     public $timestamps = false;
+
+    public function getPhotoRelation(){
+        return $this->hasMany('App\Models\Photo', 'room_id', 'room_id' );
+    }
+
+    public function getPropertyRelation(){
+        return $this->belongsTo('App\Models\Property', 'property_id', 'property_id');
+    }
 }
