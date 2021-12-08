@@ -21,6 +21,7 @@ class CreateRoomsTable extends Migration
             $table->string('room_name')->nullable();
             $table->string('listing_name')->nullable();
             $table->string('room_type')->nullable();
+            $table->string('campus')->nullable();
             $table->string('room_description')->nullable();
             $table->float('penalty_fees')->nullable();
             $table->string('room_furnishing')->nullable();

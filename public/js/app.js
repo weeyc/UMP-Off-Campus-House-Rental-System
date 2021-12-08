@@ -43,7 +43,7 @@
 /******/
 /******/ 	// script path function
 /******/ 	function jsonpScriptSrc(chunkId) {
-/******/ 		return __webpack_require__.p + "" + ({"Add_Property~Registered_Property":"Add_Property~Registered_Property","Add_Property":"Add_Property","Landing_Staff":"Landing_Staff","Manage_Landlord":"Manage_Landlord","Manage_Staff":"Manage_Staff","Manage_Student":"Manage_Student","NotFound":"NotFound","Profile_Edit~Profile_View":"Profile_Edit~Profile_View","Profile_Edit":"Profile_Edit","Profile_View":"Profile_View","PropertyList_landlord":"PropertyList_landlord","Tab_Staff_Users":"Tab_Staff_Users","vendors~Registered_Property":"vendors~Registered_Property","Registered_Property":"Registered_Property"}[chunkId]||chunkId) + ".js"
+/******/ 		return __webpack_require__.p + "" + ({"Add_Property~Property_Landlord~Room_Landlord":"Add_Property~Property_Landlord~Room_Landlord","Add_Property":"Add_Property","Landing_Staff":"Landing_Staff","Manage_Landlord":"Manage_Landlord","Manage_Staff":"Manage_Staff","Manage_Student":"Manage_Student","NotFound":"NotFound","Profile_Edit~Profile_View":"Profile_Edit~Profile_View","Profile_Edit":"Profile_Edit","Profile_View":"Profile_View","PropertyList_landlord":"PropertyList_landlord","Tab_Staff_Users":"Tab_Staff_Users","vendors~Property_Landlord~Room_Landlord":"vendors~Property_Landlord~Room_Landlord","Property_Landlord":"Property_Landlord","Room_Landlord":"Room_Landlord"}[chunkId]||chunkId) + ".js"
 /******/ 	}
 /******/
 /******/ 	// The require function
@@ -47944,11 +47944,15 @@ var PropertyList_landlord = function PropertyList_landlord() {
 };
 
 var Add_Property = function Add_Property() {
-  return Promise.all(/*! import() | Add_Property */[__webpack_require__.e("Add_Property~Registered_Property"), __webpack_require__.e("Add_Property")]).then(__webpack_require__.bind(null, /*! ./components/ManagePropertyList/Add_Property */ "./resources/js/components/ManagePropertyList/Add_Property.vue"));
+  return Promise.all(/*! import() | Add_Property */[__webpack_require__.e("Add_Property~Property_Landlord~Room_Landlord"), __webpack_require__.e("Add_Property")]).then(__webpack_require__.bind(null, /*! ./components/ManagePropertyList/Add_Property */ "./resources/js/components/ManagePropertyList/Add_Property.vue"));
 };
 
-var Property = function Property() {
-  return Promise.all(/*! import() | Registered_Property */[__webpack_require__.e("vendors~Registered_Property"), __webpack_require__.e("Add_Property~Registered_Property"), __webpack_require__.e("Registered_Property")]).then(__webpack_require__.bind(null, /*! ./components/ManagePropertyList/Property */ "./resources/js/components/ManagePropertyList/Property.vue"));
+var Property_Landlord = function Property_Landlord() {
+  return Promise.all(/*! import() | Property_Landlord */[__webpack_require__.e("vendors~Property_Landlord~Room_Landlord"), __webpack_require__.e("Add_Property~Property_Landlord~Room_Landlord"), __webpack_require__.e("Property_Landlord")]).then(__webpack_require__.bind(null, /*! ./components/ManagePropertyList/Property_Landlord */ "./resources/js/components/ManagePropertyList/Property_Landlord.vue"));
+};
+
+var Room_Landlord = function Room_Landlord() {
+  return Promise.all(/*! import() | Room_Landlord */[__webpack_require__.e("vendors~Property_Landlord~Room_Landlord"), __webpack_require__.e("Add_Property~Property_Landlord~Room_Landlord"), __webpack_require__.e("Room_Landlord")]).then(__webpack_require__.bind(null, /*! ./components/ManagePropertyList/Room_Landlord */ "./resources/js/components/ManagePropertyList/Room_Landlord.vue"));
 };
 
 var Dashboard_Student = function Dashboard_Student() {
@@ -48030,7 +48034,11 @@ var NotFound = function NotFound() {
   }, {
     path: '/landlord/property/:property_id',
     name: 'property',
-    component: Property
+    component: Property_Landlord
+  }, {
+    path: '/landlord/property/:property_id/room/:room_id',
+    name: 'room_landlord',
+    component: Room_Landlord
   }, // Student Routes
   {
     path: '/student',

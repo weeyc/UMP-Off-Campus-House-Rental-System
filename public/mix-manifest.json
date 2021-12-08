@@ -14,5 +14,10 @@
     "/PropertyList_landlord.js": "/PropertyList_landlord.js",
     "/Registered_Property.js": "/Registered_Property.js",
     "/Tab_Staff_Users.js": "/Tab_Staff_Users.js",
-    "/vendors~Registered_Property.js": "/vendors~Registered_Property.js"
+    "/vendors~Registered_Property.js": "/vendors~Registered_Property.js",
+    "/Add_Property~Property_Landlord~Room_Landlord.js": "/Add_Property~Property_Landlord~Room_Landlord.js",
+    "/Property_Landlord.js": "/Property_Landlord.js",
+    "/Property_Landlord~Room_Landlord.js": "/Property_Landlord~Room_Landlord.js",
+    "/Room_Landlord.js": "/Room_Landlord.js",
+    "/vendors~Property_Landlord~Room_Landlord.js": "/vendors~Property_Landlord~Room_Landlord.js"
 }

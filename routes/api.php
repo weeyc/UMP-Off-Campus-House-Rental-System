@@ -27,8 +27,11 @@ Route::post('update_profile/{id}/{role}', 'UserController@update_Profile');
 
 Route::post('create_property', 'PropertyListController@create_Property');
 Route::get('get_properties/{id}', 'PropertyListController@get_Properties');
+Route::get('get_rooms/{id}', 'PropertyListController@get_Rooms');
+Route::get('get_room/{id}', 'PropertyListController@get_Room');
 Route::get('get_property/{id}', 'PropertyListController@get_Property');
 Route::post('update_property/{id}', 'PropertyListController@update_Property');
+Route::post('update_room/{id}', 'PropertyListController@update_Room');
 Route::post('create_room', 'PropertyListController@create_Room');
 
 

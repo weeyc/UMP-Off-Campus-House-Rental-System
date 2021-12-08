@@ -5,19 +5,15 @@
                 + Edit Property
             </button>
         </div>
-        <div  class="flex justify-end items-center">
-            <button @click="toggleAddModal = !toggleAddModal"  class=" bg-blue-600 shadow-lg hover:bg-blue-700 text-xs text-white px-5 py-3 rounded-md">
-                + Add Room
-            </button >
-        </div>
+
         <div  v-for= "house in property" :key="house.id"  class="max-w-2xl px-8 py-4 mx-auto   overflow-hidden bg-white rounded-lg shadow-lg mt-5">
             <div class="w-full p-4 md:p-4">
                 <div class="flex justify-between item-center">
                     <h1 class="text-2xl font-bold text-gray-800 dark:text-white">Property Name: {{ house.name }}</h1>
-                     <router-link :to="{ name: 'property', params:{property_id: house.id}}" class="px-2 py-1 text-xs font-bold text-white uppercase transition-colors duration-200
-                             transform bg-gray-800 rounded hover:bg-gray-700  focus:outline-none focus:bg-gray-700">
+                     <button class="px-2 py-1 text-xs font-bold text-white uppercase transition-colors duration-200
+                             transform bg-gray-800 rounded hover:bg-gray-700">
                              {{ house.status }}
-                    </router-link >
+                    </button >
                 </div>
                       <!-- Images Carousel -->
             <div class="border-double border-4 border-light-blue-500" style="width:100%;margin:10px auto;height:250px">
@@ -43,26 +39,47 @@
                 <div class="flex item-center">
                     <p class="mt-2 text-sm text-gray-600"><span class="font-black"> Location: </span></p>
                 </div>
-            </div>
-                <GoogleMap :latitude="parseFloat(house.lat)" :logitude="parseFloat(house.log)" :registered="true"  />
+                 <GoogleMap :latitude="parseFloat(house.lat)" :logitude="parseFloat(house.log)" :registered="true"  />
+                <div class="flex item-center mt-10  justify-between w-full p-6 items-center">
+                     <p class="mt-2 text-sm text-gray-600 flex justify-start items-center"><span class="font-black"> Rooms Listing: </span></p>
 
-            <div  v-for= "room in property" :key="room.id"  class="max-w-2xl px-8 py-4 mx-auto flex  overflow-hidden bg-white rounded-lg shadow-lg mt-5">
-                <div class="w-1/3" > <img class="h-70 w-full object-cover" :src="'/images/Properties/'+room.cover.photo_name" alt="Avatar" /></div>
+                     <div  class="flex justify-end items-center">
+                        <button @click="toggleAddModal = !toggleAddModal"  class=" bg-blue-600 shadow-lg hover:bg-blue-700 text-xs text-white px-5 py-3 rounded-md">
+                            + Add Room
+                        </button >
+                    </div>
+                      </div>
+
+            </div>
+
+
+
+            <div v-if="!rooms.length">
+                <span>You don't have room listing yet. Please add room</span>
+            </div>
+            <div v-else>
+
+
+            <div  v-for= "room in rooms" :key="room.id"  class="max-w-2xl px-8 py-4 mx-auto flex  overflow-hidden bg-white rounded-lg shadow-lg mt-5">
+                <div class="w-1/3" > <img class="h-48 w-full object-cover" :src="'/images/Properties/'+room.photo_room[0].photo_name" alt="Avatar" /></div>
 
                 <div class="w-2/3 p-4 md:p-4">
                     <div class="flex justify-between item-center">
-                        <h1 class="text-2xl font-bold text-gray-800 dark:text-white">{{ room.name }}</h1>
-                        <router-link :to="{ name: 'property', params:{property_id: room.id}}" class="px-2 py-1 text-xs font-bold text-white uppercase transition-colors duration-200
+                        <h1 class="text-2xl font-bold text-gray-800 dark:text-white">{{ room.listing_name }}</h1>
+                        <router-link :to="{ name: 'room_landlord', params:{room_id: room.id}}" class="px-2 py-1 text-xs font-bold text-white uppercase transition-colors duration-200
                                 transform bg-gray-800 rounded hover:bg-gray-700  focus:outline-none focus:bg-gray-700">
-                                View Details
+                                Room Details
                         </router-link >
                     </div>
-                    <p class="mt-2 text-sm text-gray-600 dark:text-gray-400">{{ room.address }}</p>
+                    <p class="mt-2 text-sm text-gray-600 dark:text-gray-400">Room Name {{ room.room_name }}</p>
+                    <p class="mt-2 text-sm text-gray-600 dark:text-gray-400">Room Type: {{ room.room_type }}</p>
+                    <p class="mt-2 text-sm text-gray-600 dark:text-gray-400">Monthly Rent: RM {{ room.monthly_rent }}</p>
                     <div class="flex mt-2 item-center">
-                        <p class="mt-2 text-sm text-gray-600 dark:text-gray-400">{{ room.status }}</p>
+                        <p class="mt-2 text-sm text-gray-600 dark:text-gray-400">Room Listing Status: {{ room.room_status }}</p>
                     </div>
                 </div>
             </div>
+           </div>
 
 
         </div>
@@ -80,7 +97,7 @@
             v-if="toggleAddModal"
             :property_id="parseInt(property_id)"
             :landlord_id="parseInt(landlord_id)"
-            @refreshData="getProperty"
+            @refreshData="getRooms"
             @closeModal="closeAddModal">
         </AddRoomModal>
 
@@ -124,6 +141,7 @@ export default {
             toggleAddModal: false,
             property: [],
             landlord_id: '',
+            rooms: [],
             property_id: this.$route.params.property_id,
             propertyPhoto:[],
             options: {
@@ -152,8 +170,14 @@ export default {
                 this.propertyPhoto = response.data.data[0].photo;
                 this.landlord_id = response.data.data[0].landlord_id;
                 console.warn(this.property.data);
-                })
-            },
+            })
+        },
+        getRooms(){
+            axios.get('/api/get_rooms/'+this.property_id).then((response)=>{
+                this.rooms=response.data.data;
+                console.warn(this.rooms.data);
+            })
+        },
         closeEditModal(){
             this.toggleModal =!  this.toggleModal ;
         },
@@ -180,6 +204,7 @@ export default {
     },
       mounted: function(){
         this.getProperty();
+        this.getRooms();
     },
 
 
