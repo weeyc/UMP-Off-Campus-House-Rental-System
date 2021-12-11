@@ -123,7 +123,7 @@
                         </div>
                     <div class="flex justify-end mt-6">
                         <button @click.prevent="goToNext(2)" class="px-6 py-2  mr-5 leading-5 text-white transition-colors duration-200 transform bg-gray-700 rounded-md hover:bg-gray-600 focus:outline-none focus:bg-gray-600">Back</button>
-                        <button @click.prevent="editProperty" class="px-6 py-2 leading-5 text-white transition-colors duration-200 transform bg-gray-700 rounded-md hover:bg-gray-600 focus:outline-none focus:bg-gray-600">Submit Property</button>
+                        <button @click.prevent="editProperty" class="px-6 py-2 leading-5 text-white transition-colors duration-200 transform bg-gray-700 rounded-md hover:bg-gray-600 focus:outline-none focus:bg-gray-600">Update Room</button>
                     </div>
                 </div>
             </section>
@@ -177,6 +177,7 @@ components: {
             modalBackground: '',
             activePhase: 1,
             replace: false,
+            chgPic: 0,
         }
     },
     methods: {
@@ -194,12 +195,16 @@ components: {
         get_replace(param){
             if(param == 0){
                 this.replace = true;
-            }else
+                this.chgPic = 1
+            }else{
                 this.replace = false;
+                this.chgPic = 0
+            }
+
 
         },
      editProperty(){
-            axios.post('/api/update_room/'+this.room_id,
+            axios.post('/api/update_room/'+this.room_id+'/'+this.chgPic,
             this.form
             ).then(() =>{
                 Swal.fire({

@@ -204,7 +204,7 @@ class PropertyListController extends Controller
           return $data;
 
      }
-    public function update_Room($id, Request $request){
+    public function update_Room($id, $chgPic, Request $request){
 
         // $request->validate([
         //     'name' =>'required',
@@ -227,10 +227,7 @@ class PropertyListController extends Controller
               'monthly_rent' => $request ->monthly_rent,
           ]);
 
-
-
-
-          if ($request->photo_room != null){
+          if ($chgPic == 1){
                 Photo::where('room_id', $id)->delete();
 
               if (count($request->photo_room)) {
@@ -240,7 +237,6 @@ class PropertyListController extends Controller
                       $filename = $this->decodeImage($image);
                       $Photo->photo = $filename;
                       $Photo->room_id =  $id;
-
                       $Photo->save();
 
                   }

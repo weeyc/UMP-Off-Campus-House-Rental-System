@@ -227,21 +227,21 @@ class UserController extends Controller
 
         }
 
-            public function decodeImage($request_picture){
+        public function decodeImage($request_picture){
 
-                $exploded = explode(',', $request_picture);
-                $decoded = base64_decode($exploded[1]);
-                    if(str_contains($exploded[0], 'jpeg')){
-                        $extension = 'jpg';
-                    }else{
-                        $extension = 'png';
-                    }
-                $filename = str_random().'.'.$extension;
-                $path = public_path().'/images/Profile/'.$filename;
-                file_put_contents($path, $decoded);
-                return $filename;
+            $exploded = explode(',', $request_picture);
+            $decoded = base64_decode($exploded[1]);
+                if(str_contains($exploded[0], 'jpeg')){
+                    $extension = 'jpg';
+                }else{
+                    $extension = 'png';
+                }
+            $filename = str_random().'.'.$extension;
+            $path = public_path().'/images/Profile/'.$filename;
+            file_put_contents($path, $decoded);
+            return $filename;
 
-            }
+        }
 
 
 

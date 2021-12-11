@@ -205,7 +205,8 @@ var Errors = /*#__PURE__*/function () {
       isVisible: false,
       modalBackground: '',
       activePhase: 1,
-      replace: false
+      replace: false,
+      chgPic: 0
     };
   },
   methods: {
@@ -222,12 +223,16 @@ var Errors = /*#__PURE__*/function () {
     get_replace: function get_replace(param) {
       if (param == 0) {
         this.replace = true;
-      } else this.replace = false;
+        this.chgPic = 1;
+      } else {
+        this.replace = false;
+        this.chgPic = 0;
+      }
     },
     editProperty: function editProperty() {
       var _this = this;
 
-      axios.post('/api/update_room/' + this.room_id, this.form).then(function () {
+      axios.post('/api/update_room/' + this.room_id + '/' + this.chgPic, this.form).then(function () {
         Swal.fire({
           position: 'center',
           icon: 'success',
@@ -1418,7 +1423,7 @@ var render = function() {
                               }
                             }
                           },
-                          [_vm._v("Submit Property")]
+                          [_vm._v("Update Room")]
                         )
                       ])
                     ])
