@@ -9,6 +9,13 @@ class Landlord extends Model
 {
     // include  public $timestamps = false; //
     public $timestamps = false;
+    protected $hidden = ['landlord_password'];
+    public function getPropertyRelation(){
+        return $this->hasMany('App\Models\Property', 'landlord_id', 'landlord_id' );
+
+    }
+
+
 }
 
 // <?php

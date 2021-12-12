@@ -165,7 +165,7 @@ export default {
     },
      methods:{
         getProperty(){
-            axios.get('/api/get_property/'+this.property_id).then((response)=>{
+            axios.get('/api/get_property/'+this.property_id+'?imej=1').then((response)=>{
                 this.property=response.data.data;
                 this.propertyPhoto = response.data.data[0].photo;
                 this.landlord_id = response.data.data[0].landlord_id;

@@ -96,14 +96,14 @@
                 </div>
                 <div class="flex ">
                     <div class="hidden xl:flex md:mr-6 xl:mr-16 ">
-                        <a href="javascript: void(0)"  class="flex px-5 items-center py-6 leading-5 text-base  text-pink-200  hover:text-pink-500  transition duration-150 ease-in-out hover:border-gray-700 border-transparent border-b-4 hover:border-current">
+                          <router-link  :to="{name: 'ManageProperties_Staff'}"   active-class="active" class="flex px-5 items-center py-6 leading-5 text-base  text-pink-200  hover:text-pink-500  transition duration-150 ease-in-out hover:border-gray-700 border-transparent border-b-4 hover:border-current">
                             <span class="mr-2">
                                 <svg class="h-6 w-6"  fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"/>
                                 </svg>
                             </span>
                                 <span>Manage Property List</span>
-                        </a>
+                        </router-link>
                         <router-link  :to="{ path: '/staff/manage-user'}" active-class="active" class="flex px-5 text-base  text-pink-200 items-center py-6 leading-5  hover:text-pink-500 transition duration-150 ease-in-out hover:border-gray-700 border-transparent border-b-4 hover:border-current">
                            <!-- class=" duration-650 hover:border-core hover:bg-montana  transition ease-in-out transform border-t-2 border-transparent" -->
                             <span class="mr-2">
@@ -114,12 +114,12 @@
 
                               <span>Manage Users</span>
                         </router-link>
-                        <a href="javascript: void(0)" class="flex px-5 items-center py-6 leading-5 text-base text-pink-200  hover:text-pink-500 transition duration-150 ease-in-out hover:border-gray-700 border-transparent border-b-4 hover:border-current">
+                     <router-link  :to="{name: 'ManageProperties_Staff'}"  class="flex px-5 items-center py-6 leading-5 text-base text-pink-200  hover:text-pink-500 transition duration-150 ease-in-out hover:border-gray-700 border-transparent border-b-4 hover:border-current">
                             <span class="mr-2">
                                 <svg class="h-6 w-6"  width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">  <path stroke="none" d="M0 0h24v24H0z"/>  <polyline points="5 12 3 12 12 3 21 12 19 12" />  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" /></svg>
                             </span>
                               <span>Manage Rental Properties</span>
-                        </a>
+                        </router-link>
 
                     </div>
 

@@ -70,7 +70,7 @@ __webpack_require__.r(__webpack_exports__);
     getProperty: function getProperty() {
       var _this = this;
 
-      axios.get('/api/get_properties/' + this.user_id).then(function (response) {
+      axios.get('/api/get_properties/' + this.user_id + '?imej=1').then(function (response) {
         _this.properties = response.data.data;
         console.warn(_this.properties.data);
       });

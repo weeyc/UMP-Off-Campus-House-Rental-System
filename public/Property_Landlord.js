@@ -708,7 +708,7 @@ __webpack_require__.r(__webpack_exports__);
     getProperty: function getProperty() {
       var _this = this;
 
-      axios.get('/api/get_property/' + this.property_id).then(function (response) {
+      axios.get('/api/get_property/' + this.property_id + '?imej=1').then(function (response) {
         _this.property = response.data.data;
         _this.propertyPhoto = response.data.data[0].photo;
         _this.landlord_id = response.data.data[0].landlord_id;

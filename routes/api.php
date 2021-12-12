@@ -34,6 +34,9 @@ Route::post('update_property/{id}', 'PropertyListController@update_Property');
 Route::post('update_room/{id}/{chgPic}', 'PropertyListController@update_Room');
 Route::post('create_room', 'PropertyListController@create_Room');
 
+Route::get('get_properties_list/{campus}', 'PropertyListController@getPropList');
+Route::post('update_prop_status/{id}', 'PropertyListController@updatePropStatus');
+
 
 
 

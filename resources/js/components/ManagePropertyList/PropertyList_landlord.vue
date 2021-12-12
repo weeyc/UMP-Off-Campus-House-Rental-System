@@ -61,7 +61,7 @@ export default {
     },
      methods:{
         getProperty(){
-            axios.get('/api/get_properties/'+this.user_id).then((response)=>{
+            axios.get('/api/get_properties/'+this.user_id+'?imej=1').then((response)=>{
                 this.properties=response.data.data;
                 console.warn(this.properties.data);
                 })

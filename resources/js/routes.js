@@ -15,6 +15,8 @@ const Add_Property = () => import(/* webpackChunkName: "Add_Property" */'./compo
 const Property_Landlord = () => import(/* webpackChunkName: "Property_Landlord" */'./components/ManagePropertyList/Property_Landlord');
 const Room_Landlord = () => import(/* webpackChunkName: "Room_Landlord" */'./components/ManagePropertyList/Room_Landlord');
 
+const ManageProperties_Staff = () => import(/* webpackChunkName: "ManageProperties_Staff" */'./components/ManagePropertyList/ManageProperties_Staff');
+
 
 
 const Dashboard_Student = () => import(/* webpackChunkName: "Landing_Staff" */'./components/ManageRegistrationUsers/Dashboard_Student');
@@ -84,6 +86,12 @@ export default{
             path: '/staff/view-profile/:role/:id',
             name: 'profile_view',
             component: Profile_View,
+        },
+
+        {
+            path: '/staff/manage_properties',
+            name: 'ManageProperties_Staff',
+            component: ManageProperties_Staff,
         },
 
 

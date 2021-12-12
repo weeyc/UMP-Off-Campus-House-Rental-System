@@ -154,6 +154,32 @@ class PropertyListController extends Controller
          return RoomResource::collection($data);
      }
 
+     public function getPropList($campus){
+         if($campus=='Gambang'){
+
+            $data = Property::with('getLandlordRelation')->where('campus',$campus)->paginate(10);
+
+            return PropertyResource::collection($data);
+         }else{
+            $data = Property::with('getLandlordRelation')->where('campus',$campus)->paginate(10);
+            return PropertyResource::collection($data);
+         }
+
+   }
+
+     public function updatePropStatus($id, Request $request){
+       $staff_name = Staff::where('staff_id',$id)->value('staff_name');
+
+       $data = Property::where('property_id',$request->id)
+       ->update([
+           'verify_status' => $request ->status,
+           'Verify_by' => $staff_name,
+       ]);
+       return $data;
+   }
+
+
+
 
     public function update_Property($id, Request $request){
 

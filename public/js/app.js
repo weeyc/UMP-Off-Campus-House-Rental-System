@@ -43,7 +43,7 @@
 /******/
 /******/ 	// script path function
 /******/ 	function jsonpScriptSrc(chunkId) {
-/******/ 		return __webpack_require__.p + "" + ({"Add_Property~Property_Landlord~Room_Landlord":"Add_Property~Property_Landlord~Room_Landlord","Add_Property":"Add_Property","Landing_Staff":"Landing_Staff","Manage_Landlord":"Manage_Landlord","Manage_Staff":"Manage_Staff","Manage_Student":"Manage_Student","NotFound":"NotFound","Profile_Edit~Profile_View":"Profile_Edit~Profile_View","Profile_Edit":"Profile_Edit","Profile_View":"Profile_View","PropertyList_landlord":"PropertyList_landlord","Tab_Staff_Users":"Tab_Staff_Users","vendors~Property_Landlord~Room_Landlord":"vendors~Property_Landlord~Room_Landlord","Property_Landlord":"Property_Landlord","Room_Landlord":"Room_Landlord"}[chunkId]||chunkId) + ".js"
+/******/ 		return __webpack_require__.p + "" + ({"Add_Property~Property_Landlord~Room_Landlord":"Add_Property~Property_Landlord~Room_Landlord","Add_Property":"Add_Property","Landing_Staff":"Landing_Staff","ManageProperties_Staff":"ManageProperties_Staff","Manage_Landlord":"Manage_Landlord","Manage_Staff":"Manage_Staff","Manage_Student":"Manage_Student","NotFound":"NotFound","Profile_Edit~Profile_View":"Profile_Edit~Profile_View","Profile_Edit":"Profile_Edit","Profile_View":"Profile_View","PropertyList_landlord":"PropertyList_landlord","Tab_Staff_Users":"Tab_Staff_Users","vendors~Property_Landlord~Room_Landlord":"vendors~Property_Landlord~Room_Landlord","Property_Landlord":"Property_Landlord","Room_Landlord":"Room_Landlord"}[chunkId]||chunkId) + ".js"
 /******/ 	}
 /******/
 /******/ 	// The require function
@@ -27035,11 +27035,14 @@ var render = function() {
               { staticClass: "hidden xl:flex md:mr-6 xl:mr-16 " },
               [
                 _c(
-                  "a",
+                  "router-link",
                   {
                     staticClass:
                       "flex px-5 items-center py-6 leading-5 text-base  text-pink-200  hover:text-pink-500  transition duration-150 ease-in-out hover:border-gray-700 border-transparent border-b-4 hover:border-current",
-                    attrs: { href: "javascript: void(0)" }
+                    attrs: {
+                      to: { name: "ManageProperties_Staff" },
+                      "active-class": "active"
+                    }
                   },
                   [
                     _c("span", { staticClass: "mr-2" }, [
@@ -27112,11 +27115,11 @@ var render = function() {
                 ),
                 _vm._v(" "),
                 _c(
-                  "a",
+                  "router-link",
                   {
                     staticClass:
                       "flex px-5 items-center py-6 leading-5 text-base text-pink-200  hover:text-pink-500 transition duration-150 ease-in-out hover:border-gray-700 border-transparent border-b-4 hover:border-current",
-                    attrs: { href: "javascript: void(0)" }
+                    attrs: { to: { name: "ManageProperties_Staff" } }
                   },
                   [
                     _c("span", { staticClass: "mr-2" }, [
@@ -47955,6 +47958,10 @@ var Room_Landlord = function Room_Landlord() {
   return Promise.all(/*! import() | Room_Landlord */[__webpack_require__.e("vendors~Property_Landlord~Room_Landlord"), __webpack_require__.e("Add_Property~Property_Landlord~Room_Landlord"), __webpack_require__.e("Room_Landlord")]).then(__webpack_require__.bind(null, /*! ./components/ManagePropertyList/Room_Landlord */ "./resources/js/components/ManagePropertyList/Room_Landlord.vue"));
 };
 
+var ManageProperties_Staff = function ManageProperties_Staff() {
+  return __webpack_require__.e(/*! import() | ManageProperties_Staff */ "ManageProperties_Staff").then(__webpack_require__.bind(null, /*! ./components/ManagePropertyList/ManageProperties_Staff */ "./resources/js/components/ManagePropertyList/ManageProperties_Staff.vue"));
+};
+
 var Dashboard_Student = function Dashboard_Student() {
   return __webpack_require__.e(/*! import() | Landing_Staff */ "Landing_Staff").then(__webpack_require__.bind(null, /*! ./components/ManageRegistrationUsers/Dashboard_Student */ "./resources/js/components/ManageRegistrationUsers/Dashboard_Student.vue"));
 };
@@ -48010,6 +48017,10 @@ var NotFound = function NotFound() {
     path: '/staff/view-profile/:role/:id',
     name: 'profile_view',
     component: Profile_View
+  }, {
+    path: '/staff/manage_properties',
+    name: 'ManageProperties_Staff',
+    component: ManageProperties_Staff
   }, // Landlord Routes
   {
     path: '/landlord',
