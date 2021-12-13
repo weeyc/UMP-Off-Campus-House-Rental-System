@@ -8,7 +8,7 @@
                 </router-link >
             </div>
 
-             <div v-if="!properties.length">
+            <div v-if="!properties.length">
                 <span>You don't have any property register yet. Please add property</span>
             </div>
             <div v-else>

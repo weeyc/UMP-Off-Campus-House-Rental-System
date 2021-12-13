@@ -19,6 +19,7 @@ class PropertyResource extends JsonResource
         $landlord = $this->whenLoaded('getLandlordRelation');
         $getLand = $request->land;
         $getPhoto = $request->imej;
+
             return [
                 'id' => $this->property_id,
                 'land'  => $getLand ? (new LandlordResource($landlord))->where('landlord_id', $this->landlord_id)->first() : 'null',
@@ -40,6 +41,7 @@ class PropertyResource extends JsonResource
 
 
                 'photo' => $getPhoto ? PhotoResource::collection($this->whenLoaded('getPhotoRelation')) : 'null',
+
                 'cover' => $getPhoto ?  PhotoResource::collection($this->whenLoaded('getPhotoRelation'))->where('photo_label', 'Cover')->first() :'null'
             ];
 

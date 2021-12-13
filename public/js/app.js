@@ -43,7 +43,7 @@
 /******/
 /******/ 	// script path function
 /******/ 	function jsonpScriptSrc(chunkId) {
-/******/ 		return __webpack_require__.p + "" + ({"Add_Property~Property_Landlord~Room_Landlord":"Add_Property~Property_Landlord~Room_Landlord","Add_Property":"Add_Property","Landing_Staff":"Landing_Staff","ManageProperties_Staff":"ManageProperties_Staff","Manage_Landlord":"Manage_Landlord","Manage_Staff":"Manage_Staff","Manage_Student":"Manage_Student","NotFound":"NotFound","Profile_Edit~Profile_View":"Profile_Edit~Profile_View","Profile_Edit":"Profile_Edit","Profile_View":"Profile_View","PropertyList_landlord":"PropertyList_landlord","Tab_Staff_Users":"Tab_Staff_Users","vendors~Property_Landlord~Room_Landlord":"vendors~Property_Landlord~Room_Landlord","Property_Landlord":"Property_Landlord","Room_Landlord":"Room_Landlord"}[chunkId]||chunkId) + ".js"
+/******/ 		return __webpack_require__.p + "" + ({"Add_Property~Property_Landlord~Room_Landlord":"Add_Property~Property_Landlord~Room_Landlord","Add_Property":"Add_Property","BrowseRoom_Student":"BrowseRoom_Student","Landing_Staff":"Landing_Staff","ManageProperties_Staff":"ManageProperties_Staff","Manage_Landlord":"Manage_Landlord","Manage_Staff":"Manage_Staff","Manage_Student":"Manage_Student","NotFound":"NotFound","Profile_Edit~Profile_View":"Profile_Edit~Profile_View","Profile_Edit":"Profile_Edit","Profile_View":"Profile_View","PropertyList_landlord":"PropertyList_landlord","Tab_Staff_Users":"Tab_Staff_Users","vendors~Property_Landlord~Room_Landlord":"vendors~Property_Landlord~Room_Landlord","Property_Landlord":"Property_Landlord","Room_Landlord":"Room_Landlord"}[chunkId]||chunkId) + ".js"
 /******/ 	}
 /******/
 /******/ 	// The require function
@@ -2205,7 +2205,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 /* harmony default export */ __webpack_exports__["default"] = ({});
 
 /***/ }),
@@ -2693,6 +2692,8 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
 //
 //
 //
@@ -25561,72 +25562,75 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    {
-      staticStyle: { "background-image": "url(/images/Background/Sunrise.jpg)" }
-    },
+    { staticClass: "bg-gradient-to-l from-gray-700 via-gray-900 to-black" },
     [
       _c("footer", { staticClass: "relative  pt-5" }, [
         _c(
           "div",
           { staticClass: "flex flex-col justify-center items-center pb-1" },
           [
-            _c("div", { staticClass: "animate-bounce" }, [
-              _c(
-                "svg",
-                {
-                  staticStyle: { fill: "#000000" },
-                  attrs: {
-                    xmlns: "http://www.w3.org/2000/svg",
-                    x: "0px",
-                    y: "0px",
-                    width: "40",
-                    height: "40",
-                    viewBox: "0 0 172 172"
-                  }
-                },
-                [
-                  _c(
-                    "g",
-                    {
-                      staticStyle: { "mix-blend-mode": "normal" },
-                      attrs: {
-                        fill: "none",
-                        "fill-rule": "nonzero",
-                        stroke: "none",
-                        "stroke-width": "1",
-                        "stroke-linecap": "butt",
-                        "stroke-linejoin": "miter",
-                        "stroke-miterlimit": "10",
-                        "stroke-dasharray": "",
-                        "stroke-dashoffset": "0",
-                        "font-family": "none",
-                        "font-weight": "none",
-                        "font-size": "none",
-                        "text-anchor": "none"
-                      }
-                    },
-                    [
-                      _c("path", {
-                        attrs: { d: "M0,172v-172h172v172z", fill: "none" }
-                      }),
-                      _c("g", { attrs: { fill: "#df2d8a" } }, [
+            _c(
+              "div",
+              { staticClass: "row-span-2 justify-self-end animate-bounce" },
+              [
+                _c(
+                  "svg",
+                  {
+                    staticStyle: { fill: "#000000" },
+                    attrs: {
+                      xmlns: "http://www.w3.org/2000/svg",
+                      x: "0px",
+                      y: "0px",
+                      width: "40",
+                      height: "40",
+                      viewBox: "0 0 172 172"
+                    }
+                  },
+                  [
+                    _c(
+                      "g",
+                      {
+                        staticStyle: { "mix-blend-mode": "normal" },
+                        attrs: {
+                          fill: "none",
+                          "fill-rule": "nonzero",
+                          stroke: "none",
+                          "stroke-width": "1",
+                          "stroke-linecap": "butt",
+                          "stroke-linejoin": "miter",
+                          "stroke-miterlimit": "10",
+                          "stroke-dasharray": "",
+                          "stroke-dashoffset": "0",
+                          "font-family": "none",
+                          "font-weight": "none",
+                          "font-size": "none",
+                          "text-anchor": "none"
+                        }
+                      },
+                      [
                         _c("path", {
-                          attrs: {
-                            d:
-                              "M86,14.33333c-1.91435,0.00025 -3.74903,0.76638 -5.09506,2.1276l-72.28255,63.07226c-0.9155,0.67554 -1.45577,1.74571 -1.45573,2.88347c0,1.97902 1.60431,3.58333 3.58333,3.58333h17.91667v57.33333c0,3.956 3.21067,7.16667 7.16667,7.16667h21.5c3.956,0 7.16667,-3.21067 7.16667,-7.16667v-43h43v43c0,3.956 3.21067,7.16667 7.16667,7.16667h21.5c3.956,0 7.16667,-3.21067 7.16667,-7.16667v-57.33333h17.91667c1.97902,0 3.58333,-1.60431 3.58333,-3.58333c0.00004,-1.13776 -0.54023,-2.20792 -1.45573,-2.88347l-27.21094,-23.73958v-19.96029c0,-3.956 -3.21067,-7.16667 -7.16667,-7.16667c-3.956,0 -7.16667,3.21067 -7.16667,7.16667v7.44661l-30.69629,-26.77702c-0.01394,-0.01406 -0.02794,-0.02805 -0.04199,-0.04199c-1.34603,-1.36123 -3.18071,-2.12736 -5.09506,-2.1276z"
-                          }
-                        })
-                      ])
-                    ]
-                  )
-                ]
-              )
-            ]),
+                          attrs: { d: "M0,172v-172h172v172z", fill: "none" }
+                        }),
+                        _c("g", { attrs: { fill: "#d97706" } }, [
+                          _c("path", {
+                            attrs: {
+                              d:
+                                "M86,14.33333c-1.91435,0.00025 -3.74903,0.76638 -5.09506,2.1276l-72.28255,63.07226c-0.9155,0.67554 -1.45577,1.74571 -1.45573,2.88347c0,1.97902 1.60431,3.58333 3.58333,3.58333h17.91667v57.33333c0,3.956 3.21067,7.16667 7.16667,7.16667h28.66667c3.956,0 7.16667,-3.21067 7.16667,-7.16667v-43h28.66667v43c0,3.956 3.21067,7.16667 7.16667,7.16667h28.66667c3.956,0 7.16667,-3.21067 7.16667,-7.16667v-57.33333h17.91667c1.97902,0 3.58333,-1.60431 3.58333,-3.58333c0.00004,-1.13776 -0.54023,-2.20792 -1.45573,-2.88347l-72.24056,-63.03027c-0.01394,-0.01406 -0.02794,-0.02805 -0.04199,-0.04199c-1.34603,-1.36123 -3.18071,-2.12736 -5.09506,-2.1276z"
+                            }
+                          })
+                        ])
+                      ]
+                    )
+                  ]
+                )
+              ]
+            ),
             _vm._v(" "),
             _c(
               "p",
               {
-                staticClass: " text-xs text-pink-300 lg:text-sm leading-none "
+                staticClass:
+                  " text-xs bg-gradient-to-r from-yellow-100 via-yellow-300 to-yellow-500      text-transparent bg-clip-text lg:text-sm leading-none "
               },
               [_vm._v("Copyright © 2021 - All rights reserved by UOCA.")]
             )
@@ -27458,7 +27462,7 @@ var render = function() {
             {
               staticClass:
                 "hidden focus:outline-none hover:text-indigo-200 focus:text-indigo-200 text-white sm:flex justify-start p-6 items-center space-x-3 w-full",
-              attrs: { to: { name: "student_landing" } }
+              attrs: { to: { name: "landing_student" } }
             },
             [
               _c(
@@ -27596,7 +27600,7 @@ var render = function() {
                     "focus:outline-none flex jusitfy-start  py-3 items-center space-x-6 w-full",
                   class: [_vm.hover],
                   attrs: {
-                    to: { name: "dashboard_student" },
+                    to: { name: "BrowseRoom_Student" },
                     "active-class": "active"
                   }
                 },
@@ -27661,7 +27665,7 @@ var render = function() {
                   ),
                   _vm._v(" "),
                   _c("p", { staticClass: "text-base leading-4 " }, [
-                    _vm._v("Dashboard")
+                    _vm._v("Browse Rooms")
                   ])
                 ]
               ),
@@ -27710,7 +27714,7 @@ var render = function() {
                   ),
                   _vm._v(" "),
                   _c("p", { staticClass: "text-base leading-4" }, [
-                    _vm._v("My Property List")
+                    _vm._v("My Rental Property")
                   ])
                 ]
               ),
@@ -27760,7 +27764,7 @@ var render = function() {
                   ),
                   _vm._v(" "),
                   _c("p", { staticClass: "text-base leading-4" }, [
-                    _vm._v("My Rental Property")
+                    _vm._v("My Payment")
                   ])
                 ]
               ),
@@ -28001,151 +28005,147 @@ var render = function() {
         2
       ),
       _vm._v(" "),
-      _c(
-        "div",
-        { staticClass: "flex flex-1 flex-col" },
-        [
-          _c(
-            "div",
-            {
-              staticClass:
-                " rounded-r shadow  flex justify-between w-full p-6 items-center border-b border-transparent sm:border-gray-200 bg-gradient-to-br from-cool-gray-900 to-bg-gradient-to-r-gray-600",
-              staticStyle: { "background-color": "#23252f" }
-            },
-            [
-              _c("div", { staticClass: "flex justify-center items-center" }, [
-                _c(
-                  "button",
-                  {
-                    on: {
-                      click: function($event) {
-                        return _vm.showNav()
-                      }
-                    }
-                  },
-                  [
-                    _c(
-                      "svg",
-                      {
-                        staticClass: "text-yellow-400 hover:text-yellow-500",
-                        attrs: {
-                          width: "24",
-                          height: "24",
-                          viewBox: "0 0 24 24",
-                          fill: "none",
-                          xmlns: "http://www.w3.org/2000/svg"
-                        }
-                      },
-                      [
-                        _c("path", {
-                          attrs: {
-                            d: "M4 6H20",
-                            stroke: "currentColor",
-                            "stroke-width": "1.5",
-                            "stroke-linecap": "round",
-                            "stroke-linejoin": "round"
-                          }
-                        }),
-                        _vm._v(" "),
-                        _c("path", {
-                          attrs: {
-                            d: "M4 12H20",
-                            stroke: "currentColor",
-                            "stroke-width": "1.5",
-                            "stroke-linecap": "round",
-                            "stroke-linejoin": "round"
-                          }
-                        }),
-                        _vm._v(" "),
-                        _c("path", {
-                          attrs: {
-                            d: "M4 18H20",
-                            stroke: "currentColor",
-                            "stroke-width": "1.5",
-                            "stroke-linecap": "round",
-                            "stroke-linejoin": "round"
-                          }
-                        })
-                      ]
-                    )
-                  ]
-                )
-              ]),
-              _vm._v(" "),
+      _c("div", { staticClass: "flex flex-1 flex-col" }, [
+        _c(
+          "div",
+          {
+            staticClass:
+              " rounded-r shadow  flex justify-between w-full p-6 items-center border-b border-transparent sm:border-gray-200 bg-gradient-to-br from-cool-gray-900 to-bg-gradient-to-r-gray-600",
+            staticStyle: { "background-color": "#23252f" }
+          },
+          [
+            _c("div", { staticClass: "flex justify-center items-center" }, [
               _c(
-                "router-link",
+                "button",
                 {
-                  staticClass:
-                    "flex text-yellow-400 text-2xl font-black tracking-wide hover:text-yellow-500 focus:outline-none focus:text-yellow-500 justify-between items-center space-x-3",
-                  attrs: { to: { name: "student_landing" } }
+                  on: {
+                    click: function($event) {
+                      return _vm.showNav()
+                    }
+                  }
                 },
                 [
                   _c(
                     "svg",
                     {
-                      staticClass: "h-10 w-10",
+                      staticClass: "text-yellow-400 hover:text-yellow-500",
                       attrs: {
-                        xmlns: "http://www.w3.org/2000/svg",
-                        viewBox: "0 0 20 20",
-                        fill: "currentColor"
+                        width: "24",
+                        height: "24",
+                        viewBox: "0 0 24 24",
+                        fill: "none",
+                        xmlns: "http://www.w3.org/2000/svg"
                       }
                     },
                     [
                       _c("path", {
                         attrs: {
-                          d:
-                            "M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"
+                          d: "M4 6H20",
+                          stroke: "currentColor",
+                          "stroke-width": "1.5",
+                          "stroke-linecap": "round",
+                          "stroke-linejoin": "round"
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("path", {
+                        attrs: {
+                          d: "M4 12H20",
+                          stroke: "currentColor",
+                          "stroke-width": "1.5",
+                          "stroke-linecap": "round",
+                          "stroke-linejoin": "round"
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("path", {
+                        attrs: {
+                          d: "M4 18H20",
+                          stroke: "currentColor",
+                          "stroke-width": "1.5",
+                          "stroke-linecap": "round",
+                          "stroke-linejoin": "round"
                         }
                       })
                     ]
-                  ),
-                  _vm._v(" "),
-                  _c("span", [_vm._v("UMP Off-Campus Accomodation")])
-                ]
-              ),
-              _vm._v(" "),
-              _c(
-                "div",
-                { staticClass: "flex justify-center items-center" },
-                [
-                  _c(
-                    "router-link",
-                    {
-                      staticClass:
-                        " bg-yellow-600 hover:bg-yellow-700 text-xs text-white px-3 py-3 rounded-md",
-                      attrs: { to: { name: "profile_student" } }
-                    },
-                    [
-                      _vm._v(
-                        "\n                       I'm Student\n                "
-                      )
-                    ]
                   )
-                ],
-                1
+                ]
               )
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "div",
-            {
-              staticClass:
-                "bg-gradient-to-bl from-yellow-200 via-yellow-300 to-yellow-400  overflow-y-auto"
-            },
-            [
-              _c("router-view", {
-                attrs: { user_id: _vm.user_id, role: _vm.role }
-              })
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c("foot-std", { staticClass: "bottom-0 w-full hidden" })
-        ],
-        1
-      )
+            ]),
+            _vm._v(" "),
+            _c(
+              "router-link",
+              {
+                staticClass:
+                  "flex text-yellow-400 text-2xl font-black tracking-wide hover:text-yellow-500 focus:outline-none focus:text-yellow-500 justify-between items-center space-x-3",
+                attrs: { to: { name: "student_landing" } }
+              },
+              [
+                _c(
+                  "svg",
+                  {
+                    staticClass: "h-10 w-10",
+                    attrs: {
+                      xmlns: "http://www.w3.org/2000/svg",
+                      viewBox: "0 0 20 20",
+                      fill: "currentColor"
+                    }
+                  },
+                  [
+                    _c("path", {
+                      attrs: {
+                        d:
+                          "M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"
+                      }
+                    })
+                  ]
+                ),
+                _vm._v(" "),
+                _c("span", [_vm._v("UMP Off-Campus Accomodation")])
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "flex justify-center items-center" },
+              [
+                _c(
+                  "router-link",
+                  {
+                    staticClass:
+                      " bg-yellow-600 hover:bg-yellow-700 text-xs text-white px-3 py-3 rounded-md",
+                    attrs: { to: { name: "profile_student" } }
+                  },
+                  [
+                    _vm._v(
+                      "\n                       I'm Student\n                "
+                    )
+                  ]
+                )
+              ],
+              1
+            )
+          ],
+          1
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          {
+            staticClass:
+              "bg-gradient-to-bl from-yellow-200 via-yellow-300 to-yellow-400  overflow-y-auto"
+          },
+          [
+            _c("router-view", {
+              staticClass: "min-h-screen",
+              attrs: { user_id: _vm.user_id, role: _vm.role }
+            }),
+            _vm._v(" "),
+            _c("foot-std", { staticClass: "bottom-0 w-full" })
+          ],
+          1
+        )
+      ])
     ])
   ])
 }
@@ -47966,6 +47966,10 @@ var Dashboard_Student = function Dashboard_Student() {
   return __webpack_require__.e(/*! import() | Landing_Staff */ "Landing_Staff").then(__webpack_require__.bind(null, /*! ./components/ManageRegistrationUsers/Dashboard_Student */ "./resources/js/components/ManageRegistrationUsers/Dashboard_Student.vue"));
 };
 
+var BrowseRoom_Student = function BrowseRoom_Student() {
+  return __webpack_require__.e(/*! import() | BrowseRoom_Student */ "BrowseRoom_Student").then(__webpack_require__.bind(null, /*! ./components/ManagePropertyList/BrowseRoom_Student */ "./resources/js/components/ManagePropertyList/BrowseRoom_Student.vue"));
+};
+
 var NotFound = function NotFound() {
   return __webpack_require__.e(/*! import() | NotFound */ "NotFound").then(__webpack_require__.bind(null, /*! ./components/NotFound */ "./resources/js/components/NotFound.vue"));
 };
@@ -48058,12 +48062,12 @@ var NotFound = function NotFound() {
   }, // Student Routes
   {
     path: '/student',
-    name: 'student_landing',
-    component: Dashboard_Student
+    name: 'landing_student',
+    component: BrowseRoom_Student
   }, {
-    path: '/student/dashboard',
-    name: 'dashboard_student',
-    component: Dashboard_Student
+    path: '/student/browse-rooms',
+    name: 'BrowseRoom_Student',
+    component: BrowseRoom_Student
   }, {
     path: '/student/profile',
     name: 'profile_student',

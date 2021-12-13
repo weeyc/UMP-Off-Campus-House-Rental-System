@@ -58,7 +58,7 @@
             </div>
 
                 <div class="w-full lg:w-1/5 flex flex-col lg:flex-row items-start lg:items-center justify-center">
-                        <div class="relative w-32 z-10">
+                        <div class="relative w-32">
                             <select  v-model="filterStatus" class="focus:outline-none border-transparent cursor-pointer focus:border-gray-800 hover:bg-pink-200 focus:shadow-outline-gray text-base form-select block w-full py-2 px-2 xl:px-3 rounded font-medium dark:text-gray-400 appearance-none bg-transparent">
                                 <option value="">Status</option>
                                 <option value="unverified">Unverified</option>

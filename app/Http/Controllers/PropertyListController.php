@@ -170,6 +170,30 @@ class PropertyListController extends Controller
 
    }
 
+     public function get_BrowseList($campus){
+
+            // $data = Room::query()
+            //             ->with(array('getPropertyRelation' => function($query) {
+            //                 $query->where('verify_status','verified');
+            //             },'getPhotoRelation'))
+            //             ->where('campus',$campus)
+            //             ->where('room_status','listing')
+            //             ->paginate(10);
+
+            $data = Room::query()
+                        ->with('getPropertyRelation','getPhotoRelation')->whereHas('getPropertyRelation', function($query) {
+                            $query->where('verify_status','verified');})
+                        ->where('campus',$campus)
+                        ->where('room_status','listing')
+                        ->paginate(10);
+
+
+            return RoomResource::collection($data);
+
+
+
+   }
+
      public function updatePropStatus($id, Request $request){
        $staff_name = Staff::where('staff_id',$id)->value('staff_name');
 

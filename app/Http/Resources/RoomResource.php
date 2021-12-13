@@ -32,7 +32,7 @@ class RoomResource extends JsonResource
             'room_status' => $this->room_status,
             'property' => new PropertyResource($property),
             'photo_room' => PhotoResource::collection($this->whenLoaded('getPhotoRelation')),
-            'cover_room' => PhotoResource::collection($this->whenLoaded('getPhotoRelation'))->where('photo_label', 'Cover')->first()
+            //'cover_room' => PhotoResource::collection($this->whenLoaded('getPhotoRelation'))->where('photo_label', 'Cover')->first()
         ];
 
         $table->increments('room_id');

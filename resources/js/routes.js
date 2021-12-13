@@ -20,6 +20,7 @@ const ManageProperties_Staff = () => import(/* webpackChunkName: "ManageProperti
 
 
 const Dashboard_Student = () => import(/* webpackChunkName: "Landing_Staff" */'./components/ManageRegistrationUsers/Dashboard_Student');
+const BrowseRoom_Student = () => import(/* webpackChunkName: "BrowseRoom_Student" */'./components/ManagePropertyList/BrowseRoom_Student');
 
 
 const NotFound = () => import(/* webpackChunkName: "NotFound" */'./components/NotFound');
@@ -147,13 +148,13 @@ export default{
            // Student Routes
            {
             path: '/student',
-            name: 'student_landing',
-            component: Dashboard_Student,
+            name: 'landing_student',
+            component: BrowseRoom_Student,
         },
         {
-            path: '/student/dashboard',
-            name: 'dashboard_student',
-            component: Dashboard_Student,
+            path: '/student/browse-rooms',
+            name: 'BrowseRoom_Student',
+            component: BrowseRoom_Student,
         },
         {
             path: '/student/profile',

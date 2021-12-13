@@ -705,7 +705,7 @@ var render = function() {
                     "w-full lg:w-1/5 flex flex-col lg:flex-row items-start lg:items-center justify-center"
                 },
                 [
-                  _c("div", { staticClass: "relative w-32 z-10" }, [
+                  _c("div", { staticClass: "relative w-32" }, [
                     _c(
                       "select",
                       {
