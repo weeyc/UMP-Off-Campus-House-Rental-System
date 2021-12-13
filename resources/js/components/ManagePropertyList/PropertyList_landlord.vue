@@ -20,7 +20,7 @@
                     <div class="w-2/3 p-4 md:p-4">
                         <div class="flex justify-between item-center">
                             <h1 class="text-2xl font-bold text-gray-800 dark:text-white">{{ property.name }}</h1>
-                            <router-link :to="{ name: 'property', params:{property_id: property.id}}" class="px-2 py-1 text-xs font-bold text-white uppercase transition-colors duration-200
+                            <router-link :to="{ name: 'property', params:{property_id: property.id, role: role }}" class="px-2 py-1 text-xs font-bold text-white uppercase transition-colors duration-200
                                     transform bg-gray-800 rounded hover:bg-gray-700  focus:outline-none focus:bg-gray-700">
                                     View Details
                             </router-link >
@@ -56,6 +56,7 @@ export default {
     data(){
         return{
             properties:[],
+            btn: 'hidden',
 
         }
     },

@@ -39,6 +39,19 @@
                             <label class="text-gray-700">Postcode</label>
                             <input type="text" v-model="form.postcode" placeholder="eg. 22600" class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-black rounded-md   focus:border-blue-500 focus:outline-none focus:ring" required>
                         </div>
+                            <div>
+                    <label class="text-gray-700">No. of toilet</label>
+                    <input type="number" v-model="form.toilet_num" min=1 max=5 placeholder="eg. 2" class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-black rounded-md   focus:border-blue-500 focus:outline-none focus:ring" required>
+                </div>
+
+               <div>
+                    <label class="text-gray-700" >Gender Preferences</label>
+                      <select v-model="form.gender_preferences" class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-black rounded-md  focus:border-blue-500 focus:outline-none focus:ring" name="gender" required>
+                            <option class="text-gray-700 text-lg" value="Any">Any</option>
+                            <option class="text-gray-700 text-lg" value="Male">Male</option>
+                            <option class="text-gray-700 text-lg" value="Female">Female</option>
+                        </select>
+                </div>
                     </div>
 
                     <div class="flex justify-end mt-6">
@@ -99,7 +112,15 @@
 
                             <label class="inline-flex items-center cursor-pointer">
                                 <input type="checkbox" class="form-checkbox" v-model="form.furnishing" value="Refrigerator"/>
+                                <span class="ml-2">Water Heater</span>
+                            </label>
+                                <label class="inline-flex items-center cursor-pointer">
+                                <input type="checkbox" class="form-checkbox" v-model="form.furnishing" value="Refrigerator"/>
                                 <span class="ml-2">Refrigerator</span>
+                            </label>
+                                <label class="inline-flex items-center cursor-pointer">
+                                <input type="checkbox" class="form-checkbox" v-model="form.furnishing" value="Sofa"/>
+                                <span class="ml-2">Sofa</span>
                             </label>
                             </div>
 

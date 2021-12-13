@@ -29,6 +29,7 @@ class CreateRoomsTable extends Migration
             $table->float('booking_fees')->nullable();
             $table->float('monthly_rent')->nullable();
             $table->String('room_status')->nullable();
+            $table->timestamps();
 
         });
     }

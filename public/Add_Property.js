@@ -137,6 +137,27 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -159,6 +180,8 @@ __webpack_require__.r(__webpack_exports__);
         images: [],
         imageLabel: [],
         description: '',
+        toilet_num: '',
+        gender_preferences: '',
         furnishing: [],
         latitude: '',
         logitude: '',
@@ -426,6 +449,111 @@ var render = function() {
                     }
                   }
                 })
+              ]),
+              _vm._v(" "),
+              _c("div", [
+                _c("label", { staticClass: "text-gray-700" }, [
+                  _vm._v("No. of toilet")
+                ]),
+                _vm._v(" "),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.form.toilet_num,
+                      expression: "form.toilet_num"
+                    }
+                  ],
+                  staticClass:
+                    "block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-black rounded-md   focus:border-blue-500 focus:outline-none focus:ring",
+                  attrs: {
+                    type: "number",
+                    min: "1",
+                    max: "5",
+                    placeholder: "eg. 2",
+                    required: ""
+                  },
+                  domProps: { value: _vm.form.toilet_num },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.form, "toilet_num", $event.target.value)
+                    }
+                  }
+                })
+              ]),
+              _vm._v(" "),
+              _c("div", [
+                _c("label", { staticClass: "text-gray-700" }, [
+                  _vm._v("Gender Preferences")
+                ]),
+                _vm._v(" "),
+                _c(
+                  "select",
+                  {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.form.gender_preferences,
+                        expression: "form.gender_preferences"
+                      }
+                    ],
+                    staticClass:
+                      "block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-black rounded-md  focus:border-blue-500 focus:outline-none focus:ring",
+                    attrs: { name: "gender", required: "" },
+                    on: {
+                      change: function($event) {
+                        var $$selectedVal = Array.prototype.filter
+                          .call($event.target.options, function(o) {
+                            return o.selected
+                          })
+                          .map(function(o) {
+                            var val = "_value" in o ? o._value : o.value
+                            return val
+                          })
+                        _vm.$set(
+                          _vm.form,
+                          "gender_preferences",
+                          $event.target.multiple
+                            ? $$selectedVal
+                            : $$selectedVal[0]
+                        )
+                      }
+                    }
+                  },
+                  [
+                    _c(
+                      "option",
+                      {
+                        staticClass: "text-gray-700 text-lg",
+                        attrs: { value: "Any" }
+                      },
+                      [_vm._v("Any")]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "option",
+                      {
+                        staticClass: "text-gray-700 text-lg",
+                        attrs: { value: "Male" }
+                      },
+                      [_vm._v("Male")]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "option",
+                      {
+                        staticClass: "text-gray-700 text-lg",
+                        attrs: { value: "Female" }
+                      },
+                      [_vm._v("Female")]
+                    )
+                  ]
+                )
               ])
             ]
           ),
@@ -778,8 +906,118 @@ var render = function() {
                       }),
                       _vm._v(" "),
                       _c("span", { staticClass: "ml-2" }, [
+                        _vm._v("Water Heater")
+                      ])
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "label",
+                    { staticClass: "inline-flex items-center cursor-pointer" },
+                    [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.form.furnishing,
+                            expression: "form.furnishing"
+                          }
+                        ],
+                        staticClass: "form-checkbox",
+                        attrs: { type: "checkbox", value: "Refrigerator" },
+                        domProps: {
+                          checked: Array.isArray(_vm.form.furnishing)
+                            ? _vm._i(_vm.form.furnishing, "Refrigerator") > -1
+                            : _vm.form.furnishing
+                        },
+                        on: {
+                          change: function($event) {
+                            var $$a = _vm.form.furnishing,
+                              $$el = $event.target,
+                              $$c = $$el.checked ? true : false
+                            if (Array.isArray($$a)) {
+                              var $$v = "Refrigerator",
+                                $$i = _vm._i($$a, $$v)
+                              if ($$el.checked) {
+                                $$i < 0 &&
+                                  _vm.$set(
+                                    _vm.form,
+                                    "furnishing",
+                                    $$a.concat([$$v])
+                                  )
+                              } else {
+                                $$i > -1 &&
+                                  _vm.$set(
+                                    _vm.form,
+                                    "furnishing",
+                                    $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                                  )
+                              }
+                            } else {
+                              _vm.$set(_vm.form, "furnishing", $$c)
+                            }
+                          }
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("span", { staticClass: "ml-2" }, [
                         _vm._v("Refrigerator")
                       ])
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "label",
+                    { staticClass: "inline-flex items-center cursor-pointer" },
+                    [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.form.furnishing,
+                            expression: "form.furnishing"
+                          }
+                        ],
+                        staticClass: "form-checkbox",
+                        attrs: { type: "checkbox", value: "Sofa" },
+                        domProps: {
+                          checked: Array.isArray(_vm.form.furnishing)
+                            ? _vm._i(_vm.form.furnishing, "Sofa") > -1
+                            : _vm.form.furnishing
+                        },
+                        on: {
+                          change: function($event) {
+                            var $$a = _vm.form.furnishing,
+                              $$el = $event.target,
+                              $$c = $$el.checked ? true : false
+                            if (Array.isArray($$a)) {
+                              var $$v = "Sofa",
+                                $$i = _vm._i($$a, $$v)
+                              if ($$el.checked) {
+                                $$i < 0 &&
+                                  _vm.$set(
+                                    _vm.form,
+                                    "furnishing",
+                                    $$a.concat([$$v])
+                                  )
+                              } else {
+                                $$i > -1 &&
+                                  _vm.$set(
+                                    _vm.form,
+                                    "furnishing",
+                                    $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                                  )
+                              }
+                            } else {
+                              _vm.$set(_vm.form, "furnishing", $$c)
+                            }
+                          }
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("span", { staticClass: "ml-2" }, [_vm._v("Sofa")])
                     ]
                   )
                 ]

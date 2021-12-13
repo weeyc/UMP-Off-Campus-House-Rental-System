@@ -99,7 +99,7 @@
                                 </td>
                                 <td class="py-3 px-6 text-left">
 
-                                   <router-link :to="{ name: 'profile_view', params:{role: 1, id: prop.id}}" target="_blank" class="flex items-center">
+                                   <router-link :to="{ name: 'view_property', params:{property_id: prop.id}}" target="_blank" class="flex items-center">
                                           <!-- <div class="mr-2">
                                             <img :src="'/images/Profile/'+student.pic"  class="w-6 h-6 rounded-full hover:scale-150 hover:z-10 transform ease-in-out transition duration-500">
                                         </div> -->
@@ -119,7 +119,7 @@
                                 </td>
                                 <td class="py-3 px-6 text-left">
                                          <div class="flex items-center">
-                                        <span>12/02/21 2pm</span>
+                                        <span>{{prop.created_at}}</span>
                                     </div>
                                 </td>
 
@@ -296,12 +296,12 @@ export default {
                     confirmButtonText: 'Yes, delete this student!'
                     }).then((result) => {
                         if (result.isConfirmed) {
-                            axios.delete('/api/delete_std/'+id).then((response)=>{
+                            axios.delete('/api/delete_property/'+id).then((response)=>{
                                 this.getPropertiesList();
                                 console.log(response)
                                      Swal.fire(
                                     'Deleted!',
-                                    'Student has been deleted.',
+                                    'Property has been deleted.',
                                     'success'
                                     )
                             }).catch((errors)=> {

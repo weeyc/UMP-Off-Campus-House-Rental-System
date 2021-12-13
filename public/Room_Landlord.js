@@ -493,7 +493,7 @@ __webpack_require__.r(__webpack_exports__);
         penalty_fees: '',
         number_of_tenant: '',
         monthly_rent: '',
-        property_id: this.property_id
+        property_id: ''
       }
     };
   },
@@ -530,6 +530,7 @@ __webpack_require__.r(__webpack_exports__);
       this.form.monthly_rent = list.monthly_rent;
       this.form.penalty_fees = list.penalty_fees;
       this.form.number_of_tenant = list.number_of_tenant;
+      this.form.property_id = this.property_id;
     }
   },
   mounted: function mounted() {

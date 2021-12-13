@@ -48021,6 +48021,10 @@ var NotFound = function NotFound() {
     path: '/staff/manage_properties',
     name: 'ManageProperties_Staff',
     component: ManageProperties_Staff
+  }, {
+    path: '/staff/property/:property_id',
+    name: 'view_property',
+    component: Property_Landlord
   }, // Landlord Routes
   {
     path: '/landlord',
@@ -48045,7 +48049,8 @@ var NotFound = function NotFound() {
   }, {
     path: '/landlord/property/:property_id',
     name: 'property',
-    component: Property_Landlord
+    component: Property_Landlord,
+    props: true
   }, {
     path: '/landlord/property/:property_id/room/:room_id',
     name: 'room_landlord',

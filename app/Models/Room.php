@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Room extends Model
 {
-    public $timestamps = false;
+    public $timestamps = true;
 
     public function getPhotoRelation(){
         return $this->hasMany('App\Models\Photo', 'room_id', 'room_id' );

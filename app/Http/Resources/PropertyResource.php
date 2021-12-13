@@ -32,7 +32,11 @@ class PropertyResource extends JsonResource
                 'campus' => $this->campus,
                 'furnishing' => $this->property_furnishing,
                 'status' => $this->verify_status,
+                'gender_preferences' => $this->gender_preferences,
+                'toilet_num' => $this->toilet_num,
+
                 'verify_by' => $this->Verify_by,
+                'created_at' => $this->created_at,
 
 
                 'photo' => $getPhoto ? PhotoResource::collection($this->whenLoaded('getPhotoRelation')) : 'null',

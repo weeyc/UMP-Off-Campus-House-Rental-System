@@ -1,9 +1,11 @@
 <template>
     <div class="max-w-5xl p-6 mx-auto mt-10 bg-gray-200 rounded-md mb-10" >
-        <div v-for= "house in property" :key="house.id"  class="flex justify-end items-center">
-            <button @click="clickEdit(house); toggleModal = !toggleModal" class=" bg-blue-600 shadow-lg hover:bg-blue-700 text-xs text-white px-4 py-3 rounded-md mb-2">
-                + Edit Property
-            </button>
+        <div v-if="role===2">
+            <div v-for= "house in property" :key="house.id"  class="flex justify-end items-center">
+                <button @click="clickEdit(house); toggleModal = !toggleModal"  class=" bg-blue-600 shadow-lg hover:bg-blue-700 text-xs text-white px-4 py-3 rounded-md mb-2">
+                    + Edit Property
+                </button>
+            </div>
         </div>
 
         <div  v-for= "house in property" :key="house.id"  class="max-w-2xl px-8 py-4 mx-auto   overflow-hidden bg-white rounded-lg shadow-lg mt-5">
@@ -37,13 +39,19 @@
                     <p class="mt-2 text-sm text-gray-600"><span class="font-black"> Furnishing: </span>{{ house.furnishing }}</p>
                 </div>
                 <div class="flex item-center">
+                    <p class="mt-2 text-sm text-gray-600"><span class="font-black"> No. of Toilet: </span>{{ house.toilet_num }}</p>
+                </div>
+                <div class="flex item-center">
+                    <p class="mt-2 text-sm text-gray-600"><span class="font-black"> Gender Preferences: </span>{{ house.gender_preferences }}</p>
+                </div>
+                <div class="flex item-center">
                     <p class="mt-2 text-sm text-gray-600"><span class="font-black"> Location: </span></p>
                 </div>
                  <GoogleMap :latitude="parseFloat(house.lat)" :logitude="parseFloat(house.log)" :registered="true"  />
                 <div class="flex item-center mt-10  justify-between w-full p-6 items-center">
                      <p class="mt-2 text-sm text-gray-600 flex justify-start items-center"><span class="font-black"> Rooms Listing: </span></p>
 
-                     <div  class="flex justify-end items-center">
+                     <div v-if="role===2" class="flex justify-end items-center">
                         <button @click="toggleAddModal = !toggleAddModal"  class=" bg-blue-600 shadow-lg hover:bg-blue-700 text-xs text-white px-5 py-3 rounded-md">
                             + Add Room
                         </button >
@@ -61,8 +69,8 @@
 
 
             <div  v-for= "room in rooms" :key="room.id"  class="max-w-2xl px-8 py-4 mx-auto flex  overflow-hidden bg-white rounded-lg shadow-lg mt-5">
-                <div class="w-1/3" > <img class="h-48 w-full object-cover" :src="'/images/Properties/'+room.photo_room[0].photo_name" alt="Avatar" /></div>
-
+                     <div v-if="room.photo_room != null" > <img class="h-48 w-full object-cover" :src="'/images/Properties/'+room.photo_room[0].photo_name" alt="Avatar" /></div>
+                    <div v-else > <img class="h-48 w-full object-cover"  alt="Avatar" /></div>
                 <div class="w-2/3 p-4 md:p-4">
                     <div class="flex justify-between item-center">
                         <h1 class="text-2xl font-bold text-gray-800 dark:text-white">{{ room.listing_name }}</h1>
@@ -132,7 +140,7 @@ export default {
 
     },
     props: {
-
+        role: Number,
     },
 
     data(){
@@ -157,6 +165,8 @@ export default {
                 postcode: '',
                 des: '',
                 campus: '',
+                gender_preferences: '',
+                toilet_num: '',
                 furnishing: '',
                 status: '',
                 photo: [],
@@ -198,6 +208,9 @@ export default {
             this.form.furnishing= house.furnishing,
             this.form.status= house.status,
             this.form.photo= house.photo
+            this.form.gender_preferences= house.gender_preferences
+            this.form.toilet_num= house.toilet_num
+
 
         },
 

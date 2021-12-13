@@ -63,7 +63,8 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      properties: []
+      properties: [],
+      btn: 'hidden'
     };
   },
   methods: {
@@ -251,7 +252,10 @@ var render = function() {
                             attrs: {
                               to: {
                                 name: "property",
-                                params: { property_id: property.id }
+                                params: {
+                                  property_id: property.id,
+                                  role: _vm.role
+                                }
                               }
                             }
                           },

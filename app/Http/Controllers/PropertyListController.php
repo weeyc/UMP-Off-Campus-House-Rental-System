@@ -34,6 +34,8 @@ class PropertyListController extends Controller
             $Property->postcode = $request ->postcode;
             $Property->description = $request ->description;
             $Property->property_furnishing = implode(',', (array) $request ->furnishing);
+            $Property->toilet_num =  $request ->toilet_num;
+            $Property->gender_preferences =  $request ->gender_preferences;
             $Property->campus =  $request ->campus;
             $Property->latitude =  $request ->latitude;
             $Property->logitude =  $request ->logitude;
@@ -104,6 +106,7 @@ class PropertyListController extends Controller
                         $filename = $this->decodeImage($image);
                         $Photo->photo = $filename;
                         $Photo->room_id =  $Room_id;
+                        $Photo->property_id =  $request ->prop_id;
                         $Photo->save();
 
                     }
@@ -179,6 +182,11 @@ class PropertyListController extends Controller
    }
 
 
+   public function delete_Property($id){
+    Photo::where('property_id',$id)->delete();
+    Room::where('property_id',$id)->delete();
+    Property::where('property_id',$id)->delete();
+}
 
 
     public function update_Property($id, Request $request){
@@ -199,6 +207,8 @@ class PropertyListController extends Controller
               'description' => $request ->des,
               'property_furnishing' => implode(', ', (array) $request ->furnishing),
               'campus' => $request ->campus,
+              'toilet_num' => $request ->toilet_num,
+              'gender_preferences' => $request ->gender_preferences,
               'latitude' => $request ->lat,
               'logitude' => $request ->log,
           ]);
@@ -207,7 +217,10 @@ class PropertyListController extends Controller
 
           $label = [];
           if ($request->images != null){
-                Photo::where('property_id', $id)->delete();
+
+                Photo::where('property_id', $id)
+                        ->where('room_id',null)
+                        ->delete();
               for ($i = 0; $i < count($request->imageLabel); $i++) {
                   $label[$i] = $request->imageLabel[$i];
               }
@@ -263,6 +276,7 @@ class PropertyListController extends Controller
                       $filename = $this->decodeImage($image);
                       $Photo->photo = $filename;
                       $Photo->room_id =  $id;
+                      $Photo->property_id = $request->property_id;
                       $Photo->save();
 
                   }

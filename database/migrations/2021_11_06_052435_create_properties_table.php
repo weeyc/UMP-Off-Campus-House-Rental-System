@@ -23,9 +23,12 @@ class CreatePropertiesTable extends Migration
             $table->string('postcode')->nullable();
             $table->string('description')->nullable();
             $table->string('campus')->nullable();
+            $table->string('gender_preferences')->nullable();
+            $table->string('toilet_num')->nullable();
             $table->string('property_furnishing')->nullable();
             $table->string('verify_status')->default('unverified');
             $table->string('Verify_by')->nullable();
+            $table->timestamps();
 
             // $table->string('cust_status')->default('Active');
             // $table->timestamps();

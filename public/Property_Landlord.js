@@ -413,6 +413,27 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 var Errors = /*#__PURE__*/function () {
   function Errors() {
     _classCallCheck(this, Errors);
@@ -657,6 +678,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -675,7 +704,9 @@ __webpack_require__.r(__webpack_exports__);
     // VueperSlide
 
   },
-  props: {},
+  props: {
+    role: Number
+  },
   data: function data() {
     return {
       toggleModal: false,
@@ -698,6 +729,8 @@ __webpack_require__.r(__webpack_exports__);
         postcode: '',
         des: '',
         campus: '',
+        gender_preferences: '',
+        toilet_num: '',
         furnishing: '',
         status: '',
         photo: []
@@ -731,6 +764,8 @@ __webpack_require__.r(__webpack_exports__);
     },
     clickEdit: function clickEdit(house) {
       this.form.id = house.id, this.form.landlord_id = house.landlord_id, this.form.name = house.name, this.form.lat = house.lat, this.form.log = house.log, this.form.address = house.address, this.form.postcode = house.postcode, this.form.des = house.des, this.form.campus = house.campus, this.form.furnishing = house.furnishing, this.form.status = house.status, this.form.photo = house.photo;
+      this.form.gender_preferences = house.gender_preferences;
+      this.form.toilet_num = house.toilet_num;
     }
   },
   mounted: function mounted() {
@@ -1904,6 +1939,115 @@ var render = function() {
                             }
                           }
                         })
+                      ]),
+                      _vm._v(" "),
+                      _c("div", [
+                        _c("label", { staticClass: "text-gray-700" }, [
+                          _vm._v("No. of toilet")
+                        ]),
+                        _vm._v(" "),
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.form.toilet_num,
+                              expression: "form.toilet_num"
+                            }
+                          ],
+                          staticClass:
+                            "block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-black rounded-md   focus:border-blue-500 focus:outline-none focus:ring",
+                          attrs: {
+                            type: "number",
+                            min: "1",
+                            max: "5",
+                            placeholder: "eg. 2",
+                            required: ""
+                          },
+                          domProps: { value: _vm.form.toilet_num },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.form,
+                                "toilet_num",
+                                $event.target.value
+                              )
+                            }
+                          }
+                        })
+                      ]),
+                      _vm._v(" "),
+                      _c("div", [
+                        _c("label", { staticClass: "text-gray-700" }, [
+                          _vm._v("Gender Preferences")
+                        ]),
+                        _vm._v(" "),
+                        _c(
+                          "select",
+                          {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.form.gender_preferences,
+                                expression: "form.gender_preferences"
+                              }
+                            ],
+                            staticClass:
+                              "block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-black rounded-md  focus:border-blue-500 focus:outline-none focus:ring",
+                            attrs: { name: "gender", required: "" },
+                            on: {
+                              change: function($event) {
+                                var $$selectedVal = Array.prototype.filter
+                                  .call($event.target.options, function(o) {
+                                    return o.selected
+                                  })
+                                  .map(function(o) {
+                                    var val = "_value" in o ? o._value : o.value
+                                    return val
+                                  })
+                                _vm.$set(
+                                  _vm.form,
+                                  "gender_preferences",
+                                  $event.target.multiple
+                                    ? $$selectedVal
+                                    : $$selectedVal[0]
+                                )
+                              }
+                            }
+                          },
+                          [
+                            _c(
+                              "option",
+                              {
+                                staticClass: "text-gray-700 text-lg",
+                                attrs: { value: "Any" }
+                              },
+                              [_vm._v("Any")]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "option",
+                              {
+                                staticClass: "text-gray-700 text-lg",
+                                attrs: { value: "Male" }
+                              },
+                              [_vm._v("Male")]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "option",
+                              {
+                                staticClass: "text-gray-700 text-lg",
+                                attrs: { value: "Female" }
+                              },
+                              [_vm._v("Female")]
+                            )
+                          ]
+                        )
                       ])
                     ]
                   ),
@@ -2400,7 +2544,135 @@ var render = function() {
                               }),
                               _vm._v(" "),
                               _c("span", { staticClass: "ml-2" }, [
+                                _vm._v("Water Heater")
+                              ])
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "label",
+                            {
+                              staticClass:
+                                "inline-flex items-center cursor-pointer"
+                            },
+                            [
+                              _c("input", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.form.furnishing,
+                                    expression: "form.furnishing"
+                                  }
+                                ],
+                                staticClass: "form-checkbox",
+                                attrs: {
+                                  type: "checkbox",
+                                  value: "Refrigerator"
+                                },
+                                domProps: {
+                                  checked: Array.isArray(_vm.form.furnishing)
+                                    ? _vm._i(
+                                        _vm.form.furnishing,
+                                        "Refrigerator"
+                                      ) > -1
+                                    : _vm.form.furnishing
+                                },
+                                on: {
+                                  change: function($event) {
+                                    var $$a = _vm.form.furnishing,
+                                      $$el = $event.target,
+                                      $$c = $$el.checked ? true : false
+                                    if (Array.isArray($$a)) {
+                                      var $$v = "Refrigerator",
+                                        $$i = _vm._i($$a, $$v)
+                                      if ($$el.checked) {
+                                        $$i < 0 &&
+                                          _vm.$set(
+                                            _vm.form,
+                                            "furnishing",
+                                            $$a.concat([$$v])
+                                          )
+                                      } else {
+                                        $$i > -1 &&
+                                          _vm.$set(
+                                            _vm.form,
+                                            "furnishing",
+                                            $$a
+                                              .slice(0, $$i)
+                                              .concat($$a.slice($$i + 1))
+                                          )
+                                      }
+                                    } else {
+                                      _vm.$set(_vm.form, "furnishing", $$c)
+                                    }
+                                  }
+                                }
+                              }),
+                              _vm._v(" "),
+                              _c("span", { staticClass: "ml-2" }, [
                                 _vm._v("Refrigerator")
+                              ])
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "label",
+                            {
+                              staticClass:
+                                "inline-flex items-center cursor-pointer"
+                            },
+                            [
+                              _c("input", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.form.furnishing,
+                                    expression: "form.furnishing"
+                                  }
+                                ],
+                                staticClass: "form-checkbox",
+                                attrs: { type: "checkbox", value: "Sofa" },
+                                domProps: {
+                                  checked: Array.isArray(_vm.form.furnishing)
+                                    ? _vm._i(_vm.form.furnishing, "Sofa") > -1
+                                    : _vm.form.furnishing
+                                },
+                                on: {
+                                  change: function($event) {
+                                    var $$a = _vm.form.furnishing,
+                                      $$el = $event.target,
+                                      $$c = $$el.checked ? true : false
+                                    if (Array.isArray($$a)) {
+                                      var $$v = "Sofa",
+                                        $$i = _vm._i($$a, $$v)
+                                      if ($$el.checked) {
+                                        $$i < 0 &&
+                                          _vm.$set(
+                                            _vm.form,
+                                            "furnishing",
+                                            $$a.concat([$$v])
+                                          )
+                                      } else {
+                                        $$i > -1 &&
+                                          _vm.$set(
+                                            _vm.form,
+                                            "furnishing",
+                                            $$a
+                                              .slice(0, $$i)
+                                              .concat($$a.slice($$i + 1))
+                                          )
+                                      }
+                                    } else {
+                                      _vm.$set(_vm.form, "furnishing", $$c)
+                                    }
+                                  }
+                                }
+                              }),
+                              _vm._v(" "),
+                              _c("span", { staticClass: "ml-2" }, [
+                                _vm._v("Sofa")
                               ])
                             ]
                           )
@@ -2674,28 +2946,34 @@ var render = function() {
     "div",
     { staticClass: "max-w-5xl p-6 mx-auto mt-10 bg-gray-200 rounded-md mb-10" },
     [
-      _vm._l(_vm.property, function(house) {
-        return _c(
-          "div",
-          { key: house.id, staticClass: "flex justify-end items-center" },
-          [
-            _c(
-              "button",
-              {
-                staticClass:
-                  " bg-blue-600 shadow-lg hover:bg-blue-700 text-xs text-white px-4 py-3 rounded-md mb-2",
-                on: {
-                  click: function($event) {
-                    _vm.clickEdit(house)
-                    _vm.toggleModal = !_vm.toggleModal
-                  }
-                }
-              },
-              [_vm._v("\n            + Edit Property\n        ")]
-            )
-          ]
-        )
-      }),
+      _vm.role === 2
+        ? _c(
+            "div",
+            _vm._l(_vm.property, function(house) {
+              return _c(
+                "div",
+                { key: house.id, staticClass: "flex justify-end items-center" },
+                [
+                  _c(
+                    "button",
+                    {
+                      staticClass:
+                        " bg-blue-600 shadow-lg hover:bg-blue-700 text-xs text-white px-4 py-3 rounded-md mb-2",
+                      on: {
+                        click: function($event) {
+                          _vm.clickEdit(house)
+                          _vm.toggleModal = !_vm.toggleModal
+                        }
+                      }
+                    },
+                    [_vm._v("\n                + Edit Property\n            ")]
+                  )
+                ]
+              )
+            }),
+            0
+          )
+        : _vm._e(),
       _vm._v(" "),
       _vm._l(_vm.property, function(house) {
         return _c(
@@ -2813,6 +3091,24 @@ var render = function() {
                   ])
                 ]),
                 _vm._v(" "),
+                _c("div", { staticClass: "flex item-center" }, [
+                  _c("p", { staticClass: "mt-2 text-sm text-gray-600" }, [
+                    _c("span", { staticClass: "font-black" }, [
+                      _vm._v(" No. of Toilet: ")
+                    ]),
+                    _vm._v(_vm._s(house.toilet_num))
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "flex item-center" }, [
+                  _c("p", { staticClass: "mt-2 text-sm text-gray-600" }, [
+                    _c("span", { staticClass: "font-black" }, [
+                      _vm._v(" Gender Preferences: ")
+                    ]),
+                    _vm._v(_vm._s(house.gender_preferences))
+                  ])
+                ]),
+                _vm._v(" "),
                 _vm._m(0, true),
                 _vm._v(" "),
                 _c("GoogleMap", {
@@ -2832,29 +3128,31 @@ var render = function() {
                   [
                     _vm._m(1, true),
                     _vm._v(" "),
-                    _c(
-                      "div",
-                      { staticClass: "flex justify-end items-center" },
-                      [
-                        _c(
-                          "button",
-                          {
-                            staticClass:
-                              " bg-blue-600 shadow-lg hover:bg-blue-700 text-xs text-white px-5 py-3 rounded-md",
-                            on: {
-                              click: function($event) {
-                                _vm.toggleAddModal = !_vm.toggleAddModal
-                              }
-                            }
-                          },
+                    _vm.role === 2
+                      ? _c(
+                          "div",
+                          { staticClass: "flex justify-end items-center" },
                           [
-                            _vm._v(
-                              "\n                        + Add Room\n                    "
+                            _c(
+                              "button",
+                              {
+                                staticClass:
+                                  " bg-blue-600 shadow-lg hover:bg-blue-700 text-xs text-white px-5 py-3 rounded-md",
+                                on: {
+                                  click: function($event) {
+                                    _vm.toggleAddModal = !_vm.toggleAddModal
+                                  }
+                                }
+                              },
+                              [
+                                _vm._v(
+                                  "\n                        + Add Room\n                    "
+                                )
+                              ]
                             )
                           ]
                         )
-                      ]
-                    )
+                      : _vm._e()
                   ]
                 )
               ],
@@ -2878,17 +3176,24 @@ var render = function() {
                           "max-w-2xl px-8 py-4 mx-auto flex  overflow-hidden bg-white rounded-lg shadow-lg mt-5"
                       },
                       [
-                        _c("div", { staticClass: "w-1/3" }, [
-                          _c("img", {
-                            staticClass: "h-48 w-full object-cover",
-                            attrs: {
-                              src:
-                                "/images/Properties/" +
-                                room.photo_room[0].photo_name,
-                              alt: "Avatar"
-                            }
-                          })
-                        ]),
+                        room.photo_room != null
+                          ? _c("div", [
+                              _c("img", {
+                                staticClass: "h-48 w-full object-cover",
+                                attrs: {
+                                  src:
+                                    "/images/Properties/" +
+                                    room.photo_room[0].photo_name,
+                                  alt: "Avatar"
+                                }
+                              })
+                            ])
+                          : _c("div", [
+                              _c("img", {
+                                staticClass: "h-48 w-full object-cover",
+                                attrs: { alt: "Avatar" }
+                              })
+                            ]),
                         _vm._v(" "),
                         _c("div", { staticClass: "w-2/3 p-4 md:p-4" }, [
                           _c(

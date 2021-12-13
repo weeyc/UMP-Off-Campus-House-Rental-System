@@ -10,7 +10,7 @@
       </div>
       <!-- modal body -->
         <div class="p-3">
-            <h1 class="text-gray-800 font-lg font-bold tracking-normal leading-tight mb-4">Profile Details</h1>
+            <h1 class="text-gray-800 font-lg font-bold tracking-normal leading-tight mb-4">Property Details</h1>
                 <div class="flex items-center">
                     <label for="name" class="inline-block w-20 mr-6 text-right font-bold text-gray-600">Property Id</label>
                     <input type="text" placeholder="Name" v-model="form.id" readonly

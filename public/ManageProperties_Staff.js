@@ -300,11 +300,11 @@ __webpack_require__.r(__webpack_exports__);
         confirmButtonText: 'Yes, delete this student!'
       }).then(function (result) {
         if (result.isConfirmed) {
-          axios["delete"]('/api/delete_std/' + id).then(function (response) {
+          axios["delete"]('/api/delete_property/' + id).then(function (response) {
             _this4.getPropertiesList();
 
             console.log(response);
-            Swal.fire('Deleted!', 'Student has been deleted.', 'success');
+            Swal.fire('Deleted!', 'Property has been deleted.', 'success');
           })["catch"](function (errors) {
             console.log(errors);
           });
@@ -813,8 +813,8 @@ var render = function() {
                                   staticClass: "flex items-center",
                                   attrs: {
                                     to: {
-                                      name: "profile_view",
-                                      params: { role: 1, id: prop.id }
+                                      name: "view_property",
+                                      params: { property_id: prop.id }
                                     },
                                     target: "_blank"
                                   }
@@ -839,7 +839,11 @@ var render = function() {
                             ])
                           ]),
                           _vm._v(" "),
-                          _vm._m(2, true),
+                          _c("td", { staticClass: "py-3 px-6 text-left" }, [
+                            _c("div", { staticClass: "flex items-center" }, [
+                              _c("span", [_vm._v(_vm._s(prop.created_at))])
+                            ])
+                          ]),
                           _vm._v(" "),
                           _c("td", { staticClass: "py-3 px-6 text-left" }, [
                             _c("div", { staticClass: "flex items-center" }, [
@@ -1091,16 +1095,6 @@ var staticRenderFns = [
         ]
       )
     ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("td", { staticClass: "py-3 px-6 text-left" }, [
-      _c("div", { staticClass: "flex items-center" }, [
-        _c("span", [_vm._v("12/02/21 2pm")])
-      ])
-    ])
   }
 ]
 render._withStripped = true
@@ -1165,7 +1159,7 @@ var render = function() {
                 staticClass:
                   "text-gray-800 font-lg font-bold tracking-normal leading-tight mb-4"
               },
-              [_vm._v("Profile Details")]
+              [_vm._v("Property Details")]
             ),
             _vm._v(" "),
             _c("div", { staticClass: "flex items-center" }, [

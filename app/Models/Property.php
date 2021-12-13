@@ -11,7 +11,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Property extends Model
 {
-    public $timestamps = false;
+    public $timestamps = true;
 
     protected $fillable = ['landlord_id','property_name','latitude','logitude','address','postcode','description','campus','property_furnishing','verify_status','Verify_by'];
 
