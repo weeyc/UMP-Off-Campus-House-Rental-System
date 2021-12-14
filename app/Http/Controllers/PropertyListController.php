@@ -182,7 +182,6 @@ class PropertyListController extends Controller
             $maxPrice = $request->maxPrice;
             $data = Room::query()
                         ->with('getPropertyRelation','getPhotoRelation')->whereHas('getPropertyRelation', function($query)  use($location, $gender) {
-
                             $query->where('verify_status','verified')
                             ->when($location!=null,function($query) use($location){
                                 $query->where('property_name', 'LIKE', '%' . $location . '%');
@@ -206,7 +205,17 @@ class PropertyListController extends Controller
 
    }
 
-     public function updatePropStatus($id, Request $request){
+    public function get_RoomList($id){
+        $data = Room::with('getPropertyRelation.getPhotoRelation','getPhotoRelation')
+                    ->whereHas('getPropertyRelation.getPhotoRelation', function($query)  {
+                        $query->whereNull('room_id');
+                    ;})
+
+                    ->where('room_id', $id)->get();
+        return RoomResource::collection($data);
+    }
+
+    public function updatePropStatus($id, Request $request){
        $staff_name = Staff::where('staff_id',$id)->value('staff_name');
 
        $data = Property::where('property_id',$request->id)

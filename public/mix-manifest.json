@@ -17,5 +17,6 @@
     "/Property_Landlord.js": "/Property_Landlord.js",
     "/Room_Landlord.js": "/Room_Landlord.js",
     "/Tab_Staff_Users.js": "/Tab_Staff_Users.js",
-    "/vendors~Property_Landlord~Room_Landlord.js": "/vendors~Property_Landlord~Room_Landlord.js"
+    "/View_Room_List.js": "/View_Room_List.js",
+    "/vendors~Property_Landlord~Room_Landlord~View_Room_List.js": "/vendors~Property_Landlord~Room_Landlord~View_Room_List.js"
 }

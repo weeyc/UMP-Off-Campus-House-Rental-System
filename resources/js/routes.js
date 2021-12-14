@@ -21,6 +21,7 @@ const ManageProperties_Staff = () => import(/* webpackChunkName: "ManageProperti
 
 const Dashboard_Student = () => import(/* webpackChunkName: "Landing_Staff" */'./components/ManageRegistrationUsers/Dashboard_Student');
 const BrowseRoom_Student = () => import(/* webpackChunkName: "BrowseRoom_Student" */'./components/ManagePropertyList/BrowseRoom_Student');
+const View_Room_List = () => import(/* webpackChunkName: "View_Room_List" */'./components/ManagePropertyList/View_Room_List');
 
 
 const NotFound = () => import(/* webpackChunkName: "NotFound" */'./components/NotFound');
@@ -160,6 +161,11 @@ export default{
             path: '/student/profile',
             name: 'profile_student',
             component: Profile_Edit,
+        },
+        {
+            path: '/student/room_list/:id',
+            name: 'view_room_list',
+            component: View_Room_List,
         },
 
 

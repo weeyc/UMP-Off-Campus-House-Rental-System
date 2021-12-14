@@ -213,6 +213,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {},
   data: function data() {
@@ -246,11 +250,16 @@ __webpack_require__.r(__webpack_exports__);
     change_campus: function change_campus(c) {
       if (c == 0) {
         this.campus = 'Gambang';
-        this.getList();
       } else {
         this.campus = 'Pekan';
-        this.getList();
       }
+
+      this.location = '';
+      this.price = {};
+      this.gender = '';
+      this.room = '';
+      this.removeQueryString();
+      this.getList();
     },
     changeQueryString: function changeQueryString() {
       this.$router.replace({
@@ -298,8 +307,7 @@ __webpack_require__.r(__webpack_exports__);
         }
       } else {
         var ele = document.getElementsByName("price");
-        this.maxPrice = '';
-        this.minPrice = '';
+        this.price = {};
 
         for (var i = 0; i < ele.length; i++) {
           ele[i].checked = false;
@@ -312,8 +320,8 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   watch: {
-    $route: function $route() {
-      if (this.$route.query.campus == "Gambang") {}
+    $route: function $route() {// if(this.$route.query.campus == "Gambang"){
+      // }
     }
   },
   mounted: function mounted() {
@@ -343,7 +351,7 @@ var render = function() {
       "div",
       { staticClass: "max-w-5xl p-6 mx-auto mt-5 bg-gray-200 rounded-md mb-5" },
       [
-        _c("span", [_vm._v("Select Your Campus:")]),
+        _c("span", [_vm._v("Selected Campus: " + _vm._s(_vm.campus))]),
         _vm._v(" "),
         _c(
           "div",
@@ -375,8 +383,7 @@ var render = function() {
                           attrs: { "exact-active-class": "exact-active" },
                           on: {
                             click: function($event) {
-                              _vm.change_campus(0)
-                              _vm.changeQueryString()
+                              return _vm.change_campus(0)
                             }
                           }
                         },
@@ -409,8 +416,7 @@ var render = function() {
                           attrs: { "exact-active-class": "exact-active" },
                           on: {
                             click: function($event) {
-                              _vm.change_campus(1)
-                              _vm.changeQueryString()
+                              return _vm.change_campus(1)
                             }
                           }
                         },
@@ -1223,89 +1229,74 @@ var render = function() {
       "div",
       { staticClass: "max-w-5xl p-6 mx-auto mt-5 bg-gray-200 rounded-md mb-5" },
       [
-        _c("span", [_vm._v("Rooms for rent:")]),
+        _c("span", [
+          _vm._v("Rooms for rent (" + _vm._s(_vm.lists.length) + "): ")
+        ]),
         _vm._v(" "),
-        _vm._l(_vm.lists, function(list, index) {
-          return _c(
-            "div",
-            { key: index.id, staticClass: "flex justify-start" },
-            [
-              _c(
-                "div",
-                {
-                  staticClass:
-                    "flex justify-center w-full px-8 py-4 overflow-hidden bg-white rounded-lg shadow-lg mt-5"
-                },
-                [
-                  _c("div", { staticClass: "w-1/3 bg-cover" }, [
-                    _c("img", {
-                      staticClass: "h-48 w-full object-cover",
-                      attrs: {
-                        src:
-                          "/images/Properties/" + list.photo_room[0].photo_name,
-                        alt: "Avatar"
-                      }
-                    })
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "w-2/3 p-4 md:p-4" }, [
-                    _c(
-                      "div",
-                      { staticClass: "flex justify-between item-center" },
-                      [
-                        _c(
-                          "h1",
-                          {
-                            staticClass:
-                              "text-2xl font-bold text-gray-800 dark:text-white"
-                          },
-                          [_vm._v(" " + _vm._s(list.listing_name))]
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "h1",
-                          {
-                            staticClass:
-                              "text-2xl font-bold text-yellow-800 dark:text-white"
-                          },
-                          [_vm._v("RM" + _vm._s(list.monthly_rent) + "/Month")]
-                        )
-                      ]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "p",
-                      {
-                        staticClass:
-                          "mt-2 text-sm text-gray-600 dark:text-gray-400"
-                      },
-                      [
-                        _vm._v(
-                          _vm._s(list.property.name) +
-                            " | " +
-                            _vm._s(list.campus)
-                        )
-                      ]
-                    ),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "flex mt-2 item-center" }, [
-                      _c(
-                        "p",
-                        {
-                          staticClass:
-                            "mt-2 text-sm text-gray-600 dark:text-gray-400"
-                        },
-                        [
-                          _vm._v(
-                            _vm._s(list.room_type) +
-                              " | " +
-                              _vm._s(list.property.gender_preferences)
-                          )
-                        ]
-                      )
+        _vm.lists.length == 0
+          ? _c("div", [_vm._v(" Sorry, result not found")])
+          : _vm._e(),
+        _vm._v(" "),
+        _c(
+          "div",
+          { attrs: { else: "" } },
+          _vm._l(_vm.lists, function(list, index) {
+            return _c(
+              "div",
+              { key: index.id, staticClass: "flex justify-start  " },
+              [
+                _c(
+                  "router-link",
+                  {
+                    staticClass:
+                      "flex justify-center w-full px-8 py-4 overflow-hidden bg-white rounded-lg shadow-lg mt-5 cursor-pointer transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-200 hover:bg-yellow-400 hover:shadow-2xl",
+                    attrs: {
+                      to: { name: "view_room_list", params: { id: list.id } },
+                      target: "_blank"
+                    }
+                  },
+                  [
+                    _c("div", { staticClass: "w-1/3 bg-cover" }, [
+                      _c("img", {
+                        staticClass: "h-48 w-full object-cover",
+                        attrs: {
+                          src:
+                            "/images/Properties/" +
+                            list.photo_room[0].photo_name,
+                          alt: "Avatar"
+                        }
+                      })
                     ]),
                     _vm._v(" "),
-                    _c("div", { staticClass: "flex mt-2 item-center" }, [
+                    _c("div", { staticClass: "w-2/3 p-4 md:p-4" }, [
+                      _c(
+                        "div",
+                        { staticClass: "flex justify-between item-center" },
+                        [
+                          _c(
+                            "h1",
+                            {
+                              staticClass:
+                                "text-2xl font-bold text-gray-800 dark:text-white"
+                            },
+                            [_vm._v(" " + _vm._s(list.listing_name))]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "h1",
+                            {
+                              staticClass:
+                                "text-2xl font-bold text-yellow-800 dark:text-white"
+                            },
+                            [
+                              _vm._v(
+                                "RM" + _vm._s(list.monthly_rent) + "/Month"
+                              )
+                            ]
+                          )
+                        ]
+                      ),
+                      _vm._v(" "),
                       _c(
                         "p",
                         {
@@ -1314,21 +1305,56 @@ var render = function() {
                         },
                         [
                           _vm._v(
-                            _vm._s(list.property.furnishing) +
-                              "| " +
-                              _vm._s(list.room_furnishing)
+                            _vm._s(list.property.name) +
+                              " | " +
+                              _vm._s(list.campus)
                           )
                         ]
-                      )
+                      ),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "flex mt-2 item-center" }, [
+                        _c(
+                          "p",
+                          {
+                            staticClass:
+                              "mt-2 text-sm text-gray-600 dark:text-gray-400"
+                          },
+                          [
+                            _vm._v(
+                              _vm._s(list.room_type) +
+                                " | " +
+                                _vm._s(list.property.gender_preferences)
+                            )
+                          ]
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "flex mt-2 item-center" }, [
+                        _c(
+                          "p",
+                          {
+                            staticClass:
+                              "mt-2 text-sm text-gray-600 dark:text-gray-400"
+                          },
+                          [
+                            _vm._v(
+                              _vm._s(list.property.furnishing) +
+                                "| " +
+                                _vm._s(list.room_furnishing)
+                            )
+                          ]
+                        )
+                      ])
                     ])
-                  ])
-                ]
-              )
-            ]
-          )
-        })
-      ],
-      2
+                  ]
+                )
+              ],
+              1
+            )
+          }),
+          0
+        )
+      ]
     )
   ])
 }

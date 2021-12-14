@@ -3,12 +3,12 @@
 
     <div class="max-w-5xl p-6 mx-auto mt-5 bg-gray-200 rounded-md mb-5" >
         <!-- Top Campuses -->
-        <span>Select Your Campus:</span>
+        <span>Selected Campus: {{campus}}</span>
         <div class="flex items-center justify-center h-40 w-full overflow-hidden bg-gradient-to-b from-green-200 to-green-500">
             <section class="flex items-stretch h-40 w-full text-white ">
                 <div class="relative items-center w-1/2 bg-gray-500 bg-no-repeat bg-cover lg:flex" style="background-image: url(/images/UMP/Gambang.jpg);">
                     <div class="w-full justify-center flex">
-                        <button @click="change_campus(0); changeQueryString()" exact-active-class="exact-active" :class="[top_btn_style]" class="px-5 " >
+                        <button @click="change_campus(0);" exact-active-class="exact-active" :class="[top_btn_style]" class="px-5 " >
                             Gambang
                         </button>
                     </div>
@@ -16,7 +16,7 @@
                 </div>
                 <div class="relative items-center w-1/2 bg-gray-500 bg-no-repeat bg-cover lg:flex" style="background-image: url(/images/UMP/cancelori.jpg);">
                         <div class="w-full justify-center flex">
-                        <button @click="change_campus(1); changeQueryString()" exact-active-class="exact-active" :class="[top_btn_style]" class="px-10" >
+                        <button @click="change_campus(1);" exact-active-class="exact-active" :class="[top_btn_style]" class="px-10" >
                             Pekan
                         </button>
                     </div>
@@ -173,15 +173,17 @@
 
   <!-- Room Result -->
      <div class="max-w-5xl p-6 mx-auto mt-5 bg-gray-200 rounded-md mb-5" >
-        <span>Rooms for rent:</span>
-         <div v-for="(list,index) in lists" :key="index.id" class="flex justify-start">
-          <div  class="flex justify-center w-full px-8 py-4 overflow-hidden bg-white rounded-lg shadow-lg mt-5">
-              <!-- flex justify-center bg-white rounded-xl border-2 overflow-hidden -->
+        <span>Rooms for rent ({{lists.length}}): </span>
+        <div v-if="lists.length==0"> Sorry, result not found</div>
+        <div else>
+            <div v-for="(list,index) in lists" :key="index.id" class="flex justify-start  ">
+                <router-link :to="{ name: 'view_room_list', params:{id: list.id}}" target="_blank"  class="flex justify-center w-full px-8 py-4 overflow-hidden bg-white rounded-lg shadow-lg mt-5 cursor-pointer transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-200 hover:bg-yellow-400 hover:shadow-2xl">
+                <!-- flex justify-center bg-white rounded-xl border-2 overflow-hidden -->
                     <div class="w-1/3 bg-cover" > <img class="h-48 w-full object-cover"  :src="'/images/Properties/'+list.photo_room[0].photo_name" alt="Avatar"  /></div>
                     <div class="w-2/3 p-4 md:p-4">
                         <div class="flex justify-between item-center">
                             <h1 class="text-2xl font-bold text-gray-800 dark:text-white"> {{ list.listing_name }}</h1>
-                             <h1 class="text-2xl font-bold text-yellow-800 dark:text-white">RM{{list.monthly_rent}}/Month</h1>
+                            <h1 class="text-2xl font-bold text-yellow-800 dark:text-white">RM{{list.monthly_rent}}/Month</h1>
                         </div>
                         <p class="mt-2 text-sm text-gray-600 dark:text-gray-400">{{ list.property.name }} | {{ list.campus }}</p>
                         <div class="flex mt-2 item-center">
@@ -191,7 +193,9 @@
                             <p class="mt-2 text-sm text-gray-600 dark:text-gray-400">{{ list.property.furnishing }}| {{ list.room_furnishing }}</p>
                         </div>
                     </div>
-                </div>
+                </router-link>
+            </div>
+
         </div>
     </div>
 
@@ -244,11 +248,15 @@ export default {
         change_campus(c){
             if(c==0){
                 this.campus = 'Gambang'
-                this.getList()
             }else{
                 this.campus = 'Pekan'
-                this.getList()
             }
+                this.location='';
+                this.price={};
+                this.gender= '';
+                this.room='';
+                this.removeQueryString()
+                this.getList()
 
         },
         changeQueryString(){
@@ -284,8 +292,8 @@ export default {
                     ele[i].checked = false;
             }else{
                 var ele = document.getElementsByName("price");
-                this.maxPrice= '';
-                this.minPrice= '';
+                this.price= {};
+
                 for(var i=0;i<ele.length;i++)
                     ele[i].checked = false;
             }
@@ -298,9 +306,9 @@ export default {
     },
     watch:{
         $route() {
-            if(this.$route.query.campus == "Gambang"){
+            // if(this.$route.query.campus == "Gambang"){
 
-            }
+            // }
         },
     },
        mounted: function(){

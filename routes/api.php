@@ -38,6 +38,7 @@ Route::get('get_properties_list/{campus}', 'PropertyListController@getPropList')
 Route::get('get_BrowseList/{campus}', 'PropertyListController@get_BrowseList');
 Route::post('update_prop_status/{id}', 'PropertyListController@updatePropStatus');
 Route::delete('delete_property/{id}', 'PropertyListController@delete_Property');
+Route::get('get_room_list/{id}', 'PropertyListController@get_RoomList');
 
 
 
