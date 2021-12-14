@@ -19,6 +19,9 @@ use App\Models\Room;
 
 class PropertyListController extends Controller
 {
+    public $min;
+    public $max;
+
     public function create_Property(Request $request){
         //     $request->validate([
         //     'name' =>'required',
@@ -170,21 +173,30 @@ class PropertyListController extends Controller
 
    }
 
-     public function get_BrowseList($campus){
+     public function get_BrowseList($campus, Request $request){
 
-            // $data = Room::query()
-            //             ->with(array('getPropertyRelation' => function($query) {
-            //                 $query->where('verify_status','verified');
-            //             },'getPhotoRelation'))
-            //             ->where('campus',$campus)
-            //             ->where('room_status','listing')
-            //             ->paginate(10);
-
+            $location = $request->location;
+            $gender = $request->gender;
+            $room = $request->room;
+            $minPrice = $request->minPrice;
+            $maxPrice = $request->maxPrice;
             $data = Room::query()
-                        ->with('getPropertyRelation','getPhotoRelation')->whereHas('getPropertyRelation', function($query) {
-                            $query->where('verify_status','verified');})
+                        ->with('getPropertyRelation','getPhotoRelation')->whereHas('getPropertyRelation', function($query)  use($location, $gender) {
+
+                            $query->where('verify_status','verified')
+                            ->when($location!=null,function($query) use($location){
+                                $query->where('property_name', 'LIKE', '%' . $location . '%');
+                            })->when($gender!=null,function($query) use($gender){
+                                $query->where('gender_preferences',$gender);
+                            })
+                        ;})
                         ->where('campus',$campus)
                         ->where('room_status','listing')
+                        ->when($room!=null,function($query) use($room){
+                            $query->where('room_type', $room );
+                        })->when($minPrice!=null,function($query) use($minPrice, $maxPrice){
+                            $query->whereBetween('monthly_rent', [$minPrice, $maxPrice]);
+                        })
                         ->paginate(10);
 
 
@@ -267,6 +279,7 @@ class PropertyListController extends Controller
           return $data;
 
      }
+
     public function update_Room($id, $chgPic, Request $request){
 
         // $request->validate([

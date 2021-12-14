@@ -212,12 +212,17 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {},
   data: function data() {
     return {
       lists: [],
       campus: 'Gambang',
+      location: '',
+      price: {},
+      gender: '',
+      room: '',
       top_btn_style: 'p-3 rounded bg-yellow-100 text-yellow-500 hover:bg-yellow-500 hover:text-white :active:bg-yellow-500 active:text-white active:outline-none transition duration-150 ease-in-out shadow-xl'
     };
   },
@@ -225,7 +230,15 @@ __webpack_require__.r(__webpack_exports__);
     getList: function getList() {
       var _this = this;
 
-      axios.get('/api/get_BrowseList/' + this.campus).then(function (response) {
+      axios.get('/api/get_BrowseList/' + this.campus, {
+        params: {
+          location: this.location,
+          minPrice: this.price.min,
+          maxPrice: this.price.max,
+          gender: this.gender,
+          room: this.room
+        }
+      }).then(function (response) {
         _this.lists = response.data.data;
         console.warn(_this.lists.data);
       });
@@ -238,6 +251,23 @@ __webpack_require__.r(__webpack_exports__);
         this.campus = 'Pekan';
         this.getList();
       }
+    },
+    changeQueryString: function changeQueryString() {
+      this.$router.replace({
+        query: {
+          campus: this.campus.toLocaleLowerCase(),
+          location: this.location.toLocaleLowerCase(),
+          roomtype: this.room.toLocaleLowerCase(),
+          gender: this.gender.toLocaleLowerCase(),
+          minprice: this.price.min,
+          maxprice: this.price.max
+        }
+      });
+    },
+    removeQueryString: function removeQueryString() {
+      this.$router.replace({
+        name: "BrowseRoom_Student"
+      });
     },
     dropdownHandlerRoomType: function dropdownHandlerRoomType(event) {
       var single = event.currentTarget.getElementsByTagName("ul")[0];
@@ -254,23 +284,36 @@ __webpack_require__.r(__webpack_exports__);
     clearFilter: function clearFilter(type) {
       if (type == 'room') {
         var ele = document.getElementsByName("room_type");
+        this.room = '';
 
         for (var i = 0; i < ele.length; i++) {
           ele[i].checked = false;
         }
       } else if (type == 'gender') {
         var ele = document.getElementsByName("gender");
+        this.gender = '';
 
         for (var i = 0; i < ele.length; i++) {
           ele[i].checked = false;
         }
       } else {
         var ele = document.getElementsByName("price");
+        this.maxPrice = '';
+        this.minPrice = '';
 
         for (var i = 0; i < ele.length; i++) {
           ele[i].checked = false;
         }
       }
+    },
+    getFilter: function getFilter() {
+      this.changeQueryString();
+      this.getList();
+    }
+  },
+  watch: {
+    $route: function $route() {
+      if (this.$route.query.campus == "Gambang") {}
     }
   },
   mounted: function mounted() {
@@ -332,7 +375,8 @@ var render = function() {
                           attrs: { "exact-active-class": "exact-active" },
                           on: {
                             click: function($event) {
-                              return _vm.change_campus(0)
+                              _vm.change_campus(0)
+                              _vm.changeQueryString()
                             }
                           }
                         },
@@ -365,7 +409,8 @@ var render = function() {
                           attrs: { "exact-active-class": "exact-active" },
                           on: {
                             click: function($event) {
-                              return _vm.change_campus(1)
+                              _vm.change_campus(1)
+                              _vm.changeQueryString()
                             }
                           }
                         },
@@ -398,15 +443,32 @@ var render = function() {
             },
             [
               _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.location,
+                    expression: "location"
+                  }
+                ],
                 staticClass:
                   "block rounded-md border-0 focus:outline-none focus:ring-0 focus:border-blue-500 flex-grow p-2",
                 attrs: {
                   type: "search",
                   placeholder: "Search Area / Property Name"
+                },
+                domProps: { value: _vm.location },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.location = $event.target.value
+                  }
                 }
               }),
               _vm._v(" "),
-              _c("button", { attrs: { type: "submit" } }, [
+              _c("button", { on: { click: _vm.getFilter } }, [
                 _c(
                   "svg",
                   {
@@ -460,11 +522,95 @@ var render = function() {
                           "w-52 p-2 border-r bg-yellow-100 absolute rounded right-0 top-0 shadow mt-16 hidden overflow-hidden z-10 "
                       },
                       [
-                        _vm._m(0),
+                        _c(
+                          "li",
+                          {
+                            staticClass:
+                              "cursor-pointer text-yellow-500 text-sm leading-3 tracking-normal py-2"
+                          },
+                          [
+                            _c(
+                              "label",
+                              { staticClass: "flex radio p-2 cursor-pointer" },
+                              [
+                                _c("input", {
+                                  directives: [
+                                    {
+                                      name: "model",
+                                      rawName: "v-model",
+                                      value: _vm.room,
+                                      expression: "room"
+                                    }
+                                  ],
+                                  staticClass: "my-auto transform scale-125",
+                                  attrs: {
+                                    type: "radio",
+                                    name: "room_type",
+                                    value: "Single"
+                                  },
+                                  domProps: {
+                                    checked: _vm._q(_vm.room, "Single")
+                                  },
+                                  on: {
+                                    change: function($event) {
+                                      _vm.room = "Single"
+                                    }
+                                  }
+                                }),
+                                _vm._v(" "),
+                                _c("div", { staticClass: "title px-2" }, [
+                                  _vm._v("Single")
+                                ])
+                              ]
+                            )
+                          ]
+                        ),
                         _vm._v(" "),
                         _c("hr", { staticClass: "border-yellow-300  " }),
                         _vm._v(" "),
-                        _vm._m(1),
+                        _c(
+                          "li",
+                          {
+                            staticClass:
+                              "cursor-pointer text-yellow-500 text-sm leading-3 tracking-normal mt-2 py-2 hover:text-indigo-700 flex items-center focus:text-indigo-700 focus:outline-none"
+                          },
+                          [
+                            _c(
+                              "label",
+                              { staticClass: "flex radio p-2 cursor-pointer" },
+                              [
+                                _c("input", {
+                                  directives: [
+                                    {
+                                      name: "model",
+                                      rawName: "v-model",
+                                      value: _vm.room,
+                                      expression: "room"
+                                    }
+                                  ],
+                                  staticClass: "my-auto transform scale-125",
+                                  attrs: {
+                                    type: "radio",
+                                    name: "room_type",
+                                    value: "Shared"
+                                  },
+                                  domProps: {
+                                    checked: _vm._q(_vm.room, "Shared")
+                                  },
+                                  on: {
+                                    change: function($event) {
+                                      _vm.room = "Shared"
+                                    }
+                                  }
+                                }),
+                                _vm._v(" "),
+                                _c("div", { staticClass: "title px-2" }, [
+                                  _vm._v("Shared")
+                                ])
+                              ]
+                            )
+                          ]
+                        ),
                         _vm._v(" "),
                         _c("hr", { staticClass: "border-yellow-300" }),
                         _vm._v(" "),
@@ -500,7 +646,8 @@ var render = function() {
                                   "button",
                                   {
                                     staticClass: "px-5 rounded-full ",
-                                    class: [_vm.top_btn_style]
+                                    class: [_vm.top_btn_style],
+                                    on: { click: _vm.getFilter }
                                   },
                                   [_vm._v("Apply")]
                                 )
@@ -585,17 +732,185 @@ var render = function() {
                           "w-52 p-2 border-r bg-yellow-100 absolute rounded right-0 top-0 shadow mt-16 hidden overflow-hidden z-10 "
                       },
                       [
-                        _vm._m(2),
+                        _c(
+                          "li",
+                          {
+                            staticClass:
+                              "cursor-pointer text-yellow-500 text-sm leading-3 tracking-normal py-2"
+                          },
+                          [
+                            _c(
+                              "label",
+                              { staticClass: "flex radio p-2 cursor-pointer" },
+                              [
+                                _c("input", {
+                                  directives: [
+                                    {
+                                      name: "model",
+                                      rawName: "v-model",
+                                      value: _vm.price,
+                                      expression: "price"
+                                    }
+                                  ],
+                                  staticClass: "my-auto transform scale-125",
+                                  attrs: { type: "radio", name: "price" },
+                                  domProps: {
+                                    value: { min: 0, max: 200 },
+                                    checked: _vm._q(_vm.price, {
+                                      min: 0,
+                                      max: 200
+                                    })
+                                  },
+                                  on: {
+                                    change: function($event) {
+                                      _vm.price = { min: 0, max: 200 }
+                                    }
+                                  }
+                                }),
+                                _vm._v(" "),
+                                _c("div", { staticClass: "title px-2" }, [
+                                  _vm._v("RM0 - RM200")
+                                ])
+                              ]
+                            )
+                          ]
+                        ),
                         _vm._v(" "),
                         _c("hr", { staticClass: "border-yellow-300  " }),
                         _vm._v(" "),
-                        _vm._m(3),
+                        _c(
+                          "li",
+                          {
+                            staticClass:
+                              "cursor-pointer text-yellow-500 text-sm leading-3 tracking-normal mt-2 py-2 hover:text-indigo-700 flex items-center focus:text-indigo-700 focus:outline-none"
+                          },
+                          [
+                            _c(
+                              "label",
+                              { staticClass: "flex radio p-2 cursor-pointer" },
+                              [
+                                _c("input", {
+                                  directives: [
+                                    {
+                                      name: "model",
+                                      rawName: "v-model",
+                                      value: _vm.price,
+                                      expression: "price"
+                                    }
+                                  ],
+                                  staticClass: "my-auto transform scale-125",
+                                  attrs: { type: "radio", name: "price" },
+                                  domProps: {
+                                    value: { min: 200, max: 500 },
+                                    checked: _vm._q(_vm.price, {
+                                      min: 200,
+                                      max: 500
+                                    })
+                                  },
+                                  on: {
+                                    change: function($event) {
+                                      _vm.price = { min: 200, max: 500 }
+                                    }
+                                  }
+                                }),
+                                _vm._v(" "),
+                                _c("div", { staticClass: "title px-2" }, [
+                                  _vm._v("RM200 - RM500")
+                                ])
+                              ]
+                            )
+                          ]
+                        ),
                         _vm._v(" "),
                         _c("hr", { staticClass: "border-yellow-300  " }),
                         _vm._v(" "),
-                        _vm._m(4),
+                        _c(
+                          "li",
+                          {
+                            staticClass:
+                              "cursor-pointer text-yellow-500 text-sm leading-3 tracking-normal mt-2 py-2 hover:text-indigo-700 flex items-center focus:text-indigo-700 focus:outline-none"
+                          },
+                          [
+                            _c(
+                              "label",
+                              { staticClass: "flex radio p-2 cursor-pointer" },
+                              [
+                                _c("input", {
+                                  directives: [
+                                    {
+                                      name: "model",
+                                      rawName: "v-model",
+                                      value: _vm.price,
+                                      expression: "price"
+                                    }
+                                  ],
+                                  staticClass: "my-auto transform scale-125",
+                                  attrs: { type: "radio", name: "price" },
+                                  domProps: {
+                                    value: { min: 500, max: 800 },
+                                    checked: _vm._q(_vm.price, {
+                                      min: 500,
+                                      max: 800
+                                    })
+                                  },
+                                  on: {
+                                    change: function($event) {
+                                      _vm.price = { min: 500, max: 800 }
+                                    }
+                                  }
+                                }),
+                                _vm._v(" "),
+                                _c("div", { staticClass: "title px-2" }, [
+                                  _vm._v("RM500 - RM800")
+                                ])
+                              ]
+                            )
+                          ]
+                        ),
                         _vm._v(" "),
-                        _vm._m(5),
+                        _c(
+                          "li",
+                          {
+                            staticClass:
+                              "cursor-pointer text-yellow-500 text-sm leading-3 tracking-normal mt-2 py-2 hover:text-indigo-700 flex items-center focus:text-indigo-700 focus:outline-none"
+                          },
+                          [
+                            _c(
+                              "label",
+                              { staticClass: "flex radio p-2 cursor-pointer" },
+                              [
+                                _c("input", {
+                                  directives: [
+                                    {
+                                      name: "model",
+                                      rawName: "v-model",
+                                      value: _vm.price,
+                                      expression: "price"
+                                    }
+                                  ],
+                                  staticClass: "my-auto transform scale-125",
+                                  attrs: { type: "radio", name: "price" },
+                                  domProps: {
+                                    value: { min: 800, max: 2000 },
+                                    checked: _vm._q(_vm.price, {
+                                      min: 800,
+                                      max: 2000
+                                    })
+                                  },
+                                  on: {
+                                    change: function($event) {
+                                      _vm.price = { min: 800, max: 2000 }
+                                    }
+                                  }
+                                }),
+                                _vm._v(" "),
+                                _c("div", { staticClass: "title px-2" }, [
+                                  _vm._v("RM800 - RM2000")
+                                ])
+                              ]
+                            )
+                          ]
+                        ),
                         _vm._v(" "),
                         _c("hr", { staticClass: "border-yellow-300" }),
                         _vm._v(" "),
@@ -631,7 +946,8 @@ var render = function() {
                                   "button",
                                   {
                                     staticClass: "px-5 rounded-full ",
-                                    class: [_vm.top_btn_style]
+                                    class: [_vm.top_btn_style],
+                                    on: { click: _vm.getFilter }
                                   },
                                   [_vm._v("Apply")]
                                 )
@@ -716,11 +1032,95 @@ var render = function() {
                           "w-52 p-2 border-r bg-yellow-100 absolute rounded right-0 top-0 shadow mt-16 hidden overflow-hidden z-10 "
                       },
                       [
-                        _vm._m(6),
+                        _c(
+                          "li",
+                          {
+                            staticClass:
+                              "cursor-pointer text-yellow-500 text-sm leading-3 tracking-normal py-2"
+                          },
+                          [
+                            _c(
+                              "label",
+                              { staticClass: "flex radio p-2 cursor-pointer" },
+                              [
+                                _c("input", {
+                                  directives: [
+                                    {
+                                      name: "model",
+                                      rawName: "v-model",
+                                      value: _vm.gender,
+                                      expression: "gender"
+                                    }
+                                  ],
+                                  staticClass: "my-auto transform scale-125",
+                                  attrs: {
+                                    type: "radio",
+                                    name: "gender",
+                                    value: "Male"
+                                  },
+                                  domProps: {
+                                    checked: _vm._q(_vm.gender, "Male")
+                                  },
+                                  on: {
+                                    change: function($event) {
+                                      _vm.gender = "Male"
+                                    }
+                                  }
+                                }),
+                                _vm._v(" "),
+                                _c("div", { staticClass: "title px-2" }, [
+                                  _vm._v("Male")
+                                ])
+                              ]
+                            )
+                          ]
+                        ),
                         _vm._v(" "),
                         _c("hr", { staticClass: "border-yellow-300  " }),
                         _vm._v(" "),
-                        _vm._m(7),
+                        _c(
+                          "li",
+                          {
+                            staticClass:
+                              "cursor-pointer text-yellow-500 text-sm leading-3 tracking-normal mt-2 py-2 hover:text-indigo-700 flex items-center focus:text-indigo-700 focus:outline-none"
+                          },
+                          [
+                            _c(
+                              "label",
+                              { staticClass: "flex radio p-2 cursor-pointer" },
+                              [
+                                _c("input", {
+                                  directives: [
+                                    {
+                                      name: "model",
+                                      rawName: "v-model",
+                                      value: _vm.gender,
+                                      expression: "gender"
+                                    }
+                                  ],
+                                  staticClass: "my-auto transform scale-125",
+                                  attrs: {
+                                    type: "radio",
+                                    name: "gender",
+                                    value: "Female"
+                                  },
+                                  domProps: {
+                                    checked: _vm._q(_vm.gender, "Female")
+                                  },
+                                  on: {
+                                    change: function($event) {
+                                      _vm.gender = "Female"
+                                    }
+                                  }
+                                }),
+                                _vm._v(" "),
+                                _c("div", { staticClass: "title px-2" }, [
+                                  _vm._v("Female")
+                                ])
+                              ]
+                            )
+                          ]
+                        ),
                         _vm._v(" "),
                         _c("hr", { staticClass: "border-yellow-300" }),
                         _vm._v(" "),
@@ -756,7 +1156,8 @@ var render = function() {
                                   "button",
                                   {
                                     staticClass: "px-5 rounded-full ",
-                                    class: [_vm.top_btn_style]
+                                    class: [_vm.top_btn_style],
+                                    on: { click: _vm.getFilter }
                                   },
                                   [_vm._v("Apply")]
                                 )
@@ -931,184 +1332,7 @@ var render = function() {
     )
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "li",
-      {
-        staticClass:
-          "cursor-pointer text-yellow-500 text-sm leading-3 tracking-normal py-2"
-      },
-      [
-        _c("label", { staticClass: "flex radio p-2 cursor-pointer" }, [
-          _c("input", {
-            staticClass: "my-auto transform scale-125",
-            attrs: { type: "radio", name: "room_type", value: "Single" }
-          }),
-          _vm._v(" "),
-          _c("div", { staticClass: "title px-2" }, [_vm._v("Single")])
-        ])
-      ]
-    )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "li",
-      {
-        staticClass:
-          "cursor-pointer text-yellow-500 text-sm leading-3 tracking-normal mt-2 py-2 hover:text-indigo-700 flex items-center focus:text-indigo-700 focus:outline-none"
-      },
-      [
-        _c("label", { staticClass: "flex radio p-2 cursor-pointer" }, [
-          _c("input", {
-            staticClass: "my-auto transform scale-125",
-            attrs: { type: "radio", name: "room_type", value: "Shared" }
-          }),
-          _vm._v(" "),
-          _c("div", { staticClass: "title px-2" }, [_vm._v("Shared")])
-        ])
-      ]
-    )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "li",
-      {
-        staticClass:
-          "cursor-pointer text-yellow-500 text-sm leading-3 tracking-normal py-2"
-      },
-      [
-        _c("label", { staticClass: "flex radio p-2 cursor-pointer" }, [
-          _c("input", {
-            staticClass: "my-auto transform scale-125",
-            attrs: { type: "radio", name: "price", value: "1" }
-          }),
-          _vm._v(" "),
-          _c("div", { staticClass: "title px-2" }, [_vm._v("RM0 - RM200")])
-        ])
-      ]
-    )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "li",
-      {
-        staticClass:
-          "cursor-pointer text-yellow-500 text-sm leading-3 tracking-normal mt-2 py-2 hover:text-indigo-700 flex items-center focus:text-indigo-700 focus:outline-none"
-      },
-      [
-        _c("label", { staticClass: "flex radio p-2 cursor-pointer" }, [
-          _c("input", {
-            staticClass: "my-auto transform scale-125",
-            attrs: { type: "radio", name: "price", value: "2" }
-          }),
-          _vm._v(" "),
-          _c("div", { staticClass: "title px-2" }, [_vm._v("RM200 - RM500")])
-        ])
-      ]
-    )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "li",
-      {
-        staticClass:
-          "cursor-pointer text-yellow-500 text-sm leading-3 tracking-normal mt-2 py-2 hover:text-indigo-700 flex items-center focus:text-indigo-700 focus:outline-none"
-      },
-      [
-        _c("label", { staticClass: "flex radio p-2 cursor-pointer" }, [
-          _c("input", {
-            staticClass: "my-auto transform scale-125",
-            attrs: { type: "radio", name: "price", value: "3" }
-          }),
-          _vm._v(" "),
-          _c("div", { staticClass: "title px-2" }, [_vm._v("RM500 - RM800")])
-        ])
-      ]
-    )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "li",
-      {
-        staticClass:
-          "cursor-pointer text-yellow-500 text-sm leading-3 tracking-normal mt-2 py-2 hover:text-indigo-700 flex items-center focus:text-indigo-700 focus:outline-none"
-      },
-      [
-        _c("label", { staticClass: "flex radio p-2 cursor-pointer" }, [
-          _c("input", {
-            staticClass: "my-auto transform scale-125",
-            attrs: { type: "radio", name: "price", value: "4" }
-          }),
-          _vm._v(" "),
-          _c("div", { staticClass: "title px-2" }, [_vm._v("RM800 - RM2000")])
-        ])
-      ]
-    )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "li",
-      {
-        staticClass:
-          "cursor-pointer text-yellow-500 text-sm leading-3 tracking-normal py-2"
-      },
-      [
-        _c("label", { staticClass: "flex radio p-2 cursor-pointer" }, [
-          _c("input", {
-            staticClass: "my-auto transform scale-125",
-            attrs: { type: "radio", name: "gender", value: "Male" }
-          }),
-          _vm._v(" "),
-          _c("div", { staticClass: "title px-2" }, [_vm._v("Male")])
-        ])
-      ]
-    )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "li",
-      {
-        staticClass:
-          "cursor-pointer text-yellow-500 text-sm leading-3 tracking-normal mt-2 py-2 hover:text-indigo-700 flex items-center focus:text-indigo-700 focus:outline-none"
-      },
-      [
-        _c("label", { staticClass: "flex radio p-2 cursor-pointer" }, [
-          _c("input", {
-            staticClass: "my-auto transform scale-125",
-            attrs: { type: "radio", name: "gender", value: "Female" }
-          }),
-          _vm._v(" "),
-          _c("div", { staticClass: "title px-2" }, [_vm._v("Female")])
-        ])
-      ]
-    )
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
