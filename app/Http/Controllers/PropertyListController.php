@@ -206,7 +206,7 @@ class PropertyListController extends Controller
    }
 
     public function get_RoomList($id){
-        $data = Room::with('getPropertyRelation.getPhotoRelation','getPhotoRelation')
+        $data = Room::with('getPropertyRelation.getPhotoRelation','getPhotoRelation','getPropertyRelation.getLandlordRelation')
                     ->whereHas('getPropertyRelation.getPhotoRelation', function($query)  {
                         $query->whereNull('room_id');
                     ;})

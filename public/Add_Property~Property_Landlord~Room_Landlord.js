@@ -43,8 +43,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "AddGoogleMap",
   props: {
@@ -424,7 +422,7 @@ var render = function() {
       _c(
         "gmap-map",
         {
-          staticStyle: { width: "100%", height: "200px" },
+          staticStyle: { width: "100%", height: "250px" },
           attrs: { zoom: 16, center: _vm.center }
         },
         [

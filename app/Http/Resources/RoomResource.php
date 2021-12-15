@@ -30,25 +30,14 @@ class RoomResource extends JsonResource
             'booking_fees' => $this->booking_fees,
             'monthly_rent' => $this->monthly_rent,
             'room_status' => $this->room_status,
+            'created_at' => $this->created_at,
+            'updated_at' => $this->updated_at,
             'property' => new PropertyResource($property),
             'photo_room' => PhotoResource::collection($this->whenLoaded('getPhotoRelation')),
             //'cover_room' => PhotoResource::collection($this->whenLoaded('getPhotoRelation'))->where('photo_label', 'Cover')->first()
         ];
 
-        $table->increments('room_id');
-        $table->integer('landlord_id');
-        $table->integer('property_id');
-        $table->string('room_name')->nullable();
-        $table->string('listing_name')->nullable();
-        $table->string('room_type')->nullable();
-        $table->string('room_description')->nullable();
-        $table->string('campus')->nullable();
-        $table->float('penalty_fees')->nullable();
-        $table->string('room_furnishing')->nullable();
-        $table->integer('number_of_tenant')->nullable();
-        $table->float('booking_fees')->nullable();
-        $table->float('monthly_rent')->nullable();
-        $table->float('room_status')->nullable();
+
 
 
     }

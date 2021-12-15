@@ -163,7 +163,7 @@ export default{
             component: Profile_Edit,
         },
         {
-            path: '/student/room_list/:id',
+            path: '/student/browse-rooms/room_list/:id',
             name: 'view_room_list',
             component: View_Room_List,
         },
