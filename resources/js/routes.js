@@ -167,6 +167,11 @@ export default{
             name: 'view_room_list',
             component: View_Room_List,
         },
+        {
+            path: '/student/view-profile/:role/:id',
+            name: 'std_profile_view',
+            component: Profile_View,
+        },
 
 
 

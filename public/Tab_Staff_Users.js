@@ -176,7 +176,7 @@ if(false) {}
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function() {
+var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
@@ -185,7 +185,7 @@ var render = function() {
       "div",
       {
         staticClass:
-          "grid grid-cols-3 gap-5 lex flex-col lg:flex-row p-4 lg:p-8 justify-between items-start"
+          "grid grid-cols-3 gap-5 lex flex-col lg:flex-row p-4 lg:p-8 justify-between items-start",
       },
       [
         _c(
@@ -195,8 +195,8 @@ var render = function() {
               "\n          p-4\n          rounded\n          bg-pink-100\n          text-pink-500\n          hover:bg-pink-500 hover:text-white\n          :active:bg-pink-500 active:text-white active:outline-none\n          transition duration-150 ease-in-out\n          shadow-xl\n          flex\n          items-center\n          justify-center\n      ",
             attrs: {
               to: { name: "manage_student" },
-              "exact-active-class": "exact-active"
-            }
+              "exact-active-class": "exact-active",
+            },
           },
           [
             _c(
@@ -207,8 +207,8 @@ var render = function() {
                   xmlns: "http://www.w3.org/2000/svg",
                   fill: "none",
                   viewBox: "0 0 24 24",
-                  stroke: "currentColor"
-                }
+                  stroke: "currentColor",
+                },
               },
               [
                 _c("path", {
@@ -216,13 +216,12 @@ var render = function() {
                     "stroke-linecap": "round",
                     "stroke-linejoin": "round",
                     "stroke-width": "2",
-                    d:
-                      "M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z"
-                  }
-                })
+                    d: "M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z",
+                  },
+                }),
               ]
             ),
-            _vm._v("\n        Manage Students\n    ")
+            _vm._v("\n        Manage Students\n    "),
           ]
         ),
         _vm._v(" "),
@@ -233,8 +232,8 @@ var render = function() {
               "\n          p-4\n          rounded\n          bg-pink-100\n          text-pink-500\n          hover:bg-pink-500 hover:text-white\n          :active:bg-pink-500 active:text-white active:outline-none\n          transition duration-150 ease-in-out\n          shadow-xl\n          flex\n          items-center\n          justify-center\n        ",
             attrs: {
               to: { name: "manage_landlord" },
-              "exact-active-class": "exact-active"
-            }
+              "exact-active-class": "exact-active",
+            },
           },
           [
             _c(
@@ -245,8 +244,8 @@ var render = function() {
                   xmlns: "http://www.w3.org/2000/svg",
                   fill: "none",
                   viewBox: "0 0 24 24",
-                  stroke: "currentColor"
-                }
+                  stroke: "currentColor",
+                },
               },
               [
                 _c("path", {
@@ -254,13 +253,12 @@ var render = function() {
                     "stroke-linecap": "round",
                     "stroke-linejoin": "round",
                     "stroke-width": "2",
-                    d:
-                      "M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"
-                  }
-                })
+                    d: "M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6",
+                  },
+                }),
               ]
             ),
-            _vm._v("\n        Manage Landlord\n      ")
+            _vm._v("\n        Manage Landlord\n      "),
           ]
         ),
         _vm._v(" "),
@@ -271,8 +269,8 @@ var render = function() {
               "\n          p-4\n          rounded\n          bg-pink-100\n          text-pink-500\n          hover:bg-pink-500 hover:text-white\n          :active:bg-pink-500 active:text-white active:outline-none\n          transition duration-150 ease-in-out\n          shadow-xl\n          flex\n          items-center\n          justify-center\n        ",
             attrs: {
               to: { name: "manage_staff" },
-              "exact-active-class": "exact-active"
-            }
+              "exact-active-class": "exact-active",
+            },
           },
           [
             _c(
@@ -287,8 +285,8 @@ var render = function() {
                   stroke: "currentColor",
                   fill: "none",
                   "stroke-linecap": "round",
-                  "stroke-linejoin": "round"
-                }
+                  "stroke-linejoin": "round",
+                },
               },
               [
                 _c("path", { attrs: { stroke: "none", d: "M0 0h24v24H0z" } }),
@@ -296,20 +294,20 @@ var render = function() {
                 _c("circle", { attrs: { cx: "9", cy: "7", r: "4" } }),
                 _vm._v(" "),
                 _c("path", {
-                  attrs: { d: "M3 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" }
+                  attrs: { d: "M3 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" },
                 }),
                 _vm._v(" "),
-                _c("path", { attrs: { d: "M16 11l2 2l4 -4" } })
+                _c("path", { attrs: { d: "M16 11l2 2l4 -4" } }),
               ]
             ),
-            _vm._v("\n        Manage Staff\n       ")
+            _vm._v("\n        Manage Staff\n       "),
           ]
-        )
+        ),
       ],
       1
     ),
     _vm._v(" "),
-    _c("div", {}, [_c("router-view")], 1)
+    _c("div", {}, [_c("router-view")], 1),
   ])
 }
 var staticRenderFns = []
@@ -383,8 +381,8 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Tab_Staff_Users_vue_vue_type_style_index_0_id_e5d21d84_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/style-loader!../../../../node_modules/css-loader??ref--6-1!../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../node_modules/postcss-loader/src??ref--6-2!../../../../node_modules/vue-loader/lib??vue-loader-options!./Tab_Staff_Users.vue?vue&type=style&index=0&id=e5d21d84&scoped=true&lang=css& */ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Layouts/Tab_Staff_Users.vue?vue&type=style&index=0&id=e5d21d84&scoped=true&lang=css&");
 /* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Tab_Staff_Users_vue_vue_type_style_index_0_id_e5d21d84_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Tab_Staff_Users_vue_vue_type_style_index_0_id_e5d21d84_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__);
-/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Tab_Staff_Users_vue_vue_type_style_index_0_id_e5d21d84_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Tab_Staff_Users_vue_vue_type_style_index_0_id_e5d21d84_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
- /* harmony default export */ __webpack_exports__["default"] = (_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Tab_Staff_Users_vue_vue_type_style_index_0_id_e5d21d84_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default.a); 
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Tab_Staff_Users_vue_vue_type_style_index_0_id_e5d21d84_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__) if(["default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Tab_Staff_Users_vue_vue_type_style_index_0_id_e5d21d84_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+
 
 /***/ }),
 

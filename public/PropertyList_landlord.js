@@ -163,7 +163,7 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function() {
+var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
@@ -180,10 +180,10 @@ var render = function() {
             {
               staticClass:
                 " bg-blue-600 shadow-lg hover:bg-blue-700 text-xs text-white px-3 py-3 rounded-md",
-              attrs: { to: { name: "add_property" } }
+              attrs: { to: { name: "add_property" } },
             },
             [_vm._v("\n                  + Add Property\n            ")]
-          )
+          ),
         ],
         1
       ),
@@ -193,18 +193,18 @@ var render = function() {
             _c("span", [
               _vm._v(
                 "You don't have any property register yet. Please add property"
-              )
-            ])
+              ),
+            ]),
           ])
         : _c(
             "div",
-            _vm._l(_vm.properties, function(property) {
+            _vm._l(_vm.properties, function (property) {
               return _c(
                 "div",
                 {
                   key: property.id,
                   staticClass:
-                    "max-w-2xl px-8 py-4 mx-auto flex  overflow-hidden bg-white rounded-lg shadow-lg mt-5"
+                    "max-w-2xl px-8 py-4 mx-auto flex  overflow-hidden bg-white rounded-lg shadow-lg mt-5",
                 },
                 [
                   property.cover != null
@@ -214,9 +214,9 @@ var render = function() {
                           attrs: {
                             src:
                               "/images/Properties/" + property.cover.photo_name,
-                            alt: "Avatar"
-                          }
-                        })
+                            alt: "Avatar",
+                          },
+                        }),
                       ])
                     : _c("div", { staticClass: "w-1/3 bg-cover" }, [
                         _c("img", {
@@ -225,9 +225,9 @@ var render = function() {
                             src:
                               "/images/Properties/" +
                               property.photo[0].photo_name,
-                            alt: "Avatar"
-                          }
-                        })
+                            alt: "Avatar",
+                          },
+                        }),
                       ]),
                   _vm._v(" "),
                   _c("div", { staticClass: "w-2/3 p-4 md:p-4" }, [
@@ -239,7 +239,7 @@ var render = function() {
                           "h1",
                           {
                             staticClass:
-                              "text-2xl font-bold text-gray-800 dark:text-white"
+                              "text-2xl font-bold text-gray-800 dark:text-white",
                           },
                           [_vm._v(_vm._s(property.name))]
                         ),
@@ -254,17 +254,17 @@ var render = function() {
                                 name: "property",
                                 params: {
                                   property_id: property.id,
-                                  role: _vm.role
-                                }
-                              }
-                            }
+                                  role: _vm.role,
+                                },
+                              },
+                            },
                           },
                           [
                             _vm._v(
                               "\n                                View Details\n                        "
-                            )
+                            ),
                           ]
-                        )
+                        ),
                       ],
                       1
                     ),
@@ -273,7 +273,7 @@ var render = function() {
                       "p",
                       {
                         staticClass:
-                          "mt-2 text-sm text-gray-600 dark:text-gray-400"
+                          "mt-2 text-sm text-gray-600 dark:text-gray-400",
                       },
                       [_vm._v(_vm._s(property.address))]
                     ),
@@ -283,17 +283,17 @@ var render = function() {
                         "p",
                         {
                           staticClass:
-                            "mt-2 text-sm text-gray-600 dark:text-gray-400"
+                            "mt-2 text-sm text-gray-600 dark:text-gray-400",
                         },
                         [_vm._v(_vm._s(property.status))]
-                      )
-                    ])
-                  ])
+                      ),
+                    ]),
+                  ]),
                 ]
               )
             }),
             0
-          )
+          ),
     ]
   )
 }
@@ -315,7 +315,7 @@ render._withStripped = true
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function() {
+var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
@@ -324,15 +324,15 @@ var render = function() {
       "div",
       {
         staticClass:
-          "max-w-2xl px-8 py-4 mx-auto flex  overflow-hidden bg-white rounded-lg shadow-lg dark:bg-gray-800"
+          "max-w-2xl px-8 py-4 mx-auto flex  overflow-hidden bg-white rounded-lg shadow-lg dark:bg-gray-800",
       },
       [
         _c("div", {
           staticClass: "w-1/3 bg-cover",
           staticStyle: {
             "background-image":
-              "url('https://images.unsplash.com/photo-1494726161322-5360d4d0eeae?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=334&q=80')"
-          }
+              "url('https://images.unsplash.com/photo-1494726161322-5360d4d0eeae?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=334&q=80')",
+          },
         }),
         _vm._v(" "),
         _c("div", { staticClass: "w-2/3 p-4 md:p-4" }, [
@@ -344,7 +344,7 @@ var render = function() {
             [
               _vm._v(
                 "Lorem ipsum dolor sit amet consectetur adipisicing elit In odit"
-              )
+              ),
             ]
           ),
           _vm._v(" "),
@@ -354,15 +354,14 @@ var render = function() {
               {
                 staticClass:
                   "w-5 h-5 text-gray-700 fill-current dark:text-gray-300",
-                attrs: { viewBox: "0 0 24 24" }
+                attrs: { viewBox: "0 0 24 24" },
               },
               [
                 _c("path", {
                   attrs: {
-                    d:
-                      "M12 17.27L18.18 21L16.54 13.97L22 9.24L14.81 8.63L12 2L9.19 8.63L2 9.24L7.46 13.97L5.82 21L12 17.27Z"
-                  }
-                })
+                    d: "M12 17.27L18.18 21L16.54 13.97L22 9.24L14.81 8.63L12 2L9.19 8.63L2 9.24L7.46 13.97L5.82 21L12 17.27Z",
+                  },
+                }),
               ]
             ),
             _vm._v(" "),
@@ -371,15 +370,14 @@ var render = function() {
               {
                 staticClass:
                   "w-5 h-5 text-gray-700 fill-current dark:text-gray-300",
-                attrs: { viewBox: "0 0 24 24" }
+                attrs: { viewBox: "0 0 24 24" },
               },
               [
                 _c("path", {
                   attrs: {
-                    d:
-                      "M12 17.27L18.18 21L16.54 13.97L22 9.24L14.81 8.63L12 2L9.19 8.63L2 9.24L7.46 13.97L5.82 21L12 17.27Z"
-                  }
-                })
+                    d: "M12 17.27L18.18 21L16.54 13.97L22 9.24L14.81 8.63L12 2L9.19 8.63L2 9.24L7.46 13.97L5.82 21L12 17.27Z",
+                  },
+                }),
               ]
             ),
             _vm._v(" "),
@@ -388,15 +386,14 @@ var render = function() {
               {
                 staticClass:
                   "w-5 h-5 text-gray-700 fill-current dark:text-gray-300",
-                attrs: { viewBox: "0 0 24 24" }
+                attrs: { viewBox: "0 0 24 24" },
               },
               [
                 _c("path", {
                   attrs: {
-                    d:
-                      "M12 17.27L18.18 21L16.54 13.97L22 9.24L14.81 8.63L12 2L9.19 8.63L2 9.24L7.46 13.97L5.82 21L12 17.27Z"
-                  }
-                })
+                    d: "M12 17.27L18.18 21L16.54 13.97L22 9.24L14.81 8.63L12 2L9.19 8.63L2 9.24L7.46 13.97L5.82 21L12 17.27Z",
+                  },
+                }),
               ]
             ),
             _vm._v(" "),
@@ -404,15 +401,14 @@ var render = function() {
               "svg",
               {
                 staticClass: "w-5 h-5 text-gray-500 fill-current",
-                attrs: { viewBox: "0 0 24 24" }
+                attrs: { viewBox: "0 0 24 24" },
               },
               [
                 _c("path", {
                   attrs: {
-                    d:
-                      "M12 17.27L18.18 21L16.54 13.97L22 9.24L14.81 8.63L12 2L9.19 8.63L2 9.24L7.46 13.97L5.82 21L12 17.27Z"
-                  }
-                })
+                    d: "M12 17.27L18.18 21L16.54 13.97L22 9.24L14.81 8.63L12 2L9.19 8.63L2 9.24L7.46 13.97L5.82 21L12 17.27Z",
+                  },
+                }),
               ]
             ),
             _vm._v(" "),
@@ -420,25 +416,24 @@ var render = function() {
               "svg",
               {
                 staticClass: "w-5 h-5 text-gray-500 fill-current",
-                attrs: { viewBox: "0 0 24 24" }
+                attrs: { viewBox: "0 0 24 24" },
               },
               [
                 _c("path", {
                   attrs: {
-                    d:
-                      "M12 17.27L18.18 21L16.54 13.97L22 9.24L14.81 8.63L12 2L9.19 8.63L2 9.24L7.46 13.97L5.82 21L12 17.27Z"
-                  }
-                })
+                    d: "M12 17.27L18.18 21L16.54 13.97L22 9.24L14.81 8.63L12 2L9.19 8.63L2 9.24L7.46 13.97L5.82 21L12 17.27Z",
+                  },
+                }),
               ]
-            )
-          ])
-        ])
+            ),
+          ]),
+        ]),
       ]
-    )
+    ),
   ])
 }
 var staticRenderFns = [
-  function() {
+  function () {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
@@ -453,12 +448,12 @@ var staticRenderFns = [
         "button",
         {
           staticClass:
-            "px-2 py-1 text-xs font-bold text-white uppercase transition-colors duration-200 transform bg-gray-800 rounded dark:bg-gray-700 hover:bg-gray-700 dark:hover:bg-gray-600 focus:outline-none focus:bg-gray-700 dark:focus:bg-gray-600"
+            "px-2 py-1 text-xs font-bold text-white uppercase transition-colors duration-200 transform bg-gray-800 rounded dark:bg-gray-700 hover:bg-gray-700 dark:hover:bg-gray-600 focus:outline-none focus:bg-gray-700 dark:focus:bg-gray-600",
         },
         [_vm._v("View Details")]
-      )
+      ),
     ])
-  }
+  },
 ]
 render._withStripped = true
 

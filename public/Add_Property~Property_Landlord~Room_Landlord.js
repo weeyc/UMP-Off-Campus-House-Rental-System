@@ -392,7 +392,7 @@ if(false) {}
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function() {
+var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
@@ -408,13 +408,13 @@ var render = function() {
             _c("gmap-autocomplete", { on: { place_changed: _vm.initMarker } }),
             _vm._v(" "),
             _c("button", { on: { click: _vm.addLocationMarker } }, [
-              _vm._v("Add")
-            ])
+              _vm._v("Add"),
+            ]),
           ],
           1
         ),
         _vm._v(" "),
-        _c("br")
+        _c("br"),
       ]),
       _vm._v(" "),
       _c("br"),
@@ -423,16 +423,16 @@ var render = function() {
         "gmap-map",
         {
           staticStyle: { width: "100%", height: "250px" },
-          attrs: { zoom: 16, center: _vm.center }
+          attrs: { zoom: 16, center: _vm.center },
         },
         [
           _c("gmap-marker", {
             attrs: { position: _vm.center, draggable: _vm.drag },
-            on: { drag: _vm.updateCoordinates }
-          })
+            on: { drag: _vm.updateCoordinates },
+          }),
         ],
         1
-      )
+      ),
     ],
     1
   )
@@ -455,7 +455,7 @@ render._withStripped = true
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function() {
+var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
@@ -467,11 +467,11 @@ var render = function() {
       on: {
         dragenter: _vm.OnDragEnter,
         dragleave: _vm.OnDragLeave,
-        dragover: function($event) {
+        dragover: function ($event) {
           $event.preventDefault()
         },
-        drop: _vm.onDrop
-      }
+        drop: _vm.onDrop,
+      },
     },
     [
       _c(
@@ -482,10 +482,10 @@ var render = function() {
               name: "show",
               rawName: "v-show",
               value: _vm.images.length,
-              expression: "images.length"
-            }
+              expression: "images.length",
+            },
           ],
-          staticClass: "upload-control"
+          staticClass: "upload-control",
         },
         [_c("label", { attrs: { for: "file" } }, [_vm._v("Select a file")])]
       ),
@@ -498,9 +498,9 @@ var render = function() {
               name: "show",
               rawName: "v-show",
               value: !_vm.images.length,
-              expression: "!images.length"
-            }
-          ]
+              expression: "!images.length",
+            },
+          ],
         },
         [
           _c("i", { staticClass: "fa fa-cloud-upload" }),
@@ -514,9 +514,9 @@ var render = function() {
             _vm._v(" "),
             _c("input", {
               attrs: { type: "file", id: "file", multiple: "" },
-              on: { change: _vm.onInputChange }
-            })
-          ])
+              on: { change: _vm.onInputChange },
+            }),
+          ]),
         ]
       ),
       _vm._v(" "),
@@ -528,38 +528,38 @@ var render = function() {
               name: "show",
               rawName: "v-show",
               value: _vm.images.length,
-              expression: "images.length"
-            }
+              expression: "images.length",
+            },
           ],
-          staticClass: "images-preview"
+          staticClass: "images-preview",
         },
-        _vm._l(_vm.images, function(image, index) {
+        _vm._l(_vm.images, function (image, index) {
           return _c("div", { key: index, staticClass: "img-wrapper" }, [
             _c("img", {
-              attrs: { src: image, alt: "Image Uplaoder " + index }
+              attrs: { src: image, alt: "Image Uplaoder " + index },
             }),
             _vm._v(" "),
             _c("div", { staticClass: "details" }, [
               _c("span", {
                 staticClass: "name",
-                domProps: { textContent: _vm._s(_vm.files[index].name) }
+                domProps: { textContent: _vm._s(_vm.files[index].name) },
               }),
               _vm._v(" "),
               _c("span", {
                 staticClass: "size",
                 domProps: {
-                  textContent: _vm._s(_vm.getFileSize(_vm.files[index].size))
-                }
+                  textContent: _vm._s(_vm.getFileSize(_vm.files[index].size)),
+                },
               }),
               _vm._v(" "),
               _c(
                 "button",
                 {
                   on: {
-                    click: function($event) {
+                    click: function ($event) {
                       return _vm.removeImage(index)
-                    }
-                  }
+                    },
+                  },
                 },
                 [_vm._v("Remove")]
               ),
@@ -572,20 +572,20 @@ var render = function() {
                       name: "model",
                       rawName: "v-model",
                       value: _vm.imageLabel[index],
-                      expression: "imageLabel[index]"
-                    }
+                      expression: "imageLabel[index]",
+                    },
                   ],
                   staticClass:
                     " w-full px-4 py-2 mt-1 text-gray-700 bg-white border border-1  focus:border-blue-500 focus:outline-none focus:ring",
                   class: [_vm.hide],
                   attrs: { name: "campus" },
                   on: {
-                    change: function($event) {
+                    change: function ($event) {
                       var $$selectedVal = Array.prototype.filter
-                        .call($event.target.options, function(o) {
+                        .call($event.target.options, function (o) {
                           return o.selected
                         })
-                        .map(function(o) {
+                        .map(function (o) {
                           var val = "_value" in o ? o._value : o.value
                           return val
                         })
@@ -596,15 +596,15 @@ var render = function() {
                           ? $$selectedVal
                           : $$selectedVal[0]
                       )
-                    }
-                  }
+                    },
+                  },
                 },
                 [
                   _c(
                     "option",
                     {
                       staticClass: "text-Blue-700 text-sm",
-                      attrs: { value: "Cover" }
+                      attrs: { value: "Cover" },
                     },
                     [_vm._v(" Image Cover ")]
                   ),
@@ -613,7 +613,7 @@ var render = function() {
                     "option",
                     {
                       staticClass: "text-gray-700 text-sm",
-                      attrs: { value: "Living Hall" }
+                      attrs: { value: "Living Hall" },
                     },
                     [_vm._v(" Living Hall")]
                   ),
@@ -622,7 +622,7 @@ var render = function() {
                     "option",
                     {
                       staticClass: "text-gray-700 text-sm",
-                      attrs: { value: "Toilet" }
+                      attrs: { value: "Toilet" },
                     },
                     [_vm._v(" Toilet ")]
                   ),
@@ -631,7 +631,7 @@ var render = function() {
                     "option",
                     {
                       staticClass: "text-gray-700 text-sm",
-                      attrs: { value: "Kitchen" }
+                      attrs: { value: "Kitchen" },
                     },
                     [_vm._v(" Kitchen ")]
                   ),
@@ -640,17 +640,17 @@ var render = function() {
                     "option",
                     {
                       staticClass: "text-gray-700 text-sm",
-                      attrs: { value: "Balcony" }
+                      attrs: { value: "Balcony" },
                     },
                     [_vm._v(" Balcony ")]
-                  )
+                  ),
                 ]
-              )
-            ])
+              ),
+            ]),
           ])
         }),
         0
-      )
+      ),
     ]
   )
 }
@@ -725,8 +725,8 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_GoogleMap_vue_vue_type_style_index_0_id_329938f7_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/style-loader!../../../../node_modules/css-loader??ref--6-1!../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../node_modules/postcss-loader/src??ref--6-2!../../../../node_modules/vue-loader/lib??vue-loader-options!./GoogleMap.vue?vue&type=style&index=0&id=329938f7&scoped=true&lang=css& */ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/ManagePropertyList/GoogleMap.vue?vue&type=style&index=0&id=329938f7&scoped=true&lang=css&");
 /* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_GoogleMap_vue_vue_type_style_index_0_id_329938f7_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_GoogleMap_vue_vue_type_style_index_0_id_329938f7_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__);
-/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_GoogleMap_vue_vue_type_style_index_0_id_329938f7_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_GoogleMap_vue_vue_type_style_index_0_id_329938f7_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
- /* harmony default export */ __webpack_exports__["default"] = (_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_GoogleMap_vue_vue_type_style_index_0_id_329938f7_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default.a); 
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_GoogleMap_vue_vue_type_style_index_0_id_329938f7_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__) if(["default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_GoogleMap_vue_vue_type_style_index_0_id_329938f7_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+
 
 /***/ }),
 
@@ -812,8 +812,8 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_sass_loader_dist_cjs_js_ref_7_3_node_modules_vue_loader_lib_index_js_vue_loader_options_ImageUploader_vue_vue_type_style_index_0_id_79aa907d_lang_scss_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/style-loader!../../../../node_modules/css-loader!../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../node_modules/postcss-loader/src??ref--7-2!../../../../node_modules/sass-loader/dist/cjs.js??ref--7-3!../../../../node_modules/vue-loader/lib??vue-loader-options!./ImageUploader.vue?vue&type=style&index=0&id=79aa907d&lang=scss&scoped=true& */ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/dist/cjs.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/ManagePropertyList/ImageUploader.vue?vue&type=style&index=0&id=79aa907d&lang=scss&scoped=true&");
 /* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_sass_loader_dist_cjs_js_ref_7_3_node_modules_vue_loader_lib_index_js_vue_loader_options_ImageUploader_vue_vue_type_style_index_0_id_79aa907d_lang_scss_scoped_true___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_sass_loader_dist_cjs_js_ref_7_3_node_modules_vue_loader_lib_index_js_vue_loader_options_ImageUploader_vue_vue_type_style_index_0_id_79aa907d_lang_scss_scoped_true___WEBPACK_IMPORTED_MODULE_0__);
-/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_sass_loader_dist_cjs_js_ref_7_3_node_modules_vue_loader_lib_index_js_vue_loader_options_ImageUploader_vue_vue_type_style_index_0_id_79aa907d_lang_scss_scoped_true___WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_sass_loader_dist_cjs_js_ref_7_3_node_modules_vue_loader_lib_index_js_vue_loader_options_ImageUploader_vue_vue_type_style_index_0_id_79aa907d_lang_scss_scoped_true___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
- /* harmony default export */ __webpack_exports__["default"] = (_node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_sass_loader_dist_cjs_js_ref_7_3_node_modules_vue_loader_lib_index_js_vue_loader_options_ImageUploader_vue_vue_type_style_index_0_id_79aa907d_lang_scss_scoped_true___WEBPACK_IMPORTED_MODULE_0___default.a); 
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_sass_loader_dist_cjs_js_ref_7_3_node_modules_vue_loader_lib_index_js_vue_loader_options_ImageUploader_vue_vue_type_style_index_0_id_79aa907d_lang_scss_scoped_true___WEBPACK_IMPORTED_MODULE_0__) if(["default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_sass_loader_dist_cjs_js_ref_7_3_node_modules_vue_loader_lib_index_js_vue_loader_options_ImageUploader_vue_vue_type_style_index_0_id_79aa907d_lang_scss_scoped_true___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+
 
 /***/ }),
 

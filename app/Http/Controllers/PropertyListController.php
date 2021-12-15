@@ -160,6 +160,7 @@ class PropertyListController extends Controller
          return RoomResource::collection($data);
      }
 
+
      public function getPropList($campus){
          if($campus=='Gambang'){
 
@@ -204,6 +205,62 @@ class PropertyListController extends Controller
 
 
    }
+
+   public function get_Recommendation($campus, Request $request){
+
+    $location = $request->location;
+    $gender = $request->gender;
+    $room = $request->room;
+    $minPrice = $request->minPrice;
+    $maxPrice = $request->maxPrice;
+    $room_id = $request->room_id;
+
+    $data = Room::query()
+                ->with('getPropertyRelation','getPhotoRelation','getPropertyRelation.getLandlordRelation')->whereHas('getPropertyRelation', function($query)  use($location, $gender) {
+                    $query->where('verify_status','verified')
+                    ->when($location!=null,function($query) use($location){
+                        $query->where('property_name', 'LIKE', '%' . $location . '%');
+                    })->when($gender!=null,function($query) use($gender){
+                        $query->where('gender_preferences',$gender);
+                    })
+                ;})
+                ->where('campus',$campus)
+                ->where('room_status','listing')
+                ->where('room_id', '!=', $room_id)
+                ->when($room!=null,function($query) use($room){
+                    $query->where('room_type', $room );
+                })->when($minPrice!=null,function($query) use($minPrice, $maxPrice){
+                    $query->whereBetween('monthly_rent', [$minPrice, $maxPrice]);
+                })
+                ->paginate(3);
+
+
+                if(count(RoomResource::collection($data))>0){
+                    return RoomResource::collection($data);
+                }else if(count(RoomResource::collection($data))==0){
+                    $data = Room::query()
+                    ->with('getPropertyRelation','getPhotoRelation','getPropertyRelation.getLandlordRelation')->whereHas('getPropertyRelation', function($query)  use($location, $gender) {
+                        $query->where('verify_status','verified')
+                        ->when($gender!=null,function($query) use($gender){
+                            $query->where('gender_preferences',$gender);
+                        })
+                    ;})
+                    ->where('campus',$campus)
+                    ->where('room_status','listing')
+                    ->where('room_id', '!=', $room_id)
+                    ->when($room!=null,function($query) use($room){
+                        $query->where('room_type', $room );
+                    })
+                    ->paginate(3);
+                    return RoomResource::collection($data);
+                }
+
+
+
+
+
+
+}
 
     public function get_RoomList($id){
         $data = Room::with('getPropertyRelation.getPhotoRelation','getPhotoRelation','getPropertyRelation.getLandlordRelation')

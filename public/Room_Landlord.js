@@ -17,7 +17,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
 
 //
 //
@@ -551,7 +551,7 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function() {
+var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
@@ -559,7 +559,7 @@ var render = function() {
     "div",
     {
       staticClass:
-        "modal h-screen w-full  fixed left-0 top-0 flex justify-center z-10 items-center bg-black bg-opacity-50"
+        "modal h-screen w-full  fixed left-0 top-0 flex justify-center z-10 items-center bg-black bg-opacity-50",
     },
     [
       _c(
@@ -567,25 +567,25 @@ var render = function() {
         {
           staticClass:
             "rounded max-h-full overflow-y-auto shadow-lg max-w-5xl p-6 mx-auto min-w-full",
-          class: [_vm.modalBackground]
+          class: [_vm.modalBackground],
         },
         [
           _c(
             "div",
             {
               staticClass:
-                "border-b px-4 py-2 flex justify-between items-center"
+                "border-b px-4 py-2 flex justify-between items-center",
             },
             [
               _c("h3", { staticClass: "font-semibold text-lg" }, [
-                _vm._v("Edit Room")
+                _vm._v("Edit Room"),
               ]),
               _vm._v(" "),
               _c(
                 "button",
                 { staticClass: "text-black ", on: { click: _vm.closeModal } },
                 [_vm._v("✗")]
-              )
+              ),
             ]
           ),
           _vm._v(" "),
@@ -598,19 +598,19 @@ var render = function() {
                     name: "show",
                     rawName: "v-show",
                     value: _vm.activePhase == 1,
-                    expression: "activePhase == 1"
-                  }
+                    expression: "activePhase == 1",
+                  },
                 ],
                 staticClass:
                   " max-w-4xl p-6 mx-auto bg-gray-200 rounded-md shadow-md",
-                attrs: { id: "propertyDetail" }
+                attrs: { id: "propertyDetail" },
               },
               [
                 _c(
                   "h2",
                   {
                     staticClass:
-                      " font-bold text-gray-700 capitalize text-center text-xl"
+                      " font-bold text-gray-700 capitalize text-center text-xl",
                   },
                   [_vm._v("Edit Room")]
                 ),
@@ -619,7 +619,7 @@ var render = function() {
                   "h2",
                   {
                     staticClass:
-                      " font-bold text-gray-700 capitalize text-center text-base "
+                      " font-bold text-gray-700 capitalize text-center text-base ",
                   },
                   [_vm._v("-Room Details-")]
                 ),
@@ -628,12 +628,12 @@ var render = function() {
                   _c(
                     "div",
                     {
-                      staticClass: "grid grid-cols-1 gap-6 mt-4 sm:grid-cols-2"
+                      staticClass: "grid grid-cols-1 gap-6 mt-4 sm:grid-cols-2",
                     },
                     [
                       _c("div", [
                         _c("label", { staticClass: "text-gray-700" }, [
-                          _vm._v("Listing Name")
+                          _vm._v("Listing Name"),
                         ]),
                         _vm._v(" "),
                         _c("input", {
@@ -642,19 +642,19 @@ var render = function() {
                               name: "model",
                               rawName: "v-model",
                               value: _vm.form.list_name,
-                              expression: "form.list_name"
-                            }
+                              expression: "form.list_name",
+                            },
                           ],
                           staticClass:
                             "block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-black rounded-md   focus:border-blue-500 focus:outline-none focus:ring",
                           attrs: {
                             type: "text",
                             placeholder: "Single room at Gambang",
-                            required: ""
+                            required: "",
                           },
                           domProps: { value: _vm.form.list_name },
                           on: {
-                            input: function($event) {
+                            input: function ($event) {
                               if ($event.target.composing) {
                                 return
                               }
@@ -663,14 +663,14 @@ var render = function() {
                                 "list_name",
                                 $event.target.value
                               )
-                            }
-                          }
-                        })
+                            },
+                          },
+                        }),
                       ]),
                       _vm._v(" "),
                       _c("div", [
                         _c("label", { staticClass: "text-gray-700" }, [
-                          _vm._v("Room Name")
+                          _vm._v("Room Name"),
                         ]),
                         _vm._v(" "),
                         _c("input", {
@@ -679,31 +679,31 @@ var render = function() {
                               name: "model",
                               rawName: "v-model",
                               value: _vm.form.name,
-                              expression: "form.name"
-                            }
+                              expression: "form.name",
+                            },
                           ],
                           staticClass:
                             "block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-black rounded-md   focus:border-blue-500 focus:outline-none focus:ring",
                           attrs: {
                             type: "text",
                             placeholder: "Room 1",
-                            required: ""
+                            required: "",
                           },
                           domProps: { value: _vm.form.name },
                           on: {
-                            input: function($event) {
+                            input: function ($event) {
                               if ($event.target.composing) {
                                 return
                               }
                               _vm.$set(_vm.form, "name", $event.target.value)
-                            }
-                          }
-                        })
+                            },
+                          },
+                        }),
                       ]),
                       _vm._v(" "),
                       _c("div", [
                         _c("label", { staticClass: "text-gray-700" }, [
-                          _vm._v("Room Type")
+                          _vm._v("Room Type"),
                         ]),
                         _vm._v(" "),
                         _c(
@@ -714,19 +714,19 @@ var render = function() {
                                 name: "model",
                                 rawName: "v-model",
                                 value: _vm.form.room_type,
-                                expression: "form.room_type"
-                              }
+                                expression: "form.room_type",
+                              },
                             ],
                             staticClass:
                               "block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-black rounded-md  focus:border-blue-500 focus:outline-none focus:ring",
                             attrs: { name: "campus", required: "" },
                             on: {
-                              change: function($event) {
+                              change: function ($event) {
                                 var $$selectedVal = Array.prototype.filter
-                                  .call($event.target.options, function(o) {
+                                  .call($event.target.options, function (o) {
                                     return o.selected
                                   })
-                                  .map(function(o) {
+                                  .map(function (o) {
                                     var val = "_value" in o ? o._value : o.value
                                     return val
                                   })
@@ -737,15 +737,15 @@ var render = function() {
                                     ? $$selectedVal
                                     : $$selectedVal[0]
                                 )
-                              }
-                            }
+                              },
+                            },
                           },
                           [
                             _c(
                               "option",
                               {
                                 staticClass: "text-gray-700 text-lg",
-                                attrs: { value: "Single" }
+                                attrs: { value: "Single" },
                               },
                               [_vm._v(" Single")]
                             ),
@@ -754,17 +754,17 @@ var render = function() {
                               "option",
                               {
                                 staticClass: "text-gray-700 text-lg",
-                                attrs: { value: "Shared" }
+                                attrs: { value: "Shared" },
                               },
                               [_vm._v(" Shared")]
-                            )
+                            ),
                           ]
-                        )
+                        ),
                       ]),
                       _vm._v(" "),
                       _c("div", [
                         _c("label", { staticClass: "text-gray-700" }, [
-                          _vm._v("Max no of tenants per room")
+                          _vm._v("Max no of tenants per room"),
                         ]),
                         _vm._v(" "),
                         _c("input", {
@@ -773,8 +773,8 @@ var render = function() {
                               name: "model",
                               rawName: "v-model",
                               value: _vm.form.number_of_tenant,
-                              expression: "form.number_of_tenant"
-                            }
+                              expression: "form.number_of_tenant",
+                            },
                           ],
                           staticClass:
                             "block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-black rounded-md   focus:border-blue-500 focus:outline-none focus:ring",
@@ -782,11 +782,11 @@ var render = function() {
                             type: "number",
                             placeholder: "2",
                             min: "1",
-                            required: ""
+                            required: "",
                           },
                           domProps: { value: _vm.form.number_of_tenant },
                           on: {
-                            input: function($event) {
+                            input: function ($event) {
                               if ($event.target.composing) {
                                 return
                               }
@@ -795,14 +795,14 @@ var render = function() {
                                 "number_of_tenant",
                                 $event.target.value
                               )
-                            }
-                          }
-                        })
+                            },
+                          },
+                        }),
                       ]),
                       _vm._v(" "),
                       _c("div", [
                         _c("label", { staticClass: "text-gray-700" }, [
-                          _vm._v("Monthly Rent (RM)")
+                          _vm._v("Monthly Rent (RM)"),
                         ]),
                         _vm._v(" "),
                         _c("input", {
@@ -811,8 +811,8 @@ var render = function() {
                               name: "model",
                               rawName: "v-model",
                               value: _vm.form.monthly_rent,
-                              expression: "form.monthly_rent"
-                            }
+                              expression: "form.monthly_rent",
+                            },
                           ],
                           staticClass:
                             "block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-black rounded-md   focus:border-blue-500 focus:outline-none focus:ring",
@@ -821,11 +821,11 @@ var render = function() {
                             step: "any",
                             min: "0",
                             placeholder: "300",
-                            required: ""
+                            required: "",
                           },
                           domProps: { value: _vm.form.monthly_rent },
                           on: {
-                            input: function($event) {
+                            input: function ($event) {
                               if ($event.target.composing) {
                                 return
                               }
@@ -834,14 +834,14 @@ var render = function() {
                                 "monthly_rent",
                                 $event.target.value
                               )
-                            }
-                          }
-                        })
+                            },
+                          },
+                        }),
                       ]),
                       _vm._v(" "),
                       _c("div", [
                         _c("label", { staticClass: "text-gray-700" }, [
-                          _vm._v("Penalty Fees (Overdue)")
+                          _vm._v("Penalty Fees (Overdue)"),
                         ]),
                         _vm._v(" "),
                         _c("input", {
@@ -850,8 +850,8 @@ var render = function() {
                               name: "model",
                               rawName: "v-model",
                               value: _vm.form.penalty_fees,
-                              expression: "form.penalty_fees"
-                            }
+                              expression: "form.penalty_fees",
+                            },
                           ],
                           staticClass:
                             "block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-black rounded-md   focus:border-blue-500 focus:outline-none focus:ring",
@@ -860,11 +860,11 @@ var render = function() {
                             step: "any",
                             min: "0",
                             placeholder: "20",
-                            required: ""
+                            required: "",
                           },
                           domProps: { value: _vm.form.penalty_fees },
                           on: {
-                            input: function($event) {
+                            input: function ($event) {
                               if ($event.target.composing) {
                                 return
                               }
@@ -873,10 +873,10 @@ var render = function() {
                                 "penalty_fees",
                                 $event.target.value
                               )
-                            }
-                          }
-                        })
-                      ])
+                            },
+                          },
+                        }),
+                      ]),
                     ]
                   ),
                   _vm._v(" "),
@@ -887,16 +887,16 @@ var render = function() {
                         staticClass:
                           "px-6 py-2 leading-5 text-white transition-colors duration-200 transform bg-gray-700 rounded-md hover:bg-gray-600 focus:outline-none focus:bg-gray-600",
                         on: {
-                          click: function($event) {
+                          click: function ($event) {
                             $event.preventDefault()
                             return _vm.goToNext(2)
-                          }
-                        }
+                          },
+                        },
                       },
                       [_vm._v("Next")]
-                    )
-                  ])
-                ])
+                    ),
+                  ]),
+                ]),
               ]
             ),
             _vm._v(" "),
@@ -906,14 +906,14 @@ var render = function() {
                   {
                     staticClass:
                       " max-w-4xl p-6 mx-auto bg-gray-200 rounded-md shadow-md ",
-                    attrs: { id: "Uploader" }
+                    attrs: { id: "Uploader" },
                   },
                   [
                     _c(
                       "h2",
                       {
                         staticClass:
-                          " font-bold text-gray-700 capitalize text-center text-xl"
+                          " font-bold text-gray-700 capitalize text-center text-xl",
                       },
                       [_vm._v("Add Photos")]
                     ),
@@ -922,7 +922,7 @@ var render = function() {
                       "h2",
                       {
                         staticClass:
-                          " font-bold text-gray-700 capitalize text-center text-base mb-5"
+                          " font-bold text-gray-700 capitalize text-center text-base mb-5",
                       },
                       [_vm._v("-Property Image-")]
                     ),
@@ -934,11 +934,11 @@ var render = function() {
                             staticClass:
                               "px-6 py-2 justify-end mr-5 leading-5 text-white transition-colors\n                      duration-200 transform bg-gray-700 rounded-md hover:bg-gray-600 focus:outline-none focus:bg-gray-600",
                             on: {
-                              click: function($event) {
+                              click: function ($event) {
                                 $event.preventDefault()
                                 return _vm.get_replace(0)
-                              }
-                            }
+                              },
+                            },
                           },
                           [_vm._v("Replace Images")]
                         )
@@ -951,11 +951,11 @@ var render = function() {
                             staticClass:
                               "px-6 py-2 justify-end mr-5 leading-5 text-white transition-colors\n                      duration-200 transform bg-gray-700 rounded-md hover:bg-gray-600 focus:outline-none focus:bg-gray-600",
                             on: {
-                              click: function($event) {
+                              click: function ($event) {
                                 $event.preventDefault()
                                 return _vm.get_replace(1)
-                              }
-                            }
+                              },
+                            },
                           },
                           [_vm._v("Skip")]
                         )
@@ -971,18 +971,18 @@ var render = function() {
                               staticStyle: {
                                 width: "100%",
                                 margin: "10px auto",
-                                height: "250px"
-                              }
+                                height: "250px",
+                              },
                             },
                             [
                               _c(
                                 "slider",
                                 {
                                   ref: "slider",
-                                  attrs: { options: _vm.options }
+                                  attrs: { options: _vm.options },
                                 },
                                 [
-                                  _vm._l(_vm.roomPhoto, function(item, index) {
+                                  _vm._l(_vm.roomPhoto, function (item, index) {
                                     return _c("slideritem", { key: index }, [
                                       _c("img", {
                                         staticClass: "h-70 w-full  relative",
@@ -990,9 +990,9 @@ var render = function() {
                                           src:
                                             "/images/Properties/" +
                                             item.photo_name,
-                                          alt: "Avatar"
-                                        }
-                                      })
+                                          alt: "Avatar",
+                                        },
+                                      }),
                                     ])
                                   }),
                                   _vm._v(" "),
@@ -1000,13 +1000,13 @@ var render = function() {
                                     "div",
                                     {
                                       attrs: { slot: "loading" },
-                                      slot: "loading"
+                                      slot: "loading",
                                     },
                                     [_vm._v("loading...")]
-                                  )
+                                  ),
                                 ],
                                 2
-                              )
+                              ),
                             ],
                             1
                           )
@@ -1021,12 +1021,12 @@ var render = function() {
                                 on: { getImage: _vm.getImages },
                                 model: {
                                   value: _vm.form.photo_room,
-                                  callback: function($$v) {
+                                  callback: function ($$v) {
                                     _vm.$set(_vm.form, "photo_room", $$v)
                                   },
-                                  expression: "form.photo_room"
-                                }
-                              })
+                                  expression: "form.photo_room",
+                                },
+                              }),
                             ],
                             1
                           )
@@ -1039,11 +1039,11 @@ var render = function() {
                             staticClass:
                               "px-6 py-2  mr-5 leading-5 text-white transition-colors duration-200 transform bg-gray-700 rounded-md hover:bg-gray-600 focus:outline-none focus:bg-gray-600",
                             on: {
-                              click: function($event) {
+                              click: function ($event) {
                                 $event.preventDefault()
                                 return _vm.goToNext(1)
-                              }
-                            }
+                              },
+                            },
                           },
                           [_vm._v("Back")]
                         ),
@@ -1054,16 +1054,16 @@ var render = function() {
                             staticClass:
                               "px-6 py-2 leading-5 text-white transition-colors duration-200 transform bg-gray-700 rounded-md hover:bg-gray-600 focus:outline-none focus:bg-gray-600",
                             on: {
-                              click: function($event) {
+                              click: function ($event) {
                                 $event.preventDefault()
                                 return _vm.goToNext(3)
-                              }
-                            }
+                              },
+                            },
                           },
                           [_vm._v("Next")]
-                        )
-                      ])
-                    ])
+                        ),
+                      ]),
+                    ]),
                   ]
                 )
               : _vm._e(),
@@ -1074,14 +1074,14 @@ var render = function() {
                   {
                     staticClass:
                       "mt-10 max-w-4xl p-6 mx-auto bg-gray-200 rounded-md shadow-md dark:bg-gray-800",
-                    attrs: { id: "Furnisher" }
+                    attrs: { id: "Furnisher" },
                   },
                   [
                     _c(
                       "h2",
                       {
                         staticClass:
-                          " font-bold text-gray-700 capitalize text-center text-xl"
+                          " font-bold text-gray-700 capitalize text-center text-xl",
                       },
                       [_vm._v("Furnishing and Description")]
                     ),
@@ -1091,7 +1091,7 @@ var render = function() {
                         "h2",
                         {
                           staticClass:
-                            " font-bold text-gray-700 capitalize text-center text-base mt-6"
+                            " font-bold text-gray-700 capitalize text-center text-base mt-6",
                         },
                         [_vm._v("-Furnishing-")]
                       ),
@@ -1100,14 +1100,14 @@ var render = function() {
                         "div",
                         {
                           staticClass:
-                            "grid grid-cols-3 gap-4 mt-4 sm:grid-cols-2"
+                            "grid grid-cols-3 gap-4 mt-4 sm:grid-cols-2",
                         },
                         [
                           _c(
                             "label",
                             {
                               staticClass:
-                                "inline-flex items-center cursor-pointer"
+                                "inline-flex items-center cursor-pointer",
                             },
                             [
                               _c("input", {
@@ -1116,18 +1116,18 @@ var render = function() {
                                     name: "model",
                                     rawName: "v-model",
                                     value: _vm.form.furnishing,
-                                    expression: "form.furnishing"
-                                  }
+                                    expression: "form.furnishing",
+                                  },
                                 ],
                                 attrs: { type: "checkbox", value: "Wardrobes" },
                                 domProps: {
                                   checked: Array.isArray(_vm.form.furnishing)
                                     ? _vm._i(_vm.form.furnishing, "Wardrobes") >
                                       -1
-                                    : _vm.form.furnishing
+                                    : _vm.form.furnishing,
                                 },
                                 on: {
-                                  change: function($event) {
+                                  change: function ($event) {
                                     var $$a = _vm.form.furnishing,
                                       $$el = $event.target,
                                       $$c = $$el.checked ? true : false
@@ -1154,13 +1154,13 @@ var render = function() {
                                     } else {
                                       _vm.$set(_vm.form, "furnishing", $$c)
                                     }
-                                  }
-                                }
+                                  },
+                                },
                               }),
                               _vm._v(" "),
                               _c("span", { staticClass: "ml-2" }, [
-                                _vm._v("Wardrobes ")
-                              ])
+                                _vm._v("Wardrobes "),
+                              ]),
                             ]
                           ),
                           _vm._v(" "),
@@ -1168,7 +1168,7 @@ var render = function() {
                             "label",
                             {
                               staticClass:
-                                "inline-flex items-center cursor-pointer"
+                                "inline-flex items-center cursor-pointer",
                             },
                             [
                               _c("input", {
@@ -1177,17 +1177,17 @@ var render = function() {
                                     name: "model",
                                     rawName: "v-model",
                                     value: _vm.form.furnishing,
-                                    expression: "form.furnishing"
-                                  }
+                                    expression: "form.furnishing",
+                                  },
                                 ],
                                 attrs: { type: "checkbox", value: "Fan" },
                                 domProps: {
                                   checked: Array.isArray(_vm.form.furnishing)
                                     ? _vm._i(_vm.form.furnishing, "Fan") > -1
-                                    : _vm.form.furnishing
+                                    : _vm.form.furnishing,
                                 },
                                 on: {
-                                  change: function($event) {
+                                  change: function ($event) {
                                     var $$a = _vm.form.furnishing,
                                       $$el = $event.target,
                                       $$c = $$el.checked ? true : false
@@ -1214,13 +1214,13 @@ var render = function() {
                                     } else {
                                       _vm.$set(_vm.form, "furnishing", $$c)
                                     }
-                                  }
-                                }
+                                  },
+                                },
                               }),
                               _vm._v(" "),
                               _c("span", { staticClass: "ml-2" }, [
-                                _vm._v("Fan")
-                              ])
+                                _vm._v("Fan"),
+                              ]),
                             ]
                           ),
                           _vm._v(" "),
@@ -1228,7 +1228,7 @@ var render = function() {
                             "label",
                             {
                               staticClass:
-                                "inline-flex items-center cursor-pointer"
+                                "inline-flex items-center cursor-pointer",
                             },
                             [
                               _c("input", {
@@ -1237,12 +1237,12 @@ var render = function() {
                                     name: "model",
                                     rawName: "v-model",
                                     value: _vm.form.furnishing,
-                                    expression: "form.furnishing"
-                                  }
+                                    expression: "form.furnishing",
+                                  },
                                 ],
                                 attrs: {
                                   type: "checkbox",
-                                  value: "Study Table"
+                                  value: "Study Table",
                                 },
                                 domProps: {
                                   checked: Array.isArray(_vm.form.furnishing)
@@ -1250,10 +1250,10 @@ var render = function() {
                                         _vm.form.furnishing,
                                         "Study Table"
                                       ) > -1
-                                    : _vm.form.furnishing
+                                    : _vm.form.furnishing,
                                 },
                                 on: {
-                                  change: function($event) {
+                                  change: function ($event) {
                                     var $$a = _vm.form.furnishing,
                                       $$el = $event.target,
                                       $$c = $$el.checked ? true : false
@@ -1280,13 +1280,13 @@ var render = function() {
                                     } else {
                                       _vm.$set(_vm.form, "furnishing", $$c)
                                     }
-                                  }
-                                }
+                                  },
+                                },
                               }),
                               _vm._v(" "),
                               _c("span", { staticClass: "ml-2" }, [
-                                _vm._v("Study Table")
-                              ])
+                                _vm._v("Study Table"),
+                              ]),
                             ]
                           ),
                           _vm._v(" "),
@@ -1294,7 +1294,7 @@ var render = function() {
                             "label",
                             {
                               staticClass:
-                                "inline-flex items-center cursor-pointer"
+                                "inline-flex items-center cursor-pointer",
                             },
                             [
                               _c("input", {
@@ -1303,17 +1303,17 @@ var render = function() {
                                     name: "model",
                                     rawName: "v-model",
                                     value: _vm.form.furnishing,
-                                    expression: "form.furnishing"
-                                  }
+                                    expression: "form.furnishing",
+                                  },
                                 ],
                                 attrs: { type: "checkbox", value: "A/C" },
                                 domProps: {
                                   checked: Array.isArray(_vm.form.furnishing)
                                     ? _vm._i(_vm.form.furnishing, "A/C") > -1
-                                    : _vm.form.furnishing
+                                    : _vm.form.furnishing,
                                 },
                                 on: {
-                                  change: function($event) {
+                                  change: function ($event) {
                                     var $$a = _vm.form.furnishing,
                                       $$el = $event.target,
                                       $$c = $$el.checked ? true : false
@@ -1340,17 +1340,17 @@ var render = function() {
                                     } else {
                                       _vm.$set(_vm.form, "furnishing", $$c)
                                     }
-                                  }
-                                }
+                                  },
+                                },
                               }),
                               _vm._v(" "),
                               _c("span", { staticClass: "ml-2" }, [
-                                _vm._v("A/C")
-                              ])
+                                _vm._v("A/C"),
+                              ]),
                             ]
-                          )
+                          ),
                         ]
-                      )
+                      ),
                     ]),
                     _vm._v(" "),
                     _c("div", [
@@ -1358,7 +1358,7 @@ var render = function() {
                         "h2",
                         {
                           staticClass:
-                            " font-bold text-gray-700 capitalize text-center text-base mt-6"
+                            " font-bold text-gray-700 capitalize text-center text-base mt-6",
                         },
                         [_vm._v("-Room Description-")]
                       ),
@@ -1368,7 +1368,7 @@ var render = function() {
                           "label",
                           {
                             staticClass:
-                              "block mb-2 text-sm font-medium text-gray-600 dark:text-gray-200"
+                              "block mb-2 text-sm font-medium text-gray-600 dark:text-gray-200",
                           },
                           [_vm._v("Room Description")]
                         ),
@@ -1379,21 +1379,21 @@ var render = function() {
                               name: "model",
                               rawName: "v-model",
                               value: _vm.form.des,
-                              expression: "form.des"
-                            }
+                              expression: "form.des",
+                            },
                           ],
                           staticClass:
                             "block w-full h-40 px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring",
                           domProps: { value: _vm.form.des },
                           on: {
-                            input: function($event) {
+                            input: function ($event) {
                               if ($event.target.composing) {
                                 return
                               }
                               _vm.$set(_vm.form, "des", $event.target.value)
-                            }
-                          }
-                        })
+                            },
+                          },
+                        }),
                       ]),
                       _vm._v(" "),
                       _c("div", { staticClass: "flex justify-end mt-6" }, [
@@ -1403,11 +1403,11 @@ var render = function() {
                             staticClass:
                               "px-6 py-2  mr-5 leading-5 text-white transition-colors duration-200 transform bg-gray-700 rounded-md hover:bg-gray-600 focus:outline-none focus:bg-gray-600",
                             on: {
-                              click: function($event) {
+                              click: function ($event) {
                                 $event.preventDefault()
                                 return _vm.goToNext(2)
-                              }
-                            }
+                              },
+                            },
                           },
                           [_vm._v("Back")]
                         ),
@@ -1418,19 +1418,19 @@ var render = function() {
                             staticClass:
                               "px-6 py-2 leading-5 text-white transition-colors duration-200 transform bg-gray-700 rounded-md hover:bg-gray-600 focus:outline-none focus:bg-gray-600",
                             on: {
-                              click: function($event) {
+                              click: function ($event) {
                                 $event.preventDefault()
-                                return _vm.editProperty($event)
-                              }
-                            }
+                                return _vm.editProperty.apply(null, arguments)
+                              },
+                            },
                           },
                           [_vm._v("Update Room")]
-                        )
-                      ])
-                    ])
+                        ),
+                      ]),
+                    ]),
                   ]
                 )
-              : _vm._e()
+              : _vm._e(),
           ]),
           _vm._v(" "),
           _c(
@@ -1442,14 +1442,14 @@ var render = function() {
                 {
                   staticClass:
                     "bg-red-600 hover:bg-red-700 px-3 py-1 rounded text-white mr-1 close-modal",
-                  on: { click: _vm.closeModal }
+                  on: { click: _vm.closeModal },
                 },
                 [_vm._v("Cancel")]
-              )
+              ),
             ]
-          )
+          ),
         ]
-      )
+      ),
     ]
   )
 }
@@ -1471,7 +1471,7 @@ render._withStripped = true
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function() {
+var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
@@ -1480,15 +1480,15 @@ var render = function() {
       "div",
       {
         staticClass:
-          "max-w-2xl px-8 py-4 mx-auto flex  overflow-hidden bg-white rounded-lg shadow-lg dark:bg-gray-800"
+          "max-w-2xl px-8 py-4 mx-auto flex  overflow-hidden bg-white rounded-lg shadow-lg dark:bg-gray-800",
       },
       [
         _c("div", {
           staticClass: "w-1/3 bg-cover",
           staticStyle: {
             "background-image":
-              "url('https://images.unsplash.com/photo-1494726161322-5360d4d0eeae?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=334&q=80')"
-          }
+              "url('https://images.unsplash.com/photo-1494726161322-5360d4d0eeae?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=334&q=80')",
+          },
         }),
         _vm._v(" "),
         _c("div", { staticClass: "w-2/3 p-4 md:p-4" }, [
@@ -1500,7 +1500,7 @@ var render = function() {
             [
               _vm._v(
                 "Lorem ipsum dolor sit amet consectetur adipisicing elit In odit"
-              )
+              ),
             ]
           ),
           _vm._v(" "),
@@ -1510,15 +1510,14 @@ var render = function() {
               {
                 staticClass:
                   "w-5 h-5 text-gray-700 fill-current dark:text-gray-300",
-                attrs: { viewBox: "0 0 24 24" }
+                attrs: { viewBox: "0 0 24 24" },
               },
               [
                 _c("path", {
                   attrs: {
-                    d:
-                      "M12 17.27L18.18 21L16.54 13.97L22 9.24L14.81 8.63L12 2L9.19 8.63L2 9.24L7.46 13.97L5.82 21L12 17.27Z"
-                  }
-                })
+                    d: "M12 17.27L18.18 21L16.54 13.97L22 9.24L14.81 8.63L12 2L9.19 8.63L2 9.24L7.46 13.97L5.82 21L12 17.27Z",
+                  },
+                }),
               ]
             ),
             _vm._v(" "),
@@ -1527,15 +1526,14 @@ var render = function() {
               {
                 staticClass:
                   "w-5 h-5 text-gray-700 fill-current dark:text-gray-300",
-                attrs: { viewBox: "0 0 24 24" }
+                attrs: { viewBox: "0 0 24 24" },
               },
               [
                 _c("path", {
                   attrs: {
-                    d:
-                      "M12 17.27L18.18 21L16.54 13.97L22 9.24L14.81 8.63L12 2L9.19 8.63L2 9.24L7.46 13.97L5.82 21L12 17.27Z"
-                  }
-                })
+                    d: "M12 17.27L18.18 21L16.54 13.97L22 9.24L14.81 8.63L12 2L9.19 8.63L2 9.24L7.46 13.97L5.82 21L12 17.27Z",
+                  },
+                }),
               ]
             ),
             _vm._v(" "),
@@ -1544,15 +1542,14 @@ var render = function() {
               {
                 staticClass:
                   "w-5 h-5 text-gray-700 fill-current dark:text-gray-300",
-                attrs: { viewBox: "0 0 24 24" }
+                attrs: { viewBox: "0 0 24 24" },
               },
               [
                 _c("path", {
                   attrs: {
-                    d:
-                      "M12 17.27L18.18 21L16.54 13.97L22 9.24L14.81 8.63L12 2L9.19 8.63L2 9.24L7.46 13.97L5.82 21L12 17.27Z"
-                  }
-                })
+                    d: "M12 17.27L18.18 21L16.54 13.97L22 9.24L14.81 8.63L12 2L9.19 8.63L2 9.24L7.46 13.97L5.82 21L12 17.27Z",
+                  },
+                }),
               ]
             ),
             _vm._v(" "),
@@ -1560,15 +1557,14 @@ var render = function() {
               "svg",
               {
                 staticClass: "w-5 h-5 text-gray-500 fill-current",
-                attrs: { viewBox: "0 0 24 24" }
+                attrs: { viewBox: "0 0 24 24" },
               },
               [
                 _c("path", {
                   attrs: {
-                    d:
-                      "M12 17.27L18.18 21L16.54 13.97L22 9.24L14.81 8.63L12 2L9.19 8.63L2 9.24L7.46 13.97L5.82 21L12 17.27Z"
-                  }
-                })
+                    d: "M12 17.27L18.18 21L16.54 13.97L22 9.24L14.81 8.63L12 2L9.19 8.63L2 9.24L7.46 13.97L5.82 21L12 17.27Z",
+                  },
+                }),
               ]
             ),
             _vm._v(" "),
@@ -1576,25 +1572,24 @@ var render = function() {
               "svg",
               {
                 staticClass: "w-5 h-5 text-gray-500 fill-current",
-                attrs: { viewBox: "0 0 24 24" }
+                attrs: { viewBox: "0 0 24 24" },
               },
               [
                 _c("path", {
                   attrs: {
-                    d:
-                      "M12 17.27L18.18 21L16.54 13.97L22 9.24L14.81 8.63L12 2L9.19 8.63L2 9.24L7.46 13.97L5.82 21L12 17.27Z"
-                  }
-                })
+                    d: "M12 17.27L18.18 21L16.54 13.97L22 9.24L14.81 8.63L12 2L9.19 8.63L2 9.24L7.46 13.97L5.82 21L12 17.27Z",
+                  },
+                }),
               ]
-            )
-          ])
-        ])
+            ),
+          ]),
+        ]),
       ]
-    )
+    ),
   ])
 }
 var staticRenderFns = [
-  function() {
+  function () {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
@@ -1609,12 +1604,12 @@ var staticRenderFns = [
         "button",
         {
           staticClass:
-            "px-2 py-1 text-xs font-bold text-white uppercase transition-colors duration-200 transform bg-gray-800 rounded dark:bg-gray-700 hover:bg-gray-700 dark:hover:bg-gray-600 focus:outline-none focus:bg-gray-700 dark:focus:bg-gray-600"
+            "px-2 py-1 text-xs font-bold text-white uppercase transition-colors duration-200 transform bg-gray-800 rounded dark:bg-gray-700 hover:bg-gray-700 dark:hover:bg-gray-600 focus:outline-none focus:bg-gray-700 dark:focus:bg-gray-600",
         },
         [_vm._v("View Details")]
-      )
+      ),
     ])
-  }
+  },
 ]
 render._withStripped = true
 
@@ -1633,7 +1628,7 @@ render._withStripped = true
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function() {
+var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
@@ -1641,7 +1636,7 @@ var render = function() {
     "div",
     { staticClass: "max-w-5xl p-6 mx-auto mt-10 bg-gray-200 rounded-md mb-10" },
     [
-      _vm._l(_vm.room, function(list) {
+      _vm._l(_vm.room, function (list) {
         return _c(
           "div",
           { key: list.id, staticClass: "flex justify-end items-center" },
@@ -1652,25 +1647,25 @@ var render = function() {
                 staticClass:
                   " bg-blue-600 shadow-lg hover:bg-blue-700 text-xs text-white px-4 py-3 rounded-md mb-2",
                 on: {
-                  click: function($event) {
+                  click: function ($event) {
                     _vm.clickEdit(list)
                     _vm.toggleModal = !_vm.toggleModal
-                  }
-                }
+                  },
+                },
               },
               [_vm._v("\n            + Edit Room\n        ")]
-            )
+            ),
           ]
         )
       }),
       _vm._v(" "),
-      _vm._l(_vm.room, function(list) {
+      _vm._l(_vm.room, function (list) {
         return _c(
           "div",
           {
             key: list.id,
             staticClass:
-              "max-w-2xl px-8 py-4 mx-auto   overflow-hidden bg-white rounded-lg shadow-lg mt-5"
+              "max-w-2xl px-8 py-4 mx-auto   overflow-hidden bg-white rounded-lg shadow-lg mt-5",
           },
           [
             _c("div", { staticClass: "w-full p-4 md:p-4" }, [
@@ -1679,7 +1674,7 @@ var render = function() {
                   "h1",
                   {
                     staticClass:
-                      "text-2xl font-bold text-gray-800 dark:text-white"
+                      "text-2xl font-bold text-gray-800 dark:text-white",
                   },
                   [_vm._v("Listing Room Name: " + _vm._s(list.listing_name))]
                 ),
@@ -1688,16 +1683,16 @@ var render = function() {
                   "button",
                   {
                     staticClass:
-                      "px-2 py-1 text-xs font-bold text-white uppercase transition-colors duration-200\n                         transform bg-gray-800 rounded hover:bg-gray-700"
+                      "px-2 py-1 text-xs font-bold text-white uppercase transition-colors duration-200\n                         transform bg-gray-800 rounded hover:bg-gray-700",
                   },
                   [
                     _vm._v(
                       "\n                         " +
                         _vm._s(list.room_status) +
                         "\n                "
-                    )
+                    ),
                   ]
-                )
+                ),
               ]),
               _vm._v(" "),
               _c(
@@ -1707,8 +1702,8 @@ var render = function() {
                   staticStyle: {
                     width: "100%",
                     margin: "10px auto",
-                    height: "250px"
-                  }
+                    height: "250px",
+                  },
                 },
                 [
                   _c(
@@ -1716,18 +1711,18 @@ var render = function() {
                     {
                       ref: "slider",
                       refInFor: true,
-                      attrs: { options: _vm.options }
+                      attrs: { options: _vm.options },
                     },
                     [
-                      _vm._l(_vm.roomPhoto, function(item, index) {
+                      _vm._l(_vm.roomPhoto, function (item, index) {
                         return _c("slideritem", { key: index }, [
                           _c("img", {
                             staticClass: "h-70 w-full  relative",
                             attrs: {
                               src: "/images/Properties/" + item.photo_name,
-                              alt: "Avatar"
-                            }
-                          })
+                              alt: "Avatar",
+                            },
+                          }),
                         ])
                       }),
                       _vm._v(" "),
@@ -1735,10 +1730,10 @@ var render = function() {
                         "div",
                         { attrs: { slot: "loading" }, slot: "loading" },
                         [_vm._v("loading...")]
-                      )
+                      ),
                     ],
                     2
-                  )
+                  ),
                 ],
                 1
               ),
@@ -1746,57 +1741,57 @@ var render = function() {
               _c("div", { staticClass: "flex mt-2 item-center" }, [
                 _c("p", { staticClass: "mt-2 text-sm text-gray-600 " }, [
                   _c("span", { staticClass: "font-black" }, [
-                    _vm._v(" Room Type: ")
+                    _vm._v(" Room Type: "),
                   ]),
-                  _vm._v("  " + _vm._s(list.room_name))
-                ])
+                  _vm._v("  " + _vm._s(list.room_name)),
+                ]),
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "flex mt-2 item-center" }, [
                 _c("p", { staticClass: "mt-2 text-sm text-gray-600 " }, [
                   _c("span", { staticClass: "font-black" }, [
-                    _vm._v(" Room Type: ")
+                    _vm._v(" Room Type: "),
                   ]),
-                  _vm._v("  " + _vm._s(list.room_type))
-                ])
+                  _vm._v("  " + _vm._s(list.room_type)),
+                ]),
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "flex mt-2 item-center" }, [
                 _c("p", { staticClass: "mt-2 text-sm text-gray-600 " }, [
                   _c("span", { staticClass: "font-black" }, [
-                    _vm._v(" Room Description:")
+                    _vm._v(" Room Description:"),
                   ]),
-                  _vm._v(" " + _vm._s(list.des))
-                ])
+                  _vm._v(" " + _vm._s(list.des)),
+                ]),
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "flex item-center" }, [
                 _c("p", { staticClass: "mt-2 text-sm text-gray-600" }, [
                   _c("span", { staticClass: "font-black" }, [
-                    _vm._v("Room Furnishing: ")
+                    _vm._v("Room Furnishing: "),
                   ]),
-                  _vm._v(_vm._s(list.room_furnishing))
-                ])
+                  _vm._v(_vm._s(list.room_furnishing)),
+                ]),
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "flex item-center" }, [
                 _c("p", { staticClass: "mt-2 text-sm text-gray-600" }, [
                   _c("span", { staticClass: "font-black" }, [
-                    _vm._v(" Room Max. Tenant: ")
+                    _vm._v(" Room Max. Tenant: "),
                   ]),
-                  _vm._v(_vm._s(list.number_of_tenant))
-                ])
+                  _vm._v(_vm._s(list.number_of_tenant)),
+                ]),
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "flex item-center" }, [
                 _c("p", { staticClass: "mt-2 text-sm text-gray-600" }, [
                   _c("span", { staticClass: "font-black" }, [
-                    _vm._v(" Room Monthly Rent: RM ")
+                    _vm._v(" Room Monthly Rent: RM "),
                   ]),
-                  _vm._v(_vm._s(list.monthly_rent))
-                ])
-              ])
-            ])
+                  _vm._v(_vm._s(list.monthly_rent)),
+                ]),
+              ]),
+            ]),
           ]
         )
       }),
@@ -1807,11 +1802,11 @@ var render = function() {
               form: _vm.form,
               roomPhoto: _vm.roomPhoto,
               property_id: parseInt(_vm.property_id),
-              room_id: parseInt(_vm.room_id)
+              room_id: parseInt(_vm.room_id),
             },
-            on: { refreshData: _vm.getRoom, closeModal: _vm.closeEditModal }
+            on: { refreshData: _vm.getRoom, closeModal: _vm.closeEditModal },
           })
-        : _vm._e()
+        : _vm._e(),
     ],
     2
   )

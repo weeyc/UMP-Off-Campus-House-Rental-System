@@ -245,7 +245,7 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function() {
+var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
@@ -258,19 +258,19 @@ var render = function() {
             name: "show",
             rawName: "v-show",
             value: _vm.activePhase == 1,
-            expression: "activePhase == 1"
-          }
+            expression: "activePhase == 1",
+          },
         ],
         staticClass:
           "mt-10 max-w-4xl p-6 mx-auto bg-gray-200 rounded-md shadow-md dark:bg-gray-800",
-        attrs: { id: "propertyDetail" }
+        attrs: { id: "propertyDetail" },
       },
       [
         _c(
           "h2",
           {
             staticClass:
-              " font-bold text-gray-700 capitalize text-center text-xl"
+              " font-bold text-gray-700 capitalize text-center text-xl",
           },
           [_vm._v("Add Property")]
         ),
@@ -279,7 +279,7 @@ var render = function() {
           "h2",
           {
             staticClass:
-              " font-bold text-gray-700 capitalize text-center text-base "
+              " font-bold text-gray-700 capitalize text-center text-base ",
           },
           [_vm._v("-Property Details-")]
         ),
@@ -291,7 +291,7 @@ var render = function() {
             [
               _c("div", [
                 _c("label", { staticClass: "text-gray-700" }, [
-                  _vm._v("Property Name")
+                  _vm._v("Property Name"),
                 ]),
                 _vm._v(" "),
                 _c("input", {
@@ -300,8 +300,8 @@ var render = function() {
                       name: "model",
                       rawName: "v-model",
                       value: _vm.form.propertyName,
-                      expression: "form.propertyName"
-                    }
+                      expression: "form.propertyName",
+                    },
                   ],
                   staticClass:
                     "block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-black rounded-md   focus:border-blue-500 focus:outline-none focus:ring",
@@ -309,23 +309,23 @@ var render = function() {
                     type: "text",
                     placeholder: "eg. Taman Sri Gambang",
                     name: "name",
-                    required: ""
+                    required: "",
                   },
                   domProps: { value: _vm.form.propertyName },
                   on: {
-                    input: function($event) {
+                    input: function ($event) {
                       if ($event.target.composing) {
                         return
                       }
                       _vm.$set(_vm.form, "propertyName", $event.target.value)
-                    }
-                  }
-                })
+                    },
+                  },
+                }),
               ]),
               _vm._v(" "),
               _c("div", [
                 _c("label", { staticClass: "text-gray-700" }, [
-                  _vm._v("Campus")
+                  _vm._v("Campus"),
                 ]),
                 _vm._v(" "),
                 _c(
@@ -336,19 +336,19 @@ var render = function() {
                         name: "model",
                         rawName: "v-model",
                         value: _vm.form.campus,
-                        expression: "form.campus"
-                      }
+                        expression: "form.campus",
+                      },
                     ],
                     staticClass:
                       "block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-black rounded-md  focus:border-blue-500 focus:outline-none focus:ring",
                     attrs: { name: "campus", required: "" },
                     on: {
-                      change: function($event) {
+                      change: function ($event) {
                         var $$selectedVal = Array.prototype.filter
-                          .call($event.target.options, function(o) {
+                          .call($event.target.options, function (o) {
                             return o.selected
                           })
-                          .map(function(o) {
+                          .map(function (o) {
                             var val = "_value" in o ? o._value : o.value
                             return val
                           })
@@ -359,15 +359,15 @@ var render = function() {
                             ? $$selectedVal
                             : $$selectedVal[0]
                         )
-                      }
-                    }
+                      },
+                    },
                   },
                   [
                     _c(
                       "option",
                       {
                         staticClass: "text-gray-700 text-lg",
-                        attrs: { value: "Gambang" }
+                        attrs: { value: "Gambang" },
                       },
                       [_vm._v(" Gambang")]
                     ),
@@ -376,17 +376,17 @@ var render = function() {
                       "option",
                       {
                         staticClass: "text-gray-700 text-lg",
-                        attrs: { value: "Pekan" }
+                        attrs: { value: "Pekan" },
                       },
                       [_vm._v(" Pekan")]
-                    )
+                    ),
                   ]
-                )
+                ),
               ]),
               _vm._v(" "),
               _c("div", [
                 _c("label", { staticClass: "text-gray-700" }, [
-                  _vm._v("Address")
+                  _vm._v("Address"),
                 ]),
                 _vm._v(" "),
                 _c("input", {
@@ -395,8 +395,8 @@ var render = function() {
                       name: "model",
                       rawName: "v-model",
                       value: _vm.form.address,
-                      expression: "form.address"
-                    }
+                      expression: "form.address",
+                    },
                   ],
                   staticClass:
                     "block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-black rounded-md   focus:border-blue-500 focus:outline-none focus:ring",
@@ -404,23 +404,23 @@ var render = function() {
                     type: "text",
                     name: "address",
                     placeholder: "eg. Taman Sri Gambang, 26600 Pekan, Pahang",
-                    required: ""
+                    required: "",
                   },
                   domProps: { value: _vm.form.address },
                   on: {
-                    input: function($event) {
+                    input: function ($event) {
                       if ($event.target.composing) {
                         return
                       }
                       _vm.$set(_vm.form, "address", $event.target.value)
-                    }
-                  }
-                })
+                    },
+                  },
+                }),
               ]),
               _vm._v(" "),
               _c("div", [
                 _c("label", { staticClass: "text-gray-700" }, [
-                  _vm._v("Postcode")
+                  _vm._v("Postcode"),
                 ]),
                 _vm._v(" "),
                 _c("input", {
@@ -429,31 +429,31 @@ var render = function() {
                       name: "model",
                       rawName: "v-model",
                       value: _vm.form.postcode,
-                      expression: "form.postcode"
-                    }
+                      expression: "form.postcode",
+                    },
                   ],
                   staticClass:
                     "block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-black rounded-md   focus:border-blue-500 focus:outline-none focus:ring",
                   attrs: {
                     type: "text",
                     placeholder: "eg. 22600",
-                    required: ""
+                    required: "",
                   },
                   domProps: { value: _vm.form.postcode },
                   on: {
-                    input: function($event) {
+                    input: function ($event) {
                       if ($event.target.composing) {
                         return
                       }
                       _vm.$set(_vm.form, "postcode", $event.target.value)
-                    }
-                  }
-                })
+                    },
+                  },
+                }),
               ]),
               _vm._v(" "),
               _c("div", [
                 _c("label", { staticClass: "text-gray-700" }, [
-                  _vm._v("No. of toilet")
+                  _vm._v("No. of toilet"),
                 ]),
                 _vm._v(" "),
                 _c("input", {
@@ -462,8 +462,8 @@ var render = function() {
                       name: "model",
                       rawName: "v-model",
                       value: _vm.form.toilet_num,
-                      expression: "form.toilet_num"
-                    }
+                      expression: "form.toilet_num",
+                    },
                   ],
                   staticClass:
                     "block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-black rounded-md   focus:border-blue-500 focus:outline-none focus:ring",
@@ -472,23 +472,23 @@ var render = function() {
                     min: "1",
                     max: "5",
                     placeholder: "eg. 2",
-                    required: ""
+                    required: "",
                   },
                   domProps: { value: _vm.form.toilet_num },
                   on: {
-                    input: function($event) {
+                    input: function ($event) {
                       if ($event.target.composing) {
                         return
                       }
                       _vm.$set(_vm.form, "toilet_num", $event.target.value)
-                    }
-                  }
-                })
+                    },
+                  },
+                }),
               ]),
               _vm._v(" "),
               _c("div", [
                 _c("label", { staticClass: "text-gray-700" }, [
-                  _vm._v("Gender Preferences")
+                  _vm._v("Gender Preferences"),
                 ]),
                 _vm._v(" "),
                 _c(
@@ -499,19 +499,19 @@ var render = function() {
                         name: "model",
                         rawName: "v-model",
                         value: _vm.form.gender_preferences,
-                        expression: "form.gender_preferences"
-                      }
+                        expression: "form.gender_preferences",
+                      },
                     ],
                     staticClass:
                       "block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-black rounded-md  focus:border-blue-500 focus:outline-none focus:ring",
                     attrs: { name: "gender", required: "" },
                     on: {
-                      change: function($event) {
+                      change: function ($event) {
                         var $$selectedVal = Array.prototype.filter
-                          .call($event.target.options, function(o) {
+                          .call($event.target.options, function (o) {
                             return o.selected
                           })
-                          .map(function(o) {
+                          .map(function (o) {
                             var val = "_value" in o ? o._value : o.value
                             return val
                           })
@@ -522,15 +522,15 @@ var render = function() {
                             ? $$selectedVal
                             : $$selectedVal[0]
                         )
-                      }
-                    }
+                      },
+                    },
                   },
                   [
                     _c(
                       "option",
                       {
                         staticClass: "text-gray-700 text-lg",
-                        attrs: { value: "Any" }
+                        attrs: { value: "Any" },
                       },
                       [_vm._v("Any")]
                     ),
@@ -539,7 +539,7 @@ var render = function() {
                       "option",
                       {
                         staticClass: "text-gray-700 text-lg",
-                        attrs: { value: "Male" }
+                        attrs: { value: "Male" },
                       },
                       [_vm._v("Male")]
                     ),
@@ -548,13 +548,13 @@ var render = function() {
                       "option",
                       {
                         staticClass: "text-gray-700 text-lg",
-                        attrs: { value: "Female" }
+                        attrs: { value: "Female" },
                       },
                       [_vm._v("Female")]
-                    )
+                    ),
                   ]
-                )
-              ])
+                ),
+              ]),
             ]
           ),
           _vm._v(" "),
@@ -565,16 +565,16 @@ var render = function() {
                 staticClass:
                   "px-6 py-2 leading-5 text-white transition-colors duration-200 transform bg-gray-700 rounded-md hover:bg-gray-600 focus:outline-none focus:bg-gray-600",
                 on: {
-                  click: function($event) {
+                  click: function ($event) {
                     $event.preventDefault()
                     return _vm.goToNext(2)
-                  }
-                }
+                  },
+                },
               },
               [_vm._v("Next")]
-            )
-          ])
-        ])
+            ),
+          ]),
+        ]),
       ]
     ),
     _vm._v(" "),
@@ -584,14 +584,14 @@ var render = function() {
           {
             staticClass:
               "mt-10 max-w-4xl p-6 mx-auto bg-gray-200 rounded-md shadow-md dark:bg-gray-800",
-            attrs: { id: "Uploader" }
+            attrs: { id: "Uploader" },
           },
           [
             _c(
               "h2",
               {
                 staticClass:
-                  " font-bold text-gray-700 capitalize text-center text-xl"
+                  " font-bold text-gray-700 capitalize text-center text-xl",
               },
               [_vm._v("Add Photos")]
             ),
@@ -600,7 +600,7 @@ var render = function() {
               "h2",
               {
                 staticClass:
-                  " font-bold text-gray-700 capitalize text-center text-base mb-5"
+                  " font-bold text-gray-700 capitalize text-center text-base mb-5",
               },
               [_vm._v("-Property Image-")]
             ),
@@ -613,8 +613,8 @@ var render = function() {
                   [
                     _c("ImageUploader", {
                       attrs: { editImage: true, hideLabel: false },
-                      on: { getImage: _vm.getImages }
-                    })
+                      on: { getImage: _vm.getImages },
+                    }),
                   ],
                   1
                 ),
@@ -626,11 +626,11 @@ var render = function() {
                       staticClass:
                         "px-6 py-2  mr-5 leading-5 text-white transition-colors duration-200 transform bg-gray-700 rounded-md hover:bg-gray-600 focus:outline-none focus:bg-gray-600",
                       on: {
-                        click: function($event) {
+                        click: function ($event) {
                           $event.preventDefault()
                           return _vm.goToNext(1)
-                        }
-                      }
+                        },
+                      },
                     },
                     [_vm._v("Back")]
                   ),
@@ -641,18 +641,18 @@ var render = function() {
                       staticClass:
                         "px-6 py-2 leading-5 text-white transition-colors duration-200 transform bg-gray-700 rounded-md hover:bg-gray-600 focus:outline-none focus:bg-gray-600",
                       on: {
-                        click: function($event) {
+                        click: function ($event) {
                           $event.preventDefault()
                           return _vm.goToNext(3)
-                        }
-                      }
+                        },
+                      },
                     },
                     [_vm._v("Next")]
-                  )
-                ])
+                  ),
+                ]),
               ],
               1
-            )
+            ),
           ]
         )
       : _vm._e(),
@@ -663,14 +663,14 @@ var render = function() {
           {
             staticClass:
               "mt-10 max-w-4xl p-6 mx-auto bg-gray-200 rounded-md shadow-md dark:bg-gray-800",
-            attrs: { id: "Furnisher" }
+            attrs: { id: "Furnisher" },
           },
           [
             _c(
               "h2",
               {
                 staticClass:
-                  " font-bold text-gray-700 capitalize text-center text-xl"
+                  " font-bold text-gray-700 capitalize text-center text-xl",
               },
               [_vm._v("Furnishing and Description")]
             ),
@@ -680,7 +680,7 @@ var render = function() {
                 "h2",
                 {
                   staticClass:
-                    " font-bold text-gray-700 capitalize text-center text-base mt-6"
+                    " font-bold text-gray-700 capitalize text-center text-base mt-6",
                 },
                 [_vm._v("-Furnishing-")]
               ),
@@ -699,17 +699,17 @@ var render = function() {
                             name: "model",
                             rawName: "v-model",
                             value: _vm.form.furnishing,
-                            expression: "form.furnishing"
-                          }
+                            expression: "form.furnishing",
+                          },
                         ],
                         attrs: { type: "checkbox", value: "Internet" },
                         domProps: {
                           checked: Array.isArray(_vm.form.furnishing)
                             ? _vm._i(_vm.form.furnishing, "Internet") > -1
-                            : _vm.form.furnishing
+                            : _vm.form.furnishing,
                         },
                         on: {
-                          change: function($event) {
+                          change: function ($event) {
                             var $$a = _vm.form.furnishing,
                               $$el = $event.target,
                               $$c = $$el.checked ? true : false
@@ -734,11 +734,11 @@ var render = function() {
                             } else {
                               _vm.$set(_vm.form, "furnishing", $$c)
                             }
-                          }
-                        }
+                          },
+                        },
                       }),
                       _vm._v(" "),
-                      _c("span", { staticClass: "ml-2" }, [_vm._v("Internet")])
+                      _c("span", { staticClass: "ml-2" }, [_vm._v("Internet")]),
                     ]
                   ),
                   _vm._v(" "),
@@ -752,8 +752,8 @@ var render = function() {
                             name: "model",
                             rawName: "v-model",
                             value: _vm.form.furnishing,
-                            expression: "form.furnishing"
-                          }
+                            expression: "form.furnishing",
+                          },
                         ],
                         staticClass: "form-checkbox",
                         attrs: { type: "checkbox", value: "Washing Machine" },
@@ -761,10 +761,10 @@ var render = function() {
                           checked: Array.isArray(_vm.form.furnishing)
                             ? _vm._i(_vm.form.furnishing, "Washing Machine") >
                               -1
-                            : _vm.form.furnishing
+                            : _vm.form.furnishing,
                         },
                         on: {
-                          change: function($event) {
+                          change: function ($event) {
                             var $$a = _vm.form.furnishing,
                               $$el = $event.target,
                               $$c = $$el.checked ? true : false
@@ -789,13 +789,13 @@ var render = function() {
                             } else {
                               _vm.$set(_vm.form, "furnishing", $$c)
                             }
-                          }
-                        }
+                          },
+                        },
                       }),
                       _vm._v(" "),
                       _c("span", { staticClass: "ml-2" }, [
-                        _vm._v("Washing Machine")
-                      ])
+                        _vm._v("Washing Machine"),
+                      ]),
                     ]
                   ),
                   _vm._v(" "),
@@ -809,18 +809,18 @@ var render = function() {
                             name: "model",
                             rawName: "v-model",
                             value: _vm.form.furnishing,
-                            expression: "form.furnishing"
-                          }
+                            expression: "form.furnishing",
+                          },
                         ],
                         staticClass: "form-checkbox",
                         attrs: { type: "checkbox", value: "Dining Table" },
                         domProps: {
                           checked: Array.isArray(_vm.form.furnishing)
                             ? _vm._i(_vm.form.furnishing, "Dining Table") > -1
-                            : _vm.form.furnishing
+                            : _vm.form.furnishing,
                         },
                         on: {
-                          change: function($event) {
+                          change: function ($event) {
                             var $$a = _vm.form.furnishing,
                               $$el = $event.target,
                               $$c = $$el.checked ? true : false
@@ -845,13 +845,13 @@ var render = function() {
                             } else {
                               _vm.$set(_vm.form, "furnishing", $$c)
                             }
-                          }
-                        }
+                          },
+                        },
                       }),
                       _vm._v(" "),
                       _c("span", { staticClass: "ml-2" }, [
-                        _vm._v("Dining Table")
-                      ])
+                        _vm._v("Dining Table"),
+                      ]),
                     ]
                   ),
                   _vm._v(" "),
@@ -865,18 +865,18 @@ var render = function() {
                             name: "model",
                             rawName: "v-model",
                             value: _vm.form.furnishing,
-                            expression: "form.furnishing"
-                          }
+                            expression: "form.furnishing",
+                          },
                         ],
                         staticClass: "form-checkbox",
                         attrs: { type: "checkbox", value: "Refrigerator" },
                         domProps: {
                           checked: Array.isArray(_vm.form.furnishing)
                             ? _vm._i(_vm.form.furnishing, "Refrigerator") > -1
-                            : _vm.form.furnishing
+                            : _vm.form.furnishing,
                         },
                         on: {
-                          change: function($event) {
+                          change: function ($event) {
                             var $$a = _vm.form.furnishing,
                               $$el = $event.target,
                               $$c = $$el.checked ? true : false
@@ -901,13 +901,13 @@ var render = function() {
                             } else {
                               _vm.$set(_vm.form, "furnishing", $$c)
                             }
-                          }
-                        }
+                          },
+                        },
                       }),
                       _vm._v(" "),
                       _c("span", { staticClass: "ml-2" }, [
-                        _vm._v("Water Heater")
-                      ])
+                        _vm._v("Water Heater"),
+                      ]),
                     ]
                   ),
                   _vm._v(" "),
@@ -921,18 +921,18 @@ var render = function() {
                             name: "model",
                             rawName: "v-model",
                             value: _vm.form.furnishing,
-                            expression: "form.furnishing"
-                          }
+                            expression: "form.furnishing",
+                          },
                         ],
                         staticClass: "form-checkbox",
                         attrs: { type: "checkbox", value: "Refrigerator" },
                         domProps: {
                           checked: Array.isArray(_vm.form.furnishing)
                             ? _vm._i(_vm.form.furnishing, "Refrigerator") > -1
-                            : _vm.form.furnishing
+                            : _vm.form.furnishing,
                         },
                         on: {
-                          change: function($event) {
+                          change: function ($event) {
                             var $$a = _vm.form.furnishing,
                               $$el = $event.target,
                               $$c = $$el.checked ? true : false
@@ -957,13 +957,13 @@ var render = function() {
                             } else {
                               _vm.$set(_vm.form, "furnishing", $$c)
                             }
-                          }
-                        }
+                          },
+                        },
                       }),
                       _vm._v(" "),
                       _c("span", { staticClass: "ml-2" }, [
-                        _vm._v("Refrigerator")
-                      ])
+                        _vm._v("Refrigerator"),
+                      ]),
                     ]
                   ),
                   _vm._v(" "),
@@ -977,18 +977,18 @@ var render = function() {
                             name: "model",
                             rawName: "v-model",
                             value: _vm.form.furnishing,
-                            expression: "form.furnishing"
-                          }
+                            expression: "form.furnishing",
+                          },
                         ],
                         staticClass: "form-checkbox",
                         attrs: { type: "checkbox", value: "Sofa" },
                         domProps: {
                           checked: Array.isArray(_vm.form.furnishing)
                             ? _vm._i(_vm.form.furnishing, "Sofa") > -1
-                            : _vm.form.furnishing
+                            : _vm.form.furnishing,
                         },
                         on: {
-                          change: function($event) {
+                          change: function ($event) {
                             var $$a = _vm.form.furnishing,
                               $$el = $event.target,
                               $$c = $$el.checked ? true : false
@@ -1013,15 +1013,15 @@ var render = function() {
                             } else {
                               _vm.$set(_vm.form, "furnishing", $$c)
                             }
-                          }
-                        }
+                          },
+                        },
                       }),
                       _vm._v(" "),
-                      _c("span", { staticClass: "ml-2" }, [_vm._v("Sofa")])
+                      _c("span", { staticClass: "ml-2" }, [_vm._v("Sofa")]),
                     ]
-                  )
+                  ),
                 ]
-              )
+              ),
             ]),
             _vm._v(" "),
             _c("div", [
@@ -1029,7 +1029,7 @@ var render = function() {
                 "h2",
                 {
                   staticClass:
-                    " font-bold text-gray-700 capitalize text-center text-base mt-6"
+                    " font-bold text-gray-700 capitalize text-center text-base mt-6",
                 },
                 [_vm._v("-Property Description-")]
               ),
@@ -1039,7 +1039,7 @@ var render = function() {
                   "label",
                   {
                     staticClass:
-                      "block mb-2 text-sm font-medium text-gray-600 dark:text-gray-200"
+                      "block mb-2 text-sm font-medium text-gray-600 dark:text-gray-200",
                   },
                   [_vm._v("Property Description")]
                 ),
@@ -1050,21 +1050,21 @@ var render = function() {
                       name: "model",
                       rawName: "v-model",
                       value: _vm.form.description,
-                      expression: "form.description"
-                    }
+                      expression: "form.description",
+                    },
                   ],
                   staticClass:
                     "block w-full h-40 px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring",
                   domProps: { value: _vm.form.description },
                   on: {
-                    input: function($event) {
+                    input: function ($event) {
                       if ($event.target.composing) {
                         return
                       }
                       _vm.$set(_vm.form, "description", $event.target.value)
-                    }
-                  }
-                })
+                    },
+                  },
+                }),
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "flex justify-end mt-6" }, [
@@ -1074,11 +1074,11 @@ var render = function() {
                     staticClass:
                       "px-6 py-2  mr-5 leading-5 text-white transition-colors duration-200 transform bg-gray-700 rounded-md hover:bg-gray-600 focus:outline-none focus:bg-gray-600",
                     on: {
-                      click: function($event) {
+                      click: function ($event) {
                         $event.preventDefault()
                         return _vm.goToNext(2)
-                      }
-                    }
+                      },
+                    },
                   },
                   [_vm._v("Back")]
                 ),
@@ -1089,16 +1089,16 @@ var render = function() {
                     staticClass:
                       "px-6 py-2 leading-5 text-white transition-colors duration-200 transform bg-gray-700 rounded-md hover:bg-gray-600 focus:outline-none focus:bg-gray-600",
                     on: {
-                      click: function($event) {
+                      click: function ($event) {
                         $event.preventDefault()
                         return _vm.goToNext(4)
-                      }
-                    }
+                      },
+                    },
                   },
                   [_vm._v("Next")]
-                )
-              ])
-            ])
+                ),
+              ]),
+            ]),
           ]
         )
       : _vm._e(),
@@ -1109,14 +1109,14 @@ var render = function() {
           {
             staticClass:
               "max-w-4xl p-6 mx-auto bg-gray-200 rounded-md shadow-md dark:bg-gray-800",
-            attrs: { id: "gps" }
+            attrs: { id: "gps" },
           },
           [
             _c(
               "h2",
               {
                 staticClass:
-                  " font-bold text-gray-700 capitalize text-center text-xl"
+                  " font-bold text-gray-700 capitalize text-center text-xl",
               },
               [_vm._v("Add Property Location ")]
             ),
@@ -1126,7 +1126,7 @@ var render = function() {
                 "h2",
                 {
                   staticClass:
-                    " font-bold text-gray-700 capitalize text-center text-base mt-6"
+                    " font-bold text-gray-700 capitalize text-center text-base mt-6",
                 },
                 [_vm._v("-GPS Coordinate-")]
               ),
@@ -1136,7 +1136,7 @@ var render = function() {
                 { staticClass: "w-full mt-4" },
                 [
                   _c("label", { staticClass: "text-gray-700" }, [
-                    _vm._v("Address")
+                    _vm._v("Address"),
                   ]),
                   _vm._v(" "),
                   _c("input", {
@@ -1145,8 +1145,8 @@ var render = function() {
                         name: "model",
                         rawName: "v-model",
                         value: _vm.form.address,
-                        expression: "form.address"
-                      }
+                        expression: "form.address",
+                      },
                     ],
                     staticClass:
                       "block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-black rounded-md   focus:border-blue-500 focus:outline-none focus:ring",
@@ -1154,21 +1154,23 @@ var render = function() {
                       type: "text",
                       placeholder: "eg. Taman Sri Gambang",
                       name: "name",
-                      readonly: ""
+                      readonly: "",
                     },
                     domProps: { value: _vm.form.address },
                     on: {
-                      input: function($event) {
+                      input: function ($event) {
                         if ($event.target.composing) {
                           return
                         }
                         _vm.$set(_vm.form, "address", $event.target.value)
-                      }
-                    }
+                      },
+                    },
                   }),
                   _vm._v(" "),
                   _c("span", { staticClass: "mt-5" }, [
-                    _vm._v("Please drag the red marker for a accurate location")
+                    _vm._v(
+                      "Please drag the red marker for a accurate location"
+                    ),
                   ]),
                   _vm._v(" "),
                   _c(
@@ -1176,11 +1178,11 @@ var render = function() {
                     [
                       _c("GoogleMap", {
                         attrs: { registered: false },
-                        on: { getCoordinate: _vm.getCoordinates }
-                      })
+                        on: { getCoordinate: _vm.getCoordinates },
+                      }),
                     ],
                     1
-                  )
+                  ),
                 ],
                 1
               ),
@@ -1192,11 +1194,11 @@ var render = function() {
                     staticClass:
                       "px-6 py-2  mr-5 leading-5 text-white transition-colors duration-200 transform bg-gray-700 rounded-md hover:bg-gray-600 focus:outline-none focus:bg-gray-600",
                     on: {
-                      click: function($event) {
+                      click: function ($event) {
                         $event.preventDefault()
                         return _vm.goToNext(3)
-                      }
-                    }
+                      },
+                    },
                   },
                   [_vm._v("Back")]
                 ),
@@ -1207,19 +1209,19 @@ var render = function() {
                     staticClass:
                       "px-6 py-2 leading-5 text-white transition-colors duration-200 transform bg-gray-700 rounded-md hover:bg-gray-600 focus:outline-none focus:bg-gray-600",
                     on: {
-                      click: function($event) {
+                      click: function ($event) {
                         $event.preventDefault()
-                        return _vm.submitProperty($event)
-                      }
-                    }
+                        return _vm.submitProperty.apply(null, arguments)
+                      },
+                    },
                   },
                   [_vm._v("Submit Property")]
-                )
-              ])
-            ])
+                ),
+              ]),
+            ]),
           ]
         )
-      : _vm._e()
+      : _vm._e(),
   ])
 }
 var staticRenderFns = []
