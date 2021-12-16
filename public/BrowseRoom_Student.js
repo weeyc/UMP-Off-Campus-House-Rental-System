@@ -458,7 +458,7 @@ var render = function () {
                   },
                 ],
                 staticClass:
-                  "block rounded-md border-0 focus:outline-none focus:ring-0 focus:border-blue-500 flex-grow p-2",
+                  "block rounded-md border-0 focus:outline-none focus:ring-0 focus:border-blue-500 flex-grow p-2 px-3",
                 attrs: {
                   type: "search",
                   placeholder: "Search Area / Property Name",
@@ -1252,7 +1252,6 @@ var render = function () {
                       "flex justify-center w-full px-8 py-4 overflow-hidden bg-white rounded-lg shadow-lg mt-5 cursor-pointer transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-200 hover:bg-yellow-400 hover:shadow-2xl",
                     attrs: {
                       to: { name: "view_room_list", params: { id: list.id } },
-                      target: "_blank",
                     },
                   },
                   [

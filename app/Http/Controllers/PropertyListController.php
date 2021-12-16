@@ -15,12 +15,11 @@ use App\Models\Landlord;
 use App\Models\Property;
 use App\Models\Photo;
 use App\Models\Room;
+use Illuminate\Support\Str;
 
 
 class PropertyListController extends Controller
 {
-    public $min;
-    public $max;
 
     public function create_Property(Request $request){
         //     $request->validate([
@@ -79,7 +78,7 @@ class PropertyListController extends Controller
         //     'phone_num' => 'required|regex:/(01)[0-9]{8}/'
         //    ]);
            $campus = Property::where('property_id', $request ->prop_id)->first()->campus;
-
+           $randomString = Str::random(6);
             $Room = new Room();
             $Room ->landlord_id = $request ->land_id;
             $Room ->property_id = $request ->prop_id;
@@ -90,6 +89,7 @@ class PropertyListController extends Controller
             $Room ->penalty_fees =  $request ->penalty_fees;
             $Room ->room_description =  $request ->description;
             $Room ->campus =   $campus;
+            $Room ->booking_key = $randomString;
             $Room ->number_of_tenant =  $request ->number_tenants;
             $Room ->booking_fees =  $request ->monthly_rent;
             $Room ->room_status =  'listing';
@@ -154,7 +154,8 @@ class PropertyListController extends Controller
          return PropertyResource::collection($data);
      }
 
-    public function get_Room($id){
+
+     public function get_Room($id){
         // $data = Property::where('landlord_id', $id)->get();
          $data = Room::with('getPhotoRelation')->where('room_id', $id)->get();
          return RoomResource::collection($data);
@@ -174,7 +175,7 @@ class PropertyListController extends Controller
 
    }
 
-     public function get_BrowseList($campus, Request $request){
+    public function get_BrowseList($campus, Request $request){
 
             $location = $request->location;
             $gender = $request->gender;
@@ -207,41 +208,19 @@ class PropertyListController extends Controller
    }
 
    public function get_Recommendation($campus, Request $request){
+        $location = $request->location;
+        $gender = $request->gender;
+        $room = $request->room;
+        $minPrice = $request->minPrice;
+        $maxPrice = $request->maxPrice;
+        $room_id = $request->room_id;
 
-    $location = $request->location;
-    $gender = $request->gender;
-    $room = $request->room;
-    $minPrice = $request->minPrice;
-    $maxPrice = $request->maxPrice;
-    $room_id = $request->room_id;
-
-    $data = Room::query()
-                ->with('getPropertyRelation','getPhotoRelation','getPropertyRelation.getLandlordRelation')->whereHas('getPropertyRelation', function($query)  use($location, $gender) {
-                    $query->where('verify_status','verified')
-                    ->when($location!=null,function($query) use($location){
-                        $query->where('property_name', 'LIKE', '%' . $location . '%');
-                    })->when($gender!=null,function($query) use($gender){
-                        $query->where('gender_preferences',$gender);
-                    })
-                ;})
-                ->where('campus',$campus)
-                ->where('room_status','listing')
-                ->where('room_id', '!=', $room_id)
-                ->when($room!=null,function($query) use($room){
-                    $query->where('room_type', $room );
-                })->when($minPrice!=null,function($query) use($minPrice, $maxPrice){
-                    $query->whereBetween('monthly_rent', [$minPrice, $maxPrice]);
-                })
-                ->paginate(3);
-
-
-                if(count(RoomResource::collection($data))>0){
-                    return RoomResource::collection($data);
-                }else if(count(RoomResource::collection($data))==0){
-                    $data = Room::query()
+        $data = Room::query()
                     ->with('getPropertyRelation','getPhotoRelation','getPropertyRelation.getLandlordRelation')->whereHas('getPropertyRelation', function($query)  use($location, $gender) {
                         $query->where('verify_status','verified')
-                        ->when($gender!=null,function($query) use($gender){
+                        ->when($location!=null,function($query) use($location){
+                            $query->where('property_name', 'LIKE', '%' . $location . '%');
+                        })->when($gender!=null,function($query) use($gender){
                             $query->where('gender_preferences',$gender);
                         })
                     ;})
@@ -250,27 +229,58 @@ class PropertyListController extends Controller
                     ->where('room_id', '!=', $room_id)
                     ->when($room!=null,function($query) use($room){
                         $query->where('room_type', $room );
+                    })->when($minPrice!=null,function($query) use($minPrice, $maxPrice){
+                        $query->whereBetween('monthly_rent', [$minPrice, $maxPrice]);
                     })
                     ->paginate(3);
-                    return RoomResource::collection($data);
-                }
 
 
+                    if(count(RoomResource::collection($data))>0){
+                        return RoomResource::collection($data);
+                    }else if(count(RoomResource::collection($data))==0){
+                        $new_data = Room::query()
+                        ->with('getPropertyRelation','getPhotoRelation','getPropertyRelation.getLandlordRelation')->whereHas('getPropertyRelation', function($query)  use($location, $gender) {
+                            $query->where('verify_status','verified')
+                            ->when($gender!=null,function($query) use($gender){
+                                $query->where('gender_preferences',$gender);
+                            })
+                        ;})
+                        ->where('campus',$campus)
+                        ->where('room_status','listing')
+                        ->where('room_id', '!=', $room_id)
+                        ->when($room!=null,function($query) use($room){
+                            $query->where('room_type', $room );
+                        })
+                        ->paginate(3);
+                        return RoomResource::collection($new_data);
+                    }
 
 
+    }
+
+
+    public function get_RoomList($id){
+        // $data = Room::with('getPropertyRelation.getPhotoRelation','getPropertyRelation.getLandlordRelation','getPhotoRelation')
+        //             ->whereHas('getPropertyRelation.getPhotoRelation', function($query) use($id) {
+        //                 $query->where('room_id', null);
+        //             ;})
+        //             ->whereHas('getPhotoRelation', function($query) use($id) {
+        //                 $query->where('room_id', $id);
+        //             ;})->where('room_id', $id)
+        //             ->get();
+        //return RoomResource::collection($data);
+        $prop_id = Room::where('room_id',$id)->value('property_id');
+        $data = Property::with('getLandlordRelation','getPhotoRelation')
+                ->whereHas('getPhotoRelation', function($query) use($prop_id) {
+                $query->where('photo_label',  'Cover')
+
+
+            ;})
+                ->get();
+                return PropertyResource::collection($data);
 
 
 }
-
-    public function get_RoomList($id){
-        $data = Room::with('getPropertyRelation.getPhotoRelation','getPhotoRelation','getPropertyRelation.getLandlordRelation')
-                    ->whereHas('getPropertyRelation.getPhotoRelation', function($query)  {
-                        $query->whereNull('room_id');
-                    ;})
-
-                    ->where('room_id', $id)->get();
-        return RoomResource::collection($data);
-    }
 
     public function updatePropStatus($id, Request $request){
        $staff_name = Staff::where('staff_id',$id)->value('staff_name');
@@ -285,10 +295,10 @@ class PropertyListController extends Controller
 
 
    public function delete_Property($id){
-    Photo::where('property_id',$id)->delete();
-    Room::where('property_id',$id)->delete();
-    Property::where('property_id',$id)->delete();
-}
+        Photo::where('property_id',$id)->delete();
+        Room::where('property_id',$id)->delete();
+        Property::where('property_id',$id)->delete();
+    }
 
 
     public function update_Property($id, Request $request){
@@ -344,7 +354,8 @@ class PropertyListController extends Controller
 
           return $data;
 
-     }
+    }
+
 
     public function update_Room($id, $chgPic, Request $request){
 
@@ -366,6 +377,7 @@ class PropertyListController extends Controller
               'penalty_fees' => $request ->penalty_fees,
               'number_of_tenant' => $request ->number_of_tenant,
               'booking_fees' => $request ->monthly_rent,
+              'booking_key' => $request ->booking_key,
               'monthly_rent' => $request ->monthly_rent,
           ]);
 
@@ -390,8 +402,7 @@ class PropertyListController extends Controller
 
           return $data;
 
-     }
-
+    }
 
 
 
@@ -399,4 +410,5 @@ class PropertyListController extends Controller
 
 
 }
+
 

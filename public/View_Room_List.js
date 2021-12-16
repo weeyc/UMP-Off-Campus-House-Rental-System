@@ -393,6 +393,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 
 
@@ -407,7 +413,6 @@ __webpack_require__.r(__webpack_exports__);
     return {
       lists: [],
       recomendations: [],
-      landlord: [],
       moment: moment__WEBPACK_IMPORTED_MODULE_2___default.a,
       campus: 'Gambang',
       options: {
@@ -459,7 +464,7 @@ __webpack_require__.r(__webpack_exports__);
         this.maxPrice = 2000;
       }
 
-      axios.get('/api/get_Recommendation/' + this.campus, {
+      axios.get('/api/get_Recommendation/' + this.campus + '?land=1', {
         params: {
           location: this.location,
           minPrice: this.minPrice,
@@ -1288,7 +1293,7 @@ var render = function () {
                         "p",
                         {
                           staticClass:
-                            "mt-2 text-base text-gray-600 dark:text-gray-400",
+                            "mt-2 whitespace-pre-wrap text-base text-gray-600 dark:text-gray-400",
                         },
                         [_vm._v(_vm._s(_vm.lists.property.des))]
                       ),
@@ -1299,7 +1304,7 @@ var render = function () {
                         "p",
                         {
                           staticClass:
-                            "mt-2 text-base text-gray-600 dark:text-gray-400",
+                            "mt-2 whitespace-pre-wrap text-base text-gray-600 dark:text-gray-400",
                         },
                         [_vm._v(_vm._s(_vm.lists.room_description))]
                       ),
@@ -1363,46 +1368,32 @@ var render = function () {
                       ),
                     ]),
                     _vm._v(" "),
-                    _c("hr", { staticClass: "border-gray-500   mt-5" }),
+                    _c("hr", { staticClass: "border-gray-500 mt-5" }),
                     _vm._v(" "),
                     _c("div", { staticClass: "flex mt-2 item-center" }, [
-                      _c(
-                        "p",
-                        {
-                          staticClass:
-                            "mt-2 text-sm text-gray-600 dark:text-gray-400",
-                        },
-                        [
-                          _vm._v(
-                            "Posted at: " +
-                              _vm._s(
-                                _vm
-                                  .moment(_vm.lists.created_at)
-                                  .format("DD-MM-YYYY HH:mm:ss")
-                              )
-                          ),
-                        ]
-                      ),
+                      _c("p", { staticClass: "mt-2 text-sm text-gray-600 " }, [
+                        _vm._v(
+                          "Posted at: " +
+                            _vm._s(
+                              _vm
+                                .moment(_vm.lists.created_at)
+                                .format("DD-MM-YYYY HH:mm:ss")
+                            )
+                        ),
+                      ]),
                     ]),
                     _vm._v(" "),
                     _c("div", { staticClass: "flex item-center" }, [
-                      _c(
-                        "p",
-                        {
-                          staticClass:
-                            "mt-2 text-sm text-gray-600 dark:text-gray-400",
-                        },
-                        [
-                          _vm._v(
-                            "Last updated at: " +
-                              _vm._s(
-                                _vm
-                                  .moment(_vm.lists.updated_at)
-                                  .format("DD-MM-YYYY HH:mm:ss")
-                              )
-                          ),
-                        ]
-                      ),
+                      _c("p", { staticClass: "mt-2 text-sm text-gray-600 " }, [
+                        _vm._v(
+                          "Last updated at: " +
+                            _vm._s(
+                              _vm
+                                .moment(_vm.lists.updated_at)
+                                .format("DD-MM-YYYY HH:mm:ss")
+                            )
+                        ),
+                      ]),
                     ]),
                   ]),
                 ]
@@ -1453,7 +1444,7 @@ var render = function () {
                                   {
                                     attrs: {
                                       to: {
-                                        name: "profile_view",
+                                        name: "std_profile_view",
                                         params: {
                                           role: 2,
                                           id: _vm.lists.landlord_id,
@@ -1502,7 +1493,7 @@ var render = function () {
                     ),
                   ]),
                   _vm._v(" "),
-                  _c("div", { staticClass: "mx-5 my-5" }, [
+                  _c("div", { staticClass: "relative mx-5 my-5" }, [
                     _c(
                       "div",
                       {
@@ -1514,7 +1505,7 @@ var render = function () {
                           "div",
                           {
                             staticClass:
-                              "card w-96 mx-autorounded-md shadow-xl hover:shadow rounded-sm",
+                              "mb-40 card w-96 mx-autorounded-md shadow-xl hover:shadow rounded-sm",
                             staticStyle: { "background-color": "#2b2a33" },
                           },
                           [
@@ -1538,7 +1529,7 @@ var render = function () {
                                 [
                                   _c("tr", [
                                     _c("td", { staticClass: "text-left " }, [
-                                      _vm._v("Monthly Rental"),
+                                      _vm._v("Monthly Rental / Room"),
                                     ]),
                                     _vm._v(" "),
                                     _c("td", { staticClass: "text-right" }, [
@@ -1562,7 +1553,7 @@ var render = function () {
                                   _vm._v(" "),
                                   _c("tr", [
                                     _c("td", { staticClass: "text-left " }, [
-                                      _vm._v("Max Tenant Per Room"),
+                                      _vm._v("Max Tenant / Room"),
                                     ]),
                                     _vm._v(" "),
                                     _c("td", { staticClass: "text-right" }, [
@@ -1651,7 +1642,7 @@ var render = function () {
                 staticClass:
                   "text-2xl font-black text-gray-800 dark:text-white",
               },
-              [_vm._v(" Recommended Rooms")]
+              [_vm._v("Recommended Rooms")]
             ),
           ]),
         ]),
@@ -1712,9 +1703,9 @@ var render = function () {
                                   "block h-8 w-8 rounded-full bg-white mt-1 mr-2 ml-3 border-2 border-white",
                                 attrs: {
                                   src:
-                                    "/images/Properties/" +
-                                    similar.photo_room[0].photo_name,
-                                  alt: "Perfil",
+                                    "/images/Profile/" +
+                                    similar.property.land.landlord_pic,
+                                  alt: "Profile",
                                 },
                               }),
                               _vm._v(" "),
@@ -1722,9 +1713,13 @@ var render = function () {
                                 "span",
                                 {
                                   staticClass:
-                                    "block text-lg font-bold text-white",
+                                    "block text-sm font-bold text-white bg-black bg-opacity-30",
                                 },
-                                [_vm._v("Author")]
+                                [
+                                  _vm._v(
+                                    _vm._s(similar.property.land.landlord_name)
+                                  ),
+                                ]
                               ),
                             ]
                           ),

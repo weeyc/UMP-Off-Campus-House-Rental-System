@@ -29,7 +29,7 @@
     <div class="max-w-5xl p-6 mx-auto mt-5 bg-gray-200 rounded-md mb-5" >
         <div class="flex justify-start">
             <div class="flex justify-center bg-white rounded-xl border-2 overflow-hidden">
-                <input type="search" placeholder="Search Area / Property Name"  v-model="location" class="block rounded-md border-0 focus:outline-none focus:ring-0 focus:border-blue-500 flex-grow p-2">
+                <input type="search" placeholder="Search Area / Property Name"  v-model="location" class="block rounded-md border-0 focus:outline-none focus:ring-0 focus:border-blue-500 flex-grow p-2 px-3">
                 <button @click="getFilter">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 my-auto m-2" style="color: gray" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
@@ -177,7 +177,7 @@
         <div v-if="lists.length==0"> Sorry, result not found</div>
         <div else>
             <div v-for="(list,index) in lists" :key="index.id" class="flex justify-start  ">
-                <router-link :to="{ name: 'view_room_list', params:{id: list.id}}" target="_blank"  class="flex justify-center w-full px-8 py-4 overflow-hidden bg-white rounded-lg shadow-lg mt-5 cursor-pointer transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-200 hover:bg-yellow-400 hover:shadow-2xl">
+                <router-link :to="{ name: 'view_room_list', params:{id: list.id}}" class="flex justify-center w-full px-8 py-4 overflow-hidden bg-white rounded-lg shadow-lg mt-5 cursor-pointer transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-200 hover:bg-yellow-400 hover:shadow-2xl">
                 <!-- flex justify-center bg-white rounded-xl border-2 overflow-hidden -->
                     <div class="w-1/3 bg-cover" > <img class="h-48 w-full object-cover"  :src="'/images/Properties/'+list.photo_room[0].photo_name" alt="Avatar"  /></div>
                     <div class="w-2/3 p-4 md:p-4">

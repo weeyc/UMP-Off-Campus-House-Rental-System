@@ -73,10 +73,10 @@
                        <span class="text-xl font-bold">Description</span>
                 </div>
                    <div class="flex mt-2 item-center">
-                    <p class="mt-2 text-base text-gray-600 dark:text-gray-400">{{ lists.property.des }}</p>
+                    <p class="mt-2 whitespace-pre-wrap text-base text-gray-600 dark:text-gray-400">{{ lists.property.des }}</p>
                 </div>
                     <div class="flex mt-2 item-center">
-                    <p class="mt-2 text-base text-gray-600 dark:text-gray-400">{{ lists.room_description }}</p>
+                    <p class="mt-2 whitespace-pre-wrap text-base text-gray-600 dark:text-gray-400">{{ lists.room_description }}</p>
                 </div>
                   <hr class="border-gray-500   mt-5 ">
                    <div class="flex mt-2 item-center">
@@ -94,13 +94,15 @@
                  <div class="flex mt-2 item-center">
                     <p class="mt-2 text-sm text-gray-600 dark:text-gray-400">{{ lists.penalty_fees }}</p>
                 </div>
-                 <hr class="border-gray-500   mt-5">
-                 <div class="flex mt-2 item-center">
-                    <p class="mt-2 text-sm text-gray-600 dark:text-gray-400">Posted at: {{ moment(lists.created_at).format("DD-MM-YYYY HH:mm:ss") }}</p>
+
+                <hr class="border-gray-500 mt-5">
+                <div class="flex mt-2 item-center">
+                    <p class="mt-2 text-sm text-gray-600 ">Posted at: {{ moment(lists.created_at).format("DD-MM-YYYY HH:mm:ss") }}</p>
                 </div>
-                   <div class="flex item-center">
-                    <p class="mt-2 text-sm text-gray-600 dark:text-gray-400">Last updated at: {{ moment(lists.updated_at).format("DD-MM-YYYY HH:mm:ss") }}</p>
+                <div class="flex item-center">
+                    <p class="mt-2 text-sm text-gray-600 ">Last updated at: {{ moment(lists.updated_at).format("DD-MM-YYYY HH:mm:ss") }}</p>
                 </div>
+
 
           </div>
 
@@ -115,7 +117,7 @@
                         <img class=" h-28 w-28 object-cover mx-auto rounded-full -mt-14 border-4 border-blue-500  " :src="'/images/Profile/'+lists.property.land.landlord_pic" alt="Avatar">
 
                         <div class="text-center mt-2 text-3xl cursor-pointer text-yellow-500 font-medium hover:underline hover:text-blue-500">
-                            <router-link :to="{ name: 'profile_view', params:{role: 2, id: lists.landlord_id}}" target="_blank" >{{ lists.property.land.landlord_name}}</router-link >
+                            <router-link :to="{ name: 'std_profile_view', params:{role: 2, id: lists.landlord_id}}" target="_blank" >{{ lists.property.land.landlord_name}}</router-link >
                         </div>
                         <div class="text-center font-normal text-lg text-white">Landlord</div>
                         <div class="flex p-3">
@@ -126,16 +128,16 @@
                     </div>
                 </div>
         </div>
-        <div class="mx-5 my-5">
+        <div class="relative mx-5 my-5">
                 <div class="w-full flex flex-row justify-center items-center">
-                    <div class="card w-96 mx-autorounded-md shadow-xl hover:shadow rounded-sm" style="background-color: #2b2a33;">
+                    <div class="mb-40 card w-96 mx-autorounded-md shadow-xl hover:shadow rounded-sm" style="background-color: #2b2a33;">
                         <div class="mt-2 text-center text-xl text-yellow-500 font-bold">
                             Room Rental Details
                         </div>
                         <div  class="mx-5 my-5">
                             <table class=" text-white w-full">
                                 <tr>
-                                    <td class="text-left ">Monthly Rental</td>
+                                    <td class="text-left ">Monthly Rental / Room</td>
                                     <td class="text-right">RM {{ lists.monthly_rent }}</td>
                                 </tr>
                                 <tr>
@@ -143,7 +145,7 @@
                                     <td class="text-right">RM {{ lists.penalty_fees }}</td>
                                 </tr>
                                 <tr>
-                                    <td class="text-left ">Max Tenant Per Room</td>
+                                    <td class="text-left ">Max Tenant / Room</td>
                                     <td class="text-right">{{ lists.number_of_tenant }}</td>
                                 </tr>
                                 <tr>
@@ -175,6 +177,10 @@
                             </div>
                         </div>
                     </div>
+
+
+
+
                 </div>
 
           </div>
@@ -189,6 +195,7 @@
             </div>
             <GoogleMap class="h-72" :latitude="parseFloat(lists.property.lat)" :logitude="parseFloat(lists.property.log)" :registered="true"  />
         </div>
+
         </div>
 
 
@@ -198,14 +205,14 @@
     </div>
         <div class="max-w-6xl p-6 mx-auto mt-3 bg-gray-200 rounded-md mb-5" >
              <div class="flex justify-between item-center">
-                <button @click="getRecommendation"><h1 class="text-2xl font-black text-gray-800 dark:text-white"> Recommended Rooms</h1></button>
+                <button @click="getRecommendation"><h1 class="text-2xl font-black text-gray-800 dark:text-white">Recommended Rooms</h1></button>
             </div>
         <div class="flex items-center justify-center w-full overflow-hidden">
            <div class="grid md:grid-cols-2 sm:grid-cols-1 lg:grid-cols-3 xl:grid-cols-3 gap-2 m-5 mb-10">
                 <!-- first card -->
 
                 <div v-for="(similar,index) in recomendations" :key="index.id" class="bg-white rounded-lg shadow-lg overflow-hidden  cursor-pointer transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-200 hover:bg-yellow-400 hover:shadow-2xl">
-                <router-link :to="{ name: 'view_room_list', params:{id: similar.id}}" target="_blank" >
+                <router-link :to="{ name: 'view_room_list', params:{id: similar.id}}" target="_blank">
                     <img class="h-48 w-full object-cover"  :src="'/images/Properties/'+similar.photo_room[0].photo_name"
                        />
 
@@ -213,10 +220,9 @@
                     <div class="m-2 text-justify text-sm">
                         <div class="flex flex-wrap items-center -mt-8 pb-3 ">
                             <img class="block h-8 w-8 rounded-full bg-white mt-1 mr-2 ml-3 border-2 border-white"
-                        :src="'/images/Properties/'+similar.photo_room[0].photo_name"
-
-                                alt="Perfil">
-                            <span class="block text-lg font-bold text-white">Author</span>
+                        :src="'/images/Profile/'+similar.property.land.landlord_pic"
+                                alt="Profile">
+                            <span class="block text-sm font-bold text-white bg-black bg-opacity-30">{{similar.property.land.landlord_name}}</span>
 
                         </div>
                         <p class="text-right text-base font-bold text-yellow-700">RM{{similar.monthly_rent}}/Months</p>
@@ -268,7 +274,6 @@ export default {
         return{
             lists: [],
             recomendations: [],
-            landlord: [],
             moment: moment,
             campus: 'Gambang',
              options: {
@@ -321,7 +326,7 @@ export default {
                 this.minPrice = 800;
                 this.maxPrice = 2000;
             }
-            axios.get('/api/get_Recommendation/'+this.campus, {
+            axios.get('/api/get_Recommendation/'+this.campus+'?land=1', {
                 params: {
                     location: this.location,
                     minPrice: this.minPrice,

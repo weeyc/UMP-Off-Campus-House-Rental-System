@@ -157,6 +157,10 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 //
 //
 //
+//
+//
+//
+//
 var Errors = /*#__PURE__*/function () {
   function Errors() {
     _classCallCheck(this, Errors);
@@ -451,6 +455,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 
 
 
@@ -487,6 +494,7 @@ __webpack_require__.r(__webpack_exports__);
         list_name: '',
         name: '',
         photo_room: [],
+        booking_key: '',
         des: '',
         furnishing: [],
         room_type: '',
@@ -529,6 +537,7 @@ __webpack_require__.r(__webpack_exports__);
       this.form.photo_room = list.photo_room;
       this.form.monthly_rent = list.monthly_rent;
       this.form.penalty_fees = list.penalty_fees;
+      this.form.booking_key = list.booking_key;
       this.form.number_of_tenant = list.number_of_tenant;
       this.form.property_id = this.property_id;
     }
@@ -871,6 +880,45 @@ var render = function () {
                               _vm.$set(
                                 _vm.form,
                                 "penalty_fees",
+                                $event.target.value
+                              )
+                            },
+                          },
+                        }),
+                      ]),
+                      _vm._v(" "),
+                      _c("div", [
+                        _c("label", { staticClass: "text-gray-700" }, [
+                          _vm._v("Booking Key"),
+                        ]),
+                        _vm._v(" "),
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.form.booking_key,
+                              expression: "form.booking_key",
+                            },
+                          ],
+                          staticClass:
+                            "block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-black rounded-md   focus:border-blue-500 focus:outline-none focus:ring",
+                          attrs: {
+                            type: "text",
+                            minlength: "6",
+                            maxlength: "6",
+                            placeholder: "6 character eg. Tkeis7",
+                            required: "",
+                          },
+                          domProps: { value: _vm.form.booking_key },
+                          on: {
+                            input: function ($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.form,
+                                "booking_key",
                                 $event.target.value
                               )
                             },
@@ -1761,7 +1809,7 @@ var render = function () {
                   _c("span", { staticClass: "font-black" }, [
                     _vm._v(" Room Description:"),
                   ]),
-                  _vm._v(" " + _vm._s(list.des)),
+                  _vm._v(" " + _vm._s(list.room_description)),
                 ]),
               ]),
               _vm._v(" "),
@@ -1789,6 +1837,15 @@ var render = function () {
                     _vm._v(" Room Monthly Rent: RM "),
                   ]),
                   _vm._v(_vm._s(list.monthly_rent)),
+                ]),
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "flex item-center" }, [
+                _c("p", { staticClass: "mt-2 text-sm text-gray-600" }, [
+                  _c("span", { staticClass: "font-black" }, [
+                    _vm._v(" Booking Key: "),
+                  ]),
+                  _vm._v(_vm._s(list.booking_key)),
                 ]),
               ]),
             ]),

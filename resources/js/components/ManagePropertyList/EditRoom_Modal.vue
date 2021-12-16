@@ -49,6 +49,10 @@
                             <label class="text-gray-700" >Penalty Fees (Overdue)</label>
                             <input  type="number" v-model="form.penalty_fees" step=any min=0 placeholder="20"  class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-black rounded-md   focus:border-blue-500 focus:outline-none focus:ring" required>
                         </div>
+                              <div>
+                            <label class="text-gray-700" >Booking Key</label>
+                            <input  type="text" v-model="form.booking_key" minlength=6 maxlength=6 placeholder="6 character eg. Tkeis7"  class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-black rounded-md   focus:border-blue-500 focus:outline-none focus:ring" required>
+                        </div>
                     </div>
 
                     <div class="flex justify-end mt-6">

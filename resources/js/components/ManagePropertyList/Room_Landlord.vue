@@ -38,7 +38,7 @@
                 </div>
 
                 <div class="flex mt-2 item-center">
-                    <p class="mt-2 text-sm text-gray-600 "><span class="font-black"> Room Description:</span> {{ list.des }}</p>
+                    <p class="mt-2 text-sm text-gray-600 "><span class="font-black"> Room Description:</span> {{ list.room_description }}</p>
                 </div>
                     <div class="flex item-center">
                     <p class="mt-2 text-sm text-gray-600"><span class="font-black">Room Furnishing: </span>{{ list.room_furnishing }}</p>
@@ -49,6 +49,9 @@
 
                    <div class="flex item-center">
                     <p class="mt-2 text-sm text-gray-600"><span class="font-black"> Room Monthly Rent: RM </span>{{ list.monthly_rent }}</p>
+                </div>
+                   <div class="flex item-center">
+                    <p class="mt-2 text-sm text-gray-600"><span class="font-black"> Booking Key: </span>{{ list.booking_key }}</p>
                 </div>
 
 
@@ -132,6 +135,7 @@ export default {
                 list_name: '',
                 name:'',
                 photo_room: [],
+                booking_key: '',
                 des: '',
                 furnishing: [],
                 room_type: '',
@@ -177,6 +181,7 @@ export default {
             this.form.photo_room= list.photo_room
             this.form.monthly_rent= list.monthly_rent
             this.form.penalty_fees= list.penalty_fees
+            this.form.booking_key= list.booking_key
             this.form.number_of_tenant= list.number_of_tenant
             this.form.property_id=this.property_id
         },
