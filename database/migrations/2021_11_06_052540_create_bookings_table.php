@@ -23,7 +23,7 @@ class CreateBookingsTable extends Migration
             $table->timestamp('booking_date');
             $table->string('phone')->nullable();;
             $table->float('booking_fees');
-            $table->date('move_in_date')->nullable();;
+            $table->date('move_in_date')->nullable();
 
             // $table->string('cust_status')->default('Active');
             // $table->timestamps();

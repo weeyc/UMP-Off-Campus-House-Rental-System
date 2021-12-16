@@ -109,7 +109,7 @@ class PropertyListController extends Controller
                         $filename = $this->decodeImage($image);
                         $Photo->photo = $filename;
                         $Photo->room_id =  $Room_id;
-                        $Photo->property_id =  $request ->prop_id;
+                        //$Photo->property_id =  $request ->prop_id;
                         $Photo->save();
 
                     }
@@ -260,24 +260,27 @@ class PropertyListController extends Controller
 
 
     public function get_RoomList($id){
-        // $data = Room::with('getPropertyRelation.getPhotoRelation','getPropertyRelation.getLandlordRelation','getPhotoRelation')
-        //             ->whereHas('getPropertyRelation.getPhotoRelation', function($query) use($id) {
-        //                 $query->where('room_id', null);
-        //             ;})
-        //             ->whereHas('getPhotoRelation', function($query) use($id) {
-        //                 $query->where('room_id', $id);
-        //             ;})->where('room_id', $id)
-        //             ->get();
-        //return RoomResource::collection($data);
-        $prop_id = Room::where('room_id',$id)->value('property_id');
-        $data = Property::with('getLandlordRelation','getPhotoRelation')
-                ->whereHas('getPhotoRelation', function($query) use($prop_id) {
-                $query->where('photo_label',  'Cover')
+        $data = Room::with('getPropertyRelation.getPhotoRelation','getPropertyRelation.getLandlordRelation','getPhotoRelation')
+                    ->whereHas('getPropertyRelation.getPhotoRelation', function($query) use($id) {
+                        $query->where('room_id', null);
+                    ;})
+                    ->whereHas('getPhotoRelation', function($query) use($id) {
+                        $query->where('room_id', $id);
+                    ;})->where('room_id', $id)
+                    ->get();
+        return RoomResource::collection($data);
+        // $prop_id = Room::where('room_id',$id)->value('property_id');
+        // $data = Property::with('getPhotoRelation')
+        //         ->whereHas('getPhotoRelation', function($query) use($prop_id) {
+        //         $query->where([
 
 
-            ;})
-                ->get();
-                return PropertyResource::collection($data);
+        //                     ['photo', 'VJGGshlkS48PB2F8.jpg'],
+        //                 ])
+
+        //     ;})
+        //         ->get();
+        //         return PropertyResource::collection($data);
 
 
 }
@@ -391,7 +394,7 @@ class PropertyListController extends Controller
                       $filename = $this->decodeImage($image);
                       $Photo->photo = $filename;
                       $Photo->room_id =  $id;
-                      $Photo->property_id = $request->property_id;
+                      //$Photo->property_id = $request->property_id;
                       $Photo->save();
 
                   }

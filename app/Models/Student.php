@@ -7,4 +7,6 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Student extends Model
 {
     public $timestamps = false;
+    protected $hidden = ['std_password'];
+
 }
