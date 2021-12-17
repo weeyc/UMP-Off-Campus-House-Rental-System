@@ -16,21 +16,17 @@ class CreatePaymentsTable extends Migration
         Schema::create('payments', function (Blueprint $table) {
 
             $table->increments('payment_id');
-            $table->integer('student_id');
-            $table->string('payment_details');
-            $table->string('payment_status');
-            $table->float('total_payment');
+            $table->integer('student_id')->nullable();
+            $table->integer('tenant_id')->nullable();
+            $table->integer('property_id')->nullable();
+            $table->integer('landlord_id')->nullable();
+            $table->integer('room_id')->nullable();
+            $table->integer('booking_id')->nullable();
+            $table->integer('bill_id')->nullable();
+            $table->string('payment_details')->nullable();
+            $table->string('payment_status')->nullable();
+            $table->float('total_payment')->nullable();
             $table->timestamp('payment_date');
-
-            // $table->string('cust_status')->default('Active');
-            // $table->timestamps();
-            // $table->integer('request_id')->nullable();
-            // $table->float('total_cost');
-            // $table->string('payment_method');
-            // $table->time('payment_time')->timestamps();
-            // $table->date('payment_date')->timestamps();
-            // $table->float('cost')->nullable();
-            // $table->string('payment_status')->nullable()->default('Unpaid');;
         });
     }
 

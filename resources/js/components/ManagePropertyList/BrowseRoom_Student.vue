@@ -1,7 +1,7 @@
 <template>
 <div>
 
-    <div class="max-w-5xl p-6 mx-auto mt-5 bg-gray-200 rounded-md mb-5" >
+    <div class="max-w-5xl p-6 mx-auto mt-5 bg-gray-100 rounded-md mb-5 shadow-xl" >
         <!-- Top Campuses -->
         <span>Selected Campus: {{campus}}</span>
         <div class="flex items-center justify-center h-40 w-full overflow-hidden bg-gradient-to-b from-green-200 to-green-500">
@@ -26,7 +26,7 @@
     </div>
 
     <!-- filter bar -->
-    <div class="max-w-5xl p-6 mx-auto mt-5 bg-gray-200 rounded-md mb-5" >
+    <div class="max-w-5xl p-6 mx-auto mt-5 bg-gray-100 rounded-md mb-5 shadow-xl" >
         <div class="flex justify-start">
             <div class="flex justify-center bg-white rounded-xl border-2 overflow-hidden">
                 <input type="search" placeholder="Search Area / Property Name"  v-model="location" class="block rounded-md border-0 focus:outline-none focus:ring-0 focus:border-blue-500 flex-grow p-2 px-3">
@@ -172,7 +172,7 @@
  <!-- filter bar -->
 
   <!-- Room Result -->
-     <div class="max-w-5xl p-6 mx-auto mt-5 bg-gray-200 rounded-md mb-5" >
+     <div class="max-w-5xl p-6 mx-auto mt-5 bg-gray-100 rounded-md mb-5 shadow-inner" >
         <span>Rooms for rent ({{lists.length}}): </span>
         <div v-if="lists.length==0"> Sorry, result not found</div>
         <div else>

@@ -9,7 +9,7 @@
         <button class="text-black " @click="closeModal">&cross;</button>
       </div>
       <!-- modal body -->
-        <div class="p-3">
+        <div class="p-3 ">
             <!-- <h1 class="text-gray-800 font-lg font-bold tracking-normal leading-tight mb-4">Property Details</h1> -->
             <section id="bookingDetail" v-show="activePhase == 1" class=" max-w-4xl p-6 mx-auto bg-gray-200 rounded-md shadow-md">
 
@@ -19,8 +19,9 @@
                     <div class="grid grid-cols-1 gap-6 mt-4 sm:grid-cols-2">
                         <div>
                             <label class="text-gray-700">Move-In Date</label>
-                            <input type="date" v-model="form.move_in_date" placeholder="" class="cursor-pointer block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-black rounded-md focus:border-blue-500 focus:outline-none focus:ring" required>
+                            <input type="date" id='myDate' v-model="form.move_in_date" name="date" min="2015-10-28" class="cursor-pointer block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-black rounded-md focus:border-blue-500 focus:outline-none focus:ring" required>
                         </div>
+
                          <div>
                             <label class="text-gray-700" >Tenancy Period</label>
                             <select  v-model="form.tenancy_period" class="block w-full px-4 py-2 cursor-pointer mt-2 text-gray-700 bg-white border border-black rounded-md  focus:border-blue-500 focus:outline-none focus:ring" name="campus" required>
@@ -47,7 +48,7 @@
                         </div>
                           <div>
                             <label class="text-gray-700" >Booking Key (obtain from landlord)</label>
-                            <input  type="text"  v-model="form.b_key" placeholder="eg. 145213" minlength="6" maxlength="6" class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-black rounded-md   focus:border-blue-500 focus:outline-none focus:ring" required>
+                            <input  type="text"  v-model="form.b_key" placeholder="eg. 242112" minlength="6" maxlength="6" class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-black rounded-md   focus:border-blue-500 focus:outline-none focus:ring" required>
                         </div>
 
 
@@ -56,11 +57,14 @@
                     <div class="flex justify-end mt-6">
                         <button @click.prevent="checkKey" class="px-6 py-2 leading-5 text-white transition-colors duration-200 transform bg-gray-700 rounded-md hover:bg-gray-600 focus:outline-none focus:bg-gray-600">Next</button>
                     </div>
+
+
+
                 </div>
             </section>
 
 
-            <section id="Uploader" v-if="activePhase == 2"  class="mt-10 max-w-4xl p-6 mx-auto bg-gray-200 rounded-md shadow-md dark:bg-gray-800">
+            <div v-if="activePhase == 2"  class="mt-10 max-w-4xl p-6 mx-auto bg-transparent rounded-md shadow-inner">
                 <h2 class=" font-bold text-gray-700 capitalize text-center text-xl">Booking Summary</h2>
                 <h2 class=" font-bold text-gray-700 capitalize text-center text-base mb-5">-Room Details-</h2>
                 <div>
@@ -140,7 +144,12 @@
                                 </div>
 
                             </div>
+
                             </div>
+                                <div class="mb-5">
+                                    <center><div class="mx-auto w-50" ref="paypal"></div></center>
+                                </div>
+
 
                     </div>
 
@@ -149,10 +158,13 @@
 
                     <div class="flex justify-end mt-6">
                         <button @click.prevent="goToNext(1)" class="px-6 py-2  mr-5 leading-5 text-white transition-colors duration-200 transform bg-gray-700 rounded-md hover:bg-gray-600 focus:outline-none focus:bg-gray-600">Back</button>
-                         <button @click.prevent="submitBooking" class="px-6 py-2 leading-5 text-white transition-colors duration-200 transform bg-gray-700 rounded-md hover:bg-gray-600 focus:outline-none focus:bg-gray-600">Pay Now</button>
+
                     </div>
+
+
                 </div>
-            </section>
+
+            </div>
 
 
 
@@ -160,6 +172,7 @@
                 <div class="flex justify-end items-center w-100 border-t p-3">
                     <button @click="closeModal" class="bg-red-600 hover:bg-red-700 px-3 py-1 rounded text-white mr-1 close-modal">Cancel</button>
                 </div>
+
     </div>
 </div>
 </template>
@@ -199,6 +212,12 @@ export default {
             replace: false,
             student:[],
 
+
+            product: {
+                price: this.roomDetails.booking_fees,
+                description: 'UOCA Booking Payment - Room ID: '+this.roomDetails.id
+            },
+
             form: {
                 move_in_date: '',
                 tenancy_period:'',
@@ -206,12 +225,16 @@ export default {
                 phone_no: '',
                 std_id: this.user_id,
                 b_key: '',
+                landlord_id: this.roomDetails.landlord_id,
                 property_id: this.roomDetails.property_id,
                 room_id: this.roomDetails.id,
                 booking_fees: this.roomDetails.booking_fees,
+                details: 'UOCA Booking Payment - Room ID: '+this.roomDetails.id
             },
+
         }
     },
+
     methods: {
         goToNext(pg){
             this.activePhase = pg;
@@ -225,20 +248,20 @@ export default {
                 }).catch((errors)=> {console.log(errors)})
             },
         submitBooking(){
-            axios.post('/api/create_room',
+            axios.post('/api/create_booking',
             this.form
             ).then(() =>{
                 Swal.fire({
                 position: 'center',
                 icon: 'success',
-                title: 'Room added successfully!',
+                title: 'Payment successful!',
                 showConfirmButton: false,
                 timer: 1500
                 })
                 this.closeModal();
-                this.$emit("refreshData");
+                setTimeout(() =>  window.location.href = "/student/browse-rooms", 1900);
 
-                 }).catch(error =>this.errors.record(error.response.data));
+                }).catch(error =>this.errors.record(error.response.data));
 
         },
         closeModal(){
@@ -247,18 +270,78 @@ export default {
         checkKey(){
             if(this.form.b_key === this.roomDetails.booking_key){
                 this.goToNext(2);
+                this.getPayPal();
+
             }else{
                 this.$toaster.info('Booking key not matched!')
             }
 
         },
 
+    setLoaded: function(resp) {
+      this.loaded = true;
+
+      window.paypal
+        .Buttons({
+          createOrder: (data, actions) => {
+            return actions.order.create({
+              purchase_units: [
+                {
+                  description: this.product.description,
+                  amount: {
+                    currency_code: "MYR",
+                    value: this.product.price
+                  }
+                }
+              ]
+            });
+          },
+        style: {
+                size: 'medium',
+                color: 'blue',
+                shape: 'pill',
+            },
+          onApprove: async (data, actions, resp) => {
+            this.loadding = true;
+            const order = await actions.order.capture();
+            this.data;
+            this.paidFor = true;
+            this.loadding = false;
+            this.submitBooking();
+            //this.$router.push({ name: "Dashboard"});
+
+          },
+          onError: err => {
+            console.log(err);
+          }
+        })
+        .render(this.$refs.paypal);
+    },
+    getPayPal(){
+        const script = document.createElement("script");
+        script.src = "https://www.paypal.com/sdk/js?client-id=AQhqPjoZfsUmu5_yLMiug7vrWEBke2_EvnwUaVQRCYgpIxFj4DiWVkpCNPgOlwv3csIYXVFWa_cXEdZI&currency=MYR&disable-funding=credit,card";
+        script.addEventListener("load", this.setLoaded);
+        document.body.appendChild(script);
+
+
+    },
+
+    },
+    watch:{
+        activePhase(newValue, oldValue){
+            if(this.activePhase==2){
+
+            }
+        }
     },
     mounted: function(){
+        this.getStudent();
+        document.getElementById("myDate").min = new Date().getFullYear() + "-" +  parseInt(new Date().getMonth() + 1 ) + "-" + new Date().getDate()
 
-         this.getStudent();
-         //this.form.furnishing = this.form.furnishing.split(',');
+      ;
+
     },
+
 };
 
 </script>

@@ -15,6 +15,9 @@ use App\Models\Landlord;
 use App\Models\Property;
 use App\Models\Photo;
 use App\Models\Room;
+use App\Models\Booking;
+use App\Models\Tenant;
+use App\Models\Payment;
 use Illuminate\Support\Str;
 
 
@@ -117,6 +120,50 @@ class PropertyListController extends Controller
                 }
 
             }
+
+
+    }
+    public function create_booking(Request $request){
+
+        $Booking = new Booking();
+        $Booking ->student_id = $request ->std_id;
+        $Booking ->property_id = $request ->property_id;
+        $Booking ->room_id = $request ->room_id;
+        $Booking ->period_tenancy = $request ->tenancy_period;
+        $Booking ->phone = $request ->phone_no;
+        $Booking ->booking_fees = $request ->booking_fees;
+        $Booking ->move_in_date = $request ->move_in_date;
+        $Booking ->save();
+        $Booking_ID =  $Booking->getKey();
+
+        if($Booking ->save()){
+            $Payment = new Payment();
+            $Payment->student_id = $request ->std_id;
+            $Payment->booking_id = $Booking_ID;
+            $Payment->property_id = $request ->property_id;
+            $Payment->room_id = $request ->room_id;
+            $Payment->landlord_id = $request ->landlord_id;
+            $Payment->payment_details = $request ->details;
+            $Payment->payment_status = 'Paid';
+            $Payment->total_payment = $request ->booking_fees;
+            $Payment->save();
+
+            $Tenant =  new Tenant();
+            $Tenant->student_id = $request->std_id;
+            $Tenant->property_id = $request->property_id;
+            $Tenant->room_id = $request->room_id;
+            $Tenant->tenant_status = 'Tenancy';
+            $Tenant->tenancy_period = $request->tenancy_period;
+            $Tenant->move_in_date = $request->move_in_date;
+            $Tenant->save();
+
+            Room::where('room_id',$request->room_id)
+            ->update([
+                'room_status' => 'rented'
+            ]);
+        }
+
+
 
 
     }
