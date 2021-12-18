@@ -227,8 +227,10 @@ class PropertyListController extends Controller
             $location = $request->location;
             $gender = $request->gender;
             $room = $request->room;
+            $sort = $request->sort;
             $minPrice = $request->minPrice;
             $maxPrice = $request->maxPrice;
+            $showSize = $request->showSize;
             $data = Room::query()
                         ->with('getPropertyRelation','getPhotoRelation')->whereHas('getPropertyRelation', function($query)  use($location, $gender) {
                             $query->where('verify_status','verified')
@@ -244,8 +246,10 @@ class PropertyListController extends Controller
                             $query->where('room_type', $room );
                         })->when($minPrice!=null,function($query) use($minPrice, $maxPrice){
                             $query->whereBetween('monthly_rent', [$minPrice, $maxPrice]);
+                        })->when($sort!=null,function($query) use($sort){
+                            $query->orderBy('monthly_rent', $sort);
                         })
-                        ->paginate(10);
+                        ->paginate($showSize);
 
 
             return RoomResource::collection($data);

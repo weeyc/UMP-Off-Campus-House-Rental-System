@@ -2752,7 +2752,7 @@ var render = function () {
                                 },
                                 [
                                   _vm._v(
-                                    "\n                                Room Rental Details\n                            "
+                                    "\r\n                                Room Rental Details\r\n                            "
                                   ),
                                 ]
                               ),
@@ -3120,13 +3120,13 @@ var staticRenderFns = [
     return _c("div", { staticClass: "text-sm text-indigo-200 font-light" }, [
       _c("div", { staticClass: "mt-5" }, [
         _vm._v(
-          "\n                                    The booking fees counted as 1st month of rental\n                                "
+          "\r\n                                    The booking fees counted as 1st month of rental\r\n                                "
         ),
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "mt-5" }, [
         _vm._v(
-          "\n                                    Monthly rental bills will be issues starting on 2nd months of rental\n                                "
+          "\r\n                                    Monthly rental bills will be issues starting on 2nd months of rental\r\n                                "
         ),
       ]),
       _vm._v(" "),

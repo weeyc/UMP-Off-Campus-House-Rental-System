@@ -173,7 +173,17 @@
 
   <!-- Room Result -->
      <div class="max-w-5xl p-6 mx-auto mt-5 bg-gray-100 rounded-md mb-5 shadow-inner" >
-        <span>Rooms for rent ({{lists.length}}): </span>
+         <div class="flex justify-between">
+             <span v-if="page=='[object MouseEvent]'" class="text-base font-bold flex justify-start">Rooms for rent ({{ pageInfo.total }}) | Showing Page 1 of {{ lastPage }} </span>
+             <span v-else class="text-base font-bold flex justify-start">Rooms for rent ({{ pageInfo.total }}) | Showing Page {{ page }} of {{ lastPage }} </span>
+            <div class="w-1/3 flex justify-end">
+                            <select v-model="sort" class="focus:outline-none border-transparent cursor-pointer focus:border-gray-800 hover:bg-pink-200 focus:shadow-outline-gray text-base py-2 px-8 w-1/2 xl:px-3 rounded font-medium  appearance-none bg-transparent">
+                                <option selected @click="getList" value="">Order By</option>
+                                <option @click="getList" value="asc">Price: Lowest to Highest</option>
+                                <option @click="getList" value="desc">Price: Highest to Lowest</option>
+                            </select>
+                    </div>
+        </div>
         <div v-if="lists.length==0"> Sorry, result not found</div>
         <div else>
             <div v-for="(list,index) in lists" :key="index.id" class="flex justify-start  ">
@@ -197,6 +207,23 @@
             </div>
 
         </div>
+                 <center>
+
+
+                    <div v-if="pageInfo" class="mt-5 mb-5 flex justify-between ">
+                    <div class="w-1/2 flex justify-start ">
+                            <select  v-model="showSize" class="focus:outline-none border-transparent cursor-pointer focus:border-gray-800 hover:bg-pink-200 focus:shadow-outline-gray text-base py-2 px-8 w-1/2 xl:px-3 rounded font-medium  appearance-none bg-transparent">
+                                <option @click="getList" value="10">Show Entries</option>
+                                <option @click="getList" value="10">10</option>
+                                <option @click="getList" value="20">20</option>
+                                <option @click="getList" value="100000">All</option>
+                            </select>
+                    </div>
+                        <div class="w-1/2 flex justify-end ">
+                            <Page :current="pageInfo.current_page" :total="pageInfo.total" :page-size="parseInt(pageInfo.per_page)" @on-change="getList"></Page>
+                        </div>
+                     </div>
+                </center>
     </div>
 
 
@@ -219,32 +246,45 @@ export default {
         return{
             lists: [],
             campus: 'Gambang',
-
-                location: '',
-                price:{},
-                gender: '',
-                room: '',
+            sort: '',
+            location: '',
+            price:{},
+            gender: '',
+            room: '',
+            toggle: false,
+            byID: '',
+            byGender: '',
+            showSize: 10,
+             page: 1,
+            lastPage: '',
+             pageInfo: '',
 
 
             top_btn_style: 'p-3 rounded bg-yellow-100 text-yellow-500 hover:bg-yellow-500 hover:text-white :active:bg-yellow-500 active:text-white active:outline-none transition duration-150 ease-in-out shadow-xl',
         }
     },
      methods:{
-        getList(){
-            axios.get('/api/get_BrowseList/'+this.campus, {
+        getList(page=1){
+              this.page=page;
+            axios.get('/api/get_BrowseList/'+this.campus+'?page='+page, {
                 params: {
                     location: this.location,
                     minPrice: this.price.min,
                     maxPrice: this.price.max,
                     gender: this.gender,
                     room: this.room,
+                    sort: this.sort,
+                    showSize: this.showSize
                 }
                 }).then((response)=>{
                 this.lists=response.data.data;
+                 this.pageInfo = response.data.meta
+                this.lastPage=response.data.meta.last_page
                 console.warn(this.lists.data);
             })
 
         },
+
         change_campus(c){
             if(c==0){
                 this.campus = 'Gambang'

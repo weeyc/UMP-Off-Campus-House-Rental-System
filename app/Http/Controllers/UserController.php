@@ -245,8 +245,19 @@ class UserController extends Controller
 
 
 
-        public function getStudent(){
-             $students = Student::paginate(10);
+        public function getStudent(Request $request){
+            $byID = $request->byID;
+            $byGender = $request->byGender;
+            $showSize = $request->showSize;
+
+            $students = Student::query()
+                ->when($byID!=null,function($query) use($byID){
+                     $query->orderBy('std_id',$byID);})
+
+                ->when($byGender!=null,function($query) use($byGender){
+                    $query->orderBy('std_gender',$byGender);})
+
+                ->paginate( $showSize );
              return StudentResource::collection($students);
         }
 

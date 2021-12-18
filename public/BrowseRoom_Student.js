@@ -217,16 +217,51 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {},
   data: function data() {
     return {
       lists: [],
       campus: 'Gambang',
+      sort: '',
       location: '',
       price: {},
       gender: '',
       room: '',
+      toggle: false,
+      byID: '',
+      byGender: '',
+      showSize: 10,
+      page: 1,
+      lastPage: '',
+      pageInfo: '',
       top_btn_style: 'p-3 rounded bg-yellow-100 text-yellow-500 hover:bg-yellow-500 hover:text-white :active:bg-yellow-500 active:text-white active:outline-none transition duration-150 ease-in-out shadow-xl'
     };
   },
@@ -234,16 +269,22 @@ __webpack_require__.r(__webpack_exports__);
     getList: function getList() {
       var _this = this;
 
-      axios.get('/api/get_BrowseList/' + this.campus, {
+      var page = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1;
+      this.page = page;
+      axios.get('/api/get_BrowseList/' + this.campus + '?page=' + page, {
         params: {
           location: this.location,
           minPrice: this.price.min,
           maxPrice: this.price.max,
           gender: this.gender,
-          room: this.room
+          room: this.room,
+          sort: this.sort,
+          showSize: this.showSize
         }
       }).then(function (response) {
         _this.lists = response.data.data;
+        _this.pageInfo = response.data.meta;
+        _this.lastPage = response.data.meta.last_page;
         console.warn(_this.lists.data);
       });
     },
@@ -1238,8 +1279,91 @@ var render = function () {
           "max-w-5xl p-6 mx-auto mt-5 bg-gray-100 rounded-md mb-5 shadow-inner",
       },
       [
-        _c("span", [
-          _vm._v("Rooms for rent (" + _vm._s(_vm.lists.length) + "): "),
+        _c("div", { staticClass: "flex justify-between" }, [
+          _vm.page == "[object MouseEvent]"
+            ? _c(
+                "span",
+                { staticClass: "text-base font-bold flex justify-start" },
+                [
+                  _vm._v(
+                    "Rooms for rent (" +
+                      _vm._s(_vm.pageInfo.total) +
+                      ") | Showing Page 1 of " +
+                      _vm._s(_vm.lastPage) +
+                      " "
+                  ),
+                ]
+              )
+            : _c(
+                "span",
+                { staticClass: "text-base font-bold flex justify-start" },
+                [
+                  _vm._v(
+                    "Rooms for rent (" +
+                      _vm._s(_vm.pageInfo.total) +
+                      ") | Showing Page " +
+                      _vm._s(_vm.page) +
+                      " of " +
+                      _vm._s(_vm.lastPage) +
+                      " "
+                  ),
+                ]
+              ),
+          _vm._v(" "),
+          _c("div", { staticClass: "w-1/3 flex justify-end" }, [
+            _c(
+              "select",
+              {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.sort,
+                    expression: "sort",
+                  },
+                ],
+                staticClass:
+                  "focus:outline-none border-transparent cursor-pointer focus:border-gray-800 hover:bg-pink-200 focus:shadow-outline-gray text-base py-2 px-8 w-1/2 xl:px-3 rounded font-medium  appearance-none bg-transparent",
+                on: {
+                  change: function ($event) {
+                    var $$selectedVal = Array.prototype.filter
+                      .call($event.target.options, function (o) {
+                        return o.selected
+                      })
+                      .map(function (o) {
+                        var val = "_value" in o ? o._value : o.value
+                        return val
+                      })
+                    _vm.sort = $event.target.multiple
+                      ? $$selectedVal
+                      : $$selectedVal[0]
+                  },
+                },
+              },
+              [
+                _c(
+                  "option",
+                  {
+                    attrs: { selected: "", value: "" },
+                    on: { click: _vm.getList },
+                  },
+                  [_vm._v("Order By")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "option",
+                  { attrs: { value: "asc" }, on: { click: _vm.getList } },
+                  [_vm._v("Price: Lowest to Highest")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "option",
+                  { attrs: { value: "desc" }, on: { click: _vm.getList } },
+                  [_vm._v("Price: Highest to Lowest")]
+                ),
+              ]
+            ),
+          ]),
         ]),
         _vm._v(" "),
         _vm.lists.length == 0
@@ -1362,7 +1486,91 @@ var render = function () {
           }),
           0
         ),
-      ]
+        _vm._v(" "),
+        _c("center", [
+          _vm.pageInfo
+            ? _c("div", { staticClass: "mt-5 mb-5 flex justify-between " }, [
+                _c("div", { staticClass: "w-1/2 flex justify-start " }, [
+                  _c(
+                    "select",
+                    {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.showSize,
+                          expression: "showSize",
+                        },
+                      ],
+                      staticClass:
+                        "focus:outline-none border-transparent cursor-pointer focus:border-gray-800 hover:bg-pink-200 focus:shadow-outline-gray text-base py-2 px-8 w-1/2 xl:px-3 rounded font-medium  appearance-none bg-transparent",
+                      on: {
+                        change: function ($event) {
+                          var $$selectedVal = Array.prototype.filter
+                            .call($event.target.options, function (o) {
+                              return o.selected
+                            })
+                            .map(function (o) {
+                              var val = "_value" in o ? o._value : o.value
+                              return val
+                            })
+                          _vm.showSize = $event.target.multiple
+                            ? $$selectedVal
+                            : $$selectedVal[0]
+                        },
+                      },
+                    },
+                    [
+                      _c(
+                        "option",
+                        { attrs: { value: "10" }, on: { click: _vm.getList } },
+                        [_vm._v("Show Entries")]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "option",
+                        { attrs: { value: "10" }, on: { click: _vm.getList } },
+                        [_vm._v("10")]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "option",
+                        { attrs: { value: "20" }, on: { click: _vm.getList } },
+                        [_vm._v("20")]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "option",
+                        {
+                          attrs: { value: "100000" },
+                          on: { click: _vm.getList },
+                        },
+                        [_vm._v("All")]
+                      ),
+                    ]
+                  ),
+                ]),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  { staticClass: "w-1/2 flex justify-end " },
+                  [
+                    _c("Page", {
+                      attrs: {
+                        current: _vm.pageInfo.current_page,
+                        total: _vm.pageInfo.total,
+                        "page-size": parseInt(_vm.pageInfo.per_page),
+                      },
+                      on: { "on-change": _vm.getList },
+                    }),
+                  ],
+                  1
+                ),
+              ])
+            : _vm._e(),
+        ]),
+      ],
+      1
     ),
   ])
 }

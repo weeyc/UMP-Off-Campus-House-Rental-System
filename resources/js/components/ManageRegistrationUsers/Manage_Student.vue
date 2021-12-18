@@ -3,48 +3,22 @@
         <!-- change background here top table -->
         <div class="mx-auto container bg-white-500 dark:bg-gray-800 dark:bg-gray-800 shadow rounded " >
             <div class="flex flex-col lg:flex-row p-2 lg:p-8 justify-between items-start lg:items-stretch w-full shadow-inner" style="background-image: url(/images/BlueCoral.jpg);">
-                <div class="w-full lg:w-1/5 flex flex-col lg:flex-row items-start lg:items-center">
+                <div class="w-full flex flex-col lg:flex-row items-start lg:items-center">
                     <div class="flex items-center ">
                         <span class="text-xl font-black">MANAGE STUDENTS</span>
                     </div>
                 </div>
-                  <div class="w-full lg:w-1/5 flex flex-col lg:flex-row items-start lg:items-center ">
-                    <div class="flex items-center">
-                          <p class="font-medium text-dark-600 dark:text-gray-400" >  Showing Page {{ page }} of {{ lastPage }}</p>
+                  <div class="w-full flex flex-col lg:flex-row items-start lg:items-center ">
+                    <div v-if="pageInfo" class="flex items-center">
+                          <p v-if="page=='[object MouseEvent]'" class="font-medium text-dark-600 dark:text-gray-400" >  Showing Page 1 of {{ lastPage }}</p>
+                          <p v-else class="font-medium text-dark-600 dark:text-gray-400" >  Showing Page {{ page }} of {{ lastPage }}</p>
                     </div>
 
                 </div>
-                <div class="w-full lg:w-1/5 flex flex-col lg:flex-row items-start lg:items-center justify-end">
 
-                <div class="flex flex-col items-center my-12">
-                    <div class="flex text-gray-700">
-                        <div class="h-8 w-8 mr-1 flex justify-center items-center rounded-full bg-gray-200 cursor-pointe  shadow-lg hover:bg-pink-200">
-                            <button  @click="previousPg(page)"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-left w-4 h-4">
-                                <polyline points="15 18 9 12 15 6"></polyline>
-                            </svg>
-                             </button>
-                        </div>
 
-                        <div class="flex h-8  font-medium rounded-full bg-gray-200  shadow-lg ">
-                            <button class="w-8 md:flex justify-center items-center hidden cursor-pointer leading-5 transition duration-150 ease-in  rounded-full hover:bg-pink-200 " @click="firstPg()">1</button>
-                            <button class="w-8 md:flex justify-center items-center hidden cursor-pointer leading-5 transition duration-150 ease-in  rounded-full  disabled ">...</button>
-                            <button class="w-8 md:flex justify-center items-center hidden cursor-pointer leading-5 transition duration-150 ease-in  rounded-full hover:bg-pink-700 bg-pink-600 text-white " @click="currentPg()">{{ page }}</button>
-                            <button class="w-8 md:flex justify-center items-center hidden cursor-pointer leading-5 transition duration-150 ease-in  rounded-full   disabled">...</button>
-                            <button class="w-8 md:flex justify-center items-center hidden cursor-pointer leading-5 transition duration-150 ease-in  rounded-full hover:bg-pink-200"  @click="lastPg()">{{ lastPage }}</button>
-                            <button class="w-8 h-8 md:hidden flex justify-center items-center cursor-pointer leading-5 transition duration-150 ease-in rounded-full bg-pink-600 text-white hover:bg-pink-200">{{ page }}</button>
-                        </div>
-                        <div class="h-8 w-8 ml-1 flex justify-center items-center rounded-full bg-gray-200 cursor-pointer  shadow-lg hover:bg-pink-200">
-                              <button  @click="nextPg(page)"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right w-4 h-4">
-                                <polyline points="9 18 15 12 9 6"></polyline>
-                            </svg>
-                            </button>
-                        </div>
-                    </div>
-                </div>
 
-            </div>
-
-                <div class="w-full lg:w-1/5 flex flex-col lg:flex-row items-start lg:items-center justify-center">
+                <div class="w-full flex flex-col lg:flex-row items-start lg:items-center justify-center">
                         <div class="relative w-32 z-10">
                             <select  v-model="filterGender" class="focus:outline-none border-transparent cursor-pointer focus:border-gray-800 hover:bg-pink-200 focus:shadow-outline-gray text-base form-select block w-full py-2 px-2 xl:px-3 rounded font-medium dark:text-gray-400 appearance-none bg-transparent">
                                 <option value="">Gender</option>
@@ -64,11 +38,11 @@
                      <thead>
                             <tr class="border-b bg-pink-400 text-gray-900 uppercase text-base leading-normal"  style="background-image: url(/images/BlueCoral.jpg);">
                                 <th class="py-3 px-3 text-left">No.</th>
-                                <th class="py-3 px-6 text-left">User ID</th>
+                                <button  @click="sorting(1); " ><th class="py-3 px-6 text-left">User ID</th></button>
                                 <th class="py-3 px-6 text-left">Name</th>
                                 <th class="py-3 px-6 text-left">Email</th>
                                 <th class="py-3 px-6 text-left">Phone No.</th>
-                                <th class="py-3 px-6 text-left">Gender</th>
+                                <button @click="sorting(2)"> <th class="py-3 px-6 text-left">Gender</th></button>
                                 <th class="py-3 px-6 text-center">Actions</th>
                             </tr>
                         </thead>
@@ -134,7 +108,20 @@
                             </tr>
                         </tbody>
                 </table>
-
+                <center>
+                    <div v-if="pageInfo" class="center mt-5 mb-5 w-1/2 flex flex-col lg:flex-row items-start lg:items-center justify-center">
+                    <div class="w-1/2 flex flex-col lg:flex-row items-start lg:items-center justify-center">
+                            <select  v-model="showSize" class="focus:outline-none border-transparent cursor-pointer focus:border-gray-800 hover:bg-pink-200 focus:shadow-outline-gray text-base py-2 px-8 w-1/2 xl:px-3 rounded font-medium  appearance-none bg-transparent">
+                                <option @click="getStudent" value="10">Show Entries</option>
+                                <option @click="getStudent" value="10">10</option>
+                                <option @click="getStudent" value="20">20</option>
+                                <option @click="getStudent" value="50">50</option>
+                                <option @click="getStudent" value="100000">All</option>
+                            </select>
+                    </div>
+                    <Page :current="pageInfo.current_page" :total="pageInfo.total" :page-size="parseInt(pageInfo.per_page)" @on-change="getStudent"></Page>
+                    </div>
+                </center>
 
             </div>
         </div>
@@ -166,7 +153,12 @@ export default {
             lastPage: '',
             filterGender: '',
             filterName: '',
+            pageInfo: '',
 
+            toggle: false,
+            byID: '',
+            byGender: '',
+            showSize: 10,
 
             toggleModal: false,
 
@@ -205,47 +197,52 @@ export default {
     },
 
     methods: {
-          getStudent(){
-            axios.get('/api/get_std?page='+this.page).then((response)=>{
+          getStudent(page=1){
+                this.page=page;
+                axios.get('/api/get_std?page='+page,{
+                params: {
+                    byID: this.byID,
+                    byGender: this.byGender,
+                    showSize: this.showSize
+                }}).then((response)=>{
                 this.students=response.data.data;
                 console.warn(this.students.data);
                 })
             },
             getMeta(){
             axios.get('/api/get_std').then((response)=>{
-
+                this.pageInfo = response.data.meta
                 this.lastPage=response.data.meta.last_page
                 console.warn(response.data.meta.last_page);
                 })
 
             },
-        firstPg(){
-                this.page=1;
-                this.getStudent();
-            },
-        currentPg(){
-                this.page=this.page;
-                this.getStudent();
-            },
-        lastPg(){
-                this.page=this.lastPage;
-                this.getStudent();
-            },
-        nextPg(pg){
-               if(pg>=this.lastPage)
-                    this.page=this.lastPage;
-                else
-                     this.page=this.page + 1;
-                 this.getStudent();
-            },
-        previousPg(pg){
-                if(pg<=1){
-                     this.page=1;
+        sorting(q){
+            if(q==1){
+                this.toggle=!this.toggle;
+                if(this.toggle==true){
+                    this.byID='desc';
+                     this.getStudent();
+                }else if(this.toggle==false){
+                    this.byID='asc';
+                    this.getStudent();
                 }
-                else
-                    this.page=this.page -1;
-                 this.getStudent();
-            },
+                this.byID = '';
+            }else if(q==2){
+                 this.toggle=!this.toggle;
+                if(this.toggle==true){
+                    this.byGender='desc';
+                     this.getStudent();
+                }else if(this.toggle==false){
+                    this.byGender='asc';
+                    this.getStudent();
+                }
+                this.byGender = '';
+
+            }
+
+        },
+
         readUser(user){
             this.profile.id = user.id;
             this.profile.name = user.name;

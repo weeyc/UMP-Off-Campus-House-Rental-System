@@ -30,13 +30,16 @@
     },
     "dependencies": {
         "@headlessui/vue": "^1.4.2",
+        "alga-js": "0.0.9",
         "daisyui": "^1.16.5",
         "laravel-vue-pagination": "^2.3.1",
         "moment": "^2.29.1",
         "sweetalert2": "^11.3.0",
         "v-toaster": "^1.0.3",
         "vform": "^2.1.2",
+        "view-design": "^4.7.0",
         "vue-router": "^3.5.3",
+        "vue-table-dynamic": "^0.4.10",
         "vue2-datepicker": "^3.10.4",
         "vue2-google-maps": "^0.10.7",
         "vueperslides": "^2.15.2"

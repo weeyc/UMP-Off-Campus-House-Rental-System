@@ -36,6 +36,7 @@ Route::post('create_room', 'PropertyListController@create_Room');
 
 Route::get('get_properties_list/{campus}', 'PropertyListController@getPropList');
 Route::get('get_BrowseList/{campus}', 'PropertyListController@get_BrowseList');
+Route::get('get_payments/{id}/{role}', 'PaymentController@get_Payments');
 Route::get('get_Recommendation/{campus}', 'PropertyListController@get_Recommendation');
 Route::post('update_prop_status/{id}', 'PropertyListController@updatePropStatus');
 Route::post('create_booking/', 'PropertyListController@create_booking');

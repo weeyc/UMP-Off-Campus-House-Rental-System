@@ -59,7 +59,10 @@ Vue.use(VueGoogleMaps, {
   }
 });
 
+import ViewUI from 'view-design';
+import 'view-design/dist/styles/iview.css';
 
+Vue.use(ViewUI);
 
 const app = new Vue({
     el: '#app',
