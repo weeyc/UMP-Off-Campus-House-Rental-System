@@ -37,7 +37,6 @@
         "v-toaster": "^1.0.3",
         "vform": "^2.1.2",
         "vue-router": "^3.5.3",
-        "vue2-datepicker": "^3.10.4",
         "vue2-google-maps": "^0.10.7",
         "vueperslides": "^2.15.2"
     }

@@ -349,10 +349,7 @@ var render = function () {
   return _c("div", [
     _c(
       "div",
-      {
-        staticClass:
-          "max-w-5xl p-6 mx-auto mt-5 bg-gray-100 rounded-md mb-5 shadow-xl",
-      },
+      { staticClass: "max-w-5xl p-6 mx-auto mt-5 bg-gray-200 rounded-md mb-5" },
       [
         _c("span", [_vm._v("Selected Campus: " + _vm._s(_vm.campus))]),
         _vm._v(" "),
@@ -441,10 +438,7 @@ var render = function () {
     _vm._v(" "),
     _c(
       "div",
-      {
-        staticClass:
-          "max-w-5xl p-6 mx-auto mt-5 bg-gray-100 rounded-md mb-5 shadow-xl",
-      },
+      { staticClass: "max-w-5xl p-6 mx-auto mt-5 bg-gray-200 rounded-md mb-5" },
       [
         _c("div", { staticClass: "flex justify-start" }, [
           _c(
@@ -1233,10 +1227,7 @@ var render = function () {
     _vm._v(" "),
     _c(
       "div",
-      {
-        staticClass:
-          "max-w-5xl p-6 mx-auto mt-5 bg-gray-100 rounded-md mb-5 shadow-inner",
-      },
+      { staticClass: "max-w-5xl p-6 mx-auto mt-5 bg-gray-200 rounded-md mb-5" },
       [
         _c("span", [
           _vm._v("Rooms for rent (" + _vm._s(_vm.lists.length) + "): "),

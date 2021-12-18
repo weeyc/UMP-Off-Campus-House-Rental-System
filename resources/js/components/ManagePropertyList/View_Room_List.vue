@@ -1,9 +1,8 @@
 <template>
 <div>
      <!-- Top Section-->
-    <div class="max-w-6xl p-5 mx-auto mt-3 bg-gray-100 rounded-md mb-5 shadow-xl" >
-        <div class="bg-white rounded-md  shadow-xl">
-            <div class="mx-5 p-5">
+    <div class="max-w-6xl p-6 mx-auto mt-3 bg-gray-200 rounded-md mb-5" >
+        <div class="title top">
             <div class="flex justify-between item-center">
             <h1 class="text-2xl font-black text-gray-800"> {{ lists.listing_name }}</h1>
             <div class="text-xl bg-yellow-500 px-5 py-1 rounded-md shadow-sm font-bold text-white">{{lists.room_status}}</div>
@@ -20,50 +19,48 @@
                 <svg class="h-6 w-6 text-yellow-700"  width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">  <path stroke="none" d="M0 0h24v24H0z"/>  <path d="M3 7v11m0 -4h18m0 4v-8a2 2 0 0 0 -2 -2h-8v6" />  <circle cx="7" cy="10" r="1" /></svg>
                 <span class="ml-2 font-bold">   {{ lists.room_type }} | Preferable {{ lists.property.gender_preferences }}</span>
             </div>
+        </div>
 
+        <!-- Images Slide -->
+        <div class="flex items-center justify-center h-80 w-full overflow-hidden bg-gradient-to-b from-green-200 to-green-500">
+            <section class="flex items-stretch h-80 w-full text-white ">
+                <div class="relative items-center w-1/2 bg-gray-500 lg:flex">
 
-            <!-- Images Slide -->
-            <div class="flex items-center justify-center h-80 w-full overflow-hidden bg-gradient-to-b from-green-200 to-green-500">
-                <section class="flex items-stretch h-80 w-full text-white ">
-                    <div class="relative items-center w-1/2 bg-gray-500 lg:flex">
+                    <div class="border-double border-4 border-light-blue-500" style="width:100%;margin:10px auto;height:320px">
 
-                        <div class="border-double border-4 border-light-blue-500" style="width:100%;margin:10px auto;height:320px">
+                            <slider ref="slider" :options="options">
+                                <slideritem   v-for="(item,index) in propertyPhoto" :key="index" >
 
-                                <slider ref="slider" :options="options">
-                                    <slideritem   v-for="(item,index) in propertyPhoto" :key="index" >
+                                    <img class="h-70 w-full  relative" :src="'/images/Properties/'+item.photo_name" alt="Avatar"/>
+                                        <p class=" absolute bottom-0 text-xs text-black pt-5 bg-gray-200 w-full ">{{ item.photo_label }}</p>
+                                        <p class=" absolute top-0 text-base text-black pt-5 bg-gray-200 w-full ">House Photos:</p>
 
-                                        <img class="h-70 w-full  relative" :src="'/images/Properties/'+item.photo_name" alt="Avatar"/>
-                                            <p class=" absolute bottom-0 text-xs text-black pt-5 bg-gray-200 w-full ">{{ item.photo_label }}</p>
-                                            <p class=" absolute top-0 text-base text-black pt-5 bg-gray-200 w-full ">House Photos:</p>
-
-                                    </slideritem>
-                                    <div slot="loading">loading...</div>
-                                </slider>
-                        </div>
+                                </slideritem>
+                                <div slot="loading">loading...</div>
+                            </slider>
                     </div>
-                        <div class="relative items-center w-1/2 bg-gray-500 lg:flex">
+                </div>
+                      <div class="relative items-center w-1/2 bg-gray-500 lg:flex">
 
-                        <div class="border-double border-4 border-light-blue-500" style="width:100%;margin:10px auto;height:320px">
+                    <div class="border-double border-4 border-light-blue-500" style="width:100%;margin:10px auto;height:320px">
 
-                                <slider ref="slider" :options="options">
-                                    <slideritem   v-for="(item,index) in roomPhoto" :key="index" >
-                                        <img class="h-70 w-full  relative" :src="'/images/Properties/'+item.photo_name" alt="Avatar"/>
-                                        <p class=" absolute top-0 text-base text-black pt-5 bg-gray-200 w-full ">Room Photos:</p>
-                                    </slideritem>
-                                    <div slot="loading">loading...</div>
-                                </slider>
-                        </div>
+                            <slider ref="slider" :options="options">
+                                <slideritem   v-for="(item,index) in roomPhoto" :key="index" >
+                                    <img class="h-70 w-full  relative" :src="'/images/Properties/'+item.photo_name" alt="Avatar"/>
+                                     <p class=" absolute top-0 text-base text-black pt-5 bg-gray-200 w-full ">Room Photos:</p>
+                                </slideritem>
+                                <div slot="loading">loading...</div>
+                            </slider>
                     </div>
-                </section>
-            </div>
-            </div>
+                </div>
+            </section>
         </div>
     </div>
      <!-- Top Section end-->
 
 
     <!-- Body section -->
-    <div class="max-w-6xl p-6 mx-auto mt-3  mb-5 bg-gray-100 rounded-md shadow-xl" >
+    <div class="max-w-6xl p-6 mx-auto mt-3 rounded-md mb-5 bg-gray-200" >
         <div  class="body">
         <div class="flex flex-col lg:grid lg:gap-4 lg:grid-cols-3">
             <!-- Beginning of the Description -->
@@ -212,7 +209,7 @@
 
 
     <!-- Recommendations -->
-    <div class="max-w-6xl p-6 mx-auto mt-3  bg-gray-100 rounded-md shadow-xl mb-5" >
+    <div class="max-w-6xl p-6 mx-auto mt-3 bg-gray-200 rounded-md mb-5" >
              <div class="flex justify-between item-center">
                 <button @click="getRecommendation"><h1 class="text-2xl font-black text-gray-800 dark:text-white">Recommended Rooms</h1></button>
             </div>
