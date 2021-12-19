@@ -37,10 +37,13 @@ Route::post('create_room', 'PropertyListController@create_Room');
 Route::get('get_properties_list/{campus}', 'PropertyListController@getPropList');
 Route::get('get_BrowseList/{campus}', 'PropertyListController@get_BrowseList');
 Route::get('get_payments/{id}/{role}', 'PaymentController@get_Payments');
+Route::get('get_bookings/{id}/{role}', 'PaymentController@get_bookings');
 Route::get('get_Recommendation/{campus}', 'PropertyListController@get_Recommendation');
 Route::post('update_prop_status/{id}', 'PropertyListController@updatePropStatus');
+Route::post('cancel_booking/{id}', 'PaymentController@cancel_booking');
 Route::post('create_booking/', 'PropertyListController@create_booking');
 Route::delete('delete_property/{id}', 'PropertyListController@delete_Property');
+Route::delete('delete_booking/{id}', 'PaymentController@delete_booking');
 Route::get('get_room_list/{id}', 'PropertyListController@get_RoomList');
 
 

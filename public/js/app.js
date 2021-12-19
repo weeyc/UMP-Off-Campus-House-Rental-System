@@ -43,7 +43,7 @@
 /******/
 /******/ 	// script path function
 /******/ 	function jsonpScriptSrc(chunkId) {
-/******/ 		return __webpack_require__.p + "" + ({"Add_Property~Property_Landlord~Room_Landlord":"Add_Property~Property_Landlord~Room_Landlord","Add_Property":"Add_Property","BrowseRoom_Student":"BrowseRoom_Student","Landing_Staff":"Landing_Staff","ManageProperties_Staff":"ManageProperties_Staff","Manage_Landlord":"Manage_Landlord","Manage_Staff":"Manage_Staff","Manage_Student":"Manage_Student","NotFound":"NotFound","Payment_Student":"Payment_Student","Profile_Edit~Profile_View":"Profile_Edit~Profile_View","Profile_Edit":"Profile_Edit","Profile_View":"Profile_View","PropertyList_landlord":"PropertyList_landlord","Tab_Staff_Users":"Tab_Staff_Users","vendors~Property_Landlord~Room_Landlord~View_Room_List":"vendors~Property_Landlord~Room_Landlord~View_Room_List","Property_Landlord":"Property_Landlord","Room_Landlord":"Room_Landlord","vendors~View_Room_List":"vendors~View_Room_List","View_Room_List":"View_Room_List"}[chunkId]||chunkId) + ".js"
+/******/ 		return __webpack_require__.p + "" + ({"Add_Property~Property_Landlord~Room_Landlord":"Add_Property~Property_Landlord~Room_Landlord","Add_Property":"Add_Property","BrowseRoom_Student":"BrowseRoom_Student","Landing_Staff":"Landing_Staff","ManageProperties_Staff":"ManageProperties_Staff","Manage_Landlord":"Manage_Landlord","Manage_Staff":"Manage_Staff","Manage_Student":"Manage_Student","NotFound":"NotFound","Payment_Student":"Payment_Student","Profile_Edit~Profile_View":"Profile_Edit~Profile_View","Profile_Edit":"Profile_Edit","Profile_View":"Profile_View","PropertyList_landlord":"PropertyList_landlord","Tab_Staff_Users":"Tab_Staff_Users","Tab_Student_Payment":"Tab_Student_Payment","vendors~Booking_Student~View_Room_List":"vendors~Booking_Student~View_Room_List","Booking_Student":"Booking_Student","vendors~Property_Landlord~Room_Landlord~View_Room_List":"vendors~Property_Landlord~Room_Landlord~View_Room_List","Property_Landlord":"Property_Landlord","Room_Landlord":"Room_Landlord","vendors~View_Room_List":"vendors~View_Room_List","View_Room_List":"View_Room_List"}[chunkId]||chunkId) + ".js"
 /******/ 	}
 /******/
 /******/ 	// The require function
@@ -74013,7 +74013,7 @@ var render = function () {
                     "focus:outline-none flex jusitfy-start  py-3 items-center space-x-6 w-full",
                   class: [_vm.hover],
                   attrs: {
-                    to: { name: "std_payments" },
+                    to: { name: "payment_std" },
                     "active-class": "active",
                   },
                 },
@@ -94444,11 +94444,19 @@ var BrowseRoom_Student = function BrowseRoom_Student() {
 };
 
 var View_Room_List = function View_Room_List() {
-  return Promise.all(/*! import() | View_Room_List */[__webpack_require__.e("vendors~Property_Landlord~Room_Landlord~View_Room_List"), __webpack_require__.e("vendors~View_Room_List"), __webpack_require__.e("View_Room_List")]).then(__webpack_require__.bind(null, /*! ./components/ManagePropertyList/View_Room_List */ "./resources/js/components/ManagePropertyList/View_Room_List.vue"));
+  return Promise.all(/*! import() | View_Room_List */[__webpack_require__.e("vendors~Property_Landlord~Room_Landlord~View_Room_List"), __webpack_require__.e("vendors~Booking_Student~View_Room_List"), __webpack_require__.e("vendors~View_Room_List"), __webpack_require__.e("View_Room_List")]).then(__webpack_require__.bind(null, /*! ./components/ManagePropertyList/View_Room_List */ "./resources/js/components/ManagePropertyList/View_Room_List.vue"));
 };
 
 var Payment_Student = function Payment_Student() {
   return __webpack_require__.e(/*! import() | Payment_Student */ "Payment_Student").then(__webpack_require__.bind(null, /*! ./components/ManagePayment/Payment_Student */ "./resources/js/components/ManagePayment/Payment_Student.vue"));
+};
+
+var Booking_Student = function Booking_Student() {
+  return Promise.all(/*! import() | Booking_Student */[__webpack_require__.e("vendors~Booking_Student~View_Room_List"), __webpack_require__.e("Booking_Student")]).then(__webpack_require__.bind(null, /*! ./components/ManagePayment/Booking_Student */ "./resources/js/components/ManagePayment/Booking_Student.vue"));
+};
+
+var Tab_Student_Payment = function Tab_Student_Payment() {
+  return __webpack_require__.e(/*! import() | Tab_Student_Payment */ "Tab_Student_Payment").then(__webpack_require__.bind(null, /*! ./components/Layouts/Tab_Student_Payment */ "./resources/js/components/Layouts/Tab_Student_Payment.vue"));
 };
 
 var NotFound = function NotFound() {
@@ -94561,10 +94569,24 @@ var NotFound = function NotFound() {
     path: '/student/view-profile/:role/:id',
     name: 'std_profile_view',
     component: Profile_View
-  }, {
+  }, // {
+  //     path: '/student/payments',
+  //     name: 'std_payments',
+  //     component: Payment_Student,
+  // },
+  {
     path: '/student/payments',
     name: 'std_payments',
-    component: Payment_Student
+    component: Tab_Student_Payment,
+    children: [{
+      path: '',
+      name: 'payment_std',
+      component: Payment_Student
+    }, {
+      path: 'booking',
+      name: 'std_booking',
+      component: Booking_Student
+    }]
   }]
 });
 

@@ -121,7 +121,7 @@
             <div class="mx-5 my-5">
                     <div class="w-full flex flex-row justify-center items-center">
                         <div class="card w-96 mx-autorounded-md shadow-xl hover:shadow rounded-sm bg-gradient-to-br from-cool-gray-900 to-blue-gray-600">
-                            <img class=" h-28 w-28 object-cover mx-auto rounded-full -mt-14 border-4 border-blue-500  " :src="'/images/Profile/'+lists.property.land.landlord_pic" alt="Avatar">
+                            <img class=" h-28 w-28 object-cover mx-auto rounded-full -mt-14 border-2 border-blue-500  " :src="'/images/Profile/'+lists.property.land.landlord_pic" alt="Avatar">
 
                             <div class="text-center mt-2 text-3xl cursor-pointer text-yellow-500 font-medium hover:underline hover:text-blue-500">
                                 <router-link :to="{ name: 'std_profile_view', params:{role: 2, id: lists.landlord_id}}" target="_blank" >{{ lists.property.land.landlord_name}}</router-link >
@@ -179,9 +179,14 @@
                             </div>
                             </div>
 
-                            <div class="flex mx-5 my-5">
+                            <div v-if="lists.room_status!='rented'" class="flex mx-5 my-5">
                                 <div class="w-full text-center ">
                                     <button @click="toggleModal = !toggleModal" class="p-3 font-bold rounded-full text-green-900 bg-green-100 hover:bg-green-500 hover:text-white transition duration-150 ease-in-out shadow-xl w-full">Book Room Now</button>
+                                </div>
+                            </div>
+                            <div v-else class="flex mx-5 my-5">
+                                <div class="w-full text-center ">
+                                    <button @click="toastBook" class="p-3 font-bold rounded-full text-black bg-gray-100 hover:bg-gray-500 hover:text-white transition duration-150 ease-in-out shadow-xl w-full">Book Room Now</button>
                                 </div>
                             </div>
                         </div>
@@ -331,6 +336,9 @@ export default {
                 this.roomPhoto = response.data.data[0].photo_room;
                 console.warn(this.lists.data);
             })
+        },
+        toastBook(){
+             this.$toaster.info('This Room is Rented Out')
         },
         getRecommendation(){
             if(this.price>=0 && this.price <=200){

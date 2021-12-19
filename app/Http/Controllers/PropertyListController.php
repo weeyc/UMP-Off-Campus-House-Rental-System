@@ -133,6 +133,7 @@ class PropertyListController extends Controller
         $Booking ->phone = $request ->phone_no;
         $Booking ->booking_fees = $request ->booking_fees;
         $Booking ->move_in_date = $request ->move_in_date;
+        $Booking ->booking_status = 'Booked';
         $Booking ->save();
         $Booking_ID =  $Booking->getKey();
 

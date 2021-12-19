@@ -23,6 +23,8 @@ const Dashboard_Student = () => import(/* webpackChunkName: "Landing_Staff" */'.
 const BrowseRoom_Student = () => import(/* webpackChunkName: "BrowseRoom_Student" */'./components/ManagePropertyList/BrowseRoom_Student');
 const View_Room_List = () => import(/* webpackChunkName: "View_Room_List" */'./components/ManagePropertyList/View_Room_List');
 const Payment_Student = () => import(/* webpackChunkName: "Payment_Student" */'./components/ManagePayment/Payment_Student');
+const Booking_Student = () => import(/* webpackChunkName: "Booking_Student" */'./components/ManagePayment/Booking_Student');
+const Tab_Student_Payment = () => import(/* webpackChunkName: "Tab_Student_Payment" */'./components/Layouts/Tab_Student_Payment');
 
 
 const NotFound = () => import(/* webpackChunkName: "NotFound" */'./components/NotFound');
@@ -173,10 +175,27 @@ export default{
             name: 'std_profile_view',
             component: Profile_View,
         },
+        // {
+        //     path: '/student/payments',
+        //     name: 'std_payments',
+        //     component: Payment_Student,
+        // },
         {
             path: '/student/payments',
             name: 'std_payments',
-            component: Payment_Student,
+            component: Tab_Student_Payment,
+            children: [
+                {
+                    path: '',
+                    name: 'payment_std',
+                    component: Payment_Student,
+                },
+                {
+                    path: 'booking',
+                    name: 'std_booking',
+                    component: Booking_Student,
+                },
+            ]
         },
 
 

@@ -804,6 +804,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 
@@ -857,6 +862,9 @@ __webpack_require__.r(__webpack_exports__);
         _this.roomPhoto = response.data.data[0].photo_room;
         console.warn(_this.lists.data);
       });
+    },
+    toastBook: function toastBook() {
+      this.$toaster.info('This Room is Rented Out');
     },
     getRecommendation: function getRecommendation() {
       var _this2 = this;
@@ -2654,7 +2662,7 @@ var render = function () {
                             [
                               _c("img", {
                                 staticClass:
-                                  " h-28 w-28 object-cover mx-auto rounded-full -mt-14 border-4 border-blue-500  ",
+                                  " h-28 w-28 object-cover mx-auto rounded-full -mt-14 border-2 border-blue-500  ",
                                 attrs: {
                                   src:
                                     "/images/Profile/" +
@@ -2752,7 +2760,7 @@ var render = function () {
                                 },
                                 [
                                   _vm._v(
-                                    "\r\n                                Room Rental Details\r\n                            "
+                                    "\n                                Room Rental Details\n                            "
                                   ),
                                 ]
                               ),
@@ -2831,27 +2839,46 @@ var render = function () {
                                 _vm._m(3),
                               ]),
                               _vm._v(" "),
-                              _c("div", { staticClass: "flex mx-5 my-5" }, [
-                                _c(
-                                  "div",
-                                  { staticClass: "w-full text-center " },
-                                  [
+                              _vm.lists.room_status != "rented"
+                                ? _c("div", { staticClass: "flex mx-5 my-5" }, [
                                     _c(
-                                      "button",
-                                      {
-                                        staticClass:
-                                          "p-3 font-bold rounded-full text-green-900 bg-green-100 hover:bg-green-500 hover:text-white transition duration-150 ease-in-out shadow-xl w-full",
-                                        on: {
-                                          click: function ($event) {
-                                            _vm.toggleModal = !_vm.toggleModal
+                                      "div",
+                                      { staticClass: "w-full text-center " },
+                                      [
+                                        _c(
+                                          "button",
+                                          {
+                                            staticClass:
+                                              "p-3 font-bold rounded-full text-green-900 bg-green-100 hover:bg-green-500 hover:text-white transition duration-150 ease-in-out shadow-xl w-full",
+                                            on: {
+                                              click: function ($event) {
+                                                _vm.toggleModal =
+                                                  !_vm.toggleModal
+                                              },
+                                            },
                                           },
-                                        },
-                                      },
-                                      [_vm._v("Book Room Now")]
+                                          [_vm._v("Book Room Now")]
+                                        ),
+                                      ]
                                     ),
-                                  ]
-                                ),
-                              ]),
+                                  ])
+                                : _c("div", { staticClass: "flex mx-5 my-5" }, [
+                                    _c(
+                                      "div",
+                                      { staticClass: "w-full text-center " },
+                                      [
+                                        _c(
+                                          "button",
+                                          {
+                                            staticClass:
+                                              "p-3 font-bold rounded-full text-black bg-gray-100 hover:bg-gray-500 hover:text-white transition duration-150 ease-in-out shadow-xl w-full",
+                                            on: { click: _vm.toastBook },
+                                          },
+                                          [_vm._v("Book Room Now")]
+                                        ),
+                                      ]
+                                    ),
+                                  ]),
                             ]
                           ),
                         ]
@@ -3120,13 +3147,13 @@ var staticRenderFns = [
     return _c("div", { staticClass: "text-sm text-indigo-200 font-light" }, [
       _c("div", { staticClass: "mt-5" }, [
         _vm._v(
-          "\r\n                                    The booking fees counted as 1st month of rental\r\n                                "
+          "\n                                    The booking fees counted as 1st month of rental\n                                "
         ),
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "mt-5" }, [
         _vm._v(
-          "\r\n                                    Monthly rental bills will be issues starting on 2nd months of rental\r\n                                "
+          "\n                                    Monthly rental bills will be issues starting on 2nd months of rental\n                                "
         ),
       ]),
       _vm._v(" "),
