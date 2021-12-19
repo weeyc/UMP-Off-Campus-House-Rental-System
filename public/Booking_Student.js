@@ -792,7 +792,7 @@ var render = function () {
                                       "button",
                                       {
                                         staticClass:
-                                          "p-3 font-bold rounded-full text-green-900 bg-green-100 hover:bg-green-500 hover:text-white transition duration-150 ease-in-out shadow-xl w-full",
+                                          "p-3 font-bold rounded-full text-red-900 bg-red-200 hover:bg-red-500 hover:text-white transition duration-150 ease-in-out shadow-xl w-full",
                                         on: {
                                           click: function ($event) {
                                             return _vm.cancelBooking(

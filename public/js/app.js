@@ -43,7 +43,7 @@
 /******/
 /******/ 	// script path function
 /******/ 	function jsonpScriptSrc(chunkId) {
-/******/ 		return __webpack_require__.p + "" + ({"Add_Property~Property_Landlord~Room_Landlord":"Add_Property~Property_Landlord~Room_Landlord","Add_Property":"Add_Property","BrowseRoom_Student":"BrowseRoom_Student","Landing_Staff":"Landing_Staff","ManageProperties_Staff":"ManageProperties_Staff","Manage_Landlord":"Manage_Landlord","Manage_Staff":"Manage_Staff","Manage_Student":"Manage_Student","NotFound":"NotFound","Payment_Student":"Payment_Student","Profile_Edit~Profile_View":"Profile_Edit~Profile_View","Profile_Edit":"Profile_Edit","Profile_View":"Profile_View","PropertyList_landlord":"PropertyList_landlord","Tab_Staff_Users":"Tab_Staff_Users","Tab_Student_Payment":"Tab_Student_Payment","vendors~Booking_Student~View_Room_List":"vendors~Booking_Student~View_Room_List","Booking_Student":"Booking_Student","vendors~Property_Landlord~Room_Landlord~View_Room_List":"vendors~Property_Landlord~Room_Landlord~View_Room_List","Property_Landlord":"Property_Landlord","Room_Landlord":"Room_Landlord","vendors~View_Room_List":"vendors~View_Room_List","View_Room_List":"View_Room_List"}[chunkId]||chunkId) + ".js"
+/******/ 		return __webpack_require__.p + "" + ({"Add_Property~Property_Landlord~Room_Landlord":"Add_Property~Property_Landlord~Room_Landlord","Add_Property":"Add_Property","BrowseRoom_Student":"BrowseRoom_Student","Landing_Staff":"Landing_Staff","ManageProperties_Staff":"ManageProperties_Staff","Manage_Landlord":"Manage_Landlord","Manage_Staff":"Manage_Staff","Manage_Student":"Manage_Student","NotFound":"NotFound","Profile_Edit~Profile_View":"Profile_Edit~Profile_View","Profile_Edit":"Profile_Edit","Profile_View":"Profile_View","PropertyList_landlord":"PropertyList_landlord","RentalRoom_student":"RentalRoom_student","Tab_Staff_Users":"Tab_Staff_Users","Tab_Student_Payment":"Tab_Student_Payment","vendors~Booking_Student~Payment_Student~View_Room_List":"vendors~Booking_Student~Payment_Student~View_Room_List","Booking_Student":"Booking_Student","Payment_Student":"Payment_Student","vendors~Property_Landlord~Room_Landlord~View_Room_List":"vendors~Property_Landlord~Room_Landlord~View_Room_List","vendors~View_Room_List":"vendors~View_Room_List","View_Room_List":"View_Room_List","Property_Landlord":"Property_Landlord","Room_Landlord":"Room_Landlord"}[chunkId]||chunkId) + ".js"
 /******/ 	}
 /******/
 /******/ 	// The require function
@@ -2852,7 +2852,219 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//import Notification from './Notification.vue';
 /* harmony default export */ __webpack_exports__["default"] = ({
+  component: {// Notification,
+  },
   props: {
     user_id: Number,
     role: Number
@@ -2860,12 +3072,34 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       userProfile: [],
+      toggleNoti: false,
       transition: '',
       indicator: false,
       hover: 'text-gray-100 hover:text-yellow-500 focus:text-yellow-500 border-l-4 pl-4'
     };
   },
   methods: {
+    notificationHandler: function notificationHandler(flag) {
+      var notification = this.$refs.notification;
+      var checdiv = this.$refs.chec; // let flag3 = false;
+
+      if (!flag) {
+        notification.classList.add("translate-x-full");
+        notification.classList.remove("translate-x-0");
+        setTimeout(function () {
+          checdiv.classList.add("hidden");
+        }, 500);
+        flag = true;
+      } else {
+        setTimeout(function () {
+          notification.classList.remove("translate-x-full");
+          notification.classList.add("translate-x-0");
+        }, 50);
+        checdiv.classList.remove("hidden");
+        flag = false;
+      } // this.toggleNoti=false;
+
+    },
     showNav: function showNav() {
       this.indicator = !this.indicator;
 
@@ -71235,6 +71469,104 @@ if(false) {}
 
 /***/ }),
 
+/***/ "./node_modules/vue-html-to-paper/dist/index.js":
+/*!******************************************************!*\
+  !*** ./node_modules/vue-html-to-paper/dist/index.js ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, '__esModule', { value: true });
+
+function addStyles (win, styles) {
+  styles.forEach(style => {
+    let link = win.document.createElement('link');
+    link.setAttribute('rel', 'stylesheet');
+    link.setAttribute('type', 'text/css');
+    link.setAttribute('href', style);
+    win.document.getElementsByTagName('head')[0].appendChild(link);
+  });
+}
+
+function openWindow (url, name, props) {
+  let windowRef = null;
+  windowRef = window.open(url, name, props);
+  if (!windowRef.opener) {
+    windowRef.opener = self;
+  }
+  windowRef.focus();
+  return windowRef;
+}
+  
+const VueHtmlToPaper = {
+  install (Vue, options = {}) {
+    Vue.prototype.$htmlToPaper = (el, localOptions, cb = () => true) => {
+      let defaultName = '_blank', 
+        defaultSpecs = ['fullscreen=yes','titlebar=yes', 'scrollbars=yes'],
+        defaultReplace = true,
+        defaultStyles = [];
+      let {
+        name = defaultName,
+        specs = defaultSpecs,
+        replace = defaultReplace,
+        styles = defaultStyles,
+      } = options;
+
+      // If has localOptions
+      // TODO: improve logic
+      if (!!localOptions) {
+        if (localOptions.name) name = localOptions.name;
+        if (localOptions.specs) specs = localOptions.specs;
+        if (localOptions.replace) replace = localOptions.replace;
+        if (localOptions.styles) styles = localOptions.styles;
+      }
+
+      specs = !!specs.length ? specs.join(',') : '';
+
+      const element = window.document.getElementById(el);
+
+      if (!element) {
+        alert(`Element to print #${el} not found!`);
+        return;
+      }
+      
+      const url = '';
+      const win = openWindow(url, name, specs);
+
+      win.document.write(`
+        <html>
+          <head>
+            <title>${window.document.title}</title>
+          </head>
+          <body>
+            ${element.innerHTML}
+          </body>
+        </html>
+      `);
+
+      addStyles(win, styles);
+      
+      setTimeout(() => {
+        win.document.close();
+        win.focus();
+        win.print();
+        setTimeout(function () {window.close();}, 1);
+        cb();
+      }, 1000);
+        
+      return true;
+    };
+  },
+};
+
+exports.default = VueHtmlToPaper;
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/index.js?!./node_modules/vue2-google-maps/dist/components/autocomplete.vue?vue&type=script&lang=js&":
 /*!***************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib??vue-loader-options!./node_modules/vue2-google-maps/dist/components/autocomplete.vue?vue&type=script&lang=js& ***!
@@ -73959,11 +74291,15 @@ var render = function () {
               ),
               _vm._v(" "),
               _c(
-                "button",
+                "router-link",
                 {
                   staticClass:
                     "focus:outline-none flex jusitfy-start  py-3 items-center space-x-6 w-full",
                   class: [_vm.hover],
+                  attrs: {
+                    to: { name: "RentalRoom_student" },
+                    "active-class": "active",
+                  },
                 },
                 [
                   _c(
@@ -74001,7 +74337,7 @@ var render = function () {
                   ),
                   _vm._v(" "),
                   _c("p", { staticClass: "text-base leading-4" }, [
-                    _vm._v("My Rental Property"),
+                    _vm._v("Rental Room"),
                   ]),
                 ]
               ),
@@ -74053,7 +74389,7 @@ var render = function () {
                   ),
                   _vm._v(" "),
                   _c("p", { staticClass: "text-base leading-4" }, [
-                    _vm._v("My Payment"),
+                    _vm._v("My Payments"),
                   ]),
                 ]
               ),
@@ -74194,6 +74530,12 @@ var render = function () {
                   staticClass:
                     "focus:outline-none flex jusitfy-start  py-3 items-center space-x-6 w-full",
                   class: [_vm.hover],
+                  on: {
+                    click: function ($event) {
+                      _vm.toggleNoti = !_vm.toggleNoti
+                      _vm.notificationHandler(true)
+                    },
+                  },
                 },
                 [
                   _c(
@@ -74413,6 +74755,217 @@ var render = function () {
           1
         ),
         _vm._v(" "),
+        _c("div", { staticClass: "flex justify-items-end justify-end z-10" }, [
+          _c(
+            "div",
+            {
+              ref: "chec",
+              staticClass:
+                "w-full h-full bg-gray-800 bg-opacity-90 top-0 overflow-y-auto overflow-x-hidden fixed sticky-0 hidden",
+              attrs: { id: "chec-div" },
+            },
+            [
+              _c(
+                "div",
+                {
+                  ref: "notification",
+                  staticClass:
+                    "w-full absolute z-10 right-0 h-full overflow-x-hidden transform translate-x-0 transition ease-in-out duration-700",
+                  attrs: { id: "notification" },
+                },
+                [
+                  _c(
+                    "div",
+                    {
+                      staticClass:
+                        "\n            2xl:w-4/12\n            bg-gray-50\n            h-screen\n            overflow-y-auto\n            p-8\n            absolute\n            right-0\n          ",
+                    },
+                    [
+                      _c(
+                        "div",
+                        { staticClass: "flex items-center justify-between" },
+                        [
+                          _c(
+                            "p",
+                            {
+                              staticClass:
+                                "\n                focus:outline-none\n                text-2xl\n                font-semibold\n                leading-6\n                text-gray-800\n              ",
+                              attrs: { tabindex: "0" },
+                            },
+                            [
+                              _vm._v(
+                                "\n              Notifications\n            "
+                              ),
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "button",
+                            {
+                              staticClass:
+                                "\n                focus:outline-none\n                focus:ring-2 focus:ring-offset-2 focus:ring-gray-500\n                rounded-md\n                cursor-pointer\n              ",
+                              attrs: {
+                                role: "button",
+                                "aria-label": "close modal",
+                              },
+                              on: {
+                                click: function ($event) {
+                                  return _vm.notificationHandler(false)
+                                },
+                              },
+                            },
+                            [
+                              _c(
+                                "svg",
+                                {
+                                  attrs: {
+                                    width: "24",
+                                    height: "24",
+                                    viewBox: "0 0 24 24",
+                                    fill: "none",
+                                    xmlns: "http://www.w3.org/2000/svg",
+                                  },
+                                },
+                                [
+                                  _c("path", {
+                                    attrs: {
+                                      d: "M18 6L6 18",
+                                      stroke: "#4B5563",
+                                      "stroke-width": "1.25",
+                                      "stroke-linecap": "round",
+                                      "stroke-linejoin": "round",
+                                    },
+                                  }),
+                                  _vm._v(" "),
+                                  _c("path", {
+                                    attrs: {
+                                      d: "M6 6L18 18",
+                                      stroke: "#4B5563",
+                                      "stroke-width": "1.25",
+                                      "stroke-linecap": "round",
+                                      "stroke-linejoin": "round",
+                                    },
+                                  }),
+                                ]
+                              ),
+                            ]
+                          ),
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "longsheet" }, [
+                        _c(
+                          "div",
+                          {
+                            staticClass:
+                              "w-full p-3 mt-8 bg-white rounded flex",
+                          },
+                          [
+                            _c(
+                              "div",
+                              {
+                                staticClass:
+                                  "\n                focus:outline-none\n                w-8\n                h-8\n                border\n                rounded-full\n                border-gray-200\n                flex\n                items-center\n                justify-center\n              ",
+                                attrs: {
+                                  tabindex: "0",
+                                  "aria-label": "heart icon",
+                                  role: "img",
+                                },
+                              },
+                              [
+                                _c(
+                                  "svg",
+                                  {
+                                    attrs: {
+                                      width: "16",
+                                      height: "16",
+                                      viewBox: "0 0 16 16",
+                                      fill: "none",
+                                      xmlns: "http://www.w3.org/2000/svg",
+                                    },
+                                  },
+                                  [
+                                    _c("path", {
+                                      attrs: {
+                                        d: "M8.00059 3.01934C9.56659 1.61334 11.9866 1.66 13.4953 3.17134C15.0033 4.68334 15.0553 7.09133 13.6526 8.662L7.99926 14.3233L2.34726 8.662C0.944589 7.09133 0.997256 4.67934 2.50459 3.17134C4.01459 1.662 6.42992 1.61134 8.00059 3.01934Z",
+                                        fill: "#EF4444",
+                                      },
+                                    }),
+                                  ]
+                                ),
+                              ]
+                            ),
+                            _vm._v(" "),
+                            _vm._m(2),
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          {
+                            staticClass:
+                              "w-full p-3 mt-4 bg-white rounded shadow flex flex-shrink-0",
+                          },
+                          [
+                            _c(
+                              "div",
+                              {
+                                staticClass:
+                                  "\n                focus:outline-none\n                w-8\n                h-8\n                border\n                rounded-full\n                border-gray-200\n                flex flex-shrink-0\n                items-center\n                justify-center\n              ",
+                                attrs: {
+                                  tabindex: "0",
+                                  "aria-label": "group icon",
+                                  role: "img",
+                                },
+                              },
+                              [
+                                _c(
+                                  "svg",
+                                  {
+                                    attrs: {
+                                      width: "16",
+                                      height: "16",
+                                      viewBox: "0 0 16 16",
+                                      fill: "none",
+                                      xmlns: "http://www.w3.org/2000/svg",
+                                    },
+                                  },
+                                  [
+                                    _c("path", {
+                                      attrs: {
+                                        d: "M1.33325 14.6667C1.33325 13.2522 1.89516 11.8956 2.89535 10.8954C3.89554 9.89523 5.2521 9.33333 6.66659 9.33333C8.08107 9.33333 9.43763 9.89523 10.4378 10.8954C11.438 11.8956 11.9999 13.2522 11.9999 14.6667H1.33325ZM6.66659 8.66666C4.45659 8.66666 2.66659 6.87666 2.66659 4.66666C2.66659 2.45666 4.45659 0.666664 6.66659 0.666664C8.87659 0.666664 10.6666 2.45666 10.6666 4.66666C10.6666 6.87666 8.87659 8.66666 6.66659 8.66666ZM11.5753 10.1553C12.595 10.4174 13.5061 10.9946 14.1788 11.8046C14.8515 12.6145 15.2515 13.6161 15.3219 14.6667H13.3333C13.3333 12.9267 12.6666 11.3427 11.5753 10.1553ZM10.2266 8.638C10.7852 8.13831 11.232 7.52622 11.5376 6.84183C11.8432 6.15743 12.0008 5.41619 11.9999 4.66666C12.0013 3.75564 11.7683 2.85958 11.3233 2.06466C12.0783 2.21639 12.7576 2.62491 13.2456 3.2208C13.7335 3.81668 14.0001 4.56315 13.9999 5.33333C14.0001 5.80831 13.8987 6.27784 13.7027 6.71045C13.5066 7.14306 13.2203 7.52876 12.863 7.84169C12.5056 8.15463 12.0856 8.38757 11.6309 8.52491C11.1762 8.66224 10.6974 8.7008 10.2266 8.638Z",
+                                        fill: "#047857",
+                                      },
+                                    }),
+                                  ]
+                                ),
+                              ]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "h2",
+                              {
+                                staticClass:
+                                  "\n              focus:outline-none\n              text-sm\n              leading-normal\n              pt-8\n              border-b\n              pb-2\n              border-gray-300\n              text-gray-600\n            ",
+                                attrs: { tabindex: "0" },
+                              },
+                              [_vm._v("\n            YESTERDAY\n          ")]
+                            ),
+                            _vm._v(" "),
+                            _vm._m(3),
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _vm._m(4),
+                      ]),
+                    ]
+                  ),
+                ]
+              ),
+            ]
+          ),
+        ]),
+        _vm._v(" "),
         _c(
           "div",
           {
@@ -74455,6 +75008,87 @@ var staticRenderFns = [
         ]),
       ]
     )
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "pl-3" }, [
+      _c(
+        "p",
+        {
+          staticClass: "focus:outline-none text-sm leading-none",
+          attrs: { tabindex: "0" },
+        },
+        [
+          _c("span", { staticClass: "text-indigo-700" }, [_vm._v("James Doe")]),
+          _vm._v(" favourited an\n                "),
+          _c("span", { staticClass: "text-indigo-700" }, [_vm._v("item")]),
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "p",
+        {
+          staticClass:
+            "focus:outline-none text-xs leading-3 pt-1 text-gray-500",
+          attrs: { tabindex: "0" },
+        },
+        [_vm._v("\n                2 hours ago\n              ")]
+      ),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "pl-3 w-full" }, [
+      _c("div", { staticClass: "flex items-center justify-between" }, [
+        _c(
+          "p",
+          {
+            staticClass:
+              "focus:outline-none text-sm leading-none text-green-700",
+            attrs: { tabindex: "0" },
+          },
+          [
+            _vm._v(
+              "\n                  Design sprint completed\n                "
+            ),
+          ]
+        ),
+        _vm._v(" "),
+        _c(
+          "p",
+          {
+            staticClass:
+              "\n                    focus:outline-none\n                    focus:text-indigo-600\n                    text-xs\n                    leading-3\n                    underline\n                    cursor-pointer\n                    text-green-700\n                  ",
+            attrs: { tabindex: "0" },
+          },
+          [_vm._v("\n                  View\n                ")]
+        ),
+      ]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "flex items-center justify-between" }, [
+      _c("hr", { staticClass: "w-full" }),
+      _vm._v(" "),
+      _c(
+        "p",
+        {
+          staticClass:
+            "\n                focus:outline-none\n                text-sm\n                flex flex-shrink-0\n                leading-normal\n                px-3\n                py-16\n                text-gray-500\n              ",
+          attrs: { tabindex: "0" },
+        },
+        [_vm._v("\n              Thats it for now :)\n            ")]
+      ),
+      _vm._v(" "),
+      _c("hr", { staticClass: "w-full" }),
+    ])
   },
 ]
 render._withStripped = true
@@ -93692,6 +94326,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var view_design__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(view_design__WEBPACK_IMPORTED_MODULE_7__);
 /* harmony import */ var view_design_dist_styles_iview_css__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! view-design/dist/styles/iview.css */ "./node_modules/view-design/dist/styles/iview.css");
 /* harmony import */ var view_design_dist_styles_iview_css__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(view_design_dist_styles_iview_css__WEBPACK_IMPORTED_MODULE_8__);
+/* harmony import */ var vue_html_to_paper__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! vue-html-to-paper */ "./node_modules/vue-html-to-paper/dist/index.js");
+/* harmony import */ var vue_html_to_paper__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(vue_html_to_paper__WEBPACK_IMPORTED_MODULE_9__);
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
@@ -93741,9 +94377,14 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(view_design__WEBPACK_IMPORTED_MOD
 var app = new vue__WEBPACK_IMPORTED_MODULE_0___default.a({
   el: '#app',
   router: new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"](_routes__WEBPACK_IMPORTED_MODULE_2__["default"])
-}); // new Vue({
-//   render: h => h(App),
-// }).$mount('#app')
+});
+
+var options = {
+  name: '_blank',
+  specs: ['fullscreen=no', 'titlebar=yes', 'scrollbars=yes'],
+  styles: ["./assets/css/app.css"]
+};
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_html_to_paper__WEBPACK_IMPORTED_MODULE_9___default.a, options);
 
 /***/ }),
 
@@ -94444,19 +95085,23 @@ var BrowseRoom_Student = function BrowseRoom_Student() {
 };
 
 var View_Room_List = function View_Room_List() {
-  return Promise.all(/*! import() | View_Room_List */[__webpack_require__.e("vendors~Property_Landlord~Room_Landlord~View_Room_List"), __webpack_require__.e("vendors~Booking_Student~View_Room_List"), __webpack_require__.e("vendors~View_Room_List"), __webpack_require__.e("View_Room_List")]).then(__webpack_require__.bind(null, /*! ./components/ManagePropertyList/View_Room_List */ "./resources/js/components/ManagePropertyList/View_Room_List.vue"));
+  return Promise.all(/*! import() | View_Room_List */[__webpack_require__.e("vendors~Booking_Student~Payment_Student~View_Room_List"), __webpack_require__.e("vendors~Property_Landlord~Room_Landlord~View_Room_List"), __webpack_require__.e("vendors~View_Room_List"), __webpack_require__.e("View_Room_List")]).then(__webpack_require__.bind(null, /*! ./components/ManagePropertyList/View_Room_List */ "./resources/js/components/ManagePropertyList/View_Room_List.vue"));
 };
 
 var Payment_Student = function Payment_Student() {
-  return __webpack_require__.e(/*! import() | Payment_Student */ "Payment_Student").then(__webpack_require__.bind(null, /*! ./components/ManagePayment/Payment_Student */ "./resources/js/components/ManagePayment/Payment_Student.vue"));
+  return Promise.all(/*! import() | Payment_Student */[__webpack_require__.e("vendors~Booking_Student~Payment_Student~View_Room_List"), __webpack_require__.e("Payment_Student")]).then(__webpack_require__.bind(null, /*! ./components/ManagePayment/Payment_Student */ "./resources/js/components/ManagePayment/Payment_Student.vue"));
 };
 
 var Booking_Student = function Booking_Student() {
-  return Promise.all(/*! import() | Booking_Student */[__webpack_require__.e("vendors~Booking_Student~View_Room_List"), __webpack_require__.e("Booking_Student")]).then(__webpack_require__.bind(null, /*! ./components/ManagePayment/Booking_Student */ "./resources/js/components/ManagePayment/Booking_Student.vue"));
+  return Promise.all(/*! import() | Booking_Student */[__webpack_require__.e("vendors~Booking_Student~Payment_Student~View_Room_List"), __webpack_require__.e("Booking_Student")]).then(__webpack_require__.bind(null, /*! ./components/ManagePayment/Booking_Student */ "./resources/js/components/ManagePayment/Booking_Student.vue"));
 };
 
 var Tab_Student_Payment = function Tab_Student_Payment() {
   return __webpack_require__.e(/*! import() | Tab_Student_Payment */ "Tab_Student_Payment").then(__webpack_require__.bind(null, /*! ./components/Layouts/Tab_Student_Payment */ "./resources/js/components/Layouts/Tab_Student_Payment.vue"));
+};
+
+var RentalRoom_student = function RentalRoom_student() {
+  return __webpack_require__.e(/*! import() | RentalRoom_student */ "RentalRoom_student").then(__webpack_require__.bind(null, /*! ./components/ManageRentalProperty/RentalRoom_student */ "./resources/js/components/ManageRentalProperty/RentalRoom_student.vue"));
 };
 
 var NotFound = function NotFound() {
@@ -94569,12 +95214,7 @@ var NotFound = function NotFound() {
     path: '/student/view-profile/:role/:id',
     name: 'std_profile_view',
     component: Profile_View
-  }, // {
-  //     path: '/student/payments',
-  //     name: 'std_payments',
-  //     component: Payment_Student,
-  // },
-  {
+  }, {
     path: '/student/payments',
     name: 'std_payments',
     component: Tab_Student_Payment,
@@ -94587,6 +95227,10 @@ var NotFound = function NotFound() {
       name: 'std_booking',
       component: Booking_Student
     }]
+  }, {
+    path: '/student/rental_room',
+    name: 'RentalRoom_student',
+    component: RentalRoom_student
   }]
 });
 

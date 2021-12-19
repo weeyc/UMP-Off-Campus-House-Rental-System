@@ -1323,7 +1323,7 @@ var render = function () {
                   },
                 ],
                 staticClass:
-                  "focus:outline-none border-transparent cursor-pointer focus:border-gray-800 hover:bg-pink-200 focus:shadow-outline-gray text-base py-2 px-8 w-1/2 xl:px-3 rounded font-medium  appearance-none bg-transparent",
+                  "focus:outline-none border-transparent cursor-pointer focus:border-gray-800 hover:bg-yellow-200 focus:shadow-outline-gray text-base py-2 px-8 w-1/2 xl:px-3 rounded font-medium  appearance-none bg-transparent",
                 on: {
                   change: function ($event) {
                     var $$selectedVal = Array.prototype.filter
@@ -1382,7 +1382,7 @@ var render = function () {
                   "router-link",
                   {
                     staticClass:
-                      "flex justify-center w-full px-8 py-4 overflow-hidden bg-white rounded-lg shadow-lg mt-5 cursor-pointer transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-200 hover:bg-yellow-400 hover:shadow-2xl",
+                      "flex justify-center w-full px-8 py-4 overflow-hidden bg-white rounded-lg shadow-lg mt-5 cursor-pointer transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-105 duration-200 hover:bg-yellow-400 hover:shadow-2xl",
                     attrs: {
                       to: { name: "view_room_list", params: { id: list.id } },
                     },
@@ -1488,7 +1488,7 @@ var render = function () {
         ),
         _vm._v(" "),
         _c("center", [
-          _vm.pageInfo
+          _vm.lists.length != 0
             ? _c("div", { staticClass: "mt-5 mb-5 flex justify-between " }, [
                 _c("div", { staticClass: "w-1/2 flex justify-start " }, [
                   _c(
@@ -1503,7 +1503,7 @@ var render = function () {
                         },
                       ],
                       staticClass:
-                        "focus:outline-none border-transparent cursor-pointer focus:border-gray-800 hover:bg-pink-200 focus:shadow-outline-gray text-base py-2 px-8 w-1/2 xl:px-3 rounded font-medium  appearance-none bg-transparent",
+                        "focus:outline-none border-transparent cursor-pointer focus:border-gray-800 hover:bg-yellow-200 focus:shadow-outline-gray text-base py-2 px-8 w-1/2 xl:px-3 rounded font-medium  appearance-none bg-transparent",
                       on: {
                         change: function ($event) {
                           var $$selectedVal = Array.prototype.filter

@@ -97,7 +97,8 @@
                   <div class="text-sm text-gray-900">RM {{data.total_payment }}</div>
                 </td>
                 <td class="px-6 py-4 whitespace-nowrap">
-                  <div class="text-sm text-gray-900">{{ data.payment_date  }}</div>
+
+                  <div class="text-sm text-gray-900">{{   moment(data.payment_date ).format("DD-MM-YYYY, h:mm a") }}</div>
                 </td>
                     <td class="py-3 px-2 text-center">
                                     <div class="flex item-center justify-center">
@@ -119,7 +120,7 @@
           </table>
                <div v-if="pageInfo" class="mt-5 mb-5 flex justify-between ">
                         <div class="w-1/2 flex justify-start ">
-                                <select  v-model="showSize" class="focus:outline-none border-transparent cursor-pointer focus:border-gray-800 hover:bg-pink-200 focus:shadow-outline-gray text-base py-2 px-8 w-1/2 xl:px-3 rounded font-medium  appearance-none bg-transparent">
+                                <select  v-model="showSize" class="focus:outline-none border-transparent cursor-pointer focus:border-gray-800 hover:bg-yellow-200 focus:shadow-outline-gray text-base py-2 px-8 w-1/2 xl:px-3 rounded font-medium  appearance-none bg-transparent">
                                     <option @click="getPayment" value="10">Show Entries</option>
                                     <option @click="getPayment" value="10">10</option>
                                     <option @click="getPayment" value="20">20</option>
@@ -133,18 +134,25 @@
         </div>
       </div>
     </div>
+       <ReceiptModal
+            v-if="toggleModal"
+            :form="form"
+            :user_id="user_id"
+            :role="role"
+            @closeModal="closeModal">
+        </ReceiptModal>
 
   </div>
 </template>
 
 <script>
-//import ReadModal from './Modal_Student.vue';
-
+import ReceiptModal from './Receipt_Modal.vue';
+import moment from "moment";
 
 export default {
 
     components: {
-       // ReadModal,
+         ReceiptModal,
     },
      props: {
         user_id: Number,
@@ -154,6 +162,7 @@ export default {
 
     data() {
         return {
+            moment: moment,
             page: 1,
             lastPage: '',
             filterGender: '',
@@ -167,15 +176,13 @@ export default {
             payments: [],
             toggleModal: false,
 
-                profile:{
-                    id: '',
-                    name: '',
-                    email: '',
-                    phone: '',
-                    gender: '',
-                    pic: '',
-                    role: '1'
-                }
+            form:{
+                id: '',
+                details: '',
+                status: '',
+                total: '',
+                date: '',
+            },
         };
     },
      mounted: function(){
@@ -226,16 +233,18 @@ export default {
         },
 
         read(data){
-            this.profile.id = user.id;
-            this.profile.name = user.name;
-            this.profile.email = user.email;
-            this.profile.phone = user.phone_no;
-            this.profile.gender = user.gender;
-            this.profile.pic = user.pic;
+            this.form.id = data.payment_id;
+            this.form.details = data.payment_details;
+            this.form.status = data.payment_status;
+            this.form.total = data.total_payment;
+            this.form.date = data.payment_date;
+
+
+
         },
 
 
-        closeReadModal(){
+        closeModal(){
             this.toggleModal =!  this.toggleModal ;
         },
 

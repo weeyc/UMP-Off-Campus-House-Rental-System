@@ -70,7 +70,19 @@ const app = new Vue({
 });
 
 
+import VueHtmlToPaper from 'vue-html-to-paper';
 
-// new Vue({
-//   render: h => h(App),
-// }).$mount('#app')
+const options = {
+  name: '_blank',
+  specs: [
+    'fullscreen=no',
+    'titlebar=yes',
+    'scrollbars=yes'
+  ],
+  styles: ["./assets/css/app.css"],
+}
+
+Vue.use(VueHtmlToPaper, options);
+
+
+

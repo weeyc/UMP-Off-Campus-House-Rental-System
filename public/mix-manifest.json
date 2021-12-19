@@ -21,7 +21,8 @@
     "/Tab_Staff_Users.js": "/Tab_Staff_Users.js",
     "/Tab_Student_Payment.js": "/Tab_Student_Payment.js",
     "/View_Room_List.js": "/View_Room_List.js",
-    "/vendors~Booking_Student~View_Room_List.js": "/vendors~Booking_Student~View_Room_List.js",
+    "/vendors~Booking_Student~Payment_Student~View_Room_List.js": "/vendors~Booking_Student~Payment_Student~View_Room_List.js",
     "/vendors~Property_Landlord~Room_Landlord~View_Room_List.js": "/vendors~Property_Landlord~Room_Landlord~View_Room_List.js",
-    "/vendors~View_Room_List.js": "/vendors~View_Room_List.js"
+    "/vendors~View_Room_List.js": "/vendors~View_Room_List.js",
+    "/RentalRoom_student.js": "/RentalRoom_student.js"
 }

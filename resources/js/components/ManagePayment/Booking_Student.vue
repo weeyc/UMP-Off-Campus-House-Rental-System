@@ -76,7 +76,7 @@
                             </div>
                                <div v-if="item.booking_status=='Booked'" class="flex mx-5 my-5">
                                 <div class="w-full text-center ">
-                                    <button @click="cancelBooking(item.booking_id,item.move_in_date,item)" class="p-3 font-bold rounded-full text-green-900 bg-green-100 hover:bg-green-500 hover:text-white transition duration-150 ease-in-out shadow-xl w-full">Cancel</button>
+                                    <button @click="cancelBooking(item.booking_id,item.move_in_date,item)" class="p-3 font-bold rounded-full text-red-900 bg-red-200 hover:bg-red-500 hover:text-white transition duration-150 ease-in-out shadow-xl w-full">Cancel</button>
                                 </div>
                             </div>
                             <div v-else class="flex mx-5 my-5">

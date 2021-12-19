@@ -177,7 +177,7 @@
              <span v-if="page=='[object MouseEvent]'" class="text-base font-bold flex justify-start">Rooms for rent ({{ pageInfo.total }}) | Showing Page 1 of {{ lastPage }} </span>
              <span v-else class="text-base font-bold flex justify-start">Rooms for rent ({{ pageInfo.total }}) | Showing Page {{ page }} of {{ lastPage }} </span>
             <div class="w-1/3 flex justify-end">
-                            <select v-model="sort" class="focus:outline-none border-transparent cursor-pointer focus:border-gray-800 hover:bg-pink-200 focus:shadow-outline-gray text-base py-2 px-8 w-1/2 xl:px-3 rounded font-medium  appearance-none bg-transparent">
+                            <select v-model="sort" class="focus:outline-none border-transparent cursor-pointer focus:border-gray-800 hover:bg-yellow-200 focus:shadow-outline-gray text-base py-2 px-8 w-1/2 xl:px-3 rounded font-medium  appearance-none bg-transparent">
                                 <option selected @click="getList" value="">Order By</option>
                                 <option @click="getList" value="asc">Price: Lowest to Highest</option>
                                 <option @click="getList" value="desc">Price: Highest to Lowest</option>
@@ -187,7 +187,7 @@
         <div v-if="lists.length==0"> Sorry, result not found</div>
         <div else>
             <div v-for="(list,index) in lists" :key="index.id" class="flex justify-start  ">
-                <router-link :to="{ name: 'view_room_list', params:{id: list.id}}" class="flex justify-center w-full px-8 py-4 overflow-hidden bg-white rounded-lg shadow-lg mt-5 cursor-pointer transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-200 hover:bg-yellow-400 hover:shadow-2xl">
+                <router-link :to="{ name: 'view_room_list', params:{id: list.id}}" class="flex justify-center w-full px-8 py-4 overflow-hidden bg-white rounded-lg shadow-lg mt-5 cursor-pointer transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-105 duration-200 hover:bg-yellow-400 hover:shadow-2xl">
                 <!-- flex justify-center bg-white rounded-xl border-2 overflow-hidden -->
                     <div class="w-1/3 bg-cover" > <img class="h-48 w-full object-cover"  :src="'/images/Properties/'+list.photo_room[0].photo_name" alt="Avatar"  /></div>
                     <div class="w-2/3 p-4 md:p-4">
@@ -210,9 +210,9 @@
                  <center>
 
 
-                    <div v-if="pageInfo" class="mt-5 mb-5 flex justify-between ">
+                    <div v-if="lists.length!=0" class="mt-5 mb-5 flex justify-between ">
                     <div class="w-1/2 flex justify-start ">
-                            <select  v-model="showSize" class="focus:outline-none border-transparent cursor-pointer focus:border-gray-800 hover:bg-pink-200 focus:shadow-outline-gray text-base py-2 px-8 w-1/2 xl:px-3 rounded font-medium  appearance-none bg-transparent">
+                            <select  v-model="showSize" class="focus:outline-none border-transparent cursor-pointer focus:border-gray-800 hover:bg-yellow-200 focus:shadow-outline-gray text-base py-2 px-8 w-1/2 xl:px-3 rounded font-medium  appearance-none bg-transparent">
                                 <option @click="getList" value="10">Show Entries</option>
                                 <option @click="getList" value="10">10</option>
                                 <option @click="getList" value="20">20</option>
