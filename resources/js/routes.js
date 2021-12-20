@@ -26,7 +26,7 @@ const Payment_Student = () => import(/* webpackChunkName: "Payment_Student" */'.
 const Booking_Student = () => import(/* webpackChunkName: "Booking_Student" */'./components/ManagePayment/Booking_Student');
 const Tab_Student_Payment = () => import(/* webpackChunkName: "Tab_Student_Payment" */'./components/Layouts/Tab_Student_Payment');
 const RentalRoom_student = () => import(/* webpackChunkName: "RentalRoom_student" */'./components/ManageRentalProperty/RentalRoom_student');
-const Renting_student = () => import(/* webpackChunkName: "Renting_student" */'./components/ManageRentalProperty/Renting_student');
+const HousePlatform_Std = () => import(/* webpackChunkName: "HousePlatform_Std" */'./components/ManageRentalProperty/HousePlatform_Std');
 
 
 
@@ -202,9 +202,9 @@ export default{
             component: RentalRoom_student,
         },
         {
-            path: '/student/rental_room/renting',
-            name: 'Renting_student',
-            component: Renting_student,
+            path: '/student/rental_room/house_platform',
+            name: 'HousePlatform_Std',
+            component: HousePlatform_Std,
             props: true,
         },
 

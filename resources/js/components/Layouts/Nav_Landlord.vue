@@ -103,7 +103,7 @@
 
     <div class="flex flex-1 flex-col">
         <!-- top bar -->
-        <div class=" rounded-r shadow-lg  flex justify-between w-full p-6 items-center border-b border-transparent sm:border-gray-200      bg-gradient-to-br from-cool-gray-900 to-bg-gradient-to-r-gray-600" style="background-color: #23252f;">
+        <div class="shadow-lg  flex justify-between w-full p-6 items-center border-b border-transparent sm:border-gray-200      bg-gradient-to-br from-cool-gray-900 to-bg-gradient-to-r-gray-600" style="background-color: #23252f;">
               <div  class="flex justify-start items-center">
                 <button  @click="showNav()" class="">
                         <svg class="text-blue-400 hover:text-blue-500" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">

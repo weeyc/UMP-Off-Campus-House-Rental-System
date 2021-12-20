@@ -43,7 +43,7 @@
 /******/
 /******/ 	// script path function
 /******/ 	function jsonpScriptSrc(chunkId) {
-/******/ 		return __webpack_require__.p + "" + ({"Add_Property~Property_Landlord~Room_Landlord":"Add_Property~Property_Landlord~Room_Landlord","Add_Property":"Add_Property","BrowseRoom_Student":"BrowseRoom_Student","Landing_Staff":"Landing_Staff","ManageProperties_Staff":"ManageProperties_Staff","Manage_Landlord":"Manage_Landlord","Manage_Staff":"Manage_Staff","Manage_Student":"Manage_Student","NotFound":"NotFound","Profile_Edit~Profile_View":"Profile_Edit~Profile_View","Profile_Edit":"Profile_Edit","Profile_View":"Profile_View","PropertyList_landlord":"PropertyList_landlord","RentalRoom_student":"RentalRoom_student","Renting_student":"Renting_student","Tab_Staff_Users":"Tab_Staff_Users","Tab_Student_Payment":"Tab_Student_Payment","vendors~Booking_Student~Payment_Student~View_Room_List":"vendors~Booking_Student~Payment_Student~View_Room_List","Booking_Student":"Booking_Student","Payment_Student":"Payment_Student","vendors~Property_Landlord~Room_Landlord~View_Room_List":"vendors~Property_Landlord~Room_Landlord~View_Room_List","vendors~View_Room_List":"vendors~View_Room_List","View_Room_List":"View_Room_List","Property_Landlord":"Property_Landlord","Room_Landlord":"Room_Landlord"}[chunkId]||chunkId) + ".js"
+/******/ 		return __webpack_require__.p + "" + ({"Add_Property~Property_Landlord~Room_Landlord":"Add_Property~Property_Landlord~Room_Landlord","Add_Property":"Add_Property","BrowseRoom_Student":"BrowseRoom_Student","HousePlatform_Std":"HousePlatform_Std","Landing_Staff":"Landing_Staff","ManageProperties_Staff":"ManageProperties_Staff","Manage_Landlord":"Manage_Landlord","Manage_Staff":"Manage_Staff","Manage_Student":"Manage_Student","NotFound":"NotFound","Profile_Edit~Profile_View":"Profile_Edit~Profile_View","Profile_Edit":"Profile_Edit","Profile_View":"Profile_View","PropertyList_landlord":"PropertyList_landlord","RentalRoom_student":"RentalRoom_student","Tab_Staff_Users":"Tab_Staff_Users","Tab_Student_Payment":"Tab_Student_Payment","vendors~Booking_Student~Payment_Student~View_Room_List":"vendors~Booking_Student~Payment_Student~View_Room_List","Booking_Student":"Booking_Student","Payment_Student":"Payment_Student","vendors~Property_Landlord~Room_Landlord~View_Room_List":"vendors~Property_Landlord~Room_Landlord~View_Room_List","vendors~View_Room_List":"vendors~View_Room_List","View_Room_List":"View_Room_List","Property_Landlord":"Property_Landlord","Room_Landlord":"Room_Landlord"}[chunkId]||chunkId) + ".js"
 /******/ 	}
 /******/
 /******/ 	// The require function
@@ -72795,7 +72795,7 @@ var render = function () {
           "div",
           {
             staticClass:
-              " rounded-r shadow-lg  flex justify-between w-full p-6 items-center border-b border-transparent sm:border-gray-200      bg-gradient-to-br from-cool-gray-900 to-bg-gradient-to-r-gray-600",
+              "shadow-lg  flex justify-between w-full p-6 items-center border-b border-transparent sm:border-gray-200      bg-gradient-to-br from-cool-gray-900 to-bg-gradient-to-r-gray-600",
             staticStyle: { "background-color": "#23252f" },
           },
           [
@@ -74633,7 +74633,7 @@ var render = function () {
           "div",
           {
             staticClass:
-              " rounded-r shadow  flex justify-between w-full p-6 items-center border-b border-transparent sm:border-gray-200 bg-gradient-to-br from-cool-gray-900 to-bg-gradient-to-r-gray-600",
+              " shadow  flex justify-between w-full p-6 items-center border-b border-transparent sm:border-gray-200 bg-gradient-to-br from-cool-gray-900 to-bg-gradient-to-r-gray-600",
             staticStyle: { "background-color": "#23252f" },
           },
           [
@@ -74701,7 +74701,7 @@ var render = function () {
               {
                 staticClass:
                   "flex text-yellow-400 text-2xl font-black tracking-wide hover:text-yellow-500 focus:outline-none focus:text-yellow-500 justify-between items-center space-x-3",
-                attrs: { to: { name: "student_landing" } },
+                attrs: { to: { name: "landing_student" } },
               },
               [
                 _c(
@@ -95100,8 +95100,8 @@ var RentalRoom_student = function RentalRoom_student() {
   return __webpack_require__.e(/*! import() | RentalRoom_student */ "RentalRoom_student").then(__webpack_require__.bind(null, /*! ./components/ManageRentalProperty/RentalRoom_student */ "./resources/js/components/ManageRentalProperty/RentalRoom_student.vue"));
 };
 
-var Renting_student = function Renting_student() {
-  return __webpack_require__.e(/*! import() | Renting_student */ "Renting_student").then(__webpack_require__.bind(null, /*! ./components/ManageRentalProperty/Renting_student */ "./resources/js/components/ManageRentalProperty/Renting_student.vue"));
+var HousePlatform_Std = function HousePlatform_Std() {
+  return __webpack_require__.e(/*! import() | HousePlatform_Std */ "HousePlatform_Std").then(__webpack_require__.bind(null, /*! ./components/ManageRentalProperty/HousePlatform_Std */ "./resources/js/components/ManageRentalProperty/HousePlatform_Std.vue"));
 };
 
 var NotFound = function NotFound() {
@@ -95232,9 +95232,9 @@ var NotFound = function NotFound() {
     name: 'RentalRoom_student',
     component: RentalRoom_student
   }, {
-    path: '/student/rental_room/renting',
-    name: 'Renting_student',
-    component: Renting_student,
+    path: '/student/rental_room/house_platform',
+    name: 'HousePlatform_Std',
+    component: HousePlatform_Std,
     props: true
   }]
 });

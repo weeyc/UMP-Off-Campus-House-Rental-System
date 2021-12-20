@@ -47,6 +47,25 @@ class RentalRoomController extends Controller
 
      }
 
+    public function get_roomPlatform($id,$room_id, Request $request){
+
+            $data = Room::with('getPropertyRelation.getPhotoRelation','getPropertyRelation.getLandlordRelation','getPhotoRelation','getTenantRelation','getTenantRelation.getStudentRelation')
+            // ->whereHas('getPropertyRelation.getPhotoRelation', function($query) use($id) {
+            //     $query->where('room_id', null);
+            // ;})
+            ->whereHas('getPhotoRelation', function($query) use($room_id) {
+                $query->where('room_id', $room_id);
+            ;})->whereHas('getTenantRelation.getStudentRelation', function($query) use($id) {
+                $query->where('student_id', $id);
+            ;})
+            ->where('room_id', $room_id)
+            ->get();
+            return RoomResource::collection($data);
+
+
+
+     }
+
 
 
 

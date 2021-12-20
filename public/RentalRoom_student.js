@@ -135,7 +135,7 @@ var render = function () {
                       "flex justify-center w-full px-8 py-4 overflow-hidden rounded-lg shadow-lg mt-5 cursor-pointer transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-105 duration-200 hover:bg-gray-900 hover:shadow-2xl bg-gray-800",
                     attrs: {
                       to: {
-                        name: "Renting_student",
+                        name: "HousePlatform_Std",
                         params: { id: list.room.id },
                       },
                     },
