@@ -10,6 +10,7 @@ use App\Http\Resources\StaffResource;
 use App\Http\Resources\PaymentResource;
 use App\Http\Resources\BookingResource;
 use App\Http\Resources\RentalResource;
+use App\Http\Resources\TenantResource;
 use Illuminate\Http\Request;
 use App\Models\Student;
 use App\Models\Staff;
@@ -28,22 +29,20 @@ class RentalRoomController extends Controller
     public function get_rentalRoom($id,$role, Request $request){
 
         if($role == 1){
-            $data = Booking::with('getRoomRelation','getRoomRelation.getPhotoRelation', 'getRoomRelation.getPropertyRelation.getLandlordRelation')
+            $data = Tenant::with('getRoomRelation','getRoomRelation.getPhotoRelation', 'getRoomRelation.getPropertyRelation.getLandlordRelation','getStudentRelation')
                             ->where('student_id', $id)
-
+                            ->where('tenant_status', 'Tenancy')
                             ->get();
 
-            return BookingResource::collection($data);
+            return TenantResource::collection($data);
 
         }else if($role == 2){
-            $data = Booking::with('getRoomRelation','getRoomRelation.getPhotoRelation', 'getRoomRelation.getPropertyRelation.getLandlordRelation')
-                                ->whereHas('getRoomRelation', function($query) {
-                                    $query->where('room_status', 'rented');
-                                ;})
+            $data = Tenant::with('getRoomRelation','getRoomRelation.getPhotoRelation', 'getRoomRelation.getPropertyRelation.getLandlordRelation','getStudentRelation')
                             ->where('student_id', $id)
+                            ->where('tenant_status', 'Tenancy')
                             ->get();
 
-            return BookingResource::collection($data);
+            return TenantResource::collection($data);
         }
 
      }

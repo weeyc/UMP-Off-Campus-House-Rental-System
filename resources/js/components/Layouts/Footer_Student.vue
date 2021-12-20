@@ -1,5 +1,5 @@
 <template>
-    <div  class="bg-gradient-to-l from-gray-700 via-gray-900 to-black" >
+    <div  class="bg-gray-800" >
         <footer class="relative  pt-5">
 
             <div class="flex flex-col justify-center items-center pb-1">

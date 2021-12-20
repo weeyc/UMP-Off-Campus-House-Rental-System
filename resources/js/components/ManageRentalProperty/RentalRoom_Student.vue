@@ -8,23 +8,23 @@
         <div else>
             <div v-for="(list,index) in lists" :key="index.id" class="flex justify-start  ">
 
-                <router-link :to="{ name: 'view_room_list', params:{id: list.id}}" class="flex justify-center w-full px-8 py-4 overflow-hidden bg-white rounded-lg shadow-lg mt-5 cursor-pointer transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-105 duration-200 hover:bg-yellow-400 hover:shadow-2xl">
+                     <router-link :to="{ name: 'Renting_student', params:{id: list.room.id}}" class="flex justify-center w-full px-8 py-4 overflow-hidden rounded-lg shadow-lg mt-5 cursor-pointer transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-105 duration-200 hover:bg-gray-900 hover:shadow-2xl bg-gray-800">
                 <!-- flex justify-center bg-white rounded-xl border-2 overflow-hidden -->
                     <div class="w-1/3 bg-cover" > <img class="h-48 w-full object-cover"  :src="'/images/Properties/'+list.room.photo_room[0].photo_name" alt="Avatar"  /></div>
                     <div class="w-2/3 p-4 md:p-4">
                         <div class="flex justify-between item-center">
-                            <h1 class="text-2xl font-bold text-gray-800 dark:text-white"> {{ list.room.listing_name }}</h1>
-                            <h1 class="text-2xl font-bold text-yellow-800 dark:text-white">RM{{list.room.monthly_rent}}/Month</h1>
+                            <h1 class="text-2xl font-bold text-yellow-500"> {{ list.room.listing_name }}</h1>
+                            <h1 class="text-2xl font-bold text-red-500">RM{{list.room.monthly_rent}}/Month</h1>
                         </div>
-                        <p class="mt-2 text-sm text-gray-600 dark:text-gray-400">{{ list.room.property.name }} | {{ list.room.campus }}</p>
+                        <p class="mt-2 text-sm text-white ">{{ list.room.property.name }} | {{ list.room.campus }}</p>
                         <div class="flex mt-2 item-center">
-                            <p class="mt-2 text-sm text-gray-600 dark:text-gray-400">{{ list.room.room_type }} | {{ list.room.property.gender_preferences }}</p>
+                            <p class="mt-2 text-sm text-white ">{{ list.room.room_type }} | {{ list.room.property.gender_preferences }}</p>
                         </div>
                         <div class="flex mt-2 item-center">
-                            <p class="mt-2 text-sm text-gray-600 dark:text-gray-400">{{ list.move_in_date  }}| {{ list.period_tenancy }} Months</p>
+                            <p class="mt-2 text-sm text-blue-500 ">{{ list.move_in_date  }} | {{ list.tenancy_period }} Months</p>
                         </div>
                     </div>
-                </router-link>
+                </router-link >
             </div>
 
         </div>
@@ -56,7 +56,7 @@ export default {
     },
      methods:{
         getList(){
-            axios.get('/api/get_rentalRoom/'+this.user_id+'/'+this.role, {
+            axios.get('/api/get_rentalRoom/'+this.user_id+'/'+this.role+'?land=1', {
                 params: {
                     location: this.location,
                 }
@@ -66,8 +66,8 @@ export default {
             })
 
         },
-
     },
+
     watch:{
         $route() {
 

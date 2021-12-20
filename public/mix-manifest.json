@@ -24,5 +24,6 @@
     "/vendors~Booking_Student~Payment_Student~View_Room_List.js": "/vendors~Booking_Student~Payment_Student~View_Room_List.js",
     "/vendors~Property_Landlord~Room_Landlord~View_Room_List.js": "/vendors~Property_Landlord~Room_Landlord~View_Room_List.js",
     "/vendors~View_Room_List.js": "/vendors~View_Room_List.js",
-    "/RentalRoom_student.js": "/RentalRoom_student.js"
+    "/RentalRoom_student.js": "/RentalRoom_student.js",
+    "/Renting_student.js": "/Renting_student.js"
 }

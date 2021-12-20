@@ -9,4 +9,8 @@ class Student extends Model
     public $timestamps = false;
     protected $hidden = ['std_password'];
 
+    public function getTenantRelation(){
+        return $this->hasMany('App\Models\Tenant', 'student_id', 'std_id');
+    }
+
 }
