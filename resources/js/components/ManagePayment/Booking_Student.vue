@@ -4,7 +4,9 @@
          <div class="max-w-6xl p-6 mx-auto mt-3  bg-gray-100 rounded-md shadow-xl mb-5" >
                <h2 class=" font-bold text-gray-700 capitalize text-center text-xl">My Bookings</h2>
             <div class="flex items-center justify-center w-full overflow-hidden">
-            <div class="grid md:grid-cols-2 sm:grid-cols-1 lg:grid-cols-3 xl:grid-cols-3 gap-2 m-5 mb-10">
+            <div v-if="data.length==0"> You don't having any booking yet.</div>
+
+            <div v-else class="grid md:grid-cols-2 sm:grid-cols-1 lg:grid-cols-3 xl:grid-cols-3 gap-2 m-5 mb-10">
                 <div  v-for="item in data" :key="item.id" >
 
 

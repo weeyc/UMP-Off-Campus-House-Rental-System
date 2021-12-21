@@ -291,7 +291,7 @@ var Errors = /*#__PURE__*/function () {
         _this2.closeModal();
 
         setTimeout(function () {
-          return window.location.href = "/student/browse-rooms";
+          return window.location.href = "/student/payments";
         }, 1900);
       })["catch"](function (error) {
         return _this2.errors.record(error.response.data);

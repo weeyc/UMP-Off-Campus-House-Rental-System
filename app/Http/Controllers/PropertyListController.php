@@ -92,7 +92,7 @@ class PropertyListController extends Controller
             $Room ->penalty_fees =  $request ->penalty_fees;
             $Room ->room_description =  $request ->description;
             $Room ->campus =   $campus;
-            $Room ->booking_key = $randomString;
+            $Room ->booking_key = '112233';
             $Room ->number_of_tenant =  $request ->number_tenants;
             $Room ->booking_fees =  $request ->monthly_rent;
             $Room ->room_status =  'listing';

@@ -47,6 +47,10 @@ Route::delete('delete_booking/{id}', 'PaymentController@delete_booking');
 
 Route::get('get_rentalRoom/{id}/{role}', 'RentalRoomController@get_rentalRoom');
 Route::get('get_roomPlatform/{id}/{room_id}', 'RentalRoomController@get_roomPlatform');
+Route::post('post_bulletin/{id}/{role}/{prop_id}', 'RentalRoomController@post_bulletin');
+Route::get('get_post/{id}/{prop_id}', 'RentalRoomController@get_post');
+Route::get('get_housemate/{room_id}/{prop_id}', 'RentalRoomController@get_housemate');
+
 
 
 

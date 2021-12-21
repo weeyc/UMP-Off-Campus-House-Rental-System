@@ -34,6 +34,10 @@ class Property extends Model
         return $this->hasMany('App\Models\Room', 'property_id', 'property_id' );
     }
 
+    public function getBulletinRelation(){
+        return $this->hasMany('App\Models\Bulletin', 'property_id', 'property_id' );
+    }
+
     public function getLandlordRelation(){
         return $this->belongsTo('App\Models\Landlord', 'landlord_id', 'landlord_id');
     }

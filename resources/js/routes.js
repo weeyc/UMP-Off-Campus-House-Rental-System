@@ -202,7 +202,7 @@ export default{
             component: RentalRoom_student,
         },
         {
-            path: '/student/rental_room/house_platform',
+            path: '/student/rental_room/house_platform/:id',
             name: 'HousePlatform_Std',
             component: HousePlatform_Std,
             props: true,

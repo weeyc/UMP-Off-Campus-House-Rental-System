@@ -40,6 +40,7 @@ class PaymentController extends Controller
                     ->when($bydate!=null,function($query) use($bydate){
                         $query->orderBy('payment_date',$bydate);})
                     ->where('student_id', $id)
+                    ->orderBy('payment_date','desc')
                     ->paginate( $showSize );
             return PaymentResource::collection($data);
         }else if($role == 2){
@@ -91,7 +92,7 @@ class PaymentController extends Controller
 
         Room::where('room_id', $room_id)
         ->update([
-            'room_status' => 'listed'
+            'room_status' => 'listing'
         ]);
         Booking::where('booking_id',$id)
         ->update([
@@ -104,9 +105,9 @@ class PaymentController extends Controller
         Tenant::where('student_id',$std_id)
             ->where('property_id',$prop_id)
             ->where('room_id',$room_id)
-        ->update([
-            'tenant_status' => 'Cancelled'
-        ]);
+        ->delete();
+
+
 
 
      }

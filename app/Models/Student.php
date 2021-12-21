@@ -13,4 +13,5 @@ class Student extends Model
         return $this->hasMany('App\Models\Tenant', 'student_id', 'std_id');
     }
 
+
 }
