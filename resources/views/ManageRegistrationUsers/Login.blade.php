@@ -25,7 +25,7 @@
 
             <div class="z-auto w-full">
                 {{---LOGO AND SYSTEM TITLE---}}
-                <div class="grid grid-row-2 grid-flow-col gap-x-2.5 bg-gradient-to-b from-indigo-500 to-fuchsia-400 text-transparent bg-clip-text ">
+                <div class="grid grid-row-2 grid-flow-col gap-x-2.5 bg-gradient-to-tl from-indigo-500 to-fuchsia-400 text-transparent bg-clip-text ">
                     <div class=" row-span-2 justify-self-end animate-bounce">
                         <img class="ml-5" src="https://img.icons8.com/nolan/100/cottage.png"/>
                     </div>

@@ -63,7 +63,7 @@ export default {
             axios.post('/api/post_bulletin/'+this.user_id+'/'+this.role+'/'+this.prop_id,
             this.form
             ).then(() =>{
-                this.$toaster.success('Posted')
+                setTimeout(() =>  this.$toaster.success('Posted'), 1000);
                 this.closeModal();
                 this.$emit("refreshData");
 

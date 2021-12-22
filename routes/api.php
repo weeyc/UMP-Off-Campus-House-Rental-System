@@ -37,6 +37,7 @@ Route::get('get_Recommendation/{campus}', 'PropertyListController@get_Recommenda
 Route::post('update_prop_status/{id}', 'PropertyListController@updatePropStatus');
 Route::post('create_booking/', 'PropertyListController@create_booking');
 Route::delete('delete_property/{id}', 'PropertyListController@delete_Property');
+
 Route::get('get_room_list/{id}', 'PropertyListController@get_RoomList');
 
 
@@ -48,9 +49,11 @@ Route::delete('delete_booking/{id}', 'PaymentController@delete_booking');
 Route::get('get_rentalRoom/{id}/{role}', 'RentalRoomController@get_rentalRoom');
 Route::get('get_roomPlatform/{id}/{room_id}', 'RentalRoomController@get_roomPlatform');
 Route::post('post_bulletin/{id}/{role}/{prop_id}', 'RentalRoomController@post_bulletin');
+Route::post('send_requestRoommate/{id}', 'RentalRoomController@send_requestRoommate');
 Route::get('get_post/{id}/{prop_id}', 'RentalRoomController@get_post');
 Route::get('get_housemate/{room_id}/{prop_id}', 'RentalRoomController@get_housemate');
-
+Route::delete('delete_post/{id}', 'RentalRoomController@delete_post');
+Route::get('get_mate/{id}', 'RentalRoomController@get_mate');
 
 
 

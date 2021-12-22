@@ -102,9 +102,42 @@ class RentalRoomController extends Controller
         ->get();
         return BulletinResource::collection($data);
 
-
  }
 
+
+    public function delete_post($id){
+        Bulletin::where('id', $id)->delete();
+    }
+
+    public function get_mate($id){
+
+        $tenant = Tenant::pluck('student_id')->all();
+        $data = Student::whereNotIn('std_id', $tenant)
+                ->where('std_id', $id)
+                ->get();
+                return StudentResource::collection($data);
+
+
+
+   }
+    public function send_requestRoommate($id, Request $request){
+
+        $Tenant =  new Tenant();
+        $Tenant->student_id =$id;
+        $Tenant->property_id = $request->property_id;
+        $Tenant->room_id = $request->room_id;
+        $Tenant->tenant_status = 'Pending';
+        $Tenant->tenancy_period = $request->tenancy_period;
+        $Tenant->move_in_date = $request->move_in_date;
+        $Tenant->tenancy_invitation = "Pending";
+        $Tenant->invite_by = $request->student_id;
+        $Tenant->save();
+
+
+
+
+
+   }
 
 
 
