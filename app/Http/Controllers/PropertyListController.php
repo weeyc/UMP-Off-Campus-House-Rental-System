@@ -17,8 +17,12 @@ use App\Models\Photo;
 use App\Models\Room;
 use App\Models\Booking;
 use App\Models\Tenant;
+use App\Models\Bulletin;
+use App\Notifications\PaymentNotification;
+use Illuminate\Notifications\Notifiable;
 use App\Models\Payment;
 use Illuminate\Support\Str;
+
 
 
 class PropertyListController extends Controller
@@ -167,7 +171,10 @@ class PropertyListController extends Controller
 
 
 
+
+
     }
+
 
     public function decodeImage($request_picture){
 

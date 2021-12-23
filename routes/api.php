@@ -59,5 +59,8 @@ Route::get('get_mate/{id}', 'RentalRoomController@get_mate');
 
 
 
+Route::get('get_one', 'TestController@get_one');
+
+
 //Route::post('login', [UserController::class, 'login']); cant use tis format
 //Route::resource('user', UserController::class);

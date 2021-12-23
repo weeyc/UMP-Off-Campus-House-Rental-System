@@ -5,6 +5,7 @@ use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\Checking;
+use App\Events\Hello;
 
 
 /*
@@ -37,7 +38,9 @@ Route::get('/forbidden', function(){
 
 Route::get('/logout', 'UserController@logout');
 
-
+Route::get('/broadcast', function(){
+    broadcast(new Hello());
+});
 
 
 // Route::get('{any}', function () {

@@ -24,6 +24,8 @@ use App\Models\Property;
 use App\Models\Photo;
 use App\Models\Room;
 use Illuminate\Support\Str;
+use App\Notifications\PaymentNotification;
+use Illuminate\Notifications\Notifiable;
 
 class RentalRoomController extends Controller
 {
@@ -82,6 +84,13 @@ class RentalRoomController extends Controller
             $Bulletin ->property_id = $prop_id;
             $Bulletin ->student_id = $id;
             $Bulletin ->post = $request->post;
+                //notification
+            $ID = $request -> session()->get('ID');
+            $Student = new Payment();
+           // $Student = Student::where('payment_id',2)->first();
+            $Student = Student::find(2);
+            $Post = Bulletin::where('id', 17)->first();
+            $Student->notify(new PaymentNotification());
         }else{
             $Bulletin ->property_id = $prop_id;
             $Bulletin ->landlord_id = $id;
@@ -101,6 +110,7 @@ class RentalRoomController extends Controller
         ->orderBy('created_at','desc')
         ->get();
         return BulletinResource::collection($data);
+
 
  }
 

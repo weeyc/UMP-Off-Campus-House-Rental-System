@@ -440,13 +440,23 @@ export default {
 
 
     },
+    created(){
+        //     Echo.private('App.Models.User.' + this.user_id)
+        // .notification((notification) => {
+        //     console.log(notification, 'new notification on realtime');
+        // });
+    },
     mounted:  function(){
             this.getProfile();
             this.getRole();
             this.$root.$on('refreshData', data => {
             this.getProfile();
-
           });
+
+          window.Echo.channel('channel')
+          .listen('Hello', (e)=>{
+              console.log(e)
+          })
     },
 };
 </script>
