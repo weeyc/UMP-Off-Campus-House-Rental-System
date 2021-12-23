@@ -1,3 +1,5 @@
+import Axios from 'axios';
+
 const Register_Landlord = () => import(/* webpackChunkName: "Register_Landlord" */'./components/ManageRegistrationUsers/Register_Landlord');
 const Register_Student = () => import(/* webpackChunkName: "Register_Student" */'./components/ManageRegistrationUsers/Register_Student');
 const Tab_Staff_Users = () => import(/* webpackChunkName: "Tab_Staff_Users" */'./components/Layouts/Tab_Staff_Users');
@@ -63,6 +65,19 @@ export default{
             path: '/staff',
             name: 'landing_staff',
             component: Landing_Staff,
+            beforeEnter: (to, form, next)=>{
+                var roling= '';
+                Axios.get('/api/get_role').then((response)=>{
+                    roling=response.data.roler
+                    if(roling==3){
+                        next()
+                    }else {
+                        window.location.href = '/forbidden'
+                    }
+                }).catch(()=> {
+                    window.location.href = '/'})
+            }
+
         },
         {
             path: '/staff/manage-user',
@@ -115,6 +130,18 @@ export default{
             path: '/landlord',
             name: 'landlord_landing',
             component: Dashboard_Landlord,
+            beforeEnter: (to, form, next)=>{
+                var roling= '';
+                Axios.get('/api/get_role').then((response)=>{
+                    roling=response.data.roler
+                    if(roling==2){
+                        next()
+                    }else {
+                        window.location.href = '/forbidden'
+                    }
+                }).catch(()=> {
+                    window.location.href = '/'})
+            }
         },
         {
             path: '/landlord/dashboard',
@@ -154,10 +181,22 @@ export default{
 
 
            // Student Routes
-           {
+        {
             path: '/student',
             name: 'landing_student',
             component: BrowseRoom_Student,
+            beforeEnter: (to, form, next)=>{
+                var roling= '';
+                Axios.get('/api/get_role').then((response)=>{
+                    roling=response.data.roler
+                    if(roling==1){
+                        next()
+                    }else {
+                        window.location.href = '/forbidden'
+                    }
+                }).catch(()=> {
+                    window.location.href = '/'})
+            }
         },
         {
             path: '/student/browse-rooms',

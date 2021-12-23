@@ -206,6 +206,7 @@ export default {
     data() {
         return {
             userProfile: [],
+            roling: '',
         };
     },
     methods: {
@@ -235,10 +236,17 @@ export default {
                 console.warn(this.userProfile.data);
                 }).catch((errors)=> {console.log(errors)})
             },
+            getRole(){
+            axios.get('/api/get_role').then((response)=>{
+                this.roling=response.data
+                console.warn(this.roling.data);
+                }).catch((errors)=> {console.log(errors)})
+        },
 
     },
     mounted: function(){
             this.getProfile();
+            this.getRole();
             this.$root.$on('refreshData', data => {
             this.getProfile();
           });

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\Checking;
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,9 +17,12 @@ use App\Http\Middleware\Checking;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
 Route::get('/', function () {
-    return view('ManageRegistrationUsers.login');
+  return view('ManageRegistrationUsers.login');
 });
+
+Route::post('/Login', [UserController::class, 'Login'])->name('Sign_In');
 
 Route::get('/registration-student', function(){
     return view('ManageRegistrationUsers.registration');
@@ -27,10 +31,13 @@ Route::get('/registration-student', function(){
 Route::get('/registration-landlord', function(){
     return view('ManageRegistrationUsers.registration');
 });
+Route::get('/forbidden', function(){
+    return view('unauthorize');
+});
 
 Route::get('/logout', 'UserController@logout');
 
-Route::post('/Login', [UserController::class, 'Login'])->name('Sign_In');
+
 
 
 // Route::get('{any}', function () {
@@ -42,10 +49,12 @@ Route::post('/Login', [UserController::class, 'Login'])->name('Sign_In');
 // })
 // ->where(['all' => '.*']);
 
+
+
+
   Route::get('/staff/{any?}', [UserController::class, 'authStaff'])->where('any', '.*');
   Route::get('/landlord/{any?}', [UserController::class, 'authLandlord'])->where('any', '.*');
   Route::get('/student/{any?}', [UserController::class, 'authStudent'])->where('any', '.*');
-
 
 
 

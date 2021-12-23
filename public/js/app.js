@@ -2390,6 +2390,7 @@ __webpack_require__.r(__webpack_exports__);
       userProfile: [],
       transition: '',
       indicator: false,
+      roling: '',
       hover: 'text-blue-200 hover:text-blue-500 focus:text-blue-500 border-l-4 pl-4'
     };
   },
@@ -2412,14 +2413,25 @@ __webpack_require__.r(__webpack_exports__);
       })["catch"](function (errors) {
         console.log(errors);
       });
+    },
+    getRole: function getRole() {
+      var _this2 = this;
+
+      axios.get('/api/get_role').then(function (response) {
+        _this2.roling = response.data;
+        console.warn(_this2.roling.data);
+      })["catch"](function (errors) {
+        console.log(errors);
+      });
     }
   },
   mounted: function mounted() {
-    var _this2 = this;
+    var _this3 = this;
 
     this.getProfile();
+    this.getRole();
     this.$root.$on('refreshData', function (data) {
-      _this2.getProfile();
+      _this3.getProfile();
     });
   }
 });
@@ -2637,7 +2649,8 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      userProfile: []
+      userProfile: [],
+      roling: ''
     };
   },
   methods: {
@@ -2669,14 +2682,25 @@ __webpack_require__.r(__webpack_exports__);
       })["catch"](function (errors) {
         console.log(errors);
       });
+    },
+    getRole: function getRole() {
+      var _this2 = this;
+
+      axios.get('/api/get_role').then(function (response) {
+        _this2.roling = response.data;
+        console.warn(_this2.roling.data);
+      })["catch"](function (errors) {
+        console.log(errors);
+      });
     }
   },
   mounted: function mounted() {
-    var _this2 = this;
+    var _this3 = this;
 
     this.getProfile();
+    this.getRole();
     this.$root.$on('refreshData', function (data) {
-      _this2.getProfile();
+      _this3.getProfile();
     });
   }
 });
@@ -3073,6 +3097,7 @@ __webpack_require__.r(__webpack_exports__);
     return {
       userProfile: [],
       toggleNoti: false,
+      roling: '',
       transition: '',
       indicator: false,
       hover: 'text-gray-100 hover:text-yellow-500 focus:text-yellow-500 border-l-4 pl-4'
@@ -3118,14 +3143,25 @@ __webpack_require__.r(__webpack_exports__);
       })["catch"](function (errors) {
         console.log(errors);
       });
+    },
+    getRole: function getRole() {
+      var _this2 = this;
+
+      axios.get('/api/get_role').then(function (response) {
+        _this2.roling = response.data.roler;
+        console.warn(_this2.roling.data);
+      })["catch"](function (errors) {
+        console.log(errors);
+      });
     }
   },
   mounted: function mounted() {
-    var _this2 = this;
+    var _this3 = this;
 
     this.getProfile();
+    this.getRole();
     this.$root.$on('refreshData', function (data) {
-      _this2.getProfile();
+      _this3.getProfile();
     });
   }
 });
@@ -95012,6 +95048,10 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+
+
 var Register_Landlord = function Register_Landlord() {
   return Promise.resolve(/*! import() */).then(__webpack_require__.bind(null, /*! ./components/ManageRegistrationUsers/Register_Landlord */ "./resources/js/components/ManageRegistrationUsers/Register_Landlord.vue"));
 };
@@ -95129,7 +95169,21 @@ var NotFound = function NotFound() {
   }, {
     path: '/staff',
     name: 'landing_staff',
-    component: Landing_Staff
+    component: Landing_Staff,
+    beforeEnter: function beforeEnter(to, form, next) {
+      var roling = '';
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/api/get_role').then(function (response) {
+        roling = response.data.roler;
+
+        if (roling == 3) {
+          next();
+        } else {
+          window.location.href = '/forbidden';
+        }
+      })["catch"](function () {
+        window.location.href = '/';
+      });
+    }
   }, {
     path: '/staff/manage-user',
     name: 'manage_user',
@@ -95167,7 +95221,21 @@ var NotFound = function NotFound() {
   {
     path: '/landlord',
     name: 'landlord_landing',
-    component: Dashboard_Landlord
+    component: Dashboard_Landlord,
+    beforeEnter: function beforeEnter(to, form, next) {
+      var roling = '';
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/api/get_role').then(function (response) {
+        roling = response.data.roler;
+
+        if (roling == 2) {
+          next();
+        } else {
+          window.location.href = '/forbidden';
+        }
+      })["catch"](function () {
+        window.location.href = '/';
+      });
+    }
   }, {
     path: '/landlord/dashboard',
     name: 'dashboard_landlord',
@@ -95197,7 +95265,21 @@ var NotFound = function NotFound() {
   {
     path: '/student',
     name: 'landing_student',
-    component: BrowseRoom_Student
+    component: BrowseRoom_Student,
+    beforeEnter: function beforeEnter(to, form, next) {
+      var roling = '';
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/api/get_role').then(function (response) {
+        roling = response.data.roler;
+
+        if (roling == 1) {
+          next();
+        } else {
+          window.location.href = '/forbidden';
+        }
+      })["catch"](function () {
+        window.location.href = '/';
+      });
+    }
   }, {
     path: '/student/browse-rooms',
     name: 'BrowseRoom_Student',

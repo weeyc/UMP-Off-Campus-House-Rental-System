@@ -12,6 +12,8 @@ use App\Models\Staff;
 use App\Models\Landlord;
 use Illuminate\Support\Str;
 
+use Illuminate\Support\Facades\Session;
+
 use Illuminate\Support\Facades\Hash;
 
 
@@ -107,6 +109,15 @@ class UserController extends Controller
 
             }
         }
+
+    }
+
+    function getRole(Request $request){
+
+        $Role = $request -> session()->get('Role');
+        return response()->json(['roler' => $Role]);
+
+
 
     }
 

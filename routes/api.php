@@ -15,6 +15,7 @@ Route::post('register_landlord', 'UserController@signUp_landlord');
 Route::post('create_staff', 'UserController@create_Staff');
 Route::post('logout', 'UserController@logout');
 Route::get('get_std', 'UserController@getStudent');
+Route::get('get_role', 'UserController@getRole');
 Route::get('get_landlord', 'UserController@getLandlord');
 Route::get('get_staff', 'UserController@getStaff');
 Route::delete('delete_std/{id}', 'UserController@delete_Student');

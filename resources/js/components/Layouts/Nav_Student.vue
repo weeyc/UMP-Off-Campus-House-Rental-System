@@ -385,6 +385,7 @@ export default {
         return {
             userProfile: [],
             toggleNoti: false,
+            roling: '',
             transition:'',
             indicator: false,
             hover:'text-gray-100 hover:text-yellow-500 focus:text-yellow-500 border-l-4 pl-4',
@@ -429,14 +430,22 @@ export default {
                 console.warn(this.userProfile.data);
                 }).catch((errors)=> {console.log(errors)})
         },
+        getRole(){
+            axios.get('/api/get_role').then((response)=>{
+                this.roling=response.data.roler
+                console.warn(this.roling.data);
+                }).catch((errors)=> {console.log(errors)})
+        },
 
 
 
     },
     mounted:  function(){
             this.getProfile();
+            this.getRole();
             this.$root.$on('refreshData', data => {
             this.getProfile();
+
           });
     },
 };

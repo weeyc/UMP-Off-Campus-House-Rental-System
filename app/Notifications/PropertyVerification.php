@@ -29,7 +29,7 @@ class PropertyVerification extends Notification
      */
     public function via($notifiable)
     {
-        return ['mail'];
+        return ['database'];
     }
 
     /**
@@ -55,7 +55,7 @@ class PropertyVerification extends Notification
     public function toArray($notifiable)
     {
         return [
-            //
+            'data' => 'this is my first notification'
         ];
     }
 }
