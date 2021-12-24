@@ -24,9 +24,25 @@ use App\Models\Payment;
 use Illuminate\Support\Str;
 class TestController extends Controller
 {
+    // public function get_one(Request $request){
+    //     //return $student = Bulletin::find(3);
+    //     return $student = Student::find(2);
+    // }
+
     public function get_one(Request $request){
 
-        return $student = Student::find(2);
-       //return $student = Bulletin::find(3);
-   }
+        // $Student = Student::with('getTenantRelation')->whereHas('getTenantRelation', function($query) use($prop_id) {
+        //     $query->where('property_id', $prop_id);
+        // ;})->get()->except($ID);
+        // return $Student;
+        $prop_id = 3;
+        $Landlord = Landlord::with('getPropertyRelation')->whereHas('getPropertyRelation', function($query) use($prop_id) {
+            $query->where('property_id', $prop_id);
+        ;})->first();
+
+        return $Landlord;
+
+
+
+    }
 }

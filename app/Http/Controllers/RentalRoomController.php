@@ -1,31 +1,34 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Http\Resources\StudentResource;
-use App\Http\Resources\PropertyResource;
-use App\Http\Resources\LandlordResource;
-use App\Http\Resources\PhotoResource;
+use App\Models\Room;
+use App\Models\Photo;
+use App\Models\Staff;
+use App\Models\Tenant;
+use App\Models\Booking;
+use App\Models\Payment;
+use App\Models\Student;
+use App\Models\Bulletin;
+use App\Models\Landlord;
+use App\Models\Property;
+use Illuminate\Support\Str;
+use Illuminate\Http\Request;
 use App\Http\Resources\RoomResource;
+use App\Http\Resources\PhotoResource;
 use App\Http\Resources\StaffResource;
-use App\Http\Resources\PaymentResource;
-use App\Http\Resources\BookingResource;
 use App\Http\Resources\RentalResource;
 use App\Http\Resources\TenantResource;
+use App\Http\Resources\BookingResource;
+use App\Http\Resources\PaymentResource;
+use App\Http\Resources\StudentResource;
 use App\Http\Resources\BulletinResource;
-use Illuminate\Http\Request;
-use App\Models\Student;
-use App\Models\Staff;
-use App\Models\Landlord;
-use App\Models\Payment;
-use App\Models\Booking;
-use App\Models\Tenant;
-use App\Models\Bulletin;
-use App\Models\Property;
-use App\Models\Photo;
-use App\Models\Room;
-use Illuminate\Support\Str;
-use App\Notifications\PaymentNotification;
+use App\Http\Resources\LandlordResource;
+use App\Http\Resources\PropertyResource;
 use Illuminate\Notifications\Notifiable;
+use App\Notifications\PaymentNotification;
+use App\Notifications\BulletinNotification;
+use App\Notifications\RoommateNotification;
+use Illuminate\Support\Facades\Notification;
 
 class RentalRoomController extends Controller
 {
@@ -84,19 +87,32 @@ class RentalRoomController extends Controller
             $Bulletin ->property_id = $prop_id;
             $Bulletin ->student_id = $id;
             $Bulletin ->post = $request->post;
-                //notification
+            $Bulletin->save();
+
+            //notification
             $ID = $request -> session()->get('ID');
-            $Student = new Payment();
-           // $Student = Student::where('payment_id',2)->first();
-            $Student = Student::find(2);
-            $Post = Bulletin::where('id', 17)->first();
-            $Student->notify(new PaymentNotification());
+            $Sender = Student::find($ID);
+            $Student = Student::with('getTenantRelation')->whereHas('getTenantRelation', function($query) use($prop_id) {
+                $query->where('property_id', $prop_id);
+            ;})->get()->except($ID);
+            $Landlord = Landlord::with('getPropertyRelation')->whereHas('getPropertyRelation', function($query) use($prop_id) {
+                $query->where('property_id', $prop_id);
+            ;})->first();
+            Notification::send($Student, new BulletinNotification($Bulletin,$Sender));
+            $Landlord->notify(new BulletinNotification($Bulletin,$Sender));
+
+
+
+            // $Student = Student::find($ID);
+            //$Landlord->notify(new BulletinNotification($Bulletin));
         }else{
+
             $Bulletin ->property_id = $prop_id;
             $Bulletin ->landlord_id = $id;
             $Bulletin ->post = $request->post;
+            $Bulletin->save();
         }
-        $Bulletin->save();
+
 
 
      }
@@ -142,6 +158,12 @@ class RentalRoomController extends Controller
         $Tenant->tenancy_invitation = "Pending";
         $Tenant->invite_by = $request->student_id;
         $Tenant->save();
+
+        //Notification
+        $sender_id = $request -> session()->get('ID');
+        $Sender = Student::find($sender_id);
+        $Receiver = Student::find($id);
+        $Receiver->notify(new RoommateNotification($Tenant,$Sender));
 
 
 

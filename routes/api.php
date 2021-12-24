@@ -56,6 +56,8 @@ Route::get('get_housemate/{room_id}/{prop_id}', 'RentalRoomController@get_housem
 Route::delete('delete_post/{id}', 'RentalRoomController@delete_post');
 Route::get('get_mate/{id}', 'RentalRoomController@get_mate');
 
+Route::get('get_notifications/{id}/{role}', 'ChatController@get_notifications');
+
 
 
 

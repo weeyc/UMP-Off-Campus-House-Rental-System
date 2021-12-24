@@ -2933,162 +2933,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//import Notification from './Notification.vue';
 /* harmony default export */ __webpack_exports__["default"] = ({
-  component: {// Notification,
-  },
+  component: {},
   props: {
     user_id: Number,
     role: Number
@@ -3098,6 +2944,7 @@ __webpack_require__.r(__webpack_exports__);
       userProfile: [],
       toggleNoti: false,
       roling: '',
+      notifications: [],
       transition: '',
       indicator: false,
       hover: 'text-gray-100 hover:text-yellow-500 focus:text-yellow-500 border-l-4 pl-4'
@@ -3153,6 +3000,16 @@ __webpack_require__.r(__webpack_exports__);
       })["catch"](function (errors) {
         console.log(errors);
       });
+    },
+    getNotifications: function getNotifications() {
+      var _this3 = this;
+
+      axios.get('/api/get_notifications/' + this.user_id + '/' + this.role).then(function (response) {
+        _this3.notifications = response.data.data;
+        console.warn(_this3.notifications.data);
+      })["catch"](function (errors) {
+        console.log(errors);
+      });
     }
   },
   created: function created() {//     Echo.private('App.Models.User.' + this.user_id)
@@ -3161,13 +3018,14 @@ __webpack_require__.r(__webpack_exports__);
     // });
   },
   mounted: function mounted() {
-    var _this3 = this;
+    var _this4 = this;
 
     this.getProfile();
     this.getRole();
     this.$root.$on('refreshData', function (data) {
-      _this3.getProfile();
+      _this4.getProfile();
     });
+    this.getNotifications();
     window.Echo.channel('channel').listen('Hello', function (e) {
       console.log(e);
     });
@@ -80765,9 +80623,7 @@ var render = function () {
                     ]
                   ),
                   _vm._v(" "),
-                  _c("p", { staticClass: "text-base leading-4" }, [
-                    _vm._v("Notifications"),
-                  ]),
+                  _vm._m(2),
                 ]
               ),
               _vm._v(" "),
@@ -80971,7 +80827,7 @@ var render = function () {
                     "div",
                     {
                       staticClass:
-                        "\n            2xl:w-4/12\n            bg-gray-50\n            h-screen\n            overflow-y-auto\n            p-8\n            absolute\n            right-0\n          ",
+                        " 2xl:w-4/12 bg-gray-50 h-screen overflow-y-auto p-8 absolute right-0 ",
                     },
                     [
                       _c(
@@ -80982,21 +80838,17 @@ var render = function () {
                             "p",
                             {
                               staticClass:
-                                "\n                focus:outline-none\n                text-2xl\n                font-semibold\n                leading-6\n                text-gray-800\n              ",
+                                " focus:outline-none text-2xl font-semibold leading-6 text-gray-800 ",
                               attrs: { tabindex: "0" },
                             },
-                            [
-                              _vm._v(
-                                "\n              Notifications\n            "
-                              ),
-                            ]
+                            [_vm._v(" Notifications ")]
                           ),
                           _vm._v(" "),
                           _c(
                             "button",
                             {
                               staticClass:
-                                "\n                focus:outline-none\n                focus:ring-2 focus:ring-offset-2 focus:ring-gray-500\n                rounded-md\n                cursor-pointer\n              ",
+                                " focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 rounded-md cursor-pointer ",
                               attrs: {
                                 role: "button",
                                 "aria-label": "close modal",
@@ -81058,7 +80910,7 @@ var render = function () {
                               "div",
                               {
                                 staticClass:
-                                  "\n                focus:outline-none\n                w-8\n                h-8\n                border\n                rounded-full\n                border-gray-200\n                flex\n                items-center\n                justify-center\n              ",
+                                  " focus:outline-none w-8 h-8 border rounded-full border-gray-200 flex items-center justify-center ",
                                 attrs: {
                                   tabindex: "0",
                                   "aria-label": "heart icon",
@@ -81089,7 +80941,7 @@ var render = function () {
                               ]
                             ),
                             _vm._v(" "),
-                            _vm._m(2),
+                            _vm._m(3),
                           ]
                         ),
                         _vm._v(" "),
@@ -81104,7 +80956,7 @@ var render = function () {
                               "div",
                               {
                                 staticClass:
-                                  "\n                focus:outline-none\n                w-8\n                h-8\n                border\n                rounded-full\n                border-gray-200\n                flex flex-shrink-0\n                items-center\n                justify-center\n              ",
+                                  " focus:outline-none w-8 h-8 border rounded-full border-gray-200 flex flex-shrink-0 items-center justify-center ",
                                 attrs: {
                                   tabindex: "0",
                                   "aria-label": "group icon",
@@ -81139,17 +80991,17 @@ var render = function () {
                               "h2",
                               {
                                 staticClass:
-                                  "\n              focus:outline-none\n              text-sm\n              leading-normal\n              pt-8\n              border-b\n              pb-2\n              border-gray-300\n              text-gray-600\n            ",
+                                  " focus:outline-none text-sm leading-normal pt-8 border-b pb-2 border-gray-300 text-gray-600 ",
                                 attrs: { tabindex: "0" },
                               },
                               [_vm._v("\n            YESTERDAY\n          ")]
                             ),
                             _vm._v(" "),
-                            _vm._m(3),
+                            _vm._m(4),
                           ]
                         ),
                         _vm._v(" "),
-                        _vm._m(4),
+                        _vm._m(5),
                       ]),
                     ]
                   ),
@@ -81206,6 +81058,22 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
+    return _c("p", { staticClass: "text-base leading-4" }, [
+      _vm._v("Notifications "),
+      _c(
+        "span",
+        {
+          staticClass:
+            "badge mb-3 bg-red-800 rounded-full px-2 py-1 text-center object-right-top text-white text-sm mr-1",
+        },
+        [_vm._v("24")]
+      ),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
     return _c("div", { staticClass: "pl-3" }, [
       _c(
         "p",
@@ -81227,7 +81095,7 @@ var staticRenderFns = [
             "focus:outline-none text-xs leading-3 pt-1 text-gray-500",
           attrs: { tabindex: "0" },
         },
-        [_vm._v("\n                2 hours ago\n              ")]
+        [_vm._v(" 2 hours ago ")]
       ),
     ])
   },
@@ -81244,21 +81112,17 @@ var staticRenderFns = [
               "focus:outline-none text-sm leading-none text-green-700",
             attrs: { tabindex: "0" },
           },
-          [
-            _vm._v(
-              "\n                  Design sprint completed\n                "
-            ),
-          ]
+          [_vm._v(" Design sprint completed ")]
         ),
         _vm._v(" "),
         _c(
           "p",
           {
             staticClass:
-              "\n                    focus:outline-none\n                    focus:text-indigo-600\n                    text-xs\n                    leading-3\n                    underline\n                    cursor-pointer\n                    text-green-700\n                  ",
+              " focus:outline-none focus:text-indigo-600 text-xs leading-3 underline cursor-pointer text-green-700 ",
             attrs: { tabindex: "0" },
           },
-          [_vm._v("\n                  View\n                ")]
+          [_vm._v(" View ")]
         ),
       ]),
     ])
@@ -81274,7 +81138,7 @@ var staticRenderFns = [
         "p",
         {
           staticClass:
-            "\n                focus:outline-none\n                text-sm\n                flex flex-shrink-0\n                leading-normal\n                px-3\n                py-16\n                text-gray-500\n              ",
+            " focus:outline-none text-sm flex flex-shrink-0 leading-normal px-3 py-16 text-gray-500 ",
           attrs: { tabindex: "0" },
         },
         [_vm._v("\n              Thats it for now :)\n            ")]
@@ -100547,7 +100411,7 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(v_toaster__WEBPACK_IMPORTED_MODUL
 window.Pusher = __webpack_require__(/*! pusher-js */ "./node_modules/pusher-js/dist/web/pusher.js");
 window.Echo = new laravel_echo__WEBPACK_IMPORTED_MODULE_6__["default"]({
   broadcaster: 'pusher',
-  key: "somekey",
+  key: "local",
   // key: process.env.VUE_APP_WEBSOCKETS_KEY,
   wsHost: window.location.hostname + ':6001',
   wsPort: 6001,

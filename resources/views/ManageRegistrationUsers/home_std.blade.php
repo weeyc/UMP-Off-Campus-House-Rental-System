@@ -10,6 +10,12 @@
 </div>
 
 
+{{-- <script>
+    window.user =@json([
+        'user' =>
+    ])
+</script> --}}
+
 @endsection
 
 

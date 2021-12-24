@@ -4,12 +4,14 @@ namespace App;
 
 namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
-
+use Illuminate\Notifications\Notifiable;
 class Landlord extends Model
 {
     // include  public $timestamps = false; //
     public $timestamps = false;
+    use Notifiable;
     protected $hidden = ['landlord_password'];
+    protected $primaryKey = 'landlord_id';
     public function getPropertyRelation(){
         return $this->hasMany('App\Models\Property', 'landlord_id', 'landlord_id' );
 
