@@ -21,10 +21,11 @@ class BulletinNotification extends Notification
      *
      * @return void
      */
-    public function __construct($Bulletin, $Sender)
+    public function __construct($Content, $Sender_std,$Sender_land)
     {
-        $this->Bulletin = $Bulletin;
-        $this->Sender = $Sender;
+        $this->Content = $Content;
+        $this->Sender_std = $Sender_std;
+        $this->Sender_land =$Sender_land;
     }
 
     /**
@@ -75,8 +76,9 @@ class BulletinNotification extends Notification
     public function toArray($notifiable)
     {
         return [
-            'Post' =>  $this->Bulletin,
-            'Sender' =>  $this->Sender,
+            'Content' =>  $this->Content,
+            'Sender_std' =>  $this->Sender_std,
+            'Sender_land' =>    $this->Sender_land,
         ];
     }
 }

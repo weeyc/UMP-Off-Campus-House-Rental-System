@@ -91,15 +91,16 @@ class RentalRoomController extends Controller
 
             //notification
             $ID = $request -> session()->get('ID');
-            $Sender = Student::find($ID);
+            $Sender_std = Student::find($ID);
+            $Sender_land = null;
             $Student = Student::with('getTenantRelation')->whereHas('getTenantRelation', function($query) use($prop_id) {
                 $query->where('property_id', $prop_id);
             ;})->get()->except($ID);
             $Landlord = Landlord::with('getPropertyRelation')->whereHas('getPropertyRelation', function($query) use($prop_id) {
                 $query->where('property_id', $prop_id);
             ;})->first();
-            Notification::send($Student, new BulletinNotification($Bulletin,$Sender));
-            $Landlord->notify(new BulletinNotification($Bulletin,$Sender));
+            Notification::send($Student, new BulletinNotification($Bulletin, $Sender_std,$Sender_land));
+            $Landlord->notify(new BulletinNotification($Bulletin, $Sender_std,$Sender_land));
 
 
 
@@ -161,9 +162,10 @@ class RentalRoomController extends Controller
 
         //Notification
         $sender_id = $request -> session()->get('ID');
-        $Sender = Student::find($sender_id);
+        $Sender_std = Student::find($sender_id);
         $Receiver = Student::find($id);
-        $Receiver->notify(new RoommateNotification($Tenant,$Sender));
+        $Sender_land = null;
+        $Receiver->notify(new RoommateNotification($Tenant, $Sender_std,$Sender_land));
 
 
 

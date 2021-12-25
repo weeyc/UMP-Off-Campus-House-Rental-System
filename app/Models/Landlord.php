@@ -12,9 +12,14 @@ class Landlord extends Model
     use Notifiable;
     protected $hidden = ['landlord_password'];
     protected $primaryKey = 'landlord_id';
+
     public function getPropertyRelation(){
         return $this->hasMany('App\Models\Property', 'landlord_id', 'landlord_id' );
 
+    }
+
+    public function getPaymentRelation(){
+        return $this->hasMany('App\Models\Payment', 'landlord_id', 'landlord_id');
     }
 
 

@@ -21,10 +21,11 @@ class RoommateNotification extends Notification
      *
      * @return void
      */
-    public function __construct($Content, $Sender)
+    public function __construct($Content, $Sender_std, $Sender_land)
     {
         $this->Content = $Content;
-        $this->Sender = $Sender;
+        $this->Sender_std = $Sender_std;
+        $this->Sender_land =$Sender_land;
     }
 
     /**
@@ -76,7 +77,8 @@ class RoommateNotification extends Notification
     {
         return [
             'Content' =>  $this->Content,
-            'Sender' =>  $this->Sender,
+            'Sender_std' =>  $this->Sender_std,
+            'Sender_land' =>    $this->Sender_land,
         ];
     }
 }

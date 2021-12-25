@@ -7,8 +7,8 @@
         <div v-if="lists.length==0"> You are not renting any room yet.</div>
         <div else>
             <div v-for="(list,index) in lists" :key="index.id" class="flex justify-start  ">
-
-                     <router-link :to="{ name: 'HousePlatform_Std', params:{id: list.room.id}}" class="flex justify-center w-full px-8 py-4 overflow-hidden rounded-lg shadow-lg mt-5 cursor-pointer transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-105 duration-200 hover:bg-gray-900 hover:shadow-2xl bg-gray-800">
+                    <router-link :to="{ name: 'HousePlatform_Std', params:{id: list.room.id}}"
+                        class="flex justify-center w-full px-8 py-4 overflow-hidden rounded-lg shadow-lg mt-5 cursor-pointer transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-105 duration-200 hover:bg-gray-900 hover:shadow-2xl bg-gray-800">
                 <!-- flex justify-center bg-white rounded-xl border-2 overflow-hidden -->
                     <div class="w-1/3 bg-cover" > <img class="h-48 w-full object-cover"  :src="'/images/Properties/'+list.room.photo_room[0].photo_name" alt="Avatar"  /></div>
                     <div class="w-2/3 p-4 md:p-4">

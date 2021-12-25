@@ -8,6 +8,7 @@ import routes from './routes';
 
 import Swal from 'sweetalert2'
 window.Swal = Swal
+Vue.use(require('vue-moment'));
 
 
 //----------TOASTER-------------------//

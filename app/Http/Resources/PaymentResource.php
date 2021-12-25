@@ -14,6 +14,8 @@ class PaymentResource extends JsonResource
      */
     public function toArray($request)
     {
+        $student = $this->whenLoaded('getStudentRelation');
+        $landlord = $this->whenLoaded('getPaymentRelation');
         return [
             'payment_id' => $this->payment_id,
             'student_id' => $this->student_id,
@@ -27,6 +29,8 @@ class PaymentResource extends JsonResource
             'payment_status' => $this->payment_status,
             'total_payment' => $this->total_payment,
             'payment_date' => $this->payment_date,
+            'student' => new StudentResource($student),
+            'landlord' => new LandlordResource($student),
 
         ];
 

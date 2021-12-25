@@ -22,11 +22,12 @@ class NotifyResource extends JsonResource
             'notifiable_id' => $this->notifiable_id,
             'data' => $this->data,
             'read_at' => $this->read_at,
-            'created_at' => $this->created_at,
+            'created_at' => $this->created_at->format('d M Y'),
             'updated_at' => $this->updated_at,
 
 
-
         ];
+
+
     }
 }

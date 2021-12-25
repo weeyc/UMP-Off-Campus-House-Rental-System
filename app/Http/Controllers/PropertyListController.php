@@ -2,26 +2,27 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Resources\StudentResource;
-use App\Http\Resources\PropertyResource;
-use App\Http\Resources\LandlordResource;
-use App\Http\Resources\PhotoResource;
-use App\Http\Resources\RoomResource;
-use App\Http\Resources\StaffResource;
-use Illuminate\Http\Request;
-use App\Models\Student;
+use App\Models\Room;
+use App\Models\Photo;
 use App\Models\Staff;
+use App\Models\Tenant;
+use App\Models\Booking;
+use App\Models\Payment;
+use App\Models\Student;
+use App\Models\Bulletin;
 use App\Models\Landlord;
 use App\Models\Property;
-use App\Models\Photo;
-use App\Models\Room;
-use App\Models\Booking;
-use App\Models\Tenant;
-use App\Models\Bulletin;
-use App\Notifications\PaymentNotification;
-use Illuminate\Notifications\Notifiable;
-use App\Models\Payment;
 use Illuminate\Support\Str;
+use Illuminate\Http\Request;
+use App\Http\Resources\RoomResource;
+use App\Http\Resources\PhotoResource;
+use App\Http\Resources\StaffResource;
+use App\Http\Resources\StudentResource;
+use App\Http\Resources\LandlordResource;
+use App\Http\Resources\PropertyResource;
+use Illuminate\Notifications\Notifiable;
+use App\Notifications\PaymentNotification;
+use Illuminate\Support\Facades\Notification;
 
 
 
@@ -141,6 +142,10 @@ class PropertyListController extends Controller
         $Booking ->save();
         $Booking_ID =  $Booking->getKey();
 
+        $r_id = $request ->room_id;
+        $prop_id =$request ->property_id;
+
+
         if($Booking ->save()){
             $Payment = new Payment();
             $Payment->student_id = $request ->std_id;
@@ -152,6 +157,8 @@ class PropertyListController extends Controller
             $Payment->payment_status = 'Paid';
             $Payment->total_payment = $request ->booking_fees;
             $Payment->save();
+
+
 
             $Tenant =  new Tenant();
             $Tenant->student_id = $request->std_id;
@@ -166,6 +173,20 @@ class PropertyListController extends Controller
             ->update([
                 'room_status' => 'rented'
             ]);
+
+
+            //notification
+            $ID = $request -> session()->get('ID');
+            $Sender_std = Student::find($ID);
+            $Sender_land = null;
+            $Student = Student::with('getPaymentRelation')->whereHas('getPaymentRelation', function($query) use($r_id) {
+                $query->where('room_id', $r_id);
+            ;})->get();
+            $Landlord = Landlord::with('getPaymentRelation')->whereHas('getPaymentRelation', function($query) use($prop_id) {
+                $query->where('property_id', $prop_id);
+            ;})->first();
+            Notification::send($Student, new PaymentNotification($Payment, $Sender_std,$Sender_land));
+            $Landlord->notify(new PaymentNotification($Payment, $Sender_std,$Sender_land));
         }
 
 

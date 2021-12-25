@@ -13,8 +13,12 @@ class Student extends Model
     protected $primaryKey = 'std_id';
     protected $hidden = ['std_password'];
 
+
     public function getTenantRelation(){
         return $this->hasMany('App\Models\Tenant', 'student_id', 'std_id');
+    }
+    public function getPaymentRelation(){
+        return $this->hasMany('App\Models\Payment', 'student_id', 'std_id');
     }
 
 
