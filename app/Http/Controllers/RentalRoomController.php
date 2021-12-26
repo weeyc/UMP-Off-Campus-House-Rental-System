@@ -30,6 +30,7 @@ use App\Notifications\BulletinNotification;
 use App\Notifications\ResponseNotification;
 use App\Notifications\RoommateNotification;
 use Illuminate\Support\Facades\Notification;
+use Illuminate\Support\Facades\DB;
 
 class RentalRoomController extends Controller
 {
@@ -178,15 +179,29 @@ class RentalRoomController extends Controller
                 'tenant_status' => 'Tenancy',
                 'tenancy_invitation' => 'Accepted',
             ]);
+            $Tenant =  Tenant::where('invite_by', $request->id)->first();
+            DB::table('notifications')
+              ->where('id',$request->noti_id)
+              ->update(['signal' => 'Accepted']);
+
         }else {
             Tenant::where('invite_by', $request->id)
             ->update([
                 'tenant_status' => 'Invalid',
                 'tenancy_invitation' => 'Rejected',
             ]);
+
+            $Tenant =  Tenant::where('invite_by', $request->id)->first();
+
+            Tenant::where('invite_by', $request->id)
+            ->delete();
+
+            DB::table('notifications')
+            ->where('id',$request->noti_id)
+            ->update(['signal' => 'Rejected']);
         }
         //Notification
-        $Tenant =  Tenant::where('invite_by', $request->id)->first();
+
         $sender_id = $request -> session()->get('ID');
         $Sender_std = Student::find($sender_id);
         $Receiver = Student::find($request->id);

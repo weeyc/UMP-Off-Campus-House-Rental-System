@@ -177,12 +177,12 @@
                 <span @click="notificationHandler(false); redirectFromNoti(5,n.data.Sender_std.std_id,1)" class="text-yellow-500 font-medium cursor-pointer hover:underline">{{ n.data.Sender_std.std_name }}</span> <span class="text-gray-300">sent you a roommate request for</span>
                 <span class="text-yellow-500 underline cursor-pointer font-medium" @click="notificationHandler(false); redirectFromNoti(3,n.data.Content.room_id)"> room id: {{ n.data.Content.room_id }}</span>
               </div>
-               <div class="flex w-2/3 mt-2">
-                    <button @click="invitationRespond(1,n.data.Sender_std.std_id)" class="flex-1 rounded-lg justify-center p-2 mr-2 text-xs font-bold bg-green-500 hover:bg-green-600 text-white flex w-1/2">Accept</button>
-                    <button @click="invitationRespond(2, n.data.Sender_std.std_id)" class="flex-1 rounded-lg justify-center p-2 text-xs bg-red-500 text-white hover:bg-red-600  flex w-1/2">Decline</button>
+               <div v-if="n.signal==null" class="flex w-2/3 mt-2">
+                    <button @click="invitationRespond(1,n.data.Sender_std.std_id, n.id)" class="flex-1 rounded-lg justify-center p-2 mr-2 text-xs font-bold bg-green-500 hover:bg-green-600 text-white flex w-1/2">Accept</button>
+                    <button @click="invitationRespond(2, n.data.Sender_std.std_id, n.id)" class="flex-1 rounded-lg justify-center p-2 text-xs bg-red-500 text-white hover:bg-red-600  flex w-1/2">Decline</button>
                 </div>
-                  <p tabindex="0" class="focus:outline-none text-xs leading-3 pt-1 text-gray-300" > Invitation accepted <span @click="notificationHandler(false); redirectFromNoti(1)" class="text-gray-300 cursor-pointer underline">(go to house rental)</span></p>
-                  <p tabindex="0" class="focus:outline-none text-xs leading-3 pt-1 text-gray-300" > Invitation declined </p>
+                  <div tabindex="0" v-if="n.signal=='Accepted'" class="focus:outline-none text-xs leading-3 pt-1 text-green-500" > Invitation accepted -><span @click="notificationHandler(false); redirectFromNoti(1)" class="text-gray-300 cursor-pointer underline hover:text-yellow-500"> Go to house</span></div>
+                  <div tabindex="0" v-if="n.signal=='Rejected'" class="focus:outline-none text-xs leading-3 pt-1 text-red-500" > Invitation declined </div>
               <p tabindex="0" class="focus:outline-none text-xs leading-3 pt-1 text-gray-500 mt-2" > {{ moment( n.created_at ).fromNow() }}  </p>
             </div>
          </div>
@@ -353,7 +353,8 @@ export default {
         },
         markAsRead(){
             axios.get('/api/mark_as_read/'+this.user_id+'/'+this.role).then((response)=>{
-
+                this.getNotifications()
+                this.getNotificationsCount()
                 }).catch((errors)=> {console.log(errors)})
         },
          dateToFromNowDaily( myDate ) {
@@ -375,10 +376,11 @@ export default {
             });
         },
 
-        invitationRespond(status, id){
+        invitationRespond(status, id, noti_id){
             var form={
                 status,
                 id,
+                noti_id,
             };
              axios.post('/api/response_request/',form).then(() =>{
                  if(form.status==1){
@@ -386,6 +388,8 @@ export default {
                  }else{
                     this.$toaster.success('Roommate request rejected!')
                  }
+                this.getNotifications();
+                this.getNotificationsCount()
 
                 }).catch();
 

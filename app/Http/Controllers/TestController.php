@@ -15,6 +15,7 @@ use App\Models\Landlord;
 use App\Models\Property;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Http\Resources\RoomResource;
 use App\Http\Resources\PhotoResource;
 use App\Http\Resources\StaffResource;
@@ -24,6 +25,7 @@ use App\Http\Resources\LandlordResource;
 use App\Http\Resources\PropertyResource;
 use Illuminate\Notifications\Notifiable;
 use App\Notifications\PaymentNotification;
+use PHPUnit\Util\Json;
 
 class TestController extends Controller
 {
@@ -37,9 +39,10 @@ class TestController extends Controller
 
 
             //$Sender_std = Student::find($ID);
-            $Tenant =  Tenant::where('invite_by',23)->first();
+            $Tenant = DB::table('notifications')->where('id','01ae956d-98d0-451d-8ae2-b589c301f6fd')->update(['signal' => 'Rejected']);
 
-            return  $Tenant;
+
+            return  response(["data",$Tenant]);
 
 
 
