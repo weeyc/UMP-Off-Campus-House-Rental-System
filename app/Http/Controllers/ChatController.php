@@ -41,4 +41,46 @@ class ChatController extends Controller
 
      }
 
+
+    public function get_notifications_counts($id,$role, Request $request){
+
+        if($role == 1){
+
+            $user = Student::find($id);
+            $notifications = $user->notifications()->orderBy('created_at','desc')->get();
+            return $notifications;
+
+
+        }else if($role == 2){
+            $user = Landlord::find($id);
+            $notifications = $user->notifications()->orderBy('created_at','desc')->get()
+            ->groupBy(function($date) {
+                return Carbon::parse($date->created_at)->format('d M Y'); // grouping by day
+            });
+            return response()->json(['data'=>$notifications],200);
+
+        }
+
+     }
+    public function mark_as_read($id,$role, Request $request){
+
+        if($role == 1){
+
+            $user = Student::find($id);
+            $user->unreadNotifications->markAsRead();
+            return response(['message' => 'all']);
+
+
+        }else if($role == 2){
+            $user = Landlord::find($id);
+            $notifications = $user->notifications()->orderBy('created_at','desc')->get()
+            ->groupBy(function($date) {
+                return Carbon::parse($date->created_at)->format('d M Y'); // grouping by day
+            });
+            return response()->json(['data'=>$notifications],200);
+
+        }
+
+     }
+
 }

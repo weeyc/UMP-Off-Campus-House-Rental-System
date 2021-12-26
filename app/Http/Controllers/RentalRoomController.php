@@ -27,6 +27,7 @@ use App\Http\Resources\PropertyResource;
 use Illuminate\Notifications\Notifiable;
 use App\Notifications\PaymentNotification;
 use App\Notifications\BulletinNotification;
+use App\Notifications\ResponseNotification;
 use App\Notifications\RoommateNotification;
 use Illuminate\Support\Facades\Notification;
 
@@ -94,7 +95,7 @@ class RentalRoomController extends Controller
             $Sender_std = Student::find($ID);
             $Sender_land = null;
             $Student = Student::with('getTenantRelation')->whereHas('getTenantRelation', function($query) use($prop_id) {
-                $query->where('property_id', $prop_id);
+                $query->where('property_id', $prop_id)->where('tenant_status', 'Tenancy');
             ;})->get()->except($ID);
             $Landlord = Landlord::with('getPropertyRelation')->whereHas('getPropertyRelation', function($query) use($prop_id) {
                 $query->where('property_id', $prop_id);
@@ -148,7 +149,6 @@ class RentalRoomController extends Controller
 
    }
     public function send_requestRoommate($id, Request $request){
-
         $Tenant =  new Tenant();
         $Tenant->student_id =$id;
         $Tenant->property_id = $request->property_id;
@@ -166,9 +166,32 @@ class RentalRoomController extends Controller
         $Receiver = Student::find($id);
         $Sender_land = null;
         $Receiver->notify(new RoommateNotification($Tenant, $Sender_std,$Sender_land));
+   }
 
+    public function response_request(Request $request){
 
-
+        if($request->status ==1){
+            Tenant::where('invite_by',$request->id)
+                    // ->where('tenant_status','Pending')
+                    // ->where('tenancy_invitation','Pending')
+                    ->update([
+                'tenant_status' => 'Tenancy',
+                'tenancy_invitation' => 'Accepted',
+            ]);
+        }else {
+            Tenant::where('invite_by', $request->id)
+            ->update([
+                'tenant_status' => 'Invalid',
+                'tenancy_invitation' => 'Rejected',
+            ]);
+        }
+        //Notification
+        $Tenant =  Tenant::where('invite_by', $request->id)->first();
+        $sender_id = $request -> session()->get('ID');
+        $Sender_std = Student::find($sender_id);
+        $Receiver = Student::find($request->id);
+        $Sender_land = null;
+        $Receiver->notify(new ResponseNotification($Tenant, $Sender_std,$Sender_land));
 
 
    }

@@ -36,6 +36,10 @@ class TestController extends Controller
 
 
 
+            //$Sender_std = Student::find($ID);
+            $Tenant =  Tenant::where('invite_by',23)->first();
+
+            return  $Tenant;
 
 
 

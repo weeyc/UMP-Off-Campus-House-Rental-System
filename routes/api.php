@@ -57,6 +57,9 @@ Route::delete('delete_post/{id}', 'RentalRoomController@delete_post');
 Route::get('get_mate/{id}', 'RentalRoomController@get_mate');
 
 Route::get('get_notifications/{id}/{role}', 'ChatController@get_notifications');
+Route::get('get_notifications_counts/{id}/{role}', 'ChatController@get_notifications_counts');
+Route::get('mark_as_read/{id}/{role}', 'ChatController@mark_as_read');
+Route::post('response_request', 'RentalRoomController@response_request');
 
 
 

@@ -89,12 +89,12 @@
                         </svg>
                         <p class="text-base leading-4">Chat</p>
                     </button>
-                    <button @click="toggleNoti =! toggleNoti; notificationHandler(true); " :class="[hover]" class="focus:outline-none flex jusitfy-start  py-3 items-center space-x-6 w-full">
+                    <button @click="toggleNoti =! toggleNoti; notificationHandler(true); markAsRead() " :class="[hover]" class="focus:outline-none flex jusitfy-start  py-3 items-center space-x-6 w-full">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M10 6H7C6.46957 6 5.96086 6.21071 5.58579 6.58579C5.21071 6.96086 5 7.46957 5 8V17C5 17.5304 5.21071 18.0391 5.58579 18.4142C5.96086 18.7893 6.46957 19 7 19H16C16.5304 19 17.0391 18.7893 17.4142 18.4142C17.7893 18.0391 18 17.5304 18 17V14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                             <path d="M17 10C18.6569 10 20 8.65685 20 7C20 5.34315 18.6569 4 17 4C15.3431 4 14 5.34315 14 7C14 8.65685 15.3431 10 17 10Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                         </svg>
-                        <p class="text-base leading-4">Notifications <span class="badge mb-3 bg-red-800 rounded-full px-2 py-1 text-center object-right-top text-white text-sm mr-1">24</span></p>
+                        <p class="text-base leading-4">Notifications <span v-if="unreadNotifications[0]!=undefined" class="badge mb-3 bg-red-800 shrink-0 grow-0 rounded-full px-3 py-1 text-center object-right-top text-white text-sm mr-1">{{ unreadNotifications.length }}</span></p>
                     </button>
                   <a href="/logout" :class="[hover]" class="focus:outline-none flex jusitfy-start  py-3 items-center space-x-6 w-full">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -147,7 +147,7 @@
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" > <path d="M18 6L6 18" stroke="#4B5563" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" /> <path d="M6 6L18 18" stroke="#4B5563" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" /> </svg>
             </button>
           </div>
-        <div class="longsheet mt-4">
+        <div class="longsheet">
             <div v-for="(noti,index) in notifications" :key="index">
                 <h2 tabindex="0" class=" focus:outline-none text-sm leading-normal pt-8 border-b pb-2 border-gray-500 text-gray-600 " >
                     {{  dateToFromNowDaily(noti[0].created_at) }}
@@ -174,16 +174,26 @@
                 <img @click="notificationHandler(false); redirectFromNoti(5,n.data.Sender_std.std_id,1)" class="cursor-pointer rounded-full h-10 w-10 object-cover" :src="'/images/Profile/'+n.data.Sender_std.std_pic" alt="Avatar" />
             <div class="pl-3">
               <div tabindex="0" class="focus:outline-none text-sm leading-snug">
-                <span @click="notificationHandler(false); redirectFromNoti(5,n.data.Sender_std.std_id,1)" class="text-yellow-500 font-medium cursor-pointer hover:underline">{{ n.data.Sender_std.std_name }}</span> <span class="text-gray-300">you a roommate request for</span>
+                <span @click="notificationHandler(false); redirectFromNoti(5,n.data.Sender_std.std_id,1)" class="text-yellow-500 font-medium cursor-pointer hover:underline">{{ n.data.Sender_std.std_name }}</span> <span class="text-gray-300">sent you a roommate request for</span>
                 <span class="text-yellow-500 underline cursor-pointer font-medium" @click="notificationHandler(false); redirectFromNoti(3,n.data.Content.room_id)"> room id: {{ n.data.Content.room_id }}</span>
               </div>
                <div class="flex w-2/3 mt-2">
-                    <button class="flex-1 rounded-lg justify-center p-2 mr-2 text-xs font-bold bg-green-500 hover:bg-green-600 text-white flex w-1/2">Accept</button>
-                    <button class="flex-1 rounded-lg justify-center p-2 text-xs bg-red-500 text-white hover:bg-red-600  flex w-1/2">Decline</button>
+                    <button @click="invitationRespond(1,n.data.Sender_std.std_id)" class="flex-1 rounded-lg justify-center p-2 mr-2 text-xs font-bold bg-green-500 hover:bg-green-600 text-white flex w-1/2">Accept</button>
+                    <button @click="invitationRespond(2, n.data.Sender_std.std_id)" class="flex-1 rounded-lg justify-center p-2 text-xs bg-red-500 text-white hover:bg-red-600  flex w-1/2">Decline</button>
                 </div>
                   <p tabindex="0" class="focus:outline-none text-xs leading-3 pt-1 text-gray-300" > Invitation accepted <span @click="notificationHandler(false); redirectFromNoti(1)" class="text-gray-300 cursor-pointer underline">(go to house rental)</span></p>
                   <p tabindex="0" class="focus:outline-none text-xs leading-3 pt-1 text-gray-300" > Invitation declined </p>
-              <p tabindex="0" class="focus:outline-none text-xs leading-3 pt-1 text-gray-500 mt-2" > 2 hours ago </p>
+              <p tabindex="0" class="focus:outline-none text-xs leading-3 pt-1 text-gray-500 mt-2" > {{ moment( n.created_at ).fromNow() }}  </p>
+            </div>
+         </div>
+        <div id="RoommateResponse" v-if='n.type==="App\\Notifications\\ResponseNotification"' class="w-full p-4 mt-4 rounded flex shadow bg-gray-800">
+                <img @click="notificationHandler(false); redirectFromNoti(5,n.data.Sender_std.std_id,1)" class="cursor-pointer rounded-full h-10 w-10 object-cover" :src="'/images/Profile/'+n.data.Sender_std.std_pic" alt="Avatar" />
+            <div class="pl-3">
+              <div tabindex="0" class="focus:outline-none text-sm leading-snug">
+                <span @click="notificationHandler(false); redirectFromNoti(5,n.data.Sender_std.std_id,1)" class="text-yellow-500 font-medium cursor-pointer hover:underline">{{ n.data.Sender_std.std_name }}</span> <span v-if="n.data.Content.tenancy_invitation=='Accepted'" class="text-green-500">Accepted </span> <span v-if="n.data.Content.tenancy_invitation=='Rejected'" class="text-red-500">Rejected </span> <span class="text-gray-300"> you roommate request for</span>
+                <span class="text-yellow-500 underline cursor-pointer font-medium" @click="notificationHandler(false); redirectFromNoti(3,n.data.Content.room_id)">room id: {{ n.data.Content.room_id }}</span>
+              </div>
+              <p tabindex="0" class="focus:outline-none text-xs leading-3 pt-1 text-gray-500 mt-2" > {{ moment( n.created_at ).fromNow() }}  </p>
             </div>
          </div>
 
@@ -196,7 +206,7 @@
                 <div tabindex="0" class="focus:outline-none text-sm leading-snug text-green-700 pr-2" > You have made a payment for <span class="font-medium">{{ n.data.Content.payment_details }}</span> </div>
                 <div tabindex="0" class=" focus:outline-none focus:text-indigo-600 text-xs leading-3 underline cursor-pointer text-green-700 font-medium" @click="notificationHandler(false); redirectFromNoti(2)" > View </div>
               </div>
-               <p tabindex="0" class="focus:outline-none text-xs leading-3 pt-1 text-gray-500 mt-2" > 2 hours ago </p>
+               <p tabindex="0" class="focus:outline-none text-xs leading-3 pt-1 text-gray-500 mt-2" > {{ moment( n.created_at ).fromNow() }} </p>
             </div>
         </div>
 
@@ -209,7 +219,7 @@
                 <p tabindex="0" class="focus:outline-none text-sm leading-snug text-yellow-700" > Your <span class="font-medium">rental bill</span>  for  <span class="font-medium">room id: 1</span> has been issued</p>
                 <p tabindex="0" class=" focus:outline-none focus:text-yellow-700 text-xs leading-3 underline cursor-pointer text-yellow-700 font-medium" @click="notificationHandler(false)" > View </p>
               </div>
-              <p tabindex="0" class="focus:outline-none text-xs leading-3 pt-1 text-gray-500 mt-2" > 2 hours ago </p>
+              <p tabindex="0" class="focus:outline-none text-xs leading-3 pt-1 text-gray-500 mt-2" >{{ moment( n.created_at ).fromNow() }}</p>
             </div>
         </div>
          </div>
@@ -279,6 +289,7 @@ export default {
             hover:'text-gray-100 hover:text-yellow-500 focus:text-yellow-500 border-l-4 pl-4',
             roling: '',
             notifications: [],
+            notificationsCounts: [],
               moment: moment,
 
         }
@@ -334,6 +345,17 @@ export default {
                 console.warn(this.notifications.data);
                 }).catch((errors)=> {console.log(errors)})
         },
+        getNotificationsCount(){
+            axios.get('/api/get_notifications_counts/'+this.user_id+'/'+this.role).then((response)=>{
+               this.notificationsCounts=response.data
+                console.warn(this.notificationsCounts.data);
+                }).catch((errors)=> {console.log(errors)})
+        },
+        markAsRead(){
+            axios.get('/api/mark_as_read/'+this.user_id+'/'+this.role).then((response)=>{
+
+                }).catch((errors)=> {console.log(errors)})
+        },
          dateToFromNowDaily( myDate ) {
             // get from-now for this date
             var fromNow = moment( myDate ).fromNow();
@@ -352,6 +374,23 @@ export default {
                 }
             });
         },
+
+        invitationRespond(status, id){
+            var form={
+                status,
+                id,
+            };
+             axios.post('/api/response_request/',form).then(() =>{
+                 if(form.status==1){
+                    this.$toaster.success('Roommate request accepted!')
+                 }else{
+                    this.$toaster.success('Roommate request rejected!')
+                 }
+
+                }).catch();
+
+
+        },
         redirectFromNoti(go, param_id, role){
             if(go==1){
                 this.$router.push({ name: 'RentalRoom_student' })
@@ -365,8 +404,6 @@ export default {
             }else if(go==5){
                     this.$router.push({ name: 'std_profile_view', params: { role: role, id:param_id } })
             }
-
-
         },
 
 
@@ -387,11 +424,20 @@ export default {
           });
 
           this.getNotifications();
+          this.getNotificationsCount();
 
           window.Echo.channel('channel')
           .listen('Hello', (e)=>{
               console.log(e)
           })
+    },
+    computed:{
+        unreadNotifications(){
+            return this.notificationsCounts.filter(notification=>{
+
+                return notification.read_at==null;
+            })
+        }
     },
 };
 </script>
