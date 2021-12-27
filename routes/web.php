@@ -1,11 +1,13 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Http\Controllers\UserController;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Route;
-use App\Http\Middleware\Checking;
 use App\Events\Hello;
+use Illuminate\Http\Request;
+use App\Http\Middleware\Checking;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\LoginUController;
 
 
 /*
@@ -19,11 +21,15 @@ use App\Events\Hello;
 |
 */
 
+
 Route::get('/', function () {
   return view('ManageRegistrationUsers.login');
 });
 
-Route::post('/Login', [UserController::class, 'Login'])->name('Sign_In');
+Auth::routes();
+
+Route::post('/Login', 'UserController@Login')->name('Sign_In');
+
 
 Route::get('/registration-student', function(){
     return view('ManageRegistrationUsers.registration');
@@ -38,37 +44,34 @@ Route::get('/forbidden', function(){
 
 Route::get('/logout', 'UserController@logout');
 
-// Route::get('/broadcast', function(){
-//     broadcast(new Hello());
-// });
 
-
-// Route::get('{any}', function () {
-//     return view('ManageRegistrationUsers.home_staff');
-// })->where('any', '.*');
-
-// Route::any('/home-staff/{all}', function () {
-//     return view('ManageRegistrationUsers.home_staff');
-// })
-// ->where(['all' => '.*']);
+// Route::get('/staff/{any?}', [UserController::class, 'authStaff'])->where('any', '.*');
+// Route::get('/landlord/{any?}', [UserController::class, 'authLandlord'])->where('any', '.*');
+// Route::get('/student/{any?}', [UserController::class, 'authStudent'])->where('any', '.*');
 
 
 
+// Route::post('/login/admin', 'Auth\LoginController@adminLogin');
+// Route::post('/login/blogger', 'Auth\LoginController@bloggerLogin');
+// Route::post('/register/admin', 'Auth\RegisterController@createAdmin');
+// Route::post('/register/blogger', 'Auth\RegisterController@createBlogger');
 
-  Route::get('/staff/{any?}', [UserController::class, 'authStaff'])->where('any', '.*');
-  Route::get('/landlord/{any?}', [UserController::class, 'authLandlord'])->where('any', '.*');
-  Route::get('/student/{any?}', [UserController::class, 'authStudent'])->where('any', '.*');
 
-
-
-// Route::get('/home-landlord', 'UserController@authLandlord');
-// Route::get('/home-student', 'UserController@authStudent');
-// Route::get('/home-staff', 'UserController@authStaff');
+//Route::post('/Login', 'LoginUController@Login')->name('Sign_In');
 
 
 
 
+Route::group(['middleware' => 'auth:student'], function () {
+    Route::get('/student/{any?}', [UserController::class, 'authStudent'])->where('any', '.*');
+});
 
+Route::group(['middleware' => 'auth:landlord'], function () {
 
+    Route::get('/landlord/{any?}', [UserController::class, 'authLandlord'])->where('any', '.*');
+});
 
+Route::group(['middleware' => 'auth:staff'], function () {
 
+    Route::get('/staff/{any?}', [UserController::class, 'authStaff'])->where('any', '.*');
+});

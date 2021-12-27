@@ -291,6 +291,7 @@ export default {
             notifications: [],
             notificationsCounts: [],
               moment: moment,
+              authme: [],
 
         }
     },
@@ -409,6 +410,12 @@ export default {
                     this.$router.push({ name: 'std_profile_view', params: { role: role, id:param_id } })
             }
         },
+        getAuth(){
+                 axios.get('/api/authme/').then((response)=>{
+               this.authme=response.data
+
+                }).catch((errors)=> {console.log(errors)})
+        },
 
 
 
@@ -440,6 +447,8 @@ export default {
                 // this.getNotifications();
                 // this.getNotificationsCount();
             });
+
+            this.getAuth();
 
 
 

@@ -65,6 +65,7 @@ Route::post('response_request', 'RentalRoomController@response_request');
 
 
 Route::get('get_one', 'TestController@get_one');
+Route::get('authme', 'ChatController@authme');
 
 
 //Route::post('login', [UserController::class, 'login']); cant use tis format

@@ -46,21 +46,21 @@ return [
             'provider' => 'users',
             'hash' => false,
         ],
-        // 'student' => [
-        //     'driver' => 'session',
-        //     'provider' => 'students',
+        'student' => [
+            'driver' => 'session',
+            'provider' => 'students',
 
-        // ],
-        // 'landlord' => [
-        //     'driver' => 'session',
-        //     'provider' => 'landlords',
+        ],
+        'landlord' => [
+            'driver' => 'session',
+            'provider' => 'landlords',
 
-        // ],
-        // 'staff' => [
-        //     'driver' => 'session',
-        //     'provider' => 'staff',
+        ],
+        'staff' => [
+            'driver' => 'session',
+            'provider' => 'staff',
 
-        // ],
+        ],
     ],
 
     /*
@@ -90,18 +90,18 @@ return [
         //     'driver' => 'database',
         //     'table' => 'users',
         // // ],
-        // 'students' => [
-        //     'driver' => 'eloquent',
-        //     'model' => App\Models\Student::class,
-        // ],
-        // 'landlords' => [
-        //     'driver' => 'eloquent',
-        //     'model' => App\Models\Landlord::class,
-        // ],
-        // 'staff' => [
-        //     'driver' => 'eloquent',
-        //     'model' => App\Models\Staff::class,
-        // ],
+        'students' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Student::class,
+        ],
+        'landlords' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Landlord::class,
+        ],
+        'staff' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Staff::class,
+        ],
     ],
 
     /*
@@ -122,6 +122,24 @@ return [
     'passwords' => [
         'users' => [
             'provider' => 'users',
+            'table' => 'password_resets',
+            'expire' => 60,
+            'throttle' => 60,
+        ],
+        'students' => [
+            'provider' => 'students',
+            'table' => 'password_resets',
+            'expire' => 60,
+            'throttle' => 60,
+        ],
+        'landlords' => [
+            'provider' => 'landlords',
+            'table' => 'password_resets',
+            'expire' => 60,
+            'throttle' => 60,
+        ],
+        'staff' => [
+            'provider' => 'staff',
             'table' => 'password_resets',
             'expire' => 60,
             'throttle' => 60,

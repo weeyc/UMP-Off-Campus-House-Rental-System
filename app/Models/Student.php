@@ -3,15 +3,18 @@
 namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
 
-class Student extends Model
+class Student extends Authenticatable
 {
     public $timestamps = false;
     use Notifiable;
+    protected $guard = 'student';
     protected $primaryKey = 'std_id';
-    protected $hidden = ['std_password'];
+    protected $hidden = ['std_password', 'remember_token'];
+
 
 
     public function getTenantRelation(){
@@ -19,6 +22,12 @@ class Student extends Model
     }
     public function getPaymentRelation(){
         return $this->hasMany('App\Models\Payment', 'student_id', 'std_id');
+    }
+
+    public function getAuthPassword () {
+
+        return $this->std_password;
+
     }
 
 

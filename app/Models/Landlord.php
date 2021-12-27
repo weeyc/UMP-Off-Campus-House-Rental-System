@@ -5,12 +5,16 @@ namespace App;
 namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
-class Landlord extends Model
+use Illuminate\Foundation\Auth\User as Authenticatable;
+
+
+class Landlord extends Authenticatable
 {
     // include  public $timestamps = false; //
     public $timestamps = false;
+    protected $guard = 'landlord';
     use Notifiable;
-    protected $hidden = ['landlord_password'];
+    protected $hidden = ['landlord_password', 'remember_token'];
     protected $primaryKey = 'landlord_id';
 
     public function getPropertyRelation(){
@@ -20,6 +24,12 @@ class Landlord extends Model
 
     public function getPaymentRelation(){
         return $this->hasMany('App\Models\Payment', 'landlord_id', 'landlord_id');
+    }
+
+    public function getAuthPassword () {
+
+        return $this->landlord_password;
+
     }
 
 

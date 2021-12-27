@@ -2,19 +2,20 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Resources\StudentResource;
-
-use App\Http\Resources\LandlordResource;
-use App\Http\Resources\StaffResource;
-use Illuminate\Http\Request;
-use App\Models\Student;
 use App\Models\Staff;
+
+use App\Models\Student;
 use App\Models\Landlord;
 use Illuminate\Support\Str;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use App\Http\Resources\StaffResource;
+
+use App\Http\Resources\StudentResource;
 
 use Illuminate\Support\Facades\Session;
-
-use Illuminate\Support\Facades\Hash;
+use App\Http\Resources\LandlordResource;
 
 
 class UserController extends Controller
@@ -38,14 +39,18 @@ class UserController extends Controller
                 else{
                     if(Hash::check($request->password, $std_info->std_password)){
 
-                        // $request->session()->put([
-                        //     'ID' => $std_info->std_id,
-                        //     'Role' => 'Student'
-                        // ]);
-                        $Role = 1;
-                        $request ->session()->put('ID', $std_info->std_id);
-                        $request ->session()->put('Role', $Role);
-                        return redirect('/student');
+                        if (Auth::guard('student')->attempt(['std_email' => $request->email, 'password' => $request->password])) {
+                                $Role = 1;
+                                $request ->session()->put('ID', $std_info->std_id);
+                                $request ->session()->put('Role', $Role);
+
+
+                                    if (Auth::guard('student')->check()) {
+                                        return redirect('/student');
+                                    }
+
+                        }
+                         return back()->with('fail','Wrong credential !');
                     }
                     else{
                         return back()->with('fail','Incorrect password !');
@@ -60,11 +65,17 @@ class UserController extends Controller
                 }
                 else{
                     if(Hash::check($request->password, $landlord_info->landlord_password)){
+                        if (Auth::guard('landlord')->attempt(['landlord_email' => $request->email, 'password' => $request->password])) {
 
-                        $Role = 2;
-                        $request ->session()->put('ID', $landlord_info->landlord_id);
-                        $request ->session()->put('Role', $Role);
-                        return redirect('/landlord');
+                            $Role = 2;
+                            $request ->session()->put('ID', $landlord_info->landlord_id);
+                            $request ->session()->put('Role', $Role);
+                            if (Auth::guard('landlord')->check()) {
+                                 return redirect('/landlord');
+                            }
+                        }
+                        else
+                            return back()->with('fail','Wrong credential !');
                     }
                     else{
                         return back()->with('fail','Incorrect Password');
@@ -96,11 +107,16 @@ class UserController extends Controller
                     }
                 }else{
                         if(Hash::check($request->password, $Staff_info->staff_password)){
+                            if (Auth::guard('staff')->attempt(['staff_email' => $request->email, 'password' => $request->password])) {
                             $Role = 3;
                             $request ->session()->put('ID', $Staff_info->staff_id);
                             $request ->session()->put('Role', $Role);
-
-                            return redirect('/staff');
+                                if (Auth::guard('staff')->check()) {
+                                    return redirect('/staff');
+                                }
+                            }
+                            else
+                                return back()->with('fail','Wrong credential !');
                         }
                         else{
                             return back()->with('fail','Incorrect Hash Password');

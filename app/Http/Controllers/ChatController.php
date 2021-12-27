@@ -7,6 +7,7 @@ use Carbon\Carbon;
 use App\Models\Student;
 use App\Models\Landlord;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Resources\NotifyResource;
 
 class ChatController extends Controller
@@ -83,5 +84,15 @@ class ChatController extends Controller
         }
 
      }
+    public function authme(){
+
+
+        $authme = Auth::guard('student')->user()->std_id;
+            return $authme;
+
+
+     }
+
+
 
 }

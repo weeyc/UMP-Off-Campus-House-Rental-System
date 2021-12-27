@@ -18,11 +18,13 @@ use Illuminate\Support\Facades\Broadcast;
 //     return (int) $user->id === (int) $id;
 // });
 
-
+Broadcast::channel('App.Models.Student.*', function ($user) {
+    return Auth::guard('student')->check();
+});
 
 Broadcast::channel('App.Models.Student.{id}', function ($user, $id) {
-    $student = Student::find($id);
-    return (int) $user->id === (int) $id;
+    Auth::guard('student')->check();
+    return  Auth::guard('student')->user()->std_id === $id;
     //return  (int) $student->std_id === (int) $id;
 
 });
@@ -31,11 +33,3 @@ Broadcast::channel('App.Models.Student.{id}', function ($user, $id) {
 //     return $user->id === Order::findOrNew($orderId)->user_id;
 // });
 
-// Broadcast::channel('user.*', function ($user) {
-//     return Auth::check();
-// });
-
-// Broadcast::channel('conversation.{id}', function ($user, $conversationId) {
-//     Auth::check();
-//     return $user->isInConversation(Conversation::find($conversationId));
-// });
