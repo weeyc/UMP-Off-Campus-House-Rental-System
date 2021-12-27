@@ -46,6 +46,7 @@ class ChatController extends Controller
 
         if($role == 1){
 
+
             $user = Student::find($id);
             $notifications = $user->notifications()->orderBy('created_at','desc')->get();
             return $notifications;

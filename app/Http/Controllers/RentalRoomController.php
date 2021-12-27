@@ -96,7 +96,7 @@ class RentalRoomController extends Controller
             $Sender_std = Student::find($ID);
             $Sender_land = null;
             $Student = Student::with('getTenantRelation')->whereHas('getTenantRelation', function($query) use($prop_id) {
-                $query->where('property_id', $prop_id)->where('tenant_status', 'Tenancy');
+            $query->where('property_id', $prop_id)->where('tenant_status', 'Tenancy');
             ;})->get()->except($ID);
             $Landlord = Landlord::with('getPropertyRelation')->whereHas('getPropertyRelation', function($query) use($prop_id) {
                 $query->where('property_id', $prop_id);

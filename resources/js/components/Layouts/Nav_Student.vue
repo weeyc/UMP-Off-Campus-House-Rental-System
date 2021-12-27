@@ -414,10 +414,7 @@ export default {
 
     },
     created(){
-        //     Echo.private('App.Models.User.' + this.user_id)
-        // .notification((notification) => {
-        //     console.log(notification, 'new notification on realtime');
-        // });
+
     },
     mounted:  function(){
             this.getProfile();
@@ -434,6 +431,19 @@ export default {
           .listen('Hello', (e)=>{
               console.log(e)
           })
+
+        Echo.private('App.Models.Student.' + this.user_id)
+            .notification((notification) => {
+                console.log(notification, 'new notification on realtime');
+                this.notifications.push(notification.notification);
+                this.notificationsCounts.push(notification.notification);
+                // this.getNotifications();
+                // this.getNotificationsCount();
+            });
+
+
+
+
     },
     computed:{
         unreadNotifications(){

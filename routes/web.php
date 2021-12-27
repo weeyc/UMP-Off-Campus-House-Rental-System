@@ -38,9 +38,9 @@ Route::get('/forbidden', function(){
 
 Route::get('/logout', 'UserController@logout');
 
-Route::get('/broadcast', function(){
-    broadcast(new Hello());
-});
+// Route::get('/broadcast', function(){
+//     broadcast(new Hello());
+// });
 
 
 // Route::get('{any}', function () {

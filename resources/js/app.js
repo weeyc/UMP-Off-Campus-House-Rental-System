@@ -27,16 +27,21 @@ Vue.use(Toaster, {timeout: 5000})
 import Echo from "laravel-echo"
 
 window.Pusher = require('pusher-js');
-
 window.Echo = new Echo({
     broadcaster: 'pusher',
-     key: process.env.MIX_PUSHER_APP_KEY,
-    // key: process.env.VUE_APP_WEBSOCKETS_KEY,
-    wsHost: window.location.hostname+ ':6001',
+    key: process.env.MIX_PUSHER_APP_KEY,
+    //wsHost: window.location.hostname+ ':6001',
+    wsHost: window.location.hostname,
     wsPort: 6001,
     forceTLS: false,
     disableStats: true,
-    transports: ['websocket', 'polling', 'flashsocket']
+    //   auth:{
+    //     headers: {
+
+    //         Authorization: 'Bearer ',
+    //         Accept: 'application/json',
+    //     },
+    // },
 });
 
 Vue.use(VueRouter);

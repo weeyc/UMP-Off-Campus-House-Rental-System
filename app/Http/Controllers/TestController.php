@@ -36,16 +36,10 @@ class TestController extends Controller
 
     public function get_one(Request $request){
 
+        $token = $request->bearerToken();
 
 
-            //$Sender_std = Student::find($ID);
-            $Tenant = DB::table('notifications')->where('id','01ae956d-98d0-451d-8ae2-b589c301f6fd')->update(['signal' => 'Rejected']);
-
-
-            return  response(["data",$Tenant]);
-
-
-
+        return $token;
 
 
     }
