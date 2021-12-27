@@ -259,7 +259,7 @@ export default {
                 timer: 1500
                 })
                 this.closeModal();
-                setTimeout(() =>  window.location.href = "/student/payments", 1900);
+                setTimeout(() =>   this.$router.push({ name: 'RentalRoom_student' }), 1900);
 
                 }).catch(error =>this.errors.record(error.response.data));
 

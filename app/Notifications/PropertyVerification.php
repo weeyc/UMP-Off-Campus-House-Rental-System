@@ -5,6 +5,7 @@ namespace App\Notifications;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
+use Illuminate\Notifications\Messages\BroadcastMessage;
 use Illuminate\Notifications\Notification;
 
 class PropertyVerification extends Notification
@@ -31,7 +32,7 @@ class PropertyVerification extends Notification
      */
     public function via($notifiable)
     {
-        return ['database'];
+        return ['database','broadcast'];
     }
 
     /**
@@ -61,5 +62,13 @@ class PropertyVerification extends Notification
             'Sender_std' =>  $this->Sender_std,
             'Sender_land' =>    $this->Sender_land,
         ];
+    }
+
+    public function toBroadcast($notifiable)
+    {
+        return new BroadcastMessage([
+            'notification' => $notifiable->notifications()->latest()->first()
+
+        ]);
     }
 }

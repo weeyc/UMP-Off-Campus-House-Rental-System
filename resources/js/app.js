@@ -37,9 +37,9 @@ window.Echo = new Echo({
     disableStats: true,
     //   auth:{
     //     headers: {
-
-    //         Authorization: 'Bearer ',
     //         Accept: 'application/json',
+    //         Authorization: 'Bearer ',
+
     //     },
     // },
 });

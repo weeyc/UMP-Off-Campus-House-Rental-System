@@ -291,7 +291,9 @@ var Errors = /*#__PURE__*/function () {
         _this2.closeModal();
 
         setTimeout(function () {
-          return window.location.href = "/student/payments";
+          return _this2.$router.push({
+            name: 'RentalRoom_student'
+          });
         }, 1900);
       })["catch"](function (error) {
         return _this2.errors.record(error.response.data);

@@ -150,7 +150,7 @@
         <div class="longsheet">
             <div v-for="(noti,index) in notifications" :key="index">
                 <h2 tabindex="0" class=" focus:outline-none text-sm leading-normal pt-8 border-b pb-2 border-gray-500 text-gray-600 " >
-                    {{  dateToFromNowDaily(noti[0].created_at) }}
+                    <!-- {{  dateToFromNowDaily(noti[0].created_at) }} -->
                  </h2>
 
                 <!-- {{ noti[0].created_at | moment("utc","dddd, MMMM Do YYYY, h:mm:ss a")}} -->
@@ -267,6 +267,16 @@
 
 <script>
 
+// const playAudio = async () => {
+//     const importRes = await import("./path/to/audio.mp3"); // make sure the path is correct
+//     var audio = new Audio(importRes.default);
+//     try {
+//       await audio.play();
+//       console.log("Playing audio");
+//     } catch (err) {
+//       console.log("Failed to play, error: " + err);
+//     }
+// }
 
 
 import moment from "moment";
@@ -416,6 +426,11 @@ export default {
 
                 }).catch((errors)=> {console.log(errors)})
         },
+        playNotificationSound(){
+            var mytrack = new Audio('/audio/notification.mp3')
+            mytrack.play();
+        },
+
 
 
 
@@ -441,11 +456,10 @@ export default {
 
         Echo.private('App.Models.Student.' + this.user_id)
             .notification((notification) => {
-                console.log(notification, 'new notification on realtime');
-                this.notifications.push(notification.notification);
-                this.notificationsCounts.push(notification.notification);
-                // this.getNotifications();
-                // this.getNotificationsCount();
+                console.log(notification);
+                this.getNotifications();
+                this.getNotificationsCount();
+                this.playNotificationSound();
             });
 
             this.getAuth();

@@ -82,9 +82,9 @@ class BulletinNotification extends Notification
     {
         return new BroadcastMessage([
             'notification' => $notifiable->notifications()->latest()->first()
-        //    'Content' =>  $this->Content,
-        //     'Sender_std' =>  $this->Sender_std,
-        //     'Sender_land' =>    $this->Sender_land,
+
         ]);
     }
+
+
 }

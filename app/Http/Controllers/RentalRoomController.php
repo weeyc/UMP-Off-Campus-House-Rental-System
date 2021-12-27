@@ -4,15 +4,16 @@ namespace App\Http\Controllers;
 use App\Models\Room;
 use App\Models\Photo;
 use App\Models\Staff;
-use App\Models\Tenant;
 use App\Models\Booking;
 use App\Models\Payment;
 use App\Models\Student;
 use App\Models\Bulletin;
 use App\Models\Landlord;
 use App\Models\Property;
+use App\Models\Tenant;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Http\Resources\RoomResource;
 use App\Http\Resources\PhotoResource;
 use App\Http\Resources\StaffResource;
@@ -30,7 +31,6 @@ use App\Notifications\BulletinNotification;
 use App\Notifications\ResponseNotification;
 use App\Notifications\RoommateNotification;
 use Illuminate\Support\Facades\Notification;
-use Illuminate\Support\Facades\DB;
 
 class RentalRoomController extends Controller
 {
@@ -162,11 +162,14 @@ class RentalRoomController extends Controller
         $Tenant->save();
 
         //Notification
-        $sender_id = $request -> session()->get('ID');
-        $Sender_std = Student::find($sender_id);
-        $Receiver = Student::find($id);
-        $Sender_land = null;
-        $Receiver->notify(new RoommateNotification($Tenant, $Sender_std,$Sender_land));
+        if($Tenant->save()){
+            $sender_id = $request -> session()->get('ID');
+            $Sender_std = Student::find($sender_id);
+            $Receiver = Student::find($id);
+            $Sender_land = null;
+            $Receiver->notify(new RoommateNotification($Tenant, $Sender_std,$Sender_land));
+        }
+
    }
 
     public function response_request(Request $request){
@@ -180,11 +183,20 @@ class RentalRoomController extends Controller
                 'tenancy_invitation' => 'Accepted',
             ]);
             $Tenant =  Tenant::where('invite_by', $request->id)->first();
-            DB::table('notifications')
+          $progress =  DB::table('notifications')
               ->where('id',$request->noti_id)
               ->update(['signal' => 'Accepted']);
 
-        }else {
+            //notifications
+              $sender_id = $request -> session()->get('ID');
+              $Sender_std = Student::find($sender_id);
+              $Receiver = Student::find($request->id);
+              $Sender_land = null;
+              $Receiver->notify(new ResponseNotification($Tenant, $Sender_std,$Sender_land));
+
+
+        }else if($request->status ==2)
+        {
             Tenant::where('invite_by', $request->id)
             ->update([
                 'tenant_status' => 'Invalid',
@@ -193,20 +205,26 @@ class RentalRoomController extends Controller
 
             $Tenant =  Tenant::where('invite_by', $request->id)->first();
 
+            //notifications
+            $sender_id = $request -> session()->get('ID');
+            $Sender_std = Student::find($sender_id);
+            $Receiver = Student::find($request->id);
+            $Sender_land = null;
+            $Receiver->notify(new ResponseNotification($Tenant, $Sender_std,$Sender_land));
+
+
             Tenant::where('invite_by', $request->id)
             ->delete();
 
-            DB::table('notifications')
+            $progress =  DB::table('notifications')
             ->where('id',$request->noti_id)
             ->update(['signal' => 'Rejected']);
         }
-        //Notification
 
-        $sender_id = $request -> session()->get('ID');
-        $Sender_std = Student::find($sender_id);
-        $Receiver = Student::find($request->id);
-        $Sender_land = null;
-        $Receiver->notify(new ResponseNotification($Tenant, $Sender_std,$Sender_land));
+
+
+
+
 
 
    }

@@ -37,7 +37,7 @@ class RoommateNotification extends Notification
     public function via($notifiable)
     {
         // return ['database', 'broadcasting'];
-        return ['database'];
+        return ['database', 'broadcast'];
     }
 
     /**
@@ -60,12 +60,6 @@ class RoommateNotification extends Notification
          * @param  mixed  $notifiable
          * @return BroadcastMessage
          */
-    public function toBroadcast($notifiable)
-{
-    return new BroadcastMessage([
-        'notification' => $notifiable->notification()->latest()->first()
-    ]);
-}
 
     /**
      * Get the array representation of the notification.
@@ -80,5 +74,13 @@ class RoommateNotification extends Notification
             'Sender_std' =>  $this->Sender_std,
             'Sender_land' =>    $this->Sender_land,
         ];
+    }
+
+    public function toBroadcast($notifiable)
+    {
+        return new BroadcastMessage([
+            'notification' => $notifiable->notifications()->latest()->first()
+
+        ]);
     }
 }

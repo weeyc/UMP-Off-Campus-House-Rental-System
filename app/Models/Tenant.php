@@ -2,13 +2,17 @@
 
 namespace App;
 namespace App\Models;
-
+use Illuminate\Notifications\Notifiable;
 
 use Illuminate\Database\Eloquent\Model;
 
 class Tenant extends Model
 {
     public $timestamps = false;
+    use Notifiable;
+    protected $primaryKey = 'tenant_id';
+    protected $table = 'tenants';
+
 
     public function getRoomRelation(){
         return $this->belongsTo('App\Models\Room', 'room_id', 'room_id');
