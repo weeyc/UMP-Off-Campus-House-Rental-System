@@ -128,12 +128,59 @@
                     </svg>
                      <span>UMP Off-Campus Accomodation</span>
              </router-link >
-            <div  class="flex justify-center items-center">
+            <div  class="flex justify-center items-center -mr-5">
                  <router-link  :to="{name: 'profile_student'}" class=" bg-yellow-600 hover:bg-yellow-700 text-xs text-white px-3 py-3 rounded-md">
                        I'm Student
                 </router-link >
+                    <div id="room" class="hidden xl:flex items-center ">
+
+                <!-- Manipulate Timer -->
+                <div id="timeManipulator" class="ml-6 relative">
+                            <div class="flex items-center relative" @click="dropdownHandlerTimeController($event)"  >
+                                <ul class="w-72 p-2 border-r bg-gray-800 absolute rounded right-0 top-0 shadow mt-16 hidden overflow-hidden z-10 ">
+                                    <center> <span class="text-base font-bold text-white underline tracking-wide">Time Machine</span>
+                                     <li class="cursor-pointer text-yellow-500 text-sm leading-3 tracking-normal py-2">
+
+                                            <label class="flex radio text-base p-2 cursor-pointer">
+                                                <div class="title px-2">Date Now ⇨ {{ moment(timeManipulate).format("d-MM-YYYY")   }}</div>
+                                            </label>
+
+                                    </li>
+
+
+                                <hr class="border-yellow-300  ">
+                                    <li class="cursor-pointer text-yellow-500 text-sm leading-3 tracking-normal mt-2 py-2 hover:text-indigo-700 flex items-center focus:text-indigo-700 focus:outline-none">
+                                        <label class="flex radio p-2 cursor-pointer">
+                                                <div>
+                                                    <label class="text-yellow-500">Go to:</label>
+                                                    <input type="date" id='myDate' v-model="f_date.setDate" name="date" min="2015-10-28" required>
+                                                </div>
+                                        </label>
+                                    </li>
+                                    <hr class="border-yellow-300">
+                                    <li class="cursor-pointer text-yellow-500 text-sm leading-3 tracking-normal mt-2 py-2 hover:text-indigo-700 items-center focus:text-indigo-700 focus:outline-none">
+                                          <label class="flex justify-center cursor-pointer">
+                                            <button @click="resetTime" class="outline-yellow-500 text-yellow-500 bg-gray-700 rounded-full hover:bg-gray-800 text-yellow-500">&cross; Reset</button>
+                                            <button @click="setTime" class="px-5 outline-yellow-500 text-yellow-500 bg-gray-700 rounded-full hover:bg-gray-800 ">Manipulate Date</button>
+                                       </label>
+
+                                    </li>
+                                    </center>
+                                </ul>
+                                <div class="text-gray-100">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-down cursor-pointer" width="5" height="5" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                        <path stroke="none" d="M0 0h24v24H0z"></path>
+                                        <polyline points="6 9 12 15 18 9"></polyline>
+                                    </svg>
+                                </div>
+                            </div>
+                </div>
             </div>
+            </div>
+
         </div>
+
+
         <!-- top bar -->
 
         <!-- notification -->
@@ -150,7 +197,7 @@
         <div class="longsheet">
             <div v-for="(noti,index) in notifications" :key="index">
                 <h2 tabindex="0" class=" focus:outline-none text-sm leading-normal pt-8 border-b pb-2 border-gray-500 text-gray-600 " >
-                    <!-- {{  dateToFromNowDaily(noti[0].created_at) }} -->
+                    {{  dateToFromNowDaily(noti[0].created_at) }}
                  </h2>
 
                 <!-- {{ noti[0].created_at | moment("utc","dddd, MMMM Do YYYY, h:mm:ss a")}} -->
@@ -210,14 +257,14 @@
             </div>
         </div>
 
-        <div id="Bills" v-if='n.type==="App\\Notifications\\BillNotification"' class=" w-full p-4 mt-4 bg-yellow-100 rounded flex items-center shadow">
+        <div id="Bills" v-if='n.type==="App\\Notifications\\BillsNotification"' class=" w-full p-4 mt-4 bg-yellow-100 rounded flex items-center shadow">
             <div tabindex="0" aria-label="success icon" role="img" class=" focus:outline-none w-8 h-8 border rounded-full border-yellow-700 flex flex-shrink-0 items-center justify-center " >
             <svg class="h-6 w-6 text-yellow-700"  width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">  <path stroke="none" d="M0 0h24v24H0z"/>  <path d="M16.7 8a3 3 0 0 0 -2.7 -2h-4a3 3 0 0 0 0 6h4a3 3 0 0 1 0 6h-4a3 3 0 0 1 -2.7 -2" />  <path d="M12 3v3m0 12v3" /></svg>
             </div>
             <div class="pl-3 w-full">
               <div class="flex items-center justify-between">
-                <p tabindex="0" class="focus:outline-none text-sm leading-snug text-yellow-700" > Your <span class="font-medium">rental bill</span>  for  <span class="font-medium">room id: 1</span> has been issued</p>
-                <p tabindex="0" class=" focus:outline-none focus:text-yellow-700 text-xs leading-3 underline cursor-pointer text-yellow-700 font-medium" @click="notificationHandler(false)" > View </p>
+                <p tabindex="0" class="focus:outline-none text-sm leading-snug text-yellow-700" > Your <span class="font-semibold">rental bill </span> (room id: {{n.data.Content.room_id}}) for <span class="font-semibold">{{ moment(n.data.Content.created_at).format("MMM-YYYY")   }} </span>  is ready!</p>
+                <p tabindex="0" class=" focus:outline-none focus:text-yellow-700 text-xs leading-3 underline cursor-pointer text-yellow-700 font-medium" @click="notificationHandler(false); redirectFromNoti(2)" > View </p>
               </div>
               <p tabindex="0" class="focus:outline-none text-xs leading-3 pt-1 text-gray-500 mt-2" >{{ moment( n.created_at ).fromNow() }}</p>
             </div>
@@ -267,18 +314,6 @@
 
 <script>
 
-// const playAudio = async () => {
-//     const importRes = await import("./path/to/audio.mp3"); // make sure the path is correct
-//     var audio = new Audio(importRes.default);
-//     try {
-//       await audio.play();
-//       console.log("Playing audio");
-//     } catch (err) {
-//       console.log("Failed to play, error: " + err);
-//     }
-// }
-
-
 import moment from "moment";
 export default {
     component:{
@@ -297,11 +332,16 @@ export default {
             transition:'',
             indicator: false,
             hover:'text-gray-100 hover:text-yellow-500 focus:text-yellow-500 border-l-4 pl-4',
+            top_btn_style: 'p-3 rounded bg-yellow-100 text-yellow-500 hover:bg-yellow-500 hover:text-white :active:bg-yellow-500 active:text-white active:outline-none transition duration-150 ease-in-out shadow-xl',
             roling: '',
             notifications: [],
             notificationsCounts: [],
               moment: moment,
               authme: [],
+              timeManipulate: [],
+              f_date:{
+                  setDate: '',
+              }
 
         }
     },
@@ -430,6 +470,28 @@ export default {
             var mytrack = new Audio('/audio/notification.mp3')
             mytrack.play();
         },
+        dropdownHandlerTimeController(event) {
+            let single = event.currentTarget.getElementsByTagName("ul")[0];
+            single.classList.toggle("hidden");
+        },
+        getTimeNow(){
+            axios.get('/api/getTimeNow/').then((response)=>{
+            this.timeManipulate=response.data;
+            }).catch((errors)=> {console.log(errors)})
+        },
+        setTime(){
+             axios.post('/api/setTime/',this.form).then(() =>{
+              this.getTimeNow();
+                this.$toaster.success('We are now in the future');
+                }).catch((error)=> {console.log(error)});
+        },
+        resetTime(){
+             axios.get('/api/resetTime/').then(()=>{
+               this.getTimeNow();
+               this.$toaster.success('We back to present time');
+            }).catch((errors)=> {console.log(errors)})
+        },
+
 
 
 
@@ -439,20 +501,16 @@ export default {
 
     },
     mounted:  function(){
+        this.getProfile();
+        this.getRole();
+
+
+        this.$root.$on('refreshData', data => {
             this.getProfile();
-            this.getRole();
+        });
 
-            this.$root.$on('refreshData', data => {
-            this.getProfile();
-          });
-
-          this.getNotifications();
-          this.getNotificationsCount();
-
-          window.Echo.channel('channel')
-          .listen('Hello', (e)=>{
-              console.log(e)
-          })
+        this.getNotifications();
+        this.getNotificationsCount();
 
         Echo.private('App.Models.Student.' + this.user_id)
             .notification((notification) => {
@@ -462,7 +520,9 @@ export default {
                 this.playNotificationSound();
             });
 
-            this.getAuth();
+        this.getAuth();
+        this.getTimeNow();
+        document.getElementById("myDate").min = new Date().getFullYear() + "-" +  parseInt(new Date().getMonth() + 1 ) + "-" + new Date().getDate()
 
 
 
@@ -471,7 +531,6 @@ export default {
     computed:{
         unreadNotifications(){
             return this.notificationsCounts.filter(notification=>{
-
                 return notification.read_at==null;
             })
         }

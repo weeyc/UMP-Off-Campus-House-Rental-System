@@ -17,15 +17,22 @@ class CreateBillsTable extends Migration
 
             $table->increments('bills_id');
             $table->integer('tenant_id');
+            $table->integer('student_id');
             $table->integer('property_id');
             $table->integer('room_id');
             $table->integer('previous_bill_id')->nullable();
             $table->integer('landlord_id')->nullable();
-            $table->string('payment_status')->default('unpaid');
-            $table->string('bill_status')->nullable();;
-            $table->float('penalty_fees')->nullable();
-            $table->float('total_bills')->nullable();;
-            $table->timestamp('bills_date');
+            $table->string('payment_status')->default('Unpaid');
+            $table->string('bills_status')->default('Unready');
+            $table->float('penalty_fees')->nullable()->default(0);
+            $table->float('outstanding_bills')->nullable()->default(0);
+            $table->float('total_bills')->nullable();
+            $table->date('bills_date');
+            $table->date('due_date')->nullable();
+            $table->timestamps();
+
+            //timestap, created at, updated at,
+            //Due date, date
 
             // $table->string('cust_status')->default('Active');
             // $table->timestamps();

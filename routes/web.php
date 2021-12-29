@@ -28,7 +28,7 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::post('/Login', 'UserController@Login')->name('Sign_In');
+Route::post('/login', 'UserController@Login')->name('Sign_In');
 
 
 Route::get('/registration-student', function(){

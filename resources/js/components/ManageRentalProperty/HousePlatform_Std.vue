@@ -65,7 +65,7 @@
                                 <span class="text-white text-center text-2xl" >Rent This Month:</span>
                                 <span class="text-white text-center text-2xl" > RM300</span>
 
-                                 <button class="p-2 mt-5 w-1/2 rounded-md bg-blue-500 text-white hover:bg-blue-600 justify-self-center">Check</button>
+                                 <button @click="getBill" class="p-2 mt-5 w-1/2 rounded-md bg-blue-500 text-white hover:bg-blue-600 justify-self-center">Check</button>
                             </div>
 
 
@@ -77,7 +77,7 @@
       </div>
     </div>
 
-    <div class="flex mt-48 container mx-auto px-4">
+    <div class="flex mt-40 container mx-auto px-4">
       <div class="w-full mb-6 shadow-xl rounded-lg -mt-36">
             <div id="line" class="px-72 mt-10 flex items-center justify-between">
                 <hr class="w-full" />
@@ -405,6 +405,13 @@ export default {
         },
         closeRModal(){
             this.toggleRModal =!  this.toggleRModal ;
+        },
+        getBill(){
+             axios.post('/api/get_one/').then((response)=>{
+                    this.$toaster.success('Bills Inserted');
+            }).catch((errors)=> {
+                console.log(errors)
+            })
         },
 
     },

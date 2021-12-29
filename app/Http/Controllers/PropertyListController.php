@@ -158,8 +158,6 @@ class PropertyListController extends Controller
             $Payment->total_payment = $request ->booking_fees;
             $Payment->save();
 
-
-
             $Tenant =  new Tenant();
             $Tenant->student_id = $request->std_id;
             $Tenant->property_id = $request->property_id;
@@ -190,6 +188,106 @@ class PropertyListController extends Controller
             }
 
         }
+
+        //
+        $tenants = Tenant::where('room_id',$r_id )->where('tenant_status', 'Tenancy')->get();
+        $tenant_counts =  $tenants->count();
+
+        $move_in_date = $request ->move_in_date;
+        $tenancy_period = (int) $request ->tenancy_period;
+
+        $monthly_rent = $request ->booking_fees;
+
+        $tenant_id =  $Tenant->getKey();
+        $penalty_fees = Room::query()->with(['getTenantRelation' => function ($query) use($tenant_id) {
+            $query->select('room_id','tenant_id')
+                    ->where('tenant_id', $tenant_id);
+        }])->where('room_id',$r_id)->value('penalty_fees');
+
+        $landlord_id = $request ->landlord_id;
+
+        //Change move in date to currentDateTime when apply scheduler
+        $currentDateTime = Carbon::now();
+        $date_carboned_add_month = new Carbon($move_in_date);
+
+        //chg to  bills date/Carbon nowNow()
+        $date_carboned_add_due = new Carbon($move_in_date);
+        $date_carboned_notify = new Carbon($move_in_date);
+        $date_carboned_move_out = new Carbon($move_in_date);
+        //$date_carboned_minus = new Carbon($move_in_date);
+
+        $oneMonthAdd_startingBills = $date_carboned_add_month->addMonth(1);
+        $dueDate = $date_carboned_add_due->addDays(29);
+        $remainderDueDate = $date_carboned_notify->addDays(22);
+        $move_out_date = $date_carboned_move_out->addMonth($tenancy_period);
+
+        $diff_in_months = $currentDateTime->diffInDays($move_in_date);
+
+        //if date now - move_in_date = one months ->format('d M Y');
+        $Bill = new Bill();
+
+        //insert for each
+
+
+
+        //uae at scheduling
+        if (Tenant::where('tenant_id',$tenant_id )->exists()) {
+
+            $bill_latest = Bill::where('tenant_id',$tenant_id)->where('')->latest('created_at')->first();
+
+            //first insert
+            if($bill_latest==null){
+                $Bill->tenant_id = $tenant_id;
+                $Bill->property_id = $prop_id;
+                $Bill->student_id = $student_id;
+                $Bill->room_id = $room_id;
+                $Bill->landlord_id = $landlord_id;
+                $Bill->due_date = $dueDate;
+                $Bill->total_bills = ($monthly_rent/$tenant_counts);
+                $Bill->save();
+
+            //second and next insert
+            }else{
+                $bill_latest_id = Bill::where('tenant_id',$tenant_id)->latest('bills_date')->value('bills_id');
+                $bill_latest_paymentStatus = Bill::where('tenant_id',$tenant_id)->latest('bills_date')->value('payment_status');
+                $bill_latest_billStatus = Bill::where('tenant_id',$tenant_id)->latest('bills_date')->value('bills_status');
+                $bill_latest_billTotals = Bill::where('tenant_id',$tenant_id)->latest('bills_date')->value('total_bills');
+
+                $Bill->tenant_id = $tenant_id;
+                $Bill->property_id = $prop_id;
+                $Bill->student_id = $student_id;
+                $Bill->room_id = $room_id;
+                $Bill->landlord_id = $landlord_id;
+                $Bill->due_date = $dueDate;
+                $Bill->previous_bill_id = $bill_latest_id;
+
+                if($bill_latest_paymentStatus=='Paid'){
+                    $Bill->total_bills = ($monthly_rent/$tenant_counts);
+                }else if($bill_latest_paymentStatus=='Unpaid'){
+                    Bill::where('tenant_id',$tenant_id)->latest('bills_date')->update([
+                        'bills_status' => 'Overdue'
+                    ]);
+                    $Bill->penalty_fees = $penalty_fees;
+                    $Bill->Outstanding_bills = $bill_latest_billTotals;
+                    $Bill->total_bills = $bill_latest_billTotals + ($monthly_rent/$tenant_counts) + $penalty_fees ;
+                }
+                $Bill->save();
+
+                    //notification
+                    if($Bill->save()){
+                        $ID = $request -> session()->get('ID');
+                        $Sender_std = Student::find($student_id);
+                        $Sender_land = null;
+                        Notification::send($Sender_std, new BillsNotification($Bill, $Sender_std, $Sender_land));
+                    }
+
+
+            }
+
+
+          }else{
+             return "no record";
+          }
 
 
 

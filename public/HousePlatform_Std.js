@@ -632,6 +632,15 @@ __webpack_require__.r(__webpack_exports__);
     },
     closeRModal: function closeRModal() {
       this.toggleRModal = !this.toggleRModal;
+    },
+    getBill: function getBill() {
+      var _this5 = this;
+
+      axios.post('/api/get_one/').then(function (response) {
+        _this5.$toaster.success('Bills Inserted');
+      })["catch"](function (errors) {
+        console.log(errors);
+      });
     }
   },
   watch: {
@@ -1501,14 +1510,75 @@ var render = function () {
                       ]
                     ),
                     _vm._v(" "),
-                    _vm._m(0),
+                    _c(
+                      "div",
+                      { staticClass: " flex w-1/3", attrs: { id: "Bills" } },
+                      [
+                        _c(
+                          "div",
+                          {
+                            staticClass:
+                              "mx-auto w-full rounded-lg rounded-tl-none rounded-bl-none overflow-hidden shadow-lg  bg-gradient-to-br from-emerald-500 to-lime-600",
+                          },
+                          [
+                            _vm._m(0),
+                            _vm._v(" "),
+                            _c(
+                              "div",
+                              {
+                                staticClass: "overflow-y-auto h-48 p-5",
+                                attrs: { id: "bulletin" },
+                              },
+                              [
+                                _c(
+                                  "div",
+                                  {
+                                    staticClass:
+                                      "grid grid-rows-2 text-center md:text-left",
+                                  },
+                                  [
+                                    _c(
+                                      "span",
+                                      {
+                                        staticClass:
+                                          "text-white text-center text-2xl",
+                                      },
+                                      [_vm._v("Rent This Month:")]
+                                    ),
+                                    _vm._v(" "),
+                                    _c(
+                                      "span",
+                                      {
+                                        staticClass:
+                                          "text-white text-center text-2xl",
+                                      },
+                                      [_vm._v(" RM300")]
+                                    ),
+                                    _vm._v(" "),
+                                    _c(
+                                      "button",
+                                      {
+                                        staticClass:
+                                          "p-2 mt-5 w-1/2 rounded-md bg-blue-500 text-white hover:bg-blue-600 justify-self-center",
+                                        on: { click: _vm.getBill },
+                                      },
+                                      [_vm._v("Check")]
+                                    ),
+                                  ]
+                                ),
+                              ]
+                            ),
+                          ]
+                        ),
+                      ]
+                    ),
                   ]
                 ),
               ]
             ),
           ]),
           _vm._v(" "),
-          _c("div", { staticClass: "flex mt-48 container mx-auto px-4" }, [
+          _c("div", { staticClass: "flex mt-40 container mx-auto px-4" }, [
             _c(
               "div",
               { staticClass: "w-full mb-6 shadow-xl rounded-lg -mt-36" },
@@ -2291,67 +2361,15 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: " flex w-1/3", attrs: { id: "Bills" } }, [
-      _c(
-        "div",
-        {
-          staticClass:
-            "mx-auto w-full rounded-lg rounded-tl-none rounded-bl-none overflow-hidden shadow-lg  bg-gradient-to-br from-emerald-500 to-lime-600",
-        },
-        [
-          _c(
-            "div",
-            {
-              staticClass:
-                "h-14 flex justify-center items-center p-5 bg-gray-800",
-            },
-            [
-              _c(
-                "p",
-                { staticClass: "text-lg font-semibold  text-green-500 " },
-                [_vm._v("My Bills")]
-              ),
-            ]
-          ),
-          _vm._v(" "),
-          _c(
-            "div",
-            {
-              staticClass: "overflow-y-auto h-48 p-5",
-              attrs: { id: "bulletin" },
-            },
-            [
-              _c(
-                "div",
-                { staticClass: "grid grid-rows-2 text-center md:text-left" },
-                [
-                  _c(
-                    "span",
-                    { staticClass: "text-white text-center text-2xl" },
-                    [_vm._v("Rent This Month:")]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "span",
-                    { staticClass: "text-white text-center text-2xl" },
-                    [_vm._v(" RM300")]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "button",
-                    {
-                      staticClass:
-                        "p-2 mt-5 w-1/2 rounded-md bg-blue-500 text-white hover:bg-blue-600 justify-self-center",
-                    },
-                    [_vm._v("Check")]
-                  ),
-                ]
-              ),
-            ]
-          ),
-        ]
-      ),
-    ])
+    return _c(
+      "div",
+      { staticClass: "h-14 flex justify-center items-center p-5 bg-gray-800" },
+      [
+        _c("p", { staticClass: "text-lg font-semibold  text-green-500 " }, [
+          _vm._v("My Bills"),
+        ]),
+      ]
+    )
   },
   function () {
     var _vm = this

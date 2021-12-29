@@ -61,11 +61,16 @@ Route::get('get_notifications_counts/{id}/{role}', 'ChatController@get_notificat
 Route::get('mark_as_read/{id}/{role}', 'ChatController@mark_as_read');
 Route::post('response_request', 'RentalRoomController@response_request');
 
+Route::get('authme', 'ChatController@authme');
 
 
 
 Route::get('get_one', 'TestController@get_one');
-Route::get('authme', 'ChatController@authme');
+
+Route::get('getTimeNow', 'ChatController@getTimeNow');
+Route::post('setTime', 'ChatController@setTime');
+Route::get('resetTime', 'ChatController@resetTime');
+
 
 
 //Route::post('login', [UserController::class, 'login']); cant use tis format

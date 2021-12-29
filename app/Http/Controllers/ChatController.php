@@ -93,6 +93,21 @@ class ChatController extends Controller
 
      }
 
+     public function getTimeNow(){
+        return Carbon::now();
+     }
+
+     public function setTime(Request $request){
+         $date = $request->setDatse;
+        $s_date = Carbon::createFromDate($request->setDatse);
+        //$newDate =  new Carbon($s_date);
+        return Carbon::setTestNow($s_date);
+     }
+
+     public function resetTime(){
+        return Carbon::setTestNow();
+     }
+
 
 
 }
