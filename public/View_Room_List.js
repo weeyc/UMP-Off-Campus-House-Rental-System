@@ -384,7 +384,7 @@ var Errors = /*#__PURE__*/function () {
   },
   mounted: function mounted() {
     this.getStudent();
-    document.getElementById("myDate").min = new Date().getFullYear() + "-" + parseInt(new Date().getMonth() + 1) + "-" + new Date().getDate();
+    document.getElementById("bookDate").min = new Date().getFullYear() + "-" + parseInt(new Date().getMonth() + 1) + "-" + new Date().getDate();
   }
 });
 
@@ -1076,7 +1076,7 @@ var render = function () {
                             "cursor-pointer block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-black rounded-md focus:border-blue-500 focus:outline-none focus:ring",
                           attrs: {
                             type: "date",
-                            id: "myDate",
+                            id: "bookDate",
                             name: "date",
                             min: "2015-10-28",
                             required: "",
@@ -1245,7 +1245,7 @@ var render = function () {
                             },
                           ],
                           staticClass:
-                            "cursor-pointer block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-black rounded-md focus:border-blue-500 focus:outline-none focus:ring",
+                            "block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-black rounded-md focus:border-blue-500 focus:outline-none focus:ring",
                           attrs: {
                             type: "text",
                             placeholder: "Alif Iskandar",

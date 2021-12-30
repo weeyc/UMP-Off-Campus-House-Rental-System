@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Bill;
+use Carbon\Carbon;
 use App\Models\Room;
 use App\Models\Photo;
 use App\Models\Staff;
@@ -14,6 +16,7 @@ use App\Models\Landlord;
 use App\Models\Property;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Http\Resources\RoomResource;
 use App\Http\Resources\PhotoResource;
 use App\Http\Resources\StaffResource;
@@ -144,6 +147,7 @@ class PropertyListController extends Controller
 
         $r_id = $request ->room_id;
         $prop_id =$request ->property_id;
+        $student_id =$request ->std_id;
 
 
         if($Booking ->save()){
@@ -206,88 +210,67 @@ class PropertyListController extends Controller
 
         $landlord_id = $request ->landlord_id;
 
-        //Change move in date to currentDateTime when apply scheduler
-        $currentDateTime = Carbon::now();
-        $date_carboned_add_month = new Carbon($move_in_date);
+    //------------------TEST INSERT MULTIPLE BILLS----------------------------
+     //Get Dates for Move in, End, Due
+     $Entering_Date = new Carbon($move_in_date);
+     $Entering_DueDate = new Carbon($move_in_date);
+     $End_Date= new Carbon($move_in_date);
+     $End_DueDate= new Carbon($move_in_date);
 
-        //chg to  bills date/Carbon nowNow()
-        $date_carboned_add_due = new Carbon($move_in_date);
-        $date_carboned_notify = new Carbon($move_in_date);
-        $date_carboned_move_out = new Carbon($move_in_date);
-        //$date_carboned_minus = new Carbon($move_in_date);
+     $firstBills_Date = $Entering_Date->addMonth(1);
+     $LastBills_Date = $End_Date->addMonths($tenancy_period);
 
-        $oneMonthAdd_startingBills = $date_carboned_add_month->addMonth(1);
-        $dueDate = $date_carboned_add_due->addDays(29);
-        $remainderDueDate = $date_carboned_notify->addDays(22);
-        $move_out_date = $date_carboned_move_out->addMonth($tenancy_period);
+     $firstDueBills_Date = $Entering_DueDate->addMonth(1)->addDays(29);
+     $LastDueBills_Date = $End_DueDate->addMonths($tenancy_period)->addDays(29);
 
-        $diff_in_months = $currentDateTime->diffInDays($move_in_date);
+     $dateBills = [];
+     $dueDates = [];
 
-        //if date now - move_in_date = one months ->format('d M Y');
-        $Bill = new Bill();
-
-        //insert for each
+     for ($i = $firstBills_Date; $i <$LastBills_Date; $i->addMonth()) {
+         $dateBills[] =  $i->toDateTimeString();
+     }
+     for ($d = $firstDueBills_Date; $d <$LastDueBills_Date; $d->addMonth()) {
+         $dueDates[] =  $d->toDateTimeString();
+     }
 
 
+     //Insert All Bills for one Move In
+        $Bills = [];
+        $stoper = (int)($tenancy_period-1);
 
-        //uae at scheduling
-        if (Tenant::where('tenant_id',$tenant_id )->exists()) {
+        DB::beginTransaction();
+            for($t=0; $t <$stoper; $t++){
+                $Bills[$t] = [
+                    'tenant_id' => $tenant_id,
+                    'property_id' => $prop_id,
+                    'student_id' => $student_id,
+                    'room_id' => $r_id,
+                    'landlord_id' => $landlord_id,
+                    'bills_date' => Carbon::parse($dateBills[$t]),
+                    'due_date' => Carbon::parse($dueDates[$t]),
+                    'total_bills' => $monthly_rent,
+                    'created_at' => Carbon::now(),
+                    'updated_at' => Carbon::now(),
 
-            $bill_latest = Bill::where('tenant_id',$tenant_id)->where('')->latest('created_at')->first();
-
-            //first insert
-            if($bill_latest==null){
-                $Bill->tenant_id = $tenant_id;
-                $Bill->property_id = $prop_id;
-                $Bill->student_id = $student_id;
-                $Bill->room_id = $room_id;
-                $Bill->landlord_id = $landlord_id;
-                $Bill->due_date = $dueDate;
-                $Bill->total_bills = ($monthly_rent/$tenant_counts);
-                $Bill->save();
-
-            //second and next insert
-            }else{
-                $bill_latest_id = Bill::where('tenant_id',$tenant_id)->latest('bills_date')->value('bills_id');
-                $bill_latest_paymentStatus = Bill::where('tenant_id',$tenant_id)->latest('bills_date')->value('payment_status');
-                $bill_latest_billStatus = Bill::where('tenant_id',$tenant_id)->latest('bills_date')->value('bills_status');
-                $bill_latest_billTotals = Bill::where('tenant_id',$tenant_id)->latest('bills_date')->value('total_bills');
-
-                $Bill->tenant_id = $tenant_id;
-                $Bill->property_id = $prop_id;
-                $Bill->student_id = $student_id;
-                $Bill->room_id = $room_id;
-                $Bill->landlord_id = $landlord_id;
-                $Bill->due_date = $dueDate;
-                $Bill->previous_bill_id = $bill_latest_id;
-
-                if($bill_latest_paymentStatus=='Paid'){
-                    $Bill->total_bills = ($monthly_rent/$tenant_counts);
-                }else if($bill_latest_paymentStatus=='Unpaid'){
-                    Bill::where('tenant_id',$tenant_id)->latest('bills_date')->update([
-                        'bills_status' => 'Overdue'
-                    ]);
-                    $Bill->penalty_fees = $penalty_fees;
-                    $Bill->Outstanding_bills = $bill_latest_billTotals;
-                    $Bill->total_bills = $bill_latest_billTotals + ($monthly_rent/$tenant_counts) + $penalty_fees ;
-                }
-                $Bill->save();
-
-                    //notification
-                    if($Bill->save()){
-                        $ID = $request -> session()->get('ID');
-                        $Sender_std = Student::find($student_id);
-                        $Sender_land = null;
-                        Notification::send($Sender_std, new BillsNotification($Bill, $Sender_std, $Sender_land));
-                    }
-
+                ];
 
             }
+            Bill::insert($Bills);
+            //update previously bill id
+            $lastRowID = Bill::where('tenant_id',$tenant_id)->latest('created_at')->value('bills_id');
+            $firstRowID = Bill::where('tenant_id',$tenant_id)->oldest('bills_id')->value('bills_id');
 
+            $TenantBills = Bill::where('tenant_id',$tenant_id)->where('bills_id', '!=', $firstRowID)->get()->pluck('bills_id')->toArray();
+            $lastInsertedIds = Bill::where('tenant_id',$tenant_id)->select('bills_id')->get()->except($lastRowID)->pluck('bills_id')->toArray();
 
-          }else{
-             return "no record";
-          }
+            for($t=0; $t <count($lastInsertedIds); $t++){
+                Bill::where('tenant_id', $tenant_id)
+                        ->where('bills_id', $TenantBills[$t])
+                        ->update([
+                            'previous_bill_id' => $lastInsertedIds[$t]
+                        ]);
+            }
+        DB::commit();
 
 
 

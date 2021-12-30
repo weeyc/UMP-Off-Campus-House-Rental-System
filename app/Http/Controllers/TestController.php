@@ -34,9 +34,12 @@ use Illuminate\Support\Facades\Notification;
 class TestController extends Controller
 {
 
+    public function get_Time_Now(Request $request){
+
+
+    }
 
     public function get_one(Request $request){
-
     //Theory
     // Run schedule at insert of tenant, pass inserted tenant to schedular
     // if tenant still exist in tenant table
@@ -53,8 +56,6 @@ class TestController extends Controller
     //- $tenant_no = count tenants in a room by room id, tenant_status=Tenancy
     //- $move_in_date, $tenancy_period(parseInt) from tenant
     //- (tenant - room) number_of_tenant, booking_fees, penalty_fees
-
-
 
     // $room_id =9;
     // $tenant_id =11;
@@ -80,23 +81,124 @@ class TestController extends Controller
 
     $landlord_id = Property::where('property_id',$prop_id)->value('landlord_id');
 
-    if (Tenant::where('tenant_id',$tenant_id )->exists()) {
-       //return
-     }else{
-        // return response(['message', 'notfound']);
+
+
+    //------------------TEST INSERT MULTIPLE BILLS----------------------------
+     //Get Dates for Move in, End, Due
+     $Entering_Date = new Carbon($move_in_date);
+     $Entering_DueDate = new Carbon($move_in_date);
+     $End_Date= new Carbon($move_in_date);
+     $End_DueDate= new Carbon($move_in_date);
+
+     $firstBills_Date = $Entering_Date->addMonth(1);
+     $LastBills_Date = $End_Date->addMonths($tenancy_period);
+
+     $firstDueBills_Date = $Entering_DueDate->addMonth(1)->addDays(29);
+     $LastDueBills_Date = $End_DueDate->addMonths($tenancy_period)->addDays(29);
+
+     $dateBills = [];
+     $dueDates = [];
+
+     for ($i = $firstBills_Date; $i <$LastBills_Date; $i->addMonth()) {
+         $dateBills[] =  $i->toDateTimeString();
      }
+     for ($d = $firstDueBills_Date; $d <$LastDueBills_Date; $d->addMonth()) {
+         $dueDates[] =  $d->toDateTimeString();
+     }
+
+
+     //Insert All Bills for one Move In
+        $Bills = [];
+        $stoper = (int)($tenancy_period-1);
+
+        DB::beginTransaction();
+            for($t=0; $t <$stoper; $t++){
+                $Bills[$t] = [
+                    'tenant_id' => $tenant_id,
+                    'property_id' => $prop_id,
+                    'student_id' => $student_id,
+                    'room_id' => $room_id,
+                    'landlord_id' => $landlord_id,
+                    'bills_date' => Carbon::parse($dateBills[$t]),
+                    'due_date' => Carbon::parse($dueDates[$t]),
+                    'total_bills' => $monthly_rent,
+                    'created_at' => Carbon::now(),
+                    'updated_at' => Carbon::now(),
+
+                ];
+
+            }
+            Bill::insert($Bills);
+            //update previously bill id
+            $lastRowID = Bill::where('tenant_id',$tenant_id)->latest('created_at')->value('bills_id');
+            $firstRowID = Bill::where('tenant_id',$tenant_id)->oldest('bills_id')->value('bills_id');
+
+            $TenantBills = Bill::where('tenant_id',$tenant_id)->where('bills_id', '!=', $firstRowID)->get()->pluck('bills_id')->toArray();
+            $lastInsertedIds = Bill::where('tenant_id',$tenant_id)->select('bills_id')->get()->except($lastRowID)->pluck('bills_id')->toArray();
+
+            for($t=0; $t <count($lastInsertedIds); $t++){
+                Bill::where('tenant_id', $tenant_id)
+                        ->where('bills_id', $TenantBills[$t])
+                        ->update([
+                            'previous_bill_id' => $lastInsertedIds[$t]
+                        ]);
+            }
+        DB::commit();
+
+    //  }
+        //------------------TEST INSERT MULTIPLE BILLS----------------------------
+
+
+
+
+    /*--------TEST SOME PART OF FUNCTIONS/THEORY------------------//
+
+
 
     //Change move in date to currentDateTime when apply scheduler
     $currentDateTime = Carbon::now();
-    $date_carboned_add_month = new Carbon($move_in_date);
+
 
     //chg to  bills date/Carbon nowNow()
     $date_carboned_add_due = new Carbon($move_in_date);
     $date_carboned_notify = new Carbon($move_in_date);
     $date_carboned_move_out = new Carbon($move_in_date);
     //$date_carboned_minus = new Carbon($move_in_date);
+     //return $LastBills_Date->format('d M Y');
 
-    $oneMonthAdd_startingBills = $date_carboned_add_month->addMonth(1);
+    $Entering_Date = new Carbon($move_in_date);
+    $Entering_DueDate = new Carbon($move_in_date);
+    $End_Date= new Carbon($move_in_date);
+    $End_DueDate= new Carbon($move_in_date);
+
+    $firstBills_Date = $Entering_Date->addMonth(1);
+    $LastBills_Date = $End_Date->addMonths($tenancy_period);
+
+    $firstDueBills_Date = $Entering_DueDate->addMonth(1)->addDays(29);
+    $LastDueBills_Date = $End_DueDate->addMonths($tenancy_period)->addDays(29);
+
+    $dateBills = [];
+    $dueDates = [];
+
+    for ($i = $firstBills_Date; $i <$LastBills_Date; $i->addMonth()) {
+        $dateBills[] =  $i->toDateTimeString();
+    }
+    for ($d = $firstDueBills_Date; $d <$LastDueBills_Date; $d->addMonth()) {
+        $dueDates[] =  $d->toDateTimeString();
+    }
+    return Carbon::parse($dueDates);
+
+    // get('date', function() {
+    //     $start = Carbon::now();
+    //     $end = Carbon::now()->addHours(7);
+    //     $data = [];
+    //     for($d = $start;$d < $end;$d->addHour()){
+    //         $data[] = $d->toDateTimeString(); // this line here!
+    //     };
+    //     return $data;
+    // });
+
+
     $dueDate = $date_carboned_add_due->addDays(29);
     $remainderDueDate = $date_carboned_notify->addDays(22);
     $move_out_date = $date_carboned_move_out->addMonth($tenancy_period);
@@ -112,7 +214,7 @@ class TestController extends Controller
 
     $start_date = "2021-12-31";
     // return Carbon::now();
-    return Carbon::createFromDate($start_date);
+    //return Carbon::createFromDate($start_date);
    // return Carbon::parse($start_date)->format('Y-m-d H:i');
 
 
@@ -184,24 +286,34 @@ class TestController extends Controller
          return "no record";
       }
 
+
+
+    //--------TEST SOME PART OF FUNCTIONS/THEORY------------------*/
+
+
+
+
+
+
+
         //$Bill_id = tenant id = 1 and latest inserted bills
         //  insert table bill tenant id = 1 / bill date 23/3/2021, previous bill id = $Bill_id   (penalty_fees=0, total_bills=200)
         //  if previous bill ($Bill_id) payment status = not paid,
         //       update table -> penalty fees = room_id penalty fees, total_bills = room_id monthly_bills + penalty fees total_bills_previous;
 
-        //----------------------------------------------------------------Bill Table Illustration-----------------------------------------------------------------------------------------------------
-        //|bills_id  | tenant_id | property_id | room_id | previous_bill_id | landlord_id | payment_status | bill_status | bills_cue |  penalty_fees | Outstanding_bills |  total_bills   | bills_date | due_date   |
-        //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-        //|    1     |     7     |     1       |    10   |      null        |    20       |    Unpaid       |   Ready   |                 null    |        null       |       150       |  23/2/2022 | 22/3/2022 |
-        //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-        //|    2     |     7     |     1       |    10   |      1           |    20       |    Unpaid      |     Overdue |                   null    |        null       |       150       |  23/3/2022 | 22/3/2022 |
-        //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-        //|    3     |     7     |     1       |    10   |      2           |    20       |    Unpaid      |     Ready   |                 40      |        150        |       340       |  23/4/2022 | 22/5/2022 |
-        //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+        //----------------------------------------------------------------Bill Table Illustration--------------------------------------------------------------------------------------------------------------------
+        //|bills_id  | tenant_id | property_id | room_id | previous_bill_id | landlord_id | payment_status | bill_status | bills_cue |  penalty_fees | Outstanding_bills |  total_bills   | bills_date | due_date    |
+        //-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+        //|    1     |     7     |     1       |    10   |      null        |    20       |    Unpaid       |   Overdue    |     1      |     null    |        null       |       150       |  23/2/2022 | 22/3/2022 |
+        //-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+        //|    2     |     7     |     1       |    10   |      1           |    20       |    Unpaid      |     Ready     |     1     |     null    |        null       |       150       |  23/3/2022 | 22/3/2022  |
+        //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+        //|    3     |     7     |     1       |    10   |      2           |    20       |    Unpaid      |     Ready     |     0     |      40      |        150        |       340       |  23/4/2022 | 22/5/2022 |
+        //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
     // Calculation
-    // (Move in date) + one months
+    // (Move in date) + one months 6months
     // 23/1/2022 Move in date                                       (first month no bills) 23/1/2022
     // 23/2/2022 Bill insert first bill, due: + 29days => 22/3/22   (second month)
     // 23/3/2022 Bill insert second bill, due: + 29days => 22/4/22  (third month)

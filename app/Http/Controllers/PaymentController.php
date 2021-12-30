@@ -13,6 +13,7 @@ use App\Http\Resources\RoomResource;
 use App\Http\Resources\StaffResource;
 use App\Http\Resources\PaymentResource;
 use App\Http\Resources\BookingResource;
+use App\Models\Bill;
 use Illuminate\Http\Request;
 use App\Models\Student;
 use App\Models\Staff;
@@ -106,6 +107,11 @@ class PaymentController extends Controller
             ->where('property_id',$prop_id)
             ->where('room_id',$room_id)
         ->delete();
+
+        Bill::where('student_id',$std_id)
+                ->where('property_id',$prop_id)
+                ->where('room_id',$room_id)
+            ->delete();
 
 
 

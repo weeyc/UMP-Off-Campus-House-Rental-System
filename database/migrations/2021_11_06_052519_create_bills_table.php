@@ -24,6 +24,7 @@ class CreateBillsTable extends Migration
             $table->integer('landlord_id')->nullable();
             $table->string('payment_status')->default('Unpaid');
             $table->string('bills_status')->default('Unready');
+            $table->integer('bills_cue')->default(0);
             $table->float('penalty_fees')->nullable()->default(0);
             $table->float('outstanding_bills')->nullable()->default(0);
             $table->float('total_bills')->nullable();

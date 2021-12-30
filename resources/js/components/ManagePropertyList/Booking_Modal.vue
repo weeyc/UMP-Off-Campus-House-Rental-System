@@ -19,7 +19,7 @@
                     <div class="grid grid-cols-1 gap-6 mt-4 sm:grid-cols-2">
                         <div>
                             <label class="text-gray-700">Move-In Date</label>
-                            <input type="date" id='myDate' v-model="form.move_in_date" name="date" min="2015-10-28" class="cursor-pointer block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-black rounded-md focus:border-blue-500 focus:outline-none focus:ring" required>
+                            <input type="date" id='bookDate' v-model="form.move_in_date" name="date" min="2015-10-28" class="cursor-pointer block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-black rounded-md focus:border-blue-500 focus:outline-none focus:ring" required>
                         </div>
 
                          <div>
@@ -40,7 +40,7 @@
 
                         <div>
                             <label class="text-gray-700" >Student Name</label>
-                                 <input type="text" placeholder="Alif Iskandar" v-model="form.name" class="cursor-pointer block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-black rounded-md focus:border-blue-500 focus:outline-none focus:ring"  required>
+                                 <input type="text" placeholder="Alif Iskandar" v-model="form.name" class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-black rounded-md focus:border-blue-500 focus:outline-none focus:ring"  required>
                         </div>
                       <div>
                             <label class="text-gray-700" >Phone Number</label>
@@ -336,7 +336,7 @@ export default {
     },
     mounted: function(){
         this.getStudent();
-        document.getElementById("myDate").min = new Date().getFullYear() + "-" +  parseInt(new Date().getMonth() + 1 ) + "-" + new Date().getDate()
+        document.getElementById("bookDate").min = new Date().getFullYear() + "-" +  parseInt(new Date().getMonth() + 1 ) + "-" + new Date().getDate()
 
       ;
 

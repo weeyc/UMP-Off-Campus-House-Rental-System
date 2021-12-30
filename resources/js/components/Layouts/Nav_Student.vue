@@ -225,8 +225,8 @@
                 <span class="text-yellow-500 underline cursor-pointer font-medium" @click="notificationHandler(false); redirectFromNoti(3,n.data.Content.room_id)"> room id: {{ n.data.Content.room_id }}</span>
               </div>
                <div v-if="n.signal==null" class="flex w-2/3 mt-2">
-                    <button @click="invitationRespond(1,n.data.Sender_std.std_id, n.id)" class="flex-1 rounded-lg justify-center p-2 mr-2 text-xs font-bold bg-green-500 hover:bg-green-600 text-white flex w-1/2">Accept</button>
-                    <button @click="invitationRespond(2, n.data.Sender_std.std_id, n.id)" class="flex-1 rounded-lg justify-center p-2 text-xs bg-red-500 text-white hover:bg-red-600  flex w-1/2">Decline</button>
+                    <button @click="invitationRespond(1,n.data.Sender_std.std_id, n.id, n.data.Content)" class="flex-1 rounded-lg justify-center p-2 mr-2 text-xs font-bold bg-green-500 hover:bg-green-600 text-white flex w-1/2">Accept</button>
+                    <button @click="invitationRespond(2, n.data.Sender_std.std_id, n.id, n.data.Content)" class="flex-1 rounded-lg justify-center p-2 text-xs bg-red-500 text-white hover:bg-red-600  flex w-1/2">Decline</button>
                 </div>
                   <div tabindex="0" v-if="n.signal=='Accepted'" class="focus:outline-none text-xs leading-3 pt-1 text-green-500" > Invitation accepted -><span @click="notificationHandler(false); redirectFromNoti(1)" class="text-gray-300 cursor-pointer underline hover:text-yellow-500"> Go to house</span></div>
                   <div tabindex="0" v-if="n.signal=='Rejected'" class="focus:outline-none text-xs leading-3 pt-1 text-red-500" > Invitation declined </div>
@@ -341,7 +341,23 @@ export default {
               timeManipulate: [],
               f_date:{
                   setDate: '',
-              }
+              },
+
+                formResponse:{
+                    status: '',
+                    std_id: '',
+                    tenant_id: '',
+                    noti_id: '',
+                    invite_by: '',
+                    move_in_date: '',
+                    property_id: '',
+                    room_id: '',
+                    student_id: '',
+                    tenancy_invitation: '',
+                    tenancy_period: '',
+                    tenant_status: '',
+                }
+
 
         }
     },
@@ -427,14 +443,24 @@ export default {
             });
         },
 
-        invitationRespond(status, id, noti_id){
-            var form={
-                status,
-                id,
-                noti_id,
-            };
-             axios.post('/api/response_request/',form).then(() =>{
-                 if(form.status==1){
+        invitationRespond(status, id, noti_id, data){
+
+                this.formResponse.status =status,
+                this.formResponse.std_id= id,
+                this.formResponse.tenant_id= data.tenant_id,
+                this.formResponse.noti_id = noti_id,
+                this.formResponse.invite_by= data.invite_by,
+                this.formResponse.move_in_date= data.move_in_date,
+                this.formResponse.property_id= data.property_id,
+                this.formResponse.room_id= data.room_id,
+                this.formResponse.student_id= data.student_id,
+                this.formResponse.tenancy_invitation= data.tenancy_invitation,
+                this.formResponse.tenancy_period= data.tenancy_period,
+                this.formResponse.tenant_status= data.tenant_status,
+
+
+             axios.post('/api/response_request/',this.formResponse).then(() =>{
+                 if(this.formResponse.status==1){
                     this.$toaster.success('Roommate request accepted!')
                  }else{
                     this.$toaster.success('Roommate request rejected!')

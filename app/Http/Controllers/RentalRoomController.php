@@ -1,16 +1,18 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Models\Bill;
+use Carbon\Carbon;
 use App\Models\Room;
 use App\Models\Photo;
 use App\Models\Staff;
+use App\Models\Tenant;
 use App\Models\Booking;
 use App\Models\Payment;
 use App\Models\Student;
 use App\Models\Bulletin;
 use App\Models\Landlord;
 use App\Models\Property;
-use App\Models\Tenant;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -174,15 +176,25 @@ class RentalRoomController extends Controller
 
     public function response_request(Request $request){
 
+        $tenant_id = $request->tenant_id;
+        $id = $request->std_id;
+        $move_in_date = $request->move_in_date;
+        $prop_id = $request->property_id;
+        $r_id = $request->room_id;
+        $student_id = $request->student_id;
+        $tenancy_period = (int) $request ->tenancy_period;
+
+
+
         if($request->status ==1){
-            Tenant::where('invite_by',$request->id)
+            Tenant::where('invite_by', $id)
                     // ->where('tenant_status','Pending')
                     // ->where('tenancy_invitation','Pending')
                     ->update([
                 'tenant_status' => 'Tenancy',
                 'tenancy_invitation' => 'Accepted',
             ]);
-            $Tenant =  Tenant::where('invite_by', $request->id)->first();
+            $Tenant =  Tenant::where('invite_by',  $id)->first();
           $progress =  DB::table('notifications')
               ->where('id',$request->noti_id)
               ->update(['signal' => 'Accepted']);
@@ -190,30 +202,106 @@ class RentalRoomController extends Controller
             //notifications
               $sender_id = $request -> session()->get('ID');
               $Sender_std = Student::find($sender_id);
-              $Receiver = Student::find($request->id);
+              $Receiver = Student::find($id);
               $Sender_land = null;
               $Receiver->notify(new ResponseNotification($Tenant, $Sender_std,$Sender_land));
 
 
-        }else if($request->status ==2)
+
+
+        $tenants = Tenant::where('room_id',$r_id )->where('tenant_status', 'Tenancy')->get();
+        $tenant_counts =  $tenants->count();
+
+        $monthly_rent = Room::query()->with(['getTenantRelation' => function ($query) use($tenant_id) {
+            $query->select('room_id','tenant_id')
+                    ->where('tenant_id', $tenant_id);
+        }])->where('room_id',$r_id)->value('monthly_rent');
+
+        $landlord_id = Property::where('property_id',$prop_id)->value('landlord_id');
+
+    //------------------TEST INSERT MULTIPLE BILLS----------------------------
+     //Get Dates for Move in, End, Due
+     $Entering_Date = new Carbon($move_in_date);
+     $Entering_DueDate = new Carbon($move_in_date);
+     $End_Date= new Carbon($move_in_date);
+     $End_DueDate= new Carbon($move_in_date);
+
+     $firstBills_Date = $Entering_Date->addMonth(1);
+     $LastBills_Date = $End_Date->addMonths($tenancy_period);
+
+     $firstDueBills_Date = $Entering_DueDate->addMonth(1)->addDays(29);
+     $LastDueBills_Date = $End_DueDate->addMonths($tenancy_period)->addDays(29);
+
+     $dateBills = [];
+     $dueDates = [];
+
+     for ($i = $firstBills_Date; $i <$LastBills_Date; $i->addMonth()) {
+         $dateBills[] =  $i->toDateTimeString();
+     }
+     for ($d = $firstDueBills_Date; $d <$LastDueBills_Date; $d->addMonth()) {
+         $dueDates[] =  $d->toDateTimeString();
+     }
+
+
+     //Insert All Bills for one Move In
+        $Bills = [];
+        $stoper = (int)($tenancy_period-1);
+
+        DB::beginTransaction();
+            for($t=0; $t <$stoper; $t++){
+                $Bills[$t] = [
+                    'tenant_id' => $tenant_id,
+                    'property_id' => $prop_id,
+                    'student_id' => $student_id,
+                    'room_id' => $r_id,
+                    'landlord_id' => $landlord_id,
+                    'bills_date' => Carbon::parse($dateBills[$t]),
+                    'due_date' => Carbon::parse($dueDates[$t]),
+                    'total_bills' => $monthly_rent,
+                    'created_at' => Carbon::now(),
+                    'updated_at' => Carbon::now(),
+
+                ];
+
+            }
+            Bill::insert($Bills);
+            //update previously bill id
+            $lastRowID = Bill::where('tenant_id',$tenant_id)->latest('created_at')->value('bills_id');
+            $firstRowID = Bill::where('tenant_id',$tenant_id)->oldest('bills_id')->value('bills_id');
+
+            $TenantBills = Bill::where('tenant_id',$tenant_id)->where('bills_id', '!=', $firstRowID)->get()->pluck('bills_id')->toArray();
+            $lastInsertedIds = Bill::where('tenant_id',$tenant_id)->select('bills_id')->get()->except($lastRowID)->pluck('bills_id')->toArray();
+
+            for($t=0; $t <count($lastInsertedIds); $t++){
+                Bill::where('tenant_id', $tenant_id)
+                        ->where('bills_id', $TenantBills[$t])
+                        ->update([
+                            'previous_bill_id' => $lastInsertedIds[$t]
+                        ]);
+            }
+        DB::commit();
+
+
+        }
+        else if($request->status ==2)
         {
-            Tenant::where('invite_by', $request->id)
+            Tenant::where('invite_by', $id)
             ->update([
                 'tenant_status' => 'Invalid',
                 'tenancy_invitation' => 'Rejected',
             ]);
 
-            $Tenant =  Tenant::where('invite_by', $request->id)->first();
+            $Tenant =  Tenant::where('invite_by', $id)->first();
 
             //notifications
             $sender_id = $request -> session()->get('ID');
             $Sender_std = Student::find($sender_id);
-            $Receiver = Student::find($request->id);
+            $Receiver = Student::find($id);
             $Sender_land = null;
             $Receiver->notify(new ResponseNotification($Tenant, $Sender_std,$Sender_land));
 
 
-            Tenant::where('invite_by', $request->id)
+            Tenant::where('invite_by',$id)
             ->delete();
 
             $progress =  DB::table('notifications')

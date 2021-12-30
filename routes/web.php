@@ -51,13 +51,6 @@ Route::get('/logout', 'UserController@logout');
 
 
 
-// Route::post('/login/admin', 'Auth\LoginController@adminLogin');
-// Route::post('/login/blogger', 'Auth\LoginController@bloggerLogin');
-// Route::post('/register/admin', 'Auth\RegisterController@createAdmin');
-// Route::post('/register/blogger', 'Auth\RegisterController@createBlogger');
-
-
-//Route::post('/Login', 'LoginUController@Login')->name('Sign_In');
 
 
 
