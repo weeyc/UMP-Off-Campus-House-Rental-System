@@ -56,6 +56,7 @@ Route::get('/logout', 'UserController@logout');
 
 
 Route::group(['middleware' => 'auth:student'], function () {
+
     Route::get('/student/{any?}', [UserController::class, 'authStudent'])->where('any', '.*');
 });
 

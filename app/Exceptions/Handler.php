@@ -3,6 +3,8 @@
 namespace App\Exceptions;
 
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+
+use IlluminateAuthAuthenticationException;
 use Throwable;
 
 class Handler extends ExceptionHandler
@@ -64,14 +66,7 @@ class Handler extends ExceptionHandler
         } return parent::render($request, $e);
     }
 
-    // public function render($request, Exception $exception)
-    // {
-    //     if ($exception instanceof \Illuminate\Session\TokenMismatchException) {
 
-    //         return redirect('/login');
 
-    //     }
 
-    //     return parent::render($request, $exception);
-    // }
 }

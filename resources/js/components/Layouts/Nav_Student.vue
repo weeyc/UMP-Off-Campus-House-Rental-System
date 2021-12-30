@@ -461,9 +461,9 @@ export default {
 
              axios.post('/api/response_request/',this.formResponse).then(() =>{
                  if(this.formResponse.status==1){
-                    this.$toaster.success('Roommate request accepted!')
+                    setTimeout(() =>   this.$toaster.success('Roommate request accepted!'), 1500);
                  }else{
-                    this.$toaster.success('Roommate request rejected!')
+                    setTimeout(() =>   this.$toaster.warning('Roommate request rejected!'), 1500);
                  }
                 this.getNotifications();
                 this.getNotificationsCount()
