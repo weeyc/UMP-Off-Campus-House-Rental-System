@@ -24,11 +24,12 @@ use App\Http\Controllers\LoginUController;
 
 Route::get('/', function () {
   return view('ManageRegistrationUsers.login');
-});
+})->name('log');
 
 Auth::routes();
 
 Route::post('/login', 'UserController@Login')->name('Sign_In');
+
 
 
 Route::get('/registration-student', function(){

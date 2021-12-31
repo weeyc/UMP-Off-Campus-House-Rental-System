@@ -36,12 +36,8 @@ class TestController extends Controller
 
     public function get_Time_Now(Request $request){
 
-        $go_to_date1 = '2022-02-23';
-
-        $go_to_date2 = '2022-04-23';
-
-
-        $Today_Bills_First = Bill::where('bills_date', '=', $go_to_date1)
+        $go_to_date = $request->setDate;
+        $Today_Bills_First = Bill::where('bills_date', '=', $go_to_date)
                             ->where('previous_bill_id', null)
                             ->where('bills_status', 'Unready')
                             ->get()
@@ -50,18 +46,25 @@ class TestController extends Controller
 
         //if count more than 1
         if(count($Today_Bills_First)>0){
-                            $Today_Bills_First_Room_Id = Bill::where('bills_date', '=', $go_to_date1)
+                            $Today_Bills_First_Room_Id = Bill::where('bills_date', '=', $go_to_date)
                             ->where('previous_bill_id', null)
                             ->where('bills_status', 'Unready')
                             ->get()
                             ->pluck('room_id')
                             ->toArray();
 
-                $Today_Bills_First_Tenant_Id = Bill::where('bills_date', '=', $go_to_date1)
+                $Today_Bills_First_Tenant_Id = Bill::where('bills_date', '=', $go_to_date)
                             ->where('previous_bill_id', null)
                             ->where('bills_status', 'Unready')
                             ->get()
                             ->pluck('tenant_id')
+                            ->toArray();
+
+                $Today_Bills_First_Student_Id = Bill::where('bills_date', '=', $go_to_date)
+                            ->where('previous_bill_id', null)
+                            ->where('bills_status', 'Unready')
+                            ->get()
+                            ->pluck('student_id')
                             ->toArray();
 
 
@@ -69,6 +72,9 @@ class TestController extends Controller
                 $tenant_counts = [];
                 $monthly_per_room = [];
                 $monthly_per_tenant = [];
+                $Billing = [];
+                $Sender_std = [];
+                $Sender_land = [];
                 for($t=0; $t <count($Today_Bills_First); $t++){
                     $tenant_counts[$t] = Tenant::where('room_id',$Today_Bills_First_Room_Id[$t])->where('tenant_status', 'Tenancy')->get()->count();
 
@@ -78,40 +84,59 @@ class TestController extends Controller
                     }])->where('room_id',$Today_Bills_First_Room_Id[$t])->value('monthly_rent');
 
                     $monthly_per_tenant [$t] =  $monthly_per_room [$t] / $tenant_counts[$t];
-                    Bill::where('bills_id', $Today_Bills_First[$t])
+                     Bill::where('bills_id', $Today_Bills_First[$t])
                             ->update([
                                 'bills_status' => 'Ready',
                                 'bills_cue' => 1,
                                 'total_bills' =>  $monthly_per_tenant [$t],
 
                     ]);
+                    $Billing[$t] =  Bill::where('bills_id', $Today_Bills_First[$t])->first();
+
+                    if($Billing[$t]){
+                        $Sender_std[$t] = Student::find($Today_Bills_First_Student_Id[$t]);
+                        $Sender_land[$t] = null;
+                        Notification::send($Sender_std[$t], new BillsNotification($Billing[$t], $Sender_std[$t], $Sender_land[$t]));
+                    }
                 }
+
+
         }
 
 
-        $Today_Bills_Next = Bill::where('bills_date', '=', $go_to_date2)
+        $Today_Bills_Next = Bill::where('bills_date', '=', $go_to_date)
                             ->where('previous_bill_id','!=' , null)
                             ->where('bills_status', 'Unready')
                             ->get()
                             ->pluck('bills_id')
                             ->toArray();
 
+
+
             if(count($Today_Bills_Next)>0){
-                                $Today_Bills_Next_Room_Id = Bill::where('bills_date', '=', $go_to_date2)
-                                ->where('previous_bill_id','!=' , null)
-                                ->where('bills_status', 'Unready')
-                                ->get()
-                                ->pluck('room_id')
-                                ->toArray();
+                        $Today_Bills_Next_Room_Id = Bill::where('bills_date', '=', $go_to_date)
+                        ->where('previous_bill_id','!=' , null)
+                        ->where('bills_status', 'Unready')
+                        ->get()
+                        ->pluck('room_id')
+                        ->toArray();
 
-                    $Today_Bills_Next_Tenant_Id = Bill::where('bills_date', '=', $go_to_date2)
-                                ->where('previous_bill_id', '!=' , null)
-                                ->where('bills_status', 'Unready')
-                                ->get()
-                                ->pluck('tenant_id')
-                                ->toArray();
+                        $Today_Bills_Next_Tenant_Id = Bill::where('bills_date', '=', $go_to_date)
+                        ->where('previous_bill_id', '!=' , null)
+                        ->where('bills_status', 'Unready')
+                        ->get()
+                        ->pluck('tenant_id')
+                        ->toArray();
 
-                $check_previous_bill_id = Bill::where('bills_date', '=', $go_to_date2)
+                        $Today_Bills_Next_Student_Id = Bill::where('bills_date', '=', $go_to_date)
+                        ->where('previous_bill_id', '!=' , null)
+                        ->where('bills_status', 'Unready')
+                        ->get()
+                        ->pluck('student_id')
+                        ->toArray();
+
+
+                $check_previous_bill_id = Bill::where('bills_date', '=', $go_to_date)
                 ->where('previous_bill_id','!=' , null)
                 ->where('payment_status', 'Unpaid')
                 ->where('bills_status', 'Unready')
@@ -122,6 +147,7 @@ class TestController extends Controller
 
                 //Check Overdue
                 $previous_bill_overdue_id =[];
+
                 for($t=0; $t <count($check_previous_bill_id); $t++){
                     $previous_bill_overdue_id[$t]= Bill::where('bills_id', '=', $check_previous_bill_id[$t])
                     ->where('payment_status', 'Unpaid')
@@ -135,15 +161,16 @@ class TestController extends Controller
 
                 }
 
-              // return $check_previous_bill_id;
+
 
                     $tenant_counts_n = [];
                     $Bills_total_Overdue = [];
                     $monthly_per_room_n = [];
-                    $grand_total_Bills = [];
                     $monthly_per_tenant_n = [];
                     $penalty_fees = [];
-                    $previous_bill_overdue = [];
+                    $Billing = [];
+                    $Sender_std = [];
+                    $Sender_land = [];
                     for($t=0; $t <count($Today_Bills_Next); $t++){
 
                         $Bills_total_Overdue[$t]= Bill::where('bills_id', '=', $check_previous_bill_id[$t])
@@ -165,9 +192,6 @@ class TestController extends Controller
 
                             $monthly_per_tenant_n [$t] =  $monthly_per_room_n [$t] / $tenant_counts_n[$t];
 
-                            // $Bill->Outstanding_bills = $bill_latest_billTotals;
-                            // $Bill->total_bills = $bill_latest_billTotals + ($monthly_rent/$tenant_counts) + $penalty_fees ;
-
                         if($Bills_total_Overdue[$t]==null){
 
                             Bill::where('bills_id', $Today_Bills_Next[$t])
@@ -177,8 +201,16 @@ class TestController extends Controller
                                 'total_bills' =>  $monthly_per_tenant_n [$t],
                              ]);
 
+                             $Billing[$t] =  Bill::where('bills_id', $Today_Bills_Next[$t])->first();
+
+                             if($Billing[$t]){
+                                $Sender_std[$t] = Student::find($Today_Bills_Next_Student_Id[$t]);
+                                $Sender_land[$t] = null;
+                                Notification::send($Sender_std[$t], new BillsNotification($Billing[$t], $Sender_std[$t], $Sender_land[$t]));
+                            }
+
                         }else {
-                            Bill::where('bills_id', $Today_Bills_Next[$t])
+                         Bill::where('bills_id', $Today_Bills_Next[$t])
                             ->update([
                                 'bills_status' => 'Ready',
                                 'bills_cue' => 1,
@@ -186,6 +218,13 @@ class TestController extends Controller
                                 'outstanding_bills' =>  $Bills_total_Overdue [$t],
                                 'penalty_fees' =>  $penalty_fees  [$t] ,
                               ]);
+                              $Billing[$t] =  Bill::where('bills_id', $Today_Bills_Next[$t])->first();
+                              if($Billing[$t]){
+                                $Sender_std[$t] = Student::find($Today_Bills_Next_Student_Id[$t]);
+                                $Sender_land[$t] = null;
+                                Notification::send($Sender_std[$t], new BillsNotification($Billing[$t], $Sender_std[$t], $Sender_land[$t]));
+                            }
+
                         }
 
 
@@ -195,81 +234,48 @@ class TestController extends Controller
             }
 
 
-
-
-                // //--------------References----------------------//
-                // $bill_latest_id = Bill::where('tenant_id',$tenant_id)->latest('bills_date')->value('bills_id');
-                // $bill_latest_paymentStatus = Bill::where('tenant_id',$tenant_id)->latest('bills_date')->value('payment_status');
-                // $bill_latest_billStatus = Bill::where('tenant_id',$tenant_id)->latest('bills_date')->value('bills_status');
-                // $bill_latest_billTotals = Bill::where('tenant_id',$tenant_id)->latest('bills_date')->value('total_bills');
-
-                // $Bill->tenant_id = $tenant_id;
-                // $Bill->property_id = $prop_id;
-                // $Bill->student_id = $student_id;
-                // $Bill->room_id = $room_id;
-                // $Bill->landlord_id = $landlord_id;
-                // $Bill->due_date = $dueDate;
-                // $Bill->previous_bill_id = $bill_latest_id;
-
-                // if($bill_latest_paymentStatus=='Paid'){
-                //     $Bill->total_bills = ($monthly_rent/$tenant_counts);
-                // }else if($bill_latest_paymentStatus=='Unpaid'){
-                //     Bill::where('tenant_id',$tenant_id)->latest('bills_date')->update([
-                //         'bills_status' => 'Overdue'
-                //     ]);
-                //     $Bill->penalty_fees = $penalty_fees;
-                //     $Bill->Outstanding_bills = $bill_latest_billTotals;
-                //     $Bill->total_bills = $bill_latest_billTotals + ($monthly_rent/$tenant_counts) + $penalty_fees ;
-                // }
-               // $Bill->save();
-                //--------------References----------------------//
-
-               // return $Today_Bills_Next;
-
-
-
-
-//-----------------------------------------------------------------------------------------Bill Table Illustration--------------------------------------------------------------------------------------------
-//|bills_id  | tenant_id | property_id | room_id | previous_bill_id | landlord_id | payment_status | bill_status | bills_cue |  penalty_fees | Outstanding_bills |  total_bills   | bills_date | due_date    |
-//------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-//|    1     |     7     |     1       |    10   |      null        |    20       |    Unpaid       |   Ready      |     0      |     null    |        null       |       150       |  23/2/2022 | 22/3/2022 |
-//------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-//|    2     |     7     |     1       |    10   |      1           |    20       |    Unpaid      |    Unready     |     0     |     null    |        null       |       150       |  23/3/2022 | 22/3/2022 |
-//------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-//|    3     |     7     |     1       |    10   |      2           |    20       |    Unpaid      |    Unready     |     0     |      null      |        null        |       340       |  23/4/2022 | 22/5/2022|
-//------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-//|    4     |     8     |     1       |    9    |      null        |    20       |    Unpaid       |   Unready    |     0      |     null    |        null       |       250       |  23/2/2022 | 22/3/2022 |
-//------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-//|    5     |     8     |     1       |    9    |      4          |    20       |    Unpaid      |    Unready     |     0     |     null    |        null       |       250       |  23/3/2022 | 22/3/2022 |
-//------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-//|    6     |     8     |     1       |    9     |      5          |    20       |    Unpaid      |    Unready     |     0     |      null      |        null        |       250       |  23/4/2022 | 22/5/2022|
-//------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+//  -----------------------------------------------------------------------------------------Bill Table Illustration--------------------------------------------------------------------------------------------
+//  |bills_id  | tenant_id | property_id | room_id | previous_bill_id | landlord_id | payment_status | bill_status   | bills_cue  |  penalty_fees | Outstanding_bills |  total_bills   | bills_date | due_date  |
+//  ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+//  |    1     |     7     |     1       |    10   |      null        |    20       |    Unpaid      |   Ready       |     0      |     null      |        null       |       150      |  23/2/2022 | 22/3/2022 |
+//  ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+//  |    2     |     7     |     1       |    10   |      1           |    20       |    Unpaid      |    Unready    |     0      |     null      |        null       |       150      |  23/3/2022 | 22/3/2022 |
+//  ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+//  |    3     |     7     |     1       |    10   |      2           |    20       |    Unpaid      |    Unready    |     0      |      null     |        null       |       340      |  23/4/2022 | 22/5/2022 |
+//  ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+//  |    4     |     8     |     1       |    9    |      null        |    20       |    Unpaid      |   Unready     |     0      |     null      |        null       |       250      |  23/2/2022 | 22/3/2022 |
+//  ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+//  |    5     |     8     |     1       |    9    |      4           |    20       |    Unpaid      |    Unready    |     0      |     null      |        null       |       250      |  23/3/2022 | 22/3/2022 |
+//  ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+//  |    6     |     8     |     1       |    9    |      5           |    20       |    Unpaid      |    Unready    |     0      |      null     |        null       |       250      |  23/4/2022 | 22/5/2022 |
+//  ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 //$future_Date = Carbon::parse($go_to_date);
 //$today = Carbon::parse('25/09/2022 00:00:00');
     }
 
+    public function resetBill(Request $request){
 
+       Bill::query()
+            ->update([
+                'bills_status' => 'Unready',
+                'payment_status' => 'Unpaid',
+                'bills_cue' => 0,
+                'outstanding_bills' => 0.0,
+                'penalty_fees' => 0.0,
+                ]);
+    }
+
+    public function getTimeNow(Request $request){
+
+        $go_to_date = Carbon::now();
+        return  $go_to_date->format('d m Y');
+
+    }
 
 
 
     public function get_one(Request $request){
-    //Theory
-    // Run schedule at insert of tenant, pass inserted tenant to schedular
-    // if tenant still exist in tenant table
-    // if date now - move_in_date = one months
-    //    then execute next date (date now + one months) on Auto schedular function (pass tenant)
-    //
-    // Auto schedular function
-    // if tenant still exist in tenant table
-    // date now
-
-    //Testing Billing Algorithm
-    // Variables:
-    //- For each tenants
-    //- $tenant_no = count tenants in a room by room id, tenant_status=Tenancy
-    //- $move_in_date, $tenancy_period(parseInt) from tenant
-    //- (tenant - room) number_of_tenant, booking_fees, penalty_fees
 
     // $room_id =9;
     // $tenant_id =11;

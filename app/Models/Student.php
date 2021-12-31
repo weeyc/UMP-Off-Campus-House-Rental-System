@@ -30,5 +30,14 @@ class Student extends Authenticatable
 
     }
 
+    public function routeNotificationForMail($notification)
+    {
+        // Return email address only...
+        return $this->std_email;
+
+        // // Return email address and name...
+        // return [$this->std_email => $this->std_name];
+    }
+
 
 }

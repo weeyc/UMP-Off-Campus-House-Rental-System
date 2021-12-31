@@ -10,11 +10,13 @@ use Illuminate\Notifications\Messages\BroadcastMessage;
 use App\Models\Payment;
 use Illuminate\Notifications\Notifiable;
 
-class BulletinNotification extends Notification
+class BulletinNotification extends Notification implements ShouldQueue
 {
     use Queueable;
     use Notifiable;
-    protected $Bulletin;
+    protected $Content;
+    protected $Sender_std;
+    protected $Sender_land;
 
     /**
      * Create a new notification instance.
@@ -36,7 +38,7 @@ class BulletinNotification extends Notification
      */
     public function via($notifiable)
     {
-        return ['database', 'broadcast'];
+        return ['database', 'broadcast','mail'];
        // return ['database'];
     }
 
@@ -46,13 +48,7 @@ class BulletinNotification extends Notification
      * @param  mixed  $notifiable
      * @return \Illuminate\Notifications\Messages\MailMessage
      */
-    public function toMail($notifiable)
-    {
-        return (new MailMessage)
-                    ->line('The introduction to the notification.')
-                    ->action('Notification Action', url('/'))
-                    ->line('Thank you for using our application!');
-    }
+
 
             /**
          * Get the broadcastable representation of the notification.
@@ -84,6 +80,14 @@ class BulletinNotification extends Notification
             'notification' => $notifiable->notifications()->latest()->first()
 
         ]);
+    }
+
+    public function toMail($notifiable)
+    {
+        return (new MailMessage)
+                    ->line('The introduction to the notification.')
+                    ->action('Notification Action', url('/'))
+                    ->line('Thank you for using our application!');
     }
 
 

@@ -70,7 +70,9 @@ Route::get('resetTime', 'ChatController@resetTime');
 
 
 Route::post('get_one', 'TestController@get_one');
-Route::get('get_Time_Now', 'TestController@get_Time_Now');
+Route::post('get_Time_Now', 'TestController@get_Time_Now');
+Route::get('resetBill', 'TestController@resetBill');
+Route::get('getTimeNow', 'TestController@getTimeNow');
 
 
 

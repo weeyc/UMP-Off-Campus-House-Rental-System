@@ -139,29 +139,20 @@
                             <div class="flex items-center relative" @click="dropdownHandlerTimeController($event)"  >
                                 <ul class="w-72 p-2 border-r bg-gray-800 absolute rounded right-0 top-0 shadow mt-16 hidden overflow-hidden z-10 ">
                                     <center> <span class="text-base font-bold text-white underline tracking-wide">Time Machine</span>
-                                     <li class="cursor-pointer text-yellow-500 text-sm leading-3 tracking-normal py-2">
-
-                                            <label class="flex radio text-base p-2 cursor-pointer">
-                                                <div class="title px-2">Date Now ⇨ {{ moment(timeManipulate).format("d-MM-YYYY")   }}</div>
-                                            </label>
-
-                                    </li>
 
 
                                 <hr class="border-yellow-300  ">
-                                    <li class="cursor-pointer text-yellow-500 text-sm leading-3 tracking-normal mt-2 py-2 hover:text-indigo-700 flex items-center focus:text-indigo-700 focus:outline-none">
-                                        <label class="flex radio p-2 cursor-pointer">
+                                    <li class="cursor-pointer text-yellow-500 text-sm leading-3 tracking-normal mt-2 py-1 hover:text-indigo-700 flex items-center focus:text-indigo-700 focus:outline-none">
+                                        <label class="ml-1 p-2 cursor-pointer w-full">
                                                 <div>
-                                                    <label class="text-yellow-500">Go to:</label>
-                                                    <input type="date" id='myDate' v-model="f_date.setDate" name="date" min="2015-10-28" required>
+                                                    <input type="date" id='myDate' v-model="f_date.setDate" name="date" class="" min="2015-10-28" required>
                                                 </div>
                                         </label>
                                     </li>
                                     <hr class="border-yellow-300">
-                                    <li class="cursor-pointer text-yellow-500 text-sm leading-3 tracking-normal mt-2 py-2 hover:text-indigo-700 items-center focus:text-indigo-700 focus:outline-none">
-                                          <label class="flex justify-center cursor-pointer">
-                                            <button @click="resetTime" class="outline-yellow-500 text-yellow-500 bg-gray-700 rounded-full hover:bg-gray-800 text-yellow-500">&cross; Reset</button>
-                                            <button @click="setTime" class="px-5 outline-yellow-500 text-yellow-500 bg-gray-700 rounded-full hover:bg-gray-800 ">Manipulate Date</button>
+                                    <li class="text-yellow-500 text-sm leading-3 tracking-normal mt-2 py-2 hover:text-yellow-700 items-center focus:yellow-indigo-700 focus:outline-none">
+                                          <label class="flex justify-center">
+                                            <button @click="setTime" class="px-5  cursor-pointer outline-yellow-500 text-yellow-500 bg-gray-700 rounded-full hover:bg-gray-800 ">Manipulate Date</button>
                                        </label>
 
                                     </li>
@@ -263,7 +254,7 @@
             </div>
             <div class="pl-3 w-full">
               <div class="flex items-center justify-between">
-                <p tabindex="0" class="focus:outline-none text-sm leading-snug text-yellow-700" > Your <span class="font-semibold">rental bill </span> (room id: {{n.data.Content.room_id}}) for <span class="font-semibold">{{ moment(n.data.Content.created_at).format("MMM-YYYY")   }} </span>  is ready!</p>
+                <p tabindex="0" class="focus:outline-none text-sm leading-snug text-yellow-700" > Your <span class="font-semibold">rental bill </span> (room id: {{n.data.Content.room_id}}) for <span class="font-semibold">{{ moment(n.data.Content.bills_date).format("MMM-YYYY")   }} </span>  is ready!</p>
                 <p tabindex="0" class=" focus:outline-none focus:text-yellow-700 text-xs leading-3 underline cursor-pointer text-yellow-700 font-medium" @click="notificationHandler(false); redirectFromNoti(2)" > View </p>
               </div>
               <p tabindex="0" class="focus:outline-none text-xs leading-3 pt-1 text-gray-500 mt-2" >{{ moment( n.created_at ).fromNow() }}</p>
@@ -338,7 +329,6 @@ export default {
             notificationsCounts: [],
               moment: moment,
               authme: [],
-              timeManipulate: [],
               f_date:{
                   setDate: '',
               },
@@ -500,23 +490,12 @@ export default {
             let single = event.currentTarget.getElementsByTagName("ul")[0];
             single.classList.toggle("hidden");
         },
-        getTimeNow(){
-            axios.get('/api/getTimeNow/').then((response)=>{
-            this.timeManipulate=response.data;
-            }).catch((errors)=> {console.log(errors)})
-        },
         setTime(){
-             axios.post('/api/setTime/',this.form).then(() =>{
-              this.getTimeNow();
+             axios.post('/api/get_Time_Now/',this.f_date).then(() =>{
                 this.$toaster.success('We are now in the future');
                 }).catch((error)=> {console.log(error)});
         },
-        resetTime(){
-             axios.get('/api/resetTime/').then(()=>{
-               this.getTimeNow();
-               this.$toaster.success('We back to present time');
-            }).catch((errors)=> {console.log(errors)})
-        },
+
 
 
 
@@ -547,7 +526,6 @@ export default {
             });
 
         this.getAuth();
-        this.getTimeNow();
         document.getElementById("myDate").min = new Date().getFullYear() + "-" +  parseInt(new Date().getMonth() + 1 ) + "-" + new Date().getDate()
 
 
