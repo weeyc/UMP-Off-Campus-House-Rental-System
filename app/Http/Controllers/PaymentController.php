@@ -5,26 +5,27 @@ namespace App\Http\Controllers;
 
 namespace App\Http\Controllers;
 
-use App\Http\Resources\StudentResource;
-use App\Http\Resources\PropertyResource;
-use App\Http\Resources\LandlordResource;
-use App\Http\Resources\PhotoResource;
-use App\Http\Resources\RoomResource;
-use App\Http\Resources\StaffResource;
-use App\Http\Resources\PaymentResource;
-use App\Http\Resources\BookingResource;
+use Carbon\Carbon;
 use App\Models\Bill;
-use Illuminate\Http\Request;
-use App\Models\Student;
-use App\Models\Staff;
-use App\Models\Landlord;
-use App\Models\Payment;
-use App\Models\Booking;
-use App\Models\Tenant;
-use App\Models\Property;
-use App\Models\Photo;
 use App\Models\Room;
+use App\Models\Photo;
+use App\Models\Staff;
+use App\Models\Tenant;
+use App\Models\Booking;
+use App\Models\Payment;
+use App\Models\Student;
+use App\Models\Landlord;
+use App\Models\Property;
 use Illuminate\Support\Str;
+use Illuminate\Http\Request;
+use App\Http\Resources\RoomResource;
+use App\Http\Resources\PhotoResource;
+use App\Http\Resources\StaffResource;
+use App\Http\Resources\BookingResource;
+use App\Http\Resources\PaymentResource;
+use App\Http\Resources\StudentResource;
+use App\Http\Resources\LandlordResource;
+use App\Http\Resources\PropertyResource;
 
 class PaymentController extends Controller
 {
@@ -112,13 +113,63 @@ class PaymentController extends Controller
                 ->where('property_id',$prop_id)
                 ->where('room_id',$room_id)
             ->delete();
-
-
-
-
      }
 
      public function delete_booking($id){
         Booking::where('booking_id', $id)->delete();
    }
+
+     public function get_bills($id, $role, Request $request){
+
+        if($role == 1){
+           $date = $request->date;
+           //$date = "2022-02-23";
+
+            if( $date != null){
+                $bills =  Bill::where('student_id', $id)->where('bills_date',$date)->first();
+
+                return  $bills;
+            }else{
+                $bills =  Bill::where('student_id', $id)->where('bills_status','Ready')->orderBy('bills_date','desc')->first();
+                return  $bills;
+            }
+
+        }
+   }
+     public function get_bills_months($id, $role){
+
+        if($role == 1){
+            $bills_months =  Bill::where('student_id', $id)
+            ->where('bills_status', '!=', 'Unready')
+            ->orderBy('bills_date','desc')
+            ->get()
+            ->pluck('bills_date');
+            return  $bills_months;
+        }
+   }
+
+     public function pay_bill(Request $request){
+
+        $Payment = new Payment();
+        $Payment->student_id = $request ->std_id;
+        $Payment->bill_id =  $request ->bills_id;
+        $Payment->property_id = $request ->property_id;
+        $Payment->room_id = $request ->room_id;
+        $Payment->landlord_id = $request ->landlord_id;
+        $Payment->payment_details = $request ->payment_details;
+        $Payment->payment_status = 'Paid';
+        $Payment->total_payment = $request ->total_payment;
+        $Payment->save();
+
+
+        Bill::where('bills_id',  $request ->bills_id)
+        ->update([
+            'payment_status' => 'Paid'
+        ]);
+
+
+   }
+
+
+
 }

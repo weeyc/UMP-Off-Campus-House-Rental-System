@@ -3,6 +3,7 @@
     "/css/app.css": "/css/app.css",
     "/Add_Property.js": "/Add_Property.js",
     "/Add_Property~Property_Landlord~Room_Landlord.js": "/Add_Property~Property_Landlord~Room_Landlord.js",
+    "/Bills_Student.js": "/Bills_Student.js",
     "/Booking_Student.js": "/Booking_Student.js",
     "/BrowseRoom_Student.js": "/BrowseRoom_Student.js",
     "/HousePlatform_Std.js": "/HousePlatform_Std.js",
@@ -23,6 +24,6 @@
     "/Tab_Staff_Users.js": "/Tab_Staff_Users.js",
     "/Tab_Student_Payment.js": "/Tab_Student_Payment.js",
     "/View_Room_List.js": "/View_Room_List.js",
-    "/vendors~Property_Landlord~Room_Landlord~View_Room_List.js": "/vendors~Property_Landlord~Room_Landlord~View_Room_List.js",
-    "/vendors~View_Room_List.js": "/vendors~View_Room_List.js"
+    "/vendors~Bills_Student~View_Room_List.js": "/vendors~Bills_Student~View_Room_List.js",
+    "/vendors~Property_Landlord~Room_Landlord~View_Room_List.js": "/vendors~Property_Landlord~Room_Landlord~View_Room_List.js"
 }

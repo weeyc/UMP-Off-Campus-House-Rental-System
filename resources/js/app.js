@@ -35,13 +35,6 @@ window.Echo = new Echo({
     wsPort: 6001,
     forceTLS: false,
     disableStats: true,
-    //   auth:{
-    //     headers: {
-    //         Accept: 'application/json',
-    //         Authorization: 'Bearer ',
-
-    //     },
-    // },
 });
 
 Vue.use(VueRouter);

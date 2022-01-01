@@ -26,6 +26,7 @@ const BrowseRoom_Student = () => import(/* webpackChunkName: "BrowseRoom_Student
 const View_Room_List = () => import(/* webpackChunkName: "View_Room_List" */'./components/ManagePropertyList/View_Room_List');
 const Payment_Student = () => import(/* webpackChunkName: "Payment_Student" */'./components/ManagePayment/Payment_Student');
 const Booking_Student = () => import(/* webpackChunkName: "Booking_Student" */'./components/ManagePayment/Booking_Student');
+const Bills_Student = () => import(/* webpackChunkName: "Bills_Student" */'./components/ManagePayment/Bills_Student');
 const Tab_Student_Payment = () => import(/* webpackChunkName: "Tab_Student_Payment" */'./components/Layouts/Tab_Student_Payment');
 const RentalRoom_student = () => import(/* webpackChunkName: "RentalRoom_student" */'./components/ManageRentalProperty/RentalRoom_student');
 const HousePlatform_Std = () => import(/* webpackChunkName: "HousePlatform_Std" */'./components/ManageRentalProperty/HousePlatform_Std');
@@ -229,9 +230,14 @@ export default{
                     component: Payment_Student,
                 },
                 {
-                    path: 'booking',
+                    path: 'bookings',
                     name: 'std_booking',
                     component: Booking_Student,
+                },
+                {
+                    path: 'bills',
+                    name: 'std_bills',
+                    component: Bills_Student,
                 },
             ]
         },

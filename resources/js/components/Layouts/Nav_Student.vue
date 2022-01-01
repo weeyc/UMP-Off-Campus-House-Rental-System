@@ -492,7 +492,8 @@ export default {
         },
         setTime(){
              axios.post('/api/get_Time_Now/',this.f_date).then(() =>{
-                this.$toaster.success('We are now in the future');
+                 setTimeout(() =>   this.$toaster.warning('Process to future date....'), 1000);
+                 setTimeout(() =>   this.$toaster.sucess('We are in future!'), 8000);
                 }).catch((error)=> {console.log(error)});
         },
 

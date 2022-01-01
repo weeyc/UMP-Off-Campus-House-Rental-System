@@ -47,6 +47,15 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     user_id: Number,
@@ -167,7 +176,7 @@ var render = function () {
               ),
               _vm._v(" "),
               _c("span", { staticClass: "mx-1 text-sm sm:text-base" }, [
-                _vm._v("\n               Payment\n           "),
+                _vm._v("\n               Payments\n           "),
               ]),
             ]
           ),
@@ -207,7 +216,47 @@ var render = function () {
               ),
               _vm._v(" "),
               _c("span", { staticClass: "mx-1 text-sm sm:text-base" }, [
-                _vm._v("\n               Booking\n           "),
+                _vm._v("\n               Bookings\n           "),
+              ]),
+            ]
+          ),
+          _vm._v(" "),
+          _c(
+            "router-link",
+            {
+              staticClass:
+                "flex items-center h-12 px-2 py-2 text-center text-gray-700 bg-transparent border-b border-black rounded-t-md sm:px-4 -px-1 whitespace-nowrap cursor-base focus:outline-none hover:text-blue-700",
+              attrs: {
+                to: { name: "std_bills" },
+                "exact-active-class": "exact-active",
+              },
+            },
+            [
+              _c(
+                "svg",
+                {
+                  staticClass: "w-4 h-4 mx-1 sm:w-6 sm:h-6",
+                  attrs: {
+                    xmlns: "http://www.w3.org/2000/svg",
+                    fill: "none",
+                    viewBox: "0 0 24 24",
+                    stroke: "currentColor",
+                  },
+                },
+                [
+                  _c("path", {
+                    attrs: {
+                      "stroke-linecap": "round",
+                      "stroke-linejoin": "round",
+                      "stroke-width": "2",
+                      d: "M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z",
+                    },
+                  }),
+                ]
+              ),
+              _vm._v(" "),
+              _c("span", { staticClass: "mx-1 text-sm sm:text-base" }, [
+                _vm._v("\n               Bills\n           "),
               ]),
             ]
           ),
