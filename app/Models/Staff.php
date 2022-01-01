@@ -21,4 +21,13 @@ class Staff extends Authenticatable
         return $this->staff_password;
 
     }
+
+
+    public function routeNotificationForMail($notification)
+    {
+        // Return email address only...
+        //  return $this->std_email;
+        /// Return email address and name...
+         return [$this->staff_email => $this->staff_name];
+    }
 }

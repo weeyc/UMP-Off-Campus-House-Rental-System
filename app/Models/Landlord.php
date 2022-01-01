@@ -33,6 +33,15 @@ class Landlord extends Authenticatable
     }
 
 
+    public function routeNotificationForMail($notification)
+    {
+        // Return email address only...
+        //  return $this->std_email;
+        /// Return email address and name...
+         return [$this->landlord_email => $this->landlord_name];
+    }
+
+
 }
 
 // <?php

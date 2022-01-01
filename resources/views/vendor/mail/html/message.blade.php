@@ -9,19 +9,26 @@
 {{-- Body --}}
 {{ $slot }}
 
-{{-- Subcopy --}}
-@isset($subcopy)
-@slot('subcopy')
+{{-- @component('mail::panel')
+    <center>Total Bill To Pay: RM 200</center
+    @component('mail::button', ['url' => 'http://localhost:3000'])
+        Check Now
+    @endcomponent
+@endcomponent --}}
+
+
+
+
+
+
 @component('mail::subcopy')
-{{ $subcopy }}
+    Disclaimer: This is a system generated email. Please do not reply to this email.
 @endcomponent
-@endslot
-@endisset
 
 {{-- Footer --}}
 @slot('footer')
 @component('mail::footer')
-© {{ date('Y') }} {{ config('app.name') }}. @lang('All rights reserved.')
+© {{ date('Y') }} UOCA. @lang('All rights reserved.')
 @endcomponent
 @endslot
 @endcomponent

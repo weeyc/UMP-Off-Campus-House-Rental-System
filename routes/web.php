@@ -26,6 +26,10 @@ Route::get('/', function () {
   return view('ManageRegistrationUsers.login');
 })->name('log');
 
+Route::get('/bill', function () {
+  return view('billing_mail');
+});
+
 Auth::routes();
 
 Route::post('/login', 'UserController@Login')->name('Sign_In');
