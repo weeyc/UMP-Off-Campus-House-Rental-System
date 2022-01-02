@@ -582,9 +582,9 @@ var render = function () {
                                                     ]
                                                   ),
                                                   _vm._v(" "),
-                                                  _vm.data.payment_status ==
+                                                  _vm.data.payment_status ===
                                                     "Unpaid" &&
-                                                  _vm.data.bills_status ==
+                                                  _vm.data.bills_status ===
                                                     "Ready"
                                                     ? _c(
                                                         "div",

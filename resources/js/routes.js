@@ -28,12 +28,16 @@ const Payment_Student = () => import(/* webpackChunkName: "Payment_Student" */'.
 const Booking_Student = () => import(/* webpackChunkName: "Booking_Student" */'./components/ManagePayment/Booking_Student');
 const Bills_Student = () => import(/* webpackChunkName: "Bills_Student" */'./components/ManagePayment/Bills_Student');
 const Tab_Student_Payment = () => import(/* webpackChunkName: "Tab_Student_Payment" */'./components/Layouts/Tab_Student_Payment');
+
 const RentalRoom_student = () => import(/* webpackChunkName: "RentalRoom_student" */'./components/ManageRentalProperty/RentalRoom_student');
 const HousePlatform_Std = () => import(/* webpackChunkName: "HousePlatform_Std" */'./components/ManageRentalProperty/HousePlatform_Std');
 
 const RentalRoom_Landlord = () => import(/* webpackChunkName: "RentalRoom_Landlord" */'./components/ManageRentalProperty/RentalRoom_Landlord');
 const HousePlatform_Landlord = () => import(/* webpackChunkName: "HousePlatform_Landlord" */'./components/ManageRentalProperty/HousePlatform_Landlord');
-
+const Payment_Landlord = () => import(/* webpackChunkName: "Payment_Landlord" */'./components/ManagePayment/Payment_Landlord');
+const Booking_Landlord = () => import(/* webpackChunkName: "Booking_Landlord" */'./components/ManagePayment/Booking_Landlord');
+const Bills_Landlord = () => import(/* webpackChunkName: "Bills_Landlord" */'./components/ManagePayment/Bills_Landlord');
+const Tab_Landlord_Payment = () => import(/* webpackChunkName: "Tab_Landlord_Payment" */'./components/Layouts/Tab_Landlord_Payment');
 
 
 
@@ -199,7 +203,29 @@ export default{
             name: 'land_profile_view',
             component: Profile_View,
         },
+        {
+            path: '/landlord/payment_report',
+            name: 'land_payments',
+            component: Tab_Landlord_Payment,
+            children: [
+                {
+                    path: '',
+                    name: 'payment_land',
+                    component: Payment_Landlord,
+                },
+                {
+                    path: 'bookings',
+                    name: 'land_booking',
+                    component: Booking_Landlord,
+                },
+                {
+                    path: 'bills',
+                    name: 'land_bills',
+                    component: Bills_Landlord,
 
+                },
+            ]
+        },
 
 
 

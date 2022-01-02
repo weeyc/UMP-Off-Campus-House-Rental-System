@@ -27,5 +27,10 @@
     "/Tab_Student_Payment.js": "/Tab_Student_Payment.js",
     "/View_Room_List.js": "/View_Room_List.js",
     "/vendors~Bills_Student~View_Room_List.js": "/vendors~Bills_Student~View_Room_List.js",
-    "/vendors~Property_Landlord~Room_Landlord~View_Room_List.js": "/vendors~Property_Landlord~Room_Landlord~View_Room_List.js"
+    "/vendors~Property_Landlord~Room_Landlord~View_Room_List.js": "/vendors~Property_Landlord~Room_Landlord~View_Room_List.js",
+    "/Bills_Landlord.js": "/Bills_Landlord.js",
+    "/Booking_Landlord.js": "/Booking_Landlord.js",
+    "/Tab_Landlord_Payment.js": "/Tab_Landlord_Payment.js",
+    "/vendors~Bills_Landlord~Bills_Student~View_Room_List.js": "/vendors~Bills_Landlord~Bills_Student~View_Room_List.js",
+    "/Payment_Landlord.js": "/Payment_Landlord.js"
 }

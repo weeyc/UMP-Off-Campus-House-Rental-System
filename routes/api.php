@@ -43,6 +43,7 @@ Route::get('get_room_list/{id}', 'PropertyListController@get_RoomList');
 
 
 Route::get('get_payments/{id}/{role}', 'PaymentController@get_Payments');
+Route::get('get_bookings_landlord/{id}', 'PaymentController@get_bookings_landlord');
 Route::get('get_bookings/{id}/{role}', 'PaymentController@get_bookings');
 Route::post('cancel_booking/{id}', 'PaymentController@cancel_booking');
 Route::delete('delete_booking/{id}', 'PaymentController@delete_booking');
@@ -60,7 +61,9 @@ Route::get('get_property_bills_total/{id}/{prop_id}', 'RentalRoomController@get_
 Route::get('get_housemate/{room_id}/{prop_id}', 'RentalRoomController@get_housemate');
 Route::delete('delete_post/{id}', 'RentalRoomController@delete_post');
 Route::get('get_mate/{id}', 'RentalRoomController@get_mate');
+Route::get('get_tenant_payment_status/{room_id}/{tenant_id}', 'RentalRoomController@get_tenant_payment_status');
 Route::post('response_request', 'RentalRoomController@response_request');
+Route::delete('kick_tenant/{id}', 'RentalRoomController@kick_tenant');
 
 Route::get('get_notifications/{id}/{role}', 'ChatController@get_notifications');
 Route::get('get_notifications_counts/{id}/{role}', 'ChatController@get_notifications_counts');

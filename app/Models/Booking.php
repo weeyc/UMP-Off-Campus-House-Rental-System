@@ -12,4 +12,7 @@ class Booking extends Model
     public function getRoomRelation(){
         return $this->belongsTo('App\Models\Room', 'room_id', 'room_id');
     }
+    public function getPropertyRelation(){
+        return $this->belongsTo('App\Models\Property', 'property_id', 'property_id');
+    }
 }

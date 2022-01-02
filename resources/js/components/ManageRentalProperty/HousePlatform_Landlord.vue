@@ -97,7 +97,7 @@
                         <thead class="bg-gray-50">
                         <tr>
                             <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                            Student ID
+                            Tenant ID
                             </th>
                             <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                             Name
@@ -115,14 +115,14 @@
                             Tenancy Status
                             </th>
                             <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                            Action
+                            Kick Tenant
                             </th>
                         </tr>
                         </thead>
                         <tbody v-for="mate in item.tenants" :key="mate.index " class="bg-white divide-y divide-gray-200">
                           <tr >
                             <td class="px-6 py-4">
-                                <div class="text-sm text-gray-900">{{ mate.student_id }}</div>
+                                <div class="text-sm text-gray-900">{{ mate.tenant_id }}</div>
                             </td>
                             <router-link :to="{ name: 'land_profile_view', params:{role: 1, id: mate.student_id}}" target="_blank" class="flex items-center">
                             <td class="flex px-6 py-4">
@@ -145,10 +145,11 @@
                                 <td class="py-3 px-2 text-center">
                                     <div class="flex item-center justify-center">
                                         <div class="w-4 mr-2 transform hover:text-purple-500 hover:scale-110">
-                                            <button @click="read(); toggleModal = !toggleModal;"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-                                            </svg>
+                                            <button @click="kickTenant(mate.room_id, mate.tenant_id);">
+                                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M14 8V6C14 5.46957 13.7893 4.96086 13.4142 4.58579C13.0391 4.21071 12.5304 4 12 4H5C4.46957 4 3.96086 4.21071 3.58579 4.58579C3.21071 4.96086 3 5.46957 3 6V18C3 18.5304 3.21071 19.0391 3.58579 19.4142C3.96086 19.7893 4.46957 20 5 20H12C12.5304 20 13.0391 19.7893 13.4142 19.4142C13.7893 19.0391 14 18.5304 14 18V16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                                    <path d="M7 12H21M21 12L18 9M21 12L18 15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                                </svg>
                                             </button>
                                         </div>
                                     </div>
@@ -164,7 +165,7 @@
 
 
         </div>
-    </div> -->
+    </div>
 
 
 
@@ -219,9 +220,11 @@ export default {
             toggleRModal: false,
             data: [],
             posts: [],
-            housemates: [],
             bills: [],
             bydate: '',
+            tenant_bills: [],
+            tenant_id: '',
+            room_id: '',
 
             form: {
                 property_id: '',
@@ -240,12 +243,7 @@ export default {
             axios.get('/api/get_HousePlatform/'+this.prop_id+'?land=1&imej=1').then((response)=>{
                 this.info=response.data.data[0];
                 this.housemates=response.data.data;
-                // this.form.property_id=this.info.property_id;
-                // this.form.room_id=this.info.id;
-                // this.form.tenancy_period=this.info.tenants[0].tenancy_period;
-                // this.form.move_in_date=this.info.tenants[0].move_in_date;
                 this.getPost();
-                //this.getHouseMate();
                 console.warn(this.info.data);
 
             })
@@ -258,13 +256,38 @@ export default {
             })
 
         },
-        getHouseMate(){
-            axios.get('/api/get_housemate/'+this.room_id+'/'+this.prop_id).then((response)=>{
-                this.housemates=response.data.data;
-                console.warn(this.housemates.data);
+       kickTenant(room_id,tenant_id ){
+           this.room_id = room_id;
+           this.tenant_id = tenant_id;
+            axios.get('/api/get_tenant_payment_status/'+room_id+'/'+tenant_id).then((response)=>{
+                this.tenant_bills=response.data;
+                if(  this.tenant_bills.payment_status==undefined ||  this.tenant_bills.payment_status=="Unpaid"){
+                     this.$toaster.error('This tenant have not yet pay bills');
+                }else if(this.tenant_bills.payment_status == 'Paid' || this.tenant_bills==[] )
+                {
+                    Swal.fire({
+                    title: 'Kick tenant from this room?!',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, kick the tenant'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            axios.delete('/api/kick_tenant/'+tenant_id).then((response)=>{
+                                this.getData();
+                                setTimeout(() =>  this.$toaster.success('Tenant kicked'), 1000);
+                            }).catch((errors)=> {
+                                console.log(errors)
+                            })
+
+                        }
+                })
+                }
+                console.warn(this.tenant_bills);
             })
 
-        },
+       },
         deletePost(id){
                Swal.fire({
                     title: 'Delete this post?',

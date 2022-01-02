@@ -48,8 +48,8 @@
                         <td class="py-4 px-6 border-b border-grey-light border-r ">Outstanding<p class="font-bold">RM {{(data.outstanding_bills).toFixed(2)}}</p> </td>
                         <td class="py-4 px-6 border-b border-grey-light border-r ">Bills Status<p class="font-bold">{{data.bills_status}}</p></td>
                         <td rowspan="2" class="py-4 px-6 border-b border-grey-light border-r ">Total Amount<p class="font-bold">RM {{(data.total_bills).toFixed(2)}}</p>
-                            <div v-if="data.payment_status=='Unpaid' && data.bills_status=='Ready'" class="mb-5 ">
-                                <center><div class="mx-auto w-50" ref="paypal"></div></center>
+                            <div v-if="data.payment_status==='Unpaid' && data.bills_status==='Ready'" class="mb-5 ">
+                                <center><div  class="mx-auto w-50" ref="paypal"></div></center>
                             </div>
                             <div v-if="data.bills_status=='Overdue'" class="mb-5 ">
                                 <center><div class="mx-auto w-50">

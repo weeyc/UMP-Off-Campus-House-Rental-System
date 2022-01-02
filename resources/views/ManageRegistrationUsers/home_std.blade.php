@@ -1,4 +1,4 @@
-<title>UOCA</title>
+<title>UOCA-Student</title>
 
 @extends('layouts.app')
 @section('content')

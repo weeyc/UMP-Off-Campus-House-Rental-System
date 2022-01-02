@@ -45,6 +45,7 @@ class PaymentController extends Controller
                     ->orderBy('payment_date','desc')
                     ->paginate( $showSize );
             return PaymentResource::collection($data);
+
         }else if($role == 2){
             $data = Payment::query()
                     ->when($byID!=null,function($query) use($byID){
@@ -52,9 +53,24 @@ class PaymentController extends Controller
                     ->when($bydate!=null,function($query) use($bydate){
                         $query->orderBy('payment_date',$bydate);})
                     ->where('landlord_id', $id)
+                    ->orderBy('payment_date','desc')
                     ->paginate( $showSize );
                 return PaymentResource::collection($data);
         }
+
+    }
+    public function get_bookings_landlord($id, Request $request){
+
+        $showSize = $request->showSize;
+
+            $data = Booking::with('getPropertyRelation.getLandlordRelation')->whereHas('getPropertyRelation.getLandlordRelation',  function($query)  use($id){
+                        $query->where('landlord_id', $id);
+                    ;})
+
+                    ->orderBy('booking_date','desc')
+                    ->paginate( $showSize );
+                return BookingResource::collection($data);
+
 
     }
 

@@ -15,6 +15,7 @@ class BookingResource extends JsonResource
     public function toArray($request)
     {
         $room = $this->whenLoaded('getRoomRelation');
+        $prop = $this->whenLoaded('getPropertyRelation');
         return [
             'booking_id' => $this->booking_id,
             'student_id' => $this->student_id,
@@ -27,6 +28,7 @@ class BookingResource extends JsonResource
             'booking_status' => $this->booking_status,
             'move_in_date' => $this->move_in_date,
             'room' => new RoomResource($room),
+            'property' => new PropertyResource($prop),
             //'photo_room' => PhotoResource::collection($this->whenLoaded('getPhotoRelation')),
             //'cover_room' => PhotoResource::collection($this->whenLoaded('getPhotoRelation'))->where('photo_label', 'Cover')->first()
 
