@@ -30,14 +30,23 @@
                     <div id="bulletin" class="overflow-y-auto h-48 p-5 resize-y">
                         <!-- first post -->
                         <div v-for="item in posts" :key="item.id">
-                            <div v-if="item.student.id!=user_id" class="bg-conic-to-l from-yellow-200 via-red-500 to-fuchsia-500 rounded-lg p-3  flex flex-col justify-center items-center md:items-start shadow-lg mb-4">
+
+                            <div v-if="item.landlord!=null" class="bg-conic-to-l from-yellow-200 via-red-500 to-fuchsia-500 rounded-lg p-3  flex flex-col justify-center items-center md:items-start shadow-lg mb-4">
+                                <div class="flex flex-row justify-center mr-2">
+                                    <img alt="avatar" class="rounded-full w-5 h-5 shadow-lg mb-4" :src="'/images/Profile/'+item.landlord.pic">
+                                    <p class="text-purple-600 font-semibold ml-2 text-sm text-center md:text-left ">{{ item.landlord.name }} <span class="text-xs ml-5 text-black"> {{ moment(item.created_at ).format("DD-MM-YYYY, h:mm a") }} </span></p>
+                                </div>
+                                    <p style="width: 90%" class="text-gray-600 text-base text-center md:text-left ">{{ item.post }}   </p>
+                            </div>
+                            <div v-if="item.student!=null">
+                             <div v-if="item.student.id!=user_id" class="bg-conic-to-l from-yellow-200 via-red-500 to-fuchsia-500 rounded-lg p-3  flex flex-col justify-center items-center md:items-start shadow-lg mb-4">
                                 <div class="flex flex-row justify-center mr-2">
                                     <img alt="avatar" class="rounded-full w-5 h-5 shadow-lg mb-4" :src="'/images/Profile/'+item.student.pic">
                                     <p class="text-purple-600 font-semibold ml-2 text-sm text-center md:text-left ">{{ item.student.name }} <span class="text-xs ml-5 text-black"> {{ moment(item.created_at ).format("DD-MM-YYYY, h:mm a") }} </span></p>
                                 </div>
                                     <p style="width: 90%" class="text-gray-600 text-base text-center md:text-left ">{{ item.post }}   </p>
                             </div>
-                            <div v-else class="bg-conic-to-r from-indigo-200 via-blue-gray-600 to-indigo-200 rounded-lg p-3  flex flex-col justify-center items-center md:items-start shadow-lg mb-4">
+                            <div v-if="item.student.id==user_id" class="bg-conic-to-r from-indigo-200 via-blue-gray-600 to-indigo-200 rounded-lg p-3  flex flex-col justify-center items-center md:items-start shadow-lg mb-4">
                                 <div class="flex flex-row  mr-2 w-full">
                                     <img alt="avatar" class="justify-self-start rounded-full w-5 h-5 shadow-lg mb-4" :src="'/images/Profile/'+item.student.pic">
                                     <p class="justify-self-start text-white font-semibold ml-2 mr-5 text-sm text-center md:text-left ">{{ item.student.name }} <span class="text-xs ml-5 text-black"> {{ moment(item.created_at ).format("DD-MM-YYYY, h:mm a") }} </span></p>
@@ -49,6 +58,7 @@
                                 </div>
                                     <p style="width: 90%" class="text-gray-600 text-base text-center md:text-left ">{{ item.post }}   </p>
 
+                            </div>
                             </div>
                         </div>
                     </div>
@@ -63,9 +73,9 @@
                         <div id="bulletin" class="overflow-y-auto h-48 p-5">
                             <div class="grid grid-rows-2 text-center md:text-left">
                                 <span class="text-white text-center text-2xl" >Rent This Month:</span>
-                                <span class="text-white text-center text-2xl" > RM300</span>
-
-                                 <button @click="getBill" class="p-2 mt-5 w-1/2 rounded-md bg-blue-500 text-white hover:bg-blue-600 justify-self-center">Check</button>
+                                <span v-if="bills.payment_status=='Unpaid'" class="text-white text-center text-2xl" > {{bills.total_bills}}</span>
+                                <span v-else class="text-white text-center text-2xl" > Paid</span>
+                                 <button @click="checkBill" class="p-2 mt-5 w-1/2 rounded-md bg-blue-500 text-white hover:bg-blue-600 justify-self-center">Check</button>
                             </div>
 
 
@@ -330,6 +340,8 @@ export default {
             prop_id: '',
             posts: [],
             housemates: [],
+            bills: [],
+            bydate: '',
 
             form: {
                 property_id: '',
@@ -406,12 +418,17 @@ export default {
         closeRModal(){
             this.toggleRModal =!  this.toggleRModal ;
         },
-        getBill(){
-             axios.post('/api/get_one/').then((response)=>{
-                    this.$toaster.success('Bills Inserted');
-            }).catch((errors)=> {
-                console.log(errors)
-            })
+        getBills(){
+            axios.get('/api/get_bills/'+this.user_id+'/'+this.role,{
+                params: {
+                    date: this.bydate,
+                }}).then((response)=>{
+                    this.bills=response.data;
+                    console.warn(this.data);
+                })
+            },
+        checkBill(){
+            this.$router.push({ name: 'std_bills' })
         },
 
     },
@@ -422,6 +439,7 @@ export default {
     },
        mounted: function(){
         this.getData();
+        this.getBills();
 
 
     },

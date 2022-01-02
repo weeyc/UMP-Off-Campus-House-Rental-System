@@ -48,12 +48,12 @@ class RentalRoomController extends Controller
             return TenantResource::collection($data);
 
         }else if($role == 2){
-            $data = Tenant::with('getRoomRelation','getRoomRelation.getPhotoRelation', 'getRoomRelation.getPropertyRelation.getLandlordRelation','getStudentRelation')
-                            ->where('student_id', $id)
-                            ->where('tenant_status', 'Tenancy')
+            $data = Property::with('getPhotoRelation')
+                            ->where('landlord_id', $id)
+                            ->where('verify_status', 'verified')
                             ->get();
 
-            return TenantResource::collection($data);
+            return PropertyResource::collection($data);
         }
 
      }
@@ -73,6 +73,14 @@ class RentalRoomController extends Controller
             ->where('room_id', $room_id)
             ->get();
             return RoomResource::collection($data);
+     }
+
+    public function get_HousePlatform($id){
+
+        $data = Room::with('getPropertyRelation.getPhotoRelation','getPropertyRelation.getLandlordRelation','getPhotoRelation','getTenantRelation','getTenantRelation.getStudentRelation')
+        ->where('property_id', $id)
+        ->get();
+        return RoomResource::collection($data);
      }
 
     public function get_housemate($room_id,$prop_id, Request $request){
@@ -111,11 +119,19 @@ class RentalRoomController extends Controller
             // $Student = Student::find($ID);
             //$Landlord->notify(new BulletinNotification($Bulletin));
         }else{
-
             $Bulletin ->property_id = $prop_id;
             $Bulletin ->landlord_id = $id;
             $Bulletin ->post = $request->post;
             $Bulletin->save();
+
+            //notification
+            $ID = $request -> session()->get('ID');
+            $Sender_std = null;
+            $Sender_land = Landlord::find($ID);
+            $Student = Student::with('getTenantRelation')->whereHas('getTenantRelation', function($query) use($prop_id) {
+            $query->where('property_id', $prop_id)->where('tenant_status', 'Tenancy');
+            ;})->get();
+            Notification::send($Student, new BulletinNotification($Bulletin, $Sender_std,$Sender_land));
         }
 
 
@@ -131,6 +147,13 @@ class RentalRoomController extends Controller
         ->orderBy('created_at','desc')
         ->get();
         return BulletinResource::collection($data);
+
+
+ }
+     public function get_property_bills_total($id,$prop_id){
+
+        $data = Bill::where('property_id', $prop_id)->where('landlord_id',$id)->where('payment_status', 'Paid')->sum('total_bills');
+        return  $data ;
 
 
  }

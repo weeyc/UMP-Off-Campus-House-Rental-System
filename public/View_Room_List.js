@@ -811,6 +811,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 
 
@@ -2378,28 +2384,57 @@ var render = function () {
                                     "text-center mt-2 text-3xl cursor-pointer text-yellow-500 font-medium hover:underline hover:text-blue-500",
                                 },
                                 [
-                                  _c(
-                                    "router-link",
-                                    {
-                                      attrs: {
-                                        to: {
-                                          name: "std_profile_view",
-                                          params: {
-                                            role: 2,
-                                            id: _vm.lists.landlord_id,
+                                  _vm.role == 1
+                                    ? _c(
+                                        "router-link",
+                                        {
+                                          attrs: {
+                                            to: {
+                                              name: "std_profile_view",
+                                              params: {
+                                                role: 2,
+                                                id: _vm.lists.landlord_id,
+                                              },
+                                            },
+                                            target: "_blank",
                                           },
                                         },
-                                        target: "_blank",
-                                      },
-                                    },
-                                    [
-                                      _vm._v(
-                                        _vm._s(
-                                          _vm.lists.property.land.landlord_name
-                                        )
-                                      ),
-                                    ]
-                                  ),
+                                        [
+                                          _vm._v(
+                                            _vm._s(
+                                              _vm.lists.property.land
+                                                .landlord_name
+                                            )
+                                          ),
+                                        ]
+                                      )
+                                    : _vm._e(),
+                                  _vm._v(" "),
+                                  _vm.role == 2
+                                    ? _c(
+                                        "router-link",
+                                        {
+                                          attrs: {
+                                            to: {
+                                              name: "profile_landlord",
+                                              params: {
+                                                role: 2,
+                                                id: _vm.lists.landlord_id,
+                                              },
+                                            },
+                                            target: "_blank",
+                                          },
+                                        },
+                                        [
+                                          _vm._v(
+                                            _vm._s(
+                                              _vm.lists.property.land
+                                                .landlord_name
+                                            )
+                                          ),
+                                        ]
+                                      )
+                                    : _vm._e(),
                                 ],
                                 1
                               ),
@@ -2413,23 +2448,25 @@ var render = function () {
                                 [_vm._v("Landlord")]
                               ),
                               _vm._v(" "),
-                              _c("div", { staticClass: "flex p-3" }, [
-                                _c(
-                                  "div",
-                                  { staticClass: "w-full text-center" },
-                                  [
+                              _vm.role == 1
+                                ? _c("div", { staticClass: "p-3" }, [
                                     _c(
-                                      "button",
-                                      {
-                                        staticClass:
-                                          "w-full font-bold rounded-full",
-                                        class: [_vm.top_btn_style],
-                                      },
-                                      [_vm._v("Chat Now")]
+                                      "div",
+                                      { staticClass: "w-full text-center" },
+                                      [
+                                        _c(
+                                          "button",
+                                          {
+                                            staticClass:
+                                              "w-full font-bold rounded-full",
+                                            class: [_vm.top_btn_style],
+                                          },
+                                          [_vm._v("Chat Now")]
+                                        ),
+                                      ]
                                     ),
-                                  ]
-                                ),
-                              ]),
+                                  ])
+                                : _vm._e(),
                             ]
                           ),
                         ]
@@ -2539,46 +2576,66 @@ var render = function () {
                                 _vm._m(3),
                               ]),
                               _vm._v(" "),
-                              _vm.lists.room_status != "rented"
-                                ? _c("div", { staticClass: "flex mx-5 my-5" }, [
-                                    _c(
-                                      "div",
-                                      { staticClass: "w-full text-center " },
-                                      [
-                                        _c(
-                                          "button",
-                                          {
-                                            staticClass:
-                                              "p-3 font-bold rounded-full text-green-900 bg-green-100 hover:bg-green-500 hover:text-white transition duration-150 ease-in-out shadow-xl w-full",
-                                            on: {
-                                              click: function ($event) {
-                                                _vm.toggleModal =
-                                                  !_vm.toggleModal
+                              _vm.role == 1
+                                ? _c("div", [
+                                    _vm.lists.room_status != "rented"
+                                      ? _c(
+                                          "div",
+                                          { staticClass: "flex mx-5 my-5" },
+                                          [
+                                            _c(
+                                              "div",
+                                              {
+                                                staticClass:
+                                                  "w-full text-center ",
                                               },
-                                            },
-                                          },
-                                          [_vm._v("Book Room Now")]
+                                              [
+                                                _c(
+                                                  "button",
+                                                  {
+                                                    staticClass:
+                                                      "p-3 font-bold rounded-full text-green-900 bg-green-100 hover:bg-green-500 hover:text-white transition duration-150 ease-in-out shadow-xl w-full",
+                                                    on: {
+                                                      click: function ($event) {
+                                                        _vm.toggleModal =
+                                                          !_vm.toggleModal
+                                                      },
+                                                    },
+                                                  },
+                                                  [_vm._v("Book Room Now")]
+                                                ),
+                                              ]
+                                            ),
+                                          ]
+                                        )
+                                      : _c(
+                                          "div",
+                                          { staticClass: "flex mx-5 my-5" },
+                                          [
+                                            _c(
+                                              "div",
+                                              {
+                                                staticClass:
+                                                  "w-full text-center ",
+                                              },
+                                              [
+                                                _c(
+                                                  "button",
+                                                  {
+                                                    staticClass:
+                                                      "p-3 font-bold rounded-full text-black bg-gray-100 hover:bg-gray-500 hover:text-white transition duration-150 ease-in-out shadow-xl w-full",
+                                                    on: {
+                                                      click: _vm.toastBook,
+                                                    },
+                                                  },
+                                                  [_vm._v("Book Room Now")]
+                                                ),
+                                              ]
+                                            ),
+                                          ]
                                         ),
-                                      ]
-                                    ),
                                   ])
-                                : _c("div", { staticClass: "flex mx-5 my-5" }, [
-                                    _c(
-                                      "div",
-                                      { staticClass: "w-full text-center " },
-                                      [
-                                        _c(
-                                          "button",
-                                          {
-                                            staticClass:
-                                              "p-3 font-bold rounded-full text-black bg-gray-100 hover:bg-gray-500 hover:text-white transition duration-150 ease-in-out shadow-xl w-full",
-                                            on: { click: _vm.toastBook },
-                                          },
-                                          [_vm._v("Book Room Now")]
-                                        ),
-                                      ]
-                                    ),
-                                  ]),
+                                : _vm._e(),
                             ]
                           ),
                         ]
@@ -2619,189 +2676,199 @@ var render = function () {
         ]
       ),
       _vm._v(" "),
-      _c(
-        "div",
-        {
-          staticClass:
-            "max-w-6xl p-6 mx-auto mt-3  bg-gray-100 rounded-md shadow-xl mb-5",
-        },
-        [
-          _c("div", { staticClass: "flex justify-between item-center" }, [
-            _c("button", { on: { click: _vm.getRecommendation } }, [
-              _c(
-                "h1",
-                {
-                  staticClass:
-                    "text-2xl font-black text-gray-800 dark:text-white",
-                },
-                [_vm._v("Recommended Rooms")]
-              ),
-            ]),
-          ]),
-          _vm._v(" "),
-          _c(
+      _vm.role == 1
+        ? _c(
             "div",
             {
               staticClass:
-                "flex items-center justify-center w-full overflow-hidden",
+                "max-w-6xl p-6 mx-auto mt-3  bg-gray-100 rounded-md shadow-xl mb-5",
             },
             [
+              _c("div", { staticClass: "flex justify-between item-center" }, [
+                _c("button", { on: { click: _vm.getRecommendation } }, [
+                  _c(
+                    "h1",
+                    {
+                      staticClass:
+                        "text-2xl font-black text-gray-800 dark:text-white",
+                    },
+                    [_vm._v("Recommended Rooms")]
+                  ),
+                ]),
+              ]),
+              _vm._v(" "),
               _c(
                 "div",
                 {
                   staticClass:
-                    "grid md:grid-cols-2 sm:grid-cols-1 lg:grid-cols-3 xl:grid-cols-3 gap-2 m-5 mb-10",
+                    "flex items-center justify-center w-full overflow-hidden",
                 },
-                _vm._l(_vm.recomendations, function (similar, index) {
-                  return _c(
+                [
+                  _c(
                     "div",
                     {
-                      key: index.id,
                       staticClass:
-                        "bg-white rounded-lg shadow-lg overflow-hidden  cursor-pointer transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-200 hover:bg-yellow-400 hover:shadow-2xl",
+                        "grid md:grid-cols-2 sm:grid-cols-1 lg:grid-cols-3 xl:grid-cols-3 gap-2 m-5 mb-10",
                     },
-                    [
-                      _c(
-                        "router-link",
+                    _vm._l(_vm.recomendations, function (similar, index) {
+                      return _c(
+                        "div",
                         {
-                          attrs: {
-                            to: {
-                              name: "view_room_list",
-                              params: { id: similar.id },
-                            },
-                            target: "_blank",
-                          },
+                          key: index.id,
+                          staticClass:
+                            "bg-white rounded-lg shadow-lg overflow-hidden  cursor-pointer transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-200 hover:bg-yellow-400 hover:shadow-2xl",
                         },
                         [
-                          _c("img", {
-                            staticClass: "h-48 w-full object-cover",
-                            attrs: {
-                              src:
-                                "/images/Properties/" +
-                                similar.photo_room[0].photo_name,
-                            },
-                          }),
-                          _vm._v(" "),
                           _c(
-                            "div",
-                            { staticClass: "m-2 text-justify text-sm" },
+                            "router-link",
+                            {
+                              attrs: {
+                                to: {
+                                  name: "view_room_list",
+                                  params: { id: similar.id },
+                                },
+                                target: "_blank",
+                              },
+                            },
                             [
+                              _c("img", {
+                                staticClass: "h-48 w-full object-cover",
+                                attrs: {
+                                  src:
+                                    "/images/Properties/" +
+                                    similar.photo_room[0].photo_name,
+                                },
+                              }),
+                              _vm._v(" "),
                               _c(
                                 "div",
-                                {
-                                  staticClass:
-                                    "flex flex-wrap items-center -mt-8 pb-3 ",
-                                },
+                                { staticClass: "m-2 text-justify text-sm" },
                                 [
-                                  _c("img", {
-                                    staticClass:
-                                      "block h-8 w-8 rounded-full bg-white mt-1 mr-2 ml-3 border-2 border-white",
-                                    attrs: {
-                                      src:
-                                        "/images/Profile/" +
-                                        similar.property.land.landlord_pic,
-                                      alt: "Profile",
-                                    },
-                                  }),
-                                  _vm._v(" "),
                                   _c(
-                                    "span",
+                                    "div",
                                     {
                                       staticClass:
-                                        "block text-sm font-bold text-white bg-black bg-opacity-30",
+                                        "flex flex-wrap items-center -mt-8 pb-3 ",
                                     },
                                     [
-                                      _vm._v(
-                                        _vm._s(
-                                          similar.property.land.landlord_name
-                                        )
+                                      _c("img", {
+                                        staticClass:
+                                          "block h-8 w-8 rounded-full bg-white mt-1 mr-2 ml-3 border-2 border-white",
+                                        attrs: {
+                                          src:
+                                            "/images/Profile/" +
+                                            similar.property.land.landlord_pic,
+                                          alt: "Profile",
+                                        },
+                                      }),
+                                      _vm._v(" "),
+                                      _c(
+                                        "span",
+                                        {
+                                          staticClass:
+                                            "block text-sm font-bold text-white bg-black bg-opacity-30",
+                                        },
+                                        [
+                                          _vm._v(
+                                            _vm._s(
+                                              similar.property.land
+                                                .landlord_name
+                                            )
+                                          ),
+                                        ]
                                       ),
                                     ]
                                   ),
-                                ]
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "p",
-                                {
-                                  staticClass:
-                                    "text-right text-base font-bold text-yellow-700",
-                                },
-                                [
-                                  _vm._v(
-                                    "RM" +
-                                      _vm._s(similar.monthly_rent) +
-                                      "/Months"
-                                  ),
-                                ]
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "h2",
-                                {
-                                  staticClass:
-                                    " font-bold mb-5 mt-2 text-lg text-center",
-                                },
-                                [_vm._v(" " + _vm._s(similar.listing_name))]
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "div",
-                                {
-                                  staticClass:
-                                    "text-base text-left text-gray-600 mb-5",
-                                },
-                                [
-                                  _c("p", { staticClass: "mt-2 px-3" }, [
-                                    _vm._v(
-                                      _vm._s(similar.property.name) +
-                                        " | " +
-                                        _vm._s(similar.campus)
-                                    ),
-                                  ]),
                                   _vm._v(" "),
-                                  _c("div", { staticClass: "flex mt-2 px-3" }, [
-                                    _c("p", { staticClass: "mt-2 " }, [
+                                  _c(
+                                    "p",
+                                    {
+                                      staticClass:
+                                        "text-right text-base font-bold text-yellow-700",
+                                    },
+                                    [
                                       _vm._v(
-                                        _vm._s(similar.room_type) +
-                                          " | " +
-                                          _vm._s(
-                                            similar.property.gender_preferences
-                                          ) +
-                                          " "
+                                        "RM" +
+                                          _vm._s(similar.monthly_rent) +
+                                          "/Months"
                                       ),
-                                    ]),
-                                  ]),
+                                    ]
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "h2",
+                                    {
+                                      staticClass:
+                                        " font-bold mb-5 mt-2 text-lg text-center",
+                                    },
+                                    [_vm._v(" " + _vm._s(similar.listing_name))]
+                                  ),
                                   _vm._v(" "),
                                   _c(
                                     "div",
-                                    { staticClass: "flex mt-2  px-3" },
+                                    {
+                                      staticClass:
+                                        "text-base text-left text-gray-600 mb-5",
+                                    },
                                     [
-                                      _c("p", { staticClass: "mt-2" }, [
+                                      _c("p", { staticClass: "mt-2 px-3" }, [
                                         _vm._v(
-                                          _vm._s(similar.property.furnishing) +
+                                          _vm._s(similar.property.name) +
                                             " | " +
-                                            _vm._s(similar.room_furnishing)
+                                            _vm._s(similar.campus)
                                         ),
                                       ]),
+                                      _vm._v(" "),
+                                      _c(
+                                        "div",
+                                        { staticClass: "flex mt-2 px-3" },
+                                        [
+                                          _c("p", { staticClass: "mt-2 " }, [
+                                            _vm._v(
+                                              _vm._s(similar.room_type) +
+                                                " | " +
+                                                _vm._s(
+                                                  similar.property
+                                                    .gender_preferences
+                                                ) +
+                                                " "
+                                            ),
+                                          ]),
+                                        ]
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "div",
+                                        { staticClass: "flex mt-2  px-3" },
+                                        [
+                                          _c("p", { staticClass: "mt-2" }, [
+                                            _vm._v(
+                                              _vm._s(
+                                                similar.property.furnishing
+                                              ) +
+                                                " | " +
+                                                _vm._s(similar.room_furnishing)
+                                            ),
+                                          ]),
+                                        ]
+                                      ),
                                     ]
                                   ),
                                 ]
                               ),
                             ]
                           ),
-                        ]
-                      ),
-                    ],
-                    1
-                  )
-                }),
-                0
+                        ],
+                        1
+                      )
+                    }),
+                    0
+                  ),
+                ]
               ),
             ]
-          ),
-        ]
-      ),
+          )
+        : _vm._e(),
       _vm._v(" "),
       _vm.toggleModal
         ? _c("BookingModal", {

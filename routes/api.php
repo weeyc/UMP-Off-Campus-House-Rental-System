@@ -52,9 +52,11 @@ Route::post('pay_bill', 'PaymentController@pay_bill');
 
 Route::get('get_rentalRoom/{id}/{role}', 'RentalRoomController@get_rentalRoom');
 Route::get('get_roomPlatform/{id}/{room_id}', 'RentalRoomController@get_roomPlatform');
+Route::get('get_HousePlatform/{id}', 'RentalRoomController@get_HousePlatform');
 Route::post('post_bulletin/{id}/{role}/{prop_id}', 'RentalRoomController@post_bulletin');
 Route::post('send_requestRoommate/{id}', 'RentalRoomController@send_requestRoommate');
 Route::get('get_post/{id}/{prop_id}', 'RentalRoomController@get_post');
+Route::get('get_property_bills_total/{id}/{prop_id}', 'RentalRoomController@get_property_bills_total');
 Route::get('get_housemate/{room_id}/{prop_id}', 'RentalRoomController@get_housemate');
 Route::delete('delete_post/{id}', 'RentalRoomController@delete_post');
 Route::get('get_mate/{id}', 'RentalRoomController@get_mate');

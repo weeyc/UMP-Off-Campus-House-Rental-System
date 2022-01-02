@@ -31,6 +31,9 @@ const Tab_Student_Payment = () => import(/* webpackChunkName: "Tab_Student_Payme
 const RentalRoom_student = () => import(/* webpackChunkName: "RentalRoom_student" */'./components/ManageRentalProperty/RentalRoom_student');
 const HousePlatform_Std = () => import(/* webpackChunkName: "HousePlatform_Std" */'./components/ManageRentalProperty/HousePlatform_Std');
 
+const RentalRoom_Landlord = () => import(/* webpackChunkName: "RentalRoom_Landlord" */'./components/ManageRentalProperty/RentalRoom_Landlord');
+const HousePlatform_Landlord = () => import(/* webpackChunkName: "HousePlatform_Landlord" */'./components/ManageRentalProperty/HousePlatform_Landlord');
+
 
 
 
@@ -174,6 +177,27 @@ export default{
             path: '/landlord/property/:property_id/room/:room_id',
             name: 'room_landlord',
             component: Room_Landlord,
+        },
+        {
+            path: '/landlord/rental_room',
+            name: 'RentalRoom_Landlord',
+            component: RentalRoom_Landlord,
+        },
+        {
+            path: '/landlord/house_platform/:id',
+            name: 'HousePlatform_Landlord',
+            component: HousePlatform_Landlord,
+            props: true,
+        },
+        {
+            path: '/landlord/browse-rooms/room_list/:id',
+            name: 'view_room_list_land',
+            component: View_Room_List,
+        },
+        {
+            path: '/landlord/view-profile/:role/:id',
+            name: 'land_profile_view',
+            component: Profile_View,
         },
 
 

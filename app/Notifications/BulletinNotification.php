@@ -12,9 +12,8 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Messages\BroadcastMessage;
 
-class BulletinNotification extends Notification implements ShouldQueue
+class BulletinNotification extends Notification
 {
-    use Queueable;
     use Notifiable;
     protected $Content;
     protected $Sender_std;
@@ -87,30 +86,30 @@ class BulletinNotification extends Notification implements ShouldQueue
         ]);
     }
 
-    public function toMail($notifiable)
-    {
+    // public function toMail($notifiable)
+    // {
 
-        // if($notifiable->user_role=="student"){
-        //     $receiver_name = $notifiable->std_name;
-        // }else if ($notifiable->user_role=="landlord"){
-        //     $receiver_name = $notifiable->landlord_name;
-        // }else {
-        //     $receiver_name = "no name";
-        // }
+    //     // if($notifiable->user_role=="student"){
+    //     //     $receiver_name = $notifiable->std_name;
+    //     // }else if ($notifiable->user_role=="landlord"){
+    //     //     $receiver_name = $notifiable->landlord_name;
+    //     // }else {
+    //     //     $receiver_name = "no name";
+    //     // }
 
-        // $id = $this->Content->id;
-        // $post = $this->Content->post;
-        // return (new MailMessage)
-        //             ->subject("UOCA Rental Bill Dec 2021 (Tenant ID: )")
-        //             ->greeting("Hello $receiver_name")
-        //             ->line("Your rental bill for Dec 2021 is ready!")
-        //             ->line("Total amount needed to be pay: RM ")
-        //             ->action('Check Now', url('/http://localhost:3000'))
-        //             ->line('Please make payment before 20-Dec-2020 to avoid getting penalize.')
-        //             ->line('Thank you for using our application!')
-        //             ->line('Regard,')
-        //             ->salutation('UOCA Team');
-    }
+    //     // $id = $this->Content->id;
+    //     // $post = $this->Content->post;
+    //     // return (new MailMessage)
+    //     //             ->subject("UOCA Rental Bill Dec 2021 (Tenant ID: )")
+    //     //             ->greeting("Hello $receiver_name")
+    //     //             ->line("Your rental bill for Dec 2021 is ready!")
+    //     //             ->line("Total amount needed to be pay: RM ")
+    //     //             ->action('Check Now', url('/http://localhost:3000'))
+    //     //             ->line('Please make payment before 20-Dec-2020 to avoid getting penalize.')
+    //     //             ->line('Thank you for using our application!')
+    //     //             ->line('Regard,')
+    //     //             ->salutation('UOCA Team');
+    // }
 
 
 }

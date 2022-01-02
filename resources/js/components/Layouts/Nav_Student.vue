@@ -195,17 +195,32 @@
                 <!-- {{ moment(noti[0].created_at).fromNow()}} | {{ moment(noti[0].created_at).format("DD-MM-YYYY HH:mm:ss")   }} -->
                     <div v-for="(n,index) in noti" :key="index+1">
 
-            <div id="Bulletin" v-if='n.type==="App\\Notifications\\BulletinNotification"' class="w-full p-4 mt-4 bg-blue-100 rounded flex shadow">
-                    <div v-if=" n.data.Sender_std!=null"><img @click="notificationHandler(false); redirectFromNoti(5,n.data.Sender_std.std_id,1)" class="cursor-pointer rounded-full h-10 w-10 object-cover" :src="'/images/Profile/'+n.data.Sender_std.std_pic" alt="Avatar" /></div>
-                    <div v-if=" n.data.Sender_land!=null"><img @click="notificationHandler(false); redirectFromNoti(5,n.data.Sender_land.landlord_id,2)" class="cursor-pointer rounded-full h-10 w-10 object-cover" :src="'/images/Profile/'+n.data.Sender_std.std_pic" alt="Avatar" /></div>
-                <div class="pl-3">
-                <div tabindex="0" class="focus:outline-none text-sm leading-snug">
-                    <div v-if=" n.data.Sender_std!=null" class="leading-snug" ><span @click="notificationHandler(false); redirectFromNoti(5,n.data.Sender_std.std_id,1)" class="text-indigo-700 cursor-pointer hover:underline font-medium">{{ n.data.Sender_std.std_name }}</span> posted a bulletin at</div>
-                    <div v-if=" n.data.Sender_land!=null" class="leading-snug" ><span  @click="notificationHandler(false); redirectFromNoti(5,n.data.Sender_land.landlord_id,2)" class="text-indigo-700 cursor-pointer hover:underline font-medium">{{ n.data.Sender_land.landlord_name }}</span> posted a bulletin at</div>
-                    <span class="text-indigo-700 hover:text-indigo-800 underline cursor-pointer font-medium" @click="notificationHandler(false); redirectFromNoti(1)">house rental ID: {{ n.data.Content.property_id }}</span>
+             <div id="Bulletin" v-if='n.type==="App\\Notifications\\BulletinNotification"' class="w-full p-4 mt-4 bg-blue-100 rounded flex shadow">
+                 <div id="landlord" v-if=" n.data.Sender_land !=null" class="flex">
+                    <div><img @click="notificationHandler(false); redirectFromNoti(5,n.data.Sender_land.landlord_id,2)" class="cursor-pointer rounded-full h-10 w-10 object-cover" :src="'/images/Profile/'+n.data.Sender_land.landlord_pic" alt="Avatar" /></div>
+                    <div class="pl-3">
+                        <div tabindex="0" class="focus:outline-none text-sm leading-snug">
+                            <div  class="leading-snug" ><span  @click="notificationHandler(false); redirectFromNoti(5,n.data.Sender_land.landlord_id,2)" class="text-indigo-700 cursor-pointer hover:underline font-medium">{{ n.data.Sender_land.landlord_name }}</span> posted a bulletin at</div>
+                            <span class="text-indigo-700 hover:text-indigo-800 underline cursor-pointer font-medium" @click="notificationHandler(false); redirectFromNoti(1)">house rental ID: {{ n.data.Content.property_id }}</span>
+                        </div>
+                         <p tabindex="0" class="focus:outline-none text-xs leading-3 pt-1 text-gray-500 mt-2" > {{ moment( n.created_at ).fromNow() }} </p>
+                    </div>
+
                 </div>
-                <p tabindex="0" class="focus:outline-none text-xs leading-3 pt-1 text-gray-500 mt-2" > {{ moment( n.created_at ).fromNow() }} </p>
+                 <div id="student" v-else class="flex">
+                        <div><img @click="notificationHandler(false); redirectFromNoti(5,n.data.Sender_std.std_id,1)" class="cursor-pointer rounded-full h-10 w-10 object-cover" :src="'/images/Profile/'+n.data.Sender_std.std_pic" alt="Avatar" /></div>
+                        <div class="pl-3">
+                        <div tabindex="0" class="focus:outline-none text-sm leading-snug">
+                            <div class="leading-snug" ><span @click="notificationHandler(false); redirectFromNoti(5,n.data.Sender_std.std_id,1)" class="text-indigo-700 cursor-pointer hover:underline font-medium">{{ n.data.Sender_std.std_name }}</span> posted a bulletin at</div>
+                            <span class="text-indigo-700 hover:text-indigo-800 underline cursor-pointer font-medium" @click="notificationHandler(false); redirectFromNoti(1)">house rental ID: {{ n.data.Content.property_id }}</span>
+                        </div>
+                        <p tabindex="0" class="focus:outline-none text-xs leading-3 pt-1 text-gray-500 mt-2" > {{ moment( n.created_at ).fromNow() }} </p>
+                        </div>
+
                 </div>
+
+
+
             </div>
 
         <div id="Roommate" v-if='n.type==="App\\Notifications\\RoommateNotification"' class="w-full p-4 mt-4 rounded flex shadow bg-gray-800">
@@ -466,7 +481,7 @@ export default {
             if(go==1){
                 this.$router.push({ name: 'RentalRoom_student' })
             }else if (go==2){
-                this.$router.push({ name: 'payment_std' })
+                this.$router.push({ name: 'std_bills' })
             }else if(go==3)
             {
                 this.$router.push({ name: 'view_room_list', params: { id: param_id } })
