@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Bill;
 use Carbon\Carbon;
+use App\Models\Bill;
 use App\Models\Room;
 use App\Models\Photo;
 use App\Models\Staff;
@@ -26,6 +26,7 @@ use App\Http\Resources\PropertyResource;
 use Illuminate\Notifications\Notifiable;
 use App\Notifications\PaymentNotification;
 use Illuminate\Support\Facades\Notification;
+use App\Notifications\PropertyStatusNotification;
 
 
 
@@ -75,6 +76,16 @@ class PropertyListController extends Controller
                     }
 
                 }
+                    //notification
+                    $ID = $request -> session()->get('ID');
+                    $Sender_std = Landlord::find($ID);
+                    $Sender_land = null;
+                    $Staff = Staff::all();;
+                    Notification::send($Staff, new PropertyStatusNotification($Property, $Sender_std,$Sender_land));
+                    //$Landlord->notify(new PropertyStatusNotification($Property, $Sender_std,$Sender_land));
+
+
+
 
             }
 
@@ -324,11 +335,11 @@ class PropertyListController extends Controller
      public function getPropList($campus){
          if($campus=='Gambang'){
 
-            $data = Property::with('getLandlordRelation')->where('campus',$campus)->paginate(10);
+            $data = Property::with('getLandlordRelation')->where('campus',$campus)->orderBy('created_at','desc')->paginate(10);
 
             return PropertyResource::collection($data);
          }else{
-            $data = Property::with('getLandlordRelation')->where('campus',$campus)->paginate(10);
+            $data = Property::with('getLandlordRelation')->where('campus',$campus)->orderBy('created_at','desc')->paginate(10);
             return PropertyResource::collection($data);
          }
 
@@ -450,12 +461,29 @@ class PropertyListController extends Controller
 
     public function updatePropStatus($id, Request $request){
        $staff_name = Staff::where('staff_id',$id)->value('staff_name');
-
+        $prop_id = $request->id;
        $data = Property::where('property_id',$request->id)
        ->update([
            'verify_status' => $request ->status,
            'Verify_by' => $staff_name,
        ]);
+       $Property = Property::where('property_id',$request->id)->first();
+
+
+       if($data){
+        //notification
+            $ID = $request -> session()->get('ID');
+            $Sender_std = Staff::find($ID);
+            $Sender_land = null;
+            $Landlord = Landlord::with('getPropertyRelation')->whereHas('getPropertyRelation', function($query) use($prop_id) {
+                $query->where('property_id', $prop_id);
+            ;})->first();
+            Notification::send($Landlord, new PropertyStatusNotification($Property, $Sender_std,$Sender_land));
+            //$Landlord->notify(new PropertyStatusNotification($Property, $Sender_std,$Sender_land));
+
+
+        }
+
        return $data;
    }
 

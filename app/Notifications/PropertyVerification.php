@@ -7,10 +7,15 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Messages\BroadcastMessage;
 use Illuminate\Notifications\Notification;
+use Illuminate\Notifications\Notifiable;
 
 class PropertyVerification extends Notification
 {
     use Queueable;
+    use Notifiable;
+    protected $Content;
+    protected $Sender_std;
+    protected $Sender_land;
 
     /**
      * Create a new notification instance.

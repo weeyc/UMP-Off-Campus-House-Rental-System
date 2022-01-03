@@ -191,6 +191,18 @@
                     </div>
                 </div>
             </div>
+              <div id="PropertyStatus" v-if='n.type==="App\\Notifications\\PropertyStatusNotification"'  class="w-full p-4 mt-4 bg-red-100 rounded flex items-center shadow">
+                <div  class="flex">
+                    <div><img @click="notificationHandler(false); redirectFromNoti(5,n.data.Sender_std.std_id,1)" class="cursor-pointer rounded-full h-10 w-10 object-cover" :src="'/images/Profile/'+n.data.Sender_std.staff_pic" alt="Avatar" /></div>
+                    <div class="pl-3">
+                    <div tabindex="0" class="focus:outline-none text-sm leading-snug">
+                        <div class="leading-snug" ><span @click="notificationHandler(false); redirectFromNoti(5,n.data.Sender_std.std_id,1)" class="text-indigo-700 cursor-pointer hover:underline font-medium">{{ n.data.Sender_std.staff_name }} </span> (Staff) have updated your </div>
+                        <span class="text-indigo-700 hover:text-indigo-800 underline cursor-pointer font-medium" @click="notificationHandler(false); redirectFromNoti(1)">Property ID: {{ n.data.Content.property_id }} </span>registration to <span class="text-green-700 hover:text-green-800 cursor-pointer font-medium"> {{n.data.Content.verify_status}} </span>
+                    </div>
+                    <p tabindex="0" class="focus:outline-none text-xs leading-3 pt-1 text-gray-500 mt-2" > {{ moment( n.created_at ).fromNow() }} </p>
+                    </div>
+                </div>
+            </div>
          </div>
 
    </div>

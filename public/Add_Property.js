@@ -869,10 +869,10 @@ var render = function () {
                           },
                         ],
                         staticClass: "form-checkbox",
-                        attrs: { type: "checkbox", value: "Refrigerator" },
+                        attrs: { type: "checkbox", value: "Water Heater" },
                         domProps: {
                           checked: Array.isArray(_vm.form.furnishing)
-                            ? _vm._i(_vm.form.furnishing, "Refrigerator") > -1
+                            ? _vm._i(_vm.form.furnishing, "Water Heater") > -1
                             : _vm.form.furnishing,
                         },
                         on: {
@@ -881,7 +881,7 @@ var render = function () {
                               $$el = $event.target,
                               $$c = $$el.checked ? true : false
                             if (Array.isArray($$a)) {
-                              var $$v = "Refrigerator",
+                              var $$v = "Water Heater",
                                 $$i = _vm._i($$a, $$v)
                               if ($$el.checked) {
                                 $$i < 0 &&

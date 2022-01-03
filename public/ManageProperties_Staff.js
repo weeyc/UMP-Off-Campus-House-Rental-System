@@ -10,6 +10,8 @@
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _UpdateStatus_Modal_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./UpdateStatus_Modal.vue */ "./resources/js/components/ManagePropertyList/UpdateStatus_Modal.vue");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_1__);
 //
 //
 //
@@ -193,6 +195,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
     StatusModal: _UpdateStatus_Modal_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
@@ -203,6 +206,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
+      moment: moment__WEBPACK_IMPORTED_MODULE_1___default.a,
       properties: [],
       page: 1,
       lastPage: '',
@@ -841,7 +845,15 @@ var render = function () {
                           _vm._v(" "),
                           _c("td", { staticClass: "py-3 px-6 text-left" }, [
                             _c("div", { staticClass: "flex items-center" }, [
-                              _c("span", [_vm._v(_vm._s(prop.created_at))]),
+                              _c("span", [
+                                _vm._v(
+                                  _vm._s(
+                                    _vm
+                                      .moment(prop.created_at)
+                                      .format("DD-MM-YYYY, h:mm a")
+                                  )
+                                ),
+                              ]),
                             ]),
                           ]),
                           _vm._v(" "),

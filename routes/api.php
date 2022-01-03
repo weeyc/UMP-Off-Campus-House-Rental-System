@@ -54,6 +54,7 @@ Route::post('pay_bill', 'PaymentController@pay_bill');
 Route::get('get_rentalRoom/{id}/{role}', 'RentalRoomController@get_rentalRoom');
 Route::get('get_roomPlatform/{id}/{room_id}', 'RentalRoomController@get_roomPlatform');
 Route::get('get_HousePlatform/{id}', 'RentalRoomController@get_HousePlatform');
+Route::get('get_tenants/{campus}', 'RentalRoomController@get_tenants');
 
 Route::get('get_Property_Tenants_Bills/{id}', 'RentalRoomController@get_Property_Tenants_Bills'); ///////////////
 Route::get('get_Property_Tenants_Bills_Months/{id}', 'RentalRoomController@get_Property_Tenants_Bills');

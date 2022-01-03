@@ -15,6 +15,7 @@ class TenantResource extends JsonResource
     public function toArray($request)
     {
         $student = $this->whenLoaded('getStudentRelation');
+        $prop = $this->whenLoaded('getPropertyRelation');
         $room = $this->whenLoaded('getRoomRelation');
         return [
             'tenant_id' => $this->tenant_id,
@@ -27,6 +28,7 @@ class TenantResource extends JsonResource
             'tenancy_invitation' => $this->tenancy_invitation,
             'invite_by' => $this->invite_by,
             'student' => new StudentResource($student),
+            'prop' => new PropertyResource($prop),
             'room' => new RoomResource($room),
             'bills' => BillResource::collection($this->whenLoaded('getBillsRelation')),
         ];

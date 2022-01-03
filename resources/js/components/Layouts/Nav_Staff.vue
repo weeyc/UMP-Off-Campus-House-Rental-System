@@ -114,21 +114,25 @@
 
                               <span>Manage Users</span>
                         </router-link>
-                     <router-link  :to="{name: 'ManageProperties_Staff'}"  class="flex px-5 items-center py-6 leading-5 text-base text-pink-200  hover:text-pink-500 transition duration-150 ease-in-out hover:border-gray-700 border-transparent border-b-4 hover:border-current">
+                     <router-link  :to="{name: 'Manage_Tenant'}"  class="flex px-5 items-center py-6 leading-5 text-base text-pink-200  hover:text-pink-500 transition duration-150 ease-in-out hover:border-gray-700 border-transparent border-b-4 hover:border-current">
                             <span class="mr-2">
                                 <svg class="h-6 w-6"  width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">  <path stroke="none" d="M0 0h24v24H0z"/>  <polyline points="5 12 3 12 12 3 21 12 19 12" />  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" /></svg>
                             </span>
-                              <span>Manage Rental Properties</span>
+                              <span>Manage Tenants</span>
                         </router-link>
+
 
                     </div>
 
 
 
 
-
                     <div class="hidden xl:flex items-center ">
-                        <div class="relative md:mr-6 my-2">
+                        <button  @click="toggleNoti =! toggleNoti; notificationHandler(true); markAsRead() " class="focus:outline-none flex jusitfy-start  py-3 items-center">
+                        <svg class="h-8 w-8 text-pink-200 hover:text-pink-500 transition duration-150 ease-in-out"  width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">  <path stroke="none" d="M0 0h24v24H0z"/>  <path d="M10 5a2 2 0 0 1 4 0a7 7 0 0 1 4 6v3a4 4 0 0 0 2 3h-16a4 4 0 0 0 2 -3v-3a7 7 0 0 1 4 -6" />  <path d="M9 17v1a3 3 0 0 0 6 0v-1" /></svg>
+                        <span v-if="unreadNotifications[0]!=undefined" class="badge bg-pink-500 shrink-0 grow-0 rounded-full px-3 py-1 text-center object-right-top text-white text-sm">{{ unreadNotifications.length }}</span>
+                    </button>
+                        <div class="relative md:mr-6 ml-10 my-2">
                             <router-link  :to="{name: 'profile'}" class="focus:outline-none bg-pink-100 border-gray-300 border
                                  transition duration-150 ease-in-out hover:text-pink-500 rounded text-gray-600 px-5 py-2 text-xs">
                                  I'm a Staff
@@ -189,12 +193,60 @@
                 </div>
             </div>
         </div>
+             <!-- notification -->
+<div class="flex justify-items-end justify-end z-50">
+     <div class="w-full h-full bg-gray-800 bg-opacity-90 top-0 overflow-y-auto overflow-x-hidden fixed sticky-0 hidden z-50" id="chec-div" ref="chec">
+      <div class="w-full absolute z-50 right-0 h-full overflow-x-hidden transform translate-x-0 transition ease-in-out duration-700" id="notification" ref="notification">
+        <div class=" 2xl:w-4/12 bg-gray-200 h-screen overflow-y-auto p-8 absolute right-0 " >
+          <div class="flex items-center justify-between">
+            <p tabindex="0" class=" focus:outline-none text-2xl font-semibold leading-6 text-gray-800 " > Notifications </p>
+            <button role="button" aria-label="close modal" class=" focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 rounded-md cursor-pointer " @click="notificationHandler(false)" >
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" > <path d="M18 6L6 18" stroke="#4B5563" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" /> <path d="M6 6L18 18" stroke="#4B5563" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" /> </svg>
+            </button>
+          </div>
+        <div class="longsheet">
+            <div v-for="(noti,index) in notifications" :key="index">
+                <h2 tabindex="0" class=" focus:outline-none text-sm leading-normal pt-8 border-b pb-2 border-gray-500 text-gray-600 " >
+                    {{  dateToFromNowDaily(noti[0].created_at) }}
+                 </h2>
+                    <div v-for="(n,index) in noti" :key="index+1">
+
+              <div id="PropertyRegistration" v-if='n.type==="App\\Notifications\\PropertyStatusNotification"'  class="w-full p-4 mt-4 bg-red-200 rounded flex items-center shadow">
+                <div  class="flex">
+                    <div><img @click="notificationHandler(false); redirectFromNoti(5,n.data.Sender_std.landlord_id,2)" class="cursor-pointer rounded-full h-10 w-10 object-cover" :src="'/images/Profile/'+n.data.Sender_std.landlord_pic" alt="Avatar" /></div>
+                    <div class="pl-3">
+                    <div tabindex="0" class="focus:outline-none text-sm leading-snug">
+                        <div class="leading-snug" ><span @click="notificationHandler(false); redirectFromNoti(5,n.data.Sender_std.landlord_id,2)" class="text-indigo-700 cursor-pointer hover:underline font-medium">{{ n.data.Sender_std.landlord_name }} </span> is applied for </div>
+                        <span class="text-indigo-700 hover:text-indigo-800 underline cursor-pointer font-medium" @click="notificationHandler(false); redirectFromNoti(1)">Property ID: {{ n.data.Content.property_id }} </span> registration
+                    </div>
+                    <p tabindex="0" class="focus:outline-none text-xs leading-3 pt-1 text-gray-500 mt-2" > {{ moment( n.created_at ).fromNow() }} </p>
+                    </div>
+                </div>
+            </div>
+         </div>
+
+   </div>
+
+        <div class="flex items-center justify-between">
+        <hr class="w-full" />
+        <p tabindex="0" class=" focus:outline-none text-sm flex flex-shrink-0 leading-normal px-3 py-16 text-gray-500 " >
+            Thats it for now :)
+        </p>
+        <hr class="w-full" />
+        </div>
+</div>
+      </div>
+      <!-- top 2 -->
+         </div>
+     </div>
+      <!-- top 2 -->
+  </div>
 
     </nav>
 </template>
 
 <script>
-
+import moment from "moment";
 export default {
 
           props: {
@@ -207,6 +259,10 @@ export default {
         return {
             userProfile: [],
             roling: '',
+            notifications: [],
+            notificationsCounts: [],
+            moment: moment,
+            toggleNoti: false,
         };
     },
     methods: {
@@ -229,6 +285,85 @@ export default {
                 el.currentTarget.classList.add("hidden");
             }
         },
+           notificationHandler(flag) {
+            let notification = this.$refs.notification;
+            let checdiv = this.$refs.chec;
+
+            if (!flag) {
+                notification.classList.add("translate-x-full");
+                notification.classList.remove("translate-x-0");
+                setTimeout(function () {
+                checdiv.classList.add("hidden");
+                }, 500);
+                flag = true;
+
+            } else {
+                setTimeout(function () {
+                notification.classList.remove("translate-x-full");
+                notification.classList.add("translate-x-0");
+                }, 50);
+                checdiv.classList.remove("hidden");
+                flag = false;
+
+            }
+
+
+            },
+                  getNotifications(){
+            axios.get('/api/get_notifications/'+this.user_id+'/'+this.role).then((response)=>{
+               this.notifications=response.data.noti
+                console.warn(this.notifications.data);
+                }).catch((errors)=> {console.log(errors)})
+        },
+        getNotificationsCount(){
+            axios.get('/api/get_notifications_counts/'+this.user_id+'/'+this.role).then((response)=>{
+               this.notificationsCounts=response.data
+                console.warn(this.notificationsCounts.data);
+                }).catch((errors)=> {console.log(errors)})
+        },
+        markAsRead(){
+            axios.get('/api/mark_as_read/'+this.user_id+'/'+this.role).then((response)=>{
+                this.getNotifications()
+                this.getNotificationsCount()
+                }).catch((errors)=> {console.log(errors)})
+        },
+         dateToFromNowDaily( myDate ) {
+            // get from-now for this date
+            var fromNow = moment( myDate ).fromNow();
+
+            // ensure the date is displayed with today and yesterday
+            return moment( myDate ).calendar( null, {
+                // when the date is closer, specify custom values
+                lastWeek: '[Last] dddd',
+                lastDay:  '[Yesterday]',
+                sameDay:  '[Today]',
+                nextDay:  '[Tomorrow]',
+                nextWeek: 'dddd',
+                // when the date is further away, use from-now functionality
+                sameElse: function () {
+                    return "[" + fromNow + "]";
+                }
+            });
+        },
+           redirectFromNoti(go, param_id, role){
+            if(go==1){
+                this.$router.push({ name: 'ManageProperties_Staff' })
+            }else if (go==2){
+                this.$router.push({ name: 'std_bills' })
+            }else if(go==3)
+            {
+                this.$router.push({ name: 'view_room_list', params: { id: param_id } })
+            }else if(go==4){
+                 this.$router.push({ name: 'payment_land' })
+            }else if(go==5){
+                    this.$router.push({ name: 'profile_view', params: { role: role, id:param_id } })
+
+            }
+        },
+             playNotificationSound(){
+            var mytrack = new Audio('/audio/notification.mp3')
+            mytrack.play();
+        },
 
         getProfile(){
             axios.get('/api/get_profile/'+this.user_id+'/'+this.role).then((response)=>{
@@ -250,6 +385,23 @@ export default {
             this.$root.$on('refreshData', data => {
             this.getProfile();
           });
+                this.getNotifications();
+        this.getNotificationsCount();
+
+        Echo.private('App.Models.Staff.' + this.user_id)
+            .notification((notification) => {
+                console.log(notification);
+                this.getNotifications();
+                this.getNotificationsCount();
+                this.playNotificationSound();
+            });
+    },
+        computed:{
+        unreadNotifications(){
+            return this.notificationsCounts.filter(notification=>{
+                return notification.read_at==null;
+            })
+        }
     },
 
 };

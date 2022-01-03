@@ -57,6 +57,17 @@ class RentalRoomController extends Controller
         }
 
      }
+    public function get_tenants($campus, Request $request){
+
+        $showSize = $request->showSize;
+
+        $data = Tenant::with('getPropertyRelation', 'getStudentRelation')->whereHas('getPropertyRelation' , function($query)  use($campus){
+            $query->where('campus', $campus);
+        ;})
+        ->paginate( $showSize );
+        return TenantResource::collection($data);
+
+     }
 
     public function get_roomPlatform($id,$room_id, Request $request){
 

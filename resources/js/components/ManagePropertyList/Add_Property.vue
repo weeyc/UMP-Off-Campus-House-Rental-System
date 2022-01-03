@@ -86,7 +86,7 @@
                     </label>
 
                     <label class="inline-flex items-center cursor-pointer">
-                        <input type="checkbox" class="form-checkbox" v-model="form.furnishing" value="Refrigerator"/>
+                        <input type="checkbox" class="form-checkbox" v-model="form.furnishing" value="Water Heater"/>
                         <span class="ml-2">Water Heater</span>
                     </label>
                      <label class="inline-flex items-center cursor-pointer">

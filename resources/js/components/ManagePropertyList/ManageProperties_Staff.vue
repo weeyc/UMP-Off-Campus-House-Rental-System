@@ -119,7 +119,7 @@
                                 </td>
                                 <td class="py-3 px-6 text-left">
                                          <div class="flex items-center">
-                                        <span>{{prop.created_at}}</span>
+                                        <span>{{  moment(prop.created_at  ).format("DD-MM-YYYY, h:mm a") }}</span>
                                     </div>
                                 </td>
 
@@ -183,7 +183,7 @@
 <script>
 import StatusModal from './UpdateStatus_Modal.vue';
 
-
+import moment from "moment";
 export default {
 
     components: {
@@ -196,6 +196,7 @@ export default {
 
     data() {
         return {
+            moment: moment,
             properties:[],
             page: 1,
             lastPage: '',

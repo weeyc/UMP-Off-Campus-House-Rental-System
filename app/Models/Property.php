@@ -8,10 +8,15 @@ use App\Models\Landlord;
 use App\Models\Photo;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Notifications\Notifiable;
 
 class Property extends Model
 {
     public $timestamps = true;
+    use Notifiable;
+    protected $primaryKey = 'property_id';
+    protected $table = 'properties';
+
 
     protected $fillable = ['landlord_id','property_name','latitude','logitude','address','postcode','description','campus','property_furnishing','verify_status','Verify_by'];
 

@@ -4,6 +4,7 @@ const Register_Landlord = () => import(/* webpackChunkName: "Register_Landlord" 
 const Register_Student = () => import(/* webpackChunkName: "Register_Student" */'./components/ManageRegistrationUsers/Register_Student');
 const Tab_Staff_Users = () => import(/* webpackChunkName: "Tab_Staff_Users" */'./components/Layouts/Tab_Staff_Users');
 const Manage_Student = () => import(/* webpackChunkName: "Manage_Student" */'./components/ManageRegistrationUsers/Manage_Student');
+const Manage_Tenant = () => import(/* webpackChunkName: "Manage_Tenant" */'./components/ManageRentalProperty/Manage_Tenant');
 const Manage_Landlord = () => import(/* webpackChunkName: "Manage_Landlord" */'./components/ManageRegistrationUsers/Manage_Landlord');
 const Profile_Edit = () => import(/* webpackChunkName: "Profile_Edit" */'./components/ManageRegistrationUsers/Profile_Edit');
 const Profile_View = () => import(/* webpackChunkName: "Profile_View" */'./components/ManageRegistrationUsers/Profile_View');
@@ -116,6 +117,11 @@ export default{
             component: Profile_Edit,
         },
         {
+            path: '/staff/manage_tenants',
+            name: 'Manage_Tenant',
+            component: Manage_Tenant,
+        },
+        {
             path: '/staff/view-profile/:role/:id',
             name: 'profile_view',
             component: Profile_View,
@@ -184,12 +190,12 @@ export default{
             component: Room_Landlord,
         },
         {
-            path: '/landlord/rental_room',
+            path: '/landlord/rental_properties',
             name: 'RentalRoom_Landlord',
             component: RentalRoom_Landlord,
         },
         {
-            path: '/landlord/rental_room/house_platform/:id',
+            path: '/landlord/rental_properties/house_platform/:id',
             name: 'HousePlatform_Landlord',
             component: HousePlatform_Landlord,
             props: true,

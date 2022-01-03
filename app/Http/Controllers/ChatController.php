@@ -6,6 +6,7 @@ use Notification;
 use Carbon\Carbon;
 use App\Models\Student;
 use App\Models\Landlord;
+use App\Models\Staff;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Resources\NotifyResource;
@@ -43,6 +44,17 @@ class ChatController extends Controller
             'noti' => array_values($notifications)
         ], 200);
 
+        }else if($role == 3){
+            $user = Staff::find($id);
+            $notifications = $user->notifications()->orderBy('created_at','desc')->get()
+            ->groupBy(function($date) {
+                return Carbon::parse($date->created_at)->format('d M Y'); // grouping by day
+            })->toArray();
+
+          return response()->json([
+            'noti' => array_values($notifications)
+        ], 200);
+
         }
 
      }
@@ -63,6 +75,11 @@ class ChatController extends Controller
             $notifications = $user->notifications()->orderBy('created_at','desc')->get();
             return $notifications;
 
+        }else if($role == 3){
+            $user = Staff::find($id);
+            $notifications = $user->notifications()->orderBy('created_at','desc')->get();
+            return $notifications;
+
         }
 
      }
@@ -77,6 +94,11 @@ class ChatController extends Controller
 
         }else if($role == 2){
             $user = Landlord::find($id);
+            $user->unreadNotifications->markAsRead();
+            return response(['message' => 'all']);
+
+        }else if($role == 3){
+            $user = Staff::find($id);
             $user->unreadNotifications->markAsRead();
             return response(['message' => 'all']);
 
