@@ -3,7 +3,7 @@
   <!-- Property Result -->
      <div class="max-w-5xl p-6 mx-auto mt-5 bg-gray-100 rounded-md mb-5 shadow-inner" >
           <h2 class=" font-bold text-gray-700 capitalize text-center text-xl">My Property For Rental</h2>
-        <div v-if="lists.length==0"> You are not renting any room yet.</div>
+        <div v-if="lists.length==0"> You don't have any verified property yet.</div>
         <div else>
             <div v-for="(list,index) in lists" :key="index.id" class="flex justify-start  ">
                     <router-link :to="{ name: 'HousePlatform_Landlord', params:{id: list.id}}"

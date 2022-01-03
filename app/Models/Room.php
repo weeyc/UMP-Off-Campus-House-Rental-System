@@ -20,6 +20,11 @@ class Room extends Model
     public function getTenantRelation(){
         return $this->hasMany('App\Models\Tenant', 'room_id', 'room_id' );
     }
+
+    public function getBillsRelation(){
+        return $this->hasMany('App\Models\Bill', 'room_id', 'room_id' );
+    }
+
     // public function getTenantOneRelation(){
     //     return $this->belongsTo('App\Models\Tenant', 'room_id', 'room_id' );
     // }

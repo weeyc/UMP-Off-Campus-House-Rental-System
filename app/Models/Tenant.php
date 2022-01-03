@@ -18,7 +18,7 @@ class Tenant extends Model
         return $this->belongsTo('App\Models\Room', 'room_id', 'room_id');
     }
     public function getBillsRelation(){
-        return $this->hasMany('App\Models\Room', 'tenant_id', 'tenant_id');
+        return $this->hasMany('App\Models\Bill', 'tenant_id', 'tenant_id');
     }
     public function getStudentRelation(){
         return $this->belongsTo('App\Models\Student', 'student_id', 'std_id');

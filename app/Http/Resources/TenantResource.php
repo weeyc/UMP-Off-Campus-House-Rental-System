@@ -27,7 +27,8 @@ class TenantResource extends JsonResource
             'tenancy_invitation' => $this->tenancy_invitation,
             'invite_by' => $this->invite_by,
             'student' => new StudentResource($student),
-            'room' => new RoomResource($room)
+            'room' => new RoomResource($room),
+            'bills' => BillResource::collection($this->whenLoaded('getBillsRelation')),
         ];
 
 

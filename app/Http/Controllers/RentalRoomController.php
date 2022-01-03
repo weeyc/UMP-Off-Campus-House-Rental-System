@@ -83,6 +83,36 @@ class RentalRoomController extends Controller
         return RoomResource::collection($data);
      }
 
+
+
+     //delete
+    public function get_Property_Tenants_Bills($id){
+
+        $data = Room::with('getTenantRelation.getStudentRelation','getPhotoRelation','getTenantRelation.getBillsRelation')
+        ->whereHas('getTenantRelation.getBillsRelation', function($query) {
+            $query->select('bills_id', 'bills_date', 'payment_status')->where('payment_status', 'paid');
+        ;})
+        ->where('property_id', $id)
+        ->get();
+        return RoomResource::collection($data);
+
+     }
+
+    public function get_Property_Tenants_Bills_Months($id){
+
+        $data = Room::with('getPropertyRelation.getPhotoRelation','getBillsRelation','getPropertyRelation.getLandlordRelation','getPhotoRelation','getTenantRelation','getTenantRelation.getStudentRelation')
+        ->where('property_id', $id)
+        ->get();
+        return RoomResource::collection($data);
+
+
+
+     }
+  //delete
+
+
+
+
     public function get_housemate($room_id,$prop_id, Request $request){
 
             $data = Room::with('getPropertyRelation.getPhotoRelation','getPhotoRelation','getTenantRelation','getTenantRelation.getStudentRelation')
@@ -229,6 +259,10 @@ class RentalRoomController extends Controller
                     ->update([
                 'tenant_status' => 'Tenancy',
                 'tenancy_invitation' => 'Accepted',
+            ]);
+            Room::where('room_id', $r_id)
+                    ->update([
+                'room_status' => 'rented',
             ]);
             $Tenant =  Tenant::where('invite_by',  $id)->first();
           $progress =  DB::table('notifications')

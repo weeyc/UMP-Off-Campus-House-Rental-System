@@ -12,8 +12,10 @@ use Illuminate\Notifications\Notifiable;
 
 class PaymentNotification extends Notification
 {
-    use Queueable;
     use Notifiable;
+    protected $Content;
+    protected $Sender_std;
+    protected $Sender_land;
 
     /**
      * Create a new notification instance.

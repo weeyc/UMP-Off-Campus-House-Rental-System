@@ -80,12 +80,12 @@
                         </svg>
                         <p class="text-base leading-4">Chat</p>
                     </button>
-                      <button :class="[hover]" class="focus:outline-none flex jusitfy-start  py-3 items-center space-x-6 w-full">
+                      <button  @click="toggleNoti =! toggleNoti; notificationHandler(true); markAsRead() " :class="[hover]" class="focus:outline-none flex jusitfy-start  py-3 items-center space-x-6 w-full">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M10 6H7C6.46957 6 5.96086 6.21071 5.58579 6.58579C5.21071 6.96086 5 7.46957 5 8V17C5 17.5304 5.21071 18.0391 5.58579 18.4142C5.96086 18.7893 6.46957 19 7 19H16C16.5304 19 17.0391 18.7893 17.4142 18.4142C17.7893 18.0391 18 17.5304 18 17V14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                             <path d="M17 10C18.6569 10 20 8.65685 20 7C20 5.34315 18.6569 4 17 4C15.3431 4 14 5.34315 14 7C14 8.65685 15.3431 10 17 10Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                         </svg>
-                        <p class="text-base leading-4">Notifications</p>
+                         <p class="text-base leading-4">Notifications <span v-if="unreadNotifications[0]!=undefined" class="badge mb-3 bg-red-800 shrink-0 grow-0 rounded-full px-3 py-1 text-center object-right-top text-white text-sm mr-1">{{ unreadNotifications.length }}</span></p>
                     </button>
                   <a href="/logout" :class="[hover]" class="focus:outline-none flex jusitfy-start  py-3 items-center space-x-6 w-full">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -137,7 +137,78 @@
             </div>
         </div>
         <!-- top bar -->
+        <!-- notification -->
+<div class="flex justify-items-end justify-end z-10">
+     <div class="w-full h-full bg-gray-800 bg-opacity-90 top-0 overflow-y-auto overflow-x-hidden fixed sticky-0 hidden" id="chec-div" ref="chec">
+      <div class="w-full absolute z-10 right-0 h-full overflow-x-hidden transform translate-x-0 transition ease-in-out duration-700" id="notification" ref="notification">
+        <div class=" 2xl:w-4/12 bg-gray-200 h-screen overflow-y-auto p-8 absolute right-0 " >
+          <div class="flex items-center justify-between">
+            <p tabindex="0" class=" focus:outline-none text-2xl font-semibold leading-6 text-gray-800 " > Notifications </p>
+            <button role="button" aria-label="close modal" class=" focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 rounded-md cursor-pointer " @click="notificationHandler(false)" >
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" > <path d="M18 6L6 18" stroke="#4B5563" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" /> <path d="M6 6L18 18" stroke="#4B5563" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" /> </svg>
+            </button>
+          </div>
+        <div class="longsheet">
+            <div v-for="(noti,index) in notifications" :key="index">
+                <h2 tabindex="0" class=" focus:outline-none text-sm leading-normal pt-8 border-b pb-2 border-gray-500 text-gray-600 " >
+                    {{  dateToFromNowDaily(noti[0].created_at) }}
+                 </h2>
+                    <div v-for="(n,index) in noti" :key="index+1">
 
+             <div id="Bulletin" v-if='n.type==="App\\Notifications\\BulletinNotification"' class="w-full p-4 mt-4 bg-blue-100 rounded flex shadow">
+                 <div id="landlord" v-if=" n.data.Sender_land !=null" class="flex">
+                    <div><img @click="notificationHandler(false); redirectFromNoti(5,n.data.Sender_land.landlord_id,2)" class="cursor-pointer rounded-full h-10 w-10 object-cover" :src="'/images/Profile/'+n.data.Sender_land.landlord_pic" alt="Avatar" /></div>
+                    <div class="pl-3">
+                        <div tabindex="0" class="focus:outline-none text-sm leading-snug">
+                            <div  class="leading-snug" ><span  @click="notificationHandler(false); redirectFromNoti(5,n.data.Sender_land.landlord_id,2)" class="text-indigo-700 cursor-pointer hover:underline font-medium">{{ n.data.Sender_land.landlord_name }}</span> posted a bulletin at</div>
+                            <span class="text-indigo-700 hover:text-indigo-800 underline cursor-pointer font-medium" @click="notificationHandler(false); redirectFromNoti(1)">house rental ID: {{ n.data.Content.property_id }}</span>
+                        </div>
+                         <p tabindex="0" class="focus:outline-none text-xs leading-3 pt-1 text-gray-500 mt-2" > {{ moment( n.created_at ).fromNow() }} </p>
+                    </div>
+
+                </div>
+                 <div id="student" v-else class="flex">
+                        <div><img @click="notificationHandler(false); redirectFromNoti(5,n.data.Sender_std.std_id,1)" class="cursor-pointer rounded-full h-10 w-10 object-cover" :src="'/images/Profile/'+n.data.Sender_std.std_pic" alt="Avatar" /></div>
+                        <div class="pl-3">
+                        <div tabindex="0" class="focus:outline-none text-sm leading-snug">
+                            <div class="leading-snug" ><span @click="notificationHandler(false); redirectFromNoti(5,n.data.Sender_std.std_id,1)" class="text-indigo-700 cursor-pointer hover:underline font-medium">{{ n.data.Sender_std.std_name }}</span> posted a bulletin at</div>
+                            <span class="text-indigo-700 hover:text-indigo-800 underline cursor-pointer font-medium" @click="notificationHandler(false); redirectFromNoti(1)">house rental ID: {{ n.data.Content.property_id }}</span>
+                        </div>
+                        <p tabindex="0" class="focus:outline-none text-xs leading-3 pt-1 text-gray-500 mt-2" > {{ moment( n.created_at ).fromNow() }} </p>
+                        </div>
+
+                </div>
+            </div>
+            <div id="Payment" v-if='n.type==="App\\Notifications\\PaymentNotification"'  class="w-full p-4 mt-4 bg-green-100 rounded flex items-center shadow">
+                <div  class="flex">
+                    <div><img @click="notificationHandler(false); redirectFromNoti(5,n.data.Sender_std.std_id,1)" class="cursor-pointer rounded-full h-10 w-10 object-cover" :src="'/images/Profile/'+n.data.Sender_std.std_pic" alt="Avatar" /></div>
+                    <div class="pl-3">
+                    <div tabindex="0" class="focus:outline-none text-sm leading-snug">
+                        <div class="leading-snug" ><span @click="notificationHandler(false); redirectFromNoti(5,n.data.Sender_std.std_id,1)" class="text-indigo-700 cursor-pointer hover:underline font-medium">{{ n.data.Sender_std.std_name }}</span> made a payment to you for</div>
+                        <span class="text-indigo-700 hover:text-indigo-800 underline cursor-pointer font-medium" @click="notificationHandler(false); redirectFromNoti(4)">{{ n.data.Content.payment_details }}</span>
+                    </div>
+                    <p tabindex="0" class="focus:outline-none text-xs leading-3 pt-1 text-gray-500 mt-2" > {{ moment( n.created_at ).fromNow() }} </p>
+                    </div>
+                </div>
+            </div>
+         </div>
+
+   </div>
+
+        <div class="flex items-center justify-between">
+        <hr class="w-full" />
+        <p tabindex="0" class=" focus:outline-none text-sm flex flex-shrink-0 leading-normal px-3 py-16 text-gray-500 " >
+            Thats it for now :)
+        </p>
+        <hr class="w-full" />
+        </div>
+</div>
+      </div>
+      <!-- top 2 -->
+         </div>
+     </div>
+      <!-- top 2 -->
+  </div>
 
 
         <!-- Content -->
@@ -161,6 +232,7 @@
 </template>
 
 <script>
+import moment from "moment";
 export default {
         props: {
             user_id: Number,
@@ -175,9 +247,38 @@ export default {
             indicator: false,
             roling: '',
             hover:'text-blue-200 hover:text-blue-500 focus:text-blue-500 border-l-4 pl-4',
+
+            notifications: [],
+            notificationsCounts: [],
+            moment: moment,
+             toggleNoti: false,
         }
     },
     methods: {
+          notificationHandler(flag) {
+            let notification = this.$refs.notification;
+            let checdiv = this.$refs.chec;
+
+            if (!flag) {
+                notification.classList.add("translate-x-full");
+                notification.classList.remove("translate-x-0");
+                setTimeout(function () {
+                checdiv.classList.add("hidden");
+                }, 500);
+                flag = true;
+
+            } else {
+                setTimeout(function () {
+                notification.classList.remove("translate-x-full");
+                notification.classList.add("translate-x-0");
+                }, 50);
+                checdiv.classList.remove("hidden");
+                flag = false;
+
+            }
+
+
+            },
         showNav() {
             this.indicator = ! this.indicator
             if(this.indicator==true){
@@ -198,6 +299,60 @@ export default {
                 console.warn(this.roling.data);
                 }).catch((errors)=> {console.log(errors)})
         },
+           getNotifications(){
+            axios.get('/api/get_notifications/'+this.user_id+'/'+this.role).then((response)=>{
+               this.notifications=response.data.noti
+                console.warn(this.notifications.data);
+                }).catch((errors)=> {console.log(errors)})
+        },
+        getNotificationsCount(){
+            axios.get('/api/get_notifications_counts/'+this.user_id+'/'+this.role).then((response)=>{
+               this.notificationsCounts=response.data
+                console.warn(this.notificationsCounts.data);
+                }).catch((errors)=> {console.log(errors)})
+        },
+        markAsRead(){
+            axios.get('/api/mark_as_read/'+this.user_id+'/'+this.role).then((response)=>{
+                this.getNotifications()
+                this.getNotificationsCount()
+                }).catch((errors)=> {console.log(errors)})
+        },
+         dateToFromNowDaily( myDate ) {
+            // get from-now for this date
+            var fromNow = moment( myDate ).fromNow();
+
+            // ensure the date is displayed with today and yesterday
+            return moment( myDate ).calendar( null, {
+                // when the date is closer, specify custom values
+                lastWeek: '[Last] dddd',
+                lastDay:  '[Yesterday]',
+                sameDay:  '[Today]',
+                nextDay:  '[Tomorrow]',
+                nextWeek: 'dddd',
+                // when the date is further away, use from-now functionality
+                sameElse: function () {
+                    return "[" + fromNow + "]";
+                }
+            });
+        },
+           redirectFromNoti(go, param_id, role){
+            if(go==1){
+                this.$router.push({ name: 'RentalRoom_Landlord' })
+            }else if (go==2){
+                this.$router.push({ name: 'std_bills' })
+            }else if(go==3)
+            {
+                this.$router.push({ name: 'view_room_list', params: { id: param_id } })
+            }else if(go==4){
+                 this.$router.push({ name: 'payment_land' })
+            }else if(go==5){
+                    this.$router.push({ name: 'land_profile_view', params: { role: role, id:param_id } })
+            }
+        },
+             playNotificationSound(){
+            var mytrack = new Audio('/audio/notification.mp3')
+            mytrack.play();
+        },
 
 
     },
@@ -207,6 +362,23 @@ export default {
             this.$root.$on('refreshData', data => {
             this.getProfile();
           });
+            this.getNotifications();
+        this.getNotificationsCount();
+
+        Echo.private('App.Models.Landlord.' + this.user_id)
+            .notification((notification) => {
+                console.log(notification);
+                this.getNotifications();
+                this.getNotificationsCount();
+                this.playNotificationSound();
+            });
+    },
+        computed:{
+        unreadNotifications(){
+            return this.notificationsCounts.filter(notification=>{
+                return notification.read_at==null;
+            })
+        }
     },
 };
 </script>

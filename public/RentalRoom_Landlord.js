@@ -115,7 +115,7 @@ var render = function () {
         ),
         _vm._v(" "),
         _vm.lists.length == 0
-          ? _c("div", [_vm._v(" You are not renting any room yet.")])
+          ? _c("div", [_vm._v(" You don't have any verified property yet.")])
           : _vm._e(),
         _vm._v(" "),
         _c(

@@ -83,7 +83,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".exact-active[data-v-e44a943c]{\n  /* --tw-bg-opacity: 1;\nbackground-color: rgba(236, 72, 153, var(--tw-bg-opacity)); */\n  /* --tw-text-opacity: 1;\ncolor: rgba(255, 255, 255, var(--tw-text-opacity));*/\n  /* When actived: (border border-b-0) */\n  border-width: 1px;\n  border-bottom-width: 0px;\n}\n\n", ""]);
+exports.push([module.i, ".exact-active[data-v-e44a943c]{\n  /* --tw-bg-opacity: 1;\nbackground-color: rgba(236, 72, 153, var(--tw-bg-opacity)); */\n  /* --tw-text-opacity: 1;\ncolor: rgba(255, 255, 255, var(--tw-text-opacity));*/\n  /* When actived: (border border-b-0) */\n  border-width: 1px;\n  border-bottom-width: 0px;\n}\n.active[data-v-e44a943c]{\n  border-width: 1px;\n  border-bottom-width: 0px;\n}\n\n", ""]);
 
 // exports
 
@@ -229,6 +229,7 @@ var render = function () {
               attrs: {
                 to: { name: "land_bills" },
                 "exact-active-class": "exact-active",
+                "active-class": "active",
               },
             },
             [

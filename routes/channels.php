@@ -1,7 +1,6 @@
 <?php
 
-use App\Models\Student;
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Broadcast;
 /*
 |--------------------------------------------------------------------------
@@ -20,6 +19,14 @@ use Illuminate\Support\Facades\Broadcast;
 
 Broadcast::channel('App.Models.Student.*', function ($user) {
     return Auth::guard('student')->check();
+});
+
+Broadcast::channel('App.Models.Landlord.*', function ($user) {
+    return Auth::guard('landlord')->check();
+});
+
+Broadcast::channel('App.Models.Staff.*', function ($user) {
+    return Auth::guard('staff')->check();
 });
 
 // Broadcast::channel('App.Models.Student.{id}', function ($user, $id) {

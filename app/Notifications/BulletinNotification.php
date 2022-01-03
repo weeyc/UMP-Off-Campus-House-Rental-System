@@ -67,9 +67,6 @@ class BulletinNotification extends Notification
      */
     public function toArray($notifiable)
     {
-
-
-
         return [
             'Content' =>  $this->Content,
             'Sender_std' =>  $this->Sender_std,

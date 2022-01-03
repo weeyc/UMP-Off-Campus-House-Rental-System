@@ -1,5 +1,203 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([["HousePlatform_Landlord"],{
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/ManageRentalProperty/Bill_Modal.vue?vue&type=script&lang=js&":
+/*!******************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/ManageRentalProperty/Bill_Modal.vue?vue&type=script&lang=js& ***!
+  \******************************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_0__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: {
+    user_id: Number,
+    role: Number,
+    tenant: Object
+  },
+  components: {},
+  data: function data() {
+    return {
+      data: [],
+      months: [],
+      moment: moment__WEBPACK_IMPORTED_MODULE_0___default.a,
+      bydate: '',
+      form: {
+        std_id: this.user_id,
+        bills_id: '',
+        tenant_id: '',
+        property_id: '',
+        landlord_id: '',
+        payment_details: '',
+        total_payment: ''
+      },
+      student_info: {
+        std_id: this.tenant.student_id,
+        pic: this.tenant.student.pic,
+        name: this.tenant.student.name,
+        email: this.tenant.student.email
+      }
+    };
+  },
+  methods: {
+    getData: function getData() {
+      var _this = this;
+
+      axios.get('/api/get_bills/' + this.user_id + '/' + this.role, {
+        params: {
+          date: this.bydate
+        }
+      }).then(function (response) {
+        _this.data = response.data;
+        _this.form.bills_id = _this.data.bills_id;
+        _this.form.tenant_id = _this.data.tenant_id;
+        _this.form.property_id = _this.data.property_id;
+        _this.form.payment_details = 'UOCA Bills (ID: ' + _this.data.bills_id + ') Payment - Room ID: ' + _this.data.room_id;
+        _this.form.total_payment = _this.data.total_bills;
+        console.warn(_this.data);
+      });
+    },
+    getMonths: function getMonths() {
+      var _this2 = this;
+
+      axios.get('/api/get_bills_months/' + this.user_id + '/' + this.role, {
+        params: {
+          date: this.bydate
+        }
+      }).then(function (response) {
+        _this2.months = response.data;
+        console.warn(_this2.months);
+      });
+    },
+    closeModal: function closeModal() {
+      this.$emit("closeModal");
+    }
+  },
+  mounted: function mounted() {
+    this.getData();
+    this.getMonths();
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/ManageRentalProperty/HousePlatform_Landlord.vue?vue&type=script&lang=js&":
 /*!******************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/ManageRentalProperty/HousePlatform_Landlord.vue?vue&type=script&lang=js& ***!
@@ -10,8 +208,9 @@
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Post_Modal_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Post_Modal.vue */ "./resources/js/components/ManageRentalProperty/Post_Modal.vue");
-/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
-/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _Bill_Modal_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Bill_Modal.vue */ "./resources/js/components/ManageRentalProperty/Bill_Modal.vue");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_2__);
 //
 //
 //
@@ -213,11 +412,29 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
-    PostModal: _Post_Modal_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
+    PostModal: _Post_Modal_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
+    BillModal: _Bill_Modal_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
   },
   props: {
     user_id: Number,
@@ -226,7 +443,7 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       info: [],
-      moment: moment__WEBPACK_IMPORTED_MODULE_1___default.a,
+      moment: moment__WEBPACK_IMPORTED_MODULE_2___default.a,
       prop_id: this.$route.params.id,
       toggleModal: false,
       toggleRModal: false,
@@ -236,6 +453,7 @@ __webpack_require__.r(__webpack_exports__);
       bydate: '',
       tenant_bills: [],
       tenant_id: '',
+      tenant: {},
       room_id: '',
       form: {
         property_id: '',
@@ -345,6 +563,11 @@ __webpack_require__.r(__webpack_exports__);
       this.$router.push({
         name: 'std_bills'
       });
+    },
+    checkTenantBill: function checkTenantBill(student_id, mate) {
+      this.tenant_id = student_id;
+      this.tenant = mate;
+      this.toggleRModal = !this.toggleRModal;
     }
   },
   watch: {
@@ -472,6 +695,631 @@ var Errors = /*#__PURE__*/function () {
     this.getRole();
   }
 });
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/ManageRentalProperty/Bill_Modal.vue?vue&type=template&id=1002b6ab&":
+/*!**********************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/ManageRentalProperty/Bill_Modal.vue?vue&type=template&id=1002b6ab& ***!
+  \**********************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function () {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    {
+      staticClass:
+        "modal h-screen w-full  fixed left-0 top-0 flex justify-center z-10 items-center bg-black bg-opacity-50",
+    },
+    [
+      _c(
+        "div",
+        {
+          staticClass:
+            "max-h-full min-h-2xl min-w-2xl max-w-4xl  mx-auto overflow-y-auto shadow-lg rounded p-1 bg-gradient-to-r from-sky-400 to-cyan-300",
+        },
+        [
+          _c(
+            "div",
+            {
+              staticClass:
+                "border-b px-4 py-2 flex justify-between items-center",
+            },
+            [
+              _c("h3", { staticClass: "font-semibold text-lg" }, [
+                _vm._v("Tenant Bills Details"),
+              ]),
+              _vm._v(" "),
+              _c(
+                "button",
+                { staticClass: "text-black ", on: { click: _vm.closeModal } },
+                [_vm._v("✗")]
+              ),
+            ]
+          ),
+          _vm._v(" "),
+          _c("div", { staticClass: "p-6 ml-5" }, [
+            _c(
+              "div",
+              {
+                staticClass:
+                  "max-w-6xl p-6 mx-auto mt-3  bg-gray-100 rounded-md shadow-xl mb-5",
+              },
+              [
+                _c(
+                  "h2",
+                  {
+                    staticClass:
+                      " font-bold text-gray-700 capitalize text-center text-xl",
+                  },
+                  [_vm._v("Tenant Bills")]
+                ),
+                _vm._v(" "),
+                _vm.data.length == 0
+                  ? _c("div", [
+                      _vm._v(" This tenant don't having any bills issued yet."),
+                    ])
+                  : _c("div", { staticClass: " m-5 mb-10" }, [
+                      _c(
+                        "div",
+                        { staticClass: "w-full flex justify-center mb-3 " },
+                        [
+                          _c(
+                            "select",
+                            {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.bydate,
+                                  expression: "bydate",
+                                },
+                              ],
+                              staticClass:
+                                "w-2/4 focus:outline-none border-transparent cursor-pointer focus:border-gray-800 hover:bg-yellow-200 focus:shadow-outline-gray text-base py-2 px-8  xl:px-3 rounded font-medium  appearance-none bg-transparent",
+                              on: {
+                                change: function ($event) {
+                                  var $$selectedVal = Array.prototype.filter
+                                    .call($event.target.options, function (o) {
+                                      return o.selected
+                                    })
+                                    .map(function (o) {
+                                      var val =
+                                        "_value" in o ? o._value : o.value
+                                      return val
+                                    })
+                                  _vm.bydate = $event.target.multiple
+                                    ? $$selectedVal
+                                    : $$selectedVal[0]
+                                },
+                              },
+                            },
+                            [
+                              _c(
+                                "option",
+                                {
+                                  attrs: {
+                                    value: "",
+                                    selected: "",
+                                    disabled: "",
+                                    hidden: "",
+                                  },
+                                },
+                                [_vm._v("Choose month")]
+                              ),
+                              _vm._v(" "),
+                              _vm._l(_vm.months, function (d) {
+                                return _c(
+                                  "option",
+                                  { key: d, on: { click: _vm.getData } },
+                                  [_vm._v(_vm._s(d) + " ")]
+                                )
+                              }),
+                            ],
+                            2
+                          ),
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        {
+                          staticClass:
+                            "min-h-screen p-5 bg-gray-100  rounded-lg border-collapse flex flex-col justify-center w-full h-full bg-no-repeat bg-cover",
+                          staticStyle: {
+                            "background-image": "url(/images/UMP/clock.jpg)",
+                          },
+                        },
+                        [
+                          _c(
+                            "div",
+                            {
+                              staticClass:
+                                "flex max-h-full sm:max-w-xl sm:mx-auto",
+                            },
+                            [
+                              _c(
+                                "div",
+                                {
+                                  staticClass:
+                                    "flex  max-h-full  bg-white shadow-lg sm:rounded-3xl sm:p-20 bg-clip-padding bg-opacity-80 border border-gray-200",
+                                  staticStyle: {
+                                    "backdrop-filter": "blur(20px)",
+                                  },
+                                },
+                                [
+                                  _c(
+                                    "div",
+                                    { staticClass: "max-w-md mx-auto " },
+                                    [
+                                      _c(
+                                        "router-link",
+                                        {
+                                          staticClass:
+                                            "w-full focus:outline-none focus:text-white  flex justify-between sm:w-auto items-center space-x-10 text-white mx-6 p-3 rounded focus:bg-yellow-600 bg-yellow-500 hover:bg-yellow-600",
+                                          attrs: {
+                                            to: {
+                                              name: "land_profile_view",
+                                              params: {
+                                                role: 1,
+                                                id: _vm.student_info.std_id,
+                                              },
+                                            },
+                                            target: "_blank",
+                                          },
+                                        },
+                                        [
+                                          _c(
+                                            "div",
+                                            {
+                                              staticClass:
+                                                "flex justify-start sm:w-auto items-center space-x-2",
+                                            },
+                                            [
+                                              _c("div", [
+                                                _c("img", {
+                                                  staticClass:
+                                                    "rounded-full h-10 w-10 object-cover",
+                                                  attrs: {
+                                                    src:
+                                                      "/images/Profile/" +
+                                                      _vm.student_info.pic,
+                                                    alt: "Avatar",
+                                                  },
+                                                }),
+                                              ]),
+                                              _vm._v(" "),
+                                              _c(
+                                                "div",
+                                                {
+                                                  staticClass:
+                                                    "flex flex-col justify-items-start text-left space-y-1",
+                                                },
+                                                [
+                                                  _c(
+                                                    "p",
+                                                    {
+                                                      staticClass:
+                                                        "text-base leading-4 text-white",
+                                                    },
+                                                    [
+                                                      _vm._v(
+                                                        _vm._s(
+                                                          _vm.student_info.name
+                                                        )
+                                                      ),
+                                                    ]
+                                                  ),
+                                                  _vm._v(" "),
+                                                  _c(
+                                                    "p",
+                                                    {
+                                                      staticClass:
+                                                        "text-xs leading-3 text-indigo-200",
+                                                    },
+                                                    [
+                                                      _vm._v(
+                                                        _vm._s(
+                                                          _vm.student_info.email
+                                                        )
+                                                      ),
+                                                    ]
+                                                  ),
+                                                ]
+                                              ),
+                                            ]
+                                          ),
+                                        ]
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "div",
+                                        {
+                                          staticClass:
+                                            "py-4 text-base leading-6 space-y-4 text-gray-700 sm:text-lg sm:leading-7",
+                                        },
+                                        [
+                                          _c("p", { staticClass: "text-sm" }, [
+                                            _vm._v(
+                                              "Here’s a summary of tenant's " +
+                                                _vm._s(
+                                                  _vm
+                                                    .moment(_vm.data.bills_date)
+                                                    .format("MMM-YYYY")
+                                                ) +
+                                                "  UOCA rental bill " +
+                                                _vm._s(_vm.data.bills_id) +
+                                                ":"
+                                            ),
+                                          ]),
+                                          _vm._v(" "),
+                                          _c(
+                                            "div",
+                                            {
+                                              staticClass:
+                                                "shadow-md rounded my-6",
+                                            },
+                                            [
+                                              _c(
+                                                "table",
+                                                {
+                                                  staticClass:
+                                                    "text-center w-full border-2 rounded-lg ",
+                                                },
+                                                [
+                                                  _c("thead", [
+                                                    _c("tr", [
+                                                      _c(
+                                                        "th",
+                                                        {
+                                                          staticClass:
+                                                            "py-4 px-6 bg-grey-lightest font-bold uppercase text-sm text-grey-dark border-b border-r  border-grey-light ",
+                                                          attrs: {
+                                                            colspan: "2",
+                                                          },
+                                                        },
+                                                        [
+                                                          _vm._v("Bills Date "),
+                                                          _c(
+                                                            "p",
+                                                            {
+                                                              staticClass:
+                                                                "font-extrabold",
+                                                            },
+                                                            [
+                                                              _vm._v(
+                                                                _vm._s(
+                                                                  _vm
+                                                                    .moment(
+                                                                      _vm.data
+                                                                        .bills_date
+                                                                    )
+                                                                    .format(
+                                                                      "MMM-YYYY"
+                                                                    )
+                                                                ) + "  "
+                                                              ),
+                                                            ]
+                                                          ),
+                                                        ]
+                                                      ),
+                                                      _vm._v(" "),
+                                                      _c(
+                                                        "th",
+                                                        {
+                                                          staticClass:
+                                                            "py-4 px-6 bg-grey-lightest font-bold uppercase text-sm text-grey-dark border-b border-r border-grey-light",
+                                                        },
+                                                        [
+                                                          _vm._v("Tenant ID"),
+                                                          _c(
+                                                            "p",
+                                                            {
+                                                              staticClass:
+                                                                "font-extrabold",
+                                                            },
+                                                            [
+                                                              _vm._v(
+                                                                _vm._s(
+                                                                  _vm.data
+                                                                    .tenant_id
+                                                                ) + " "
+                                                              ),
+                                                            ]
+                                                          ),
+                                                        ]
+                                                      ),
+                                                    ]),
+                                                  ]),
+                                                  _vm._v(" "),
+                                                  _c("tbody", [
+                                                    _c(
+                                                      "tr",
+                                                      {
+                                                        staticClass:
+                                                          "hover:bg-grey-lighter text-sm",
+                                                      },
+                                                      [
+                                                        _c(
+                                                          "td",
+                                                          {
+                                                            staticClass:
+                                                              "py-4 px-6 border-b border-grey-light border-r ",
+                                                          },
+                                                          [
+                                                            _vm._v(
+                                                              "Outstanding"
+                                                            ),
+                                                            _c(
+                                                              "p",
+                                                              {
+                                                                staticClass:
+                                                                  "font-bold",
+                                                              },
+                                                              [
+                                                                _vm._v(
+                                                                  "RM " +
+                                                                    _vm._s(
+                                                                      _vm.data.outstanding_bills.toFixed(
+                                                                        2
+                                                                      )
+                                                                    )
+                                                                ),
+                                                              ]
+                                                            ),
+                                                          ]
+                                                        ),
+                                                        _vm._v(" "),
+                                                        _c(
+                                                          "td",
+                                                          {
+                                                            staticClass:
+                                                              "py-4 px-6 border-b border-grey-light border-r ",
+                                                          },
+                                                          [
+                                                            _vm._v(
+                                                              "Bills Status"
+                                                            ),
+                                                            _c(
+                                                              "p",
+                                                              {
+                                                                staticClass:
+                                                                  "font-bold",
+                                                              },
+                                                              [
+                                                                _vm._v(
+                                                                  _vm._s(
+                                                                    _vm.data
+                                                                      .bills_status
+                                                                  )
+                                                                ),
+                                                              ]
+                                                            ),
+                                                          ]
+                                                        ),
+                                                        _vm._v(" "),
+                                                        _c(
+                                                          "td",
+                                                          {
+                                                            staticClass:
+                                                              "py-4 px-6 border-b border-grey-light border-r ",
+                                                            attrs: {
+                                                              rowspan: "2",
+                                                            },
+                                                          },
+                                                          [
+                                                            _vm._v(
+                                                              "Total Amount"
+                                                            ),
+                                                            _c(
+                                                              "p",
+                                                              {
+                                                                staticClass:
+                                                                  "font-bold",
+                                                              },
+                                                              [
+                                                                _vm._v(
+                                                                  "RM " +
+                                                                    _vm._s(
+                                                                      _vm.data.total_bills.toFixed(
+                                                                        2
+                                                                      )
+                                                                    )
+                                                                ),
+                                                              ]
+                                                            ),
+                                                            _vm._v(" "),
+                                                            _vm.data
+                                                              .bills_status ==
+                                                            "Overdue"
+                                                              ? _c(
+                                                                  "div",
+                                                                  {
+                                                                    staticClass:
+                                                                      "mb-5 ",
+                                                                  },
+                                                                  [
+                                                                    _c(
+                                                                      "center",
+                                                                      [
+                                                                        _c(
+                                                                          "div",
+                                                                          {
+                                                                            staticClass:
+                                                                              "mx-auto w-50",
+                                                                          },
+                                                                          [
+                                                                            _vm._v(
+                                                                              "\n                                     Overdue"
+                                                                            ),
+                                                                          ]
+                                                                        ),
+                                                                      ]
+                                                                    ),
+                                                                  ],
+                                                                  1
+                                                                )
+                                                              : _vm._e(),
+                                                            _vm._v(" "),
+                                                            _vm.data
+                                                              .payment_status ==
+                                                            "Paid"
+                                                              ? _c(
+                                                                  "div",
+                                                                  {
+                                                                    staticClass:
+                                                                      "mb-5 ",
+                                                                  },
+                                                                  [
+                                                                    _c(
+                                                                      "center",
+                                                                      [
+                                                                        _c(
+                                                                          "div",
+                                                                          {
+                                                                            staticClass:
+                                                                              "mx-auto w-50",
+                                                                          },
+                                                                          [
+                                                                            _vm._v(
+                                                                              "\n                                                Paid\n                                         "
+                                                                            ),
+                                                                          ]
+                                                                        ),
+                                                                      ]
+                                                                    ),
+                                                                  ],
+                                                                  1
+                                                                )
+                                                              : _vm._e(),
+                                                          ]
+                                                        ),
+                                                      ]
+                                                    ),
+                                                    _vm._v(" "),
+                                                    _c(
+                                                      "tr",
+                                                      {
+                                                        staticClass:
+                                                          "hover:bg-grey-lighter text-sm",
+                                                      },
+                                                      [
+                                                        _c(
+                                                          "td",
+                                                          {
+                                                            staticClass:
+                                                              "py-4 px-6 border-b border-grey-light border-r ",
+                                                          },
+                                                          [
+                                                            _vm._v(
+                                                              "Penalty Fees "
+                                                            ),
+                                                            _c(
+                                                              "p",
+                                                              {
+                                                                staticClass:
+                                                                  "font-bold",
+                                                              },
+                                                              [
+                                                                _vm._v(
+                                                                  "RM " +
+                                                                    _vm._s(
+                                                                      _vm.data.penalty_fees.toFixed(
+                                                                        2
+                                                                      )
+                                                                    )
+                                                                ),
+                                                              ]
+                                                            ),
+                                                          ]
+                                                        ),
+                                                        _vm._v(" "),
+                                                        _c(
+                                                          "td",
+                                                          {
+                                                            staticClass:
+                                                              "py-4 px-6 border-b border-grey-light border-r ",
+                                                          },
+                                                          [
+                                                            _vm._v("Bill Due "),
+                                                            _c(
+                                                              "p",
+                                                              {
+                                                                staticClass:
+                                                                  "font-bold",
+                                                              },
+                                                              [
+                                                                _vm._v(
+                                                                  _vm._s(
+                                                                    _vm
+                                                                      .moment(
+                                                                        _vm.data
+                                                                          .due_date
+                                                                      )
+                                                                      .format(
+                                                                        "d-MMM-YYYY"
+                                                                      )
+                                                                  ) + " "
+                                                                ),
+                                                              ]
+                                                            ),
+                                                          ]
+                                                        ),
+                                                      ]
+                                                    ),
+                                                  ]),
+                                                ]
+                                              ),
+                                            ]
+                                          ),
+                                        ]
+                                      ),
+                                    ],
+                                    1
+                                  ),
+                                ]
+                              ),
+                            ]
+                          ),
+                        ]
+                      ),
+                    ]),
+              ]
+            ),
+          ]),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "flex justify-end items-center w-100 border-t p-3" },
+            [
+              _c(
+                "button",
+                {
+                  staticClass:
+                    "bg-red-600 hover:bg-red-700 px-3 py-1 rounded text-white mr-1 close-modal",
+                  on: { click: _vm.closeModal },
+                },
+                [_vm._v("Cancel")]
+              ),
+            ]
+          ),
+        ]
+      ),
+    ]
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
 
 /***/ }),
 
@@ -1193,6 +2041,72 @@ var render = function () {
                                                             click: function (
                                                               $event
                                                             ) {
+                                                              return _vm.checkTenantBill(
+                                                                mate.student_id,
+                                                                mate
+                                                              )
+                                                            },
+                                                          },
+                                                        },
+                                                        [
+                                                          _c(
+                                                            "svg",
+                                                            {
+                                                              attrs: {
+                                                                xmlns:
+                                                                  "http://www.w3.org/2000/svg",
+                                                                fill: "none",
+                                                                viewBox:
+                                                                  "0 0 24 24",
+                                                                stroke:
+                                                                  "currentColor",
+                                                              },
+                                                            },
+                                                            [
+                                                              _c("path", {
+                                                                attrs: {
+                                                                  "stroke-linecap":
+                                                                    "round",
+                                                                  "stroke-linejoin":
+                                                                    "round",
+                                                                  "stroke-width":
+                                                                    "2",
+                                                                  d: "M15 12a3 3 0 11-6 0 3 3 0 016 0z",
+                                                                },
+                                                              }),
+                                                              _vm._v(" "),
+                                                              _c("path", {
+                                                                attrs: {
+                                                                  "stroke-linecap":
+                                                                    "round",
+                                                                  "stroke-linejoin":
+                                                                    "round",
+                                                                  "stroke-width":
+                                                                    "2",
+                                                                  d: "M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z",
+                                                                },
+                                                              }),
+                                                            ]
+                                                          ),
+                                                        ]
+                                                      ),
+                                                    ]
+                                                  ),
+                                                  _vm._v(" "),
+                                                  _c(
+                                                    "div",
+                                                    {
+                                                      staticClass:
+                                                        "w-4 mr-2 transform hover:text-purple-500 hover:scale-110",
+                                                    },
+                                                    [
+                                                      _c(
+                                                        "button",
+                                                        {
+                                                          on: {
+                                                            click: function (
+                                                              $event
+                                                            ) {
                                                               return _vm.kickTenant(
                                                                 mate.room_id,
                                                                 mate.tenant_id
@@ -1284,6 +2198,13 @@ var render = function () {
               role: _vm.role,
             },
             on: { refreshData: _vm.getData, closeModal: _vm.closeModal },
+          })
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.toggleRModal
+        ? _c("BillModal", {
+            attrs: { user_id: _vm.tenant_id, role: 1, tenant: _vm.tenant },
+            on: { closeModal: _vm.closeRModal },
           })
         : _vm._e(),
     ],
@@ -1430,7 +2351,7 @@ var staticRenderFns = [
           },
           [
             _vm._v(
-              "\n                            Kick Tenant\n                            "
+              "\n                            Check Bills / Kick\n                            "
             ),
           ]
         ),
@@ -1612,6 +2533,75 @@ var render = function () {
 }
 var staticRenderFns = []
 render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/ManageRentalProperty/Bill_Modal.vue":
+/*!*********************************************************************!*\
+  !*** ./resources/js/components/ManageRentalProperty/Bill_Modal.vue ***!
+  \*********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _Bill_Modal_vue_vue_type_template_id_1002b6ab___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Bill_Modal.vue?vue&type=template&id=1002b6ab& */ "./resources/js/components/ManageRentalProperty/Bill_Modal.vue?vue&type=template&id=1002b6ab&");
+/* harmony import */ var _Bill_Modal_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Bill_Modal.vue?vue&type=script&lang=js& */ "./resources/js/components/ManageRentalProperty/Bill_Modal.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _Bill_Modal_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _Bill_Modal_vue_vue_type_template_id_1002b6ab___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _Bill_Modal_vue_vue_type_template_id_1002b6ab___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/ManageRentalProperty/Bill_Modal.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/ManageRentalProperty/Bill_Modal.vue?vue&type=script&lang=js&":
+/*!**********************************************************************************************!*\
+  !*** ./resources/js/components/ManageRentalProperty/Bill_Modal.vue?vue&type=script&lang=js& ***!
+  \**********************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Bill_Modal_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./Bill_Modal.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/ManageRentalProperty/Bill_Modal.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Bill_Modal_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/ManageRentalProperty/Bill_Modal.vue?vue&type=template&id=1002b6ab&":
+/*!****************************************************************************************************!*\
+  !*** ./resources/js/components/ManageRentalProperty/Bill_Modal.vue?vue&type=template&id=1002b6ab& ***!
+  \****************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Bill_Modal_vue_vue_type_template_id_1002b6ab___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./Bill_Modal.vue?vue&type=template&id=1002b6ab& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/ManageRentalProperty/Bill_Modal.vue?vue&type=template&id=1002b6ab&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Bill_Modal_vue_vue_type_template_id_1002b6ab___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Bill_Modal_vue_vue_type_template_id_1002b6ab___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

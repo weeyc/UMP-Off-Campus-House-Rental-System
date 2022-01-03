@@ -35,8 +35,13 @@ class ChatController extends Controller
             $notifications = $user->notifications()->orderBy('created_at','desc')->get()
             ->groupBy(function($date) {
                 return Carbon::parse($date->created_at)->format('d M Y'); // grouping by day
-            });
-            return response()->json(['data'=>$notifications],200);
+            })->toArray();
+
+          //return $notifications ;
+
+          return response()->json([
+            'noti' => array_values($notifications)
+        ], 200);
 
         }
 
@@ -55,11 +60,8 @@ class ChatController extends Controller
 
         }else if($role == 2){
             $user = Landlord::find($id);
-            $notifications = $user->notifications()->orderBy('created_at','desc')->get()
-            ->groupBy(function($date) {
-                return Carbon::parse($date->created_at)->format('d M Y'); // grouping by day
-            });
-            return response()->json(['data'=>$notifications],200);
+            $notifications = $user->notifications()->orderBy('created_at','desc')->get();
+            return $notifications;
 
         }
 
@@ -75,11 +77,8 @@ class ChatController extends Controller
 
         }else if($role == 2){
             $user = Landlord::find($id);
-            $notifications = $user->notifications()->orderBy('created_at','desc')->get()
-            ->groupBy(function($date) {
-                return Carbon::parse($date->created_at)->format('d M Y'); // grouping by day
-            });
-            return response()->json(['data'=>$notifications],200);
+            $user->unreadNotifications->markAsRead();
+            return response(['message' => 'all']);
 
         }
 

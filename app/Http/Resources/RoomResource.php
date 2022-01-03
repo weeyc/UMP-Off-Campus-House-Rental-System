@@ -36,6 +36,7 @@ class RoomResource extends JsonResource
             'property' => new PropertyResource($property),
             'photo_room' => PhotoResource::collection($this->whenLoaded('getPhotoRelation')),
             'tenants' => TenantResource::collection($this->whenLoaded('getTenantRelation')),
+            'bills' => BillResource::collection($this->whenLoaded('getBillsRelation')),
             //'cover_room' => PhotoResource::collection($this->whenLoaded('getPhotoRelation'))->where('photo_label', 'Cover')->first()
         ];
 

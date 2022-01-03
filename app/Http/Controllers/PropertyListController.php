@@ -181,13 +181,13 @@ class PropertyListController extends Controller
                 $ID = $request -> session()->get('ID');
                 $Sender_std = Student::find($ID);
                 $Sender_land = null;
-                $Student = Student::with('getPaymentRelation')->whereHas('getPaymentRelation', function($query) use($r_id) {
-                    $query->where('room_id', $r_id);
-                ;})->get();
+                // $Student = Student::with('getPaymentRelation')->whereHas('getPaymentRelation', function($query) use($r_id) {
+                //     $query->where('room_id', $r_id);
+                // ;})->get();
                 $Landlord = Landlord::with('getPaymentRelation')->whereHas('getPaymentRelation', function($query) use($prop_id) {
                     $query->where('property_id', $prop_id);
                 ;})->first();
-                Notification::send($Student, new PaymentNotification($Payment, $Sender_std,$Sender_land));
+                Notification::send($Sender_std, new PaymentNotification($Payment, $Sender_std,$Sender_land));
                 $Landlord->notify(new PaymentNotification($Payment, $Sender_std,$Sender_land));
             }
 

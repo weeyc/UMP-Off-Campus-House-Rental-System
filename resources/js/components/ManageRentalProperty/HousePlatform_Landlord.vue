@@ -115,7 +115,7 @@
                             Tenancy Status
                             </th>
                             <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                            Kick Tenant
+                            Check Bills / Kick
                             </th>
                         </tr>
                         </thead>
@@ -144,6 +144,14 @@
                             </td>
                                 <td class="py-3 px-2 text-center">
                                     <div class="flex item-center justify-center">
+                                           <div class="w-4 mr-2 transform hover:text-purple-500 hover:scale-110">
+                                            <button @click="checkTenantBill(mate.student_id,mate);">
+                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                                                </svg>
+                                            </button>
+                                        </div>
                                         <div class="w-4 mr-2 transform hover:text-purple-500 hover:scale-110">
                                             <button @click="kickTenant(mate.room_id, mate.tenant_id);">
                                                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -194,6 +202,14 @@
             @closeModal="closeModal">
         </PostModal>
 
+        <BillModal
+            v-if="toggleRModal"
+            :user_id="tenant_id"
+            :role=1
+            :tenant="tenant"
+            @closeModal="closeRModal">
+        </BillModal>
+
 
 
 
@@ -202,10 +218,12 @@
 <script>
 
 import PostModal from './Post_Modal.vue';
+import BillModal from './Bill_Modal.vue';
 import moment from "moment";
 export default {
      components: {
         PostModal,
+        BillModal,
     },
     props: {
         user_id: Number,
@@ -224,7 +242,9 @@ export default {
             bydate: '',
             tenant_bills: [],
             tenant_id: '',
+            tenant: {},
             room_id: '',
+
 
             form: {
                 property_id: '',
@@ -325,6 +345,11 @@ export default {
             },
         checkBill(){
             this.$router.push({ name: 'std_bills' })
+        },
+        checkTenantBill(student_id,mate){
+            this.tenant_id=student_id;
+            this.tenant=mate;
+            this.toggleRModal = !this.toggleRModal;
         },
 
     },
