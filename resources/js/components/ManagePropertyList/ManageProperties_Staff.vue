@@ -76,7 +76,7 @@
 
                 <table class="min-w-full shadow-lg border-b-2 ">
                      <thead>
-                            <tr class="border-b bg-pink-400 text-gray-900 uppercase text-base leading-normal"  style="background-image: url(/images/BlueCoral.jpg);">
+                            <tr class="border-b bg-pink-400 text-black uppercase text-base leading-normal"  style="background-image: url(/images/BlueCoral.jpg);">
                                 <th class="py-3 px-3 text-left">No.</th>
                                 <th class="py-3 px-6 text-left">Property ID</th>
                                 <th class="py-3 px-6 text-left">Property</th>
@@ -88,7 +88,7 @@
                                 <th class="py-3 px-6 text-center">Actions</th>
                             </tr>
                         </thead>
-                        <tbody class="text-dark-600 text-sm font-light">
+                        <tbody class="text-black text-sm font-light">
                             <tr  v-for= "(prop, index) in Status" :key="prop.id"   class="border-b border-gray-200 hover:bg-pink-200" >
                                  <td class="py-3 px-3 text-left whitespace-nowrap">  {{ index + 1 }}</td >
                                 <td class="py-3 px-6 text-left whitespace-nowrap">
@@ -99,7 +99,7 @@
                                 </td>
                                 <td class="py-3 px-6 text-left">
 
-                                   <router-link :to="{ name: 'view_property', params:{property_id: prop.id}}" target="_blank" class="flex items-center">
+                                   <router-link :to="{ name: 'view_property', params:{property_id: prop.id}}" target="_blank" class="flex items-center text-black">
                                           <!-- <div class="mr-2">
                                             <img :src="'/images/Profile/'+student.pic"  class="w-6 h-6 rounded-full hover:scale-150 hover:z-10 transform ease-in-out transition duration-500">
                                         </div> -->
@@ -289,12 +289,12 @@ export default {
         deleteUser(id, name){
                 Swal.fire({
                     title: 'Are you sure?',
-                    text: "Delete Student: "+name,
+                    text: "Delete Property: "+name,
                     icon: 'warning',
                     showCancelButton: true,
                     confirmButtonColor: '#3085d6',
                     cancelButtonColor: '#d33',
-                    confirmButtonText: 'Yes, delete this student!'
+                    confirmButtonText: 'Yes, delete this property!'
                     }).then((result) => {
                         if (result.isConfirmed) {
                             axios.delete('/api/delete_property/'+id).then((response)=>{

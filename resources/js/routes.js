@@ -41,6 +41,9 @@ const Bills_Landlord = () => import(/* webpackChunkName: "Bills_Landlord" */'./c
 const Property_Bills = () => import(/* webpackChunkName: "Property_Bills" */'./components/ManagePayment/Property_Bills');
 
 
+const Chat = () => import(/* webpackChunkName: "Chat" */'./components/ManageMessenger/Chat');
+
+
 
 
 const NotFound = () => import(/* webpackChunkName: "NotFound" */'./components/NotFound');
@@ -308,6 +311,11 @@ export default{
             path: '/student/rental_room',
             name: 'RentalRoom_student',
             component: RentalRoom_student,
+        },
+        {
+            path: '/student/chat',
+            name: 'chat_std',
+            component: Chat,
         },
         {
             path: '/student/rental_room/house_platform/:id',

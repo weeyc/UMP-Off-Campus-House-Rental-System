@@ -265,6 +265,18 @@ class TestController extends Controller
                 'penalty_fees' => 0.0,
                 ]);
     }
+    public function resetBill_OneStd($id, Request $request){
+
+       Bill::query()
+            ->update([
+                'bills_status' => 'Unready',
+                'payment_status' => 'Unpaid',
+                'bills_cue' => 0,
+                'outstanding_bills' => 0.0,
+                'penalty_fees' => 0.0,
+                'student_id'=>$id,
+                ]);
+    }
 
     public function getTimeNow(Request $request){
 

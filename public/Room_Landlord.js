@@ -207,7 +207,7 @@ var Errors = /*#__PURE__*/function () {
       type: 'password',
       btnText: 'Show Password',
       isVisible: false,
-      modalBackground: '',
+      modalBackground: 'bg-gradient-to-br from-sky-400 to-cyan-300',
       activePhase: 1,
       replace: false,
       chgPic: 0
@@ -266,19 +266,9 @@ var Errors = /*#__PURE__*/function () {
     },
     closeModal: function closeModal() {
       this.$emit("closeModal");
-    },
-    getRole: function getRole() {
-      if (this.role == 1) {
-        this.modalBackground = 'bg-gradient-to-b from-pink-300 via-purple-300 to-indigo-400';
-      } else if (this.role == 2) {
-        this.modalBackground = 'bg-gradient-to-br from-sky-400 to-cyan-300';
-      } else {
-        this.modalBackground = 'bg-gradient-to-b from-pink-300 via-purple-300 to-indigo-400';
-      }
     }
   },
   mounted: function mounted() {
-    this.getRole();
     this.form.furnishing = this.form.furnishing.split(',');
   }
 });
@@ -575,7 +565,7 @@ var render = function () {
         "div",
         {
           staticClass:
-            "rounded max-h-full overflow-y-auto shadow-lg max-w-5xl p-6 mx-auto min-w-full",
+            "rounded max-h-full overflow-y-auto shadow-lg max-w-5xl p-6 mx-auto min-w-2/3",
           class: [_vm.modalBackground],
         },
         [
@@ -611,7 +601,7 @@ var render = function () {
                   },
                 ],
                 staticClass:
-                  " max-w-4xl p-6 mx-auto bg-gray-200 rounded-md shadow-md",
+                  " w-full p-6 mx-auto bg-gray-200 rounded-md shadow-md",
                 attrs: { id: "propertyDetail" },
               },
               [
@@ -953,7 +943,7 @@ var render = function () {
                   "section",
                   {
                     staticClass:
-                      " max-w-4xl p-6 mx-auto bg-gray-200 rounded-md shadow-md ",
+                      " w-full p-6 mx-auto bg-gray-200 rounded-md shadow-md ",
                     attrs: { id: "Uploader" },
                   },
                   [
@@ -1121,7 +1111,7 @@ var render = function () {
                   "section",
                   {
                     staticClass:
-                      "mt-10 max-w-4xl p-6 mx-auto bg-gray-200 rounded-md shadow-md dark:bg-gray-800",
+                      "mt-10 w-full p-6 mx-auto bg-gray-200 rounded-md shadow-md dark:bg-gray-800",
                     attrs: { id: "Furnisher" },
                   },
                   [
@@ -1134,7 +1124,7 @@ var render = function () {
                       [_vm._v("Furnishing and Description")]
                     ),
                     _vm._v(" "),
-                    _c("div", [
+                    _c("div", { staticClass: "w-full" }, [
                       _c(
                         "h2",
                         {
@@ -1713,7 +1703,7 @@ var render = function () {
           {
             key: list.id,
             staticClass:
-              "max-w-2xl px-8 py-4 mx-auto   overflow-hidden bg-white rounded-lg shadow-lg mt-5",
+              "p-5 overflow-hidden bg-white rounded-lg shadow-lg mt-5",
           },
           [
             _c("div", { staticClass: "w-full p-4 md:p-4" }, [
@@ -1750,7 +1740,7 @@ var render = function () {
                   staticStyle: {
                     width: "100%",
                     margin: "10px auto",
-                    height: "250px",
+                    height: "300px",
                   },
                 },
                 [

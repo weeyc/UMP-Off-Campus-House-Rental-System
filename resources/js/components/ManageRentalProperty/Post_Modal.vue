@@ -75,7 +75,7 @@ export default {
          },
         getRole(){
             if(this.role == 1){
-                this.modalBackground = 'bg-gradient-to-b from-pink-300 via-purple-300 to-indigo-400'
+                this.modalBackground = 'bg-gradient-to-bl from-yellow-200 via-yellow-300 to-yellow-400'
             }else if (this.role == 2){
                 this.modalBackground = 'bg-gradient-to-br from-sky-400 to-cyan-300'
             }else{

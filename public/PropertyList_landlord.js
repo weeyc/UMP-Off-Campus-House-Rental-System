@@ -10,6 +10,11 @@
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _RoomCard_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./RoomCard.vue */ "./resources/js/components/ManagePropertyList/RoomCard.vue");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_1__);
+//
+//
+//
 //
 //
 //
@@ -53,6 +58,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
     RoomCard: _RoomCard_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
@@ -63,6 +69,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
+      moment: moment__WEBPACK_IMPORTED_MODULE_1___default.a,
       properties: [],
       btn: 'hidden'
     };
@@ -169,7 +176,10 @@ var render = function () {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "max-w-3xl p-6 mx-auto mt-10 bg-gray-200 rounded-md mb-10" },
+    {
+      staticClass:
+        "max-w-5xl p-6 mx-auto mt-5 bg-gray-100 rounded-md mb-5 shadow-inner",
+    },
     [
       _c(
         "div",
@@ -201,95 +211,126 @@ var render = function () {
             _vm._l(_vm.properties, function (property) {
               return _c(
                 "div",
-                {
-                  key: property.id,
-                  staticClass:
-                    "max-w-2xl px-8 py-4 mx-auto flex  overflow-hidden bg-white rounded-lg shadow-lg mt-5",
-                },
+                { key: property.id, staticClass: "flex justify-start  " },
                 [
-                  property.cover != null
-                    ? _c("div", { staticClass: "w-1/3 bg-cover" }, [
-                        _c("img", {
-                          staticClass: "rounded-full h-50 w-50 object-cover",
-                          attrs: {
-                            src:
-                              "/images/Properties/" + property.cover.photo_name,
-                            alt: "Avatar",
-                          },
-                        }),
-                      ])
-                    : _c("div", { staticClass: "w-1/3 bg-cover" }, [
-                        _c("img", {
-                          staticClass: "rounded-full h-50 w-50 object-cover",
-                          attrs: {
-                            src:
-                              "/images/Properties/" +
-                              property.photo[0].photo_name,
-                            alt: "Avatar",
-                          },
-                        }),
-                      ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "w-2/3 p-4 md:p-4" }, [
-                    _c(
-                      "div",
-                      { staticClass: "flex justify-between item-center" },
-                      [
-                        _c(
-                          "h1",
-                          {
-                            staticClass:
-                              "text-2xl font-bold text-gray-800 dark:text-white",
-                          },
-                          [_vm._v(_vm._s(property.name))]
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "router-link",
-                          {
-                            staticClass:
-                              "px-2 py-1 text-xs font-bold text-white uppercase transition-colors duration-200\n                                transform bg-gray-800 rounded hover:bg-gray-700  focus:outline-none focus:bg-gray-700",
-                            attrs: {
-                              to: {
-                                name: "property",
-                                params: {
-                                  property_id: property.id,
-                                  role: _vm.role,
-                                },
+                  _c(
+                    "router-link",
+                    {
+                      staticClass:
+                        "flex justify-center w-full px-8 py-4 overflow-hidden bg-white rounded-lg shadow-lg mt-5 cursor-pointer transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-105 duration-200 hover:bg-blue-400 hover:shadow-2xl",
+                      attrs: {
+                        to: {
+                          name: "property",
+                          params: { property_id: property.id, role: _vm.role },
+                        },
+                      },
+                    },
+                    [
+                      property.cover != null
+                        ? _c("div", { staticClass: "w-1/3 bg-cover" }, [
+                            _c("img", {
+                              staticClass: "h-48 w-full object-cover",
+                              attrs: {
+                                src:
+                                  "/images/Properties/" +
+                                  property.cover.photo_name,
                               },
-                            },
-                          },
+                            }),
+                          ])
+                        : _c("div", { staticClass: "w-1/3 bg-cover" }, [
+                            _c("img", {
+                              staticClass: "h-48 w-full object-cover",
+                              attrs: {
+                                src:
+                                  "/images/Properties/" +
+                                  property.photo[0].photo_name,
+                                alt: "Avatar",
+                              },
+                            }),
+                          ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "w-2/3 p-4 md:p-4" }, [
+                        _c(
+                          "div",
+                          { staticClass: "flex justify-between item-center" },
                           [
-                            _vm._v(
-                              "\n                                View Details\n                        "
+                            _c(
+                              "h1",
+                              {
+                                staticClass:
+                                  "text-2xl font-bold text-gray-800 dark:text-white",
+                              },
+                              [_vm._v(" " + _vm._s(property.name))]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "h1",
+                              {
+                                staticClass:
+                                  "text-2xl font-bold text-yellow-800 dark:text-white",
+                              },
+                              [_vm._v(_vm._s(property.status))]
                             ),
                           ]
                         ),
-                      ],
-                      1
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "p",
-                      {
-                        staticClass:
-                          "mt-2 text-sm text-gray-600 dark:text-gray-400",
-                      },
-                      [_vm._v(_vm._s(property.address))]
-                    ),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "flex mt-2 item-center" }, [
-                      _c(
-                        "p",
-                        {
-                          staticClass:
-                            "mt-2 text-sm text-gray-600 dark:text-gray-400",
-                        },
-                        [_vm._v(_vm._s(property.status))]
-                      ),
-                    ]),
-                  ]),
-                ]
+                        _vm._v(" "),
+                        _c(
+                          "p",
+                          {
+                            staticClass:
+                              "mt-2 text-sm text-gray-600 dark:text-gray-400",
+                          },
+                          [
+                            _vm._v(
+                              _vm._s(property.address) +
+                                " | " +
+                                _vm._s(property.campus)
+                            ),
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "flex mt-2 item-center" }, [
+                          _c(
+                            "p",
+                            {
+                              staticClass:
+                                "mt-2 text-sm text-gray-600 dark:text-gray-400",
+                            },
+                            [
+                              _vm._v(
+                                _vm._s(property.postcode) +
+                                  " | " +
+                                  _vm._s(property.gender_preferences)
+                              ),
+                            ]
+                          ),
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "flex mt-2 item-center" }, [
+                          _c(
+                            "p",
+                            {
+                              staticClass:
+                                "mt-2 text-sm text-gray-600 dark:text-gray-400",
+                            },
+                            [
+                              _vm._v(
+                                _vm._s(property.furnishing) +
+                                  "| Created at: " +
+                                  _vm._s(
+                                    _vm
+                                      .moment(property.created_at)
+                                      .format("MMM-YYYY")
+                                  )
+                              ),
+                            ]
+                          ),
+                        ]),
+                      ]),
+                    ]
+                  ),
+                ],
+                1
               )
             }),
             0

@@ -596,7 +596,7 @@ var render = function () {
                                                             _c("div", {
                                                               ref: "paypal",
                                                               staticClass:
-                                                                "mx-auto w-50",
+                                                                "mx-auto",
                                                             }),
                                                           ]),
                                                         ],

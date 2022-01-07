@@ -8,7 +8,7 @@
             </div>
         </div>
 
-        <div  v-for= "house in property" :key="house.id"  class="max-w-2xl px-8 py-4 mx-auto   overflow-hidden bg-white rounded-lg shadow-lg mt-5">
+        <div  v-for= "house in property" :key="house.id"  class="overflow-hidden bg-white rounded-lg shadow-lg mt-5 p-5">
             <div class="w-full p-4 md:p-4">
                 <div class="flex justify-between item-center">
                     <h1 class="text-2xl font-bold text-gray-800 dark:text-white">Property Name: {{ house.name }}</h1>
@@ -18,7 +18,7 @@
                     </button >
                 </div>
                       <!-- Images Carousel -->
-            <div class="border-double border-4 border-light-blue-500" style="width:100%;margin:10px auto;height:250px">
+            <div class="border-double border-4 border-light-blue-500" style="width:100%;margin:10px auto;height:300px">
 
                 <slider ref="slider" :options="options">
                     <slideritem   v-for="(item,index) in propertyPhoto" :key="index" >
@@ -67,25 +67,25 @@
             </div>
             <div v-else>
 
+            <div v-for= "room in rooms" :key="room.id"  class="flex justify-start  ">
+                <router-link :to="{ name: 'room_landlord', params:{room_id: room.id}}" class="flex justify-center w-full px-8 py-4 overflow-hidden bg-white rounded-lg shadow-lg mt-5 cursor-pointer transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-105 duration-200 hover:bg-blue-400 hover:shadow-2xl">
 
-            <div  v-for= "room in rooms" :key="room.id"  class="max-w-2xl px-8 py-4 mx-auto flex  overflow-hidden bg-white rounded-lg shadow-lg mt-5">
-                     <div v-if="room.photo_room != null" > <img class="h-48 w-full object-cover" :src="'/images/Properties/'+room.photo_room[0].photo_name" alt="Avatar" /></div>
-                    <div v-else > <img class="h-48 w-full object-cover"  alt="Avatar" /></div>
-                <div class="w-2/3 p-4 md:p-4">
-                    <div class="flex justify-between item-center">
-                        <h1 class="text-2xl font-bold text-gray-800 dark:text-white">{{ room.listing_name }}</h1>
-                        <router-link :to="{ name: 'room_landlord', params:{room_id: room.id}}" class="px-2 py-1 text-xs font-bold text-white uppercase transition-colors duration-200
-                                transform bg-gray-800 rounded hover:bg-gray-700  focus:outline-none focus:bg-gray-700">
-                                Room Details
-                        </router-link >
+                    <div v-if="room.photo_room != null" class="w-1/3 bg-cover" > <img class="h-48 w-full object-cover"   :src="'/images/Properties/'+room.photo_room[0].photo_name"  /></div>
+                    <div v-else class="w-1/3 bg-cover" > <img class="h-48 w-full object-cover" alt="Avatar"  /></div>
+                    <div class="w-2/3 p-4 md:p-4">
+                        <div class="flex justify-between item-center">
+                            <h1 class="text-2xl font-bold text-gray-800 dark:text-white"> {{ room.listing_name  }}</h1>
+                            <h1 class="text-2xl font-bold text-yellow-800 dark:text-white">{{ room.room_status}}</h1>
+                        </div>
+                        <p class="mt-2 text-sm text-gray-600 dark:text-gray-400">Room Name {{ room.room_name }}</p>
+                        <div class="flex mt-2 item-center">
+                            <p class="mt-2 text-sm text-gray-600 dark:text-gray-400">Room Type: {{ room.room_type }}Room Type: {{ room.room_type }}</p>
+                        </div>
+                        <div class="flex mt-2 item-center">
+                            <p class="mt-2 text-sm text-gray-600 dark:text-gray-400">Monthly Rent: RM {{ room.monthly_rent }}</p>
+                        </div>
                     </div>
-                    <p class="mt-2 text-sm text-gray-600 dark:text-gray-400">Room Name {{ room.room_name }}</p>
-                    <p class="mt-2 text-sm text-gray-600 dark:text-gray-400">Room Type: {{ room.room_type }}</p>
-                    <p class="mt-2 text-sm text-gray-600 dark:text-gray-400">Monthly Rent: RM {{ room.monthly_rent }}</p>
-                    <div class="flex mt-2 item-center">
-                        <p class="mt-2 text-sm text-gray-600 dark:text-gray-400">Room Listing Status: {{ room.room_status }}</p>
-                    </div>
-                </div>
+                </router-link>
             </div>
            </div>
 
@@ -96,6 +96,7 @@
             v-if="toggleModal"
             :form="form"
             :propertyPhoto="propertyPhoto"
+            :role = role
             :property_id="parseInt(property_id)"
             @refreshData="getProperty"
             @closeModal="closeEditModal">
@@ -105,6 +106,7 @@
             v-if="toggleAddModal"
             :property_id="parseInt(property_id)"
             :landlord_id="parseInt(landlord_id)"
+            :role = role
             @refreshData="getRooms"
             @closeModal="closeAddModal">
         </AddRoomModal>

@@ -296,12 +296,12 @@ __webpack_require__.r(__webpack_exports__);
 
       Swal.fire({
         title: 'Are you sure?',
-        text: "Delete Student: " + name,
+        text: "Delete Property: " + name,
         icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
-        confirmButtonText: 'Yes, delete this student!'
+        confirmButtonText: 'Yes, delete this property!'
       }).then(function (result) {
         if (result.isConfirmed) {
           axios["delete"]('/api/delete_property/' + id).then(function (response) {
@@ -772,7 +772,7 @@ var render = function () {
                 _vm._v(" "),
                 _c(
                   "tbody",
-                  { staticClass: "text-dark-600 text-sm font-light" },
+                  { staticClass: "text-black text-sm font-light" },
                   [
                     _vm._l(_vm.Status, function (prop, index) {
                       return _c(
@@ -814,7 +814,7 @@ var render = function () {
                               _c(
                                 "router-link",
                                 {
-                                  staticClass: "flex items-center",
+                                  staticClass: "flex items-center text-black",
                                   attrs: {
                                     to: {
                                       name: "view_property",
@@ -1068,7 +1068,7 @@ var staticRenderFns = [
         "tr",
         {
           staticClass:
-            "border-b bg-pink-400 text-gray-900 uppercase text-base leading-normal",
+            "border-b bg-pink-400 text-black uppercase text-base leading-normal",
           staticStyle: { "background-image": "url(/images/BlueCoral.jpg)" },
         },
         [

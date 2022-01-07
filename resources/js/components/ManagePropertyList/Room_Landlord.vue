@@ -6,7 +6,7 @@
             </button>
         </div>
 
-        <div  v-for= "list in room" :key="list.id"  class="max-w-2xl px-8 py-4 mx-auto   overflow-hidden bg-white rounded-lg shadow-lg mt-5">
+        <div  v-for= "list in room" :key="list.id"  class="p-5 overflow-hidden bg-white rounded-lg shadow-lg mt-5">
             <div class="w-full p-4 md:p-4">
                 <div class="flex justify-between item-center">
                     <h1 class="text-2xl font-bold text-gray-800 dark:text-white">Listing Room Name: {{ list.listing_name }}</h1>
@@ -17,7 +17,7 @@
                     </button >
                 </div>
                       <!-- Images Carousel -->
-            <div class="border-double border-4 border-light-blue-500" style="width:100%;margin:10px auto;height:250px">
+            <div class="border-double border-4 border-light-blue-500" style="width:100%;margin:10px auto;height:300px">
 
                 <slider ref="slider" :options="options">
                     <slideritem   v-for="(item,index) in roomPhoto" :key="index" >

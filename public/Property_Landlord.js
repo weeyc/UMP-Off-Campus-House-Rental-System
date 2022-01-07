@@ -167,7 +167,8 @@ var Errors = /*#__PURE__*/function () {
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     property_id: Number,
-    landlord_id: Number
+    landlord_id: Number,
+    role: Number
   },
   components: {
     ImageUploader: _ImageUploader_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
@@ -433,7 +434,6 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 //
 //
 //
-//
 var Errors = /*#__PURE__*/function () {
   function Errors() {
     _classCallCheck(this, Errors);
@@ -465,7 +465,8 @@ var Errors = /*#__PURE__*/function () {
   props: {
     form: Object,
     property_id: Number,
-    propertyPhoto: Array
+    propertyPhoto: Array,
+    role: Number
   },
   components: {
     ImageUploader: _ImageUploader_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
@@ -539,7 +540,7 @@ var Errors = /*#__PURE__*/function () {
       if (this.role == 1) {
         this.modalBackground = 'bg-gradient-to-b from-pink-300 via-purple-300 to-indigo-400';
       } else if (this.role == 2) {
-        this.modalBackground = 'bg-gradient-to-br from-sky-400 to-cyan-300';
+        this.modalBackground = 'bg-gradient-to-r from-sky-400 to-cyan-300';
       } else {
         this.modalBackground = 'bg-gradient-to-b from-pink-300 via-purple-300 to-indigo-400';
       }
@@ -568,6 +569,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _GoogleMap_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./GoogleMap.vue */ "./resources/js/components/ManagePropertyList/GoogleMap.vue");
 /* harmony import */ var _EditProperty_Modal_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./EditProperty_Modal.vue */ "./resources/js/components/ManagePropertyList/EditProperty_Modal.vue");
 /* harmony import */ var _AddRoom_Modal_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./AddRoom_Modal.vue */ "./resources/js/components/ManagePropertyList/AddRoom_Modal.vue");
+//
+//
 //
 //
 //
@@ -870,7 +873,7 @@ var render = function () {
         "div",
         {
           staticClass:
-            "rounded max-h-full overflow-y-auto shadow-lg max-w-5xl p-6 mx-auto min-w-full",
+            "rounded max-h-full overflow-y-auto shadow-lg max-w-2/3 p-6 mx-auto min-w-2/3",
           class: [_vm.modalBackground],
         },
         [
@@ -1213,7 +1216,7 @@ var render = function () {
                   "section",
                   {
                     staticClass:
-                      "mt-10 max-w-4xl p-6 mx-auto bg-gray-200 rounded-md shadow-md dark:bg-gray-800",
+                      "mt-10 max-w-4xl p-6 mx-auto bg-gray-200 rounded-md shadow-md",
                     attrs: { id: "Uploader" },
                   },
                   [
@@ -1242,6 +1245,7 @@ var render = function () {
                           "keep-alive",
                           [
                             _c("ImageUploader", {
+                              staticClass: "w-full",
                               attrs: { hideLabel: true, editImage: false },
                               on: { getImage: _vm.getImages },
                             }),
@@ -1292,7 +1296,7 @@ var render = function () {
                   "section",
                   {
                     staticClass:
-                      "mt-10 max-w-4xl p-6 mx-auto bg-gray-200 rounded-md shadow-md dark:bg-gray-800",
+                      "mt-10 w-full p-6 mx-auto bg-gray-200 rounded-md shadow-md",
                     attrs: { id: "Furnisher" },
                   },
                   [
@@ -1709,7 +1713,7 @@ var render = function () {
         "div",
         {
           staticClass:
-            "rounded max-h-full overflow-y-auto shadow-lg max-w-5xl p-6 mx-auto min-w-full",
+            "rounded max-h-screen overflow-y-auto shadow-lg p-6 mx-auto min-w-2/3 max-w-2/3 ",
           class: [_vm.modalBackground],
         },
         [
@@ -2897,22 +2901,6 @@ var render = function () {
                 },
                 [_vm._v("Cancel")]
               ),
-              _vm._v(" "),
-              _c(
-                "button",
-                {
-                  staticClass:
-                    "bg-green-600 hover:bg-green-700 px-3 py-1 rounded text-white",
-                  attrs: { type: "submit" },
-                  on: {
-                    click: function ($event) {
-                      $event.preventDefault()
-                      return _vm.editProperty.apply(null, arguments)
-                    },
-                  },
-                },
-                [_vm._v("Update")]
-              ),
             ]
           ),
         ]
@@ -2981,7 +2969,7 @@ var render = function () {
           {
             key: house.id,
             staticClass:
-              "max-w-2xl px-8 py-4 mx-auto   overflow-hidden bg-white rounded-lg shadow-lg mt-5",
+              "overflow-hidden bg-white rounded-lg shadow-lg mt-5 p-5",
           },
           [
             _c(
@@ -3021,7 +3009,7 @@ var render = function () {
                     staticStyle: {
                       width: "100%",
                       margin: "10px auto",
-                      height: "250px",
+                      height: "300px",
                     },
                   },
                   [
@@ -3170,115 +3158,122 @@ var render = function () {
                   _vm._l(_vm.rooms, function (room) {
                     return _c(
                       "div",
-                      {
-                        key: room.id,
-                        staticClass:
-                          "max-w-2xl px-8 py-4 mx-auto flex  overflow-hidden bg-white rounded-lg shadow-lg mt-5",
-                      },
+                      { key: room.id, staticClass: "flex justify-start  " },
                       [
-                        room.photo_room != null
-                          ? _c("div", [
-                              _c("img", {
-                                staticClass: "h-48 w-full object-cover",
-                                attrs: {
-                                  src:
-                                    "/images/Properties/" +
-                                    room.photo_room[0].photo_name,
-                                  alt: "Avatar",
-                                },
-                              }),
-                            ])
-                          : _c("div", [
-                              _c("img", {
-                                staticClass: "h-48 w-full object-cover",
-                                attrs: { alt: "Avatar" },
-                              }),
-                            ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "w-2/3 p-4 md:p-4" }, [
-                          _c(
-                            "div",
-                            { staticClass: "flex justify-between item-center" },
-                            [
-                              _c(
-                                "h1",
-                                {
-                                  staticClass:
-                                    "text-2xl font-bold text-gray-800 dark:text-white",
-                                },
-                                [_vm._v(_vm._s(room.listing_name))]
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "router-link",
-                                {
-                                  staticClass:
-                                    "px-2 py-1 text-xs font-bold text-white uppercase transition-colors duration-200\n                            transform bg-gray-800 rounded hover:bg-gray-700  focus:outline-none focus:bg-gray-700",
-                                  attrs: {
-                                    to: {
-                                      name: "room_landlord",
-                                      params: { room_id: room.id },
+                        _c(
+                          "router-link",
+                          {
+                            staticClass:
+                              "flex justify-center w-full px-8 py-4 overflow-hidden bg-white rounded-lg shadow-lg mt-5 cursor-pointer transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-105 duration-200 hover:bg-blue-400 hover:shadow-2xl",
+                            attrs: {
+                              to: {
+                                name: "room_landlord",
+                                params: { room_id: room.id },
+                              },
+                            },
+                          },
+                          [
+                            room.photo_room != null
+                              ? _c("div", { staticClass: "w-1/3 bg-cover" }, [
+                                  _c("img", {
+                                    staticClass: "h-48 w-full object-cover",
+                                    attrs: {
+                                      src:
+                                        "/images/Properties/" +
+                                        room.photo_room[0].photo_name,
                                     },
-                                  },
+                                  }),
+                                ])
+                              : _c("div", { staticClass: "w-1/3 bg-cover" }, [
+                                  _c("img", {
+                                    staticClass: "h-48 w-full object-cover",
+                                    attrs: { alt: "Avatar" },
+                                  }),
+                                ]),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "w-2/3 p-4 md:p-4" }, [
+                              _c(
+                                "div",
+                                {
+                                  staticClass:
+                                    "flex justify-between item-center",
                                 },
                                 [
-                                  _vm._v(
-                                    "\n                            Room Details\n                    "
+                                  _c(
+                                    "h1",
+                                    {
+                                      staticClass:
+                                        "text-2xl font-bold text-gray-800 dark:text-white",
+                                    },
+                                    [_vm._v(" " + _vm._s(room.listing_name))]
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "h1",
+                                    {
+                                      staticClass:
+                                        "text-2xl font-bold text-yellow-800 dark:text-white",
+                                    },
+                                    [_vm._v(_vm._s(room.room_status))]
                                   ),
                                 ]
                               ),
-                            ],
-                            1
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "p",
-                            {
-                              staticClass:
-                                "mt-2 text-sm text-gray-600 dark:text-gray-400",
-                            },
-                            [_vm._v("Room Name " + _vm._s(room.room_name))]
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "p",
-                            {
-                              staticClass:
-                                "mt-2 text-sm text-gray-600 dark:text-gray-400",
-                            },
-                            [_vm._v("Room Type: " + _vm._s(room.room_type))]
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "p",
-                            {
-                              staticClass:
-                                "mt-2 text-sm text-gray-600 dark:text-gray-400",
-                            },
-                            [
-                              _vm._v(
-                                "Monthly Rent: RM " + _vm._s(room.monthly_rent)
+                              _vm._v(" "),
+                              _c(
+                                "p",
+                                {
+                                  staticClass:
+                                    "mt-2 text-sm text-gray-600 dark:text-gray-400",
+                                },
+                                [_vm._v("Room Name " + _vm._s(room.room_name))]
                               ),
-                            ]
-                          ),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "flex mt-2 item-center" }, [
-                            _c(
-                              "p",
-                              {
-                                staticClass:
-                                  "mt-2 text-sm text-gray-600 dark:text-gray-400",
-                              },
-                              [
-                                _vm._v(
-                                  "Room Listing Status: " +
-                                    _vm._s(room.room_status)
-                                ),
-                              ]
-                            ),
-                          ]),
-                        ]),
-                      ]
+                              _vm._v(" "),
+                              _c(
+                                "div",
+                                { staticClass: "flex mt-2 item-center" },
+                                [
+                                  _c(
+                                    "p",
+                                    {
+                                      staticClass:
+                                        "mt-2 text-sm text-gray-600 dark:text-gray-400",
+                                    },
+                                    [
+                                      _vm._v(
+                                        "Room Type: " +
+                                          _vm._s(room.room_type) +
+                                          "Room Type: " +
+                                          _vm._s(room.room_type)
+                                      ),
+                                    ]
+                                  ),
+                                ]
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "div",
+                                { staticClass: "flex mt-2 item-center" },
+                                [
+                                  _c(
+                                    "p",
+                                    {
+                                      staticClass:
+                                        "mt-2 text-sm text-gray-600 dark:text-gray-400",
+                                    },
+                                    [
+                                      _vm._v(
+                                        "Monthly Rent: RM " +
+                                          _vm._s(room.monthly_rent)
+                                      ),
+                                    ]
+                                  ),
+                                ]
+                              ),
+                            ]),
+                          ]
+                        ),
+                      ],
+                      1
                     )
                   }),
                   0
@@ -3292,6 +3287,7 @@ var render = function () {
             attrs: {
               form: _vm.form,
               propertyPhoto: _vm.propertyPhoto,
+              role: _vm.role,
               property_id: parseInt(_vm.property_id),
             },
             on: {
@@ -3306,6 +3302,7 @@ var render = function () {
             attrs: {
               property_id: parseInt(_vm.property_id),
               landlord_id: parseInt(_vm.landlord_id),
+              role: _vm.role,
             },
             on: { refreshData: _vm.getRooms, closeModal: _vm.closeAddModal },
           })

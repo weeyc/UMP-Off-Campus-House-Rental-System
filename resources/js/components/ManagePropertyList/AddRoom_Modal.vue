@@ -2,7 +2,7 @@
 <template>
    <div class="modal h-screen w-full  fixed left-0 top-0 flex justify-center z-10 items-center bg-black bg-opacity-50" >
     <!-- modal -->
-    <div :class="[modalBackground]" class="rounded max-h-full overflow-y-auto shadow-lg max-w-5xl p-6 mx-auto min-w-full" >
+    <div :class="[modalBackground]" class="rounded max-h-full overflow-y-auto shadow-lg max-w-2/3 p-6 mx-auto min-w-2/3" >
       <!-- modal header -->
       <div class="border-b px-4 py-2 flex justify-between items-center">
         <h3 class="font-semibold text-lg">Add Room</h3>
@@ -58,12 +58,12 @@
             </section>
 
 
-            <section id="Uploader" v-if="activePhase == 2"  class="mt-10 max-w-4xl p-6 mx-auto bg-gray-200 rounded-md shadow-md dark:bg-gray-800">
+            <section id="Uploader" v-if="activePhase == 2"  class="mt-10 max-w-4xl p-6 mx-auto bg-gray-200 rounded-md shadow-md">
                 <h2 class=" font-bold text-gray-700 capitalize text-center text-xl">Add Photos</h2>
                 <h2 class=" font-bold text-gray-700 capitalize text-center text-base mb-5">-Room Images-</h2>
                 <div>
                     <keep-alive>
-                        <ImageUploader :hideLabel="true" :editImage="false" @getImage="getImages"></ImageUploader>
+                        <ImageUploader :hideLabel="true" :editImage="false" @getImage="getImages" class="w-full"></ImageUploader>
                     </keep-alive>
                     <div class="flex justify-end mt-6">
                         <button @click.prevent="goToNext(1)" class="px-6 py-2  mr-5 leading-5 text-white transition-colors duration-200 transform bg-gray-700 rounded-md hover:bg-gray-600 focus:outline-none focus:bg-gray-600">Back</button>
@@ -72,7 +72,7 @@
                 </div>
             </section>
 
-            <section id="Furnisher" v-if="activePhase == 3"  class="mt-10 max-w-4xl p-6 mx-auto bg-gray-200 rounded-md shadow-md dark:bg-gray-800">
+            <section id="Furnisher" v-if="activePhase == 3"  class="mt-10 w-full p-6 mx-auto bg-gray-200 rounded-md shadow-md">
                 <h2 class=" font-bold text-gray-700 capitalize text-center text-xl">Furnishing and Description</h2>
                     <div>
                     <h2 class=" font-bold text-gray-700 capitalize text-center text-base mt-6">-Furnishing-</h2>
@@ -139,6 +139,7 @@ export default {
     props: {
         property_id: Number,
         landlord_id: Number,
+        role: Number,
     },
     components: {
         ImageUploader,

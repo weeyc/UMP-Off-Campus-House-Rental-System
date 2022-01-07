@@ -2,7 +2,7 @@
 <template>
    <div class="modal h-screen w-full  fixed left-0 top-0 flex justify-center z-10 items-center bg-black bg-opacity-50" >
     <!-- modal -->
-    <div :class="[modalBackground]" class="rounded max-h-full overflow-y-auto shadow-lg max-w-5xl p-6 mx-auto min-w-full" >
+    <div :class="[modalBackground]" class="rounded max-h-full overflow-y-auto shadow-lg max-w-5xl p-6 mx-auto min-w-2/3" >
       <!-- modal header -->
       <div class="border-b px-4 py-2 flex justify-between items-center">
         <h3 class="font-semibold text-lg">Edit Room</h3>
@@ -11,7 +11,7 @@
       <!-- modal body -->
         <div class="p-3">
             <!-- <h1 class="text-gray-800 font-lg font-bold tracking-normal leading-tight mb-4">Property Details</h1> -->
-            <section id="propertyDetail" v-show="activePhase == 1" class=" max-w-4xl p-6 mx-auto bg-gray-200 rounded-md shadow-md">
+            <section id="propertyDetail" v-show="activePhase == 1" class=" w-full p-6 mx-auto bg-gray-200 rounded-md shadow-md">
 
                 <h2 class=" font-bold text-gray-700 capitalize text-center text-xl">Edit Room</h2>
                     <h2 class=" font-bold text-gray-700 capitalize text-center text-base ">-Room Details-</h2>
@@ -64,7 +64,7 @@
 
 
 
-                <section id="Uploader" v-if="activePhase == 2"  class=" max-w-4xl p-6 mx-auto bg-gray-200 rounded-md shadow-md ">
+                <section id="Uploader" v-if="activePhase == 2"  class=" w-full p-6 mx-auto bg-gray-200 rounded-md shadow-md ">
                 <h2 class=" font-bold text-gray-700 capitalize text-center text-xl">Add Photos</h2>
                     <h2 class=" font-bold text-gray-700 capitalize text-center text-base mb-5">-Property Image-</h2>
                       <button v-if="replace==false" @click.prevent="get_replace(0)" class="px-6 py-2 justify-end mr-5 leading-5 text-white transition-colors
@@ -93,9 +93,9 @@
                 </div>
             </section>
 
-            <section id="Furnisher" v-if="activePhase == 3"  class="mt-10 max-w-4xl p-6 mx-auto bg-gray-200 rounded-md shadow-md dark:bg-gray-800">
+            <section id="Furnisher" v-if="activePhase == 3"  class="mt-10 w-full p-6 mx-auto bg-gray-200 rounded-md shadow-md dark:bg-gray-800">
                 <h2 class=" font-bold text-gray-700 capitalize text-center text-xl">Furnishing and Description</h2>
-                    <div>
+                    <div class="w-full">
                     <h2 class=" font-bold text-gray-700 capitalize text-center text-base mt-6">-Furnishing-</h2>
                         <div class="grid grid-cols-3 gap-4 mt-4 sm:grid-cols-2">
                             <label class="inline-flex items-center cursor-pointer">
@@ -178,7 +178,7 @@ components: {
             type: 'password',
             btnText: 'Show Password',
             isVisible: false,
-            modalBackground: '',
+            modalBackground: 'bg-gradient-to-br from-sky-400 to-cyan-300',
             activePhase: 1,
             replace: false,
             chgPic: 0,
@@ -238,18 +238,9 @@ components: {
          closeModal(){
              this.$emit("closeModal");
          },
-        getRole(){
-            if(this.role == 1){
-                this.modalBackground = 'bg-gradient-to-b from-pink-300 via-purple-300 to-indigo-400'
-            }else if (this.role == 2){
-                this.modalBackground = 'bg-gradient-to-br from-sky-400 to-cyan-300'
-            }else{
-                this.modalBackground = 'bg-gradient-to-b from-pink-300 via-purple-300 to-indigo-400'
-            }
-          }
+
     },
     mounted: function(){
-         this.getRole();
          this.form.furnishing = this.form.furnishing.split(',');
     },
 };
