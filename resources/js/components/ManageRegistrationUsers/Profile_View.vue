@@ -27,9 +27,21 @@
             </div>
             <div class="w-full px-4 lg:order-2 lg:text-right lg:self-center">
               <div  v-for= "user in userProfile" :key="user.id" class="py-6 px-3 mt-32 sm:mt-0">
-                <button :class="[buttonColor]" @click="clickEdit(user); toggleModal = !toggleModal" class="uppercase text-white font-bold hover:shadow-md shadow text-base px-6 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1 ease-linear transition-all duration-150" type="button">
-                  Chat
-                </button>
+                  <div v-if="role==1">
+                    <router-link :to="{ name: 'chat_std', params:{user_role:user.role , id: user.id, name: user.name, photo:user.pic }}" :class="[buttonColor]" class="uppercase text-white font-bold hover:shadow-md shadow text-base px-6 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1 ease-linear transition-all duration-150" type="button">
+                    Chat
+                    </router-link>
+                </div>
+                  <div v-if="role==2">
+                    <router-link :to="{ name: 'chat_landlord', params:{user_role:user.role , id: user.id, name: user.name, photo:user.pic }}" :class="[buttonColor]" class="uppercase text-white font-bold hover:shadow-md shadow text-base px-6 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1 ease-linear transition-all duration-150" type="button">
+                    Chat
+                    </router-link>
+                </div>
+                  <div v-if="role==3">
+                    <router-link :to="{ name: 'chat_staff', params:{user_role:user.role , id: user.id, name: user.name, photo:user.pic }}" :class="[buttonColor]" class="uppercase text-white font-bold hover:shadow-md shadow text-base px-6 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1 ease-linear transition-all duration-150" type="button">
+                    Chat
+                    </router-link>
+                </div>
               </div>
             </div>
             <div class="w-full lg:w-4/12 px-4 lg:order-1 hidden">
@@ -119,6 +131,10 @@
 <script>
 import EditModal from './Edit_Modal.vue';
 export default {
+     props: {
+        user_id: Number,
+        role: Number,
+     },
      components: {
         EditModal,
     },

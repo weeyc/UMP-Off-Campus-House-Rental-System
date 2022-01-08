@@ -103,6 +103,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 //
 //
 //
+//
 var Errors = /*#__PURE__*/function () {
   function Errors() {
     _classCallCheck(this, Errors);
@@ -960,10 +961,20 @@ var render = function () {
                                         { staticClass: "flex flex-col" },
                                         [
                                           _c(
-                                            "div",
+                                            "router-link",
                                             {
                                               staticClass:
-                                                "w-full flex-none text-lg text-gray-800 font-bold leading-none",
+                                                "w-full flex-none text-lg text-gray-800 font-bold leading-none hover:underline",
+                                              attrs: {
+                                                to: {
+                                                  name: "std_profile_view",
+                                                  params: {
+                                                    role: 1,
+                                                    id: _vm.mate.id,
+                                                  },
+                                                },
+                                                target: "_blank",
+                                              },
                                             },
                                             [_vm._v(_vm._s(_vm.mate.name))]
                                           ),
@@ -991,7 +1002,8 @@ var render = function () {
                                               ]),
                                             ]
                                           ),
-                                        ]
+                                        ],
+                                        1
                                       ),
                                     ]
                                   ),
@@ -1679,7 +1691,7 @@ var render = function () {
                                           },
                                           [
                                             _vm._v(
-                                              " " +
+                                              "RM " +
                                                 _vm._s(_vm.bills.total_bills)
                                             ),
                                           ]

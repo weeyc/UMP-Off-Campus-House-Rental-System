@@ -128,8 +128,24 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+  props: {
+    user_id: Number,
+    role: Number
+  },
   components: {
     EditModal: _Edit_Modal_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
@@ -316,26 +332,107 @@ var render = function () {
                             staticClass: "py-6 px-3 mt-32 sm:mt-0",
                           },
                           [
-                            _c(
-                              "button",
-                              {
-                                staticClass:
-                                  "uppercase text-white font-bold hover:shadow-md shadow text-base px-6 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1 ease-linear transition-all duration-150",
-                                class: [_vm.buttonColor],
-                                attrs: { type: "button" },
-                                on: {
-                                  click: function ($event) {
-                                    _vm.clickEdit(user)
-                                    _vm.toggleModal = !_vm.toggleModal
-                                  },
-                                },
-                              },
-                              [
-                                _vm._v(
-                                  "\n                  Chat\n                "
-                                ),
-                              ]
-                            ),
+                            _vm.role == 1
+                              ? _c(
+                                  "div",
+                                  [
+                                    _c(
+                                      "router-link",
+                                      {
+                                        staticClass:
+                                          "uppercase text-white font-bold hover:shadow-md shadow text-base px-6 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1 ease-linear transition-all duration-150",
+                                        class: [_vm.buttonColor],
+                                        attrs: {
+                                          to: {
+                                            name: "chat_std",
+                                            params: {
+                                              user_role: user.role,
+                                              id: user.id,
+                                              name: user.name,
+                                              photo: user.pic,
+                                            },
+                                          },
+                                          type: "button",
+                                        },
+                                      },
+                                      [
+                                        _vm._v(
+                                          "\n                    Chat\n                    "
+                                        ),
+                                      ]
+                                    ),
+                                  ],
+                                  1
+                                )
+                              : _vm._e(),
+                            _vm._v(" "),
+                            _vm.role == 2
+                              ? _c(
+                                  "div",
+                                  [
+                                    _c(
+                                      "router-link",
+                                      {
+                                        staticClass:
+                                          "uppercase text-white font-bold hover:shadow-md shadow text-base px-6 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1 ease-linear transition-all duration-150",
+                                        class: [_vm.buttonColor],
+                                        attrs: {
+                                          to: {
+                                            name: "chat_landlord",
+                                            params: {
+                                              user_role: user.role,
+                                              id: user.id,
+                                              name: user.name,
+                                              photo: user.pic,
+                                            },
+                                          },
+                                          type: "button",
+                                        },
+                                      },
+                                      [
+                                        _vm._v(
+                                          "\n                    Chat\n                    "
+                                        ),
+                                      ]
+                                    ),
+                                  ],
+                                  1
+                                )
+                              : _vm._e(),
+                            _vm._v(" "),
+                            _vm.role == 3
+                              ? _c(
+                                  "div",
+                                  [
+                                    _c(
+                                      "router-link",
+                                      {
+                                        staticClass:
+                                          "uppercase text-white font-bold hover:shadow-md shadow text-base px-6 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1 ease-linear transition-all duration-150",
+                                        class: [_vm.buttonColor],
+                                        attrs: {
+                                          to: {
+                                            name: "chat_staff",
+                                            params: {
+                                              user_role: user.role,
+                                              id: user.id,
+                                              name: user.name,
+                                              photo: user.pic,
+                                            },
+                                          },
+                                          type: "button",
+                                        },
+                                      },
+                                      [
+                                        _vm._v(
+                                          "\n                    Chat\n                    "
+                                        ),
+                                      ]
+                                    ),
+                                  ],
+                                  1
+                                )
+                              : _vm._e(),
                           ]
                         )
                       }),

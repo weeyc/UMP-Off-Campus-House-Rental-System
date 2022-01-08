@@ -73,7 +73,7 @@
                         <div id="bulletin" class="overflow-y-auto h-48 p-5">
                             <div class="grid grid-rows-2 text-center md:text-left">
                                 <span class="text-white text-center text-2xl" >Rent This Month:</span>
-                                <span v-if="bills.payment_status=='Unpaid'" class="text-white text-center text-2xl" > {{bills.total_bills}}</span>
+                                <span v-if="bills.payment_status=='Unpaid'" class="text-white text-center text-2xl" >RM {{bills.total_bills}}</span>
                                 <span v-else class="text-white text-center text-2xl" > Paid</span>
                                  <button @click="checkBill" class="p-2 mt-5 w-1/2 rounded-md bg-blue-500 text-white hover:bg-blue-600 justify-self-center">Check</button>
                             </div>

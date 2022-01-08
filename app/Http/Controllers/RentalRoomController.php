@@ -201,8 +201,16 @@ class RentalRoomController extends Controller
 
      public function get_tenant_payment_status($room_id, $tenant_id){
 
-        $data = Bill::where('room_id', $room_id)->where('tenant_id',$tenant_id)->where('bills_status','Ready')->latest('bills_date')->first();
-        return  $data ;
+        $tenant_status = Tenant::where('room_id', $room_id)->where('tenant_id',$tenant_id)->value('tenant_status');
+
+        if($tenant_status == 'Pending') {
+            return "Pending" ;
+        }else{
+            $data = Bill::where('room_id', $room_id)->where('tenant_id',$tenant_id)->where('bills_status','Ready')->latest('bills_date')->first();
+            return  $data ;
+        }
+
+
 
 
  }
@@ -213,8 +221,18 @@ class RentalRoomController extends Controller
     }
 
     public function kick_tenant($id){
-        Tenant::where('tenant_id', $id)->delete();
-        Bill::where('tenant_id', $id)->delete();
+
+        $tenant_status = Tenant::where('tenant_id',$id)->value('tenant_status');
+
+        if($tenant_status == 'Pending') {
+            Tenant::where('tenant_id', $id)->delete();
+            Bill::where('tenant_id', $id)->delete();
+        }else{
+            Tenant::where('tenant_id', $id)->delete();
+        }
+
+
+
     }
 
     public function get_mate($id){

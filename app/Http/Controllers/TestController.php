@@ -525,55 +525,33 @@ class TestController extends Controller
 
 
 
+    $table->increments('id');
+    $table->integer('user1_id')->nullable();
+    $table->integer('user2_id')->nullable();
+    $table->string('user1_role')->nullable();
+    $table->string('user2_role')->nullable();
+    $table->string('type')->nullable();
+
+
+//  ----------------------------------Conversation-----------------------
+//  |    id    | user1_id  | user1_role  | user2_id | user2_role  | type |
+//  ----------------------------------------------------------------------
+//  |    1     |     1     |  student    |    3     |  student    |      |
+//  ----------------------------------------------------------------------
+//  |    2     |     1     |  student    |    8     |  Landlord   |      |
+//  ----------------------------------------------------------------------
+//  |    3     |     3     |  Staff      |    10    |  Landlord   |      |
+//  ----------------------------------------------------------------------
+//  |    4     |     1     |  student    |    6     |  Staff      |      |
+//  ----------------------------------------------------------------------
+//  |    4     |     9     |  student    |    1     |  Student    |      |
+//  ----------------------------------------------------------------------
+
+//std login go to chat
+// check conversation where user1_role = student and user1_role = auth->di Orwhere -> user2_role =2 and user2_id = auth->id - >get()
 
 
 
-        //$Bill_id = tenant id = 1 and latest inserted bills
-        //  insert table bill tenant id = 1 / bill date 23/3/2021, previous bill id = $Bill_id   (penalty_fees=0, total_bills=200)
-        //  if previous bill ($Bill_id) payment status = not paid,
-        //       update table -> penalty fees = room_id penalty fees, total_bills = room_id monthly_bills + penalty fees total_bills_previous;
-
-        //----------------------------------------------------------------Bill Table Illustration--------------------------------------------------------------------------------------------------------------------
-        //|bills_id  | tenant_id | property_id | room_id | previous_bill_id | landlord_id | payment_status | bill_status | bills_cue |  penalty_fees | Outstanding_bills |  total_bills   | bills_date | due_date    |
-        //-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-        //|    1     |     7     |     1       |    10   |      null        |    20       |    Unpaid       |   Unready    |     0      |     null    |        null       |       150       |  23/2/2022 | 22/3/2022 |
-        //-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-        //|    2     |     7     |     1       |    10   |      1           |    20       |    Unpaid      |    Unready     |     0     |     null    |        null       |       150       |  23/3/2022 | 22/3/2022  |
-        //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-        //|    3     |     7     |     1       |    10   |      2           |    20       |    Unpaid      |    Unready     |     0     |      40      |        150        |       340       |  23/4/2022 | 22/5/2022 |
-        //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-
-    // Calculation
-    // (Move in date) + one months 6months
-    // 23/1/2022 Move in date                                       (first month no bills) 23/1/2022
-    // 23/2/2022 Bill insert first bill, due: + 29days => 22/3/22   (second month)
-    // 23/3/2022 Bill insert second bill, due: + 29days => 22/4/22  (third month)
-    // 23/4/2022 Bill insert third bill, due: + 29days => 22/5/22   (fourth month)
-    // 23/4/2022 Bill insert fourth bill, due: + 29days => 22/5/22  (fifth month)
-    // 23/5/2022 Bill insert fifth bill, due: + 29days => 22/6/22   (sixth month)
-
-    // Check Overdue
-    // First Insert
-    //   table bill tenant id = 1 and bill date = (Move in date) + one months = 23/2/2021 previous bill id = null
-    // Second Insert
-    //  $Bill_id = tenant id = 1 and latest inserted bills
-    //  insert table bill tenant id = 1 / bill date 23/3/2021, previous bill id = $Bill_id   (penalty_fees=0, total_bills=200)
-    //  if previous bill ($Bill_id) payment status = not paid,
-    //       update table -> penalty fees = room_id penalty fees, total_bills = room_id monthly_bills + penalty fees total_bills_previous;
-
-
-
-    //$minusDate = $currentDateTime->subDays($date_carboned_minus)->format('d M Y');
-    // $to = Carbon::createFromFormat('Y-m-d H:s:i', '2015-5-5 3:30:34');
-    // $from = Carbon::createFromFormat('Y-m-d H:s:i', '2016-6-6 9:30:34');
-    //$diff_in_months = $to (passed) ->diffInMonths($from (future));
-
-
-    // $room_tenants_num = Room::query()->with(['getTenantRelation' => function ($query) use($tenant_id) {
-    //     $query->select('room_id','tenant_id')
-    //             ->where('tenant_id', $tenant_id);
-    // }])->where('room_id',$room_id)->value('number_of_tenant');
 
 
     }

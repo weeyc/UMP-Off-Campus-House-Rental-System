@@ -129,9 +129,15 @@
 
                     <div class="hidden xl:flex items-center ">
                         <button  @click="toggleNoti =! toggleNoti; notificationHandler(true); markAsRead() " class="focus:outline-none flex jusitfy-start  py-3 items-center">
-                        <svg class="h-8 w-8 text-pink-200 hover:text-pink-500 transition duration-150 ease-in-out"  width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">  <path stroke="none" d="M0 0h24v24H0z"/>  <path d="M10 5a2 2 0 0 1 4 0a7 7 0 0 1 4 6v3a4 4 0 0 0 2 3h-16a4 4 0 0 0 2 -3v-3a7 7 0 0 1 4 -6" />  <path d="M9 17v1a3 3 0 0 0 6 0v-1" /></svg>
-                        <span v-if="unreadNotifications[0]!=undefined" class="badge bg-pink-500 shrink-0 grow-0 rounded-full px-3 py-1 text-center object-right-top text-white text-sm">{{ unreadNotifications.length }}</span>
-                    </button>
+                            <svg class="h-8 w-8 text-pink-200 hover:text-pink-500 transition duration-150 ease-in-out"  width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">  <path stroke="none" d="M0 0h24v24H0z"/>  <path d="M10 5a2 2 0 0 1 4 0a7 7 0 0 1 4 6v3a4 4 0 0 0 2 3h-16a4 4 0 0 0 2 -3v-3a7 7 0 0 1 4 -6" />  <path d="M9 17v1a3 3 0 0 0 6 0v-1" /></svg>
+                            <span v-if="unreadNotifications[0]!=undefined" class="badge bg-pink-500 shrink-0 grow-0 rounded-full px-3 py-1 text-center object-right-top text-white text-sm">{{ unreadNotifications.length }}</span>
+                      </button>
+                        <router-link  :to="{name: 'chat_staff'}"   class="ml-2 focus:outline-none flex jusitfy-start  py-3 items-center">
+                            <svg class="h-8 w-8 text-pink-200 hover:text-pink-500 transition duration-150 ease-in-out"  fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a1.994 1.994 0 01-1.414-.586m0 0L11 14h4a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2v4l.586-.586z"/>
+                            </svg>
+                            <span class="badge bg-pink-500 shrink-0 grow-0 rounded-full px-3 py-1 text-center object-right-top text-white text-sm">8</span>
+                        </router-link>
                         <div class="relative md:mr-6 ml-10 my-2">
                             <router-link  :to="{name: 'profile'}" class="focus:outline-none bg-pink-100 border-gray-300 border
                                  transition duration-150 ease-in-out hover:text-pink-500 rounded text-gray-600 px-5 py-2 text-xs">

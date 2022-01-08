@@ -281,9 +281,9 @@ export default {
            this.tenant_id = tenant_id;
             axios.get('/api/get_tenant_payment_status/'+room_id+'/'+tenant_id).then((response)=>{
                 this.tenant_bills=response.data;
-                if(  this.tenant_bills.payment_status==undefined ||  this.tenant_bills.payment_status=="Unpaid"){
+                if(  this.tenant_bills.payment_status=="Unpaid"){
                      this.$toaster.error('This tenant have not yet pay bills');
-                }else if(this.tenant_bills.payment_status == 'Paid' || this.tenant_bills==[] )
+                }else if(this.tenant_bills.payment_status == 'Paid' || this.tenant_bills==[] || this.tenant_bills=="Pending")
                 {
                     Swal.fire({
                     title: 'Kick tenant from this room?!',

@@ -140,6 +140,12 @@ export default{
             name: 'view_property',
             component: Property_Landlord,
         },
+        {
+            path: '/staff/chat',
+            name: 'chat_staff',
+            component: Chat,
+            props: true,
+        },
 
 
 
@@ -214,6 +220,12 @@ export default{
             component: Profile_View,
         },
         {
+            path: '/landlord/chat',
+            name: 'chat_landlord',
+            component: Chat,
+            props: true,
+        },
+        {
             path: '/landlord/payment_report',
             name: 'land_payments',
             component: Tab_Landlord_Payment,
@@ -241,6 +253,12 @@ export default{
 
                 },
             ]
+        },
+             {
+            path: '/student/chat',
+            name: 'chat_std',
+            component: Chat,
+            props: true,
         },
 
 
@@ -316,6 +334,7 @@ export default{
             path: '/student/chat',
             name: 'chat_std',
             component: Chat,
+            props: true,
         },
         {
             path: '/student/rental_room/house_platform/:id',

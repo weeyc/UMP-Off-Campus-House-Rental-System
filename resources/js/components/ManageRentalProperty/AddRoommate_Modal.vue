@@ -29,7 +29,8 @@
 						<div class="flex items-center justify-between sm:mt-2">
 							<div class="flex items-center">
 								<div class="flex flex-col">
-									<div class="w-full flex-none text-lg text-gray-800 font-bold leading-none">{{mate.name}}</div>
+
+									 <router-link :to="{ name: 'std_profile_view', params:{role: 1, id: mate.id}}" target="_blank"  class="w-full flex-none text-lg text-gray-800 font-bold leading-none hover:underline">{{mate.name}}</router-link >
 									<div class="flex-auto text-gray-500 my-1">
 										<span class="mr-3 "> Student</span><span class="mr-3 border-r border-gray-200  max-h-0"></span><span>ID: {{mate.id}}</span>
 									</div>
