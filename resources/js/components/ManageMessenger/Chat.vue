@@ -21,6 +21,7 @@
                     <h2 class="ml-2 mb-2 text-gray-600 text-lg my-2">Chats</h2>
                     <li>
                             <!-- <div>{{ getContact(list.user1_id ,list.user1_role, list.user2_id, list.user2_role) }}</div> -->
+                        <div v-if="filterContact.length>0">
                         <div v-for="(list,index) in filterContact" :key="index">
                         <a class="hover:bg-gray-100 border-b border-gray-300 px-3 py-2 cursor-pointer flex items-center justify-start text-sm focus:outline-none focus:border-gray-300 transition duration-150 ease-in-out">
 
@@ -55,15 +56,20 @@
                                         </div>
                         </a>
                         </div>
+                        </div>
+                        <div v-else class="p-2">No conversations </div>
                     </li>
                 </ul>
             </div>
             <div class="col-span-2 bg-white">
-                <div id="Profile" v-if="user_role==undefined" class="w-full">
+                <div id="Profile" v-if=" checkContact==false && filterContact.length>0" class="w-full">
                     <div  class="flex items-center border-b border-gray-300 pl-3 py-3">
-                        <img class="h-10 w-10 rounded-full object-cover" :src="'/images/Profile/'+chat.avatar" alt="username" />
-                        <span class="block ml-2 font-bold text-base text-gray-600">{{ chat.name }} </span>
+                        <img  @click="viewProfile(chat.u_id, chat.u_role)" class="h-10 w-10 rounded-full object-cover cursor-pointer" :src="'/images/Profile/'+chat.avatar" alt="username" />
+                        <span  @click="viewProfile(chat.u_id, chat.u_role)" class="cursor-pointer block ml-2 font-bold text-base text-gray-600 hover:underline">{{ chat.name }} </span>
+
+                          <button class="p-2 ml-auto bg-pink-light">delete</button>
                     </div>
+
                     <div id="chat" class="w-full overflow-y-auto p-10 relative" style="height: 400px;" ref="feed">
                         <ul>
 
@@ -117,9 +123,7 @@
                         </button>
                     </div>
                 </div>
-
-
-                <div v-else   class="w-full">
+                <div v-if="checkContact==true"   class="w-full">
                     <div class="flex items-center border-b border-gray-300 pl-3 py-3">
                         <img class="h-10 w-10 rounded-full object-cover"
                         :src="'/images/Profile/'+photo"
@@ -129,8 +133,6 @@
                     <div id="chat" class="w-full overflow-y-auto p-10 relative" style="height: 400px;" ref="feed">
                         <ul>
                             <li class="clearfix2">
-
-
                             </li>
                         </ul>
                     </div>
@@ -143,6 +145,21 @@
                                 <path d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z" />
                             </svg>
                         </button>
+                    </div>
+                </div>
+                 <div v-else-if="checkContact==false && filterContact.length==0"   class="w-full">
+                    <div class="flex items-center border-b border-gray-300 pl-3 py-3">
+
+                        <span class="block ml-2 font-bold text-base text-gray-600"> </span>
+                    </div>
+                    <div id="chat" class="w-full overflow-y-auto p-10 relative" style="height: 400px;" ref="feed">
+                        <ul>
+                            <li class="clearfix2">
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="w-full py-3 px-3 flex items-center justify-between border-t border-gray-300">
+
                     </div>
                 </div>
 
@@ -186,9 +203,11 @@ export default {
             margin: '',
             name:'',
             photo: '',
-            contacts: [],
-            contak: {},
+
             filterName: '',
+            checkContact: false,
+            convertedRole:'',
+
 
             chat: {
                 id:'',
@@ -230,7 +249,9 @@ export default {
 
                 this.formSend.put_msg='';
                 this.getConverstations();
-                this.getMessages(this.chat.id);
+                 setTimeout(() => {
+                    this.getFirstConversation();
+                }, 1000);
                 this.scrollToBottom();
         }).catch(error =>this.errors.record(error.response.data));
 
@@ -246,8 +267,18 @@ export default {
             axios.post('/api/send_msg_new/'+this.user_id+'/'+this.role,
             this.form
             ).then(() =>{
+                this.form.enter_msg='';
+                this.checkContact= false;
+                this.getConverstations();
+                setTimeout(() => {
+                    this.getFirstConversation();
+                }, 1000);
+                // if(this.conversations.length>0){
+                //     this.getMessages(this.chat.id);
+                // }
 
-        }).catch(error =>this.errors.record(error.response.data));
+                 this.scrollToBottom();
+        }).catch(error);
 
         },
         scrollToBottom() {
@@ -255,38 +286,25 @@ export default {
                 this.$refs.feed.scrollTop = this.$refs.feed.scrollHeight;
             }, 50);
         },
-        getContact(id1,role1, id2, role2){
-            var selected_role;
-            var selected_id;
-            if(role1==this.role){
-                if(id1==this.user_id){
-                    selected_role = role2;
-                    selected_id =id2;
-                }else if(id2==this.user_id){
-                    selected_role = role2;
-                    selected_id =id1;
-                }
-            }else if (role2==this.role){
-                 if(id1==this.user_id){
-                     selected_role = role1;
-                    selected_id =id2;
-                }else if(id2==this.user_id){
-                    selected_role = role1;
-                    selected_id =id1;
-                }
+        viewProfile(id,role) {
+
+            if(this.role==1){
+                // let routeData = this.$router.resolve({ name: 'std_profile_view', params: { role: role, id:id }});
+                // window.open(routeData.href, '_blank');
+                 this.$router.push({ name: 'std_profile_view', params: { role: role, id:id } })
+
+            }else if (this.role==2){
+                let routeData = this.$router.resolve({ name: 'land_profile_view', params: { role: role, id:id }});
+                window.open(routeData.href, '_blank');
+
+            }else if (this.role==3){
+                let routeData = this.$router.resolve({ name: 'profile_view', params: { role: role, id:id }});
+                window.open(routeData.href, '_blank');
+
             }
 
-            axios.get('/api/getContact/'+selected_id+'/'+selected_role).then((response)=>{
-                this.contak=response.data.data
-                let clone = (JSON.parse(JSON.stringify(this.contak)));
-
-                this.contacts.push( clone );
-                this.contak = [],
-
-            console.warn(this.contacts);
-
-            })
         },
+
         getMessages(id){
             axios.get('/api/get_messages/'+id).then((response)=>{
                     this.messages=response.data
@@ -302,6 +320,11 @@ export default {
                 this.chat.name = this.conversations[0].user2_name;
                 this.chat.u_id = this.conversations[0].user2_id;
                 this.chat.u_role = this.conversations[0].user2_role;
+                this.formSend.id = this.conversations[0].id;
+                this.formSend.receiver_id = this.conversations[0].user2_id;
+                this.formSend.receiver_role = this.conversations[0].user2_role;
+
+
                 this.getMessages(this.conversations[0].id);
             }else if (this.conversations[0].user2_role==this.role && this.conversations[0].user2_id==this.user_id){
                 this.chat.id = this.conversations[0].id;
@@ -309,6 +332,8 @@ export default {
                 this.chat.name = this.conversations[0].user1_name;
                 this.chat.u_id = this.conversations[0].user1_id;
                 this.chat.u_role = this.conversations[0].user1_role;
+                this.formSend.receiver_id = this.conversations[0].user1_id;
+                this.formSend.receiver_role = this.conversations[0].user1_role;
                 this.getMessages(this.conversations[0].id);
             }
         },
@@ -324,6 +349,7 @@ export default {
                 this.formSend.id= list.id;
                 this.formSend.receiver_role= u_role;
                 this.getConverstations();
+                this.checkContact=false;
                 this.scrollToBottom();
         },
         getRole(){
@@ -335,6 +361,31 @@ export default {
 
             }
           },
+        convertRole(){
+            if(this.user_role == 'student'){
+                this.convertedRole = 1
+            }else if (this.user_role == 'landlord'){
+                this.convertedRole = 2
+            }else if(this.user_role == 'staff'){
+                 this.convertedRole = 3
+            }
+          },
+
+        checkNewContact(){
+            if(this.conversations.some(data => data.user1_role === this.convertedRole && data.user1_id===this.id)){
+                    this.checkContact=false
+            }else if (this.conversations.some(data => data.user2_role === this.convertedRole && data.user2_id===this.id)){
+                    this.checkContact=false;
+            }else {
+
+                     this.checkContact=true;
+
+
+            }
+
+
+
+        },
 
     },
      watch: {
@@ -350,14 +401,14 @@ export default {
                    if(user.user2_name.toLowerCase().match(this.filterName.toLowerCase())){
                        return user;
                    }
+
                }else if (user.user2_role==this.role && user.user2_id==this.user_id){
                     if(user.user1_name.toLowerCase().match(this.filterName.toLowerCase())){
                        return user;
                    }
-               }
 
-                // if (user.name.toLowerCase().match(this.filterName.toLowerCase()))
-                //      return user.name.toLowerCase().match(this.filterName.toLowerCase());
+
+               }
             });
         },
 
@@ -365,12 +416,20 @@ export default {
 
       mounted: function(){
            // this.getProperty();
-           this.getRole();
-           this.getConverstations();
-
+        this.getRole();
+        this.getConverstations();
+        this.convertRole();
+        if(this.conversations.length>0){
             setTimeout(() => {
-                 this.getFirstConversation();
-            }, 1000);
+                            this.getFirstConversation();
+                        }, 2000);
+            }
+
+        if(this.user_role!=undefined){
+            setTimeout(() => {
+                 this.checkNewContact();
+            }, 2000);
+        }
     },
 
 

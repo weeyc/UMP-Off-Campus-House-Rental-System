@@ -172,6 +172,23 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {},
@@ -192,9 +209,9 @@ __webpack_require__.r(__webpack_exports__);
       margin: '',
       name: '',
       photo: '',
-      contacts: [],
-      contak: {},
       filterName: '',
+      checkContact: false,
+      convertedRole: '',
       chat: {
         id: '',
         avatar: '',
@@ -232,7 +249,9 @@ __webpack_require__.r(__webpack_exports__);
 
         _this2.getConverstations();
 
-        _this2.getMessages(_this2.chat.id);
+        setTimeout(function () {
+          _this2.getFirstConversation();
+        }, 1000);
 
         _this2.scrollToBottom();
       })["catch"](function (error) {
@@ -250,9 +269,20 @@ __webpack_require__.r(__webpack_exports__);
         this.form.receiver_role = 3;
       }
 
-      axios.post('/api/send_msg_new/' + this.user_id + '/' + this.role, this.form).then(function () {})["catch"](function (error) {
-        return _this3.errors.record(error.response.data);
-      });
+      axios.post('/api/send_msg_new/' + this.user_id + '/' + this.role, this.form).then(function () {
+        _this3.form.enter_msg = '';
+        _this3.checkContact = false;
+
+        _this3.getConverstations();
+
+        setTimeout(function () {
+          _this3.getFirstConversation();
+        }, 1000); // if(this.conversations.length>0){
+        //     this.getMessages(this.chat.id);
+        // }
+
+        _this3.scrollToBottom();
+      })["catch"](error);
     },
     scrollToBottom: function scrollToBottom() {
       var _this4 = this;
@@ -261,45 +291,44 @@ __webpack_require__.r(__webpack_exports__);
         _this4.$refs.feed.scrollTop = _this4.$refs.feed.scrollHeight;
       }, 50);
     },
-    getContact: function getContact(id1, role1, id2, role2) {
-      var _this5 = this;
+    viewProfile: function viewProfile(id, role) {
+      if (this.role == 1) {
+        // let routeData = this.$router.resolve({ name: 'std_profile_view', params: { role: role, id:id }});
+        // window.open(routeData.href, '_blank');
+        this.$router.push({
+          name: 'std_profile_view',
+          params: {
+            role: role,
+            id: id
+          }
+        });
+      } else if (this.role == 2) {
+        var routeData = this.$router.resolve({
+          name: 'land_profile_view',
+          params: {
+            role: role,
+            id: id
+          }
+        });
+        window.open(routeData.href, '_blank');
+      } else if (this.role == 3) {
+        var _routeData = this.$router.resolve({
+          name: 'profile_view',
+          params: {
+            role: role,
+            id: id
+          }
+        });
 
-      var selected_role;
-      var selected_id;
-
-      if (role1 == this.role) {
-        if (id1 == this.user_id) {
-          selected_role = role2;
-          selected_id = id2;
-        } else if (id2 == this.user_id) {
-          selected_role = role2;
-          selected_id = id1;
-        }
-      } else if (role2 == this.role) {
-        if (id1 == this.user_id) {
-          selected_role = role1;
-          selected_id = id2;
-        } else if (id2 == this.user_id) {
-          selected_role = role1;
-          selected_id = id1;
-        }
+        window.open(_routeData.href, '_blank');
       }
-
-      axios.get('/api/getContact/' + selected_id + '/' + selected_role).then(function (response) {
-        _this5.contak = response.data.data;
-        var clone = JSON.parse(JSON.stringify(_this5.contak));
-
-        _this5.contacts.push(clone);
-
-        _this5.contak = [], console.warn(_this5.contacts);
-      });
     },
     getMessages: function getMessages(id) {
-      var _this6 = this;
+      var _this5 = this;
 
       axios.get('/api/get_messages/' + id).then(function (response) {
-        _this6.messages = response.data;
-        console.warn(_this6.messages.data);
+        _this5.messages = response.data;
+        console.warn(_this5.messages.data);
       });
     },
     getFirstConversation: function getFirstConversation() {
@@ -309,6 +338,9 @@ __webpack_require__.r(__webpack_exports__);
         this.chat.name = this.conversations[0].user2_name;
         this.chat.u_id = this.conversations[0].user2_id;
         this.chat.u_role = this.conversations[0].user2_role;
+        this.formSend.id = this.conversations[0].id;
+        this.formSend.receiver_id = this.conversations[0].user2_id;
+        this.formSend.receiver_role = this.conversations[0].user2_role;
         this.getMessages(this.conversations[0].id);
       } else if (this.conversations[0].user2_role == this.role && this.conversations[0].user2_id == this.user_id) {
         this.chat.id = this.conversations[0].id;
@@ -316,6 +348,8 @@ __webpack_require__.r(__webpack_exports__);
         this.chat.name = this.conversations[0].user1_name;
         this.chat.u_id = this.conversations[0].user1_id;
         this.chat.u_role = this.conversations[0].user1_role;
+        this.formSend.receiver_id = this.conversations[0].user1_id;
+        this.formSend.receiver_role = this.conversations[0].user1_role;
         this.getMessages(this.conversations[0].id);
       }
     },
@@ -329,6 +363,7 @@ __webpack_require__.r(__webpack_exports__);
       this.formSend.id = list.id;
       this.formSend.receiver_role = u_role;
       this.getConverstations();
+      this.checkContact = false;
       this.scrollToBottom();
     },
     getRole: function getRole() {
@@ -337,6 +372,30 @@ __webpack_require__.r(__webpack_exports__);
       } else if (this.role == 2) {
         this.margin = 'mt-5 mb-5';
       } else {}
+    },
+    convertRole: function convertRole() {
+      if (this.user_role == 'student') {
+        this.convertedRole = 1;
+      } else if (this.user_role == 'landlord') {
+        this.convertedRole = 2;
+      } else if (this.user_role == 'staff') {
+        this.convertedRole = 3;
+      }
+    },
+    checkNewContact: function checkNewContact() {
+      var _this6 = this;
+
+      if (this.conversations.some(function (data) {
+        return data.user1_role === _this6.convertedRole && data.user1_id === _this6.id;
+      })) {
+        this.checkContact = false;
+      } else if (this.conversations.some(function (data) {
+        return data.user2_role === _this6.convertedRole && data.user2_id === _this6.id;
+      })) {
+        this.checkContact = false;
+      } else {
+        this.checkContact = true;
+      }
     }
   },
   watch: {
@@ -358,9 +417,7 @@ __webpack_require__.r(__webpack_exports__);
           if (user.user1_name.toLowerCase().match(_this7.filterName.toLowerCase())) {
             return user;
           }
-        } // if (user.name.toLowerCase().match(this.filterName.toLowerCase()))
-        //      return user.name.toLowerCase().match(this.filterName.toLowerCase());
-
+        }
       });
     }
   },
@@ -370,9 +427,19 @@ __webpack_require__.r(__webpack_exports__);
     // this.getProperty();
     this.getRole();
     this.getConverstations();
-    setTimeout(function () {
-      _this8.getFirstConversation();
-    }, 1000);
+    this.convertRole();
+
+    if (this.conversations.length > 0) {
+      setTimeout(function () {
+        _this8.getFirstConversation();
+      }, 2000);
+    }
+
+    if (this.user_role != undefined) {
+      setTimeout(function () {
+        _this8.checkNewContact();
+      }, 2000);
+    }
   }
 });
 
@@ -554,264 +621,280 @@ var render = function () {
                         [_vm._v("Chats")]
                       ),
                       _vm._v(" "),
-                      _c(
-                        "li",
-                        _vm._l(_vm.filterContact, function (list, index) {
-                          return _c("div", { key: index }, [
-                            _c(
-                              "a",
-                              {
-                                staticClass:
-                                  "hover:bg-gray-100 border-b border-gray-300 px-3 py-2 cursor-pointer flex items-center justify-start text-sm focus:outline-none focus:border-gray-300 transition duration-150 ease-in-out",
-                              },
-                              [
-                                list.user1_role == _vm.role &&
-                                list.user1_id == _vm.user_id
-                                  ? _c(
-                                      "div",
-                                      {
-                                        staticClass: "w-full",
-                                        on: {
-                                          click: function ($event) {
-                                            _vm.selectConversations(
-                                              list,
-                                              list.user2_id,
-                                              list.user2_name,
-                                              list.user2_photo,
-                                              list.user2_role
-                                            )
-                                            _vm.getMessages(list.id)
-                                          },
-                                        },
-                                      },
-                                      [
-                                        _c("img", {
-                                          staticClass:
-                                            "h-10 w-10 ml-2 rounded-full object-cover",
-                                          attrs: {
-                                            src:
-                                              "/images/Profile/" +
-                                              list.user2_photo,
-                                            alt: "Avatar",
-                                          },
-                                        }),
-                                        _vm._v(" "),
-                                        _c(
-                                          "div",
-                                          { staticClass: "w-full pb-2" },
-                                          [
-                                            _c(
-                                              "div",
-                                              {
-                                                staticClass:
-                                                  "flex justify-between",
+                      _c("li", [
+                        _vm.filterContact.length > 0
+                          ? _c(
+                              "div",
+                              _vm._l(_vm.filterContact, function (list, index) {
+                                return _c("div", { key: index }, [
+                                  _c(
+                                    "a",
+                                    {
+                                      staticClass:
+                                        "hover:bg-gray-100 border-b border-gray-300 px-3 py-2 cursor-pointer flex items-center justify-start text-sm focus:outline-none focus:border-gray-300 transition duration-150 ease-in-out",
+                                    },
+                                    [
+                                      list.user1_role == _vm.role &&
+                                      list.user1_id == _vm.user_id
+                                        ? _c(
+                                            "div",
+                                            {
+                                              staticClass: "w-full",
+                                              on: {
+                                                click: function ($event) {
+                                                  _vm.selectConversations(
+                                                    list,
+                                                    list.user2_id,
+                                                    list.user2_name,
+                                                    list.user2_photo,
+                                                    list.user2_role
+                                                  )
+                                                  _vm.getMessages(list.id)
+                                                },
                                               },
-                                              [
-                                                _c(
-                                                  "span",
-                                                  {
-                                                    staticClass:
-                                                      "msg block ml-2 font-semibold text-base text-gray-600 ",
-                                                  },
-                                                  [
-                                                    _vm._v(
-                                                      _vm._s(list.user2_name)
-                                                    ),
-                                                  ]
-                                                ),
-                                                _vm._v(" "),
-                                                _c(
-                                                  "span",
-                                                  {
-                                                    staticClass:
-                                                      "block ml-24 text-sm text-gray-600",
-                                                  },
-                                                  [
-                                                    _vm._v(
-                                                      _vm._s(
-                                                        _vm
-                                                          .moment(
-                                                            list
-                                                              .get_msg_relation[0]
-                                                              .created_at
-                                                          )
-                                                          .format("h:mm a")
-                                                      )
-                                                    ),
-                                                  ]
-                                                ),
-                                              ]
-                                            ),
-                                            _vm._v(" "),
-                                            _c(
-                                              "div",
-                                              {
+                                            },
+                                            [
+                                              _c("img", {
                                                 staticClass:
-                                                  "flex justify-between",
-                                                attrs: { id: "msg" },
+                                                  "h-10 w-10 ml-2 rounded-full object-cover",
+                                                attrs: {
+                                                  src:
+                                                    "/images/Profile/" +
+                                                    list.user2_photo,
+                                                  alt: "Avatar",
+                                                },
+                                              }),
+                                              _vm._v(" "),
+                                              _c(
+                                                "div",
+                                                { staticClass: "w-full pb-2" },
+                                                [
+                                                  _c(
+                                                    "div",
+                                                    {
+                                                      staticClass:
+                                                        "flex justify-between",
+                                                    },
+                                                    [
+                                                      _c(
+                                                        "span",
+                                                        {
+                                                          staticClass:
+                                                            "msg block ml-2 font-semibold text-base text-gray-600 ",
+                                                        },
+                                                        [
+                                                          _vm._v(
+                                                            _vm._s(
+                                                              list.user2_name
+                                                            )
+                                                          ),
+                                                        ]
+                                                      ),
+                                                      _vm._v(" "),
+                                                      _c(
+                                                        "span",
+                                                        {
+                                                          staticClass:
+                                                            "block ml-24 text-sm text-gray-600",
+                                                        },
+                                                        [
+                                                          _vm._v(
+                                                            _vm._s(
+                                                              _vm
+                                                                .moment(
+                                                                  list
+                                                                    .get_msg_relation[0]
+                                                                    .created_at
+                                                                )
+                                                                .format(
+                                                                  "h:mm a"
+                                                                )
+                                                            )
+                                                          ),
+                                                        ]
+                                                      ),
+                                                    ]
+                                                  ),
+                                                  _vm._v(" "),
+                                                  _c(
+                                                    "div",
+                                                    {
+                                                      staticClass:
+                                                        "flex justify-between",
+                                                      attrs: { id: "msg" },
+                                                    },
+                                                    [
+                                                      _c(
+                                                        "span",
+                                                        {
+                                                          staticClass:
+                                                            "msg block ml-2 text-sm text-gray-600",
+                                                        },
+                                                        [
+                                                          _vm._v(
+                                                            _vm._s(
+                                                              list
+                                                                .get_msg_relation[0]
+                                                                .msg
+                                                            )
+                                                          ),
+                                                        ]
+                                                      ),
+                                                      _vm._v(" "),
+                                                      _c(
+                                                        "span",
+                                                        {
+                                                          staticClass:
+                                                            "badge mb-3 bg-red-800 shrink-0 grow-0 rounded-full px-3 py-1 text-center object-right-top text-white text-sm mr-1",
+                                                        },
+                                                        [_vm._v("9")]
+                                                      ),
+                                                    ]
+                                                  ),
+                                                ]
+                                              ),
+                                            ]
+                                          )
+                                        : _vm._e(),
+                                      _vm._v(" "),
+                                      list.user2_role == _vm.role &&
+                                      list.user2_id == _vm.user_id
+                                        ? _c(
+                                            "div",
+                                            {
+                                              on: {
+                                                click: function ($event) {
+                                                  _vm.selectConversations(
+                                                    list,
+                                                    list.user1_id,
+                                                    list.user1_name,
+                                                    list.user1_photo,
+                                                    list.user1_role
+                                                  )
+                                                  _vm.getMessages(list.id)
+                                                },
                                               },
-                                              [
-                                                _c(
-                                                  "span",
-                                                  {
-                                                    staticClass:
-                                                      "msg block ml-2 text-sm text-gray-600",
-                                                  },
-                                                  [
-                                                    _vm._v(
-                                                      _vm._s(
-                                                        list.get_msg_relation[0]
-                                                          .msg
-                                                      )
-                                                    ),
-                                                  ]
-                                                ),
-                                                _vm._v(" "),
-                                                _c(
-                                                  "span",
-                                                  {
-                                                    staticClass:
-                                                      "badge mb-3 bg-red-800 shrink-0 grow-0 rounded-full px-3 py-1 text-center object-right-top text-white text-sm mr-1",
-                                                  },
-                                                  [_vm._v("9")]
-                                                ),
-                                              ]
-                                            ),
-                                          ]
-                                        ),
-                                      ]
-                                    )
-                                  : _vm._e(),
-                                _vm._v(" "),
-                                list.user2_role == _vm.role &&
-                                list.user2_id == _vm.user_id
-                                  ? _c(
-                                      "div",
-                                      {
-                                        on: {
-                                          click: function ($event) {
-                                            _vm.selectConversations(
-                                              list,
-                                              list.user1_id,
-                                              list.user1_name,
-                                              list.user1_photo,
-                                              list.user1_role
-                                            )
-                                            _vm.getMessages(list.id)
-                                          },
-                                        },
-                                      },
-                                      [
-                                        _c("img", {
-                                          staticClass:
-                                            "h-10 w-10 ml-2 rounded-full object-cover",
-                                          attrs: {
-                                            src:
-                                              "/images/Profile/" +
-                                              list.user1_photo,
-                                            alt: "username",
-                                          },
-                                        }),
-                                        _vm._v(" "),
-                                        _c(
-                                          "div",
-                                          { staticClass: "w-full pb-2" },
-                                          [
-                                            _c(
-                                              "div",
-                                              {
+                                            },
+                                            [
+                                              _c("img", {
                                                 staticClass:
-                                                  "flex justify-between",
-                                              },
-                                              [
-                                                _c(
-                                                  "span",
-                                                  {
-                                                    staticClass:
-                                                      "msg block ml-2 font-semibold text-base text-gray-600 ",
-                                                  },
-                                                  [
-                                                    _vm._v(
-                                                      _vm._s(list.user1_name)
-                                                    ),
-                                                  ]
-                                                ),
-                                                _vm._v(" "),
-                                                _c(
-                                                  "span",
-                                                  {
-                                                    staticClass:
-                                                      "block  text-sm text-gray-600 ml-24",
-                                                  },
-                                                  [
-                                                    _vm._v(
-                                                      _vm._s(
-                                                        _vm
-                                                          .moment(
-                                                            list
-                                                              .get_msg_relation[0]
-                                                              .created_at
-                                                          )
-                                                          .format("h:mm a")
-                                                      )
-                                                    ),
-                                                  ]
-                                                ),
-                                              ]
-                                            ),
-                                            _vm._v(" "),
-                                            _c(
-                                              "div",
-                                              {
-                                                staticClass:
-                                                  "flex justify-between",
-                                                attrs: { id: "msg" },
-                                              },
-                                              [
-                                                _c(
-                                                  "span",
-                                                  {
-                                                    staticClass:
-                                                      "msg block ml-2 text-sm text-gray-600",
-                                                  },
-                                                  [
-                                                    _vm._v(
-                                                      _vm._s(
-                                                        list.get_msg_relation[0]
-                                                          .msg
-                                                      )
-                                                    ),
-                                                  ]
-                                                ),
-                                                _vm._v(" "),
-                                                _c(
-                                                  "span",
-                                                  {
-                                                    staticClass:
-                                                      "badge mb-3 bg-red-800 shrink-0 grow-0 rounded-full px-3 py-1 text-center object-right-top text-white text-sm mr-1",
-                                                  },
-                                                  [_vm._v("9")]
-                                                ),
-                                              ]
-                                            ),
-                                          ]
-                                        ),
-                                      ]
-                                    )
-                                  : _vm._e(),
-                              ]
-                            ),
-                          ])
-                        }),
-                        0
-                      ),
+                                                  "h-10 w-10 ml-2 rounded-full object-cover",
+                                                attrs: {
+                                                  src:
+                                                    "/images/Profile/" +
+                                                    list.user1_photo,
+                                                  alt: "username",
+                                                },
+                                              }),
+                                              _vm._v(" "),
+                                              _c(
+                                                "div",
+                                                { staticClass: "w-full pb-2" },
+                                                [
+                                                  _c(
+                                                    "div",
+                                                    {
+                                                      staticClass:
+                                                        "flex justify-between",
+                                                    },
+                                                    [
+                                                      _c(
+                                                        "span",
+                                                        {
+                                                          staticClass:
+                                                            "msg block ml-2 font-semibold text-base text-gray-600 ",
+                                                        },
+                                                        [
+                                                          _vm._v(
+                                                            _vm._s(
+                                                              list.user1_name
+                                                            )
+                                                          ),
+                                                        ]
+                                                      ),
+                                                      _vm._v(" "),
+                                                      _c(
+                                                        "span",
+                                                        {
+                                                          staticClass:
+                                                            "block  text-sm text-gray-600 ml-24",
+                                                        },
+                                                        [
+                                                          _vm._v(
+                                                            _vm._s(
+                                                              _vm
+                                                                .moment(
+                                                                  list
+                                                                    .get_msg_relation[0]
+                                                                    .created_at
+                                                                )
+                                                                .format(
+                                                                  "h:mm a"
+                                                                )
+                                                            )
+                                                          ),
+                                                        ]
+                                                      ),
+                                                    ]
+                                                  ),
+                                                  _vm._v(" "),
+                                                  _c(
+                                                    "div",
+                                                    {
+                                                      staticClass:
+                                                        "flex justify-between",
+                                                      attrs: { id: "msg" },
+                                                    },
+                                                    [
+                                                      _c(
+                                                        "span",
+                                                        {
+                                                          staticClass:
+                                                            "msg block ml-2 text-sm text-gray-600",
+                                                        },
+                                                        [
+                                                          _vm._v(
+                                                            _vm._s(
+                                                              list
+                                                                .get_msg_relation[0]
+                                                                .msg
+                                                            )
+                                                          ),
+                                                        ]
+                                                      ),
+                                                      _vm._v(" "),
+                                                      _c(
+                                                        "span",
+                                                        {
+                                                          staticClass:
+                                                            "badge mb-3 bg-red-800 shrink-0 grow-0 rounded-full px-3 py-1 text-center object-right-top text-white text-sm mr-1",
+                                                        },
+                                                        [_vm._v("9")]
+                                                      ),
+                                                    ]
+                                                  ),
+                                                ]
+                                              ),
+                                            ]
+                                          )
+                                        : _vm._e(),
+                                    ]
+                                  ),
+                                ])
+                              }),
+                              0
+                            )
+                          : _c("div", { staticClass: "p-2" }, [
+                              _vm._v("No conversations "),
+                            ]),
+                      ]),
                     ]
                   ),
                 ]
               ),
               _vm._v(" "),
               _c("div", { staticClass: "col-span-2 bg-white" }, [
-                _vm.user_role == undefined
+                _vm.checkContact == false && _vm.filterContact.length > 0
                   ? _c(
                       "div",
                       { staticClass: "w-full", attrs: { id: "Profile" } },
@@ -825,10 +908,18 @@ var render = function () {
                           [
                             _c("img", {
                               staticClass:
-                                "h-10 w-10 rounded-full object-cover",
+                                "h-10 w-10 rounded-full object-cover cursor-pointer",
                               attrs: {
                                 src: "/images/Profile/" + _vm.chat.avatar,
                                 alt: "username",
+                              },
+                              on: {
+                                click: function ($event) {
+                                  return _vm.viewProfile(
+                                    _vm.chat.u_id,
+                                    _vm.chat.u_role
+                                  )
+                                },
                               },
                             }),
                             _vm._v(" "),
@@ -836,9 +927,23 @@ var render = function () {
                               "span",
                               {
                                 staticClass:
-                                  "block ml-2 font-bold text-base text-gray-600",
+                                  "cursor-pointer block ml-2 font-bold text-base text-gray-600 hover:underline",
+                                on: {
+                                  click: function ($event) {
+                                    return _vm.viewProfile(
+                                      _vm.chat.u_id,
+                                      _vm.chat.u_role
+                                    )
+                                  },
+                                },
                               },
                               [_vm._v(_vm._s(_vm.chat.name) + " ")]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "button",
+                              { staticClass: "p-2 ml-auto bg-pink-light" },
+                              [_vm._v("delete")]
                             ),
                           ]
                         ),
@@ -1039,7 +1144,10 @@ var render = function () {
                         ),
                       ]
                     )
-                  : _c("div", { staticClass: "w-full" }, [
+                  : _vm._e(),
+                _vm._v(" "),
+                _vm.checkContact == true
+                  ? _c("div", { staticClass: "w-full" }, [
                       _c(
                         "div",
                         {
@@ -1151,7 +1259,28 @@ var render = function () {
                             : _vm._e(),
                         ]
                       ),
-                    ]),
+                    ])
+                  : _vm.checkContact == false && _vm.filterContact.length == 0
+                  ? _c("div", { staticClass: "w-full" }, [
+                      _vm._m(1),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        {
+                          ref: "feed",
+                          staticClass: "w-full overflow-y-auto p-10 relative",
+                          staticStyle: { height: "400px" },
+                          attrs: { id: "chat" },
+                        },
+                        [_vm._m(2)]
+                      ),
+                      _vm._v(" "),
+                      _c("div", {
+                        staticClass:
+                          "w-full py-3 px-3 flex items-center justify-between border-t border-gray-300",
+                      }),
+                    ])
+                  : _vm._e(),
               ]),
             ]
           ),
@@ -1161,6 +1290,26 @@ var render = function () {
   ])
 }
 var staticRenderFns = [
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("ul", [_c("li", { staticClass: "clearfix2" })])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      { staticClass: "flex items-center border-b border-gray-300 pl-3 py-3" },
+      [
+        _c("span", {
+          staticClass: "block ml-2 font-bold text-base text-gray-600",
+        }),
+      ]
+    )
+  },
   function () {
     var _vm = this
     var _h = _vm.$createElement
