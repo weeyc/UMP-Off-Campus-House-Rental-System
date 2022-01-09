@@ -82,6 +82,7 @@ Route::get('resetTime', 'ChatController@resetTime');
 Route::post('send_msg/{id}/{role}', 'ChatController@send_msg');
 Route::post('send_msg_new/{id}/{role}', 'ChatController@send_msg_new');
 Route::get('getConverstations/{id}/{role}', 'ChatController@getConverstations');
+Route::get('get_messages/{id}', 'ChatController@get_messages');
 Route::get('getContact/{id}/{role}', 'ChatController@getContact');
 
 

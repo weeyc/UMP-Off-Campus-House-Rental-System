@@ -13,7 +13,7 @@ class Conversation extends Model
     protected $primaryKey = 'id';
 
     public function getMsgRelation(){
-        return $this->hasMany('App\Models\Message', 'conversation_id', 'id' );
+        return $this->hasMany('App\Models\Message', 'conversation_id', 'id' )->orderBy('created_at','desc');
     }
 
     public function getStudent1Relation(){

@@ -116,27 +116,26 @@ class ChatController extends Controller
 
         if($role == 1){
 
-            $data = Conversation::with('getMsgRelation')->whereHas('getMsgRelation', function($query) {
-                        $query->orderBy('created_at', 'desc');
-                    ;})
+            $data = Conversation::with('getMsgRelation')
                     ->where('user1_role',1)
-                    ->where('user1_id',$id)->orWhere('user2_role',1)->where('user2_id',$id)->orderBy('updated_at','desc')->get();
+                    ->where('user1_id',$id)->orWhere('user2_role',1)->where('user2_id',$id)->orderBy('updated_at','DESC')->get();
                     return $data;
 
+
+
         }else if($role == 2){
-            $data = Conversation::with('getMsgRelation')->whereHas('getMsgRelation', function($query) {
-                $query->orderBy('created_at', 'desc');
-            ;})
+            $data = Conversation::with('getMsgRelation')
                     ->where('user1_role',2)
-                    ->where('user1_id',$id)->orWhere('user2_role',2)->where('user2_id',$id)->orderBy('updated_at','desc')->get();
+                    ->where('user1_id',$id)->orWhere('user2_role',2)->where('user2_id',$id)->orderBy('updated_at','DESC')->get();
                     return $data;
 
         }else if($role == 3){
-            $data = Conversation::with('getMsgRelation')->whereHas('getMsgRelation', function($query) {
-                $query->orderBy('created_at', 'desc');
-            ;})
+            $data = Conversation::with('getMsgRelation')
+            // ->whereHas('getMsgRelation', function($query) {
+            //     $query->orderBy('created_at', 'asc');
+            // ;})
                     ->where('user1_role',3)
-                    ->where('user1_id',$id)->orWhere('user2_role',3)->where('user2_id',$id)->orderBy('updated_at','desc')->get();
+                    ->where('user1_id',$id)->orWhere('user2_role',3)->where('user2_id',$id)->orderBy('updated_at','DESC')->get();
                     return $data;
 
         }
@@ -172,32 +171,32 @@ class ChatController extends Controller
         $conversation = new Conversation();
         $message = new Message();
 
-        // if($role==1){
-        //     $user1_name = Student::where('std_id',$id)->value('std_name');
-        //     $user1_photo = Student::where('std_id',$id)->value('std_pic');
-        // }else if ($role==2){
-        //     $user1_name = Landlord::where('landlord_id',$id)->value('landlord_name');
-        //     $user1_photo = Landlord::where('landlord_id',$id)->value('landlord_pic');
-        // }else if ($role==3){
-        //     $user1_name = Staff::where('staff_id',$id)->value('staff_name');
-        //     $user1_photo = Staff::where('staff_id',$id)->value('staff_pic');
-        // }
+        if($role==1){
+            $user1_name = Student::where('std_id',$id)->value('std_name');
+            $user1_photo = Student::where('std_id',$id)->value('std_pic');
+        }else if ($role==2){
+            $user1_name = Landlord::where('landlord_id',$id)->value('landlord_name');
+            $user1_photo = Landlord::where('landlord_id',$id)->value('landlord_pic');
+        }else if ($role==3){
+            $user1_name = Staff::where('staff_id',$id)->value('staff_name');
+            $user1_photo = Staff::where('staff_id',$id)->value('staff_pic');
+        }
 
-        // if ($receiver_role==1){
-        //     $user2_name = Student::where('std_id',$receiver_id)->value('std_name');
-        //     $user2_photo = Student::where('std_id',$receiver_id)->value('std_pic');
-        // }else if ($receiver_role==2){
-        //     $user2_name = Landlord::where('landlord_id',$receiver_id)->value('landlord_name');
-        //     $user2_photo = Landlord::where('landlord_id',$receiver_id)->value('landlord_pic');
-        // }else if ($receiver_role==3){
-        //     $user2_name = Staff::where('staff_id',$receiver_id)->value('staff_name');
-        //     $user2_photo = Staff::where('staff_id',$receiver_id)->value('staff_pic');
-        // }
+        if ($receiver_role==1){
+            $user2_name = Student::where('std_id',$receiver_id)->value('std_name');
+            $user2_photo = Student::where('std_id',$receiver_id)->value('std_pic');
+        }else if ($receiver_role==2){
+            $user2_name = Landlord::where('landlord_id',$receiver_id)->value('landlord_name');
+            $user2_photo = Landlord::where('landlord_id',$receiver_id)->value('landlord_pic');
+        }else if ($receiver_role==3){
+            $user2_name = Staff::where('staff_id',$receiver_id)->value('staff_name');
+            $user2_photo = Staff::where('staff_id',$receiver_id)->value('staff_pic');
+        }
 
-        // $conversation->user1_name = $user1_name;
-        // $conversation->user1_photo = $user1_photo;
-        // $conversation->user2_name = $user2_name;
-        // $conversation->user2_photo = $user2_photo;
+        $conversation->user1_name = $user1_name;
+        $conversation->user1_photo = $user1_photo;
+        $conversation->user2_name = $user2_name;
+        $conversation->user2_photo = $user2_photo;
 
         $conversation->user1_id = $id;
         $conversation->user1_role = $role;
@@ -223,6 +222,44 @@ class ChatController extends Controller
 
         }
 
+     }
+    public function send_msg($id,$role, Request $request){
+
+
+        $conversation_id = $request->id;
+        $msg = $request->put_msg;
+        $receiver_id = $request->receiver_id;
+        $receiver_role = $request->receiver_role;
+
+        $message = new Message();
+
+            $message->sender_id = $id;
+            $message->receiver_id = $receiver_id;
+            $message->sender_role = $role;
+            $message->receiver_role = $receiver_role;
+            $message->conversation_id = $conversation_id;
+            $message->msg = $msg;
+            $message->sender_id = $id;
+            $message->save();
+
+            if($message->save()){
+                Conversation::where('id',$conversation_id)->update([
+                    'type' => 'updated',
+                 ]);
+            }
+
+
+
+
+
+
+
+
+     }
+
+    public function get_messages($id, Request $request){
+        $data = Message::where('conversation_id', $id)->get();
+        return $data;
      }
 
     public function authme(){

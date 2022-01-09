@@ -17,15 +17,13 @@ class CreateConversationsTable extends Migration
             $table->increments('id');
             $table->integer('user1_id')->nullable();
             $table->integer('user1_role')->nullable();
-
+            $table->string('user1_name')->nullable();
+            $table->string('user1_photo')->nullable();
 
             $table->integer('user2_id')->nullable();
             $table->integer('user2_role')->nullable();
-
-            // $table->string('user1_name')->nullable();
-            // $table->string('user1_photo')->nullable();
-            // $table->string('user2_name')->nullable();
-            // $table->string('user2_photo')->nullable();
+            $table->string('user2_name')->nullable();
+            $table->string('user2_photo')->nullable();
 
             $table->string('type')->nullable();
             $table->timestamps();

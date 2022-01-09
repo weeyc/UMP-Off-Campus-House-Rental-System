@@ -525,14 +525,6 @@ class TestController extends Controller
 
 
 
-    $table->increments('id');
-    $table->integer('user1_id')->nullable();
-    $table->integer('user2_id')->nullable();
-    $table->string('user1_role')->nullable();
-    $table->string('user2_role')->nullable();
-    $table->string('type')->nullable();
-
-
 //  ----------------------------------Conversation-----------------------
 //  |    id    | user1_id  | user1_role  | user2_id | user2_role  | type |
 //  ----------------------------------------------------------------------
