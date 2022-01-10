@@ -23,4 +23,9 @@ mix.js('resources/js/app.js', 'js/')
       }).purgeCss()
 
 
-      mix.browserSync('http://127.0.0.1:8000/');
+     // mix.browserSync('http://127.0.0.1:8000/');
+
+      mix.browserSync({
+        proxy: 'http://127.0.0.1:8000/',
+        ghostMode: false,
+    });

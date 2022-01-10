@@ -2,15 +2,19 @@
 
 namespace App\Http\Controllers;
 
-
 use Notification;
 use Carbon\Carbon;
 use App\Models\Staff;
 use App\Models\Message;
 use App\Models\Student;
 use App\Models\Landlord;
+use App\Events\NewMessage;
 use App\Models\Conversation;
 use Illuminate\Http\Request;
+use App\Events\NewMessageToStaff;
+use Illuminate\Support\Facades\DB;
+use App\Events\NewMessageToStudent;
+use App\Events\NewMessageToLandlord;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Resources\StaffResource;
 use App\Http\Resources\NotifyResource;
@@ -114,33 +118,30 @@ class ChatController extends Controller
      }
     public function getConverstations($id,$role, Request $request){
 
-        if($role == 1){
 
-            $data = Conversation::with('getMsgRelation')
-                    ->where('user1_role',1)
-                    ->where('user1_id',$id)->orWhere('user2_role',1)->where('user2_id',$id)->orderBy('updated_at','DESC')->get();
-                    return $data;
+            //correct but not count
+            // $data = Conversation::query()->with(['getMsgRelation' => function ($query) use($id, $role) {
+            //     $query->where('receiver_id',$id)->where('receiver_role',$role)->where('read_at',null)->get();
+            // }])
+            // $data = Conversation::query()->withCount(['getMsgRelation' => function ( $query) use($id, $role) {
+            //      $query->where('receiver_id',$id)->where('receiver_role',$role)->where('read_at',null);
+            // }])
 
-
-
-        }else if($role == 2){
-            $data = Conversation::with('getMsgRelation')
-                    ->where('user1_role',2)
-                    ->where('user1_id',$id)->orWhere('user2_role',2)->where('user2_id',$id)->orderBy('updated_at','DESC')->get();
-                    return $data;
-
-        }else if($role == 3){
-            $data = Conversation::with('getMsgRelation')
-            // ->whereHas('getMsgRelation', function($query) {
-            //     $query->orderBy('created_at', 'asc');
-            // ;})
-                    ->where('user1_role',3)
-                    ->where('user1_id',$id)->orWhere('user2_role',3)->where('user2_id',$id)->orderBy('updated_at','DESC')->get();
-                    return $data;
-
-        }
-
+            $data = Conversation::query()->with('getMsgRelation')->withCount(['getMsgRelation' => function ( $query) use($id, $role) {
+                $query->where('receiver_id',$id)->where('receiver_role',$role)->where('read_at',null);
+           }])->where('user1_role',$role)
+                ->where('user1_id',$id)->orWhere('user2_role',$role)->where('user2_id',$id)->orderBy('updated_at','DESC')->get();
+                return $data;
      }
+
+    public function mark_msg_read($id,$role,$chat_id, Request $request){
+
+        Message::where('conversation_id',$chat_id)->where('receiver_id',$id)->where('receiver_role',$role)->where('read_at',null)
+         ->update([
+            'read_at' =>  Carbon::now(),
+        ]);
+     }
+
     public function getContact($id,$role, Request $request){
 
         if($role == 1){
@@ -217,7 +218,16 @@ class ChatController extends Controller
             $message->msg = $msg;
             $message->sender_id = $id;
             $message->save();
+            if($message->save()){
+                if($receiver_role==1){
+                    broadcast(new NewMessageToStudent($message));
+                 }else if ($receiver_role==2){
+                    broadcast(new NewMessageToLandlord($message));
+                 }else if ($receiver_role==3){
+                    broadcast(new NewMessageToStaff($message));
+                 }
 
+            }
 
 
         }
@@ -246,6 +256,14 @@ class ChatController extends Controller
                 Conversation::where('id',$conversation_id)->update([
                     'type' => 'updated',
                  ]);
+                 if($receiver_role==1){
+                    broadcast(new NewMessageToStudent($message));
+                 }else if ($receiver_role==2){
+                    broadcast(new NewMessageToLandlord($message));
+                 }else if ($receiver_role==3){
+                    broadcast(new NewMessageToStaff($message));
+                 }
+
             }
 
 
@@ -254,6 +272,38 @@ class ChatController extends Controller
 
 
 
+
+
+     }
+
+     public function get_noti_msg_counts($id,$role, Request $request){
+
+        if($role == 1){
+
+           $data= Message::where('receiver_id',$id)->where('receiver_role',$role)->get()->groupBy('conversation_id');
+
+            // $user = Student::find($id);
+            // $notifications = $user->notifications()->orderBy('created_at','desc')->get()
+            // ->groupBy(function($date) {
+            //     return Carbon::parse($date->created_at)->format('d M Y'); // grouping by day
+            // })->toArray();
+
+            // $user = Student::find($id);
+            // $notifications = $user->notifications()->orderBy('created_at','desc')->get();
+            return $data;
+
+
+        }else if($role == 2){
+            $user = Landlord::find($id);
+            $notifications = $user->notifications()->orderBy('created_at','desc')->get();
+            return $notifications;
+
+        }else if($role == 3){
+            $user = Staff::find($id);
+            $notifications = $user->notifications()->orderBy('created_at','desc')->get();
+            return $notifications;
+
+        }
 
      }
 

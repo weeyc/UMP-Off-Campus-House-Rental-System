@@ -31,26 +31,26 @@
                                         <div class="w-full pb-2">
                                             <div class="flex justify-between">
                                                 <span class="msg block ml-2 font-semibold text-base text-gray-600 ">{{list.user2_name}}</span>
-                                                <span class="block ml-24 text-sm text-gray-600">{{moment(list.get_msg_relation[0].created_at  ).format("h:mm a")}}</span>
+                                                <span  v-if="list.get_msg_relation.length!=0" class="block ml-24 text-sm text-gray-600">{{moment(list.get_msg_relation[0].created_at  ).format("h:mm a")}}</span>
 
                                             </div>
                                             <div id="msg" class="flex justify-between">
-                                                <span class="msg block ml-2 text-sm text-gray-600">{{list.get_msg_relation[0].msg}}</span>
-                                                <span  class="badge mb-3 bg-red-800 shrink-0 grow-0 rounded-full px-3 py-1 text-center object-right-top text-white text-sm mr-1">9</span>
+                                                <span v-if="list.get_msg_relation.length!=0" class="msg block ml-2 text-sm text-gray-600">{{list.get_msg_relation[0].msg}}</span>
+                                                <span v-if="list.get_msg_relation_count>0" class="badge mb-3 bg-red-800 shrink-0 grow-0 rounded-full px-3 py-1 text-center object-right-top text-white text-sm mr-1">{{list.get_msg_relation_count }}</span>
                                             </div>
                                         </div>
                                     </div>
 
-                                         <div v-if="list.user2_role==role && list.user2_id==user_id" @click="selectConversations(list, list.user1_id,list.user1_name,list.user1_photo,list.user1_role);  getMessages(list.id)" >
+                                        <div v-if="list.user2_role==role && list.user2_id==user_id" @click="selectConversations(list, list.user1_id,list.user1_name,list.user1_photo,list.user1_role);  getMessages(list.id)" >
                                          <img class="h-10 w-10 ml-2 rounded-full object-cover" :src="'/images/Profile/'+list.user1_photo" alt="username" />
                                         <div class="w-full pb-2">
                                             <div class="flex justify-between">
                                                 <span class="msg block ml-2 font-semibold text-base text-gray-600 ">{{list.user1_name}}</span>
-                                                <span class="block  text-sm text-gray-600 ml-24">{{ moment(list.get_msg_relation[0].created_at  ).format("h:mm a") }}</span>
+                                                <span  v-if="list.get_msg_relation.length!=0" class="block  text-sm text-gray-600 ml-24">{{ moment(list.get_msg_relation[0].created_at  ).format("h:mm a") }}</span>
                                             </div>
                                             <div id="msg" class="flex justify-between">
-                                                <span class="msg block ml-2 text-sm text-gray-600">{{list.get_msg_relation[0].msg}}</span>
-                                                <span  class="badge mb-3 bg-red-800 shrink-0 grow-0 rounded-full px-3 py-1 text-center object-right-top text-white text-sm mr-1">9</span>
+                                                <span v-if="list.get_msg_relation.length!=0"  class="msg block ml-2 text-sm text-gray-600">{{list.get_msg_relation[0].msg}}</span>
+                                                <span v-if="list.get_msg_relation_count>0" class="badge mb-3 bg-red-800 shrink-0 grow-0 rounded-full px-3 py-1 text-center object-right-top text-white text-sm mr-1">{{ list.get_msg_relation_count }}</span>
                                             </div>
                                         </div>
                                         </div>
@@ -62,12 +62,12 @@
                 </ul>
             </div>
             <div class="col-span-2 bg-white">
-                <div id="Profile" v-if=" checkContact==false && filterContact.length>0" class="w-full">
+                <div id="Profile" v-if=" checkContact==false && filterContact.length>0 && chat.name!=''" class="w-full">
                     <div  class="flex items-center border-b border-gray-300 pl-3 py-3">
-                        <img  @click="viewProfile(chat.u_id, chat.u_role)" class="h-10 w-10 rounded-full object-cover cursor-pointer" :src="'/images/Profile/'+chat.avatar" alt="username" />
+                        <img v-if="chat.avatar!=''" @click="viewProfile(chat.u_id, chat.u_role)" class="h-10 w-10 rounded-full object-cover cursor-pointer" :src="'/images/Profile/'+chat.avatar" alt="username" />
                         <span  @click="viewProfile(chat.u_id, chat.u_role)" class="cursor-pointer block ml-2 font-bold text-base text-gray-600 hover:underline">{{ chat.name }} </span>
 
-                          <button class="p-2 ml-auto bg-pink-light">delete</button>
+                          <!-- <button class="p-2 ml-auto bg-pink-light">delete</button> -->
                     </div>
 
                     <div id="chat" class="w-full overflow-y-auto p-10 relative" style="height: 400px;" ref="feed">
@@ -85,7 +85,7 @@
                                 <div v-else>
 
                                        <div  class="w-full flex justify-end" >
-                                        <div class="bg-yellow-200 rounded px-5 py-2 my-2 text-gray-700 relative" style="max-width: 300px;">
+                                        <div :class="[text]" class="rounded px-5 py-2 my-2 text-gray-700 relative" style="max-width: 300px;">
                                             <span class="block">{{msg.msg}}</span>
                                             <span class="block text-xs text-left">{{ moment(msg.created_at ).format("h:mm a") }}</span>
                                         </div>
@@ -125,10 +125,11 @@
                 </div>
                 <div v-if="checkContact==true"   class="w-full">
                     <div class="flex items-center border-b border-gray-300 pl-3 py-3">
-                        <img class="h-10 w-10 rounded-full object-cover"
+                        <img v-if="photo!=undefined" class="h-10 w-10 rounded-full object-cover"
                         :src="'/images/Profile/'+photo"
                         alt="username" />
                         <span class="block ml-2 font-bold text-base text-gray-600"> {{ name }}</span>
+
                     </div>
                     <div id="chat" class="w-full overflow-y-auto p-10 relative" style="height: 400px;" ref="feed">
                         <ul>
@@ -203,10 +204,11 @@ export default {
             margin: '',
             name:'',
             photo: '',
-
             filterName: '',
             checkContact: false,
             convertedRole:'',
+            totalNotifications:'',
+            text: '',
 
 
             chat: {
@@ -238,6 +240,7 @@ export default {
         getConverstations(){
             axios.get('/api/getConverstations/'+this.user_id+'/'+this.role).then((response)=>{
                 this.conversations=response.data
+                this.counttotalNotifications();
                 console.warn(this.conversations.data);
                 })
 
@@ -344,21 +347,31 @@ export default {
                 this.chat.name = u_name
                 this.chat.u_role = u_role
 
-
                 this.formSend.receiver_id= u_id;
                 this.formSend.id= list.id;
                 this.formSend.receiver_role= u_role;
                 this.getConverstations();
                 this.checkContact=false;
                 this.scrollToBottom();
+                this.mark_msg_read(list.id);
+
+
+        },
+        mark_msg_read(chat_id){
+               axios.get('/api/mark_msg_read/'+this.user_id+'/'+this.role+'/'+chat_id).then((response)=>{
+                this.getConverstations();
+                this.$root.$emit("getCount",this.user_id);
+                }).catch((errors)=> {console.log(errors)})
         },
         getRole(){
             if(this.role == 1){
                 this.margin = 'mt-5 mb-5'
+                this.text= 'bg-yellow-200'
             }else if (this.role == 2){
                 this.margin = 'mt-5 mb-5'
+                this.text= 'bg-blue-200'
             }else{
-
+                this.text= 'bg-pink-200'
             }
           },
         convertRole(){
@@ -370,6 +383,15 @@ export default {
                  this.convertedRole = 3
             }
           },
+        counttotalNotifications(){
+            let sum = 0;
+
+                for (let i = 0; i < this.conversations.length; i++) {
+                    sum += this.conversations[i].get_msg_relation_count;
+                }
+                this.totalNotifications = sum;
+
+          },
 
         checkNewContact(){
             if(this.conversations.some(data => data.user1_role === this.convertedRole && data.user1_id===this.id)){
@@ -377,13 +399,10 @@ export default {
             }else if (this.conversations.some(data => data.user2_role === this.convertedRole && data.user2_id===this.id)){
                     this.checkContact=false;
             }else {
-
-                     this.checkContact=true;
-
-
+                    this.checkContact=true;
             }
-
-
+        },
+        handleIncomming(message){
 
         },
 
@@ -411,7 +430,6 @@ export default {
                }
             });
         },
-
     },
 
       mounted: function(){
@@ -430,6 +448,55 @@ export default {
                  this.checkNewContact();
             }, 2000);
         }
+
+        if(this.role==1){
+            Echo.private(`messages_to_std.${this.user_id}`)
+            .listen('NewMessageToStudent', (e) =>{
+
+                this.getConverstations();
+                if(this.chat.id!=''){
+                    setTimeout(() => {
+                        if(this.conversations[0].id===this.chat.id){
+                            this.getMessages(this.conversations[0].id);
+                            this.mark_msg_read(this.conversations[0].id)
+                        }
+                    }, 2000);
+                }
+
+            })
+        }else if (this.role==2){
+            Echo.private(`messages_to_landlord.${this.user_id}`)
+            .listen('NewMessageToLandlord', (e) =>{
+                this.getConverstations();
+                if(this.chat.id!=''){
+                    setTimeout(() => {
+                        if(this.conversations[0].id===this.chat.id){
+                            this.getMessages(this.conversations[0].id);
+                            this.mark_msg_read(this.conversations[0].id)
+                        }
+                    }, 2000);
+                }
+
+
+
+            })
+        }else if (this.role==3){
+            Echo.private(`messages_to_staff.${this.user_id}`)
+            .listen('NewMessageToStaff', (e) =>{
+                this.getConverstations();
+                  if(this.chat.id!=''){
+                    setTimeout(() => {
+                        if(this.conversations[0].id===this.chat.id){
+                            this.getMessages(this.conversations[0].id);
+                            this.mark_msg_read(this.conversations[0].id)
+                        }
+                    }, 2000);
+                }
+
+            })
+            }
+
+
     },
 
 
@@ -442,7 +509,6 @@ export default {
    text-overflow: ellipsis;
    display: -webkit-box;
    -webkit-line-clamp: 1; /* number of lines to show */
-           line-clamp: 1;
    -webkit-box-orient: vertical;
 }
 </style>

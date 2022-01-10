@@ -78,7 +78,7 @@
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M15 10L11 14L17 20L21 4L3 11L7 13L9 19L12 15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                         </svg>
-                        <p class="text-base leading-4">Chat</p>
+                          <p class="text-base leading-4">Chat <span v-if="totalNotifications!=0" class="ml-2 badge mb-3 bg-red-800 shrink-0 grow-0 rounded-full px-3 py-1 text-center object-right-top text-white text-sm mr-1">{{totalNotifications }}</span></p>
                     </router-link >
                       <button  @click="toggleNoti =! toggleNoti; notificationHandler(true); markAsRead() " :class="[hover]" class="focus:outline-none flex jusitfy-start  py-3 items-center space-x-6 w-full">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -263,7 +263,10 @@ export default {
             notifications: [],
             notificationsCounts: [],
             moment: moment,
-             toggleNoti: false,
+            toggleNoti: false,
+
+            conversations: [],
+            totalNotifications: '',
         }
     },
     methods: {
@@ -365,6 +368,26 @@ export default {
             var mytrack = new Audio('/audio/notification.mp3')
             mytrack.play();
         },
+            getConverstations(){
+            axios.get('/api/getConverstations/'+this.user_id+'/'+this.role).then((response)=>{
+                this.conversations=response.data
+                  setTimeout(() =>   this.counttotalNotifications(), 1000);
+                console.warn(this.conversations.data);
+                })
+
+        },
+        counttotalNotifications(){
+            let sum = 0;
+
+                for (let i = 0; i < this.conversations.length; i++) {
+                    sum += this.conversations[i].get_msg_relation_count;
+                }
+                this.totalNotifications = sum;
+
+          },  playChatSound(){
+            var mytrackz = new Audio('/audio/Messenger.mp3')
+            mytrackz.play();
+        },
 
 
     },
@@ -384,6 +407,17 @@ export default {
                 this.getNotificationsCount();
                 this.playNotificationSound();
             });
+
+        Echo.private(`messages_to_landlord.${this.user_id}`)
+            .listen('NewMessageToLandlord', (e) =>{
+                this.getConverstations();
+                this.playChatSound();
+            })
+
+            this.$root.$on('getCount', data => {
+            this.getConverstations();
+            });
+            this.getConverstations();
     },
         computed:{
         unreadNotifications(){

@@ -87,7 +87,7 @@
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M15 10L11 14L17 20L21 4L3 11L7 13L9 19L12 15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                         </svg>
-                        <p class="text-base leading-4">Chat</p>
+                          <p class="text-base leading-4">Chat <span v-if="totalNotifications!=0" class="ml-2 badge mb-3 bg-red-800 shrink-0 grow-0 rounded-full px-3 py-1 text-center object-right-top text-white text-sm mr-1">{{totalNotifications }}</span></p>
                     </router-link >
                     <button @click="toggleNoti =! toggleNoti; notificationHandler(true); markAsRead() " :class="[hover]" class="focus:outline-none flex jusitfy-start  py-3 items-center space-x-6 w-full">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -347,6 +347,8 @@ export default {
               f_date:{
                   setDate: '',
               },
+            conversations: [],
+            totalNotifications: '',
 
                 formResponse:{
                     status: '',
@@ -477,6 +479,7 @@ export default {
 
 
         },
+
         redirectFromNoti(go, param_id, role){
             if(go==1){
                 this.$router.push({ name: 'RentalRoom_student' })
@@ -497,10 +500,31 @@ export default {
 
                 }).catch((errors)=> {console.log(errors)})
         },
+        getConverstations(){
+            axios.get('/api/getConverstations/'+this.user_id+'/'+this.role).then((response)=>{
+                this.conversations=response.data
+                  setTimeout(() =>   this.counttotalNotifications(), 1000);
+                console.warn(this.conversations.data);
+                })
+
+        },
+        counttotalNotifications(){
+            let sum = 0;
+
+                for (let i = 0; i < this.conversations.length; i++) {
+                    sum += this.conversations[i].get_msg_relation_count;
+                }
+                this.totalNotifications = sum;
+
+          },  playChatSound(){
+            var mytrackz = new Audio('/audio/Messenger.mp3')
+            mytrackz.play();
+        },
         playNotificationSound(){
             var mytrack = new Audio('/audio/notification.mp3')
             mytrack.play();
         },
+
         dropdownHandlerTimeController(event) {
             let single = event.currentTarget.getElementsByTagName("ul")[0];
             single.classList.toggle("hidden");
@@ -510,7 +534,7 @@ export default {
                  setTimeout(() =>   this.$toaster.warning('Process to future date....'), 1000);
                  setTimeout(() =>   this.$toaster.sucess('We are in future!'), 8000);
                 }).catch((error)=> {console.log(error)});
-        },
+        }
 
 
 
@@ -525,10 +549,11 @@ export default {
         this.getProfile();
         this.getRole();
 
-
         this.$root.$on('refreshData', data => {
             this.getProfile();
         });
+
+
 
         this.getNotifications();
         this.getNotificationsCount();
@@ -541,8 +566,22 @@ export default {
                 this.playNotificationSound();
             });
 
+            Echo.private(`messages_to_std.${this.user_id}`)
+            .listen('NewMessageToStudent', (e) =>{
+                this.getConverstations();
+                this.playChatSound();
+            })
+
+            this.$root.$on('getCount', data => {
+            this.getConverstations();
+            });
+            this.getConverstations();
+
+
         this.getAuth();
         document.getElementById("myDate").min = new Date().getFullYear() + "-" +  parseInt(new Date().getMonth() + 1 ) + "-" + new Date().getDate()
+
+
 
 
 

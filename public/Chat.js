@@ -189,6 +189,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {},
@@ -212,6 +213,8 @@ __webpack_require__.r(__webpack_exports__);
       filterName: '',
       checkContact: false,
       convertedRole: '',
+      totalNotifications: '',
+      text: '',
       chat: {
         id: '',
         avatar: '',
@@ -238,6 +241,9 @@ __webpack_require__.r(__webpack_exports__);
 
       axios.get('/api/getConverstations/' + this.user_id + '/' + this.role).then(function (response) {
         _this.conversations = response.data;
+
+        _this.counttotalNotifications();
+
         console.warn(_this.conversations.data);
       });
     },
@@ -365,13 +371,29 @@ __webpack_require__.r(__webpack_exports__);
       this.getConverstations();
       this.checkContact = false;
       this.scrollToBottom();
+      this.mark_msg_read(list.id);
+    },
+    mark_msg_read: function mark_msg_read(chat_id) {
+      var _this6 = this;
+
+      axios.get('/api/mark_msg_read/' + this.user_id + '/' + this.role + '/' + chat_id).then(function (response) {
+        _this6.getConverstations();
+
+        _this6.$root.$emit("getCount", _this6.user_id);
+      })["catch"](function (errors) {
+        console.log(errors);
+      });
     },
     getRole: function getRole() {
       if (this.role == 1) {
         this.margin = 'mt-5 mb-5';
+        this.text = 'bg-yellow-200';
       } else if (this.role == 2) {
         this.margin = 'mt-5 mb-5';
-      } else {}
+        this.text = 'bg-blue-200';
+      } else {
+        this.text = 'bg-pink-200';
+      }
     },
     convertRole: function convertRole() {
       if (this.user_role == 'student') {
@@ -382,21 +404,31 @@ __webpack_require__.r(__webpack_exports__);
         this.convertedRole = 3;
       }
     },
+    counttotalNotifications: function counttotalNotifications() {
+      var sum = 0;
+
+      for (var i = 0; i < this.conversations.length; i++) {
+        sum += this.conversations[i].get_msg_relation_count;
+      }
+
+      this.totalNotifications = sum;
+    },
     checkNewContact: function checkNewContact() {
-      var _this6 = this;
+      var _this7 = this;
 
       if (this.conversations.some(function (data) {
-        return data.user1_role === _this6.convertedRole && data.user1_id === _this6.id;
+        return data.user1_role === _this7.convertedRole && data.user1_id === _this7.id;
       })) {
         this.checkContact = false;
       } else if (this.conversations.some(function (data) {
-        return data.user2_role === _this6.convertedRole && data.user2_id === _this6.id;
+        return data.user2_role === _this7.convertedRole && data.user2_id === _this7.id;
       })) {
         this.checkContact = false;
       } else {
         this.checkContact = true;
       }
-    }
+    },
+    handleIncomming: function handleIncomming(message) {}
   },
   watch: {
     messages: function messages(_messages) {
@@ -405,16 +437,16 @@ __webpack_require__.r(__webpack_exports__);
   },
   computed: {
     filterContact: function filterContact() {
-      var _this7 = this;
+      var _this8 = this;
 
       return this.conversations.filter(function (user) {
         //return user.gender.match(this.filterGender);
-        if (user.user1_role == _this7.role && user.user1_id == _this7.user_id) {
-          if (user.user2_name.toLowerCase().match(_this7.filterName.toLowerCase())) {
+        if (user.user1_role == _this8.role && user.user1_id == _this8.user_id) {
+          if (user.user2_name.toLowerCase().match(_this8.filterName.toLowerCase())) {
             return user;
           }
-        } else if (user.user2_role == _this7.role && user.user2_id == _this7.user_id) {
-          if (user.user1_name.toLowerCase().match(_this7.filterName.toLowerCase())) {
+        } else if (user.user2_role == _this8.role && user.user2_id == _this8.user_id) {
+          if (user.user1_name.toLowerCase().match(_this8.filterName.toLowerCase())) {
             return user;
           }
         }
@@ -422,7 +454,7 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   mounted: function mounted() {
-    var _this8 = this;
+    var _this9 = this;
 
     // this.getProperty();
     this.getRole();
@@ -431,14 +463,58 @@ __webpack_require__.r(__webpack_exports__);
 
     if (this.conversations.length > 0) {
       setTimeout(function () {
-        _this8.getFirstConversation();
+        _this9.getFirstConversation();
       }, 2000);
     }
 
     if (this.user_role != undefined) {
       setTimeout(function () {
-        _this8.checkNewContact();
+        _this9.checkNewContact();
       }, 2000);
+    }
+
+    if (this.role == 1) {
+      Echo["private"]("messages_to_std.".concat(this.user_id)).listen('NewMessageToStudent', function (e) {
+        _this9.getConverstations();
+
+        if (_this9.chat.id != '') {
+          setTimeout(function () {
+            if (_this9.conversations[0].id === _this9.chat.id) {
+              _this9.getMessages(_this9.conversations[0].id);
+
+              _this9.mark_msg_read(_this9.conversations[0].id);
+            }
+          }, 2000);
+        }
+      });
+    } else if (this.role == 2) {
+      Echo["private"]("messages_to_landlord.".concat(this.user_id)).listen('NewMessageToLandlord', function (e) {
+        _this9.getConverstations();
+
+        if (_this9.chat.id != '') {
+          setTimeout(function () {
+            if (_this9.conversations[0].id === _this9.chat.id) {
+              _this9.getMessages(_this9.conversations[0].id);
+
+              _this9.mark_msg_read(_this9.conversations[0].id);
+            }
+          }, 2000);
+        }
+      });
+    } else if (this.role == 3) {
+      Echo["private"]("messages_to_staff.".concat(this.user_id)).listen('NewMessageToStaff', function (e) {
+        _this9.getConverstations();
+
+        if (_this9.chat.id != '') {
+          setTimeout(function () {
+            if (_this9.conversations[0].id === _this9.chat.id) {
+              _this9.getMessages(_this9.conversations[0].id);
+
+              _this9.mark_msg_read(_this9.conversations[0].id);
+            }
+          }, 2000);
+        }
+      });
     }
   }
 });
@@ -457,7 +533,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".msg[data-v-3b2b1224] {\n  overflow: hidden;\n  text-overflow: ellipsis;\n  display: -webkit-box;\n  -webkit-line-clamp: 1; /* number of lines to show */\n  line-clamp: 1;\n  -webkit-box-orient: vertical;\n}\n", ""]);
+exports.push([module.i, ".msg[data-v-3b2b1224] {\n  overflow: hidden;\n  text-overflow: ellipsis;\n  display: -webkit-box;\n  -webkit-line-clamp: 1; /* number of lines to show */\n  -webkit-box-orient: vertical;\n}\n", ""]);
 
 // exports
 
@@ -691,28 +767,31 @@ var render = function () {
                                                         ]
                                                       ),
                                                       _vm._v(" "),
-                                                      _c(
-                                                        "span",
-                                                        {
-                                                          staticClass:
-                                                            "block ml-24 text-sm text-gray-600",
-                                                        },
-                                                        [
-                                                          _vm._v(
-                                                            _vm._s(
-                                                              _vm
-                                                                .moment(
-                                                                  list
-                                                                    .get_msg_relation[0]
-                                                                    .created_at
+                                                      list.get_msg_relation
+                                                        .length != 0
+                                                        ? _c(
+                                                            "span",
+                                                            {
+                                                              staticClass:
+                                                                "block ml-24 text-sm text-gray-600",
+                                                            },
+                                                            [
+                                                              _vm._v(
+                                                                _vm._s(
+                                                                  _vm
+                                                                    .moment(
+                                                                      list
+                                                                        .get_msg_relation[0]
+                                                                        .created_at
+                                                                    )
+                                                                    .format(
+                                                                      "h:mm a"
+                                                                    )
                                                                 )
-                                                                .format(
-                                                                  "h:mm a"
-                                                                )
-                                                            )
-                                                          ),
-                                                        ]
-                                                      ),
+                                                              ),
+                                                            ]
+                                                          )
+                                                        : _vm._e(),
                                                     ]
                                                   ),
                                                   _vm._v(" "),
@@ -724,31 +803,43 @@ var render = function () {
                                                       attrs: { id: "msg" },
                                                     },
                                                     [
-                                                      _c(
-                                                        "span",
-                                                        {
-                                                          staticClass:
-                                                            "msg block ml-2 text-sm text-gray-600",
-                                                        },
-                                                        [
-                                                          _vm._v(
-                                                            _vm._s(
-                                                              list
-                                                                .get_msg_relation[0]
-                                                                .msg
-                                                            )
-                                                          ),
-                                                        ]
-                                                      ),
+                                                      list.get_msg_relation
+                                                        .length != 0
+                                                        ? _c(
+                                                            "span",
+                                                            {
+                                                              staticClass:
+                                                                "msg block ml-2 text-sm text-gray-600",
+                                                            },
+                                                            [
+                                                              _vm._v(
+                                                                _vm._s(
+                                                                  list
+                                                                    .get_msg_relation[0]
+                                                                    .msg
+                                                                )
+                                                              ),
+                                                            ]
+                                                          )
+                                                        : _vm._e(),
                                                       _vm._v(" "),
-                                                      _c(
-                                                        "span",
-                                                        {
-                                                          staticClass:
-                                                            "badge mb-3 bg-red-800 shrink-0 grow-0 rounded-full px-3 py-1 text-center object-right-top text-white text-sm mr-1",
-                                                        },
-                                                        [_vm._v("9")]
-                                                      ),
+                                                      list.get_msg_relation_count >
+                                                      0
+                                                        ? _c(
+                                                            "span",
+                                                            {
+                                                              staticClass:
+                                                                "badge mb-3 bg-red-800 shrink-0 grow-0 rounded-full px-3 py-1 text-center object-right-top text-white text-sm mr-1",
+                                                            },
+                                                            [
+                                                              _vm._v(
+                                                                _vm._s(
+                                                                  list.get_msg_relation_count
+                                                                )
+                                                              ),
+                                                            ]
+                                                          )
+                                                        : _vm._e(),
                                                     ]
                                                   ),
                                                 ]
@@ -813,28 +904,31 @@ var render = function () {
                                                         ]
                                                       ),
                                                       _vm._v(" "),
-                                                      _c(
-                                                        "span",
-                                                        {
-                                                          staticClass:
-                                                            "block  text-sm text-gray-600 ml-24",
-                                                        },
-                                                        [
-                                                          _vm._v(
-                                                            _vm._s(
-                                                              _vm
-                                                                .moment(
-                                                                  list
-                                                                    .get_msg_relation[0]
-                                                                    .created_at
+                                                      list.get_msg_relation
+                                                        .length != 0
+                                                        ? _c(
+                                                            "span",
+                                                            {
+                                                              staticClass:
+                                                                "block  text-sm text-gray-600 ml-24",
+                                                            },
+                                                            [
+                                                              _vm._v(
+                                                                _vm._s(
+                                                                  _vm
+                                                                    .moment(
+                                                                      list
+                                                                        .get_msg_relation[0]
+                                                                        .created_at
+                                                                    )
+                                                                    .format(
+                                                                      "h:mm a"
+                                                                    )
                                                                 )
-                                                                .format(
-                                                                  "h:mm a"
-                                                                )
-                                                            )
-                                                          ),
-                                                        ]
-                                                      ),
+                                                              ),
+                                                            ]
+                                                          )
+                                                        : _vm._e(),
                                                     ]
                                                   ),
                                                   _vm._v(" "),
@@ -846,31 +940,43 @@ var render = function () {
                                                       attrs: { id: "msg" },
                                                     },
                                                     [
-                                                      _c(
-                                                        "span",
-                                                        {
-                                                          staticClass:
-                                                            "msg block ml-2 text-sm text-gray-600",
-                                                        },
-                                                        [
-                                                          _vm._v(
-                                                            _vm._s(
-                                                              list
-                                                                .get_msg_relation[0]
-                                                                .msg
-                                                            )
-                                                          ),
-                                                        ]
-                                                      ),
+                                                      list.get_msg_relation
+                                                        .length != 0
+                                                        ? _c(
+                                                            "span",
+                                                            {
+                                                              staticClass:
+                                                                "msg block ml-2 text-sm text-gray-600",
+                                                            },
+                                                            [
+                                                              _vm._v(
+                                                                _vm._s(
+                                                                  list
+                                                                    .get_msg_relation[0]
+                                                                    .msg
+                                                                )
+                                                              ),
+                                                            ]
+                                                          )
+                                                        : _vm._e(),
                                                       _vm._v(" "),
-                                                      _c(
-                                                        "span",
-                                                        {
-                                                          staticClass:
-                                                            "badge mb-3 bg-red-800 shrink-0 grow-0 rounded-full px-3 py-1 text-center object-right-top text-white text-sm mr-1",
-                                                        },
-                                                        [_vm._v("9")]
-                                                      ),
+                                                      list.get_msg_relation_count >
+                                                      0
+                                                        ? _c(
+                                                            "span",
+                                                            {
+                                                              staticClass:
+                                                                "badge mb-3 bg-red-800 shrink-0 grow-0 rounded-full px-3 py-1 text-center object-right-top text-white text-sm mr-1",
+                                                            },
+                                                            [
+                                                              _vm._v(
+                                                                _vm._s(
+                                                                  list.get_msg_relation_count
+                                                                )
+                                                              ),
+                                                            ]
+                                                          )
+                                                        : _vm._e(),
                                                     ]
                                                   ),
                                                 ]
@@ -894,7 +1000,9 @@ var render = function () {
               ),
               _vm._v(" "),
               _c("div", { staticClass: "col-span-2 bg-white" }, [
-                _vm.checkContact == false && _vm.filterContact.length > 0
+                _vm.checkContact == false &&
+                _vm.filterContact.length > 0 &&
+                _vm.chat.name != ""
                   ? _c(
                       "div",
                       { staticClass: "w-full", attrs: { id: "Profile" } },
@@ -906,22 +1014,24 @@ var render = function () {
                               "flex items-center border-b border-gray-300 pl-3 py-3",
                           },
                           [
-                            _c("img", {
-                              staticClass:
-                                "h-10 w-10 rounded-full object-cover cursor-pointer",
-                              attrs: {
-                                src: "/images/Profile/" + _vm.chat.avatar,
-                                alt: "username",
-                              },
-                              on: {
-                                click: function ($event) {
-                                  return _vm.viewProfile(
-                                    _vm.chat.u_id,
-                                    _vm.chat.u_role
-                                  )
-                                },
-                              },
-                            }),
+                            _vm.chat.avatar != ""
+                              ? _c("img", {
+                                  staticClass:
+                                    "h-10 w-10 rounded-full object-cover cursor-pointer",
+                                  attrs: {
+                                    src: "/images/Profile/" + _vm.chat.avatar,
+                                    alt: "username",
+                                  },
+                                  on: {
+                                    click: function ($event) {
+                                      return _vm.viewProfile(
+                                        _vm.chat.u_id,
+                                        _vm.chat.u_role
+                                      )
+                                    },
+                                  },
+                                })
+                              : _vm._e(),
                             _vm._v(" "),
                             _c(
                               "span",
@@ -938,12 +1048,6 @@ var render = function () {
                                 },
                               },
                               [_vm._v(_vm._s(_vm.chat.name) + " ")]
-                            ),
-                            _vm._v(" "),
-                            _c(
-                              "button",
-                              { staticClass: "p-2 ml-auto bg-pink-light" },
-                              [_vm._v("delete")]
                             ),
                           ]
                         ),
@@ -1025,7 +1129,8 @@ var render = function () {
                                                 "div",
                                                 {
                                                   staticClass:
-                                                    "bg-yellow-200 rounded px-5 py-2 my-2 text-gray-700 relative",
+                                                    "rounded px-5 py-2 my-2 text-gray-700 relative",
+                                                  class: [_vm.text],
                                                   staticStyle: {
                                                     "max-width": "300px",
                                                   },
@@ -1155,13 +1260,16 @@ var render = function () {
                             "flex items-center border-b border-gray-300 pl-3 py-3",
                         },
                         [
-                          _c("img", {
-                            staticClass: "h-10 w-10 rounded-full object-cover",
-                            attrs: {
-                              src: "/images/Profile/" + _vm.photo,
-                              alt: "username",
-                            },
-                          }),
+                          _vm.photo != undefined
+                            ? _c("img", {
+                                staticClass:
+                                  "h-10 w-10 rounded-full object-cover",
+                                attrs: {
+                                  src: "/images/Profile/" + _vm.photo,
+                                  alt: "username",
+                                },
+                              })
+                            : _vm._e(),
                           _vm._v(" "),
                           _c(
                             "span",

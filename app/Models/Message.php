@@ -11,4 +11,8 @@ class Message extends Model
     protected $table = 'messages';
     use Notifiable;
     protected $primaryKey = 'id';
+
+    public function getMessageRelation(){
+        return $this->belongsTo('App\Models\Student', 'conversation_id', 'id');
+    }
 }
