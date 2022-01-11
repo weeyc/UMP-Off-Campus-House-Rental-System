@@ -11,6 +11,10 @@ window.Swal = Swal
 Vue.use(require('vue-moment'));
 
 
+import VueNumber from 'vue-number-animation'
+
+Vue.use(VueNumber)
+
 //----------TOASTER-------------------//
 import Toaster from 'v-toaster'
 // You need a specific loader for CSS files like https://github.com/webpack/css-loader

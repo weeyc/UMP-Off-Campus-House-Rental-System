@@ -480,9 +480,8 @@ __webpack_require__.r(__webpack_exports__);
         if (_this9.chat.id != '') {
           setTimeout(function () {
             if (_this9.conversations[0].id === _this9.chat.id) {
-              _this9.getMessages(_this9.conversations[0].id);
+              _this9.getMessages(_this9.conversations[0].id); // this.mark_msg_read(this.conversations[0].id)
 
-              _this9.mark_msg_read(_this9.conversations[0].id);
             }
           }, 2000);
         }
@@ -494,9 +493,8 @@ __webpack_require__.r(__webpack_exports__);
         if (_this9.chat.id != '') {
           setTimeout(function () {
             if (_this9.conversations[0].id === _this9.chat.id) {
-              _this9.getMessages(_this9.conversations[0].id);
+              _this9.getMessages(_this9.conversations[0].id); // this.mark_msg_read(this.conversations[0].id)
 
-              _this9.mark_msg_read(_this9.conversations[0].id);
             }
           }, 2000);
         }
@@ -508,9 +506,8 @@ __webpack_require__.r(__webpack_exports__);
         if (_this9.chat.id != '') {
           setTimeout(function () {
             if (_this9.conversations[0].id === _this9.chat.id) {
-              _this9.getMessages(_this9.conversations[0].id);
+              _this9.getMessages(_this9.conversations[0].id); // this.mark_msg_read(this.conversations[0].id)
 
-              _this9.mark_msg_read(_this9.conversations[0].id);
             }
           }, 2000);
         }

@@ -44,6 +44,7 @@
         "view-design": "^4.7.0",
         "vue-html-to-paper": "^1.4.4",
         "vue-moment": "^4.1.0",
+        "vue-number-animation": "^1.1.1",
         "vue-router": "^3.5.3",
         "vue-table-dynamic": "^0.4.10",
         "vue2-datepicker": "^3.10.4",

@@ -28,6 +28,7 @@ Route::post('create_property', 'PropertyListController@create_Property');
 Route::get('get_properties/{id}', 'PropertyListController@get_Properties');
 Route::get('get_rooms/{id}', 'PropertyListController@get_Rooms');
 Route::get('get_room/{id}', 'PropertyListController@get_Room');
+Route::get('get_all_rooms/{id}', 'PropertyListController@get_all_rooms');
 Route::get('get_property/{id}', 'PropertyListController@get_Property');
 Route::post('update_property/{id}', 'PropertyListController@update_Property');
 Route::post('update_room/{id}/{chgPic}', 'PropertyListController@update_Room');
@@ -38,8 +39,22 @@ Route::get('get_Recommendation/{campus}', 'PropertyListController@get_Recommenda
 Route::post('update_prop_status/{id}', 'PropertyListController@updatePropStatus');
 Route::post('create_booking/', 'PropertyListController@create_booking');
 Route::delete('delete_property/{id}', 'PropertyListController@delete_Property');
-
 Route::get('get_room_list/{id}', 'PropertyListController@get_RoomList');
+
+Route::get('getpropertiesCount/{id}', 'PropertyListController@getpropertiesCount');
+Route::get('gettenantsCount/{id}', 'PropertyListController@gettenantsCount');
+Route::get('getvacantCount/{id}', 'PropertyListController@getvacantCount');
+Route::get('gettotalsCount/{id}', 'PropertyListController@gettotalsCount');
+
+
+
+Route::get('getallpropertyCount', 'PropertyListController@getallpropertyCount');
+Route::get('getalltenantsCount', 'PropertyListController@getalltenantsCount');
+Route::get('getallroomCount', 'PropertyListController@getallroomCount');
+Route::get('getalllandlordCount', 'PropertyListController@getalllandlordCount');
+Route::get('get_properties_list_Unverified', 'PropertyListController@get_properties_list_Unverified');
+
+
 
 
 Route::get('get_payments/{id}/{role}', 'PaymentController@get_Payments');
@@ -56,7 +71,7 @@ Route::get('get_roomPlatform/{id}/{room_id}', 'RentalRoomController@get_roomPlat
 Route::get('get_HousePlatform/{id}', 'RentalRoomController@get_HousePlatform');
 Route::get('get_tenants/{campus}', 'RentalRoomController@get_tenants');
 
-Route::get('get_Property_Tenants_Bills/{id}', 'RentalRoomController@get_Property_Tenants_Bills'); ///////////////
+Route::get('get_Property_Tenants_Bills/{id}', 'RentalRoomController@get_Property_Tenants_Bills');
 Route::get('get_Property_Tenants_Bills_Months/{id}', 'RentalRoomController@get_Property_Tenants_Bills');
 
 Route::post('post_bulletin/{id}/{role}/{prop_id}', 'RentalRoomController@post_bulletin');

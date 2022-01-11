@@ -448,6 +448,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 
 
@@ -464,7 +466,10 @@ __webpack_require__.r(__webpack_exports__);
     // VueperSlide
 
   },
-  props: {},
+  props: {
+    user_id: Number,
+    role: Number
+  },
   data: function data() {
     return {
       toggleModal: false,
@@ -1674,28 +1679,34 @@ var render = function () {
     "div",
     { staticClass: "max-w-5xl p-6 mx-auto mt-10 bg-gray-200 rounded-md mb-10" },
     [
-      _vm._l(_vm.room, function (list) {
-        return _c(
-          "div",
-          { key: list.id, staticClass: "flex justify-end items-center" },
-          [
-            _c(
-              "button",
-              {
-                staticClass:
-                  " bg-blue-600 shadow-lg hover:bg-blue-700 text-xs text-white px-4 py-3 rounded-md mb-2",
-                on: {
-                  click: function ($event) {
-                    _vm.clickEdit(list)
-                    _vm.toggleModal = !_vm.toggleModal
-                  },
-                },
-              },
-              [_vm._v("\n            + Edit Room\n        ")]
-            ),
-          ]
-        )
-      }),
+      _vm.role === 2
+        ? _c(
+            "div",
+            _vm._l(_vm.room, function (list) {
+              return _c(
+                "div",
+                { key: list.id, staticClass: "flex justify-end items-center" },
+                [
+                  _c(
+                    "button",
+                    {
+                      staticClass:
+                        " bg-blue-600 shadow-lg hover:bg-blue-700 text-xs text-white px-4 py-3 rounded-md mb-2",
+                      on: {
+                        click: function ($event) {
+                          _vm.clickEdit(list)
+                          _vm.toggleModal = !_vm.toggleModal
+                        },
+                      },
+                    },
+                    [_vm._v("\n            + Edit Room\n        ")]
+                  ),
+                ]
+              )
+            }),
+            0
+          )
+        : _vm._e(),
       _vm._v(" "),
       _vm._l(_vm.room, function (list) {
         return _c(

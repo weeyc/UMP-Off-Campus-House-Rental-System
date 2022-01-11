@@ -717,7 +717,7 @@ var render = function () {
                                                               _vm.data.due_date
                                                             )
                                                             .format(
-                                                              "d-MMM-YYYY"
+                                                              "DD-MMM-YYYY"
                                                             )
                                                         ) + " "
                                                       ),

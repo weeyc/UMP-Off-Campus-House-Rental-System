@@ -312,6 +312,12 @@ export default {
 
           },
           onError: err => {
+              Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Payment failed, something went wrong!',
+                })
+            this.$emit("closeModal");
             console.log(err);
           }
         })

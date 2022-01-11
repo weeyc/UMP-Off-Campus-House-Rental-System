@@ -1,9 +1,11 @@
 <template>
     <div class="max-w-5xl p-6 mx-auto mt-10 bg-gray-200 rounded-md mb-10" >
+         <div v-if="role===2">
         <div v-for= "list in room" :key="list.id"  class="flex justify-end items-center">
             <button @click="clickEdit(list); toggleModal = !toggleModal" class=" bg-blue-600 shadow-lg hover:bg-blue-700 text-xs text-white px-4 py-3 rounded-md mb-2">
                 + Edit Room
             </button>
+        </div>
         </div>
 
         <div  v-for= "list in room" :key="list.id"  class="p-5 overflow-hidden bg-white rounded-lg shadow-lg mt-5">
@@ -112,7 +114,8 @@ export default {
 
     },
     props: {
-
+         user_id: Number,
+        role: Number,
     },
 
     data(){

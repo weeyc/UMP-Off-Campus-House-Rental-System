@@ -366,6 +366,14 @@ var Errors = /*#__PURE__*/function () {
           return onApprove;
         }(),
         onError: function onError(err) {
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Payment failed, something went wrong!'
+          });
+
+          _this3.$emit("closeModal");
+
           console.log(err);
         }
       }).render(this.$refs.paypal);
@@ -2452,18 +2460,36 @@ var render = function () {
                                 ? _c("div", { staticClass: "p-3" }, [
                                     _c(
                                       "div",
-                                      { staticClass: "w-full text-center" },
+                                      {
+                                        staticClass:
+                                          "w-full text-center mb-3 mt-2",
+                                      },
                                       [
                                         _c(
-                                          "button",
+                                          "router-link",
                                           {
                                             staticClass:
                                               "w-full font-bold rounded-full",
                                             class: [_vm.top_btn_style],
+                                            attrs: {
+                                              to: {
+                                                name: "chat_std",
+                                                params: {
+                                                  user_role: "landlord",
+                                                  id: _vm.lists.landlord_id,
+                                                  name: _vm.lists.property.land
+                                                    .landlord_name,
+                                                  photo:
+                                                    _vm.lists.property.land
+                                                      .landlord_pic,
+                                                },
+                                              },
+                                            },
                                           },
                                           [_vm._v("Chat Now")]
                                         ),
-                                      ]
+                                      ],
+                                      1
                                     ),
                                   ])
                                 : _vm._e(),

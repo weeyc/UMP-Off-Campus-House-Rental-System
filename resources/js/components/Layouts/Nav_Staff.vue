@@ -114,7 +114,7 @@
 
                               <span>Manage Users</span>
                         </router-link>
-                     <router-link  :to="{name: 'Manage_Tenant'}"  class="flex px-5 items-center py-6 leading-5 text-base text-pink-200  hover:text-pink-500 transition duration-150 ease-in-out hover:border-gray-700 border-transparent border-b-4 hover:border-current">
+                     <router-link  :to="{name: 'Manage_Tenant'}" active-class="active" class="flex px-5 items-center py-6 leading-5 text-base text-pink-200  hover:text-pink-500 transition duration-150 ease-in-out hover:border-gray-700 border-transparent border-b-4 hover:border-current">
                             <span class="mr-2">
                                 <svg class="h-6 w-6"  width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">  <path stroke="none" d="M0 0h24v24H0z"/>  <polyline points="5 12 3 12 12 3 21 12 19 12" />  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" /></svg>
                             </span>
@@ -132,7 +132,7 @@
                             <svg class="h-8 w-8 text-pink-200 hover:text-pink-500 transition duration-150 ease-in-out"  width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">  <path stroke="none" d="M0 0h24v24H0z"/>  <path d="M10 5a2 2 0 0 1 4 0a7 7 0 0 1 4 6v3a4 4 0 0 0 2 3h-16a4 4 0 0 0 2 -3v-3a7 7 0 0 1 4 -6" />  <path d="M9 17v1a3 3 0 0 0 6 0v-1" /></svg>
                             <span v-if="unreadNotifications[0]!=undefined" class="badge bg-pink-500 shrink-0 grow-0 rounded-full px-3 py-1 text-center object-right-top text-white text-sm">{{ unreadNotifications.length }}</span>
                       </button>
-                        <router-link  :to="{name: 'chat_staff'}"   class="ml-2 focus:outline-none flex jusitfy-start  py-3 items-center">
+                        <router-link  :to="{name: 'chat_staff'}" active-class="active"  class="ml-2 focus:outline-none flex jusitfy-start  py-3 items-center">
                             <svg class="h-8 w-8 text-pink-200 hover:text-pink-500 transition duration-150 ease-in-out"  fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a1.994 1.994 0 01-1.414-.586m0 0L11 14h4a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2v4l.586-.586z"/>
                             </svg>

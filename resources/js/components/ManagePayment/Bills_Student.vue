@@ -66,7 +66,7 @@
                       </tr>
                       <tr class="hover:bg-grey-lighter text-sm">
                         <td class="py-4 px-6 border-b border-grey-light border-r ">Penalty Fees <p class="font-bold">RM {{(data.penalty_fees).toFixed(2)}}</p></td>
-                        <td class="py-4 px-6 border-b border-grey-light border-r ">Bill Due <p class="font-bold">{{moment(data.due_date).format("d-MMM-YYYY") }} </p></td>
+                        <td class="py-4 px-6 border-b border-grey-light border-r ">Bill Due <p class="font-bold">{{moment(data.due_date).format("DD-MMM-YYYY") }} </p></td>
 
 
                       </tr>

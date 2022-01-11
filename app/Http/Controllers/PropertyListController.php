@@ -317,13 +317,65 @@ class PropertyListController extends Controller
         $data = Room::with('getPhotoRelation')->where('property_id', $id)->get();
         return RoomResource::collection($data);
     }
+    public function get_all_rooms($id){
+        $data = Room::query()
+                ->with('getPropertyRelation','getPhotoRelation')->whereHas('getPropertyRelation', function($query)  use($id) {
+                    $query->where('verify_status','verified')->where('landlord_id',$id)
+                ;})->where('landlord_id', $id)->orderBy('property_id','asc')->get();
+                return RoomResource::collection($data);
+    }
 
-    public function get_Property($id){
+    //dashboard landlord
+    public function getpropertiesCount($id){
+         $data = Property::where('landlord_id', $id)->where('verify_status','verified')->get()->count();
+         return $data;
+     }
+
+    public function gettenantsCount($id){
+        $data = Tenant::with('getPropertyRelation')->whereHas('getPropertyRelation' , function($query)  use($id){
+            $query->where('landlord_id', $id);
+        ;})->where('tenant_status','Tenancy')->get()->count();
+         return $data;
+     }
+    public function getvacantCount($id){
+         $data =Room::where('landlord_id', $id)->where('room_status','listing')->get()->count();
+         return $data;
+     }
+    public function gettotalsCount($id){
+        $data = Bill::where('landlord_id',$id)->where('payment_status', 'Paid')->sum('total_bills');
+         return $data;
+     }
+
+     //dashboard staff
+     public function getallpropertyCount(){
+         $data = Property::where('verify_status', 'verified')->get()->count();
+         return   $data;
+     }
+     public function getalltenantsCount(){
+        $data = Tenant::where('tenant_status', 'Tenancy')->get()->count();
+        return   $data;
+     }
+     public function getallroomCount(){
+        $data = Room::with('getPropertyRelation')->whereHas('getPropertyRelation' , function($query){
+            $query->where('verify_status', 'verified');
+        ;})->get()->count();
+         return $data;
+     }
+     public function getalllandlordCount(){
+        $data = Landlord::all()->count();
+        return   $data;
+     }
+     public function get_properties_list_Unverified(){
+        $data = Property::with('getLandlordRelation')->where('verify_status','unverified')->orderBy('created_at','desc')->get();
+        return PropertyResource::collection($data);
+     }
+
+
+     public function get_Property($id){
         // $data = Property::where('landlord_id', $id)->get();
          $data = Property::with('getPhotoRelation')->where('property_id', $id)->get();
          return PropertyResource::collection($data);
      }
-
 
      public function get_Room($id){
         // $data = Property::where('landlord_id', $id)->get();
@@ -597,6 +649,8 @@ class PropertyListController extends Controller
           return $data;
 
     }
+
+
 
 
 

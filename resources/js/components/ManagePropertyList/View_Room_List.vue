@@ -131,8 +131,8 @@
 
                             <div class="text-center font-normal text-lg text-white">Landlord</div>
                             <div v-if="role==1" class="p-3">
-                                    <div class="w-full text-center">
-                                        <button :class="[top_btn_style]" class="w-full font-bold rounded-full">Chat Now</button>
+                                    <div class="w-full text-center mb-3 mt-2">
+                                        <router-link :to="{ name: 'chat_std', params:{user_role:'landlord' , id: lists.landlord_id, name: lists.property.land.landlord_name, photo:lists.property.land.landlord_pic }}" :class="[top_btn_style]" class="w-full font-bold rounded-full">Chat Now</router-link>
                                     </div>
                             </div>
 

@@ -458,7 +458,7 @@ export default {
                     setTimeout(() => {
                         if(this.conversations[0].id===this.chat.id){
                             this.getMessages(this.conversations[0].id);
-                            this.mark_msg_read(this.conversations[0].id)
+                           // this.mark_msg_read(this.conversations[0].id)
                         }
                     }, 2000);
                 }
@@ -472,7 +472,7 @@ export default {
                     setTimeout(() => {
                         if(this.conversations[0].id===this.chat.id){
                             this.getMessages(this.conversations[0].id);
-                            this.mark_msg_read(this.conversations[0].id)
+                           // this.mark_msg_read(this.conversations[0].id)
                         }
                     }, 2000);
                 }
@@ -488,7 +488,7 @@ export default {
                     setTimeout(() => {
                         if(this.conversations[0].id===this.chat.id){
                             this.getMessages(this.conversations[0].id);
-                            this.mark_msg_read(this.conversations[0].id)
+                           // this.mark_msg_read(this.conversations[0].id)
                         }
                     }, 2000);
                 }
