@@ -200,7 +200,30 @@ class UserController extends Controller
             $Student->std_password = Hash::make($request ->password);
             $Student->std_gender = $request ->gender;
             $Student->std_phone_no = $request ->phone_num;
+
+            if($request ->gender=="male"){
+                $Student->std_pic ='aboy.png';
+            }else if($request ->gender=="female"){
+                $Student->std_pic ='agirl.png';
+            }
+
             $Student->save();
+
+
+            if($Student->save()){
+                $std_info = Student::where('std_email','=', $request->email)->first();
+                if (Auth::guard('student')->attempt(['std_email' => $request->email, 'password' => $request->password])) {
+                    $Role = 1;
+                    $request ->session()->put('ID', $std_info->std_id);
+                    $request ->session()->put('Role', $Role);
+
+                        if (Auth::guard('student')->check()) {
+                            return redirect('/student');
+                        }
+
+            }
+
+            }
       }
 
 
@@ -222,7 +245,27 @@ class UserController extends Controller
             $Landlord->landlord_password = Hash::make($request ->password);
             $Landlord->landlord_gender = $request ->gender;
             $Landlord->landlord_phone_no = $request ->phone_num; //PASSWORD HASHED
+
+            if($request ->gender=="male"){
+                $Landlord->landlord_pic ='aboy.png';
+            }else if($request ->gender=="female"){
+                $Landlord->landlord_pic ='agirl.png';
+            }
+
             $Landlord->save();
+
+            if($Landlord->save()){
+                $landlord_info = Landlord::where('landlord_email','=', $request->email)->first();
+                if (Auth::guard('landlord')->attempt(['landlord_email' => $request->email, 'password' => $request->password])) {
+
+                    $Role = 2;
+                    $request ->session()->put('ID', $landlord_info->landlord_id);
+                    $request ->session()->put('Role', $Role);
+                    if (Auth::guard('landlord')->check()) {
+                        return redirect('/landlord');
+                    }
+                }
+        }
 
         }
 

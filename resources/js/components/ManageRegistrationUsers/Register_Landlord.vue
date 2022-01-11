@@ -4,11 +4,13 @@
 
     <section class="flex items-stretch h-screen w-screen text-white ">
         <div class="relative items-center hidden w-1/2 bg-gray-500 bg-no-repeat bg-cover lg:flex" style="background-image: url(/images/People/laptop.jpg);">
-            <div class="absolute inset-0 z-0 bg-black opacity-25"></div>
+            <div class="absolute inset-0 z-0 bg-black opacity-30"></div>
             <div class="z-10 w-full px-24 font-black">
-
                 <h1 class="text-6xl font-roboto tracking-wide bg-black bg-opacity-0 italic ">Register as Landlord</h1>
-                <p class="my-4 text-3xl font-roboto text-blue-400 bg-black bg-opacity-30 italic">Manage your properties and tenants in your fingertips</p>
+                <!-- <p class="my-4 text-3xl font-roboto text-blue-400 bg-black bg-opacity-30 italic">Manage your properties and tenants in your fingertips</p> -->
+                 <div class="my-4  pl-3 pt-1 pb-1 bg-black bg-opacity-40  rounded-lg">
+                    <p class="bg-gradient-to-tl text-3xl font-roboto bg-gradient-to-r from-blue-100 via-blue-300 to-blue-500 text-transparent bg-clip-text  italic">Manage your properties and tenants in your fingertips</p>
+                </div>
             </div>
         </div>
         <div class="z-0 flex items-center justify-center w-full px-0 text-center lg:w-1/2 md:px-16" style="background-color: #161616;">
@@ -16,7 +18,7 @@
             <div class="absolute top-0 flex justify-right p-4 space-x-4    ">
                 <div class="flex items-center -mx-4 overflow-x-auto overflow-y-hidden sm:justify-center flex-nowrap dark:bg-coolGray-800 dark:text-coolGray-100">
 
-                     <router-link  to='/registration-student' exact  class="flex items-center flex-shrink-0 px-5 py-3 space-x-2 border-b dark:border-coolGray-400 dark:text-coolGray-400">
+                     <!-- <router-link  to='/registration-student' exact  class="flex items-center flex-shrink-0 px-5 py-3 space-x-2 border-b dark:border-coolGray-400 dark:text-coolGray-400">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4">
                             <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
                         </svg>
@@ -29,14 +31,36 @@
                             <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
                         </svg>
                         <span class="hover:underline hover:text-blue-400">Landlord</span>
-                      </router-link>
+                      </router-link> -->
+
+                <div class="flex border-b border-gray-200 dark:border-gray-700">
+                <router-link  to='/registration-student' class="flex items-center h-10 px-2 py-2 -mb-px text-gray-500 text-center bg-transparent border-b-2 border-transparent sm:px-4 -px-1  whitespace-nowrap focus:outline-none hover:text-yellow-500 hover:border-yellow-500">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-mortarboard-fill mr-1" viewBox="0 0 16 16">
+                        <path d="M8.211 2.047a.5.5 0 0 0-.422 0l-7.5 3.5a.5.5 0 0 0 .025.917l7.5 3a.5.5 0 0 0 .372 0L14 7.14V13a1 1 0 0 0-1 1v2h3v-2a1 1 0 0 0-1-1V6.739l.686-.275a.5.5 0 0 0 .025-.917l-7.5-3.5Z"/>
+                        <path d="M4.176 9.032a.5.5 0 0 0-.656.327l-.5 1.7a.5.5 0 0 0 .294.605l4.5 1.8a.5.5 0 0 0 .372 0l4.5-1.8a.5.5 0 0 0 .294-.605l-.5-1.7a.5.5 0 0 0-.656-.327L8 10.466 4.176 9.032Z"/>
+                        </svg>
+                        <span class="mx-1 text-sm sm:text-base">
+                            Student
+                        </span>
+                    </router-link>
+
+                    <router-link to='/registration-landlord'  class="flex items-center h-10 px-2 py-2 -mb-px text-center text-blue-500 bg-transparent border-b-2 border-blue-500 sm:px-4 -px-1 dark:text-white whitespace-nowrap cursor-base focus:outline-none hover:text-blue-500 hover:border-blue-500">
+                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-briefcase-fill mr-1" viewBox="0 0 16 16  ">
+                            <path d="M6.5 1A1.5 1.5 0 0 0 5 2.5V3H1.5A1.5 1.5 0 0 0 0 4.5v1.384l7.614 2.03a1.5 1.5 0 0 0 .772 0L16 5.884V4.5A1.5 1.5 0 0 0 14.5 3H11v-.5A1.5 1.5 0 0 0 9.5 1h-3zm0 1h3a.5.5 0 0 1 .5.5V3H6v-.5a.5.5 0 0 1 .5-.5z"/>
+                            <path d="M0 12.5A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5V6.85L8.129 8.947a.5.5 0 0 1-.258 0L0 6.85v5.65z"/>
+                            </svg>
+                        <span class="mx-1 text-sm sm:text-base">
+                            Landlord
+                        </span>
+                    </router-link>
+                       </div>
 
                 </div>
             </div>
 
             <div class="z-auto w-full">
 
-                <div class="grid grid-row-2 grid-flow-col gap-x-2.5 bg-gradient-to-r from-blue-100 via-blue-300 to-blue-500   text-transparent bg-clip-text">
+                <div class="mb-1 mt-5 grid grid-row-2 grid-flow-col gap-x-2.5 bg-gradient-to-r from-blue-100 via-blue-300 to-blue-500   text-transparent bg-clip-text">
                     <div class="  row-span-2 justify-self-end animate-bounce">
                         <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
                         width="96" height="96"
@@ -73,19 +97,21 @@
                             <option value="female">Female</option>
                         </select>
                     </div>
-                    <div class="px-4 pt-4 pb-2">
+                    <div class="px-4 pt-4 pb-2 mb-1">
                         <button @click.prevent="saveForm" type="submit" class="block w-full p-4 text-lg uppercase rounded-full  bg-blue-600 hover:bg-blue-700 focus:outline-none">sign Up</button>
                     </div>
                 </div>
-                <p class="px-6 font-nunito text-center ">Already have an account?
-                   <a href="/" class="hover:underline hover:text-blue-400">Sign-in</a>
-                </p>
+                 <div class="mb-3">
+                    <p class="px-6 font-nunito text-center ">Already have an account?
+                    <a href="/" class="hover:underline hover:text-blue-400 ml-1">Sign-in</a>
+                    </p>
+                 </div>
             </div>
 
 
                     <footer class="px-5 py-4 border-t footer bg-base-200 text-base-content border-base-300 absolute bottom-0 flex justify-center p-4 space-x-4 text-center ">
                         <div>
-                             <p>Copyright © 2021 - All right reserved by Weeyc</p>
+                             <p>Copyright © {{ moment().format('YYYY') }} - All right reserved by Weeyc</p>
                         </div>
                     </footer>
         </div>
@@ -94,6 +120,7 @@
 
 </template>
 <script>
+import moment from "moment";
 class Errors{
     constructor(){
         this.errors = {};
@@ -117,15 +144,15 @@ export default {
                 gender: 'male',
                 phone_num: '',
             },
-             errors: new Errors()
-
+             errors: new Errors(),
+                  moment: moment,
         }
     },
     methods:{
          saveForm(){
                 axios.post('/api/register_landlord', this.form).then(() =>{
-                  this.$toaster.success('Landlord account created successfully!')
-                  window.location.href = '/'
+                  //this.$toaster.success('Landlord account created successfully!')
+                  window.location.href = '/landlord'
                 }).catch(error =>this.errors.record(error.response.data));
 
 

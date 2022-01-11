@@ -7,10 +7,14 @@
     <section class="flex items-stretch h-screen w-screen text-white ">
         {{---------------------------------------------------------------------Left Image ---------------------------------------------------------}}
         <div class="relative items-center hidden w-1/2 bg-gray-500 bg-no-repeat bg-cover lg:flex" style="background-image: url(/images/UMP/wide.jpg);">
-            <div class="absolute inset-0 z-0 bg-black opacity-25"></div>
+            <div class="absolute inset-0 z-0 bg-black opacity-30"></div>
             <div class="z-10 w-full px-24 font-black mt-11">
-                <h1 class="text-6xl font-roboto tracking-wide bg-black bg-opacity-5 italic ">Search Accomodation</h1>
-                <p class="my-4 text-3xl font-roboto text-indigo-400 bg-black bg-opacity-30 italic">Browse your rental house in more secure way, anywhere.</p>
+                <h1 class="text-6xl font-roboto tracking-wide italic  ">Search Accomodation</h1>
+                {{-- <p class="my-4 text-3xl pl-5 font-roboto text-indigo-400 bg-black bg-opacity-50 italic">Browse verified rental rooms with ease, anywhere.</p> --}}
+                <div class="my-4  pl-3 pt-1 pb-1 bg-black bg-opacity-40 rounded-lg ">
+                    <p class="bg-gradient-to-tl text-3xl font-roboto from-indigo-500 to-fuchsia-400 text-transparent bg-clip-text italic">Browse verified rental rooms with ease, anywhere.</p>
+                </div>
+
             </div>
         </div>
         {{---------------------------------------------------------------------Left Image End---------------------------------------------------------}}
@@ -19,13 +23,13 @@
         {{---------------------------------------------------------------------Right Black---------------------------------------------------------}}
         <div class="z-0 flex items-center justify-center w-full px-0 text-center lg:w-1/2 md:px-16" style="background-color: #161616;">
 
-            <div class="absolute top-0 flex justify-right p-4 space-x-4 invisible md:invisible sm:invisible lg:invisible xl:invisible 2xl:visible">
+            {{-- <div class="absolute top-0 flex justify-right p-4 space-x-4 invisible md:invisible sm:invisible lg:invisible xl:invisible 2xl:visible">
                 <div class="flex items-center flex-shrink-0 px-5 py-2 border-b-4 hover:text-indigo-400 text-2xl ">Login</div>
-            </div>
+            </div> --}}
 
             <div class="z-auto w-full">
                 {{---LOGO AND SYSTEM TITLE---}}
-                <div class="grid grid-row-2 grid-flow-col gap-x-2.5 bg-gradient-to-tl from-indigo-500 to-fuchsia-400 text-transparent bg-clip-text ">
+                <div class="mb-3 grid grid-row-2 grid-flow-col gap-x-2.5 bg-gradient-to-tl from-indigo-500 to-fuchsia-400 text-transparent bg-clip-text ">
                     <div class=" row-span-2 justify-self-end animate-bounce">
                         <img class="ml-5" src="https://img.icons8.com/nolan/100/cottage.png"/>
                     </div>
@@ -65,24 +69,24 @@
                             <option value="Staff">Staff</option>
                         </select>
                     </div>
-                    <div class="text-right text-gray-400 hover:underline hover:text-gray-100">
+                    {{-- <div class="text-right text-gray-400 hover:underline hover:text-gray-100">
                         <a href="#">Forgot your password?</a>
-                    </div>
+                    </div> --}}
                     <div class="px-4 pt-4 pb-2">
-                        <button type="submit" class="block w-full p-4 text-lg uppercase rounded-full  bg-indigo-500 hover:bg-indigo-600 focus:outline-none">sign in</button>
+                        <button type="submit" class="mt-3 mb-3 block w-full p-4 text-lg uppercase rounded-full  bg-indigo-500 hover:bg-indigo-600 focus:outline-none">sign in</button>
                     </div>
                 </form>
                   {{---------------------------------------------------------------------FORM---------------------------------------------------------}}
 
                 <p class="px-6 font-nunito text-center ">Don't have an account yet?
-                     <a href="/registration-student" class="hover:underline hover:text-indigo-400">Sign up. </a>
+                     <a href="/registration-student" class="hover:underline hover:text-indigo-400 ml-1">Sign up. </a>
                 </p>
             </div>
 
 
                  <footer class="invisible md:invisible sm:invisible lg:invisible xl:invisible 2xl:visible  px-5 py-4 border-t footer bg-base-200 text-base-content border-base-300 fixed bottom-0 flex justify-center p-4 space-x-4 text-center ">
                         <div>
-                            <p>Copyright © 2021 - All right reserved by Weeyc</p>
+                            <p>Copyright ©  {{ \Carbon\Carbon::now()->format('Y')}} - All right reserved by Weeyc</p>
                         </div>
                 </footer>
         </div>
