@@ -95,12 +95,12 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "p-6 ml-5" }, [
+  return _c("div", { staticClass: "ml-5" }, [
     _c(
       "div",
       {
         staticClass:
-          "max-w-6xl p-6 mx-auto mt-3  bg-gray-100 rounded-md shadow-xl mb-5",
+          "max-w-6xl p-6 mx-auto bg-gray-100 rounded-md shadow-xl mb-5 rounded-tl-none",
       },
       [
         _c(

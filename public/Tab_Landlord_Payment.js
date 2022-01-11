@@ -56,6 +56,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     user_id: Number,
@@ -83,7 +84,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".exact-active[data-v-e44a943c]{\n  /* --tw-bg-opacity: 1;\nbackground-color: rgba(236, 72, 153, var(--tw-bg-opacity)); */\n  /* --tw-text-opacity: 1;\ncolor: rgba(255, 255, 255, var(--tw-text-opacity));*/\n  /* When actived: (border border-b-0) */\n  border-width: 1px;\n  border-bottom-width: 0px;\n}\n.active[data-v-e44a943c]{\n  border-width: 1px;\n  border-bottom-width: 0px;\n}\n\n", ""]);
+exports.push([module.i, ".exact-active[data-v-e44a943c]{\n  /* --tw-bg-opacity: 1;\nbackground-color: rgba(236, 72, 153, var(--tw-bg-opacity)); */\n  /* --tw-text-opacity: 1;\ncolor: rgba(255, 255, 255, var(--tw-text-opacity));*/\n  /* When actived: (border border-b-0) */\n  background-color: rgb(243 244 246);\n  border-width: 1px;\n  border-bottom-width: 0px;\n}\n.active[data-v-e44a943c]{\n  border-width: 1px;\n  border-bottom-width: 0px;\n}\n\n", ""]);
 
 // exports
 
@@ -136,7 +137,7 @@ var render = function () {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _c("div", { staticClass: "w-10/12 mt-3 ml-5 flex flex-col " }, [
+    _c("div", { staticClass: "w-10/12 mt-10 ml-14 flex flex-col " }, [
       _c(
         "div",
         { staticClass: "flex" },
@@ -145,7 +146,7 @@ var render = function () {
             "router-link",
             {
               staticClass:
-                "flex items-center h-12 px-2 py-2 text-center text-gray-700  bg-transparent border-b border-black rounded-t-md sm:px-4  -px-1 whitespace-nowrap focus:outline-none hover:text-blue-700",
+                "flex items-center h-12 px-2 py-2 text-center text-gray-700 bg-blue-200   border-b border-gray-100 rounded-t-lg sm:px-4  -px-1 whitespace-nowrap focus:outline-none hover:text-blue-700",
               attrs: {
                 to: { name: "payment_land" },
                 "exact-active-class": "exact-active",
@@ -155,21 +156,25 @@ var render = function () {
               _c(
                 "svg",
                 {
-                  staticClass: "w-4 h-4 mx-1 sm:w-6 sm:h-6",
+                  staticClass: "bi bi-credit-card mx-1",
                   attrs: {
                     xmlns: "http://www.w3.org/2000/svg",
-                    fill: "none",
-                    viewBox: "0 0 24 24",
-                    stroke: "currentColor",
+                    width: "20",
+                    height: "20",
+                    fill: "currentColor",
+                    viewBox: "0 0 16 16",
                   },
                 },
                 [
                   _c("path", {
                     attrs: {
-                      "stroke-linecap": "round",
-                      "stroke-linejoin": "round",
-                      "stroke-width": "2",
-                      d: "M10 6H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V8a2 2 0 00-2-2h-5m-4 0V5a2 2 0 114 0v1m-4 0a2 2 0 104 0m-5 8a2 2 0 100-4 2 2 0 000 4zm0 0c1.306 0 2.417.835 2.83 2M9 14a3.001 3.001 0 00-2.83 2M15 11h3m-3 4h2",
+                      d: "M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4zm2-1a1 1 0 0 0-1 1v1h14V4a1 1 0 0 0-1-1H2zm13 4H1v5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V7z",
+                    },
+                  }),
+                  _vm._v(" "),
+                  _c("path", {
+                    attrs: {
+                      d: "M2 10a1 1 0 0 1 1-1h1a1 1 0 0 1 1 1v1a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1v-1z",
                     },
                   }),
                 ]
@@ -185,7 +190,7 @@ var render = function () {
             "router-link",
             {
               staticClass:
-                "flex items-center h-12 px-2 py-2 text-center text-gray-700 bg-transparent border-b border-black rounded-t-md sm:px-4 -px-1 whitespace-nowrap cursor-base focus:outline-none hover:text-blue-700",
+                "flex  items-center h-12 px-2 py-2 text-center text-gray-700 bg-blue-200 border-b border-gray-100 rounded-t-lg sm:px-4 -px-1 whitespace-nowrap cursor-base focus:outline-none hover:text-blue-700",
               attrs: {
                 to: { name: "land_booking" },
                 "exact-active-class": "exact-active",
@@ -195,21 +200,26 @@ var render = function () {
               _c(
                 "svg",
                 {
-                  staticClass: "w-4 h-4 mx-1 sm:w-6 sm:h-6",
+                  staticClass: "bi bi-bookmark-check mx-1",
                   attrs: {
                     xmlns: "http://www.w3.org/2000/svg",
-                    fill: "none",
-                    viewBox: "0 0 24 24",
-                    stroke: "currentColor",
+                    width: "20",
+                    height: "20",
+                    fill: "currentColor",
+                    viewBox: "0 0 16 16",
                   },
                 },
                 [
                   _c("path", {
                     attrs: {
-                      "stroke-linecap": "round",
-                      "stroke-linejoin": "round",
-                      "stroke-width": "2",
-                      d: "M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z",
+                      "fill-rule": "evenodd",
+                      d: "M10.854 5.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 7.793l2.646-2.647a.5.5 0 0 1 .708 0z",
+                    },
+                  }),
+                  _vm._v(" "),
+                  _c("path", {
+                    attrs: {
+                      d: "M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5V2zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1H4z",
                     },
                   }),
                 ]
@@ -217,47 +227,6 @@ var render = function () {
               _vm._v(" "),
               _c("span", { staticClass: "mx-1 text-sm sm:text-base" }, [
                 _vm._v("\n               Bookings\n           "),
-              ]),
-            ]
-          ),
-          _vm._v(" "),
-          _c(
-            "router-link",
-            {
-              staticClass:
-                "flex items-center h-12 px-2 py-2 text-center text-gray-700 bg-transparent border-b border-black rounded-t-md sm:px-4 -px-1 whitespace-nowrap cursor-base focus:outline-none hover:text-blue-700",
-              attrs: {
-                to: { name: "land_bills" },
-                "exact-active-class": "exact-active",
-                "active-class": "active",
-              },
-            },
-            [
-              _c(
-                "svg",
-                {
-                  staticClass: "w-4 h-4 mx-1 sm:w-6 sm:h-6",
-                  attrs: {
-                    xmlns: "http://www.w3.org/2000/svg",
-                    fill: "none",
-                    viewBox: "0 0 24 24",
-                    stroke: "currentColor",
-                  },
-                },
-                [
-                  _c("path", {
-                    attrs: {
-                      "stroke-linecap": "round",
-                      "stroke-linejoin": "round",
-                      "stroke-width": "2",
-                      d: "M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z",
-                    },
-                  }),
-                ]
-              ),
-              _vm._v(" "),
-              _c("span", { staticClass: "mx-1 text-sm sm:text-base" }, [
-                _vm._v("\n               Bills\n           "),
               ]),
             ]
           ),

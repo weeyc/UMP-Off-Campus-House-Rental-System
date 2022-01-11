@@ -1,21 +1,33 @@
 <template>
-    <div class="max-w-5xl p-6 mx-auto mt-10 bg-gray-200 rounded-md mb-10" >
+    <div class="max-w-5xl pt-5 pb-8 pl-8 pr-8   mx-auto mt-5 bg-gray-200 rounded-md mb-10" >
         <div v-if="role===2">
             <div v-for= "house in property" :key="house.id"  class="flex justify-end items-center">
-                <button @click="clickEdit(house); toggleModal = !toggleModal"  class=" bg-blue-600 shadow-lg hover:bg-blue-700 text-xs text-white px-4 py-3 rounded-md mb-2">
-                    + Edit Property
+                <button @click="$router.go(-1)" class=" bg-teal-500 shadow-lg hover:bg-teal-500 text-xs text-white px-4 py-3 rounded-md mb-2 mr-auto flex items-center">
+                    <svg class="h-5 w-5 mr-2 fill-current" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="-49 141 512 512" style="enable-background:new -49 141 512 512;" xml:space="preserve">
+                        <path id="XMLID_10_" d="M438,372H36.355l72.822-72.822c9.763-9.763,9.763-25.592,0-35.355c-9.763-9.764-25.593-9.762-35.355,0 l-115.5,115.5C-46.366,384.01-49,390.369-49,397s2.634,12.989,7.322,17.678l115.5,115.5c9.763,9.762,25.593,9.763,35.355,0 c9.763-9.763,9.763-25.592,0-35.355L36.355,422H438c13.808,0,25-11.193,25-25S451.808,372,438,372z"></path>
+                    </svg>
+                    Back
                 </button>
+                 <button @click="clickEdit(house); toggleModal = !toggleModal" class=" flex items-center bg-blue-600 shadow-lg hover:bg-blue-700 text-xs text-white px-4 py-3 rounded-md mb-2">
+               <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-pencil-square mr-1" viewBox="0 0 16 16">
+                <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+                <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
+                </svg>
+                 Edit Property
+            </button>
             </div>
         </div>
-
-        <div  v-for= "house in property" :key="house.id"  class="overflow-hidden bg-white rounded-lg shadow-lg mt-5 p-5">
+      <div v-if="isReady==true">
+        <div  v-for= "house in property" :key="house.id"  class="overflow-hidden bg-white rounded-lg shadow-lg mt-3 p-8">
             <div class="w-full p-4 md:p-4">
                 <div class="flex justify-between item-center">
                     <h1 class="text-2xl font-bold text-gray-800 dark:text-white">Property Name: {{ house.name }}</h1>
-                     <button class="px-2 py-1 text-xs font-bold text-white uppercase transition-colors duration-200
-                             transform bg-gray-800 rounded hover:bg-gray-700">
-                             {{ house.status }}
-                    </button >
+                     <div v-if="house.status=='verified'" class="capitalize px-3 py-2 text-xs font-bold text-white  flex items-center  bg-green-500 rounded  hover:text-white ">
+                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
+                                <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+                            </svg>
+                            <span class="mx-1 text-sm sm:text-base">{{ house.status }}</span>
+                    </div >
                 </div>
                       <!-- Images Carousel -->
             <div class="border-double border-4 border-light-blue-500" style="width:100%;margin:10px auto;height:300px">
@@ -63,12 +75,15 @@
 
 
             <div v-if="!rooms.length">
-                <span>You don't have room listing yet. Please add room</span>
+                <div class="bg-blue-200 border-yellow-600 text-gray-600  p-10 mt-3 " role="alert">
+                   <center><p class="font-bold text-lg">You don't have room listing yet. Please add room</p></center>
+            </div>
+
             </div>
             <div v-else>
 
             <div v-for= "room in rooms" :key="room.id"  class="flex justify-start  ">
-                <router-link :to="{ name: 'room_landlord', params:{room_id: room.id}}" class="flex justify-center w-full px-8 py-4 overflow-hidden bg-white rounded-lg shadow-lg mt-5 cursor-pointer transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-105 duration-200 hover:bg-blue-400 hover:shadow-2xl">
+                <router-link :to="{ name: 'room_landlord', params:{room_id: room.id}}" class="flex justify-center w-full px-8 py-4 overflow-hidden bg-blue-100 rounded-lg shadow-lg mt-5 cursor-pointer transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-105 duration-200 hover:bg-blue-400 hover:shadow-2xl">
 
                     <div v-if="room.photo_room != null" class="w-1/3 bg-cover" > <img class="h-48 w-full object-cover"   :src="'/images/Properties/'+room.photo_room[0].photo_name"  /></div>
                     <div v-else class="w-1/3 bg-cover" > <img class="h-48 w-full object-cover" alt="Avatar"  /></div>
@@ -91,6 +106,13 @@
 
 
         </div>
+
+            <!-- loading -->
+    </div>
+    <div v-else>
+     <loader object="#4491ee" color1="#e3851c" color2="#e82dda" size="8" speed="1.3" bg="#1e2337" objectbg="#ff2d2d" opacity="90" disableScrolling="true" name="dots"></loader>
+    </div>
+  <!-- loading -->
 
     <EditModal
             v-if="toggleModal"
@@ -119,18 +141,14 @@
 </template>
 
 <script>
-import RoomCard from './RoomCard.vue';
 import { slider, slideritem } from 'vue-concise-slider'
 import GoogleMap from "./GoogleMap.vue";
 import EditModal from './EditProperty_Modal.vue';
 import AddRoomModal from './AddRoom_Modal.vue';
 
-// import { VueperSlides, VueperSlide } from 'vueperslides'
-// import 'vueperslides/dist/vueperslides.css'
 
 export default {
     components: {
-        RoomCard,
         GoogleMap,
         EditModal,
         AddRoomModal,
@@ -149,6 +167,7 @@ export default {
         return{
             toggleModal: false,
             toggleAddModal: false,
+            isReady: false,
             property: [],
             landlord_id: '',
             rooms: [],
@@ -181,12 +200,14 @@ export default {
                 this.property=response.data.data;
                 this.propertyPhoto = response.data.data[0].photo;
                 this.landlord_id = response.data.data[0].landlord_id;
+
                 console.warn(this.property.data);
             })
         },
         getRooms(){
             axios.get('/api/get_rooms/'+this.property_id).then((response)=>{
                 this.rooms=response.data.data;
+                this.isReady=true;
                 console.warn(this.rooms.data);
             })
         },

@@ -2,19 +2,20 @@
 <template>
    <div class="modal h-screen w-full  fixed left-0 top-0 flex justify-center z-10 items-center bg-black bg-opacity-50" >
     <!-- modal -->
-    <div :class="[modalBackground]" class="rounded max-h-full overflow-y-auto shadow-lg max-w-2/3 p-6 mx-auto min-w-2/3" >
+    <div :class="[modalBackground]" class="rounded max-h-full overflow-y-auto shadow-lg  p-6 w-2/3 min-h-2/3" >
       <!-- modal header -->
-      <div class="border-b px-4 py-2 flex justify-between items-center">
-        <h3 class="font-semibold text-lg">Add Room</h3>
+      <div class="border-b px-4 flex justify-between items-center">
+        <h3 class="font-black text-2xl">Add Room</h3>
         <button class="text-black " @click="closeModal">&cross;</button>
       </div>
       <!-- modal body -->
-        <div class="p-3">
-            <!-- <h1 class="text-gray-800 font-lg font-bold tracking-normal leading-tight mb-4">Property Details</h1> -->
-            <section id="propertyDetail" v-show="activePhase == 1" class=" max-w-4xl p-6 mx-auto bg-gray-200 rounded-md shadow-md">
+        <div class="p-3 min-w-1/2">
 
-                <h2 class=" font-bold text-gray-700 capitalize text-center text-xl">Edit Property</h2>
-                    <h2 class=" font-bold text-gray-700 capitalize text-center text-base ">-Property Details-</h2>
+
+            <section ref="section1"  class=" w-full p-6 mx-auto h-full bg-gray-200 rounded-md shadow-md ">
+
+                <h2 class=" font-bold text-gray-700 capitalize text-center text-xl">Room Listing</h2>
+                    <h2 class=" font-bold text-gray-700 capitalize text-center text-base ">-Room Details-</h2>
                 <div>
                     <div class="grid grid-cols-1 gap-6 mt-4 sm:grid-cols-2">
                         <div>
@@ -25,9 +26,6 @@
                             <label class="text-gray-700" >Room Name</label>
                             <input  type="text" v-model="form.roomName" placeholder="Room 1"  class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-black rounded-md   focus:border-blue-500 focus:outline-none focus:ring" required>
                         </div>
-
-
-
                         <div>
                             <label class="text-gray-700" >Room Type</label>
                                 <select  v-model="form.room_type" class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-black rounded-md  focus:border-blue-500 focus:outline-none focus:ring" name="campus" required>
@@ -37,17 +35,17 @@
                         </div>
                       <div>
                             <label class="text-gray-700" >Max no of tenants per room</label>
-                            <input  type="number" v-model="form.number_tenants" placeholder="2" min=1 class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-black rounded-md   focus:border-blue-500 focus:outline-none focus:ring" required>
+                            <input  type="number" v-model="form.number_tenants" placeholder="2" min="1" max="10" class="number block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-black rounded-md   focus:border-blue-500 focus:outline-none focus:ring" required>
                         </div>
 
                         <div>
                             <label class="text-gray-700" >Monthly Rent (RM)</label>
-                            <input  type="number" v-model="form.monthly_rent" step="any" min=0 placeholder="300"  class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-black rounded-md   focus:border-blue-500 focus:outline-none focus:ring" required>
+                            <input  type="number" v-model="form.monthly_rent" step="any" min="0" max="5000" placeholder="300"  class="number2 block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-black rounded-md   focus:border-blue-500 focus:outline-none focus:ring" required>
                         </div>
 
                         <div>
                             <label class="text-gray-700" >Penalty Fees (Overdue)</label>
-                            <input  type="number" v-model="form.penalty_fees" step=any min=0 placeholder="20"  class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-black rounded-md   focus:border-blue-500 focus:outline-none focus:ring" required>
+                            <input  type="number" v-model="form.penalty_fees" step=any min="0" max="5000" placeholder="20"  class="number3 block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-black rounded-md   focus:border-blue-500 focus:outline-none focus:ring" required>
                         </div>
                     </div>
 
@@ -58,12 +56,13 @@
             </section>
 
 
-            <section id="Uploader" v-if="activePhase == 2"  class="mt-10 max-w-4xl p-6 mx-auto bg-gray-200 rounded-md shadow-md">
+
+            <section ref="section2" class=" w-full p-6 bg-gray-200 rounded-md shadow-md h-full hidden">
                 <h2 class=" font-bold text-gray-700 capitalize text-center text-xl">Add Photos</h2>
                 <h2 class=" font-bold text-gray-700 capitalize text-center text-base mb-5">-Room Images-</h2>
                 <div>
                     <keep-alive>
-                        <ImageUploader :hideLabel="true" :editImage="false" @getImage="getImages" class="w-full"></ImageUploader>
+                        <ImageUploader :hideLabel="true" :editImage="false" @getImage="getImages" class=""></ImageUploader>
                     </keep-alive>
                     <div class="flex justify-end mt-6">
                         <button @click.prevent="goToNext(1)" class="px-6 py-2  mr-5 leading-5 text-white transition-colors duration-200 transform bg-gray-700 rounded-md hover:bg-gray-600 focus:outline-none focus:bg-gray-600">Back</button>
@@ -72,7 +71,9 @@
                 </div>
             </section>
 
-            <section id="Furnisher" v-if="activePhase == 3"  class="mt-10 w-full p-6 mx-auto bg-gray-200 rounded-md shadow-md">
+
+
+            <section ref="section3"   class="w-full p-6  bg-gray-200 rounded-md shadow-md h-full hidden">
                 <h2 class=" font-bold text-gray-700 capitalize text-center text-xl">Furnishing and Description</h2>
                     <div>
                     <h2 class=" font-bold text-gray-700 capitalize text-center text-base mt-6">-Furnishing-</h2>
@@ -105,14 +106,15 @@
                         </div>
                     <div class="flex justify-end mt-6">
                         <button @click.prevent="goToNext(2)" class="px-6 py-2  mr-5 leading-5 text-white transition-colors duration-200 transform bg-gray-700 rounded-md hover:bg-gray-600 focus:outline-none focus:bg-gray-600">Back</button>
-                        <button @click.prevent="submitRoom" class="px-6 py-2 leading-5 text-white transition-colors duration-200 transform bg-gray-700 rounded-md hover:bg-gray-600 focus:outline-none focus:bg-gray-600">Submit Property</button>
+                        <button @click.prevent="submitRoom" class="px-6 py-2 leading-5 text-white transition-colors duration-200 transform bg-blue-500 rounded-md hover:bg-blue-700 focus:outline-none ">Submit List</button>
                     </div>
                 </div>
             </section>
 
+
             </div>
-                <div class="flex justify-end items-center w-100 border-t p-3">
-                    <button @click="closeModal" class="bg-red-600 hover:bg-red-700 px-3 py-1 rounded text-white mr-1 close-modal">Cancel</button>
+                <div class="flex justify-end items-center  border-t">
+                    <button @click="closeModal" class="bg-red-600 hover:bg-red-700 px-5 py-2 rounded-lg text-white mr-3 close-modal mt-2 ">Cancel</button>
                 </div>
     </div>
 </div>
@@ -175,6 +177,37 @@ export default {
     methods: {
         goToNext(pg){
             this.activePhase = pg;
+            let section1 = this.$refs.section1;
+            let section2 = this.$refs.section2;
+            let section3 = this.$refs.section3;
+
+            if (this.activePhase==1) {
+
+
+                    section1.classList.remove("hidden");
+                    section2.classList.add("hidden");
+                    section3.classList.add("hidden");
+
+
+            }else if (this.activePhase==2){
+                 if(this.form.listingName=='' || this.form.monthly_rent=='' || this.form.number_tenants=='' ||this.form.penalty_fees=='' ||this.form.room_type=='' ||this.form.roomName==''){
+                     this.$toaster.error('Please fill all  the required fields')
+                }else{
+                    section1.classList.add("hidden");
+                    section2.classList.remove("hidden");
+                    section3.classList.add("hidden");
+                }
+
+            }else if (this.activePhase==3){
+                    if(this.form.images.length<=0 ){
+                     this.$toaster.error('Please  upload some picture')
+                }else{
+                    section1.classList.add("hidden");
+                    section2.classList.add("hidden");
+                    section3.classList.remove("hidden");
+                }
+
+            }
         },
         getImages(event, event2){
             this.form.images = event;
@@ -200,6 +233,16 @@ export default {
          closeModal(){
              this.$emit("closeModal");
          },
+         hideElement(){
+            let section1 = this.$refs.section1;
+            let checdiv = this.$refs.chec;
+
+            if (!flag) {
+                notification.classList.add("translate-x-full");
+                notification.classList.remove("translate-x-0");
+            }
+
+         },
         getRole(){
             if(this.role == 1){
                 this.modalBackground = 'bg-gradient-to-b from-pink-300 via-purple-300 to-indigo-400'
@@ -213,6 +256,24 @@ export default {
     mounted: function(){
          this.getRole();
          //this.form.furnishing = this.form.furnishing.split(',');
+         document.querySelector(".number").addEventListener("keypress", function (evt) {
+            if (evt.which < 48 || evt.which > 57)
+            {
+                evt.preventDefault();
+            }
+        });
+         document.querySelector(".number2").addEventListener("keypress", function (evt) {
+            if (evt.which < 48 || evt.which > 57)
+            {
+                evt.preventDefault();
+            }
+        });
+         document.querySelector(".number3").addEventListener("keypress", function (evt) {
+            if (evt.which < 48 || evt.which > 57)
+            {
+                evt.preventDefault();
+            }
+        });
     },
 };
 

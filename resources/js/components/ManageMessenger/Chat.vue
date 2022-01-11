@@ -1,6 +1,6 @@
 <template>
 <div >
-      <div :class="[margin]" class="max-w-5xl p-6 mx-auto bg-gray-100 rounded-md shadow-inner " >
+      <div :class="[margin]" class="max-w-6xl p-6 mx-auto bg-gray-100 rounded-md shadow-inner " >
           <h2 class=" font-bold text-gray-700 capitalize text-center text-xl mb-2 -mt-2">My Chat Messenger</h2>
         <!-- component -->
 <!-- This is an example component -->

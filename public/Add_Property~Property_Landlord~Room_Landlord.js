@@ -182,6 +182,31 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     editImage: Boolean,
@@ -260,12 +285,17 @@ __webpack_require__.r(__webpack_exports__);
 
       return "".concat(Math.round(size * 100) / 100, " ").concat(fSExt[i]);
     },
-    removeImage: function removeImage(i) {
-      var arrayImages = this.images;
-      var arraylabel = this.imageLabel;
-      var index = arrayImages.indexOf(arrayImages[i]);
-      arrayImages.splice(index, i);
-      arraylabel.splice(index, i);
+    // removeImage (i) {
+    //     var arrayImages = this.images;
+    //     var arraylabel = this.imageLabel;
+    //     var index = arrayImages.indexOf(arrayImages[i]);
+    //     arrayImages.splice(index, i);
+    //     arraylabel.splice(index, i);
+    //     this.events.splice(this.events.indexOf(event), 1);
+    // },
+    removeImage: function removeImage(index) {
+      this.$delete(this.images, index);
+      this.$delete(this.imageLabel, index);
     }
   },
   mounted: function mounted() {
@@ -535,9 +565,96 @@ var render = function () {
         },
         _vm._l(_vm.images, function (image, index) {
           return _c("div", { key: index, staticClass: "img-wrapper" }, [
-            _c("img", {
-              attrs: { src: image, alt: "Image Uplaoder " + index },
-            }),
+            _c(
+              "article",
+              {
+                staticClass:
+                  "group hasImage w-full h-full rounded-md focus:outline-none focus:shadow-outline bg-gray-100 cursor-pointer relative text-transparent hover:text-white shadow-sm",
+                attrs: { tabindex: "0" },
+              },
+              [
+                _c("img", {
+                  staticClass:
+                    "img-preview w-full h-full sticky object-cover rounded-md bg-fixed",
+                  attrs: { src: image, alt: "Image Uplaoder " + index },
+                }),
+                _vm._v(" "),
+                _c(
+                  "section",
+                  {
+                    staticClass:
+                      "flex flex-col rounded-md text-xs break-words w-full h-full z-20 absolute top-0 py-2 px-3",
+                  },
+                  [
+                    _c("h1", { staticClass: "flex-1" }),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "flex" }, [
+                      _c("span", { staticClass: "p-1" }, [
+                        _c("i", [
+                          _c(
+                            "svg",
+                            {
+                              staticClass: "fill-current w-4 h-4 ml-auto pt-",
+                              attrs: {
+                                xmlns: "http://www.w3.org/2000/svg",
+                                width: "24",
+                                height: "24",
+                                viewBox: "0 0 24 24",
+                              },
+                            },
+                            [
+                              _c("path", {
+                                attrs: {
+                                  d: "M5 8.5c0-.828.672-1.5 1.5-1.5s1.5.672 1.5 1.5c0 .829-.672 1.5-1.5 1.5s-1.5-.671-1.5-1.5zm9 .5l-2.519 4-2.481-1.96-4 5.96h14l-5-8zm8-4v14h-20v-14h20zm2-2h-24v18h24v-18z",
+                                },
+                              }),
+                            ]
+                          ),
+                        ]),
+                      ]),
+                      _vm._v(" "),
+                      _c("p", { staticClass: "p-1 size text-xs" }),
+                      _vm._v(" "),
+                      _c(
+                        "button",
+                        {
+                          staticClass:
+                            "delete ml-auto focus:outline-none hover:bg-gray-300 p-1 rounded-md",
+                          on: {
+                            click: function ($event) {
+                              return _vm.removeImage(index)
+                            },
+                          },
+                        },
+                        [
+                          _c(
+                            "svg",
+                            {
+                              staticClass:
+                                "pointer-events-none fill-current w-4 h-4 ml-auto",
+                              attrs: {
+                                xmlns: "http://www.w3.org/2000/svg",
+                                width: "24",
+                                height: "24",
+                                viewBox: "0 0 24 24",
+                              },
+                            },
+                            [
+                              _c("path", {
+                                staticClass: "pointer-events-none",
+                                attrs: {
+                                  d: "M3 6l3 18h12l3-18h-18zm19-4v2h-20v-2h5.711c.9 0 1.631-1.099 1.631-2h5.316c0 .901.73 2 1.631 2h5.711z",
+                                },
+                              }),
+                            ]
+                          ),
+                        ]
+                      ),
+                    ]),
+                  ]
+                ),
+              ]
+            ),
             _vm._v(" "),
             _c("div", { staticClass: "details" }, [
               _c("span", {
@@ -551,18 +668,6 @@ var render = function () {
                   textContent: _vm._s(_vm.getFileSize(_vm.files[index].size)),
                 },
               }),
-              _vm._v(" "),
-              _c(
-                "button",
-                {
-                  on: {
-                    click: function ($event) {
-                      return _vm.removeImage(index)
-                    },
-                  },
-                },
-                [_vm._v("Remove")]
-              ),
               _vm._v(" "),
               _c(
                 "select",

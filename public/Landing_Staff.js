@@ -274,6 +274,23 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     user_id: Number,
@@ -285,7 +302,8 @@ __webpack_require__.r(__webpack_exports__);
       properties: 0,
       tenants: 0,
       vacant: 0,
-      totals: 0.00
+      totals: 0.00,
+      isReady: false
     };
   },
   methods: {
@@ -294,6 +312,7 @@ __webpack_require__.r(__webpack_exports__);
 
       axios.get('/api/get_all_rooms/' + this.user_id).then(function (response) {
         _this.rooms = response.data.data;
+        _this.isReady = true;
         console.warn(_this.rooms.data);
       });
     },
@@ -1101,293 +1120,379 @@ var render = function () {
                           _vm._v("My Rooms Listings"),
                         ]),
                         _vm._v(" "),
-                        _c("div", { staticClass: "mt-4" }, [
-                          _c("div", { staticClass: "flex flex-col" }, [
-                            _c(
-                              "div",
-                              { staticClass: "-my-2 overflow-x-auto" },
-                              [
-                                _c(
-                                  "div",
-                                  {
-                                    staticClass:
-                                      "py-2 align-middle inline-block min-w-full",
-                                  },
-                                  [
-                                    _c(
-                                      "div",
-                                      {
-                                        staticClass:
-                                          "shadow overflow-hidden border-b border-gray-200 sm:rounded-lg bg-white",
-                                      },
-                                      [
-                                        _c(
-                                          "table",
-                                          {
-                                            staticClass:
-                                              "min-w-full divide-y divide-gray-200",
-                                          },
-                                          [
-                                            _vm._m(4),
-                                            _vm._v(" "),
-                                            _c(
-                                              "tbody",
-                                              {
-                                                staticClass:
-                                                  "bg-white divide-y divide-gray-200",
-                                              },
-                                              _vm._l(
-                                                _vm.rooms,
-                                                function (room) {
-                                                  return _c(
-                                                    "tr",
-                                                    { key: room.id },
+                        _vm.isReady == true
+                          ? _c("div", [
+                              _c("div", { staticClass: "mt-4" }, [
+                                _c("div", { staticClass: "flex flex-col" }, [
+                                  _c(
+                                    "div",
+                                    { staticClass: "-my-2 overflow-x-auto" },
+                                    [
+                                      _c(
+                                        "div",
+                                        {
+                                          staticClass:
+                                            "py-2 align-middle inline-block min-w-full",
+                                        },
+                                        [
+                                          _c(
+                                            "div",
+                                            {
+                                              staticClass:
+                                                "shadow overflow-hidden border-b border-gray-200 sm:rounded-lg bg-white",
+                                            },
+                                            [
+                                              _c(
+                                                "table",
+                                                {
+                                                  staticClass:
+                                                    "min-w-full divide-y divide-gray-200",
+                                                },
+                                                [
+                                                  _vm._m(4),
+                                                  _vm._v(" "),
+                                                  _c(
+                                                    "tbody",
+                                                    {
+                                                      staticClass:
+                                                        "bg-white divide-y divide-gray-200",
+                                                    },
                                                     [
-                                                      _c(
-                                                        "td",
-                                                        {
-                                                          staticClass:
-                                                            "flex px-6 py-4 whitespace-no-wrap text-sm leading-5 ",
-                                                        },
-                                                        [
-                                                          _c("img", {
-                                                            staticClass:
-                                                              "mr-2 w-6 h-6 rounded-full",
-                                                            attrs: {
-                                                              src:
-                                                                "/images/Properties/" +
-                                                                room
-                                                                  .photo_room[0]
-                                                                  .photo_name,
-                                                            },
-                                                          }),
-                                                          _vm._v(" "),
-                                                          _c(
-                                                            "router-link",
-                                                            {
-                                                              staticClass:
-                                                                "cursor-pointer hover:underline",
-                                                              attrs: {
-                                                                to: {
-                                                                  name: "view_room_list",
-                                                                  params: {
-                                                                    id: room.id,
-                                                                  },
-                                                                },
-                                                              },
-                                                            },
-                                                            [
-                                                              _vm._v(
-                                                                _vm._s(
-                                                                  room.listing_name
-                                                                ) +
-                                                                  "\n                                                                "
-                                                              ),
-                                                            ]
-                                                          ),
-                                                        ],
-                                                        1
-                                                      ),
-                                                      _vm._v(" "),
-                                                      _c(
-                                                        "td",
-                                                        {
-                                                          staticClass:
-                                                            "px-6 py-4 whitespace-no-wrap text-sm leading-5",
-                                                        },
-                                                        [
-                                                          _c("p", [
-                                                            _vm._v(
-                                                              _vm._s(
-                                                                room.room_type
-                                                              )
-                                                            ),
-                                                          ]),
-                                                        ]
-                                                      ),
-                                                      _vm._v(" "),
-                                                      _c(
-                                                        "td",
-                                                        {
-                                                          staticClass:
-                                                            "px-6 py-4 whitespace-no-wrap text-sm leading-5",
-                                                        },
-                                                        [
-                                                          _c("p", [
-                                                            _vm._v(
-                                                              _vm._s(
-                                                                room.campus
-                                                              )
-                                                            ),
-                                                          ]),
-                                                        ]
-                                                      ),
-                                                      _vm._v(" "),
-                                                      _c(
-                                                        "td",
-                                                        {
-                                                          staticClass:
-                                                            "px-6 py-4 whitespace-no-wrap text-sm leading-5",
-                                                        },
-                                                        [
-                                                          _c("p", [
-                                                            _vm._v(
-                                                              _vm._s(
-                                                                room.property_id
-                                                              )
-                                                            ),
-                                                          ]),
-                                                        ]
-                                                      ),
-                                                      _vm._v(" "),
-                                                      _c(
-                                                        "td",
-                                                        {
-                                                          staticClass:
-                                                            "px-6 py-4 whitespace-no-wrap text-sm leading-5 capitalize",
-                                                        },
-                                                        [
-                                                          _c(
-                                                            "div",
-                                                            {
-                                                              staticClass:
-                                                                "flex text-green-500",
-                                                            },
+                                                      _vm._l(
+                                                        _vm.rooms,
+                                                        function (room) {
+                                                          return _c(
+                                                            "tr",
+                                                            { key: room.id },
                                                             [
                                                               _c(
-                                                                "svg",
+                                                                "td",
                                                                 {
                                                                   staticClass:
-                                                                    "w-5 h-5 mr-1",
-                                                                  attrs: {
-                                                                    xmlns:
-                                                                      "http://www.w3.org/2000/svg",
-                                                                    fill: "none",
-                                                                    viewBox:
-                                                                      "0 0 24 24",
-                                                                    stroke:
-                                                                      "currentColor",
-                                                                  },
+                                                                    "flex px-6 py-4 whitespace-no-wrap text-sm leading-5 ",
                                                                 },
                                                                 [
-                                                                  _c("path", {
+                                                                  _c("img", {
+                                                                    staticClass:
+                                                                      "mr-2 w-6 h-6 rounded-full",
                                                                     attrs: {
-                                                                      "stroke-linecap":
-                                                                        "round",
-                                                                      "stroke-linejoin":
-                                                                        "round",
-                                                                      "stroke-width":
-                                                                        "2",
-                                                                      d: "M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z",
+                                                                      src:
+                                                                        "/images/Properties/" +
+                                                                        room
+                                                                          .photo_room[0]
+                                                                          .photo_name,
                                                                     },
                                                                   }),
-                                                                ]
-                                                              ),
-                                                              _vm._v(" "),
-                                                              _c("p", [
-                                                                _vm._v(
-                                                                  _vm._s(
-                                                                    room.room_status
-                                                                  )
-                                                                ),
-                                                              ]),
-                                                            ]
-                                                          ),
-                                                        ]
-                                                      ),
-                                                      _vm._v(" "),
-                                                      _c(
-                                                        "td",
-                                                        {
-                                                          staticClass:
-                                                            "px-6 py-4 whitespace-no-wrap text-sm leading-5",
-                                                        },
-                                                        [
-                                                          _c(
-                                                            "div",
-                                                            {
-                                                              staticClass:
-                                                                "flex space-x-4",
-                                                            },
-                                                            [
-                                                              _c(
-                                                                "router-link",
-                                                                {
-                                                                  staticClass:
-                                                                    "text-blue-500 hover:text-blue-600",
-                                                                  attrs: {
-                                                                    to: {
-                                                                      name: "room_landlord",
-                                                                      params: {
-                                                                        room_id:
-                                                                          room.id,
-                                                                      },
-                                                                    },
-                                                                  },
-                                                                },
-                                                                [
+                                                                  _vm._v(" "),
                                                                   _c(
-                                                                    "svg",
+                                                                    "router-link",
                                                                     {
                                                                       staticClass:
-                                                                        "w-5 h-5 mr-1",
+                                                                        "cursor-pointer hover:underline",
                                                                       attrs: {
-                                                                        xmlns:
-                                                                          "http://www.w3.org/2000/svg",
-                                                                        fill: "none",
-                                                                        viewBox:
-                                                                          "0 0 24 24",
-                                                                        stroke:
-                                                                          "currentColor",
+                                                                        to: {
+                                                                          name: "view_room_list",
+                                                                          params:
+                                                                            {
+                                                                              id: room.id,
+                                                                            },
+                                                                        },
                                                                       },
                                                                     },
                                                                     [
-                                                                      _c(
-                                                                        "path",
-                                                                        {
-                                                                          attrs:
-                                                                            {
-                                                                              "stroke-linecap":
-                                                                                "round",
-                                                                              "stroke-linejoin":
-                                                                                "round",
-                                                                              "stroke-width":
-                                                                                "2",
-                                                                              d: "M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z",
-                                                                            },
-                                                                        }
+                                                                      _vm._v(
+                                                                        _vm._s(
+                                                                          room.listing_name
+                                                                        ) +
+                                                                          "\n                                                                "
                                                                       ),
                                                                     ]
                                                                   ),
-                                                                  _vm._v(" "),
+                                                                ],
+                                                                1
+                                                              ),
+                                                              _vm._v(" "),
+                                                              _c(
+                                                                "td",
+                                                                {
+                                                                  staticClass:
+                                                                    "px-6 py-4 whitespace-no-wrap text-sm leading-5",
+                                                                },
+                                                                [
                                                                   _c("p", [
                                                                     _vm._v(
-                                                                      "View"
+                                                                      _vm._s(
+                                                                        room.room_type
+                                                                      )
                                                                     ),
                                                                   ]),
                                                                 ]
                                                               ),
-                                                            ],
-                                                            1
-                                                          ),
-                                                        ]
+                                                              _vm._v(" "),
+                                                              _c(
+                                                                "td",
+                                                                {
+                                                                  staticClass:
+                                                                    "px-6 py-4 whitespace-no-wrap text-sm leading-5",
+                                                                },
+                                                                [
+                                                                  _c("p", [
+                                                                    _vm._v(
+                                                                      _vm._s(
+                                                                        room.campus
+                                                                      )
+                                                                    ),
+                                                                  ]),
+                                                                ]
+                                                              ),
+                                                              _vm._v(" "),
+                                                              _c(
+                                                                "td",
+                                                                {
+                                                                  staticClass:
+                                                                    "px-6 py-4 whitespace-no-wrap text-sm leading-5",
+                                                                },
+                                                                [
+                                                                  _c("p", [
+                                                                    _vm._v(
+                                                                      _vm._s(
+                                                                        room.property_id
+                                                                      )
+                                                                    ),
+                                                                  ]),
+                                                                ]
+                                                              ),
+                                                              _vm._v(" "),
+                                                              _c(
+                                                                "td",
+                                                                {
+                                                                  staticClass:
+                                                                    "px-6 py-4 whitespace-no-wrap text-sm leading-5 capitalize",
+                                                                },
+                                                                [
+                                                                  _c(
+                                                                    "div",
+                                                                    {
+                                                                      staticClass:
+                                                                        "flex text-green-500",
+                                                                    },
+                                                                    [
+                                                                      _c(
+                                                                        "svg",
+                                                                        {
+                                                                          staticClass:
+                                                                            "w-5 h-5 mr-1",
+                                                                          attrs:
+                                                                            {
+                                                                              xmlns:
+                                                                                "http://www.w3.org/2000/svg",
+                                                                              fill: "none",
+                                                                              viewBox:
+                                                                                "0 0 24 24",
+                                                                              stroke:
+                                                                                "currentColor",
+                                                                            },
+                                                                        },
+                                                                        [
+                                                                          _c(
+                                                                            "path",
+                                                                            {
+                                                                              attrs:
+                                                                                {
+                                                                                  "stroke-linecap":
+                                                                                    "round",
+                                                                                  "stroke-linejoin":
+                                                                                    "round",
+                                                                                  "stroke-width":
+                                                                                    "2",
+                                                                                  d: "M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z",
+                                                                                },
+                                                                            }
+                                                                          ),
+                                                                        ]
+                                                                      ),
+                                                                      _vm._v(
+                                                                        " "
+                                                                      ),
+                                                                      _c("p", [
+                                                                        _vm._v(
+                                                                          _vm._s(
+                                                                            room.room_status
+                                                                          )
+                                                                        ),
+                                                                      ]),
+                                                                    ]
+                                                                  ),
+                                                                ]
+                                                              ),
+                                                              _vm._v(" "),
+                                                              _c(
+                                                                "td",
+                                                                {
+                                                                  staticClass:
+                                                                    "px-6 py-4 whitespace-no-wrap text-sm leading-5",
+                                                                },
+                                                                [
+                                                                  _c(
+                                                                    "div",
+                                                                    {
+                                                                      staticClass:
+                                                                        "flex space-x-4",
+                                                                    },
+                                                                    [
+                                                                      _c(
+                                                                        "router-link",
+                                                                        {
+                                                                          staticClass:
+                                                                            "text-blue-500 hover:text-blue-600",
+                                                                          attrs:
+                                                                            {
+                                                                              to: {
+                                                                                name: "room_landlord",
+                                                                                params:
+                                                                                  {
+                                                                                    room_id:
+                                                                                      room.id,
+                                                                                  },
+                                                                              },
+                                                                            },
+                                                                        },
+                                                                        [
+                                                                          _c(
+                                                                            "svg",
+                                                                            {
+                                                                              staticClass:
+                                                                                "w-5 h-5 mr-1",
+                                                                              attrs:
+                                                                                {
+                                                                                  xmlns:
+                                                                                    "http://www.w3.org/2000/svg",
+                                                                                  fill: "none",
+                                                                                  viewBox:
+                                                                                    "0 0 24 24",
+                                                                                  stroke:
+                                                                                    "currentColor",
+                                                                                },
+                                                                            },
+                                                                            [
+                                                                              _c(
+                                                                                "path",
+                                                                                {
+                                                                                  attrs:
+                                                                                    {
+                                                                                      "stroke-linecap":
+                                                                                        "round",
+                                                                                      "stroke-linejoin":
+                                                                                        "round",
+                                                                                      "stroke-width":
+                                                                                        "2",
+                                                                                      d: "M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z",
+                                                                                    },
+                                                                                }
+                                                                              ),
+                                                                            ]
+                                                                          ),
+                                                                          _vm._v(
+                                                                            " "
+                                                                          ),
+                                                                          _c(
+                                                                            "p",
+                                                                            [
+                                                                              _vm._v(
+                                                                                "View"
+                                                                              ),
+                                                                            ]
+                                                                          ),
+                                                                        ]
+                                                                      ),
+                                                                    ],
+                                                                    1
+                                                                  ),
+                                                                ]
+                                                              ),
+                                                            ]
+                                                          )
+                                                        }
                                                       ),
-                                                    ]
-                                                  )
-                                                }
+                                                      _vm._v(" "),
+                                                      _vm.rooms.length == 0
+                                                        ? _c("tr", [
+                                                            _c(
+                                                              "td",
+                                                              {
+                                                                attrs: {
+                                                                  colspan: "6",
+                                                                },
+                                                              },
+                                                              [
+                                                                _c(
+                                                                  "div",
+                                                                  {
+                                                                    staticClass:
+                                                                      "bg-indigo-100 border-yellow-600 text-black-600  p-4",
+                                                                    attrs: {
+                                                                      role: "alert",
+                                                                    },
+                                                                  },
+                                                                  [
+                                                                    _c(
+                                                                      "center",
+                                                                      [
+                                                                        _c(
+                                                                          "p",
+                                                                          {
+                                                                            staticClass:
+                                                                              "font-bold text-base",
+                                                                          },
+                                                                          [
+                                                                            _vm._v(
+                                                                              "\n                                                                   You have not register any property's room yet.\n                                                                "
+                                                                            ),
+                                                                          ]
+                                                                        ),
+                                                                      ]
+                                                                    ),
+                                                                  ],
+                                                                  1
+                                                                ),
+                                                              ]
+                                                            ),
+                                                          ])
+                                                        : _vm._e(),
+                                                    ],
+                                                    2
+                                                  ),
+                                                ]
                                               ),
-                                              0
-                                            ),
-                                          ]
-                                        ),
-                                      ]
-                                    ),
-                                  ]
-                                ),
-                              ]
+                                            ]
+                                          ),
+                                        ]
+                                      ),
+                                    ]
+                                  ),
+                                ]),
+                              ]),
+                            ])
+                          : _c(
+                              "div",
+                              [
+                                _c("loader", {
+                                  attrs: {
+                                    object: "#4491ee",
+                                    color1: "#e3851c",
+                                    color2: "#e82dda",
+                                    size: "8",
+                                    speed: "1.3",
+                                    bg: "#1e2337",
+                                    objectbg: "#ff2d2d",
+                                    opacity: "90",
+                                    disableScrolling: "true",
+                                    name: "circular",
+                                  },
+                                }),
+                              ],
+                              1
                             ),
-                          ]),
-                        ]),
                       ]
                     ),
                   ]

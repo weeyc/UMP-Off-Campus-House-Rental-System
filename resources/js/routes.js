@@ -14,7 +14,7 @@ const Landing_Staff = () => import(/* webpackChunkName: "Landing_Staff" */'./com
 
 const Dashboard_Landlord = () => import(/* webpackChunkName: "Landing_Staff" */'./components/ManageRegistrationUsers/Dashboard_Landlord');
 const PropertyList_landlord = () => import(/* webpackChunkName: "PropertyList_landlord" */'./components/ManagePropertyList/PropertyList_landlord');
-const Add_Property = () => import(/* webpackChunkName: "Add_Property" */'./components/ManagePropertyList/Add_Property');
+// const Add_Property = () => import(/* webpackChunkName: "Add_Property" */'./components/ManagePropertyList/Add_Property');
 const Property_Landlord = () => import(/* webpackChunkName: "Property_Landlord" */'./components/ManagePropertyList/Property_Landlord');
 const Room_Landlord = () => import(/* webpackChunkName: "Room_Landlord" */'./components/ManagePropertyList/Room_Landlord');
 
@@ -182,19 +182,19 @@ export default{
             name: 'property_list',
             component: PropertyList_landlord,
         },
+        // {
+        //     path: '/landlord/add_property',
+        //     name: 'add_property',
+        //     component: Add_Property,
+        // },
         {
-            path: '/landlord/add_property',
-            name: 'add_property',
-            component: Add_Property,
-        },
-        {
-            path: '/landlord/property/:property_id',
+            path: '/landlord/property_list/:property_id',
             name: 'property',
             component: Property_Landlord,
             props: true,
         },
         {
-            path: '/landlord/property/:property_id/room/:room_id',
+            path: '/landlord/property_list/:property_id/room/:room_id',
             name: 'room_landlord',
             component: Room_Landlord,
         },

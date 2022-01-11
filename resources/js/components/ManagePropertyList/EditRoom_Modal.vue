@@ -2,18 +2,18 @@
 <template>
    <div class="modal h-screen w-full  fixed left-0 top-0 flex justify-center z-10 items-center bg-black bg-opacity-50" >
     <!-- modal -->
-    <div :class="[modalBackground]" class="rounded max-h-full overflow-y-auto shadow-lg max-w-5xl p-6 mx-auto min-w-2/3" >
+    <div :class="[modalBackground]" class="rounded max-h-full overflow-y-auto shadow-lg  p-6 w-2/3 min-h-2/3" >
       <!-- modal header -->
       <div class="border-b px-4 py-2 flex justify-between items-center">
-        <h3 class="font-semibold text-lg">Edit Room</h3>
+        <h3 class="font-black text-2xl">Edit Room</h3>
         <button class="text-black " @click="closeModal">&cross;</button>
       </div>
       <!-- modal body -->
-        <div class="p-3">
+        <div class="p-3 ">
             <!-- <h1 class="text-gray-800 font-lg font-bold tracking-normal leading-tight mb-4">Property Details</h1> -->
             <section id="propertyDetail" v-show="activePhase == 1" class=" w-full p-6 mx-auto bg-gray-200 rounded-md shadow-md">
 
-                <h2 class=" font-bold text-gray-700 capitalize text-center text-xl">Edit Room</h2>
+                <h2 class=" font-bold text-gray-700 capitalize text-center text-xl">Room List Edit</h2>
                     <h2 class=" font-bold text-gray-700 capitalize text-center text-base ">-Room Details-</h2>
                 <div>
                     <div class="grid grid-cols-1 gap-6 mt-4 sm:grid-cols-2">
@@ -25,9 +25,6 @@
                             <label class="text-gray-700" >Room Name</label>
                             <input  type="text" v-model="form.name" placeholder="Room 1"  class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-black rounded-md   focus:border-blue-500 focus:outline-none focus:ring" required>
                         </div>
-
-
-
                         <div>
                             <label class="text-gray-700" >Room Type</label>
                                 <select  v-model="form.room_type" class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-black rounded-md  focus:border-blue-500 focus:outline-none focus:ring" name="campus" required>
@@ -37,21 +34,29 @@
                         </div>
                       <div>
                             <label class="text-gray-700" >Max no of tenants per room</label>
-                            <input  type="number" v-model="form.number_of_tenant" placeholder="2" min=1 class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-black rounded-md   focus:border-blue-500 focus:outline-none focus:ring" required>
+                            <input  type="number" v-model="form.number_of_tenant" placeholder="2" min=1 class="number block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-black rounded-md   focus:border-blue-500 focus:outline-none focus:ring" required>
                         </div>
 
                         <div>
                             <label class="text-gray-700" >Monthly Rent (RM)</label>
-                            <input  type="number" v-model="form.monthly_rent" step="any" min=0 placeholder="300"  class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-black rounded-md   focus:border-blue-500 focus:outline-none focus:ring" required>
+                            <input  type="number" v-model="form.monthly_rent" step="any" min=0 placeholder="300"  class="number2 block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-black rounded-md   focus:border-blue-500 focus:outline-none focus:ring" required>
                         </div>
 
                         <div>
                             <label class="text-gray-700" >Penalty Fees (Overdue)</label>
-                            <input  type="number" v-model="form.penalty_fees" step=any min=0 placeholder="20"  class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-black rounded-md   focus:border-blue-500 focus:outline-none focus:ring" required>
+                            <input  type="number" v-model="form.penalty_fees" step=any min=0 placeholder="20"  class="number3 block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-black rounded-md   focus:border-blue-500 focus:outline-none focus:ring" required>
                         </div>
                               <div>
                             <label class="text-gray-700" >Booking Key</label>
                             <input  type="text" v-model="form.booking_key" minlength=6 maxlength=6 placeholder="6 character eg. Tkeis7"  class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-black rounded-md   focus:border-blue-500 focus:outline-none focus:ring" required>
+                        </div>
+                          <div>
+                            <label class="text-gray-700" >Status</label>
+                                <select  v-model="form.status" class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-black rounded-md  focus:border-blue-500 focus:outline-none focus:ring" name="campus" required>
+                                    <option class="text-gray-700 text-lg" value="listing"> listing</option>
+                                    <option class="text-gray-700 text-lg" value="rented"> rented</option>
+                                    <option class="text-gray-700 text-lg" value="unavailable"> unavailable</option>
+                            </select>
                         </div>
                     </div>
 
@@ -66,11 +71,11 @@
 
                 <section id="Uploader" v-if="activePhase == 2"  class=" w-full p-6 mx-auto bg-gray-200 rounded-md shadow-md ">
                 <h2 class=" font-bold text-gray-700 capitalize text-center text-xl">Add Photos</h2>
-                    <h2 class=" font-bold text-gray-700 capitalize text-center text-base mb-5">-Property Image-</h2>
+                    <h2 class=" font-bold text-gray-700 capitalize text-center text-base mb-5">-Room Images-</h2>
                       <button v-if="replace==false" @click.prevent="get_replace(0)" class="px-6 py-2 justify-end mr-5 leading-5 text-white transition-colors
-                      duration-200 transform bg-gray-700 rounded-md hover:bg-gray-600 focus:outline-none focus:bg-gray-600">Replace Images</button>
+                      duration-200 transform bg-gray-700 rounded-md hover:bg-gray-600 focus:outline-none focus:bg-gray-600 mb-1">Replace Images</button>
                       <button v-if="replace==true" @click.prevent="get_replace(1)" class="px-6 py-2 justify-end mr-5 leading-5 text-white transition-colors
-                      duration-200 transform bg-gray-700 rounded-md hover:bg-gray-600 focus:outline-none focus:bg-gray-600">Skip</button>
+                      duration-200 transform bg-gray-700 rounded-md hover:bg-gray-600 focus:outline-none focus:bg-gray-600 mb-3">Skip</button>
                 <div>
                          <div v-if="replace==false" class="border-double border-4 border-light-blue-500" style="width:100%;margin:10px auto;height:250px">
 
@@ -93,7 +98,7 @@
                 </div>
             </section>
 
-            <section id="Furnisher" v-if="activePhase == 3"  class="mt-10 w-full p-6 mx-auto bg-gray-200 rounded-md shadow-md dark:bg-gray-800">
+            <section id="Furnisher" v-if="activePhase == 3"  class="w-full p-6 mx-auto bg-gray-200 rounded-md shadow-md dark:bg-gray-800">
                 <h2 class=" font-bold text-gray-700 capitalize text-center text-xl">Furnishing and Description</h2>
                     <div class="w-full">
                     <h2 class=" font-bold text-gray-700 capitalize text-center text-base mt-6">-Furnishing-</h2>
@@ -127,14 +132,14 @@
                         </div>
                     <div class="flex justify-end mt-6">
                         <button @click.prevent="goToNext(2)" class="px-6 py-2  mr-5 leading-5 text-white transition-colors duration-200 transform bg-gray-700 rounded-md hover:bg-gray-600 focus:outline-none focus:bg-gray-600">Back</button>
-                        <button @click.prevent="editProperty" class="px-6 py-2 leading-5 text-white transition-colors duration-200 transform bg-gray-700 rounded-md hover:bg-gray-600 focus:outline-none focus:bg-gray-600">Update Room</button>
+                        <button @click.prevent="editProperty" class="px-6 py-2 leading-5 text-white transition-colors duration-200 transform bg-green-500 rounded-md hover:bg-green-600 focus:outline-none focus:bg-green-600">Update Room</button>
                     </div>
                 </div>
             </section>
 
             </div>
                 <div class="flex justify-end items-center w-100 border-t p-3">
-                    <button @click="closeModal" class="bg-red-600 hover:bg-red-700 px-3 py-1 rounded text-white mr-1 close-modal">Cancel</button>
+                    <button @click="closeModal" class="bg-red-600 hover:bg-red-700 px-3 py-1 rounded text-white mr-1 close-modal mr-3">Cancel</button>
                 </div>
     </div>
 </div>
@@ -242,6 +247,24 @@ components: {
     },
     mounted: function(){
          this.form.furnishing = this.form.furnishing.split(',');
+              document.querySelector(".number").addEventListener("keypress", function (evt) {
+            if (evt.which < 48 || evt.which > 57)
+            {
+                evt.preventDefault();
+            }
+        });
+         document.querySelector(".number2").addEventListener("keypress", function (evt) {
+            if (evt.which < 48 || evt.which > 57)
+            {
+                evt.preventDefault();
+            }
+        });
+         document.querySelector(".number3").addEventListener("keypress", function (evt) {
+            if (evt.which < 48 || evt.which > 57)
+            {
+                evt.preventDefault();
+            }
+        });
     },
 };
 

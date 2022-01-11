@@ -51,7 +51,7 @@ class Kernel extends HttpKernel
 
             EnsureFrontendRequestsAreStateful::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
-            'throttle:60,1',
+            'throttle:120,1',
             'bindings',
 
         ],

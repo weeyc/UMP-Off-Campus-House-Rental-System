@@ -587,7 +587,7 @@ var render = function () {
       "div",
       {
         staticClass:
-          "max-w-5xl p-6 mx-auto bg-gray-100 rounded-md shadow-inner ",
+          "max-w-6xl p-6 mx-auto bg-gray-100 rounded-md shadow-inner ",
         class: [_vm.margin],
       },
       [

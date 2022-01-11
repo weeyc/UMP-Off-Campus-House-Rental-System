@@ -1,6 +1,6 @@
 <template>
-<div class="profile-page">
-
+<div>
+ <div v-if="isReady==true">
   <section class="top w-full bg-blue-600 overflow-hidden relative block h-1/2">
     <div class="top-0 bg-center bg-cover bg w-full h-full object-cover object-center absolute z-0">
         <img class="top-0 bg-center bg-cover bg w-full h-full object-cover object-center absolute z-0" :src="'/images/Properties/'+info.property.cover.photo_name" alt="Avatar" />
@@ -163,6 +163,15 @@
                                     </div>
                                 </td>
                         </tr>
+                            <tr v-if="item.tenants.length==0">
+                            <td colspan="7">
+                                <div class="bg-indigo-100 border-yellow-600 text-black-600  p-4" role="alert">
+                                    <center><p class="font-bold text-base">
+                                    No tenant occupy this room yet
+                                    </p></center>
+                                </div>
+                            </td>
+                        </tr>
                         </tbody>
                     </table>
                     </div>
@@ -212,8 +221,14 @@
 
 
 
-
+            <!-- loading -->
+    </div>
+    <div v-else>
+     <loader object="#4491ee" color1="#e3851c" color2="#e82dda" size="8" speed="1.3" bg="#1e2337" objectbg="#ff2d2d" opacity="90" disableScrolling="true" name="dots"></loader>
+    </div>
+  <!-- loading -->
 </div>
+
 </template>
 <script>
 
@@ -231,6 +246,7 @@ export default {
     },
     data(){
         return{
+            isReady: false,
             info: [],
             moment: moment,
             prop_id: this.$route.params.id,
@@ -244,6 +260,7 @@ export default {
             tenant_id: '',
             tenant: {},
             room_id: '',
+            housemates: [],
 
 
             form: {
@@ -263,7 +280,9 @@ export default {
             axios.get('/api/get_HousePlatform/'+this.prop_id+'?land=1&imej=1').then((response)=>{
                 this.info=response.data.data[0];
                 this.housemates=response.data.data;
+
                 this.getPost();
+
                 console.warn(this.info.data);
 
             })
@@ -272,6 +291,7 @@ export default {
         getPost(){
             axios.get('/api/get_post/'+this.user_id+'/'+this.prop_id+'?land=1&imej=1').then((response)=>{
                 this.posts=response.data.data;
+                this.isReady=true;
                 console.warn(this.post.data);
             })
 

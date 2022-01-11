@@ -3,13 +3,16 @@
 
     <div class="max-w-5xl p-6 mx-auto mt-5 bg-gray-100 rounded-md mb-5 shadow-inner" >
          <div  class="flex justify-end items-center">
-                 <router-link  :to="{name: 'add_property'}" class=" bg-blue-600 shadow-lg hover:bg-blue-700 text-xs text-white px-3 py-3 rounded-md">
-                      + Add Property
-                </router-link >
+                  <button @click="toggleAddModal = !toggleAddModal"  class="  focus:text-white hover:text-white bg-blue-600 shadow-lg hover:bg-blue-700 text-xs text-white px-3 py-3 rounded-md">
+                        + Add Property
+                 </button >
             </div>
-
+        <div v-if="isReady==true">
             <div v-if="!properties.length">
-                <span>You don't have any property register yet. Please add property</span>
+                 <div class="bg-blue-200 border-yellow-600 text-gray-600  p-20 mt-3 " role="alert">
+                   <center><p class="font-bold text-base mt-48 mb-48">You don't have any property register yet. Please add property</p></center>
+                 </div>
+
             </div>
             <div v-else>
                 <!-- property card -->
@@ -35,21 +38,32 @@
             </div>
 
            </div>
+        </div>
+        <div v-else>
+            <loader object="#4491ee" color1="#e3851c" color2="#e82dda" size="8" speed="1.3" bg="#1e2337" objectbg="#ff2d2d" opacity="90" disableScrolling="true" name="circular"></loader>
+        </div>
+
+
+
+        <AddPropertyModal
+            v-if="toggleAddModal"
+            :role = role
+            :user_id="user_id"
+            @refreshData="getProperty"
+            @closeModal="closeAddModal">
+        </AddPropertyModal>
+
 
 
     </div>
-
-
-
-
 </template>
 <script>
-import RoomCard from './RoomCard.vue';
-import moment from "moment";
 
+import moment from "moment";
+import AddPropertyModal from './AddProperty_Modal.vue';
 export default {
     components: {
-           RoomCard,
+        AddPropertyModal
     },
     props: {
         user_id: Number,
@@ -58,9 +72,11 @@ export default {
 
     data(){
         return{
-               moment: moment,
+            moment: moment,
+            isReady: false,
             properties:[],
             btn: 'hidden',
+            toggleAddModal: false,
 
         }
     },
@@ -68,9 +84,13 @@ export default {
         getProperty(){
             axios.get('/api/get_properties/'+this.user_id+'?imej=1').then((response)=>{
                 this.properties=response.data.data;
+                this.isReady=true;
                 console.warn(this.properties.data);
                 })
             },
+        closeAddModal(){
+            this.toggleAddModal =!  this.toggleAddModal ;
+        },
 
     },
       mounted: function(){

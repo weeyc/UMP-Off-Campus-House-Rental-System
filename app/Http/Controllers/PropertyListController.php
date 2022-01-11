@@ -546,6 +546,10 @@ class PropertyListController extends Controller
         Property::where('property_id',$id)->delete();
     }
 
+   public function delete_room($id){
+        Room::where('room_id',$id)->delete();
+    }
+
 
     public function update_Property($id, Request $request){
 
@@ -625,6 +629,7 @@ class PropertyListController extends Controller
               'booking_fees' => $request ->monthly_rent,
               'booking_key' => $request ->booking_key,
               'monthly_rent' => $request ->monthly_rent,
+              'room_status' => $request ->status,
           ]);
 
           if ($chgPic == 1){

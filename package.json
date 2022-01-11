@@ -43,10 +43,12 @@
         "vform": "^2.1.2",
         "view-design": "^4.7.0",
         "vue-html-to-paper": "^1.4.4",
+        "vue-loading-overlay": "^5.0.3",
         "vue-moment": "^4.1.0",
         "vue-number-animation": "^1.1.1",
         "vue-router": "^3.5.3",
         "vue-table-dynamic": "^0.4.10",
+        "vue-ui-preloader": "^1.2.1",
         "vue2-datepicker": "^3.10.4",
         "vue2-google-maps": "^0.10.7",
         "vueperslides": "^2.15.2"

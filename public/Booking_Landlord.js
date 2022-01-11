@@ -132,6 +132,15 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -146,6 +155,7 @@ __webpack_require__.r(__webpack_exports__);
     return {
       moment: moment__WEBPACK_IMPORTED_MODULE_1___default.a,
       page: 1,
+      isReady: false,
       lastPage: '',
       filterGender: '',
       filterName: '',
@@ -181,6 +191,7 @@ __webpack_require__.r(__webpack_exports__);
         _this.payments = response.data.data;
         _this.pageInfo = response.data.meta;
         _this.lastPage = response.data.meta.last_page;
+        _this.isReady = true;
         console.warn(_this.payments.data);
       });
     },
@@ -358,13 +369,13 @@ var render = function () {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "p-6 ml-5" },
+    { staticClass: "ml-5" },
     [
       _c(
         "div",
         {
           staticClass:
-            "overflow-x-auto max-w-6xl p-6 mx-auto mt-3  bg-gray-100 rounded-md shadow-xl mb-5",
+            "overflow-x-auto max-w-6xl p-6 mx-auto bg-gray-100 rounded-md shadow-xl mb-5 rounded-tl-none",
         },
         [
           _c(
@@ -376,315 +387,414 @@ var render = function () {
             [_vm._v("Bookings")]
           ),
           _vm._v(" "),
-          _vm.payments.length == 0
+          _vm.isReady == true
             ? _c("div", [
-                _vm._v(" There are no any booking made to your room yet."),
-              ])
-            : _c(
-                "div",
-                { staticClass: "py-2 align-middle inline-block min-w-full" },
-                [
-                  _vm.pageInfo
-                    ? _c("div", { staticClass: "items-center" }, [
-                        _vm.page == "[object MouseEvent]"
-                          ? _c(
-                              "p",
-                              {
-                                staticClass:
-                                  "font-medium text-dark-600 dark:text-gray-400",
-                              },
-                              [
-                                _vm._v(
-                                  "  Showing Page 1 of " + _vm._s(_vm.lastPage)
-                                ),
-                              ]
-                            )
-                          : _c(
-                              "p",
-                              {
-                                staticClass:
-                                  "font-medium text-dark-600 dark:text-gray-400",
-                              },
-                              [
-                                _vm._v(
-                                  "  Showing Page " +
-                                    _vm._s(_vm.page) +
-                                    " of " +
-                                    _vm._s(_vm.lastPage)
-                                ),
-                              ]
+                _vm.payments.length == 0
+                  ? _c(
+                      "div",
+                      {
+                        staticClass:
+                          "bg-blue-200 border-yellow-600 text-gray-600  p-10 mt-3 ",
+                        attrs: { role: "alert" },
+                      },
+                      [
+                        _c("center", [
+                          _c("p", { staticClass: "font-bold text-base" }, [
+                            _vm._v(
+                              " There are no any booking made to your room yet."
                             ),
-                      ])
-                    : _vm._e(),
-                  _vm._v(" "),
-                  _c(
-                    "div",
-                    {
-                      staticClass:
-                        " shadow overflow-hidden border-b border-gray-200 sm:rounded-lg",
-                    },
-                    [
-                      _c(
-                        "table",
-                        { staticClass: "min-w-full divide-y divide-gray-200" },
-                        [
-                          _vm._m(0),
-                          _vm._v(" "),
-                          _c(
-                            "tbody",
-                            {
-                              staticClass: "bg-white divide-y divide-gray-200",
-                            },
-                            _vm._l(_vm.payments, function (data, index) {
-                              return _c("tr", { key: data.id }, [
-                                _c(
-                                  "td",
-                                  {
-                                    staticClass: "px-6 py-4 whitespace-nowrap",
-                                  },
-                                  [
-                                    _c(
-                                      "div",
-                                      { staticClass: "text-sm text-gray-900" },
-                                      [_vm._v(_vm._s(index + 1))]
-                                    ),
-                                  ]
-                                ),
-                                _vm._v(" "),
-                                _c(
-                                  "td",
-                                  {
-                                    staticClass: "px-6 py-4 whitespace-nowrap",
-                                  },
-                                  [
-                                    _c(
-                                      "div",
-                                      { staticClass: "text-sm text-gray-900" },
-                                      [
-                                        _vm._v(
-                                          _vm._s(
-                                            _vm
-                                              .moment(data.booking_date)
-                                              .format("DD-MM-YYYY, h:mm a")
-                                          )
-                                        ),
-                                      ]
-                                    ),
-                                  ]
-                                ),
-                                _vm._v(" "),
-                                _c(
-                                  "td",
-                                  {
-                                    staticClass: "px-6 py-4 whitespace-nowrap",
-                                  },
-                                  [
-                                    _c(
-                                      "div",
-                                      { staticClass: "text-sm text-gray-900" },
-                                      [_vm._v(_vm._s(data.student_id))]
-                                    ),
-                                  ]
-                                ),
-                                _vm._v(" "),
-                                _c(
-                                  "td",
-                                  {
-                                    staticClass: "px-6 py-4 whitespace-nowrap",
-                                  },
-                                  [
-                                    _c(
-                                      "div",
-                                      { staticClass: "text-sm text-gray-900" },
-                                      [_vm._v(_vm._s(data.room_id))]
-                                    ),
-                                  ]
-                                ),
-                                _vm._v(" "),
-                                _c(
-                                  "td",
-                                  {
-                                    staticClass: "px-6 py-4 whitespace-nowrap",
-                                  },
-                                  [
-                                    _c(
-                                      "div",
-                                      { staticClass: "text-sm text-gray-900" },
-                                      [
-                                        _vm._v(
-                                          _vm._s(
-                                            _vm
-                                              .moment(data.move_in_date)
-                                              .format("DD-MMM-YYYY")
-                                          )
-                                        ),
-                                      ]
-                                    ),
-                                  ]
-                                ),
-                                _vm._v(" "),
-                                _c(
-                                  "td",
-                                  {
-                                    staticClass: "px-6 py-4 whitespace-nowrap",
-                                  },
-                                  [
-                                    _c(
-                                      "div",
-                                      { staticClass: "text-sm text-gray-900" },
-                                      [_vm._v(_vm._s(data.period_tenancy))]
-                                    ),
-                                  ]
-                                ),
-                                _vm._v(" "),
-                                _c(
-                                  "td",
-                                  {
-                                    staticClass: "px-6 py-4 whitespace-nowrap",
-                                  },
-                                  [
-                                    _c(
-                                      "div",
-                                      { staticClass: "text-sm text-gray-900" },
-                                      [_vm._v(_vm._s(data.booking_status))]
-                                    ),
-                                  ]
-                                ),
-                                _vm._v(" "),
-                                _c(
-                                  "td",
-                                  {
-                                    staticClass: "px-6 py-4 whitespace-nowrap",
-                                  },
-                                  [
-                                    _c(
-                                      "div",
-                                      { staticClass: "text-sm text-gray-900" },
-                                      [
-                                        _vm._v(
-                                          "RM " +
-                                            _vm._s(data.booking_fees.toFixed(2))
-                                        ),
-                                      ]
-                                    ),
-                                  ]
-                                ),
-                              ])
-                            }),
-                            0
-                          ),
-                        ]
-                      ),
-                      _vm._v(" "),
-                      _vm.pageInfo
-                        ? _c(
-                            "div",
-                            { staticClass: "mt-5 mb-5 flex justify-between " },
-                            [
-                              _c(
-                                "div",
-                                { staticClass: "w-1/2 flex justify-start " },
-                                [
-                                  _c(
-                                    "select",
+                          ]),
+                        ]),
+                      ],
+                      1
+                    )
+                  : _c(
+                      "div",
+                      {
+                        staticClass:
+                          "py-2 align-middle inline-block min-w-full",
+                      },
+                      [
+                        _vm.pageInfo
+                          ? _c("div", { staticClass: "items-center" }, [
+                              _vm.page == "[object MouseEvent]"
+                                ? _c(
+                                    "p",
                                     {
-                                      directives: [
-                                        {
-                                          name: "model",
-                                          rawName: "v-model",
-                                          value: _vm.showSize,
-                                          expression: "showSize",
-                                        },
-                                      ],
                                       staticClass:
-                                        "focus:outline-none border-transparent cursor-pointer focus:border-gray-800 hover:bg-yellow-200 focus:shadow-outline-gray text-base py-2 px-8 w-1/2 xl:px-3 rounded font-medium  appearance-none bg-transparent",
-                                      on: {
-                                        change: function ($event) {
-                                          var $$selectedVal =
-                                            Array.prototype.filter
-                                              .call(
-                                                $event.target.options,
-                                                function (o) {
-                                                  return o.selected
-                                                }
-                                              )
-                                              .map(function (o) {
-                                                var val =
-                                                  "_value" in o
-                                                    ? o._value
-                                                    : o.value
-                                                return val
-                                              })
-                                          _vm.showSize = $event.target.multiple
-                                            ? $$selectedVal
-                                            : $$selectedVal[0]
-                                        },
-                                      },
+                                        "font-medium text-dark-600 dark:text-gray-400",
                                     },
                                     [
-                                      _c(
-                                        "option",
-                                        {
-                                          attrs: { value: "10" },
-                                          on: { click: _vm.getPayment },
-                                        },
-                                        [_vm._v("Show Entries")]
+                                      _vm._v(
+                                        "  Showing Page 1 of " +
+                                          _vm._s(_vm.lastPage)
                                       ),
-                                      _vm._v(" "),
-                                      _c(
-                                        "option",
-                                        {
-                                          attrs: { value: "10" },
-                                          on: { click: _vm.getPayment },
-                                        },
-                                        [_vm._v("10")]
-                                      ),
-                                      _vm._v(" "),
-                                      _c(
-                                        "option",
-                                        {
-                                          attrs: { value: "20" },
-                                          on: { click: _vm.getPayment },
-                                        },
-                                        [_vm._v("20")]
-                                      ),
-                                      _vm._v(" "),
-                                      _c(
-                                        "option",
-                                        {
-                                          attrs: { value: "100000" },
-                                          on: { click: _vm.getPayment },
-                                        },
-                                        [_vm._v("All")]
+                                    ]
+                                  )
+                                : _c(
+                                    "p",
+                                    {
+                                      staticClass:
+                                        "font-medium text-dark-600 dark:text-gray-400",
+                                    },
+                                    [
+                                      _vm._v(
+                                        "  Showing Page " +
+                                          _vm._s(_vm.page) +
+                                          " of " +
+                                          _vm._s(_vm.lastPage)
                                       ),
                                     ]
                                   ),
-                                ]
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "div",
-                                { staticClass: "w-1/2 flex justify-end " },
-                                [
-                                  _c("Page", {
-                                    attrs: {
-                                      current: _vm.pageInfo.current_page,
-                                      total: _vm.pageInfo.total,
-                                      "page-size": parseInt(
-                                        _vm.pageInfo.per_page
+                            ])
+                          : _vm._e(),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          {
+                            staticClass:
+                              " shadow overflow-hidden border-b border-gray-200 sm:rounded-lg",
+                          },
+                          [
+                            _c(
+                              "table",
+                              {
+                                staticClass:
+                                  "min-w-full divide-y divide-gray-200",
+                              },
+                              [
+                                _vm._m(0),
+                                _vm._v(" "),
+                                _c(
+                                  "tbody",
+                                  {
+                                    staticClass:
+                                      "bg-white divide-y divide-gray-200",
+                                  },
+                                  _vm._l(_vm.payments, function (data, index) {
+                                    return _c("tr", { key: data.id }, [
+                                      _c(
+                                        "td",
+                                        {
+                                          staticClass:
+                                            "px-6 py-4 whitespace-nowrap",
+                                        },
+                                        [
+                                          _c(
+                                            "div",
+                                            {
+                                              staticClass:
+                                                "text-sm text-gray-900",
+                                            },
+                                            [_vm._v(_vm._s(index + 1))]
+                                          ),
+                                        ]
                                       ),
-                                    },
-                                    on: { "on-change": _vm.getPayment },
+                                      _vm._v(" "),
+                                      _c(
+                                        "td",
+                                        {
+                                          staticClass:
+                                            "px-6 py-4 whitespace-nowrap",
+                                        },
+                                        [
+                                          _c(
+                                            "div",
+                                            {
+                                              staticClass:
+                                                "text-sm text-gray-900",
+                                            },
+                                            [
+                                              _vm._v(
+                                                _vm._s(
+                                                  _vm
+                                                    .moment(data.booking_date)
+                                                    .format(
+                                                      "DD-MM-YYYY, h:mm a"
+                                                    )
+                                                )
+                                              ),
+                                            ]
+                                          ),
+                                        ]
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "td",
+                                        {
+                                          staticClass:
+                                            "px-6 py-4 whitespace-nowrap",
+                                        },
+                                        [
+                                          _c(
+                                            "div",
+                                            {
+                                              staticClass:
+                                                "text-sm text-gray-900",
+                                            },
+                                            [_vm._v(_vm._s(data.student_id))]
+                                          ),
+                                        ]
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "td",
+                                        {
+                                          staticClass:
+                                            "px-6 py-4 whitespace-nowrap",
+                                        },
+                                        [
+                                          _c(
+                                            "div",
+                                            {
+                                              staticClass:
+                                                "text-sm text-gray-900",
+                                            },
+                                            [_vm._v(_vm._s(data.room_id))]
+                                          ),
+                                        ]
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "td",
+                                        {
+                                          staticClass:
+                                            "px-6 py-4 whitespace-nowrap",
+                                        },
+                                        [
+                                          _c(
+                                            "div",
+                                            {
+                                              staticClass:
+                                                "text-sm text-gray-900",
+                                            },
+                                            [
+                                              _vm._v(
+                                                _vm._s(
+                                                  _vm
+                                                    .moment(data.move_in_date)
+                                                    .format("DD-MMM-YYYY")
+                                                )
+                                              ),
+                                            ]
+                                          ),
+                                        ]
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "td",
+                                        {
+                                          staticClass:
+                                            "px-6 py-4 whitespace-nowrap",
+                                        },
+                                        [
+                                          _c(
+                                            "div",
+                                            {
+                                              staticClass:
+                                                "text-sm text-gray-900",
+                                            },
+                                            [
+                                              _vm._v(
+                                                _vm._s(data.period_tenancy)
+                                              ),
+                                            ]
+                                          ),
+                                        ]
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "td",
+                                        {
+                                          staticClass:
+                                            "px-6 py-4 whitespace-nowrap",
+                                        },
+                                        [
+                                          _c(
+                                            "div",
+                                            {
+                                              staticClass:
+                                                "text-sm text-gray-900",
+                                            },
+                                            [
+                                              _vm._v(
+                                                _vm._s(data.booking_status)
+                                              ),
+                                            ]
+                                          ),
+                                        ]
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "td",
+                                        {
+                                          staticClass:
+                                            "px-6 py-4 whitespace-nowrap",
+                                        },
+                                        [
+                                          _c(
+                                            "div",
+                                            {
+                                              staticClass:
+                                                "text-sm text-gray-900",
+                                            },
+                                            [
+                                              _vm._v(
+                                                "RM " +
+                                                  _vm._s(
+                                                    data.booking_fees.toFixed(2)
+                                                  )
+                                              ),
+                                            ]
+                                          ),
+                                        ]
+                                      ),
+                                    ])
                                   }),
-                                ],
-                                1
-                              ),
-                            ]
-                          )
-                        : _vm._e(),
-                    ]
-                  ),
-                ]
+                                  0
+                                ),
+                              ]
+                            ),
+                            _vm._v(" "),
+                            _vm.pageInfo
+                              ? _c(
+                                  "div",
+                                  {
+                                    staticClass:
+                                      "mt-5 mb-5 flex justify-between ",
+                                  },
+                                  [
+                                    _c(
+                                      "div",
+                                      {
+                                        staticClass:
+                                          "w-1/2 flex justify-start ",
+                                      },
+                                      [
+                                        _c(
+                                          "select",
+                                          {
+                                            directives: [
+                                              {
+                                                name: "model",
+                                                rawName: "v-model",
+                                                value: _vm.showSize,
+                                                expression: "showSize",
+                                              },
+                                            ],
+                                            staticClass:
+                                              "focus:outline-none border-transparent cursor-pointer focus:border-gray-800 hover:bg-yellow-200 focus:shadow-outline-gray text-base py-2 px-8 w-1/2 xl:px-3 rounded font-medium  appearance-none bg-transparent",
+                                            on: {
+                                              change: function ($event) {
+                                                var $$selectedVal =
+                                                  Array.prototype.filter
+                                                    .call(
+                                                      $event.target.options,
+                                                      function (o) {
+                                                        return o.selected
+                                                      }
+                                                    )
+                                                    .map(function (o) {
+                                                      var val =
+                                                        "_value" in o
+                                                          ? o._value
+                                                          : o.value
+                                                      return val
+                                                    })
+                                                _vm.showSize = $event.target
+                                                  .multiple
+                                                  ? $$selectedVal
+                                                  : $$selectedVal[0]
+                                              },
+                                            },
+                                          },
+                                          [
+                                            _c(
+                                              "option",
+                                              {
+                                                attrs: { value: "10" },
+                                                on: { click: _vm.getPayment },
+                                              },
+                                              [_vm._v("Show Entries")]
+                                            ),
+                                            _vm._v(" "),
+                                            _c(
+                                              "option",
+                                              {
+                                                attrs: { value: "10" },
+                                                on: { click: _vm.getPayment },
+                                              },
+                                              [_vm._v("10")]
+                                            ),
+                                            _vm._v(" "),
+                                            _c(
+                                              "option",
+                                              {
+                                                attrs: { value: "20" },
+                                                on: { click: _vm.getPayment },
+                                              },
+                                              [_vm._v("20")]
+                                            ),
+                                            _vm._v(" "),
+                                            _c(
+                                              "option",
+                                              {
+                                                attrs: { value: "100000" },
+                                                on: { click: _vm.getPayment },
+                                              },
+                                              [_vm._v("All")]
+                                            ),
+                                          ]
+                                        ),
+                                      ]
+                                    ),
+                                    _vm._v(" "),
+                                    _c(
+                                      "div",
+                                      {
+                                        staticClass: "w-1/2 flex justify-end ",
+                                      },
+                                      [
+                                        _c("Page", {
+                                          attrs: {
+                                            current: _vm.pageInfo.current_page,
+                                            total: _vm.pageInfo.total,
+                                            "page-size": parseInt(
+                                              _vm.pageInfo.per_page
+                                            ),
+                                          },
+                                          on: { "on-change": _vm.getPayment },
+                                        }),
+                                      ],
+                                      1
+                                    ),
+                                  ]
+                                )
+                              : _vm._e(),
+                          ]
+                        ),
+                      ]
+                    ),
+              ])
+            : _c(
+                "div",
+                [
+                  _c("loader", {
+                    attrs: {
+                      object: "#4491ee",
+                      color1: "#e3851c",
+                      color2: "#e82dda",
+                      size: "8",
+                      speed: "1.3",
+                      bg: "#1e2337",
+                      objectbg: "#ff2d2d",
+                      opacity: "90",
+                      disableScrolling: "true",
+                      name: "dots",
+                    },
+                  }),
+                ],
+                1
               ),
         ]
       ),

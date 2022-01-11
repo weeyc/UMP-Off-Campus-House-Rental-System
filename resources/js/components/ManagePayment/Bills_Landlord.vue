@@ -1,8 +1,8 @@
 <!-- This example requires Tailwind CSS v2.0+ -->
 <template>
-  <div class="p-6 ml-5">
+  <div class="ml-5">
 
-         <div class="max-w-6xl p-6 mx-auto mt-3  bg-gray-100 rounded-md shadow-xl mb-5" >
+         <div class="max-w-6xl p-6 mx-auto bg-gray-100 rounded-md shadow-xl mb-5 rounded-tl-none" >
               <h2 class=" font-bold text-gray-700 capitalize text-center text-xl">My Properties Bills</h2>
         <div v-if="lists.length==0"> You don't have any verified property yet.</div>
         <div else>

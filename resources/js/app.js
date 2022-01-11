@@ -10,6 +10,12 @@ import Swal from 'sweetalert2'
 window.Swal = Swal
 Vue.use(require('vue-moment'));
 
+import loader from "vue-ui-preloader";
+Vue.use(loader);
+
+
+
+
 
 import VueNumber from 'vue-number-animation'
 

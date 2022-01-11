@@ -428,6 +428,21 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -442,6 +457,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
+      isReady: false,
       info: [],
       moment: moment__WEBPACK_IMPORTED_MODULE_2___default.a,
       prop_id: this.$route.params.id,
@@ -455,6 +471,7 @@ __webpack_require__.r(__webpack_exports__);
       tenant_id: '',
       tenant: {},
       room_id: '',
+      housemates: [],
       form: {
         property_id: '',
         room_id: '',
@@ -482,6 +499,7 @@ __webpack_require__.r(__webpack_exports__);
 
       axios.get('/api/get_post/' + this.user_id + '/' + this.prop_id + '?land=1&imej=1').then(function (response) {
         _this2.posts = response.data.data;
+        _this2.isReady = true;
         console.warn(_this2.post.data);
       });
     },
@@ -1338,878 +1356,1029 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    { staticClass: "profile-page" },
-    [
-      _c(
-        "section",
-        {
-          staticClass:
-            "top w-full bg-blue-600 overflow-hidden relative block h-1/2",
-        },
-        [
-          _c(
-            "div",
-            {
-              staticClass:
-                "top-0 bg-center bg-cover bg w-full h-full object-cover object-center absolute z-0",
-            },
-            [
-              _c("img", {
-                staticClass:
-                  "top-0 bg-center bg-cover bg w-full h-full object-cover object-center absolute z-0",
-                attrs: {
-                  src:
-                    "/images/Properties/" + _vm.info.property.cover.photo_name,
-                  alt: "Avatar",
-                },
-              }),
-              _vm._v(" "),
-              _c(
-                "div",
-                {
-                  staticClass:
-                    "flex flex-col justify-center items-center relative h-full bg-black bg-opacity-20 text-white -mt-10",
-                },
-                [
-                  _c("img", {
-                    staticClass: "h-20 w-20 object-cover rounded-full",
-                    attrs: {
-                      src:
-                        "/images/Profile/" +
-                        _vm.info.property.land.landlord_pic,
-                    },
-                  }),
-                  _vm._v(" "),
-                  _c("h1", { staticClass: "text-2xl font-semibold" }, [
-                    _vm._v(_vm._s(_vm.info.property.address)),
-                  ]),
-                  _vm._v(" "),
-                  _c(
-                    "router-link",
-                    {
-                      attrs: {
-                        to: {
-                          name: "land_profile_view",
-                          params: { role: 2, id: _vm.info.landlord_id },
-                        },
-                        target: "_blank",
-                      },
-                    },
-                    [
-                      _c(
-                        "h4",
-                        {
-                          staticClass:
-                            "text-sm font-semibold hover:underline hover:text-yellow-500",
-                        },
-                        [_vm._v(_vm._s(_vm.info.property.land.landlord_name))]
-                      ),
-                    ]
-                  ),
-                ],
-                1
-              ),
-            ]
-          ),
-        ]
-      ),
-      _vm._v(" "),
-      _c(
-        "section",
-        {
-          staticClass:
-            "relative py-16  bg-conic-to-t from-orange-900 via-amber-100 to-orange-900",
-        },
-        [
-          _c("div", { staticClass: "container mx-auto px-4" }, [
+  return _c("div", [
+    _vm.isReady == true
+      ? _c(
+          "div",
+          [
             _c(
-              "div",
+              "section",
               {
                 staticClass:
-                  "w-full mb-5 bg-transparent shadow-xl rounded-lg -mt-36",
+                  "top w-full bg-blue-600 overflow-hidden relative block h-1/2",
               },
               [
                 _c(
                   "div",
                   {
-                    staticClass: "flex w-full",
-                    attrs: { id: "Board and bills" },
+                    staticClass:
+                      "top-0 bg-center bg-cover bg w-full h-full object-cover object-center absolute z-0",
                   },
                   [
-                    _c(
-                      "div",
-                      { staticClass: " flex-1 w-2/3", attrs: { id: "Board" } },
-                      [
-                        _c(
-                          "div",
-                          {
-                            staticClass:
-                              "bg-gradient-to-br from-cool-gray-100 to-cool-gray-300       mx-auto rounded-lg overflow-hidden rounded-tr-none rounded-br-none shadow-lg",
-                          },
-                          [
-                            _c(
-                              "div",
-                              {
-                                staticClass: "h-14 grid grid-cols-3 p-5",
-                                staticStyle: { "background-color": "#2b2a33" },
-                              },
-                              [
-                                _c(
-                                  "p",
-                                  {
-                                    staticClass:
-                                      "text-lg font-semibold text-yellow-500 col-span-2 justify-self-end",
-                                  },
-                                  [_vm._v("House Bulletin Board")]
-                                ),
-                                _vm._v(" "),
-                                _c(
-                                  "button",
-                                  {
-                                    staticClass:
-                                      "px-2 rounded-md bg-blue-500 text-white hover:bg-blue-600 justify-self-end",
-                                    on: {
-                                      click: function ($event) {
-                                        _vm.toggleModal = !_vm.toggleModal
-                                      },
-                                    },
-                                  },
-                                  [_vm._v("Create Post")]
-                                ),
-                              ]
-                            ),
-                            _vm._v(" "),
-                            _c(
-                              "div",
-                              {
-                                staticClass:
-                                  "overflow-y-auto  h-48 p-5 resize-y",
-                                attrs: { id: "bulletin" },
-                              },
-                              _vm._l(_vm.posts, function (item) {
-                                return _c("div", { key: item.id }, [
-                                  item.student != null
-                                    ? _c(
-                                        "div",
-                                        {
-                                          staticClass:
-                                            "bg-conic-to-l from-yellow-200 via-red-500 to-fuchsia-500 rounded-lg p-3  flex flex-col justify-center items-center md:items-start shadow-lg mb-4",
-                                        },
-                                        [
-                                          _c(
-                                            "div",
-                                            {
-                                              staticClass:
-                                                "flex flex-row justify-center mr-2",
-                                            },
-                                            [
-                                              _c("img", {
-                                                staticClass:
-                                                  "rounded-full w-5 h-5 shadow-lg mb-4",
-                                                attrs: {
-                                                  alt: "avatar",
-                                                  src:
-                                                    "/images/Profile/" +
-                                                    item.student.pic,
-                                                },
-                                              }),
-                                              _vm._v(" "),
-                                              _c(
-                                                "p",
-                                                {
-                                                  staticClass:
-                                                    "text-purple-600 font-semibold ml-2 text-sm text-center md:text-left ",
-                                                },
-                                                [
-                                                  _vm._v(
-                                                    _vm._s(item.student.name) +
-                                                      " "
-                                                  ),
-                                                  _c(
-                                                    "span",
-                                                    {
-                                                      staticClass:
-                                                        "text-xs ml-5 text-black",
-                                                    },
-                                                    [
-                                                      _vm._v(
-                                                        " " +
-                                                          _vm._s(
-                                                            _vm
-                                                              .moment(
-                                                                item.created_at
-                                                              )
-                                                              .format(
-                                                                "DD-MM-YYYY, h:mm a"
-                                                              )
-                                                          ) +
-                                                          " "
-                                                      ),
-                                                    ]
-                                                  ),
-                                                ]
-                                              ),
-                                            ]
-                                          ),
-                                          _vm._v(" "),
-                                          _c(
-                                            "p",
-                                            {
-                                              staticClass:
-                                                "text-gray-600 text-base text-center md:text-left ",
-                                              staticStyle: { width: "90%" },
-                                            },
-                                            [_vm._v(_vm._s(item.post) + "   ")]
-                                          ),
-                                        ]
-                                      )
-                                    : _vm._e(),
-                                  _vm._v(" "),
-                                  item.landlord != null
-                                    ? _c(
-                                        "div",
-                                        {
-                                          staticClass:
-                                            "bg-conic-to-r from-indigo-200 via-blue-gray-600 to-indigo-200 rounded-lg p-3  flex flex-col justify-center items-center md:items-start shadow-lg mb-4",
-                                        },
-                                        [
-                                          _c(
-                                            "div",
-                                            {
-                                              staticClass:
-                                                "flex flex-row  mr-2 w-full",
-                                            },
-                                            [
-                                              _c("img", {
-                                                staticClass:
-                                                  "justify-self-start rounded-full w-5 h-5 shadow-lg mb-4",
-                                                attrs: {
-                                                  alt: "avatar",
-                                                  src:
-                                                    "/images/Profile/" +
-                                                    item.landlord.pic,
-                                                },
-                                              }),
-                                              _vm._v(" "),
-                                              _c(
-                                                "p",
-                                                {
-                                                  staticClass:
-                                                    "justify-self-start text-white font-semibold ml-2 mr-5 text-sm text-center md:text-left ",
-                                                },
-                                                [
-                                                  _vm._v(
-                                                    _vm._s(item.landlord.name) +
-                                                      " "
-                                                  ),
-                                                  _c(
-                                                    "span",
-                                                    {
-                                                      staticClass:
-                                                        "text-xs ml-5 text-black",
-                                                    },
-                                                    [
-                                                      _vm._v(
-                                                        " " +
-                                                          _vm._s(
-                                                            _vm
-                                                              .moment(
-                                                                item.created_at
-                                                              )
-                                                              .format(
-                                                                "DD-MM-YYYY, h:mm a"
-                                                              )
-                                                          ) +
-                                                          " "
-                                                      ),
-                                                    ]
-                                                  ),
-                                                ]
-                                              ),
-                                              _vm._v(" "),
-                                              _c(
-                                                "button",
-                                                {
-                                                  staticClass:
-                                                    "justify-self-end w-5 h-5",
-                                                  on: {
-                                                    click: function ($event) {
-                                                      return _vm.deletePost(
-                                                        item.id
-                                                      )
-                                                    },
-                                                  },
-                                                },
-                                                [
-                                                  _c(
-                                                    "svg",
-                                                    {
-                                                      attrs: {
-                                                        xmlns:
-                                                          "http://www.w3.org/2000/svg",
-                                                        fill: "none",
-                                                        viewBox: "0 0 24 24",
-                                                        stroke: "currentColor",
-                                                      },
-                                                    },
-                                                    [
-                                                      _c("path", {
-                                                        attrs: {
-                                                          "stroke-linecap":
-                                                            "round",
-                                                          "stroke-linejoin":
-                                                            "round",
-                                                          "stroke-width": "2",
-                                                          d: "M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16",
-                                                        },
-                                                      }),
-                                                    ]
-                                                  ),
-                                                ]
-                                              ),
-                                            ]
-                                          ),
-                                          _vm._v(" "),
-                                          _c(
-                                            "p",
-                                            {
-                                              staticClass:
-                                                "text-gray-600 text-base text-center md:text-left ",
-                                              staticStyle: { width: "90%" },
-                                            },
-                                            [_vm._v(_vm._s(item.post) + "   ")]
-                                          ),
-                                        ]
-                                      )
-                                    : _vm._e(),
-                                ])
-                              }),
-                              0
-                            ),
-                          ]
-                        ),
-                      ]
-                    ),
+                    _c("img", {
+                      staticClass:
+                        "top-0 bg-center bg-cover bg w-full h-full object-cover object-center absolute z-0",
+                      attrs: {
+                        src:
+                          "/images/Properties/" +
+                          _vm.info.property.cover.photo_name,
+                        alt: "Avatar",
+                      },
+                    }),
                     _vm._v(" "),
                     _c(
                       "div",
-                      { staticClass: " flex w-1/3", attrs: { id: "Bills" } },
+                      {
+                        staticClass:
+                          "flex flex-col justify-center items-center relative h-full bg-black bg-opacity-20 text-white -mt-10",
+                      },
                       [
+                        _c("img", {
+                          staticClass: "h-20 w-20 object-cover rounded-full",
+                          attrs: {
+                            src:
+                              "/images/Profile/" +
+                              _vm.info.property.land.landlord_pic,
+                          },
+                        }),
+                        _vm._v(" "),
+                        _c("h1", { staticClass: "text-2xl font-semibold" }, [
+                          _vm._v(_vm._s(_vm.info.property.address)),
+                        ]),
+                        _vm._v(" "),
                         _c(
-                          "div",
+                          "router-link",
                           {
-                            staticClass:
-                              "mx-auto w-full rounded-lg rounded-tl-none rounded-bl-none overflow-hidden shadow-lg  bg-gradient-to-br from-emerald-500 to-lime-600",
+                            attrs: {
+                              to: {
+                                name: "land_profile_view",
+                                params: { role: 2, id: _vm.info.landlord_id },
+                              },
+                              target: "_blank",
+                            },
                           },
                           [
-                            _vm._m(0),
-                            _vm._v(" "),
                             _c(
+                              "h4",
+                              {
+                                staticClass:
+                                  "text-sm font-semibold hover:underline hover:text-yellow-500",
+                              },
+                              [
+                                _vm._v(
+                                  _vm._s(_vm.info.property.land.landlord_name)
+                                ),
+                              ]
+                            ),
+                          ]
+                        ),
+                      ],
+                      1
+                    ),
+                  ]
+                ),
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "section",
+              {
+                staticClass:
+                  "relative py-16  bg-conic-to-t from-orange-900 via-amber-100 to-orange-900",
+              },
+              [
+                _c("div", { staticClass: "container mx-auto px-4" }, [
+                  _c(
+                    "div",
+                    {
+                      staticClass:
+                        "w-full mb-5 bg-transparent shadow-xl rounded-lg -mt-36",
+                    },
+                    [
+                      _c(
+                        "div",
+                        {
+                          staticClass: "flex w-full",
+                          attrs: { id: "Board and bills" },
+                        },
+                        [
+                          _c(
+                            "div",
+                            {
+                              staticClass: " flex-1 w-2/3",
+                              attrs: { id: "Board" },
+                            },
+                            [
+                              _c(
+                                "div",
+                                {
+                                  staticClass:
+                                    "bg-gradient-to-br from-cool-gray-100 to-cool-gray-300       mx-auto rounded-lg overflow-hidden rounded-tr-none rounded-br-none shadow-lg",
+                                },
+                                [
+                                  _c(
+                                    "div",
+                                    {
+                                      staticClass: "h-14 grid grid-cols-3 p-5",
+                                      staticStyle: {
+                                        "background-color": "#2b2a33",
+                                      },
+                                    },
+                                    [
+                                      _c(
+                                        "p",
+                                        {
+                                          staticClass:
+                                            "text-lg font-semibold text-yellow-500 col-span-2 justify-self-end",
+                                        },
+                                        [_vm._v("House Bulletin Board")]
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "button",
+                                        {
+                                          staticClass:
+                                            "px-2 rounded-md bg-blue-500 text-white hover:bg-blue-600 justify-self-end",
+                                          on: {
+                                            click: function ($event) {
+                                              _vm.toggleModal = !_vm.toggleModal
+                                            },
+                                          },
+                                        },
+                                        [_vm._v("Create Post")]
+                                      ),
+                                    ]
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "div",
+                                    {
+                                      staticClass:
+                                        "overflow-y-auto  h-48 p-5 resize-y",
+                                      attrs: { id: "bulletin" },
+                                    },
+                                    _vm._l(_vm.posts, function (item) {
+                                      return _c("div", { key: item.id }, [
+                                        item.student != null
+                                          ? _c(
+                                              "div",
+                                              {
+                                                staticClass:
+                                                  "bg-conic-to-l from-yellow-200 via-red-500 to-fuchsia-500 rounded-lg p-3  flex flex-col justify-center items-center md:items-start shadow-lg mb-4",
+                                              },
+                                              [
+                                                _c(
+                                                  "div",
+                                                  {
+                                                    staticClass:
+                                                      "flex flex-row justify-center mr-2",
+                                                  },
+                                                  [
+                                                    _c("img", {
+                                                      staticClass:
+                                                        "rounded-full w-5 h-5 shadow-lg mb-4",
+                                                      attrs: {
+                                                        alt: "avatar",
+                                                        src:
+                                                          "/images/Profile/" +
+                                                          item.student.pic,
+                                                      },
+                                                    }),
+                                                    _vm._v(" "),
+                                                    _c(
+                                                      "p",
+                                                      {
+                                                        staticClass:
+                                                          "text-purple-600 font-semibold ml-2 text-sm text-center md:text-left ",
+                                                      },
+                                                      [
+                                                        _vm._v(
+                                                          _vm._s(
+                                                            item.student.name
+                                                          ) + " "
+                                                        ),
+                                                        _c(
+                                                          "span",
+                                                          {
+                                                            staticClass:
+                                                              "text-xs ml-5 text-black",
+                                                          },
+                                                          [
+                                                            _vm._v(
+                                                              " " +
+                                                                _vm._s(
+                                                                  _vm
+                                                                    .moment(
+                                                                      item.created_at
+                                                                    )
+                                                                    .format(
+                                                                      "DD-MM-YYYY, h:mm a"
+                                                                    )
+                                                                ) +
+                                                                " "
+                                                            ),
+                                                          ]
+                                                        ),
+                                                      ]
+                                                    ),
+                                                  ]
+                                                ),
+                                                _vm._v(" "),
+                                                _c(
+                                                  "p",
+                                                  {
+                                                    staticClass:
+                                                      "text-gray-600 text-base text-center md:text-left ",
+                                                    staticStyle: {
+                                                      width: "90%",
+                                                    },
+                                                  },
+                                                  [
+                                                    _vm._v(
+                                                      _vm._s(item.post) + "   "
+                                                    ),
+                                                  ]
+                                                ),
+                                              ]
+                                            )
+                                          : _vm._e(),
+                                        _vm._v(" "),
+                                        item.landlord != null
+                                          ? _c(
+                                              "div",
+                                              {
+                                                staticClass:
+                                                  "bg-conic-to-r from-indigo-200 via-blue-gray-600 to-indigo-200 rounded-lg p-3  flex flex-col justify-center items-center md:items-start shadow-lg mb-4",
+                                              },
+                                              [
+                                                _c(
+                                                  "div",
+                                                  {
+                                                    staticClass:
+                                                      "flex flex-row  mr-2 w-full",
+                                                  },
+                                                  [
+                                                    _c("img", {
+                                                      staticClass:
+                                                        "justify-self-start rounded-full w-5 h-5 shadow-lg mb-4",
+                                                      attrs: {
+                                                        alt: "avatar",
+                                                        src:
+                                                          "/images/Profile/" +
+                                                          item.landlord.pic,
+                                                      },
+                                                    }),
+                                                    _vm._v(" "),
+                                                    _c(
+                                                      "p",
+                                                      {
+                                                        staticClass:
+                                                          "justify-self-start text-white font-semibold ml-2 mr-5 text-sm text-center md:text-left ",
+                                                      },
+                                                      [
+                                                        _vm._v(
+                                                          _vm._s(
+                                                            item.landlord.name
+                                                          ) + " "
+                                                        ),
+                                                        _c(
+                                                          "span",
+                                                          {
+                                                            staticClass:
+                                                              "text-xs ml-5 text-black",
+                                                          },
+                                                          [
+                                                            _vm._v(
+                                                              " " +
+                                                                _vm._s(
+                                                                  _vm
+                                                                    .moment(
+                                                                      item.created_at
+                                                                    )
+                                                                    .format(
+                                                                      "DD-MM-YYYY, h:mm a"
+                                                                    )
+                                                                ) +
+                                                                " "
+                                                            ),
+                                                          ]
+                                                        ),
+                                                      ]
+                                                    ),
+                                                    _vm._v(" "),
+                                                    _c(
+                                                      "button",
+                                                      {
+                                                        staticClass:
+                                                          "justify-self-end w-5 h-5",
+                                                        on: {
+                                                          click: function (
+                                                            $event
+                                                          ) {
+                                                            return _vm.deletePost(
+                                                              item.id
+                                                            )
+                                                          },
+                                                        },
+                                                      },
+                                                      [
+                                                        _c(
+                                                          "svg",
+                                                          {
+                                                            attrs: {
+                                                              xmlns:
+                                                                "http://www.w3.org/2000/svg",
+                                                              fill: "none",
+                                                              viewBox:
+                                                                "0 0 24 24",
+                                                              stroke:
+                                                                "currentColor",
+                                                            },
+                                                          },
+                                                          [
+                                                            _c("path", {
+                                                              attrs: {
+                                                                "stroke-linecap":
+                                                                  "round",
+                                                                "stroke-linejoin":
+                                                                  "round",
+                                                                "stroke-width":
+                                                                  "2",
+                                                                d: "M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16",
+                                                              },
+                                                            }),
+                                                          ]
+                                                        ),
+                                                      ]
+                                                    ),
+                                                  ]
+                                                ),
+                                                _vm._v(" "),
+                                                _c(
+                                                  "p",
+                                                  {
+                                                    staticClass:
+                                                      "text-gray-600 text-base text-center md:text-left ",
+                                                    staticStyle: {
+                                                      width: "90%",
+                                                    },
+                                                  },
+                                                  [
+                                                    _vm._v(
+                                                      _vm._s(item.post) + "   "
+                                                    ),
+                                                  ]
+                                                ),
+                                              ]
+                                            )
+                                          : _vm._e(),
+                                      ])
+                                    }),
+                                    0
+                                  ),
+                                ]
+                              ),
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "div",
+                            {
+                              staticClass: " flex w-1/3",
+                              attrs: { id: "Bills" },
+                            },
+                            [
+                              _c(
+                                "div",
+                                {
+                                  staticClass:
+                                    "mx-auto w-full rounded-lg rounded-tl-none rounded-bl-none overflow-hidden shadow-lg  bg-gradient-to-br from-emerald-500 to-lime-600",
+                                },
+                                [
+                                  _vm._m(0),
+                                  _vm._v(" "),
+                                  _c(
+                                    "div",
+                                    {
+                                      staticClass: "overflow-y-auto h-48 p-5",
+                                      attrs: { id: "bulletin" },
+                                    },
+                                    [
+                                      _c(
+                                        "div",
+                                        {
+                                          staticClass:
+                                            "grid grid-rows-2 text-center md:text-left",
+                                        },
+                                        [
+                                          _c(
+                                            "span",
+                                            {
+                                              staticClass:
+                                                "text-white text-center text-2xl",
+                                            },
+                                            [_vm._v("Total Rent Collected:")]
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "span",
+                                            {
+                                              staticClass:
+                                                "text-white text-center text-2xl",
+                                            },
+                                            [
+                                              _vm._v(
+                                                "RM " +
+                                                  _vm._s(_vm.bills.toFixed(2))
+                                              ),
+                                            ]
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "button",
+                                            {
+                                              staticClass:
+                                                "p-2 w-1/2 mt-5 rounded-md bg-blue-500 text-white hover:bg-blue-600 justify-self-center",
+                                              on: { click: _vm.checkBill },
+                                            },
+                                            [_vm._v("Check")]
+                                          ),
+                                        ]
+                                      ),
+                                    ]
+                                  ),
+                                ]
+                              ),
+                            ]
+                          ),
+                        ]
+                      ),
+                    ]
+                  ),
+                ]),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  { staticClass: "flex mt-40 container mx-auto px-4" },
+                  [
+                    _c(
+                      "div",
+                      {
+                        staticClass: "w-full mb-6 shadow-xl rounded-lg -mt-36",
+                      },
+                      [
+                        _vm._m(1),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          { staticClass: "p-5", attrs: { id: "Housemates" } },
+                          _vm._l(_vm.housemates, function (item) {
+                            return _c(
                               "div",
                               {
-                                staticClass: "overflow-y-auto h-48 p-5",
-                                attrs: { id: "bulletin" },
+                                key: item.id,
+                                staticClass:
+                                  "bg-white w-full mx-auto rounded-2xl overflow-hidden shadow-lg mb-10",
                               },
                               [
                                 _c(
                                   "div",
                                   {
                                     staticClass:
-                                      "grid grid-rows-2 text-center md:text-left",
+                                      "h-14 flex justify-center items-center p-5",
+                                    staticStyle: {
+                                      "background-color": "#2b2a33",
+                                    },
                                   },
                                   [
                                     _c(
-                                      "span",
+                                      "router-link",
                                       {
                                         staticClass:
-                                          "text-white text-center text-2xl",
-                                      },
-                                      [_vm._v("Total Rent Collected:")]
-                                    ),
-                                    _vm._v(" "),
-                                    _c(
-                                      "span",
-                                      {
-                                        staticClass:
-                                          "text-white text-center text-2xl",
+                                          "flex justify-center items-center",
+                                        attrs: {
+                                          to: {
+                                            name: "view_room_list_land",
+                                            params: { id: item.id },
+                                          },
+                                          target: "_blank",
+                                        },
                                       },
                                       [
-                                        _vm._v(
-                                          "RM " + _vm._s(_vm.bills.toFixed(2))
+                                        _c("img", {
+                                          staticClass:
+                                            "h-7 w-7 mr-3 object-cover rounded-full",
+                                          attrs: {
+                                            src:
+                                              "/images/Properties/" +
+                                              item.photo_room[0].photo_name,
+                                          },
+                                        }),
+                                        _vm._v(" "),
+                                        _c(
+                                          "p",
+                                          {
+                                            staticClass:
+                                              "text-lg bg-gradient-to-r from-pink-300 via-purple-300 to-indigo-400 text-transparent bg-clip-text hover:underline ",
+                                          },
+                                          [
+                                            _vm._v(
+                                              _vm._s(item.room_name) +
+                                                " | ID: " +
+                                                _vm._s(item.id)
+                                            ),
+                                          ]
                                         ),
                                       ]
                                     ),
-                                    _vm._v(" "),
+                                  ],
+                                  1
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "div",
+                                  {
+                                    staticClass:
+                                      "shadow overflow-hidden border-b border-gray-200 sm:rounded-lg",
+                                  },
+                                  [
                                     _c(
-                                      "button",
+                                      "table",
                                       {
                                         staticClass:
-                                          "p-2 w-1/2 mt-5 rounded-md bg-blue-500 text-white hover:bg-blue-600 justify-self-center",
-                                        on: { click: _vm.checkBill },
+                                          "min-w-full divide-y divide-gray-200",
                                       },
-                                      [_vm._v("Check")]
+                                      [
+                                        _vm._m(2, true),
+                                        _vm._v(" "),
+                                        _vm._l(item.tenants, function (mate) {
+                                          return _c(
+                                            "tbody",
+                                            {
+                                              key: mate.index,
+                                              staticClass:
+                                                "bg-white divide-y divide-gray-200",
+                                            },
+                                            [
+                                              _c(
+                                                "tr",
+                                                [
+                                                  _c(
+                                                    "td",
+                                                    {
+                                                      staticClass: "px-6 py-4",
+                                                    },
+                                                    [
+                                                      _c(
+                                                        "div",
+                                                        {
+                                                          staticClass:
+                                                            "text-sm text-gray-900",
+                                                        },
+                                                        [
+                                                          _vm._v(
+                                                            _vm._s(
+                                                              mate.tenant_id
+                                                            )
+                                                          ),
+                                                        ]
+                                                      ),
+                                                    ]
+                                                  ),
+                                                  _vm._v(" "),
+                                                  _c(
+                                                    "router-link",
+                                                    {
+                                                      staticClass:
+                                                        "flex items-center",
+                                                      attrs: {
+                                                        to: {
+                                                          name: "land_profile_view",
+                                                          params: {
+                                                            role: 1,
+                                                            id: mate.student_id,
+                                                          },
+                                                        },
+                                                        target: "_blank",
+                                                      },
+                                                    },
+                                                    [
+                                                      _c(
+                                                        "td",
+                                                        {
+                                                          staticClass:
+                                                            "flex px-6 py-4",
+                                                        },
+                                                        [
+                                                          _c("img", {
+                                                            staticClass:
+                                                              "mr-2 w-6 h-6 rounded-full hover:scale-150 hover:z-10 transform ease-in-out transition duration-500",
+                                                            attrs: {
+                                                              src:
+                                                                "/images/Profile/" +
+                                                                mate.student
+                                                                  .pic,
+                                                            },
+                                                          }),
+                                                          _vm._v(" "),
+                                                          _c("span", [
+                                                            _vm._v(
+                                                              _vm._s(
+                                                                mate.student
+                                                                  .name
+                                                              )
+                                                            ),
+                                                          ]),
+                                                        ]
+                                                      ),
+                                                    ]
+                                                  ),
+                                                  _vm._v(" "),
+                                                  _c(
+                                                    "td",
+                                                    {
+                                                      staticClass:
+                                                        "px-6 py-4 whitespace-nowrap",
+                                                    },
+                                                    [
+                                                      _c(
+                                                        "div",
+                                                        {
+                                                          staticClass:
+                                                            "text-sm text-gray-900",
+                                                        },
+                                                        [
+                                                          _vm._v(
+                                                            _vm._s(
+                                                              mate.student
+                                                                .phone_no
+                                                            )
+                                                          ),
+                                                        ]
+                                                      ),
+                                                    ]
+                                                  ),
+                                                  _vm._v(" "),
+                                                  _c(
+                                                    "td",
+                                                    {
+                                                      staticClass:
+                                                        "px-6 py-4 whitespace-nowrap",
+                                                    },
+                                                    [
+                                                      _c(
+                                                        "div",
+                                                        {
+                                                          staticClass:
+                                                            "text-sm text-gray-900",
+                                                        },
+                                                        [
+                                                          _vm._v(
+                                                            " " +
+                                                              _vm._s(
+                                                                mate.move_in_date
+                                                              )
+                                                          ),
+                                                        ]
+                                                      ),
+                                                    ]
+                                                  ),
+                                                  _vm._v(" "),
+                                                  _c(
+                                                    "td",
+                                                    {
+                                                      staticClass:
+                                                        "px-6 py-4 whitespace-nowrap",
+                                                    },
+                                                    [
+                                                      _c(
+                                                        "div",
+                                                        {
+                                                          staticClass:
+                                                            "text-sm text-gray-900",
+                                                        },
+                                                        [
+                                                          _vm._v(
+                                                            _vm._s(
+                                                              mate.tenancy_period
+                                                            ) + " Months"
+                                                          ),
+                                                        ]
+                                                      ),
+                                                    ]
+                                                  ),
+                                                  _vm._v(" "),
+                                                  _c(
+                                                    "td",
+                                                    {
+                                                      staticClass:
+                                                        "px-6 py-4 whitespace-nowrap",
+                                                    },
+                                                    [
+                                                      _c(
+                                                        "div",
+                                                        {
+                                                          staticClass:
+                                                            "text-sm text-gray-900",
+                                                        },
+                                                        [
+                                                          _vm._v(
+                                                            _vm._s(
+                                                              mate.tenant_status
+                                                            )
+                                                          ),
+                                                        ]
+                                                      ),
+                                                    ]
+                                                  ),
+                                                  _vm._v(" "),
+                                                  _c(
+                                                    "td",
+                                                    {
+                                                      staticClass:
+                                                        "py-3 px-2 text-center",
+                                                    },
+                                                    [
+                                                      _c(
+                                                        "div",
+                                                        {
+                                                          staticClass:
+                                                            "flex item-center justify-center",
+                                                        },
+                                                        [
+                                                          _c(
+                                                            "div",
+                                                            {
+                                                              staticClass:
+                                                                "w-4 mr-2 transform hover:text-purple-500 hover:scale-110",
+                                                            },
+                                                            [
+                                                              _c(
+                                                                "button",
+                                                                {
+                                                                  on: {
+                                                                    click:
+                                                                      function (
+                                                                        $event
+                                                                      ) {
+                                                                        return _vm.checkTenantBill(
+                                                                          mate.student_id,
+                                                                          mate
+                                                                        )
+                                                                      },
+                                                                  },
+                                                                },
+                                                                [
+                                                                  _c(
+                                                                    "svg",
+                                                                    {
+                                                                      attrs: {
+                                                                        xmlns:
+                                                                          "http://www.w3.org/2000/svg",
+                                                                        fill: "none",
+                                                                        viewBox:
+                                                                          "0 0 24 24",
+                                                                        stroke:
+                                                                          "currentColor",
+                                                                      },
+                                                                    },
+                                                                    [
+                                                                      _c(
+                                                                        "path",
+                                                                        {
+                                                                          attrs:
+                                                                            {
+                                                                              "stroke-linecap":
+                                                                                "round",
+                                                                              "stroke-linejoin":
+                                                                                "round",
+                                                                              "stroke-width":
+                                                                                "2",
+                                                                              d: "M15 12a3 3 0 11-6 0 3 3 0 016 0z",
+                                                                            },
+                                                                        }
+                                                                      ),
+                                                                      _vm._v(
+                                                                        " "
+                                                                      ),
+                                                                      _c(
+                                                                        "path",
+                                                                        {
+                                                                          attrs:
+                                                                            {
+                                                                              "stroke-linecap":
+                                                                                "round",
+                                                                              "stroke-linejoin":
+                                                                                "round",
+                                                                              "stroke-width":
+                                                                                "2",
+                                                                              d: "M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z",
+                                                                            },
+                                                                        }
+                                                                      ),
+                                                                    ]
+                                                                  ),
+                                                                ]
+                                                              ),
+                                                            ]
+                                                          ),
+                                                          _vm._v(" "),
+                                                          _c(
+                                                            "div",
+                                                            {
+                                                              staticClass:
+                                                                "w-4 mr-2 transform hover:text-purple-500 hover:scale-110",
+                                                            },
+                                                            [
+                                                              _c(
+                                                                "button",
+                                                                {
+                                                                  on: {
+                                                                    click:
+                                                                      function (
+                                                                        $event
+                                                                      ) {
+                                                                        return _vm.kickTenant(
+                                                                          mate.room_id,
+                                                                          mate.tenant_id
+                                                                        )
+                                                                      },
+                                                                  },
+                                                                },
+                                                                [
+                                                                  _c(
+                                                                    "svg",
+                                                                    {
+                                                                      attrs: {
+                                                                        width:
+                                                                          "18",
+                                                                        height:
+                                                                          "18",
+                                                                        viewBox:
+                                                                          "0 0 24 24",
+                                                                        fill: "none",
+                                                                        xmlns:
+                                                                          "http://www.w3.org/2000/svg",
+                                                                      },
+                                                                    },
+                                                                    [
+                                                                      _c(
+                                                                        "path",
+                                                                        {
+                                                                          attrs:
+                                                                            {
+                                                                              d: "M14 8V6C14 5.46957 13.7893 4.96086 13.4142 4.58579C13.0391 4.21071 12.5304 4 12 4H5C4.46957 4 3.96086 4.21071 3.58579 4.58579C3.21071 4.96086 3 5.46957 3 6V18C3 18.5304 3.21071 19.0391 3.58579 19.4142C3.96086 19.7893 4.46957 20 5 20H12C12.5304 20 13.0391 19.7893 13.4142 19.4142C13.7893 19.0391 14 18.5304 14 18V16",
+                                                                              stroke:
+                                                                                "currentColor",
+                                                                              "stroke-width":
+                                                                                "1.5",
+                                                                              "stroke-linecap":
+                                                                                "round",
+                                                                              "stroke-linejoin":
+                                                                                "round",
+                                                                            },
+                                                                        }
+                                                                      ),
+                                                                      _vm._v(
+                                                                        " "
+                                                                      ),
+                                                                      _c(
+                                                                        "path",
+                                                                        {
+                                                                          attrs:
+                                                                            {
+                                                                              d: "M7 12H21M21 12L18 9M21 12L18 15",
+                                                                              stroke:
+                                                                                "currentColor",
+                                                                              "stroke-width":
+                                                                                "1.5",
+                                                                              "stroke-linecap":
+                                                                                "round",
+                                                                              "stroke-linejoin":
+                                                                                "round",
+                                                                            },
+                                                                        }
+                                                                      ),
+                                                                    ]
+                                                                  ),
+                                                                ]
+                                                              ),
+                                                            ]
+                                                          ),
+                                                        ]
+                                                      ),
+                                                    ]
+                                                  ),
+                                                ],
+                                                1
+                                              ),
+                                              _vm._v(" "),
+                                              item.tenants.length == 0
+                                                ? _c("tr", [
+                                                    _c(
+                                                      "td",
+                                                      {
+                                                        attrs: { colspan: "7" },
+                                                      },
+                                                      [
+                                                        _c(
+                                                          "div",
+                                                          {
+                                                            staticClass:
+                                                              "bg-indigo-100 border-yellow-600 text-black-600  p-4",
+                                                            attrs: {
+                                                              role: "alert",
+                                                            },
+                                                          },
+                                                          [
+                                                            _c("center", [
+                                                              _c(
+                                                                "p",
+                                                                {
+                                                                  staticClass:
+                                                                    "font-bold text-base",
+                                                                },
+                                                                [
+                                                                  _vm._v(
+                                                                    "\n                                    No tenant occupy this room yet\n                                    "
+                                                                  ),
+                                                                ]
+                                                              ),
+                                                            ]),
+                                                          ],
+                                                          1
+                                                        ),
+                                                      ]
+                                                    ),
+                                                  ])
+                                                : _vm._e(),
+                                            ]
+                                          )
+                                        }),
+                                      ],
+                                      2
                                     ),
                                   ]
                                 ),
                               ]
-                            ),
-                          ]
+                            )
+                          }),
+                          0
                         ),
                       ]
                     ),
                   ]
                 ),
-              ]
-            ),
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "flex mt-40 container mx-auto px-4" }, [
-            _c(
-              "div",
-              { staticClass: "w-full mb-6 shadow-xl rounded-lg -mt-36" },
-              [
-                _vm._m(1),
                 _vm._v(" "),
-                _c(
-                  "div",
-                  { staticClass: "p-5", attrs: { id: "Housemates" } },
-                  _vm._l(_vm.housemates, function (item) {
-                    return _c(
-                      "div",
-                      {
-                        key: item.id,
-                        staticClass:
-                          "bg-white w-full mx-auto rounded-2xl overflow-hidden shadow-lg mb-10",
-                      },
-                      [
-                        _c(
-                          "div",
-                          {
-                            staticClass:
-                              "h-14 flex justify-center items-center p-5",
-                            staticStyle: { "background-color": "#2b2a33" },
-                          },
-                          [
-                            _c(
-                              "router-link",
-                              {
-                                staticClass: "flex justify-center items-center",
-                                attrs: {
-                                  to: {
-                                    name: "view_room_list_land",
-                                    params: { id: item.id },
-                                  },
-                                  target: "_blank",
-                                },
-                              },
-                              [
-                                _c("img", {
-                                  staticClass:
-                                    "h-7 w-7 mr-3 object-cover rounded-full",
-                                  attrs: {
-                                    src:
-                                      "/images/Properties/" +
-                                      item.photo_room[0].photo_name,
-                                  },
-                                }),
-                                _vm._v(" "),
-                                _c(
-                                  "p",
-                                  {
-                                    staticClass:
-                                      "text-lg bg-gradient-to-r from-pink-300 via-purple-300 to-indigo-400 text-transparent bg-clip-text hover:underline ",
-                                  },
-                                  [
-                                    _vm._v(
-                                      _vm._s(item.room_name) +
-                                        " | ID: " +
-                                        _vm._s(item.id)
-                                    ),
-                                  ]
-                                ),
-                              ]
-                            ),
-                          ],
-                          1
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "div",
-                          {
-                            staticClass:
-                              "shadow overflow-hidden border-b border-gray-200 sm:rounded-lg",
-                          },
-                          [
-                            _c(
-                              "table",
-                              {
-                                staticClass:
-                                  "min-w-full divide-y divide-gray-200",
-                              },
-                              [
-                                _vm._m(2, true),
-                                _vm._v(" "),
-                                _vm._l(item.tenants, function (mate) {
-                                  return _c(
-                                    "tbody",
-                                    {
-                                      key: mate.index,
-                                      staticClass:
-                                        "bg-white divide-y divide-gray-200",
-                                    },
-                                    [
-                                      _c(
-                                        "tr",
-                                        [
-                                          _c(
-                                            "td",
-                                            { staticClass: "px-6 py-4" },
-                                            [
-                                              _c(
-                                                "div",
-                                                {
-                                                  staticClass:
-                                                    "text-sm text-gray-900",
-                                                },
-                                                [_vm._v(_vm._s(mate.tenant_id))]
-                                              ),
-                                            ]
-                                          ),
-                                          _vm._v(" "),
-                                          _c(
-                                            "router-link",
-                                            {
-                                              staticClass: "flex items-center",
-                                              attrs: {
-                                                to: {
-                                                  name: "land_profile_view",
-                                                  params: {
-                                                    role: 1,
-                                                    id: mate.student_id,
-                                                  },
-                                                },
-                                                target: "_blank",
-                                              },
-                                            },
-                                            [
-                                              _c(
-                                                "td",
-                                                {
-                                                  staticClass: "flex px-6 py-4",
-                                                },
-                                                [
-                                                  _c("img", {
-                                                    staticClass:
-                                                      "mr-2 w-6 h-6 rounded-full hover:scale-150 hover:z-10 transform ease-in-out transition duration-500",
-                                                    attrs: {
-                                                      src:
-                                                        "/images/Profile/" +
-                                                        mate.student.pic,
-                                                    },
-                                                  }),
-                                                  _vm._v(" "),
-                                                  _c("span", [
-                                                    _vm._v(
-                                                      _vm._s(mate.student.name)
-                                                    ),
-                                                  ]),
-                                                ]
-                                              ),
-                                            ]
-                                          ),
-                                          _vm._v(" "),
-                                          _c(
-                                            "td",
-                                            {
-                                              staticClass:
-                                                "px-6 py-4 whitespace-nowrap",
-                                            },
-                                            [
-                                              _c(
-                                                "div",
-                                                {
-                                                  staticClass:
-                                                    "text-sm text-gray-900",
-                                                },
-                                                [
-                                                  _vm._v(
-                                                    _vm._s(
-                                                      mate.student.phone_no
-                                                    )
-                                                  ),
-                                                ]
-                                              ),
-                                            ]
-                                          ),
-                                          _vm._v(" "),
-                                          _c(
-                                            "td",
-                                            {
-                                              staticClass:
-                                                "px-6 py-4 whitespace-nowrap",
-                                            },
-                                            [
-                                              _c(
-                                                "div",
-                                                {
-                                                  staticClass:
-                                                    "text-sm text-gray-900",
-                                                },
-                                                [
-                                                  _vm._v(
-                                                    " " +
-                                                      _vm._s(mate.move_in_date)
-                                                  ),
-                                                ]
-                                              ),
-                                            ]
-                                          ),
-                                          _vm._v(" "),
-                                          _c(
-                                            "td",
-                                            {
-                                              staticClass:
-                                                "px-6 py-4 whitespace-nowrap",
-                                            },
-                                            [
-                                              _c(
-                                                "div",
-                                                {
-                                                  staticClass:
-                                                    "text-sm text-gray-900",
-                                                },
-                                                [
-                                                  _vm._v(
-                                                    _vm._s(
-                                                      mate.tenancy_period
-                                                    ) + " Months"
-                                                  ),
-                                                ]
-                                              ),
-                                            ]
-                                          ),
-                                          _vm._v(" "),
-                                          _c(
-                                            "td",
-                                            {
-                                              staticClass:
-                                                "px-6 py-4 whitespace-nowrap",
-                                            },
-                                            [
-                                              _c(
-                                                "div",
-                                                {
-                                                  staticClass:
-                                                    "text-sm text-gray-900",
-                                                },
-                                                [
-                                                  _vm._v(
-                                                    _vm._s(mate.tenant_status)
-                                                  ),
-                                                ]
-                                              ),
-                                            ]
-                                          ),
-                                          _vm._v(" "),
-                                          _c(
-                                            "td",
-                                            {
-                                              staticClass:
-                                                "py-3 px-2 text-center",
-                                            },
-                                            [
-                                              _c(
-                                                "div",
-                                                {
-                                                  staticClass:
-                                                    "flex item-center justify-center",
-                                                },
-                                                [
-                                                  _c(
-                                                    "div",
-                                                    {
-                                                      staticClass:
-                                                        "w-4 mr-2 transform hover:text-purple-500 hover:scale-110",
-                                                    },
-                                                    [
-                                                      _c(
-                                                        "button",
-                                                        {
-                                                          on: {
-                                                            click: function (
-                                                              $event
-                                                            ) {
-                                                              return _vm.checkTenantBill(
-                                                                mate.student_id,
-                                                                mate
-                                                              )
-                                                            },
-                                                          },
-                                                        },
-                                                        [
-                                                          _c(
-                                                            "svg",
-                                                            {
-                                                              attrs: {
-                                                                xmlns:
-                                                                  "http://www.w3.org/2000/svg",
-                                                                fill: "none",
-                                                                viewBox:
-                                                                  "0 0 24 24",
-                                                                stroke:
-                                                                  "currentColor",
-                                                              },
-                                                            },
-                                                            [
-                                                              _c("path", {
-                                                                attrs: {
-                                                                  "stroke-linecap":
-                                                                    "round",
-                                                                  "stroke-linejoin":
-                                                                    "round",
-                                                                  "stroke-width":
-                                                                    "2",
-                                                                  d: "M15 12a3 3 0 11-6 0 3 3 0 016 0z",
-                                                                },
-                                                              }),
-                                                              _vm._v(" "),
-                                                              _c("path", {
-                                                                attrs: {
-                                                                  "stroke-linecap":
-                                                                    "round",
-                                                                  "stroke-linejoin":
-                                                                    "round",
-                                                                  "stroke-width":
-                                                                    "2",
-                                                                  d: "M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z",
-                                                                },
-                                                              }),
-                                                            ]
-                                                          ),
-                                                        ]
-                                                      ),
-                                                    ]
-                                                  ),
-                                                  _vm._v(" "),
-                                                  _c(
-                                                    "div",
-                                                    {
-                                                      staticClass:
-                                                        "w-4 mr-2 transform hover:text-purple-500 hover:scale-110",
-                                                    },
-                                                    [
-                                                      _c(
-                                                        "button",
-                                                        {
-                                                          on: {
-                                                            click: function (
-                                                              $event
-                                                            ) {
-                                                              return _vm.kickTenant(
-                                                                mate.room_id,
-                                                                mate.tenant_id
-                                                              )
-                                                            },
-                                                          },
-                                                        },
-                                                        [
-                                                          _c(
-                                                            "svg",
-                                                            {
-                                                              attrs: {
-                                                                width: "18",
-                                                                height: "18",
-                                                                viewBox:
-                                                                  "0 0 24 24",
-                                                                fill: "none",
-                                                                xmlns:
-                                                                  "http://www.w3.org/2000/svg",
-                                                              },
-                                                            },
-                                                            [
-                                                              _c("path", {
-                                                                attrs: {
-                                                                  d: "M14 8V6C14 5.46957 13.7893 4.96086 13.4142 4.58579C13.0391 4.21071 12.5304 4 12 4H5C4.46957 4 3.96086 4.21071 3.58579 4.58579C3.21071 4.96086 3 5.46957 3 6V18C3 18.5304 3.21071 19.0391 3.58579 19.4142C3.96086 19.7893 4.46957 20 5 20H12C12.5304 20 13.0391 19.7893 13.4142 19.4142C13.7893 19.0391 14 18.5304 14 18V16",
-                                                                  stroke:
-                                                                    "currentColor",
-                                                                  "stroke-width":
-                                                                    "1.5",
-                                                                  "stroke-linecap":
-                                                                    "round",
-                                                                  "stroke-linejoin":
-                                                                    "round",
-                                                                },
-                                                              }),
-                                                              _vm._v(" "),
-                                                              _c("path", {
-                                                                attrs: {
-                                                                  d: "M7 12H21M21 12L18 9M21 12L18 15",
-                                                                  stroke:
-                                                                    "currentColor",
-                                                                  "stroke-width":
-                                                                    "1.5",
-                                                                  "stroke-linecap":
-                                                                    "round",
-                                                                  "stroke-linejoin":
-                                                                    "round",
-                                                                },
-                                                              }),
-                                                            ]
-                                                          ),
-                                                        ]
-                                                      ),
-                                                    ]
-                                                  ),
-                                                ]
-                                              ),
-                                            ]
-                                          ),
-                                        ],
-                                        1
-                                      ),
-                                    ]
-                                  )
-                                }),
-                              ],
-                              2
-                            ),
-                          ]
-                        ),
-                      ]
-                    )
-                  }),
-                  0
-                ),
+                _vm._m(3),
               ]
             ),
-          ]),
-          _vm._v(" "),
-          _vm._m(3),
-        ]
-      ),
-      _vm._v(" "),
-      _vm.toggleModal
-        ? _c("PostModal", {
-            attrs: {
-              prop_id: _vm.prop_id,
-              user_id: _vm.user_id,
-              role: _vm.role,
-            },
-            on: { refreshData: _vm.getData, closeModal: _vm.closeModal },
-          })
-        : _vm._e(),
-      _vm._v(" "),
-      _vm.toggleRModal
-        ? _c("BillModal", {
-            attrs: { user_id: _vm.tenant_id, role: 1, tenant: _vm.tenant },
-            on: { closeModal: _vm.closeRModal },
-          })
-        : _vm._e(),
-    ],
-    1
-  )
+            _vm._v(" "),
+            _vm.toggleModal
+              ? _c("PostModal", {
+                  attrs: {
+                    prop_id: _vm.prop_id,
+                    user_id: _vm.user_id,
+                    role: _vm.role,
+                  },
+                  on: { refreshData: _vm.getData, closeModal: _vm.closeModal },
+                })
+              : _vm._e(),
+            _vm._v(" "),
+            _vm.toggleRModal
+              ? _c("BillModal", {
+                  attrs: {
+                    user_id: _vm.tenant_id,
+                    role: 1,
+                    tenant: _vm.tenant,
+                  },
+                  on: { closeModal: _vm.closeRModal },
+                })
+              : _vm._e(),
+          ],
+          1
+        )
+      : _c(
+          "div",
+          [
+            _c("loader", {
+              attrs: {
+                object: "#4491ee",
+                color1: "#e3851c",
+                color2: "#e82dda",
+                size: "8",
+                speed: "1.3",
+                bg: "#1e2337",
+                objectbg: "#ff2d2d",
+                opacity: "90",
+                disableScrolling: "true",
+                name: "dots",
+              },
+            }),
+          ],
+          1
+        ),
+  ])
 }
 var staticRenderFns = [
   function () {

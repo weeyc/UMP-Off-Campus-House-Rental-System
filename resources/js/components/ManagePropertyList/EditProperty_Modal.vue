@@ -2,16 +2,16 @@
 <template>
    <div class="modal h-screen w-full  fixed left-0 top-0 flex justify-center z-10 items-center bg-black bg-opacity-50" >
     <!-- modal -->
-    <div :class="[modalBackground]" class="rounded max-h-screen overflow-y-auto shadow-lg p-6 mx-auto min-w-2/3 max-w-2/3 " >
+    <div :class="[modalBackground]" class="rounded max-h-full overflow-y-auto shadow-lg  p-6 w-2/3 min-h-2/3" >
       <!-- modal header -->
       <div class="border-b px-4 py-2 flex justify-between items-center">
-        <h3 class="font-semibold text-lg">Edit Property</h3>
+        <h3 class="font-black text-2xl">Edit Property</h3>
         <button class="text-black " @click="closeModal">&cross;</button>
       </div>
       <!-- modal body -->
         <div class="p-3">
             <!-- <h1 class="text-gray-800 font-lg font-bold tracking-normal leading-tight mb-4">Property Details</h1> -->
-            <section id="propertyDetail" v-show="activePhase == 1" class=" max-w-4xl p-6 mx-auto bg-gray-200 rounded-md shadow-md">
+            <section id="propertyDetail" v-show="activePhase == 1" class=" w-full  p-6 mx-auto bg-gray-200 rounded-md shadow-md">
 
                 <h2 class=" font-bold text-gray-700 capitalize text-center text-xl">Edit Property</h2>
                     <h2 class=" font-bold text-gray-700 capitalize text-center text-base ">-Property Details-</h2>
@@ -41,7 +41,7 @@
                         </div>
                             <div>
                     <label class="text-gray-700">No. of toilet</label>
-                    <input type="number" v-model="form.toilet_num" min=1 max=5 placeholder="eg. 2" class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-black rounded-md   focus:border-blue-500 focus:outline-none focus:ring" required>
+                    <input type="number" v-model="form.toilet_num" min=1 max=5 placeholder="eg. 2" class="number block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-black rounded-md   focus:border-blue-500 focus:outline-none focus:ring" required>
                 </div>
 
                <div>
@@ -67,7 +67,7 @@
                       <button v-if="replace==false" @click.prevent="get_replace(0)" class="px-6 py-2 justify-end mr-5 leading-5 text-white transition-colors
                       duration-200 transform bg-gray-700 rounded-md hover:bg-gray-600 focus:outline-none focus:bg-gray-600">Replace Images</button>
                       <button v-if="replace==true" @click.prevent="get_replace(1)" class="px-6 py-2 justify-end mr-5 leading-5 text-white transition-colors
-                      duration-200 transform bg-gray-700 rounded-md hover:bg-gray-600 focus:outline-none focus:bg-gray-600">Skip</button>
+                      duration-200 transform bg-gray-700 rounded-md hover:bg-gray-600 focus:outline-none focus:bg-gray-600 mb-2">Skip</button>
                 <div>
                          <div v-if="replace==false" class="border-double border-4 border-light-blue-500" style="width:100%;margin:10px auto;height:250px">
 
@@ -111,7 +111,7 @@
                             </label>
 
                             <label class="inline-flex items-center cursor-pointer">
-                                <input type="checkbox" class="form-checkbox" v-model="form.furnishing" value="Refrigerator"/>
+                                <input type="checkbox" class="form-checkbox" v-model="form.furnishing" value="Water Heater"/>
                                 <span class="ml-2">Water Heater</span>
                             </label>
                                 <label class="inline-flex items-center cursor-pointer">
@@ -153,15 +153,15 @@
 
                         <div class="flex justify-end mt-6">
                             <button @click.prevent="goToNext(3)" class="px-6 py-2  mr-5 leading-5 text-white transition-colors duration-200 transform bg-gray-700 rounded-md hover:bg-gray-600 focus:outline-none focus:bg-gray-600">Back</button>
-                            <button @click.prevent="editProperty" class="px-6 py-2 leading-5 text-white transition-colors duration-200 transform bg-gray-700 rounded-md hover:bg-gray-600 focus:outline-none focus:bg-gray-600">Update Property</button>
+                            <button @click.prevent="editProperty" class="px-6 py-2 leading-5 text-white transition-colors duration-200 transform bg-green-500 rounded-md hover:bg-green-600 focus:outline-none focus:bg-green-600">Update Property</button>
                         </div>
                 </div>
             </section>
 
 
             </div>
-                <div class="flex justify-end items-center w-100 border-t p-3">
-                    <button @click="closeModal" class="bg-red-600 hover:bg-red-700 px-3 py-1 rounded text-white mr-1 close-modal">Cancel</button>
+                <div class="flex justify-end items-center w-100 border-t p-1">
+                    <button @click="closeModal" class="bg-red-600 hover:bg-red-700 px-3 py-1 rounded text-white  close-modal mr-3">Cancel</button>
                 </div>
     </div>
 </div>
@@ -273,6 +273,13 @@ components: {
     mounted: function(){
          this.getRole();
          this.form.furnishing = this.form.furnishing.split(',');
+
+              document.querySelector(".number").addEventListener("keypress", function (evt) {
+            if (evt.which < 48 || evt.which > 57)
+            {
+                evt.preventDefault();
+            }
+        });
     },
 };
 

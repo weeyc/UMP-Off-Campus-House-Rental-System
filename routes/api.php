@@ -40,6 +40,7 @@ Route::post('update_prop_status/{id}', 'PropertyListController@updatePropStatus'
 Route::post('create_booking/', 'PropertyListController@create_booking');
 Route::delete('delete_property/{id}', 'PropertyListController@delete_Property');
 Route::get('get_room_list/{id}', 'PropertyListController@get_RoomList');
+Route::delete('delete_room/{id}', 'PropertyListController@delete_room');
 
 Route::get('getpropertiesCount/{id}', 'PropertyListController@getpropertiesCount');
 Route::get('gettenantsCount/{id}', 'PropertyListController@gettenantsCount');

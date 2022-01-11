@@ -2,11 +2,13 @@
 <div>
   <div class="grid mb-4 pb-10 px-8 mx-4 rounded-3xl bg-gray-100 shadow-lg mt-5">
         <div class="grid grid-cols-12 gap-6">
+
             <div class="grid grid-cols-12 col-span-12 gap-6 xxl:col-span-9">
                 <div class="col-span-12 mt-8">
                     <div class="flex items-center h-10 intro-y">
                        <center><h2 class="text-2xl font-bold truncate">Dashboard</h2></center>
                     </div>
+
                     <div class="grid grid-cols-12 gap-6 mt-5">
                         <a class="transform  hover:scale-105 transition duration-300 shadow-xl rounded-lg col-span-12 sm:col-span-6 xl:col-span-3 intro-y bg-white"
                             @click="playAnimation1">
@@ -144,6 +146,7 @@
                     <div class="grid gap-2 grid-cols-1 lg:grid-cols-1">
                         <div class="bg-white p-4 shadow-lg rounded-lg">
                             <h1 class="font-bold text-base">My Rooms Listings</h1>
+                             <div v-if="isReady==true">
                             <div class="mt-4">
                                 <div class="flex flex-col">
                                     <div class="-my-2 overflow-x-auto">
@@ -246,6 +249,15 @@
                                                                </div>
                                                             </td>
                                                         </tr>
+                                                         <tr v-if="rooms.length==0">
+                                                        <td colspan="6">
+                                                            <div class="bg-indigo-100 border-yellow-600 text-black-600  p-4" role="alert">
+                                                                <center><p class="font-bold text-base">
+                                                                   You have not register any property's room yet.
+                                                                </p></center>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
                                                     </tbody>
                                                 </table>
                                             </div>
@@ -253,6 +265,11 @@
                                     </div>
                                 </div>
                             </div>
+
+                        </div>
+                         <div v-else>
+                            <loader object="#4491ee" color1="#e3851c" color2="#e82dda" size="8" speed="1.3" bg="#1e2337" objectbg="#ff2d2d" opacity="90" disableScrolling="true" name="circular"></loader>
+                        </div>
                         </div>
                     </div>
                 </div>
@@ -274,11 +291,12 @@ export default {
     },
     data(){
         return{
-          rooms: [],
-          properties: 0,
-          tenants: 0,
-          vacant: 0,
-          totals: 0.00,
+        rooms: [],
+        properties: 0,
+        tenants: 0,
+        vacant: 0,
+        totals: 0.00,
+        isReady: false,
 
         }
     },
@@ -286,6 +304,7 @@ export default {
            getRooms(){
             axios.get('/api/get_all_rooms/'+this.user_id).then((response)=>{
                 this.rooms=response.data.data;
+                this.isReady=true;
                 console.warn(this.rooms.data);
             })
         },

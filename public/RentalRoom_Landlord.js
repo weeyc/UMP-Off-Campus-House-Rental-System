@@ -9,8 +9,28 @@
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
-/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_1__);
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -57,8 +77,9 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
+      isReady: false,
       lists: [],
-      moment: moment__WEBPACK_IMPORTED_MODULE_0___default.a,
+      moment: moment__WEBPACK_IMPORTED_MODULE_1___default.a,
       top_btn_style: 'p-3 rounded bg-yellow-100 text-yellow-500 hover:bg-yellow-500 hover:text-white :active:bg-yellow-500 active:text-white active:outline-none transition duration-150 ease-in-out shadow-xl'
     };
   },
@@ -68,6 +89,7 @@ __webpack_require__.r(__webpack_exports__);
 
       axios.get('/api/get_rentalRoom/' + this.user_id + '/' + this.role + '?imej=1').then(function (response) {
         _this.lists = response.data.data;
+        _this.isReady = true;
         console.warn(_this.lists.data);
       });
     }
@@ -76,7 +98,23 @@ __webpack_require__.r(__webpack_exports__);
     $route: function $route() {}
   },
   mounted: function mounted() {
-    this.getList();
+    var _this2 = this;
+
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              _context.next = 2;
+              return _this2.getList();
+
+            case 2:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee);
+    }))();
   }
 });
 
@@ -114,104 +152,173 @@ var render = function () {
           [_vm._v("My Property For Rental")]
         ),
         _vm._v(" "),
-        _vm.lists.length == 0
-          ? _c("div", [_vm._v(" You don't have any verified property yet.")])
-          : _vm._e(),
-        _vm._v(" "),
-        _c(
-          "div",
-          { attrs: { else: "" } },
-          _vm._l(_vm.lists, function (list, index) {
-            return _c(
-              "div",
-              { key: index.id, staticClass: "flex justify-start  " },
-              [
-                _c(
-                  "router-link",
-                  {
-                    staticClass:
-                      "flex justify-center w-full px-8 py-4 overflow-hidden rounded-lg shadow-lg mt-5 cursor-pointer transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-105 duration-200 hover:bg-gray-900 hover:shadow-2xl bg-gray-800",
-                    attrs: {
-                      to: {
-                        name: "HousePlatform_Landlord",
-                        params: { id: list.id },
+        _vm.isReady == true
+          ? _c("div", [
+              _vm.lists.length == 0
+                ? _c("div", [
+                    _c(
+                      "div",
+                      {
+                        staticClass:
+                          "bg-blue-200 border-yellow-600 text-gray-600  p-10 mt-3 ",
+                        attrs: { role: "alert" },
                       },
-                    },
-                  },
-                  [
-                    _c("div", { staticClass: "w-1/3 bg-cover" }, [
-                      _c("img", {
-                        staticClass: "h-48 w-full object-cover",
-                        attrs: {
-                          src: "/images/Properties/" + list.cover.photo_name,
-                          alt: "Avatar",
-                        },
-                      }),
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "w-2/3 p-4 md:p-4" }, [
+                      [
+                        _c("center", [
+                          _c("p", { staticClass: "font-bold text-base" }, [
+                            _vm._v("You don't have any verified property yet."),
+                          ]),
+                        ]),
+                      ],
+                      1
+                    ),
+                  ])
+                : _vm._e(),
+              _vm._v(" "),
+              _c(
+                "div",
+                { attrs: { else: "" } },
+                _vm._l(_vm.lists, function (list, index) {
+                  return _c(
+                    "div",
+                    { key: index.id, staticClass: "flex justify-start  " },
+                    [
                       _c(
-                        "div",
-                        { staticClass: "flex justify-between item-center" },
-                        [
-                          _c(
-                            "h1",
-                            {
-                              staticClass: "text-2xl font-bold text-yellow-500",
+                        "router-link",
+                        {
+                          staticClass:
+                            "flex justify-center w-full px-8 py-4 overflow-hidden rounded-lg shadow-lg mt-5 cursor-pointer transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-105 duration-200 hover:bg-gray-900 hover:shadow-2xl bg-gray-800",
+                          attrs: {
+                            to: {
+                              name: "HousePlatform_Landlord",
+                              params: { id: list.id },
                             },
-                            [_vm._v(" " + _vm._s(list.name))]
-                          ),
+                          },
+                        },
+                        [
+                          _c("div", { staticClass: "w-1/3 bg-cover" }, [
+                            _c("img", {
+                              staticClass: "h-48 w-full object-cover",
+                              attrs: {
+                                src:
+                                  "/images/Properties/" + list.cover.photo_name,
+                                alt: "Avatar",
+                              },
+                            }),
+                          ]),
                           _vm._v(" "),
-                          _c(
-                            "h1",
-                            { staticClass: "text-2xl font-bold text-red-500" },
-                            [_vm._v(_vm._s(list.status))]
-                          ),
+                          _c("div", { staticClass: "w-2/3 p-4 md:p-4" }, [
+                            _c(
+                              "div",
+                              {
+                                staticClass: "flex justify-between item-center",
+                              },
+                              [
+                                _c(
+                                  "h1",
+                                  {
+                                    staticClass:
+                                      "text-2xl font-bold text-yellow-500",
+                                  },
+                                  [_vm._v(" " + _vm._s(list.name))]
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "h1",
+                                  {
+                                    staticClass:
+                                      "text-2xl font-bold text-red-500",
+                                  },
+                                  [_vm._v(_vm._s(list.status))]
+                                ),
+                              ]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "p",
+                              { staticClass: "mt-2 text-sm text-white " },
+                              [
+                                _vm._v(
+                                  _vm._s(list.address) +
+                                    " | " +
+                                    _vm._s(list.campus)
+                                ),
+                              ]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "div",
+                              { staticClass: "flex mt-2 item-center" },
+                              [
+                                _c(
+                                  "p",
+                                  { staticClass: "mt-2 text-sm text-white " },
+                                  [
+                                    _vm._v(
+                                      _vm._s(list.furnishing) +
+                                        " | " +
+                                        _vm._s(list.gender_preferences)
+                                    ),
+                                  ]
+                                ),
+                              ]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "div",
+                              { staticClass: "flex mt-2 item-center" },
+                              [
+                                _c(
+                                  "p",
+                                  {
+                                    staticClass: "mt-2 text-sm text-blue-500 ",
+                                  },
+                                  [
+                                    _vm._v(
+                                      "Toilet number: " +
+                                        _vm._s(list.toilet_num) +
+                                        " | Created at: " +
+                                        _vm._s(
+                                          _vm
+                                            .moment(list.created_at)
+                                            .format("MMM-YYYY")
+                                        ) +
+                                        " "
+                                    ),
+                                  ]
+                                ),
+                              ]
+                            ),
+                          ]),
                         ]
                       ),
-                      _vm._v(" "),
-                      _c("p", { staticClass: "mt-2 text-sm text-white " }, [
-                        _vm._v(
-                          _vm._s(list.address) + " | " + _vm._s(list.campus)
-                        ),
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "flex mt-2 item-center" }, [
-                        _c("p", { staticClass: "mt-2 text-sm text-white " }, [
-                          _vm._v(
-                            _vm._s(list.furnishing) +
-                              " | " +
-                              _vm._s(list.gender_preferences)
-                          ),
-                        ]),
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "flex mt-2 item-center" }, [
-                        _c(
-                          "p",
-                          { staticClass: "mt-2 text-sm text-blue-500 " },
-                          [
-                            _vm._v(
-                              "Toilet number: " +
-                                _vm._s(list.toilet_num) +
-                                " | Created at: " +
-                                _vm._s(
-                                  _vm.moment(list.created_at).format("MMM-YYYY")
-                                ) +
-                                " "
-                            ),
-                          ]
-                        ),
-                      ]),
-                    ]),
-                  ]
-                ),
+                    ],
+                    1
+                  )
+                }),
+                0
+              ),
+            ])
+          : _c(
+              "div",
+              [
+                _c("loader", {
+                  attrs: {
+                    object: "#4491ee",
+                    color1: "#e3851c",
+                    color2: "#e82dda",
+                    size: "8",
+                    speed: "1.3",
+                    bg: "#1e2337",
+                    objectbg: "#ff2d2d",
+                    opacity: "90",
+                    disableScrolling: "true",
+                    name: "circular",
+                  },
+                }),
               ],
               1
-            )
-          }),
-          0
-        ),
+            ),
       ]
     ),
   ])

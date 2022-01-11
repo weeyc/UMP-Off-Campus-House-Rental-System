@@ -210,7 +210,11 @@
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" > <path d="M18 6L6 18" stroke="#4B5563" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" /> <path d="M6 6L18 18" stroke="#4B5563" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" /> </svg>
             </button>
           </div>
-        <div class="longsheet">
+ <!-- no notification -->
+           <div v-if="notifications.length==0" class="bg-blue-200 border-yellow-600 text-gray-600  p-10 mt-7 " role="alert">
+                   <center><p class="font-bold text-base"> You don't have any notifications yet.</p></center>
+            </div>
+        <div v-else class="longsheet">
             <div v-for="(noti,index) in notifications" :key="index">
                 <h2 tabindex="0" class=" focus:outline-none text-sm leading-normal pt-8 border-b pb-2 border-gray-500 text-gray-600 " >
                     {{  dateToFromNowDaily(noti[0].created_at) }}

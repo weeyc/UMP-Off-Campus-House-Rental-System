@@ -1,8 +1,6 @@
 {
     "/js/app.js": "/js/app.js",
     "/css/app.css": "/css/app.css",
-    "/Add_Property.js": "/Add_Property.js",
-    "/Add_Property~Property_Landlord~Room_Landlord.js": "/Add_Property~Property_Landlord~Room_Landlord.js",
     "/Bills_Landlord.js": "/Bills_Landlord.js",
     "/Bills_Student.js": "/Bills_Student.js",
     "/Booking_Landlord.js": "/Booking_Landlord.js",
@@ -24,6 +22,7 @@
     "/Profile_Edit~Profile_View.js": "/Profile_Edit~Profile_View.js",
     "/Profile_View.js": "/Profile_View.js",
     "/PropertyList_landlord.js": "/PropertyList_landlord.js",
+    "/PropertyList_landlord~Property_Landlord~Room_Landlord.js": "/PropertyList_landlord~Property_Landlord~Room_Landlord.js",
     "/Property_Bills.js": "/Property_Bills.js",
     "/Property_Landlord.js": "/Property_Landlord.js",
     "/RentalRoom_Landlord.js": "/RentalRoom_Landlord.js",
@@ -33,6 +32,7 @@
     "/Tab_Staff_Users.js": "/Tab_Staff_Users.js",
     "/Tab_Student_Payment.js": "/Tab_Student_Payment.js",
     "/View_Room_List.js": "/View_Room_List.js",
-    "/vendors~Bills_Student~View_Room_List.js": "/vendors~Bills_Student~View_Room_List.js",
-    "/vendors~Property_Landlord~Room_Landlord~View_Room_List.js": "/vendors~Property_Landlord~Room_Landlord~View_Room_List.js"
+    "/vendors~Bills_Student~RentalRoom_Landlord~View_Room_List.js": "/vendors~Bills_Student~RentalRoom_Landlord~View_Room_List.js",
+    "/vendors~Property_Landlord~Room_Landlord~View_Room_List.js": "/vendors~Property_Landlord~Room_Landlord~View_Room_List.js",
+    "/Property_Landlord~Room_Landlord.js": "/Property_Landlord~Room_Landlord.js"
 }
