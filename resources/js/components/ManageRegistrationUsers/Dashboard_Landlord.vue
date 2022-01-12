@@ -14,12 +14,10 @@
                             @click="playAnimation1">
                             <div class="p-5">
                                 <div class="flex justify-between">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 text-green-400"
-                                        fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round"
-                                            stroke-width="2"
-                                            d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
-                                    </svg>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" class="bi bi-house-fill text-green-400" viewBox="0 0 16 16">
+                                        <path fill-rule="evenodd" d="m8 3.293 6 6V13.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5V9.293l6-6zm5-.793V6l-2-2V2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5z"/>
+                                        <path fill-rule="evenodd" d="M7.293 1.5a1 1 0 0 1 1.414 0l6.647 6.646a.5.5 0 0 1-.708.708L8 2.207 1.354 8.854a.5.5 0 1 1-.708-.708L7.293 1.5z"/>
+                                        </svg>
                                     <div
                                         class="bg-blue-500 rounded-full h-6 px-2 flex justify-items-center text-white font-semibold text-sm">
                                         <span class="flex items-center">Registered Properties</span>
@@ -28,13 +26,15 @@
                                 <div class="ml-2 w-full flex-1">
                                     <div>
                                         <div class="mt-3 text-3xl font-bold leading-8">
-                                            <number
-
-                                             ref="number1"
-                                            :from="0"
-                                            :to="properties"
-                                            :duration="1"
-                                            easing="Power1.easeOut"/> </div>
+                                            <div v-if="isReady==true && ready1==true && ready2==true && ready3==true && ready4==true">
+                                                <number
+                                                ref="number1"
+                                                :from="0"
+                                                :to="properties"
+                                                :duration="1"
+                                                easing="Power1.easeOut"/>
+                                            </div>
+                                            </div>
 
                                         <div class="mt-1 text-base text-gray-600">units</div>
                                     </div>
@@ -45,12 +45,11 @@
                              @click="playAnimation2">
                             <div class="p-5">
                                 <div class="flex justify-between">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 text-yellow-400"
-                                        fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round"
-                                            stroke-width="2"
-                                            d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
-                                    </svg>
+                                   <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" class="bi bi-people-fill text-yellow-400" viewBox="0 0 16 16">
+                                        <path d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H7zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+                                        <path fill-rule="evenodd" d="M5.216 14A2.238 2.238 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.325 6.325 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1h4.216z"/>
+                                        <path d="M4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z"/>
+                                        </svg>
                                     <div
                                         class="bg-red-500 rounded-full h-6 px-2 flex justify-items-center text-white font-semibold text-sm">
                                         <span class="flex items-center">Total Tenants</span>
@@ -58,14 +57,17 @@
                                 </div>
                                 <div class="ml-2 w-full flex-1">
                                     <div>
+
                                         <div class="mt-3 text-3xl font-bold leading-8">
-                                        <div class="mt-3 text-3xl font-bold leading-8">
-                                            <number
-                                             ref="number2"
-                                            :from="0"
-                                            :to="tenants"
-                                            :duration="0.5"
-                                            easing="Power1.easeOut"/> </div></div>
+                                              <div v-if="isReady==true && ready1==true && ready2==true && ready3==true && ready4==true">
+                                                <number
+                                                ref="number2"
+                                                :from="0"
+                                                :to="tenants"
+                                                :duration="0.5"
+                                                easing="Power1.easeOut"/>
+                                                </div>
+                                        </div>
 
                                         <div class="mt-1 text-base text-gray-600">students</div>
                                     </div>
@@ -76,16 +78,9 @@
                               @click="playAnimation3">
                             <div class="p-5">
                                 <div class="flex justify-between">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 text-pink-600"
-                                        fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round"
-                                            stroke-width="2"
-                                            d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z" />
-                                        <path stroke-linecap="round" stroke-linejoin="round"
-                                            stroke-width="2"
-                                            d="M20.488 9H15V3.512A9.025 9.025 0 0120.488 9z" />
-                                    </svg>
-
+                                   <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" class="bi bi-door-open-fill text-pink-400" viewBox="0 0 16 16">
+                                        <path d="M1.5 15a.5.5 0 0 0 0 1h13a.5.5 0 0 0 0-1H13V2.5A1.5 1.5 0 0 0 11.5 1H11V.5a.5.5 0 0 0-.57-.495l-7 1A.5.5 0 0 0 3 1.5V15H1.5zM11 2h.5a.5.5 0 0 1 .5.5V15h-1V2zm-2.5 8c-.276 0-.5-.448-.5-1s.224-1 .5-1 .5.448.5 1-.224 1-.5 1z"/>
+                                        </svg>
 
                                     <div
                                         class="bg-yellow-500 rounded-full h-6 px-2 flex justify-items-center text-white font-semibold text-sm">
@@ -94,8 +89,9 @@
                                 </div>
                                 <div class="ml-2 w-full flex-1">
                                     <div>
+
                                         <div class="mt-3 text-3xl font-bold leading-8">
-                                        <div class="mt-3 text-3xl font-bold leading-8">
+                                            <div v-if="isReady==true && ready1==true && ready2==true && ready3==true && ready4==true">
                                             <number
                                             ref="number3"
                                             :from="0"
@@ -112,11 +108,9 @@
                                 @click="playAnimation4">
                             <div class="p-5">
                                 <div class="flex justify-between">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 text-blue-400"
-                                        fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round"
-                                            stroke-width="2"
-                                            d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z" />
+                                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" class="bi bi-wallet-fill text-blue-400" viewBox="0 0 16 16">
+                                    <path d="M1.5 2A1.5 1.5 0 0 0 0 3.5v2h6a.5.5 0 0 1 .5.5c0 .253.08.644.306.958.207.288.557.542 1.194.542.637 0 .987-.254 1.194-.542.226-.314.306-.705.306-.958a.5.5 0 0 1 .5-.5h6v-2A1.5 1.5 0 0 0 14.5 2h-13z"/>
+                                    <path d="M16 6.5h-5.551a2.678 2.678 0 0 1-.443 1.042C9.613 8.088 8.963 8.5 8 8.5c-.963 0-1.613-.412-2.006-.958A2.679 2.679 0 0 1 5.551 6.5H0v6A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-6z"/>
                                     </svg>
                                     <div
                                         class="bg-green-500 rounded-full h-6 px-2 flex justify-items-center text-white font-semibold text-sm">
@@ -126,7 +120,7 @@
                                 <div class="ml-2 w-full flex-1">
                                     <div>
                                         <div class="mt-3 text-3xl font-bold leading-8">
-                                        <div class="mt-3 text-3xl font-bold leading-8">
+                                          <div v-if="isReady==true && ready1==true && ready2==true && ready3==true && ready4==true">
                                             <number
                                             ref="number4"
                                             :from="0"
@@ -146,7 +140,7 @@
                     <div class="grid gap-2 grid-cols-1 lg:grid-cols-1">
                         <div class="bg-white p-4 shadow-lg rounded-lg">
                             <h1 class="font-bold text-base">My Rooms Listings</h1>
-                             <div v-if="isReady==true">
+                             <div v-if="isReady==true && ready1==true && ready2==true && ready3==true && ready4==true">
                             <div class="mt-4">
                                 <div class="flex flex-col">
                                     <div class="-my-2 overflow-x-auto">
@@ -201,7 +195,7 @@
                                                             <td
                                                                 class="flex px-6 py-4 whitespace-no-wrap text-sm leading-5 ">
                                                                  <img :src="'/images/Properties/'+room.photo_room[0].photo_name"  class="mr-2 w-6 h-6 rounded-full">
-                                                                 <router-link :to="{ name: 'view_room_list', params:{id: room.id}}" class="cursor-pointer hover:underline">{{ room.listing_name }}
+                                                                 <router-link :to="{ name: 'view_room_list_land', params:{id: room.id}}" class="cursor-pointer hover:underline">{{ room.listing_name }}
                                                                 </router-link>
                                                             </td>
                                                             <td
@@ -297,6 +291,10 @@ export default {
         vacant: 0,
         totals: 0.00,
         isReady: false,
+        ready1: false,
+        ready2: false,
+        ready3: false,
+        ready4: false,
 
         }
     },
@@ -310,24 +308,28 @@ export default {
         },
            getpropertiesCount(){
             axios.get('/api/getpropertiesCount/'+this.user_id).then((response)=>{
+                this.ready1= true,
                 this.properties=response.data;
 
             })
         },
            gettenantsCount(){
             axios.get('/api/gettenantsCount/'+this.user_id).then((response)=>{
+                 this.ready2= true,
                 this.tenants=response.data;
 
             })
         },
            getvacantCount(){
             axios.get('/api/getvacantCount/'+this.user_id).then((response)=>{
+                 this.ready3= true,
                 this.vacant=response.data;
 
             })
         },
            gettotalsCount(){
             axios.get('/api/gettotalsCount/'+this.user_id).then((response)=>{
+                 this.ready4= true,
                 this.totals=response.data;
 
             })

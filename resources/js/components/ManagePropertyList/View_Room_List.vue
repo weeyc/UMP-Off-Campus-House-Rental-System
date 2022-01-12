@@ -1,12 +1,13 @@
 <template>
 <div>
      <!-- Top Section-->
+      <div v-if="isReady==true">
     <div class="max-w-6xl p-5 mx-auto mt-3 bg-gray-100 rounded-md mb-5 shadow-xl" >
         <div class="bg-white rounded-md  shadow-xl">
             <div class="mx-5 p-5">
             <div class="flex justify-between item-center">
             <h1 class="text-2xl font-black text-gray-800"> {{ lists.listing_name }}</h1>
-            <div class="text-xl bg-yellow-500 px-5 py-1 rounded-md shadow-sm font-bold text-white">{{lists.room_status}}</div>
+            <div class="text-xl bg-yellow-500 px-5 py-1 rounded-md shadow-sm font-bold text-white capitalize">{{lists.room_status}}</div>
             </div>
             <div class="flex items-center">
                 <svg class="h-6 w-6 text-yellow-500"  width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">  <path stroke="none" d="M0 0h24v24H0z"/>  <line x1="18" y1="6" x2="18" y2="6.01" />  <path d="M18 13l-3.5 -5a4 4 0 1 1 7 0l-3.5 5" />  <polyline points="10.5 4.75 9 4 3 7 3 20 9 17 15 20 21 17 21 15" />  <line x1="9" y1="4" x2="9" y2="17" />  <line x1="15" y1="15" x2="15" y2="20" /></svg>
@@ -276,7 +277,10 @@
 
 
 
-
+  </div>
+  <div v-else>
+           <loader object="#dd7755" color1="#e3851c" color2="#e82dda" size="8" speed="1.3" bg="#1e2337" objectbg="#ff2d2d" opacity="90" disableScrolling="true" name="dots"></loader>
+    </div>
 
 
 </div>
@@ -324,6 +328,7 @@ export default {
             propertyPhoto:[],
             roomPhoto:[],
             room_id: this.$route.params.id,
+            isReady: false,
 
 
             top_btn_style: 'p-3 rounded text-yellow-900 bg-yellow-100 hover:bg-yellow-500 hover:text-white transition duration-150 ease-in-out shadow-xl',
@@ -340,6 +345,7 @@ export default {
                 this.landlord_id = this.lists.landlord_id
                 this.propertyPhoto = response.data.data[0].property.photo;
                 this.roomPhoto = response.data.data[0].photo_room;
+                this.isReady=true;
                 console.warn(this.lists.data);
             })
         },

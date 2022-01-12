@@ -119,6 +119,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 //import ReadModal from './Modal_Student.vue';
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -138,6 +145,7 @@ __webpack_require__.r(__webpack_exports__);
       showSize: 10,
       payments: [],
       toggleModal: false,
+      isReady: false,
       updateDetails: {
         room_id: '',
         prop_id: '',
@@ -160,6 +168,7 @@ __webpack_require__.r(__webpack_exports__);
         }
       }).then(function (response) {
         _this.data = response.data.data;
+        _this.isReady = true;
         console.warn(_this.data.data);
       });
     },
@@ -249,12 +258,12 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "p-6 ml-5" }, [
+  return _c("div", { staticClass: "ml-5 " }, [
     _c(
       "div",
       {
         staticClass:
-          "max-w-6xl p-6 mx-auto mt-3  bg-gray-100 rounded-md shadow-xl mb-5",
+          "overflow-x-auto max-w-6xl p-6 mx-auto  bg-gray-100 rounded-md shadow-xl mb-5 rounded-tl-none",
       },
       [
         _c(
@@ -266,307 +275,403 @@ var render = function () {
           [_vm._v("My Bookings")]
         ),
         _vm._v(" "),
-        _c(
-          "div",
-          {
-            staticClass:
-              "flex items-center justify-center w-full overflow-hidden",
-          },
-          [
-            _vm.data.length == 0
-              ? _c("div", [_vm._v(" You don't having any booking yet.")])
-              : _c(
-                  "div",
-                  {
-                    staticClass:
-                      "grid md:grid-cols-2 sm:grid-cols-1 lg:grid-cols-3 xl:grid-cols-3 gap-2 m-5 mb-10",
-                  },
-                  _vm._l(_vm.data, function (item) {
-                    return _c("div", { key: item.id }, [
-                      _c(
+        _vm.isReady == true
+          ? _c("div", [
+              _c(
+                "div",
+                {
+                  staticClass:
+                    "flex items-center justify-center w-full overflow-hidden",
+                },
+                [
+                  _vm.data.length == 0
+                    ? _c(
                         "div",
                         {
                           staticClass:
-                            "bg-white rounded-lg shadow-lg h-full overflow-hidden hover:shadow-lg",
+                            "bg-yellow-200 border-yellow-600 text-gray-600  p-10 mt-3 w-full rounded-md ",
+                          attrs: { role: "alert" },
                         },
                         [
-                          _c("img", {
-                            staticClass: "h-48 w-full object-cover",
-                            attrs: {
-                              src:
-                                "/images/Properties/" +
-                                item.room.photo_room[0].photo_name,
-                            },
-                          }),
-                          _vm._v(" "),
-                          _c(
-                            "div",
-                            { staticClass: "m-2 text-justify text-sm" },
-                            [
-                              _c(
-                                "div",
-                                {
-                                  staticClass:
-                                    "flex flex-wrap items-center -mt-8 pb-3 ",
-                                },
-                                [
-                                  _c("img", {
-                                    staticClass:
-                                      "block h-8 w-8 rounded-full bg-white mt-1 mr-2 ml-3 border-2 border-white",
-                                    attrs: {
-                                      src:
-                                        "/images/Profile/" +
-                                        item.room.property.land.landlord_pic,
-                                      alt: "Profile",
-                                    },
-                                  }),
-                                  _vm._v(" "),
-                                  _c(
-                                    "span",
-                                    {
-                                      staticClass:
-                                        "block text-sm font-bold text-white bg-black bg-opacity-30",
-                                    },
-                                    [
-                                      _vm._v(
-                                        _vm._s(
-                                          item.room.property.land.landlord_name
-                                        )
-                                      ),
-                                    ]
-                                  ),
-                                ]
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "div",
-                                { staticClass: " flex justify-between " },
-                                [
-                                  _c(
-                                    "p",
-                                    {
-                                      staticClass:
-                                        "w-1/2 flex justify-start items-center text-base font-bold text-yellow-700",
-                                    },
-                                    [_vm._v(_vm._s(item.booking_status))]
-                                  ),
-                                  _vm._v(" "),
-                                  _c(
-                                    "p",
-                                    {
-                                      staticClass:
-                                        "w-1/2 flex justify-end text-base font-bold text-yellow-700",
-                                    },
-                                    [
-                                      _vm._v(
-                                        " " +
-                                          _vm._s(
-                                            _vm
-                                              .moment(item.booking_date)
-                                              .format("DD-MM-YYYY")
-                                          )
-                                      ),
-                                    ]
-                                  ),
-                                ]
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "router-link",
-                                {
+                          _c("center", [
+                            _c("p", { staticClass: "font-bold text-base" }, [
+                              _vm._v("You don't having any booking yet."),
+                            ]),
+                          ]),
+                        ],
+                        1
+                      )
+                    : _c(
+                        "div",
+                        {
+                          staticClass:
+                            "grid md:grid-cols-2 sm:grid-cols-1 lg:grid-cols-3 xl:grid-cols-3 gap-2 m-5 mb-10",
+                        },
+                        _vm._l(_vm.data, function (item) {
+                          return _c("div", { key: item.id }, [
+                            _c(
+                              "div",
+                              {
+                                staticClass:
+                                  "bg-white rounded-lg shadow-lg h-full overflow-hidden hover:shadow-lg",
+                              },
+                              [
+                                _c("img", {
+                                  staticClass: "h-48 w-full object-cover",
                                   attrs: {
-                                    to: {
-                                      name: "view_room_list",
-                                      params: { id: item.room.id },
-                                    },
-                                    target: "_blank",
+                                    src:
+                                      "/images/Properties/" +
+                                      item.room.photo_room[0].photo_name,
                                   },
-                                },
-                                [
-                                  _c(
-                                    "h2",
-                                    {
-                                      staticClass:
-                                        " font-bold mb-5 mt-2 text-lg text-center hover:underline hover:text-blue-500",
-                                    },
-                                    [
-                                      _vm._v(
-                                        " " + _vm._s(item.room.listing_name)
-                                      ),
-                                    ]
-                                  ),
-                                ]
-                              ),
-                              _vm._v(" "),
-                              _c("hr", {
-                                staticClass: "border-gray-500  mt-5",
-                              }),
-                              _vm._v(" "),
-                              _c(
-                                "h2",
-                                {
-                                  staticClass:
-                                    " font-bold mb-5 mt-2 text-lg text-center",
-                                },
-                                [_vm._v("Booking Details")]
-                              ),
-                              _vm._v(" "),
-                              _c("div", { staticClass: "mx-5 my-5" }, [
+                                }),
+                                _vm._v(" "),
                                 _c(
-                                  "table",
-                                  { staticClass: " text-gray-600 w-full" },
+                                  "div",
+                                  { staticClass: "m-2 text-justify text-sm" },
                                   [
-                                    _c("tr", [
-                                      _c("td", { staticClass: "text-left " }, [
-                                        _vm._v("Move-in Date"),
-                                      ]),
-                                      _vm._v(" "),
-                                      _c("td", { staticClass: "text-right" }, [
-                                        _vm._v(_vm._s(item.move_in_date)),
-                                      ]),
-                                    ]),
-                                    _vm._v(" "),
-                                    _c("tr", [
-                                      _c("td", { staticClass: "text-left " }, [
-                                        _vm._v("Period Tenancy"),
-                                      ]),
-                                      _vm._v(" "),
-                                      _c("td", { staticClass: "text-right" }, [
-                                        _vm._v(
-                                          _vm._s(item.period_tenancy) +
-                                            " Months"
-                                        ),
-                                      ]),
-                                    ]),
-                                    _vm._v(" "),
-                                    _c("tr", [
-                                      _c("td", { staticClass: "text-left " }, [
-                                        _vm._v("Monthly Rental / Room"),
-                                      ]),
-                                      _vm._v(" "),
-                                      _c("td", { staticClass: "text-right" }, [
-                                        _vm._v(
-                                          "RM " + _vm._s(item.booking_fees)
-                                        ),
-                                      ]),
-                                    ]),
-                                    _vm._v(" "),
-                                    _c("tr", [
-                                      _c("td", { staticClass: "text-left " }, [
-                                        _vm._v("Overdue Penalty"),
-                                      ]),
-                                      _vm._v(" "),
-                                      _c("td", { staticClass: "text-right" }, [
-                                        _vm._v(
-                                          "RM " + _vm._s(item.room.penalty_fees)
-                                        ),
-                                      ]),
-                                    ]),
-                                    _vm._v(" "),
-                                    _c("tr", [
-                                      _c("td", { staticClass: "text-left " }, [
-                                        _vm._v("Max Tenant / Room"),
-                                      ]),
-                                      _vm._v(" "),
-                                      _c("td", { staticClass: "text-right" }, [
-                                        _vm._v(
-                                          _vm._s(item.room.number_of_tenant)
-                                        ),
-                                      ]),
-                                    ]),
-                                    _vm._v(" "),
-                                    _vm._m(0, true),
-                                    _vm._v(" "),
                                     _c(
-                                      "tr",
+                                      "div",
                                       {
                                         staticClass:
-                                          "border-yellow-500 font-bold text-green-400 border-t-2 border-b-2  mt-5",
+                                          "flex flex-wrap items-center -mt-8 pb-3 ",
                                       },
                                       [
-                                        _c(
-                                          "td",
-                                          { staticClass: "text-left " },
-                                          [_vm._v("Paid Booking Fees")]
-                                        ),
+                                        _c("img", {
+                                          staticClass:
+                                            "block h-8 w-8 rounded-full bg-white mt-1 mr-2 ml-3 border-2 border-white",
+                                          attrs: {
+                                            src:
+                                              "/images/Profile/" +
+                                              item.room.property.land
+                                                .landlord_pic,
+                                            alt: "Profile",
+                                          },
+                                        }),
                                         _vm._v(" "),
                                         _c(
-                                          "td",
-                                          { staticClass: "text-right" },
+                                          "span",
+                                          {
+                                            staticClass:
+                                              "block text-sm font-bold text-white bg-black bg-opacity-30",
+                                          },
                                           [
                                             _vm._v(
-                                              "RM " + _vm._s(item.booking_fees)
+                                              _vm._s(
+                                                item.room.property.land
+                                                  .landlord_name
+                                              )
                                             ),
                                           ]
                                         ),
                                       ]
                                     ),
-                                  ]
+                                    _vm._v(" "),
+                                    _c(
+                                      "div",
+                                      { staticClass: " flex justify-between " },
+                                      [
+                                        _c(
+                                          "p",
+                                          {
+                                            staticClass:
+                                              "w-1/2 flex justify-start items-center text-base font-bold text-yellow-700",
+                                          },
+                                          [_vm._v(_vm._s(item.booking_status))]
+                                        ),
+                                        _vm._v(" "),
+                                        _c(
+                                          "p",
+                                          {
+                                            staticClass:
+                                              "w-1/2 flex justify-end text-base font-bold text-yellow-700",
+                                          },
+                                          [
+                                            _vm._v(
+                                              " " +
+                                                _vm._s(
+                                                  _vm
+                                                    .moment(item.booking_date)
+                                                    .format("DD-MM-YYYY")
+                                                )
+                                            ),
+                                          ]
+                                        ),
+                                      ]
+                                    ),
+                                    _vm._v(" "),
+                                    _c(
+                                      "router-link",
+                                      {
+                                        attrs: {
+                                          to: {
+                                            name: "view_room_list",
+                                            params: { id: item.room.id },
+                                          },
+                                          target: "_blank",
+                                        },
+                                      },
+                                      [
+                                        _c(
+                                          "h2",
+                                          {
+                                            staticClass:
+                                              " font-bold mb-5 mt-2 text-lg text-center hover:underline hover:text-blue-500",
+                                          },
+                                          [
+                                            _vm._v(
+                                              " " +
+                                                _vm._s(item.room.listing_name)
+                                            ),
+                                          ]
+                                        ),
+                                      ]
+                                    ),
+                                    _vm._v(" "),
+                                    _c("hr", {
+                                      staticClass: "border-gray-500  mt-5",
+                                    }),
+                                    _vm._v(" "),
+                                    _c(
+                                      "h2",
+                                      {
+                                        staticClass:
+                                          " font-bold mb-5 mt-2 text-lg text-center",
+                                      },
+                                      [_vm._v("Booking Details")]
+                                    ),
+                                    _vm._v(" "),
+                                    _c("div", { staticClass: "mx-5 my-5" }, [
+                                      _c(
+                                        "table",
+                                        {
+                                          staticClass: " text-gray-600 w-full",
+                                        },
+                                        [
+                                          _c("tr", [
+                                            _c(
+                                              "td",
+                                              { staticClass: "text-left " },
+                                              [_vm._v("Move-in Date")]
+                                            ),
+                                            _vm._v(" "),
+                                            _c(
+                                              "td",
+                                              { staticClass: "text-right" },
+                                              [
+                                                _vm._v(
+                                                  _vm._s(item.move_in_date)
+                                                ),
+                                              ]
+                                            ),
+                                          ]),
+                                          _vm._v(" "),
+                                          _c("tr", [
+                                            _c(
+                                              "td",
+                                              { staticClass: "text-left " },
+                                              [_vm._v("Period Tenancy")]
+                                            ),
+                                            _vm._v(" "),
+                                            _c(
+                                              "td",
+                                              { staticClass: "text-right" },
+                                              [
+                                                _vm._v(
+                                                  _vm._s(item.period_tenancy) +
+                                                    " Months"
+                                                ),
+                                              ]
+                                            ),
+                                          ]),
+                                          _vm._v(" "),
+                                          _c("tr", [
+                                            _c(
+                                              "td",
+                                              { staticClass: "text-left " },
+                                              [_vm._v("Monthly Rental / Room")]
+                                            ),
+                                            _vm._v(" "),
+                                            _c(
+                                              "td",
+                                              { staticClass: "text-right" },
+                                              [
+                                                _vm._v(
+                                                  "RM " +
+                                                    _vm._s(item.booking_fees)
+                                                ),
+                                              ]
+                                            ),
+                                          ]),
+                                          _vm._v(" "),
+                                          _c("tr", [
+                                            _c(
+                                              "td",
+                                              { staticClass: "text-left " },
+                                              [_vm._v("Overdue Penalty")]
+                                            ),
+                                            _vm._v(" "),
+                                            _c(
+                                              "td",
+                                              { staticClass: "text-right" },
+                                              [
+                                                _vm._v(
+                                                  "RM " +
+                                                    _vm._s(
+                                                      item.room.penalty_fees
+                                                    )
+                                                ),
+                                              ]
+                                            ),
+                                          ]),
+                                          _vm._v(" "),
+                                          _c("tr", [
+                                            _c(
+                                              "td",
+                                              { staticClass: "text-left " },
+                                              [_vm._v("Max Tenant / Room")]
+                                            ),
+                                            _vm._v(" "),
+                                            _c(
+                                              "td",
+                                              { staticClass: "text-right" },
+                                              [
+                                                _vm._v(
+                                                  _vm._s(
+                                                    item.room.number_of_tenant
+                                                  )
+                                                ),
+                                              ]
+                                            ),
+                                          ]),
+                                          _vm._v(" "),
+                                          _vm._m(0, true),
+                                          _vm._v(" "),
+                                          _c(
+                                            "tr",
+                                            {
+                                              staticClass:
+                                                "border-yellow-500 font-bold text-green-400 border-t-2 border-b-2  mt-5",
+                                            },
+                                            [
+                                              _c(
+                                                "td",
+                                                { staticClass: "text-left " },
+                                                [_vm._v("Paid Booking Fees")]
+                                              ),
+                                              _vm._v(" "),
+                                              _c(
+                                                "td",
+                                                { staticClass: "text-right" },
+                                                [
+                                                  _vm._v(
+                                                    "RM " +
+                                                      _vm._s(item.booking_fees)
+                                                  ),
+                                                ]
+                                              ),
+                                            ]
+                                          ),
+                                        ]
+                                      ),
+                                      _vm._v(" "),
+                                      _vm._m(1, true),
+                                    ]),
+                                    _vm._v(" "),
+                                    item.booking_status == "Booked"
+                                      ? _c(
+                                          "div",
+                                          { staticClass: "flex mx-5 my-5" },
+                                          [
+                                            _c(
+                                              "div",
+                                              {
+                                                staticClass:
+                                                  "w-full text-center ",
+                                              },
+                                              [
+                                                _c(
+                                                  "button",
+                                                  {
+                                                    staticClass:
+                                                      "p-3 font-bold rounded-full text-red-900 bg-red-200 hover:bg-red-500 hover:text-white transition duration-150 ease-in-out shadow-xl w-full",
+                                                    on: {
+                                                      click: function ($event) {
+                                                        return _vm.cancelBooking(
+                                                          item.booking_id,
+                                                          item.move_in_date,
+                                                          item
+                                                        )
+                                                      },
+                                                    },
+                                                  },
+                                                  [_vm._v("Cancel")]
+                                                ),
+                                              ]
+                                            ),
+                                          ]
+                                        )
+                                      : _c(
+                                          "div",
+                                          { staticClass: "flex mx-5 my-5" },
+                                          [
+                                            _c(
+                                              "div",
+                                              {
+                                                staticClass:
+                                                  "w-full text-center ",
+                                              },
+                                              [
+                                                _c(
+                                                  "button",
+                                                  {
+                                                    staticClass:
+                                                      "p-3 font-bold rounded-full text-black bg-gray-100 hover:bg-gray-500 hover:text-white transition duration-150 ease-in-out shadow-xl w-full",
+                                                    on: {
+                                                      click: function ($event) {
+                                                        return _vm.deleteBooking(
+                                                          item.booking_id
+                                                        )
+                                                      },
+                                                    },
+                                                  },
+                                                  [_vm._v("Delete Record")]
+                                                ),
+                                              ]
+                                            ),
+                                          ]
+                                        ),
+                                  ],
+                                  1
                                 ),
-                                _vm._v(" "),
-                                _vm._m(1, true),
-                              ]),
-                              _vm._v(" "),
-                              item.booking_status == "Booked"
-                                ? _c("div", { staticClass: "flex mx-5 my-5" }, [
-                                    _c(
-                                      "div",
-                                      { staticClass: "w-full text-center " },
-                                      [
-                                        _c(
-                                          "button",
-                                          {
-                                            staticClass:
-                                              "p-3 font-bold rounded-full text-red-900 bg-red-200 hover:bg-red-500 hover:text-white transition duration-150 ease-in-out shadow-xl w-full",
-                                            on: {
-                                              click: function ($event) {
-                                                return _vm.cancelBooking(
-                                                  item.booking_id,
-                                                  item.move_in_date,
-                                                  item
-                                                )
-                                              },
-                                            },
-                                          },
-                                          [_vm._v("Cancel")]
-                                        ),
-                                      ]
-                                    ),
-                                  ])
-                                : _c("div", { staticClass: "flex mx-5 my-5" }, [
-                                    _c(
-                                      "div",
-                                      { staticClass: "w-full text-center " },
-                                      [
-                                        _c(
-                                          "button",
-                                          {
-                                            staticClass:
-                                              "p-3 font-bold rounded-full text-black bg-gray-100 hover:bg-gray-500 hover:text-white transition duration-150 ease-in-out shadow-xl w-full",
-                                            on: {
-                                              click: function ($event) {
-                                                return _vm.deleteBooking(
-                                                  item.booking_id
-                                                )
-                                              },
-                                            },
-                                          },
-                                          [_vm._v("Delete Record")]
-                                        ),
-                                      ]
-                                    ),
-                                  ]),
-                            ],
-                            1
-                          ),
-                        ]
+                              ]
+                            ),
+                          ])
+                        }),
+                        0
                       ),
-                    ])
-                  }),
-                  0
-                ),
-          ]
-        ),
+                ]
+              ),
+            ])
+          : _c(
+              "div",
+              [
+                _c("loader", {
+                  attrs: {
+                    object: "#dd7755",
+                    color1: "#e3851c",
+                    color2: "#e82dda",
+                    size: "8",
+                    speed: "1.3",
+                    bg: "#1e2337",
+                    objectbg: "#ff2d2d",
+                    opacity: "90",
+                    disableScrolling: "true",
+                    name: "dots",
+                  },
+                }),
+              ],
+              1
+            ),
       ]
     ),
   ])

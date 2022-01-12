@@ -137,7 +137,7 @@ var render = function () {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _c("div", { staticClass: "w-10/12 mt-10 ml-14 flex flex-col " }, [
+    _c("div", { staticClass: "w-10/12 mt-10 ml-24 flex flex-col " }, [
       _c(
         "div",
         { staticClass: "flex" },

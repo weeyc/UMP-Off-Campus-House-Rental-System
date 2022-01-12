@@ -140,6 +140,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
@@ -168,7 +174,8 @@ __webpack_require__.r(__webpack_exports__);
         pic: '',
         des: ''
       },
-      toggleModal: false
+      toggleModal: false,
+      isReady: false
     };
   },
   methods: {
@@ -177,6 +184,7 @@ __webpack_require__.r(__webpack_exports__);
 
       axios.get('/api/get_profile/' + this.route_id + '/' + this.route_role).then(function (response) {
         _this.userProfile = response.data.data;
+        _this.isReady = true;
         console.warn(_this.userProfile.data);
       })["catch"](function (errors) {
         console.log(errors);
@@ -238,332 +246,59 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    { staticClass: "profile-page" },
-    [
-      _c("section", { staticClass: "relative block h-500-px" }, [
-        _vm._m(0),
-        _vm._v(" "),
-        _c(
+  return _c("div", { staticClass: "profile-page" }, [
+    _vm.isReady == true
+      ? _c(
           "div",
-          {
-            staticClass:
-              "top-auto bottom-0 left-0 right-0 w-full absolute pointer-events-none overflow-hidden h-70-px",
-            staticStyle: { transform: "translateZ(0px)" },
-          },
           [
-            _c(
-              "svg",
-              {
-                staticClass: "absolute bottom-0 overflow-hidden",
-                attrs: {
-                  xmlns: "http://www.w3.org/2000/svg",
-                  preserveAspectRatio: "none",
-                  version: "1.1",
-                  viewBox: "0 0 2560 100",
-                  x: "0",
-                  y: "0",
-                },
-              },
-              [
-                _c("polygon", {
-                  staticClass: "text-blueGray-200 fill-current",
-                  attrs: { points: "2560 0 2560 100 0 100" },
-                }),
-              ]
-            ),
-          ]
-        ),
-      ]),
-      _vm._v(" "),
-      _c("section", { staticClass: "relative py-16 bg-blueGray-200" }, [
-        _c("div", { staticClass: "container mx-auto px-4" }, [
-          _c(
-            "div",
-            {
-              staticClass:
-                "relative flex flex-col min-w-0 break-words w-full mb-6 shadow-xl rounded-lg -mt-64",
-              class: [_vm.background],
-            },
-            [
+            _c("section", { staticClass: "relative block h-500-px" }, [
+              _vm._m(0),
+              _vm._v(" "),
               _c(
                 "div",
-                { staticClass: "px-6" },
+                {
+                  staticClass:
+                    "top-auto bottom-0 left-0 right-0 w-full absolute pointer-events-none overflow-hidden h-70-px",
+                  staticStyle: { transform: "translateZ(0px)" },
+                },
                 [
-                  _c("div", { staticClass: "flex flex-wrap justify-center" }, [
-                    _c(
-                      "div",
-                      {
-                        staticClass:
-                          "w-full px-4 lg:order-1 flex justify-center",
-                      },
-                      _vm._l(_vm.userProfile, function (user) {
-                        return _c(
-                          "div",
-                          { key: user.id, staticClass: "relative" },
-                          [
-                            _c("img", {
-                              staticClass:
-                                "shadow-xl rounded-full h-48 w-48 object-cover  align-middle border-4 absolute -m-16 -ml-10 lg:-ml-16 max-w-200-px",
-                              class: [_vm.borderColor],
-                              attrs: {
-                                src: "/images/Profile/" + user.pic,
-                                alt: "Profile",
-                              },
-                            }),
-                          ]
-                        )
-                      }),
-                      0
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "div",
-                      {
-                        staticClass:
-                          "w-full px-4 lg:order-2 lg:text-right lg:self-center",
-                      },
-                      _vm._l(_vm.userProfile, function (user) {
-                        return _c(
-                          "div",
-                          {
-                            key: user.id,
-                            staticClass: "py-6 px-3 mt-32 sm:mt-0",
-                          },
-                          [
-                            _vm.role == 1
-                              ? _c(
-                                  "div",
-                                  [
-                                    _c(
-                                      "router-link",
-                                      {
-                                        staticClass:
-                                          "uppercase text-white font-bold hover:shadow-md shadow text-base px-6 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1 ease-linear transition-all duration-150",
-                                        class: [_vm.buttonColor],
-                                        attrs: {
-                                          to: {
-                                            name: "chat_std",
-                                            params: {
-                                              user_role: user.role,
-                                              id: user.id,
-                                              name: user.name,
-                                              photo: user.pic,
-                                            },
-                                          },
-                                          type: "button",
-                                        },
-                                      },
-                                      [
-                                        _vm._v(
-                                          "\n                    Chat\n                    "
-                                        ),
-                                      ]
-                                    ),
-                                  ],
-                                  1
-                                )
-                              : _vm._e(),
-                            _vm._v(" "),
-                            _vm.role == 2
-                              ? _c(
-                                  "div",
-                                  [
-                                    _c(
-                                      "router-link",
-                                      {
-                                        staticClass:
-                                          "uppercase text-white font-bold hover:shadow-md shadow text-base px-6 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1 ease-linear transition-all duration-150",
-                                        class: [_vm.buttonColor],
-                                        attrs: {
-                                          to: {
-                                            name: "chat_landlord",
-                                            params: {
-                                              user_role: user.role,
-                                              id: user.id,
-                                              name: user.name,
-                                              photo: user.pic,
-                                            },
-                                          },
-                                          type: "button",
-                                        },
-                                      },
-                                      [
-                                        _vm._v(
-                                          "\n                    Chat\n                    "
-                                        ),
-                                      ]
-                                    ),
-                                  ],
-                                  1
-                                )
-                              : _vm._e(),
-                            _vm._v(" "),
-                            _vm.role == 3
-                              ? _c(
-                                  "div",
-                                  [
-                                    _c(
-                                      "router-link",
-                                      {
-                                        staticClass:
-                                          "uppercase text-white font-bold hover:shadow-md shadow text-base px-6 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1 ease-linear transition-all duration-150",
-                                        class: [_vm.buttonColor],
-                                        attrs: {
-                                          to: {
-                                            name: "chat_staff",
-                                            params: {
-                                              user_role: user.role,
-                                              id: user.id,
-                                              name: user.name,
-                                              photo: user.pic,
-                                            },
-                                          },
-                                          type: "button",
-                                        },
-                                      },
-                                      [
-                                        _vm._v(
-                                          "\n                    Chat\n                    "
-                                        ),
-                                      ]
-                                    ),
-                                  ],
-                                  1
-                                )
-                              : _vm._e(),
-                          ]
-                        )
-                      }),
-                      0
-                    ),
-                    _vm._v(" "),
-                    _vm._m(1),
-                  ]),
-                  _vm._v(" "),
                   _c(
-                    "div",
-                    { staticClass: "text-center mt-12" },
-                    [
-                      _c(
-                        "h3",
-                        {
-                          staticClass:
-                            "text-4xl font-semibold leading-normal text-blueGray-700 mb-2",
-                        },
-                        _vm._l(_vm.userProfile, function (user, i) {
-                          return _c("div", { key: i }, [
-                            _vm._v(
-                              "\n                      " +
-                                _vm._s(user.name) +
-                                "\n                    "
-                            ),
-                          ])
-                        }),
-                        0
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "div",
-                        {
-                          staticClass:
-                            "text-sm leading-normal mt-0 mb-2 text-blueGray-400 font-bold uppercase",
-                        },
-                        [
-                          _c("i", {
-                            staticClass:
-                              "fas fa-user-cog mr-2 text-lg text-blueGray-400",
-                          }),
-                          _vm._v(
-                            "\n                    " +
-                              _vm._s(_vm.userRole) +
-                              "\n            "
-                          ),
-                        ]
-                      ),
-                      _vm._v(" "),
-                      _vm._l(_vm.userProfile, function (user, i) {
-                        return _c(
-                          "div",
-                          {
-                            key: "A" + i,
-                            staticClass: " px-4 mb-2 text-blueGray-600 mt-10",
-                          },
-                          [
-                            _c("i", {
-                              staticClass:
-                                "fas fa-id-card mr-2 text-lg text-blueGray-400",
-                            }),
-                            _vm._v("  " + _vm._s(user.id) + "\n            "),
-                          ]
-                        )
-                      }),
-                      _vm._v(" "),
-                      _vm._l(_vm.userProfile, function (user, i) {
-                        return _c(
-                          "div",
-                          {
-                            key: "B" + i,
-                            staticClass: "  mb-2 text-blueGray-600",
-                          },
-                          [
-                            _c("i", {
-                              staticClass:
-                                "fas fa-venus-mars mr-2 text-lg text-blueGray-400",
-                            }),
-                            _vm._v(
-                              "  " + _vm._s(user.gender) + "\n            "
-                            ),
-                          ]
-                        )
-                      }),
-                      _vm._v(" "),
-                      _vm._l(_vm.userProfile, function (user, i) {
-                        return _c(
-                          "div",
-                          {
-                            key: "C" + i,
-                            staticClass: " mb-2 text-blueGray-600",
-                          },
-                          [
-                            _c("i", {
-                              staticClass:
-                                "fas fa-phone-alt mr-2 text-lg text-blueGray-400",
-                            }),
-                            _vm._v(_vm._s(user.phone_no) + "\n            "),
-                          ]
-                        )
-                      }),
-                      _vm._v(" "),
-                      _vm._l(_vm.userProfile, function (user, i) {
-                        return _c(
-                          "div",
-                          {
-                            key: "D" + i,
-                            staticClass: "mb-2 text-blueGray-600",
-                          },
-                          [
-                            _c("i", {
-                              staticClass:
-                                "fas fa-envelope mr-2 text-lg text-blueGray-400",
-                            }),
-                            _vm._v(_vm._s(user.email) + "\n            "),
-                          ]
-                        )
-                      }),
-                    ],
-                    2
-                  ),
-                  _vm._v(" "),
-                  _vm._l(_vm.userProfile, function (user, i) {
-                    return _c(
-                      "div",
-                      {
-                        key: "E" + i,
-                        staticClass:
-                          "mt-3 py-5 border-t border-blueGray-200 text-center",
+                    "svg",
+                    {
+                      staticClass: "absolute bottom-0 overflow-hidden",
+                      attrs: {
+                        xmlns: "http://www.w3.org/2000/svg",
+                        preserveAspectRatio: "none",
+                        version: "1.1",
+                        viewBox: "0 0 2560 100",
+                        x: "0",
+                        y: "0",
                       },
+                    },
+                    [
+                      _c("polygon", {
+                        staticClass: "text-blueGray-200 fill-current",
+                        attrs: { points: "2560 0 2560 100 0 100" },
+                      }),
+                    ]
+                  ),
+                ]
+              ),
+            ]),
+            _vm._v(" "),
+            _c("section", { staticClass: "relative py-16 bg-blueGray-200" }, [
+              _c("div", { staticClass: "container mx-auto px-4" }, [
+                _c(
+                  "div",
+                  {
+                    staticClass:
+                      "relative flex flex-col min-w-0 break-words w-full mb-6 shadow-xl rounded-lg -mt-64",
+                    class: [_vm.background],
+                  },
+                  [
+                    _c(
+                      "div",
+                      { staticClass: "px-6" },
                       [
                         _c(
                           "div",
@@ -571,53 +306,365 @@ var render = function () {
                           [
                             _c(
                               "div",
-                              { staticClass: "w-full lg:w-9/12 px-4" },
-                              [
-                                _c(
-                                  "p",
+                              {
+                                staticClass:
+                                  "w-full px-4 lg:order-1 flex justify-center",
+                              },
+                              _vm._l(_vm.userProfile, function (user) {
+                                return _c(
+                                  "div",
+                                  { key: user.id, staticClass: "relative" },
+                                  [
+                                    _c("img", {
+                                      staticClass:
+                                        "shadow-xl rounded-full h-48 w-48 object-cover  align-middle border-4 absolute -m-16 -ml-10 lg:-ml-16 max-w-200-px",
+                                      class: [_vm.borderColor],
+                                      attrs: {
+                                        src: "/images/Profile/" + user.pic,
+                                        alt: "Profile",
+                                      },
+                                    }),
+                                  ]
+                                )
+                              }),
+                              0
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "div",
+                              {
+                                staticClass:
+                                  "w-full px-4 lg:order-2 lg:text-right lg:self-center",
+                              },
+                              _vm._l(_vm.userProfile, function (user) {
+                                return _c(
+                                  "div",
                                   {
-                                    staticClass:
-                                      "mb-4 text-lg leading-relaxed text-blueGray-700",
+                                    key: user.id,
+                                    staticClass: "py-6 px-3 mt-32 sm:mt-0",
                                   },
                                   [
-                                    _vm._v(
-                                      "\n                     " +
-                                        _vm._s(user.des) +
-                                        "\n                "
-                                    ),
+                                    _vm.role == 1
+                                      ? _c(
+                                          "div",
+                                          [
+                                            _c(
+                                              "router-link",
+                                              {
+                                                staticClass:
+                                                  "uppercase text-white font-bold hover:shadow-md shadow text-base px-6 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1 ease-linear transition-all duration-150",
+                                                class: [_vm.buttonColor],
+                                                attrs: {
+                                                  to: {
+                                                    name: "chat_std",
+                                                    params: {
+                                                      user_role: user.role,
+                                                      id: user.id,
+                                                      name: user.name,
+                                                      photo: user.pic,
+                                                    },
+                                                  },
+                                                  type: "button",
+                                                },
+                                              },
+                                              [
+                                                _vm._v(
+                                                  "\n                    Chat\n                    "
+                                                ),
+                                              ]
+                                            ),
+                                          ],
+                                          1
+                                        )
+                                      : _vm._e(),
+                                    _vm._v(" "),
+                                    _vm.role == 2
+                                      ? _c(
+                                          "div",
+                                          [
+                                            _c(
+                                              "router-link",
+                                              {
+                                                staticClass:
+                                                  "uppercase text-white font-bold hover:shadow-md shadow text-base px-6 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1 ease-linear transition-all duration-150",
+                                                class: [_vm.buttonColor],
+                                                attrs: {
+                                                  to: {
+                                                    name: "chat_landlord",
+                                                    params: {
+                                                      user_role: user.role,
+                                                      id: user.id,
+                                                      name: user.name,
+                                                      photo: user.pic,
+                                                    },
+                                                  },
+                                                  type: "button",
+                                                },
+                                              },
+                                              [
+                                                _vm._v(
+                                                  "\n                    Chat\n                    "
+                                                ),
+                                              ]
+                                            ),
+                                          ],
+                                          1
+                                        )
+                                      : _vm._e(),
+                                    _vm._v(" "),
+                                    _vm.role == 3
+                                      ? _c(
+                                          "div",
+                                          [
+                                            _c(
+                                              "router-link",
+                                              {
+                                                staticClass:
+                                                  "uppercase text-white font-bold hover:shadow-md shadow text-base px-6 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1 ease-linear transition-all duration-150",
+                                                class: [_vm.buttonColor],
+                                                attrs: {
+                                                  to: {
+                                                    name: "chat_staff",
+                                                    params: {
+                                                      user_role: user.role,
+                                                      id: user.id,
+                                                      name: user.name,
+                                                      photo: user.pic,
+                                                    },
+                                                  },
+                                                  type: "button",
+                                                },
+                                              },
+                                              [
+                                                _vm._v(
+                                                  "\n                    Chat\n                    "
+                                                ),
+                                              ]
+                                            ),
+                                          ],
+                                          1
+                                        )
+                                      : _vm._e(),
                                   ]
+                                )
+                              }),
+                              0
+                            ),
+                            _vm._v(" "),
+                            _vm._m(1),
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          { staticClass: "text-center mt-12" },
+                          [
+                            _c(
+                              "h3",
+                              {
+                                staticClass:
+                                  "text-4xl font-semibold leading-normal text-blueGray-800 mb-2",
+                              },
+                              _vm._l(_vm.userProfile, function (user, i) {
+                                return _c("div", { key: i }, [
+                                  _vm._v(
+                                    "\n                      " +
+                                      _vm._s(user.name) +
+                                      "\n                    "
+                                  ),
+                                ])
+                              }),
+                              0
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "div",
+                              {
+                                staticClass:
+                                  "text-sm leading-normal mt-0 mb-2 text-blueGray-700 font-bold uppercase",
+                              },
+                              [
+                                _c("i", {
+                                  staticClass:
+                                    "fas fa-user-cog mr-2 text-lg text-blueGray-700",
+                                }),
+                                _vm._v(
+                                  "\n                    " +
+                                    _vm._s(_vm.userRole) +
+                                    "\n            "
                                 ),
                               ]
                             ),
-                          ]
+                            _vm._v(" "),
+                            _vm._l(_vm.userProfile, function (user, i) {
+                              return _c(
+                                "div",
+                                {
+                                  key: "A" + i,
+                                  staticClass:
+                                    " px-4 mb-2 text-blueGray-700 mt-10",
+                                },
+                                [
+                                  _c("i", {
+                                    staticClass:
+                                      "fas fa-id-card mr-2 text-lg text-blueGray-700",
+                                  }),
+                                  _vm._v(
+                                    "  " + _vm._s(user.id) + "\n            "
+                                  ),
+                                ]
+                              )
+                            }),
+                            _vm._v(" "),
+                            _vm._l(_vm.userProfile, function (user, i) {
+                              return _c(
+                                "div",
+                                {
+                                  key: "B" + i,
+                                  staticClass:
+                                    "  mb-2 text-blueGray-700 capitalize",
+                                },
+                                [
+                                  _c("i", {
+                                    staticClass:
+                                      "fas fa-venus-mars mr-2 text-lg text-blueGray-700 ",
+                                  }),
+                                  _vm._v(
+                                    "  " +
+                                      _vm._s(user.gender) +
+                                      "\n            "
+                                  ),
+                                ]
+                              )
+                            }),
+                            _vm._v(" "),
+                            _vm._l(_vm.userProfile, function (user, i) {
+                              return _c(
+                                "div",
+                                {
+                                  key: "C" + i,
+                                  staticClass: " mb-2 text-blueGray-700",
+                                },
+                                [
+                                  _c("i", {
+                                    staticClass:
+                                      "fas fa-phone-alt mr-2 text-lg text-blueGray-700",
+                                  }),
+                                  _vm._v(
+                                    _vm._s(user.phone_no) + "\n            "
+                                  ),
+                                ]
+                              )
+                            }),
+                            _vm._v(" "),
+                            _vm._l(_vm.userProfile, function (user, i) {
+                              return _c(
+                                "div",
+                                {
+                                  key: "D" + i,
+                                  staticClass: "mb-2 text-blueGray-700",
+                                },
+                                [
+                                  _c("i", {
+                                    staticClass:
+                                      "fas fa-envelope mr-2 text-lg text-blueGray-700",
+                                  }),
+                                  _vm._v(_vm._s(user.email) + "\n            "),
+                                ]
+                              )
+                            }),
+                          ],
+                          2
                         ),
-                      ]
-                    )
-                  }),
-                ],
-                2
-              ),
-            ]
-          ),
-        ]),
-        _vm._v(" "),
-        _vm._m(2),
-      ]),
-      _vm._v(" "),
-      _vm.toggleModal
-        ? _c("EditModal", {
-            attrs: {
-              toggle: _vm.toggleModal,
-              form: _vm.form,
-              user_id: _vm.user_id,
-              role: _vm.role,
-            },
-            on: { refreshData: _vm.getProfile, closeModal: _vm.closeEditModal },
-          })
-        : _vm._e(),
-    ],
-    1
-  )
+                        _vm._v(" "),
+                        _vm._l(_vm.userProfile, function (user, i) {
+                          return _c(
+                            "div",
+                            {
+                              key: "E" + i,
+                              staticClass:
+                                "mt-3 py-5 border-t border-blueGray-300 text-center",
+                            },
+                            [
+                              _c(
+                                "div",
+                                {
+                                  staticClass: "flex flex-wrap justify-center",
+                                },
+                                [
+                                  _c(
+                                    "div",
+                                    { staticClass: "w-full lg:w-9/12 px-4" },
+                                    [
+                                      _c(
+                                        "p",
+                                        {
+                                          staticClass:
+                                            "mb-4 text-lg leading-relaxed text-blueGray-700",
+                                        },
+                                        [
+                                          _vm._v(
+                                            "\n                     " +
+                                              _vm._s(user.des) +
+                                              "\n                "
+                                          ),
+                                        ]
+                                      ),
+                                    ]
+                                  ),
+                                ]
+                              ),
+                            ]
+                          )
+                        }),
+                      ],
+                      2
+                    ),
+                  ]
+                ),
+              ]),
+              _vm._v(" "),
+              _vm._m(2),
+            ]),
+            _vm._v(" "),
+            _vm.toggleModal
+              ? _c("EditModal", {
+                  attrs: {
+                    toggle: _vm.toggleModal,
+                    form: _vm.form,
+                    user_id: _vm.user_id,
+                    role: _vm.role,
+                  },
+                  on: {
+                    refreshData: _vm.getProfile,
+                    closeModal: _vm.closeEditModal,
+                  },
+                })
+              : _vm._e(),
+          ],
+          1
+        )
+      : _c(
+          "div",
+          [
+            _c("loader", {
+              attrs: {
+                object: "#4491ee",
+                color1: "#e3851c",
+                color2: "#e82dda",
+                size: "8",
+                speed: "1.3",
+                bg: "#1e2337",
+                objectbg: "#ff2d2d",
+                opacity: "90",
+                disableScrolling: "true",
+                name: "circular",
+              },
+            }),
+          ],
+          1
+        ),
+  ])
 }
 var staticRenderFns = [
   function () {

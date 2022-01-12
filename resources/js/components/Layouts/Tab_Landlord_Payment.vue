@@ -1,6 +1,6 @@
 <template>
  <div>
-  <div class="w-10/12 mt-10 ml-14 flex flex-col ">
+  <div class="w-10/12 mt-10 ml-24 flex flex-col ">
     <div class="flex">
         <router-link  :to="{name: 'payment_land'}"
             exact-active-class="exact-active" class="flex items-center h-12 px-2 py-2 text-center text-gray-700 bg-blue-200   border-b border-gray-100 rounded-t-lg sm:px-4  -px-1 whitespace-nowrap focus:outline-none hover:text-blue-700">

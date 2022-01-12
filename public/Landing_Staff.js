@@ -285,12 +285,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     user_id: Number,
@@ -303,7 +297,11 @@ __webpack_require__.r(__webpack_exports__);
       tenants: 0,
       vacant: 0,
       totals: 0.00,
-      isReady: false
+      isReady: false,
+      ready1: false,
+      ready2: false,
+      ready3: false,
+      ready4: false
     };
   },
   methods: {
@@ -320,28 +318,28 @@ __webpack_require__.r(__webpack_exports__);
       var _this2 = this;
 
       axios.get('/api/getpropertiesCount/' + this.user_id).then(function (response) {
-        _this2.properties = response.data;
+        _this2.ready1 = true, _this2.properties = response.data;
       });
     },
     gettenantsCount: function gettenantsCount() {
       var _this3 = this;
 
       axios.get('/api/gettenantsCount/' + this.user_id).then(function (response) {
-        _this3.tenants = response.data;
+        _this3.ready2 = true, _this3.tenants = response.data;
       });
     },
     getvacantCount: function getvacantCount() {
       var _this4 = this;
 
       axios.get('/api/getvacantCount/' + this.user_id).then(function (response) {
-        _this4.vacant = response.data;
+        _this4.ready3 = true, _this4.vacant = response.data;
       });
     },
     gettotalsCount: function gettotalsCount() {
       var _this5 = this;
 
       axios.get('/api/gettotalsCount/' + this.user_id).then(function (response) {
-        _this5.totals = response.data;
+        _this5.ready4 = true, _this5.totals = response.data;
       });
     },
     theFormat: function theFormat(number) {
@@ -668,6 +666,15 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
@@ -681,7 +688,12 @@ __webpack_require__.r(__webpack_exports__);
       tenants: 0,
       rooms: 0,
       landlords: 0,
-      unverified: []
+      unverified: [],
+      isReady: false,
+      ready1: false,
+      ready2: false,
+      ready3: false,
+      ready4: false
     };
   },
   methods: {
@@ -689,6 +701,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       axios.get('/api/getallpropertyCount').then(function (response) {
+        _this.isReady = true;
         _this.properties = response.data;
       });
     },
@@ -696,28 +709,28 @@ __webpack_require__.r(__webpack_exports__);
       var _this2 = this;
 
       axios.get('/api/getalltenantsCount').then(function (response) {
-        _this2.tenants = response.data;
+        _this2.ready1 = true, _this2.tenants = response.data;
       });
     },
     getallroomCount: function getallroomCount() {
       var _this3 = this;
 
       axios.get('/api/getallroomCount').then(function (response) {
-        _this3.rooms = response.data;
+        _this3.ready2 = true, _this3.rooms = response.data;
       });
     },
     getalllandlordCount: function getalllandlordCount() {
       var _this4 = this;
 
       axios.get('/api/getalllandlordCount').then(function (response) {
-        _this4.landlords = response.data;
+        _this4.ready3 = true, _this4.landlords = response.data;
       });
     },
     get_properties_list_Unverified: function get_properties_list_Unverified() {
       var _this5 = this;
 
       axios.get('/api/get_properties_list_Unverified?land=1').then(function (response) {
-        _this5.unverified = response.data.data;
+        _this5.ready4 = true, _this5.unverified = response.data.data;
       });
     },
     theFormat: function theFormat(number) {
@@ -805,21 +818,27 @@ var render = function () {
                           _c(
                             "svg",
                             {
-                              staticClass: "h-7 w-7 text-green-400",
+                              staticClass: "bi bi-house-fill text-green-400",
                               attrs: {
                                 xmlns: "http://www.w3.org/2000/svg",
-                                fill: "none",
-                                viewBox: "0 0 24 24",
-                                stroke: "currentColor",
+                                width: "28",
+                                height: "28",
+                                fill: "currentColor",
+                                viewBox: "0 0 16 16",
                               },
                             },
                             [
                               _c("path", {
                                 attrs: {
-                                  "stroke-linecap": "round",
-                                  "stroke-linejoin": "round",
-                                  "stroke-width": "2",
-                                  d: "M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z",
+                                  "fill-rule": "evenodd",
+                                  d: "m8 3.293 6 6V13.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5V9.293l6-6zm5-.793V6l-2-2V2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5z",
+                                },
+                              }),
+                              _vm._v(" "),
+                              _c("path", {
+                                attrs: {
+                                  "fill-rule": "evenodd",
+                                  d: "M7.293 1.5a1 1 0 0 1 1.414 0l6.647 6.646a.5.5 0 0 1-.708.708L8 2.207 1.354 8.854a.5.5 0 1 1-.708-.708L7.293 1.5z",
                                 },
                               }),
                             ]
@@ -837,17 +856,28 @@ var render = function () {
                                   "mt-3 text-3xl font-bold leading-8",
                               },
                               [
-                                _c("number", {
-                                  ref: "number1",
-                                  attrs: {
-                                    from: 0,
-                                    to: _vm.properties,
-                                    duration: 1,
-                                    easing: "Power1.easeOut",
-                                  },
-                                }),
-                              ],
-                              1
+                                _vm.isReady == true &&
+                                _vm.ready1 == true &&
+                                _vm.ready2 == true &&
+                                _vm.ready3 == true &&
+                                _vm.ready4 == true
+                                  ? _c(
+                                      "div",
+                                      [
+                                        _c("number", {
+                                          ref: "number1",
+                                          attrs: {
+                                            from: 0,
+                                            to: _vm.properties,
+                                            duration: 1,
+                                            easing: "Power1.easeOut",
+                                          },
+                                        }),
+                                      ],
+                                      1
+                                    )
+                                  : _vm._e(),
+                              ]
                             ),
                             _vm._v(" "),
                             _c(
@@ -874,21 +904,32 @@ var render = function () {
                           _c(
                             "svg",
                             {
-                              staticClass: "h-7 w-7 text-yellow-400",
+                              staticClass: "bi bi-people-fill text-yellow-400",
                               attrs: {
                                 xmlns: "http://www.w3.org/2000/svg",
-                                fill: "none",
-                                viewBox: "0 0 24 24",
-                                stroke: "currentColor",
+                                width: "28",
+                                height: "28",
+                                fill: "currentColor",
+                                viewBox: "0 0 16 16",
                               },
                             },
                             [
                               _c("path", {
                                 attrs: {
-                                  "stroke-linecap": "round",
-                                  "stroke-linejoin": "round",
-                                  "stroke-width": "2",
-                                  d: "M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z",
+                                  d: "M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H7zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z",
+                                },
+                              }),
+                              _vm._v(" "),
+                              _c("path", {
+                                attrs: {
+                                  "fill-rule": "evenodd",
+                                  d: "M5.216 14A2.238 2.238 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.325 6.325 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1h4.216z",
+                                },
+                              }),
+                              _vm._v(" "),
+                              _c("path", {
+                                attrs: {
+                                  d: "M4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z",
                                 },
                               }),
                             ]
@@ -906,25 +947,27 @@ var render = function () {
                                   "mt-3 text-3xl font-bold leading-8",
                               },
                               [
-                                _c(
-                                  "div",
-                                  {
-                                    staticClass:
-                                      "mt-3 text-3xl font-bold leading-8",
-                                  },
-                                  [
-                                    _c("number", {
-                                      ref: "number2",
-                                      attrs: {
-                                        from: 0,
-                                        to: _vm.tenants,
-                                        duration: 0.5,
-                                        easing: "Power1.easeOut",
-                                      },
-                                    }),
-                                  ],
-                                  1
-                                ),
+                                _vm.isReady == true &&
+                                _vm.ready1 == true &&
+                                _vm.ready2 == true &&
+                                _vm.ready3 == true &&
+                                _vm.ready4 == true
+                                  ? _c(
+                                      "div",
+                                      [
+                                        _c("number", {
+                                          ref: "number2",
+                                          attrs: {
+                                            from: 0,
+                                            to: _vm.tenants,
+                                            duration: 0.5,
+                                            easing: "Power1.easeOut",
+                                          },
+                                        }),
+                                      ],
+                                      1
+                                    )
+                                  : _vm._e(),
                               ]
                             ),
                             _vm._v(" "),
@@ -952,30 +995,19 @@ var render = function () {
                           _c(
                             "svg",
                             {
-                              staticClass: "h-7 w-7 text-pink-600",
+                              staticClass: "bi bi-door-open-fill text-pink-400",
                               attrs: {
                                 xmlns: "http://www.w3.org/2000/svg",
-                                fill: "none",
-                                viewBox: "0 0 24 24",
-                                stroke: "currentColor",
+                                width: "28",
+                                height: "28",
+                                fill: "currentColor",
+                                viewBox: "0 0 16 16",
                               },
                             },
                             [
                               _c("path", {
                                 attrs: {
-                                  "stroke-linecap": "round",
-                                  "stroke-linejoin": "round",
-                                  "stroke-width": "2",
-                                  d: "M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z",
-                                },
-                              }),
-                              _vm._v(" "),
-                              _c("path", {
-                                attrs: {
-                                  "stroke-linecap": "round",
-                                  "stroke-linejoin": "round",
-                                  "stroke-width": "2",
-                                  d: "M20.488 9H15V3.512A9.025 9.025 0 0120.488 9z",
+                                  d: "M1.5 15a.5.5 0 0 0 0 1h13a.5.5 0 0 0 0-1H13V2.5A1.5 1.5 0 0 0 11.5 1H11V.5a.5.5 0 0 0-.57-.495l-7 1A.5.5 0 0 0 3 1.5V15H1.5zM11 2h.5a.5.5 0 0 1 .5.5V15h-1V2zm-2.5 8c-.276 0-.5-.448-.5-1s.224-1 .5-1 .5.448.5 1-.224 1-.5 1z",
                                 },
                               }),
                             ]
@@ -993,25 +1025,27 @@ var render = function () {
                                   "mt-3 text-3xl font-bold leading-8",
                               },
                               [
-                                _c(
-                                  "div",
-                                  {
-                                    staticClass:
-                                      "mt-3 text-3xl font-bold leading-8",
-                                  },
-                                  [
-                                    _c("number", {
-                                      ref: "number3",
-                                      attrs: {
-                                        from: 0,
-                                        to: _vm.vacant,
-                                        duration: 0.5,
-                                        easing: "Power1.easeOut",
-                                      },
-                                    }),
-                                  ],
-                                  1
-                                ),
+                                _vm.isReady == true &&
+                                _vm.ready1 == true &&
+                                _vm.ready2 == true &&
+                                _vm.ready3 == true &&
+                                _vm.ready4 == true
+                                  ? _c(
+                                      "div",
+                                      [
+                                        _c("number", {
+                                          ref: "number3",
+                                          attrs: {
+                                            from: 0,
+                                            to: _vm.vacant,
+                                            duration: 0.5,
+                                            easing: "Power1.easeOut",
+                                          },
+                                        }),
+                                      ],
+                                      1
+                                    )
+                                  : _vm._e(),
                               ]
                             ),
                             _vm._v(" "),
@@ -1039,21 +1073,25 @@ var render = function () {
                           _c(
                             "svg",
                             {
-                              staticClass: "h-7 w-7 text-blue-400",
+                              staticClass: "bi bi-wallet-fill text-blue-400",
                               attrs: {
                                 xmlns: "http://www.w3.org/2000/svg",
-                                fill: "none",
-                                viewBox: "0 0 24 24",
-                                stroke: "currentColor",
+                                width: "28",
+                                height: "28",
+                                fill: "currentColor",
+                                viewBox: "0 0 16 16",
                               },
                             },
                             [
                               _c("path", {
                                 attrs: {
-                                  "stroke-linecap": "round",
-                                  "stroke-linejoin": "round",
-                                  "stroke-width": "2",
-                                  d: "M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z",
+                                  d: "M1.5 2A1.5 1.5 0 0 0 0 3.5v2h6a.5.5 0 0 1 .5.5c0 .253.08.644.306.958.207.288.557.542 1.194.542.637 0 .987-.254 1.194-.542.226-.314.306-.705.306-.958a.5.5 0 0 1 .5-.5h6v-2A1.5 1.5 0 0 0 14.5 2h-13z",
+                                },
+                              }),
+                              _vm._v(" "),
+                              _c("path", {
+                                attrs: {
+                                  d: "M16 6.5h-5.551a2.678 2.678 0 0 1-.443 1.042C9.613 8.088 8.963 8.5 8 8.5c-.963 0-1.613-.412-2.006-.958A2.679 2.679 0 0 1 5.551 6.5H0v6A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-6z",
                                 },
                               }),
                             ]
@@ -1071,26 +1109,28 @@ var render = function () {
                                   "mt-3 text-3xl font-bold leading-8",
                               },
                               [
-                                _c(
-                                  "div",
-                                  {
-                                    staticClass:
-                                      "mt-3 text-3xl font-bold leading-8",
-                                  },
-                                  [
-                                    _c("number", {
-                                      ref: "number4",
-                                      attrs: {
-                                        from: 0,
-                                        to: _vm.totals,
-                                        format: _vm.theFormat,
-                                        duration: 0.5,
-                                        easing: "Power1.easeOut",
-                                      },
-                                    }),
-                                  ],
-                                  1
-                                ),
+                                _vm.isReady == true &&
+                                _vm.ready1 == true &&
+                                _vm.ready2 == true &&
+                                _vm.ready3 == true &&
+                                _vm.ready4 == true
+                                  ? _c(
+                                      "div",
+                                      [
+                                        _c("number", {
+                                          ref: "number4",
+                                          attrs: {
+                                            from: 0,
+                                            to: _vm.totals,
+                                            format: _vm.theFormat,
+                                            duration: 0.5,
+                                            easing: "Power1.easeOut",
+                                          },
+                                        }),
+                                      ],
+                                      1
+                                    )
+                                  : _vm._e(),
                               ]
                             ),
                             _vm._v(" "),
@@ -1120,7 +1160,11 @@ var render = function () {
                           _vm._v("My Rooms Listings"),
                         ]),
                         _vm._v(" "),
-                        _vm.isReady == true
+                        _vm.isReady == true &&
+                        _vm.ready1 == true &&
+                        _vm.ready2 == true &&
+                        _vm.ready3 == true &&
+                        _vm.ready4 == true
                           ? _c("div", [
                               _c("div", { staticClass: "mt-4" }, [
                                 _c("div", { staticClass: "flex flex-col" }, [
@@ -1191,7 +1235,7 @@ var render = function () {
                                                                         "cursor-pointer hover:underline",
                                                                       attrs: {
                                                                         to: {
-                                                                          name: "view_room_list",
+                                                                          name: "view_room_list_land",
                                                                           params:
                                                                             {
                                                                               id: room.id,
@@ -1793,17 +1837,28 @@ var render = function () {
                                   "mt-3 text-3xl font-bold leading-8",
                               },
                               [
-                                _c("number", {
-                                  ref: "number1",
-                                  attrs: {
-                                    from: 0,
-                                    to: _vm.properties,
-                                    duration: 1,
-                                    easing: "Power1.easeOut",
-                                  },
-                                }),
-                              ],
-                              1
+                                _vm.isReady == true &&
+                                _vm.ready1 == true &&
+                                _vm.ready2 == true &&
+                                _vm.ready3 == true &&
+                                _vm.ready4 == true
+                                  ? _c(
+                                      "div",
+                                      [
+                                        _c("number", {
+                                          ref: "number1",
+                                          attrs: {
+                                            from: 0,
+                                            to: _vm.properties,
+                                            duration: 1,
+                                            easing: "Power1.easeOut",
+                                          },
+                                        }),
+                                      ],
+                                      1
+                                    )
+                                  : _vm._e(),
+                              ]
                             ),
                             _vm._v(" "),
                             _c(
@@ -1861,25 +1916,27 @@ var render = function () {
                                   "mt-3 text-3xl font-bold leading-8",
                               },
                               [
-                                _c(
-                                  "div",
-                                  {
-                                    staticClass:
-                                      "mt-3 text-3xl font-bold leading-8",
-                                  },
-                                  [
-                                    _c("number", {
-                                      ref: "number2",
-                                      attrs: {
-                                        from: 0,
-                                        to: _vm.tenants,
-                                        duration: 1,
-                                        easing: "Power1.easeOut",
-                                      },
-                                    }),
-                                  ],
-                                  1
-                                ),
+                                _vm.isReady == true &&
+                                _vm.ready1 == true &&
+                                _vm.ready2 == true &&
+                                _vm.ready3 == true &&
+                                _vm.ready4 == true
+                                  ? _c(
+                                      "div",
+                                      [
+                                        _c("number", {
+                                          ref: "number2",
+                                          attrs: {
+                                            from: 0,
+                                            to: _vm.tenants,
+                                            duration: 1,
+                                            easing: "Power1.easeOut",
+                                          },
+                                        }),
+                                      ],
+                                      1
+                                    )
+                                  : _vm._e(),
                               ]
                             ),
                             _vm._v(" "),
@@ -1957,25 +2014,27 @@ var render = function () {
                                   "mt-3 text-3xl font-bold leading-8",
                               },
                               [
-                                _c(
-                                  "div",
-                                  {
-                                    staticClass:
-                                      "mt-3 text-3xl font-bold leading-8",
-                                  },
-                                  [
-                                    _c("number", {
-                                      ref: "number3",
-                                      attrs: {
-                                        from: 0,
-                                        to: _vm.rooms,
-                                        duration: 1,
-                                        easing: "Power1.easeOut",
-                                      },
-                                    }),
-                                  ],
-                                  1
-                                ),
+                                _vm.isReady == true &&
+                                _vm.ready1 == true &&
+                                _vm.ready2 == true &&
+                                _vm.ready3 == true &&
+                                _vm.ready4 == true
+                                  ? _c(
+                                      "div",
+                                      [
+                                        _c("number", {
+                                          ref: "number3",
+                                          attrs: {
+                                            from: 0,
+                                            to: _vm.rooms,
+                                            duration: 1,
+                                            easing: "Power1.easeOut",
+                                          },
+                                        }),
+                                      ],
+                                      1
+                                    )
+                                  : _vm._e(),
                               ]
                             ),
                             _vm._v(" "),
@@ -2052,25 +2111,27 @@ var render = function () {
                                   "mt-3 text-3xl font-bold leading-8",
                               },
                               [
-                                _c(
-                                  "div",
-                                  {
-                                    staticClass:
-                                      "mt-3 text-3xl font-bold leading-8",
-                                  },
-                                  [
-                                    _c("number", {
-                                      ref: "number4",
-                                      attrs: {
-                                        from: 0,
-                                        to: _vm.landlords,
-                                        duration: 1,
-                                        easing: "Power1.easeOut",
-                                      },
-                                    }),
-                                  ],
-                                  1
-                                ),
+                                _vm.isReady == true &&
+                                _vm.ready1 == true &&
+                                _vm.ready2 == true &&
+                                _vm.ready3 == true &&
+                                _vm.ready4 == true
+                                  ? _c(
+                                      "div",
+                                      [
+                                        _c("number", {
+                                          ref: "number4",
+                                          attrs: {
+                                            from: 0,
+                                            to: _vm.landlords,
+                                            duration: 1,
+                                            easing: "Power1.easeOut",
+                                          },
+                                        }),
+                                      ],
+                                      1
+                                    )
+                                  : _vm._e(),
                               ]
                             ),
                             _vm._v(" "),
@@ -2100,318 +2161,363 @@ var render = function () {
                           _vm._v("Landlord's Property Applications"),
                         ]),
                         _vm._v(" "),
-                        _c("div", { staticClass: "mt-4" }, [
-                          _c("div", { staticClass: "flex flex-col" }, [
-                            _c(
-                              "div",
-                              { staticClass: "-my-2 overflow-x-auto" },
-                              [
-                                _c(
-                                  "div",
-                                  {
-                                    staticClass:
-                                      "py-2 align-middle inline-block min-w-full",
-                                  },
-                                  [
-                                    _c(
-                                      "div",
-                                      {
-                                        staticClass:
-                                          "shadow overflow-hidden border-b border-gray-200 sm:rounded-lg bg-white",
-                                      },
-                                      [
-                                        _c(
-                                          "table",
-                                          {
-                                            staticClass:
-                                              "min-w-full divide-y divide-gray-200",
-                                          },
-                                          [
-                                            _vm._m(4),
-                                            _vm._v(" "),
-                                            _c(
-                                              "tbody",
-                                              {
-                                                staticClass:
-                                                  "bg-white divide-y divide-gray-200",
-                                              },
-                                              [
-                                                _vm._l(
-                                                  _vm.unverified,
-                                                  function (room) {
-                                                    return _c(
-                                                      "tr",
-                                                      { key: room.id },
-                                                      [
-                                                        _c(
-                                                          "td",
-                                                          {
-                                                            staticClass:
-                                                              "flex px-6 py-4 whitespace-no-wrap text-sm leading-5 ",
-                                                          },
-                                                          [
-                                                            _vm._v(
-                                                              "\n                                                                    " +
-                                                                _vm._s(
-                                                                  room.name
-                                                                ) +
-                                                                "\n                                                            "
-                                                            ),
-                                                          ]
-                                                        ),
-                                                        _vm._v(" "),
-                                                        _c(
-                                                          "td",
-                                                          {
-                                                            staticClass:
-                                                              "px-6 py-4 whitespace-no-wrap text-sm leading-5",
-                                                          },
-                                                          [
-                                                            _c("p", [
-                                                              _vm._v(
-                                                                _vm._s(
-                                                                  room.land
-                                                                    .landlord_name
-                                                                )
-                                                              ),
-                                                            ]),
-                                                          ]
-                                                        ),
-                                                        _vm._v(" "),
-                                                        _c(
-                                                          "td",
-                                                          {
-                                                            staticClass:
-                                                              "px-6 py-4 whitespace-no-wrap text-sm leading-5",
-                                                          },
-                                                          [
-                                                            _c("p", [
-                                                              _vm._v(
-                                                                _vm._s(
-                                                                  room.campus
-                                                                )
-                                                              ),
-                                                            ]),
-                                                          ]
-                                                        ),
-                                                        _vm._v(" "),
-                                                        _c(
-                                                          "td",
-                                                          {
-                                                            staticClass:
-                                                              "px-6 py-4 whitespace-no-wrap text-sm leading-5",
-                                                          },
-                                                          [
-                                                            _c("p", [
-                                                              _vm._v(
-                                                                _vm._s(
-                                                                  _vm
-                                                                    .moment(
-                                                                      room.created_at
-                                                                    )
-                                                                    .format(
-                                                                      "DD-MM-YYYY, h:mm a"
-                                                                    )
-                                                                )
-                                                              ),
-                                                            ]),
-                                                          ]
-                                                        ),
-                                                        _vm._v(" "),
-                                                        _c(
-                                                          "td",
-                                                          {
-                                                            staticClass:
-                                                              "px-6 py-4 whitespace-no-wrap text-sm leading-5 capitalize",
-                                                          },
-                                                          [
-                                                            _c(
-                                                              "div",
-                                                              {
-                                                                staticClass:
-                                                                  "flex text-red-500",
-                                                              },
-                                                              [
-                                                                _c(
-                                                                  "svg",
-                                                                  {
-                                                                    staticClass:
-                                                                      "w-5 h-5 mr-1",
-                                                                    attrs: {
-                                                                      xmlns:
-                                                                        "http://www.w3.org/2000/svg",
-                                                                      fill: "none",
-                                                                      viewBox:
-                                                                        "0 0 24 24",
-                                                                      stroke:
-                                                                        "currentColor",
-                                                                    },
-                                                                  },
-                                                                  [
-                                                                    _c("path", {
-                                                                      attrs: {
-                                                                        "stroke-linecap":
-                                                                          "round",
-                                                                        "stroke-linejoin":
-                                                                          "round",
-                                                                        "stroke-width":
-                                                                          "2",
-                                                                        d: "M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z",
-                                                                      },
-                                                                    }),
-                                                                  ]
-                                                                ),
-                                                                _vm._v(" "),
-                                                                _c("p", [
+                        _vm.isReady == true &&
+                        _vm.ready1 == true &&
+                        _vm.ready2 == true &&
+                        _vm.ready3 == true &&
+                        _vm.ready4 == true
+                          ? _c("div", [
+                              _c("div", { staticClass: "mt-4" }, [
+                                _c("div", { staticClass: "flex flex-col" }, [
+                                  _c(
+                                    "div",
+                                    { staticClass: "-my-2 overflow-x-auto" },
+                                    [
+                                      _c(
+                                        "div",
+                                        {
+                                          staticClass:
+                                            "py-2 align-middle inline-block min-w-full",
+                                        },
+                                        [
+                                          _c(
+                                            "div",
+                                            {
+                                              staticClass:
+                                                "shadow overflow-hidden border-b border-gray-200 sm:rounded-lg bg-white",
+                                            },
+                                            [
+                                              _c(
+                                                "table",
+                                                {
+                                                  staticClass:
+                                                    "min-w-full divide-y divide-gray-200",
+                                                },
+                                                [
+                                                  _vm._m(4),
+                                                  _vm._v(" "),
+                                                  _c(
+                                                    "tbody",
+                                                    {
+                                                      staticClass:
+                                                        "bg-white divide-y divide-gray-200",
+                                                    },
+                                                    [
+                                                      _vm._l(
+                                                        _vm.unverified,
+                                                        function (room) {
+                                                          return _c(
+                                                            "tr",
+                                                            { key: room.id },
+                                                            [
+                                                              _c(
+                                                                "td",
+                                                                {
+                                                                  staticClass:
+                                                                    "flex px-6 py-4 whitespace-no-wrap text-sm leading-5 ",
+                                                                },
+                                                                [
                                                                   _vm._v(
-                                                                    _vm._s(
-                                                                      room.status
-                                                                    )
+                                                                    "\n                                                                    " +
+                                                                      _vm._s(
+                                                                        room.name
+                                                                      ) +
+                                                                      "\n                                                            "
                                                                   ),
-                                                                ]),
-                                                              ]
-                                                            ),
-                                                          ]
-                                                        ),
-                                                        _vm._v(" "),
-                                                        _c(
-                                                          "td",
-                                                          {
-                                                            staticClass:
-                                                              "px-6 py-4 whitespace-no-wrap text-sm leading-5",
-                                                          },
-                                                          [
+                                                                ]
+                                                              ),
+                                                              _vm._v(" "),
+                                                              _c(
+                                                                "td",
+                                                                {
+                                                                  staticClass:
+                                                                    "px-6 py-4 whitespace-no-wrap text-sm leading-5",
+                                                                },
+                                                                [
+                                                                  _c("p", [
+                                                                    _vm._v(
+                                                                      _vm._s(
+                                                                        room
+                                                                          .land
+                                                                          .landlord_name
+                                                                      )
+                                                                    ),
+                                                                  ]),
+                                                                ]
+                                                              ),
+                                                              _vm._v(" "),
+                                                              _c(
+                                                                "td",
+                                                                {
+                                                                  staticClass:
+                                                                    "px-6 py-4 whitespace-no-wrap text-sm leading-5",
+                                                                },
+                                                                [
+                                                                  _c("p", [
+                                                                    _vm._v(
+                                                                      _vm._s(
+                                                                        room.campus
+                                                                      )
+                                                                    ),
+                                                                  ]),
+                                                                ]
+                                                              ),
+                                                              _vm._v(" "),
+                                                              _c(
+                                                                "td",
+                                                                {
+                                                                  staticClass:
+                                                                    "px-6 py-4 whitespace-no-wrap text-sm leading-5",
+                                                                },
+                                                                [
+                                                                  _c("p", [
+                                                                    _vm._v(
+                                                                      _vm._s(
+                                                                        _vm
+                                                                          .moment(
+                                                                            room.created_at
+                                                                          )
+                                                                          .format(
+                                                                            "DD-MM-YYYY, h:mm a"
+                                                                          )
+                                                                      )
+                                                                    ),
+                                                                  ]),
+                                                                ]
+                                                              ),
+                                                              _vm._v(" "),
+                                                              _c(
+                                                                "td",
+                                                                {
+                                                                  staticClass:
+                                                                    "px-6 py-4 whitespace-no-wrap text-sm leading-5 capitalize",
+                                                                },
+                                                                [
+                                                                  _c(
+                                                                    "div",
+                                                                    {
+                                                                      staticClass:
+                                                                        "flex text-red-500",
+                                                                    },
+                                                                    [
+                                                                      _c(
+                                                                        "svg",
+                                                                        {
+                                                                          staticClass:
+                                                                            "w-5 h-5 mr-1",
+                                                                          attrs:
+                                                                            {
+                                                                              xmlns:
+                                                                                "http://www.w3.org/2000/svg",
+                                                                              fill: "none",
+                                                                              viewBox:
+                                                                                "0 0 24 24",
+                                                                              stroke:
+                                                                                "currentColor",
+                                                                            },
+                                                                        },
+                                                                        [
+                                                                          _c(
+                                                                            "path",
+                                                                            {
+                                                                              attrs:
+                                                                                {
+                                                                                  "stroke-linecap":
+                                                                                    "round",
+                                                                                  "stroke-linejoin":
+                                                                                    "round",
+                                                                                  "stroke-width":
+                                                                                    "2",
+                                                                                  d: "M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z",
+                                                                                },
+                                                                            }
+                                                                          ),
+                                                                        ]
+                                                                      ),
+                                                                      _vm._v(
+                                                                        " "
+                                                                      ),
+                                                                      _c("p", [
+                                                                        _vm._v(
+                                                                          _vm._s(
+                                                                            room.status
+                                                                          )
+                                                                        ),
+                                                                      ]),
+                                                                    ]
+                                                                  ),
+                                                                ]
+                                                              ),
+                                                              _vm._v(" "),
+                                                              _c(
+                                                                "td",
+                                                                {
+                                                                  staticClass:
+                                                                    "px-6 py-4 whitespace-no-wrap text-sm leading-5",
+                                                                },
+                                                                [
+                                                                  _c(
+                                                                    "div",
+                                                                    {
+                                                                      staticClass:
+                                                                        "flex space-x-4",
+                                                                    },
+                                                                    [
+                                                                      _c(
+                                                                        "router-link",
+                                                                        {
+                                                                          staticClass:
+                                                                            "text-blue-500 hover:text-blue-600",
+                                                                          attrs:
+                                                                            {
+                                                                              to: {
+                                                                                name: "view_property",
+                                                                                params:
+                                                                                  {
+                                                                                    property_id:
+                                                                                      room.id,
+                                                                                  },
+                                                                              },
+                                                                              target:
+                                                                                "_blank",
+                                                                            },
+                                                                        },
+                                                                        [
+                                                                          _c(
+                                                                            "svg",
+                                                                            {
+                                                                              staticClass:
+                                                                                "w-5 h-5 mr-1",
+                                                                              attrs:
+                                                                                {
+                                                                                  xmlns:
+                                                                                    "http://www.w3.org/2000/svg",
+                                                                                  fill: "none",
+                                                                                  viewBox:
+                                                                                    "0 0 24 24",
+                                                                                  stroke:
+                                                                                    "currentColor",
+                                                                                },
+                                                                            },
+                                                                            [
+                                                                              _c(
+                                                                                "path",
+                                                                                {
+                                                                                  attrs:
+                                                                                    {
+                                                                                      "stroke-linecap":
+                                                                                        "round",
+                                                                                      "stroke-linejoin":
+                                                                                        "round",
+                                                                                      "stroke-width":
+                                                                                        "2",
+                                                                                      d: "M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z",
+                                                                                    },
+                                                                                }
+                                                                              ),
+                                                                            ]
+                                                                          ),
+                                                                          _vm._v(
+                                                                            " "
+                                                                          ),
+                                                                          _c(
+                                                                            "p",
+                                                                            [
+                                                                              _vm._v(
+                                                                                "View"
+                                                                              ),
+                                                                            ]
+                                                                          ),
+                                                                        ]
+                                                                      ),
+                                                                    ],
+                                                                    1
+                                                                  ),
+                                                                ]
+                                                              ),
+                                                            ]
+                                                          )
+                                                        }
+                                                      ),
+                                                      _vm._v(" "),
+                                                      _vm.unverified.length == 0
+                                                        ? _c("tr", [
                                                             _c(
-                                                              "div",
+                                                              "td",
                                                               {
-                                                                staticClass:
-                                                                  "flex space-x-4",
+                                                                attrs: {
+                                                                  colspan: "6",
+                                                                },
                                                               },
                                                               [
                                                                 _c(
-                                                                  "router-link",
+                                                                  "div",
                                                                   {
                                                                     staticClass:
-                                                                      "text-blue-500 hover:text-blue-600",
+                                                                      "bg-indigo-100 border-yellow-600 text-black-600  p-4",
                                                                     attrs: {
-                                                                      to: {
-                                                                        name: "view_property",
-                                                                        params:
-                                                                          {
-                                                                            property_id:
-                                                                              room.id,
-                                                                          },
-                                                                      },
-                                                                      target:
-                                                                        "_blank",
+                                                                      role: "alert",
                                                                     },
                                                                   },
                                                                   [
                                                                     _c(
-                                                                      "svg",
-                                                                      {
-                                                                        staticClass:
-                                                                          "w-5 h-5 mr-1",
-                                                                        attrs: {
-                                                                          xmlns:
-                                                                            "http://www.w3.org/2000/svg",
-                                                                          fill: "none",
-                                                                          viewBox:
-                                                                            "0 0 24 24",
-                                                                          stroke:
-                                                                            "currentColor",
-                                                                        },
-                                                                      },
+                                                                      "center",
                                                                       [
                                                                         _c(
-                                                                          "path",
+                                                                          "p",
                                                                           {
-                                                                            attrs:
-                                                                              {
-                                                                                "stroke-linecap":
-                                                                                  "round",
-                                                                                "stroke-linejoin":
-                                                                                  "round",
-                                                                                "stroke-width":
-                                                                                  "2",
-                                                                                d: "M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z",
-                                                                              },
-                                                                          }
+                                                                            staticClass:
+                                                                              "font-bold text-xl",
+                                                                          },
+                                                                          [
+                                                                            _vm._v(
+                                                                              "\n                                                                   There are no latest applications\n                                                                "
+                                                                            ),
+                                                                          ]
                                                                         ),
                                                                       ]
                                                                     ),
-                                                                    _vm._v(" "),
-                                                                    _c("p", [
-                                                                      _vm._v(
-                                                                        "View"
-                                                                      ),
-                                                                    ]),
-                                                                  ]
+                                                                  ],
+                                                                  1
                                                                 ),
-                                                              ],
-                                                              1
+                                                              ]
                                                             ),
-                                                          ]
-                                                        ),
-                                                      ]
-                                                    )
-                                                  }
-                                                ),
-                                                _vm._v(" "),
-                                                _vm.unverified.length == 0
-                                                  ? _c("tr", [
-                                                      _c(
-                                                        "td",
-                                                        {
-                                                          attrs: {
-                                                            colspan: "6",
-                                                          },
-                                                        },
-                                                        [
-                                                          _c(
-                                                            "div",
-                                                            {
-                                                              staticClass:
-                                                                "bg-indigo-100 border-yellow-600 text-black-600  p-4",
-                                                              attrs: {
-                                                                role: "alert",
-                                                              },
-                                                            },
-                                                            [
-                                                              _c("center", [
-                                                                _c(
-                                                                  "p",
-                                                                  {
-                                                                    staticClass:
-                                                                      "font-bold text-xl",
-                                                                  },
-                                                                  [
-                                                                    _vm._v(
-                                                                      "\n                                                                   There are no latest applications\n                                                                "
-                                                                    ),
-                                                                  ]
-                                                                ),
-                                                              ]),
-                                                            ],
-                                                            1
-                                                          ),
-                                                        ]
-                                                      ),
-                                                    ])
-                                                  : _vm._e(),
-                                              ],
-                                              2
-                                            ),
-                                          ]
-                                        ),
-                                      ]
-                                    ),
-                                  ]
-                                ),
-                              ]
+                                                          ])
+                                                        : _vm._e(),
+                                                    ],
+                                                    2
+                                                  ),
+                                                ]
+                                              ),
+                                            ]
+                                          ),
+                                        ]
+                                      ),
+                                    ]
+                                  ),
+                                ]),
+                              ]),
+                            ])
+                          : _c(
+                              "div",
+                              [
+                                _c("loader", {
+                                  attrs: {
+                                    object: "#4491ee",
+                                    color1: "#e3851c",
+                                    color2: "#e82dda",
+                                    size: "8",
+                                    speed: "1.3",
+                                    bg: "#1e2337",
+                                    objectbg: "#ff2d2d",
+                                    opacity: "90",
+                                    disableScrolling: "true",
+                                    name: "circular",
+                                  },
+                                }),
+                              ],
+                              1
                             ),
-                          ]),
-                        ]),
                       ]
                     ),
                   ]

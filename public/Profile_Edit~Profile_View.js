@@ -304,7 +304,7 @@ var Errors = /*#__PURE__*/function () {
     },
     getRole: function getRole() {
       if (this.role == 1) {
-        this.modalBackground = 'bg-gradient-to-b from-pink-300 via-purple-300 to-indigo-400';
+        this.modalBackground = 'bg-gradient-to-bl from-yellow-200 via-yellow-300 to-yellow-400  ';
       } else if (this.role == 2) {
         this.modalBackground = 'bg-gradient-to-br from-sky-400 to-cyan-300';
       } else {
@@ -482,9 +482,14 @@ var render = function () {
                 "border-b px-4 py-2 flex justify-between items-center",
             },
             [
-              _c("h3", { staticClass: "font-semibold text-lg" }, [
-                _vm._v("Edit Profile"),
-              ]),
+              _c(
+                "h3",
+                {
+                  staticClass:
+                    "text-lg  tracking-normal leading-tight font-bold",
+                },
+                [_vm._v("Edit Profile")]
+              ),
               _vm._v(" "),
               _c(
                 "button",
@@ -499,7 +504,7 @@ var render = function () {
               "h1",
               {
                 staticClass:
-                  "text-gray-800 font-lg font-bold tracking-normal leading-tight mb-4",
+                  "text-gray-800 font-semibold text-base tracking-normal leading-tight mb-4",
               },
               [_vm._v("Profile Details")]
             ),

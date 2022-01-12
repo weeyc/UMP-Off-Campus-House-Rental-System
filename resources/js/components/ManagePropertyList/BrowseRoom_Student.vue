@@ -1,6 +1,6 @@
 <template>
 <div>
-
+    <div v-if="isReady==true">
     <div class="max-w-5xl p-6 mx-auto mt-5 bg-gray-100 rounded-md mb-5 shadow-xl" >
         <!-- Top Campuses -->
         <span>Selected Campus: {{campus}}</span>
@@ -184,7 +184,10 @@
                             </select>
                     </div>
         </div>
-        <div v-if="lists.length==0"> Sorry, result not found</div>
+
+        <div  v-if="lists.length==0" class="bg-yellow-200 border-yellow-600 text-gray-600  p-10 mt-7 rounded-md" role="alert">
+                   <center><p class="font-bold text-base"> Sorry, no result is found.</p></center>
+            </div>
         <div else>
             <div v-for="(list,index) in lists" :key="index.id" class="flex justify-start  ">
                 <router-link :to="{ name: 'view_room_list', params:{id: list.id}}" class="flex justify-center w-full px-8 py-4 overflow-hidden bg-white rounded-lg shadow-lg mt-5 cursor-pointer transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-105 duration-200 hover:bg-yellow-400 hover:shadow-2xl">
@@ -224,10 +227,18 @@
                         </div>
                      </div>
                 </center>
+
     </div>
 
 
 
+
+   <!-- loading -->
+    </div>
+    <div v-else>
+        <loader object="#4491ee" color1="#e3851c" color2="#e82dda" size="8" speed="1.3" bg="#1e2337" objectbg="#ff2d2d" opacity="90" disableScrolling="true" name="circular"></loader>
+    </div>
+  <!-- loading -->
 
 
 
@@ -255,12 +266,13 @@ export default {
             byID: '',
             byGender: '',
             showSize: 10,
-             page: 1,
+            page: 1,
             lastPage: '',
-             pageInfo: '',
+            pageInfo: '',
+            isReady: false,
 
 
-            top_btn_style: 'p-3 rounded bg-yellow-100 text-yellow-500 hover:bg-yellow-500 hover:text-white :active:bg-yellow-500 active:text-white active:outline-none transition duration-150 ease-in-out shadow-xl',
+            top_btn_style: 'p-3 rounded bg-yellow-200 text-yellow-700 hover:bg-yellow-500 hover:text-white :active:bg-yellow-500 active:text-white active:outline-none transition duration-150 ease-in-out shadow-xl',
         }
     },
      methods:{
@@ -278,8 +290,9 @@ export default {
                 }
                 }).then((response)=>{
                 this.lists=response.data.data;
-                 this.pageInfo = response.data.meta
+                this.pageInfo = response.data.meta
                 this.lastPage=response.data.meta.last_page
+                this.isReady=true;
                 console.warn(this.lists.data);
             })
 

@@ -418,7 +418,7 @@ var render = function () {
                       "div",
                       {
                         staticClass:
-                          "bg-blue-200 border-yellow-600 text-gray-600  p-10 mt-3 ",
+                          "bg-blue-200 border-yellow-600 text-gray-600  p-10 mt-3 w-full rounded-md ",
                         attrs: { role: "alert" },
                       },
                       [
@@ -763,7 +763,7 @@ var render = function () {
                                               },
                                             ],
                                             staticClass:
-                                              "focus:outline-none border-transparent cursor-pointer focus:border-gray-800 hover:bg-yellow-200 focus:shadow-outline-gray text-base py-2 px-8 w-1/2 xl:px-3 rounded font-medium  appearance-none bg-transparent",
+                                              "focus:outline-none border-transparent cursor-pointer focus:border-gray-800 hover:bg-blue-200 focus:shadow-outline-gray text-base py-2 px-8 w-1/2 xl:px-3 rounded font-medium  appearance-none bg-transparent",
                                             on: {
                                               change: function ($event) {
                                                 var $$selectedVal =
@@ -870,7 +870,7 @@ var render = function () {
                       objectbg: "#ff2d2d",
                       opacity: "90",
                       disableScrolling: "true",
-                      name: "circular",
+                      name: "dots",
                     },
                   }),
                 ],

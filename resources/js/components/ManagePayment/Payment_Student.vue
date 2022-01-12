@@ -1,24 +1,19 @@
 <!-- This example requires Tailwind CSS v2.0+ -->
 <template>
-  <div class="p-6 ml-5 flex flex-col ">
-
-    <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8 ">
-       <div class="flex flex-col lg:flex-row p-2 lg:p-8 justify-between items-start lg:items-stretch w-full shadow-inner">
-                <div class="w-full flex flex-col lg:flex-row items-start lg:items-center">
-                    <div class="flex items-center ">
-                        <span class="text-xl font-black">MY PAYMENT</span>
-                    </div>
-                </div>
-                  <div class="w-full flex flex-col lg:flex-row items-start lg:items-center ">
-                    <div v-if="pageInfo" class="flex items-center">
+  <div class="ml-5 ">
+            <div class="overflow-x-auto max-w-6xl p-6 mx-auto  bg-gray-100 rounded-md shadow-xl mb-5 rounded-tl-none">
+         <h2 class=" font-bold text-gray-700 capitalize text-center text-xl">My Payments</h2>
+ <div v-if="isReady==true">
+          <div v-if="payments.length==0" class="bg-yellow-200 border-yellow-600 text-gray-600  p-10 mt-3 w-full rounded-md" role="alert">
+                   <center><p class="font-bold text-base"> You have not made any payment yet.</p></center>
+            </div>
+      <div  v-else class="py-2 align-middle inline-block min-w-full">
+                    <div v-if="pageInfo" class="items-center">
                           <p v-if="page=='[object MouseEvent]'" class="font-medium text-dark-600 dark:text-gray-400" >  Showing Page 1 of {{ lastPage }}</p>
                           <p v-else class="font-medium text-dark-600 dark:text-gray-400" >  Showing Page {{ page }} of {{ lastPage }}</p>
                     </div>
+        <div class=" shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
 
-                </div>
-            </div>
-      <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
-        <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
           <table class="min-w-full divide-y divide-gray-200">
             <thead class="bg-gray-50">
               <tr>
@@ -118,7 +113,7 @@
             </tbody>
 
           </table>
-               <div v-if="pageInfo" class="mt-5 mb-5 flex justify-between ">
+                   <div v-if="pageInfo" class="mt-5 mb-5 flex justify-between ">
                         <div class="w-1/2 flex justify-start ">
                                 <select  v-model="showSize" class="focus:outline-none border-transparent cursor-pointer focus:border-gray-800 hover:bg-yellow-200 focus:shadow-outline-gray text-base py-2 px-8 w-1/2 xl:px-3 rounded font-medium  appearance-none bg-transparent">
                                     <option @click="getPayment" value="10">Show Entries</option>
@@ -132,7 +127,13 @@
                         </div>
                      </div>
         </div>
+
       </div>
+  </div>
+  <div v-else>
+           <loader object="#dd7755" color1="#e3851c" color2="#e82dda" size="8" speed="1.3" bg="#1e2337" objectbg="#ff2d2d" opacity="90" disableScrolling="true" name="dots"></loader>
+    </div>
+
     </div>
        <ReceiptModal
             v-if="toggleModal"
@@ -183,6 +184,7 @@ export default {
                 total: '',
                 date: '',
             },
+            isReady: false,
         };
     },
      mounted: function(){
@@ -201,6 +203,7 @@ export default {
                 this.payments=response.data.data;
                 this.pageInfo = response.data.meta
                 this.lastPage=response.data.meta.last_page
+                this.isReady=true;
                 console.warn(this.payments.data);
 
                 })

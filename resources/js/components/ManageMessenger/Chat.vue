@@ -4,6 +4,7 @@
           <h2 class=" font-bold text-gray-700 capitalize text-center text-xl mb-2 -mt-2">My Chat Messenger</h2>
         <!-- component -->
 <!-- This is an example component -->
+<div v-if="isReady==true">
 <div class="w-full">
     <div class="grid grid-cols-3 min-w-full border rounded">
             <div class="col-span-1 bg-white border-r border-gray-300">
@@ -170,7 +171,12 @@
             </div>
         </div>
     </div>
-
+  <!-- loading -->
+    </div>
+    <div v-else>
+     <loader   :object="[object]" color1="#e3851c" color2="#e82dda" size="8" speed="1.3" bg="#1e2337" objectbg="#ff2d2d" opacity="90" disableScrolling="true" name="dots"></loader>
+    </div>
+  <!-- loading -->
 
     </div>
 
@@ -209,6 +215,7 @@ export default {
             convertedRole:'',
             totalNotifications:'',
             text: '',
+            object: '',
 
 
             chat: {
@@ -231,8 +238,9 @@ export default {
                 put_msg: '',
                 receiver_id: '',
                 receiver_role: '',
-            }
+            },
 
+            isReady: false,
 
         }
     },
@@ -367,11 +375,15 @@ export default {
             if(this.role == 1){
                 this.margin = 'mt-5 mb-5'
                 this.text= 'bg-yellow-200'
+                this.object = '#dd7755'
             }else if (this.role == 2){
                 this.margin = 'mt-5 mb-5'
                 this.text= 'bg-blue-200'
+                this.object = '#4491ee'
             }else{
                 this.text= 'bg-pink-200'
+                this.margin = 'w-full'
+                this.object = '#dc4ae8'
             }
           },
         convertRole(){
@@ -390,7 +402,7 @@ export default {
                     sum += this.conversations[i].get_msg_relation_count;
                 }
                 this.totalNotifications = sum;
-
+                this.isReady=true;
           },
 
         checkNewContact(){

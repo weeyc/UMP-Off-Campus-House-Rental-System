@@ -125,6 +125,26 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
@@ -153,7 +173,8 @@ __webpack_require__.r(__webpack_exports__);
         pic: this.tenant.student.pic,
         name: this.tenant.student.name,
         email: this.tenant.student.email
-      }
+      },
+      isReady: false
     };
   },
   methods: {
@@ -171,6 +192,7 @@ __webpack_require__.r(__webpack_exports__);
         _this.form.property_id = _this.data.property_id;
         _this.form.payment_details = 'UOCA Bills (ID: ' + _this.data.bills_id + ') Payment - Room ID: ' + _this.data.room_id;
         _this.form.total_payment = _this.data.total_bills;
+        _this.isReady = true;
         console.warn(_this.data);
       });
     },
@@ -211,6 +233,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Bill_Modal_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Bill_Modal.vue */ "./resources/js/components/ManageRentalProperty/Bill_Modal.vue");
 /* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
 /* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_2__);
+//
+//
 //
 //
 //
@@ -579,7 +603,7 @@ __webpack_require__.r(__webpack_exports__);
     },
     checkBill: function checkBill() {
       this.$router.push({
-        name: 'std_bills'
+        name: 'payment_land'
       });
     },
     checkTenantBill: function checkTenantBill(student_id, mate) {
@@ -742,593 +766,705 @@ var render = function () {
         "div",
         {
           staticClass:
-            "max-h-full min-h-2xl min-w-2xl max-w-4xl  mx-auto overflow-y-auto shadow-lg rounded p-1 bg-gradient-to-r from-sky-400 to-cyan-300",
+            "rounded max-h-full overflow-y-auto shadow-lg  p-6 w-2/3 min-h-2/3 bg-gradient-to-r from-sky-400 to-cyan-300",
         },
         [
-          _c(
-            "div",
-            {
-              staticClass:
-                "border-b px-4 py-2 flex justify-between items-center",
-            },
-            [
-              _c("h3", { staticClass: "font-semibold text-lg" }, [
-                _vm._v("Tenant Bills Details"),
-              ]),
-              _vm._v(" "),
-              _c(
-                "button",
-                { staticClass: "text-black ", on: { click: _vm.closeModal } },
-                [_vm._v("✗")]
-              ),
-            ]
-          ),
-          _vm._v(" "),
-          _c("div", { staticClass: "p-6 ml-5" }, [
-            _c(
-              "div",
-              {
-                staticClass:
-                  "max-w-6xl p-6 mx-auto mt-3  bg-gray-100 rounded-md shadow-xl mb-5",
-              },
-              [
+          _vm.isReady == true
+            ? _c("div", [
                 _c(
-                  "h2",
+                  "div",
                   {
                     staticClass:
-                      " font-bold text-gray-700 capitalize text-center text-xl",
+                      "border-b px-4 py-2 flex justify-between items-center",
                   },
-                  [_vm._v("Tenant Bills")]
+                  [
+                    _c("h3", { staticClass: "font-semibold text-lg" }, [
+                      _vm._v("Tenant Bills Details"),
+                    ]),
+                    _vm._v(" "),
+                    _c(
+                      "button",
+                      {
+                        staticClass: "text-black ",
+                        on: { click: _vm.closeModal },
+                      },
+                      [_vm._v("✗")]
+                    ),
+                  ]
                 ),
                 _vm._v(" "),
-                _vm.data.length == 0
-                  ? _c("div", [
-                      _vm._v(" This tenant don't having any bills issued yet."),
-                    ])
-                  : _c("div", { staticClass: " m-5 mb-10" }, [
+                _c("div", { staticClass: "p-6 ml-5" }, [
+                  _c(
+                    "div",
+                    {
+                      staticClass:
+                        "max-w-6xl p-6 mx-auto mt-3  bg-gray-100 rounded-md shadow-xl mb-5",
+                    },
+                    [
                       _c(
-                        "div",
-                        { staticClass: "w-full flex justify-center mb-3 " },
-                        [
-                          _c(
-                            "select",
-                            {
-                              directives: [
-                                {
-                                  name: "model",
-                                  rawName: "v-model",
-                                  value: _vm.bydate,
-                                  expression: "bydate",
-                                },
-                              ],
-                              staticClass:
-                                "w-2/4 focus:outline-none border-transparent cursor-pointer focus:border-gray-800 hover:bg-yellow-200 focus:shadow-outline-gray text-base py-2 px-8  xl:px-3 rounded font-medium  appearance-none bg-transparent",
-                              on: {
-                                change: function ($event) {
-                                  var $$selectedVal = Array.prototype.filter
-                                    .call($event.target.options, function (o) {
-                                      return o.selected
-                                    })
-                                    .map(function (o) {
-                                      var val =
-                                        "_value" in o ? o._value : o.value
-                                      return val
-                                    })
-                                  _vm.bydate = $event.target.multiple
-                                    ? $$selectedVal
-                                    : $$selectedVal[0]
-                                },
-                              },
-                            },
-                            [
-                              _c(
-                                "option",
-                                {
-                                  attrs: {
-                                    value: "",
-                                    selected: "",
-                                    disabled: "",
-                                    hidden: "",
-                                  },
-                                },
-                                [_vm._v("Choose month")]
-                              ),
-                              _vm._v(" "),
-                              _vm._l(_vm.months, function (d) {
-                                return _c(
-                                  "option",
-                                  { key: d, on: { click: _vm.getData } },
-                                  [_vm._v(_vm._s(d) + " ")]
-                                )
-                              }),
-                            ],
-                            2
-                          ),
-                        ]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "div",
+                        "h2",
                         {
                           staticClass:
-                            "min-h-screen p-5 bg-gray-100  rounded-lg border-collapse flex flex-col justify-center w-full h-full bg-no-repeat bg-cover",
-                          staticStyle: {
-                            "background-image": "url(/images/UMP/clock.jpg)",
-                          },
+                            " font-bold text-gray-700 capitalize text-center text-xl",
                         },
-                        [
-                          _c(
+                        [_vm._v("Tenant Bills")]
+                      ),
+                      _vm._v(" "),
+                      _vm.data.length == 0
+                        ? _c(
                             "div",
                             {
                               staticClass:
-                                "flex max-h-full sm:max-w-xl sm:mx-auto",
+                                "bg-blue-200 border-yellow-600 text-gray-600  p-10 mt-7 ",
+                              attrs: { role: "alert" },
                             },
                             [
-                              _c(
-                                "div",
-                                {
-                                  staticClass:
-                                    "flex  max-h-full  bg-white shadow-lg sm:rounded-3xl sm:p-20 bg-clip-padding bg-opacity-80 border border-gray-200",
-                                  staticStyle: {
-                                    "backdrop-filter": "blur(20px)",
+                              _c("center", [
+                                _c(
+                                  "p",
+                                  { staticClass: "font-bold text-base" },
+                                  [
+                                    _vm._v(
+                                      " This tenant doesn't have any bills issued yet."
+                                    ),
+                                  ]
+                                ),
+                              ]),
+                            ],
+                            1
+                          )
+                        : _c("div", { staticClass: " m-5 mb-10" }, [
+                            _c(
+                              "div",
+                              {
+                                staticClass: "w-full flex justify-center mb-3 ",
+                              },
+                              [
+                                _c(
+                                  "select",
+                                  {
+                                    directives: [
+                                      {
+                                        name: "model",
+                                        rawName: "v-model",
+                                        value: _vm.bydate,
+                                        expression: "bydate",
+                                      },
+                                    ],
+                                    staticClass:
+                                      "w-2/4 focus:outline-none border-transparent cursor-pointer focus:border-gray-800 hover:bg-blue-200 focus:shadow-outline-gray text-base py-2 px-8  xl:px-3 rounded font-medium  appearance-none bg-transparent",
+                                    on: {
+                                      change: function ($event) {
+                                        var $$selectedVal =
+                                          Array.prototype.filter
+                                            .call(
+                                              $event.target.options,
+                                              function (o) {
+                                                return o.selected
+                                              }
+                                            )
+                                            .map(function (o) {
+                                              var val =
+                                                "_value" in o
+                                                  ? o._value
+                                                  : o.value
+                                              return val
+                                            })
+                                        _vm.bydate = $event.target.multiple
+                                          ? $$selectedVal
+                                          : $$selectedVal[0]
+                                      },
+                                    },
                                   },
+                                  [
+                                    _c(
+                                      "option",
+                                      {
+                                        attrs: {
+                                          value: "",
+                                          selected: "",
+                                          disabled: "",
+                                          hidden: "",
+                                        },
+                                      },
+                                      [_vm._v("Choose month")]
+                                    ),
+                                    _vm._v(" "),
+                                    _vm._l(_vm.months, function (d) {
+                                      return _c(
+                                        "option",
+                                        { key: d, on: { click: _vm.getData } },
+                                        [_vm._v(_vm._s(d) + " ")]
+                                      )
+                                    }),
+                                  ],
+                                  2
+                                ),
+                              ]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "div",
+                              {
+                                staticClass:
+                                  "min-h-screen p-5 bg-gray-100  rounded-lg border-collapse flex flex-col justify-center w-full h-full bg-no-repeat bg-cover",
+                                staticStyle: {
+                                  "background-image":
+                                    "url(/images/UMP/clock.jpg)",
                                 },
-                                [
-                                  _c(
-                                    "div",
-                                    { staticClass: "max-w-md mx-auto " },
-                                    [
-                                      _c(
-                                        "router-link",
-                                        {
-                                          staticClass:
-                                            "w-full focus:outline-none focus:text-white  flex justify-between sm:w-auto items-center space-x-10 text-white mx-6 p-3 rounded focus:bg-yellow-600 bg-yellow-500 hover:bg-yellow-600",
-                                          attrs: {
-                                            to: {
-                                              name: "land_profile_view",
-                                              params: {
-                                                role: 1,
-                                                id: _vm.student_info.std_id,
-                                              },
-                                            },
-                                            target: "_blank",
-                                          },
+                              },
+                              [
+                                _c(
+                                  "div",
+                                  {
+                                    staticClass:
+                                      "flex max-h-full sm:max-w-xl sm:mx-auto",
+                                  },
+                                  [
+                                    _c(
+                                      "div",
+                                      {
+                                        staticClass:
+                                          "flex  max-h-full  bg-white shadow-lg sm:rounded-3xl sm:p-20 bg-clip-padding bg-opacity-80 border border-gray-200",
+                                        staticStyle: {
+                                          "backdrop-filter": "blur(20px)",
                                         },
-                                        [
-                                          _c(
-                                            "div",
-                                            {
-                                              staticClass:
-                                                "flex justify-start sm:w-auto items-center space-x-2",
-                                            },
-                                            [
-                                              _c("div", [
-                                                _c("img", {
-                                                  staticClass:
-                                                    "rounded-full h-10 w-10 object-cover",
-                                                  attrs: {
-                                                    src:
-                                                      "/images/Profile/" +
-                                                      _vm.student_info.pic,
-                                                    alt: "Avatar",
+                                      },
+                                      [
+                                        _c(
+                                          "div",
+                                          { staticClass: "max-w-md mx-auto " },
+                                          [
+                                            _c(
+                                              "router-link",
+                                              {
+                                                staticClass:
+                                                  "w-full focus:outline-none focus:text-white  flex justify-between sm:w-auto items-center space-x-10 text-white mx-6 p-3 rounded focus:bg-yellow-600 bg-yellow-500 hover:bg-yellow-600",
+                                                attrs: {
+                                                  to: {
+                                                    name: "land_profile_view",
+                                                    params: {
+                                                      role: 1,
+                                                      id: _vm.student_info
+                                                        .std_id,
+                                                    },
                                                   },
-                                                }),
-                                              ]),
-                                              _vm._v(" "),
-                                              _c(
-                                                "div",
-                                                {
-                                                  staticClass:
-                                                    "flex flex-col justify-items-start text-left space-y-1",
+                                                  target: "_blank",
                                                 },
-                                                [
-                                                  _c(
-                                                    "p",
-                                                    {
-                                                      staticClass:
-                                                        "text-base leading-4 text-white",
-                                                    },
-                                                    [
-                                                      _vm._v(
-                                                        _vm._s(
-                                                          _vm.student_info.name
-                                                        )
-                                                      ),
-                                                    ]
-                                                  ),
-                                                  _vm._v(" "),
-                                                  _c(
-                                                    "p",
-                                                    {
-                                                      staticClass:
-                                                        "text-xs leading-3 text-indigo-200",
-                                                    },
-                                                    [
-                                                      _vm._v(
-                                                        _vm._s(
-                                                          _vm.student_info.email
-                                                        )
-                                                      ),
-                                                    ]
-                                                  ),
-                                                ]
-                                              ),
-                                            ]
-                                          ),
-                                        ]
-                                      ),
-                                      _vm._v(" "),
-                                      _c(
-                                        "div",
-                                        {
-                                          staticClass:
-                                            "py-4 text-base leading-6 space-y-4 text-gray-700 sm:text-lg sm:leading-7",
-                                        },
-                                        [
-                                          _c("p", { staticClass: "text-sm" }, [
-                                            _vm._v(
-                                              "Here’s a summary of tenant's " +
-                                                _vm._s(
-                                                  _vm
-                                                    .moment(_vm.data.bills_date)
-                                                    .format("MMM-YYYY")
-                                                ) +
-                                                "  UOCA rental bill " +
-                                                _vm._s(_vm.data.bills_id) +
-                                                ":"
-                                            ),
-                                          ]),
-                                          _vm._v(" "),
-                                          _c(
-                                            "div",
-                                            {
-                                              staticClass:
-                                                "shadow-md rounded my-6",
-                                            },
-                                            [
-                                              _c(
-                                                "table",
-                                                {
-                                                  staticClass:
-                                                    "text-center w-full border-2 rounded-lg ",
-                                                },
-                                                [
-                                                  _c("thead", [
-                                                    _c("tr", [
-                                                      _c(
-                                                        "th",
-                                                        {
-                                                          staticClass:
-                                                            "py-4 px-6 bg-grey-lightest font-bold uppercase text-sm text-grey-dark border-b border-r  border-grey-light ",
-                                                          attrs: {
-                                                            colspan: "2",
-                                                          },
-                                                        },
-                                                        [
-                                                          _vm._v("Bills Date "),
-                                                          _c(
-                                                            "p",
-                                                            {
-                                                              staticClass:
-                                                                "font-extrabold",
-                                                            },
-                                                            [
-                                                              _vm._v(
-                                                                _vm._s(
-                                                                  _vm
-                                                                    .moment(
-                                                                      _vm.data
-                                                                        .bills_date
-                                                                    )
-                                                                    .format(
-                                                                      "MMM-YYYY"
-                                                                    )
-                                                                ) + "  "
-                                                              ),
-                                                            ]
-                                                          ),
-                                                        ]
-                                                      ),
-                                                      _vm._v(" "),
-                                                      _c(
-                                                        "th",
-                                                        {
-                                                          staticClass:
-                                                            "py-4 px-6 bg-grey-lightest font-bold uppercase text-sm text-grey-dark border-b border-r border-grey-light",
-                                                        },
-                                                        [
-                                                          _vm._v("Tenant ID"),
-                                                          _c(
-                                                            "p",
-                                                            {
-                                                              staticClass:
-                                                                "font-extrabold",
-                                                            },
-                                                            [
-                                                              _vm._v(
-                                                                _vm._s(
-                                                                  _vm.data
-                                                                    .tenant_id
-                                                                ) + " "
-                                                              ),
-                                                            ]
-                                                          ),
-                                                        ]
-                                                      ),
-                                                    ]),
-                                                  ]),
-                                                  _vm._v(" "),
-                                                  _c("tbody", [
-                                                    _c(
-                                                      "tr",
-                                                      {
+                                              },
+                                              [
+                                                _c(
+                                                  "div",
+                                                  {
+                                                    staticClass:
+                                                      "flex justify-start sm:w-auto items-center space-x-2",
+                                                  },
+                                                  [
+                                                    _c("div", [
+                                                      _c("img", {
                                                         staticClass:
-                                                          "hover:bg-grey-lighter text-sm",
-                                                      },
-                                                      [
-                                                        _c(
-                                                          "td",
-                                                          {
-                                                            staticClass:
-                                                              "py-4 px-6 border-b border-grey-light border-r ",
-                                                          },
-                                                          [
-                                                            _vm._v(
-                                                              "Outstanding"
-                                                            ),
-                                                            _c(
-                                                              "p",
-                                                              {
-                                                                staticClass:
-                                                                  "font-bold",
-                                                              },
-                                                              [
-                                                                _vm._v(
-                                                                  "RM " +
-                                                                    _vm._s(
-                                                                      _vm.data.outstanding_bills.toFixed(
-                                                                        2
-                                                                      )
-                                                                    )
-                                                                ),
-                                                              ]
-                                                            ),
-                                                          ]
-                                                        ),
-                                                        _vm._v(" "),
-                                                        _c(
-                                                          "td",
-                                                          {
-                                                            staticClass:
-                                                              "py-4 px-6 border-b border-grey-light border-r ",
-                                                          },
-                                                          [
-                                                            _vm._v(
-                                                              "Bills Status"
-                                                            ),
-                                                            _c(
-                                                              "p",
-                                                              {
-                                                                staticClass:
-                                                                  "font-bold",
-                                                              },
-                                                              [
-                                                                _vm._v(
-                                                                  _vm._s(
-                                                                    _vm.data
-                                                                      .bills_status
-                                                                  )
-                                                                ),
-                                                              ]
-                                                            ),
-                                                          ]
-                                                        ),
-                                                        _vm._v(" "),
-                                                        _c(
-                                                          "td",
-                                                          {
-                                                            staticClass:
-                                                              "py-4 px-6 border-b border-grey-light border-r ",
-                                                            attrs: {
-                                                              rowspan: "2",
-                                                            },
-                                                          },
-                                                          [
-                                                            _vm._v(
-                                                              "Total Amount"
-                                                            ),
-                                                            _c(
-                                                              "p",
-                                                              {
-                                                                staticClass:
-                                                                  "font-bold",
-                                                              },
-                                                              [
-                                                                _vm._v(
-                                                                  "RM " +
-                                                                    _vm._s(
-                                                                      _vm.data.total_bills.toFixed(
-                                                                        2
-                                                                      )
-                                                                    )
-                                                                ),
-                                                              ]
-                                                            ),
-                                                            _vm._v(" "),
-                                                            _vm.data
-                                                              .bills_status ==
-                                                            "Overdue"
-                                                              ? _c(
-                                                                  "div",
-                                                                  {
-                                                                    staticClass:
-                                                                      "mb-5 ",
-                                                                  },
-                                                                  [
-                                                                    _c(
-                                                                      "center",
-                                                                      [
-                                                                        _c(
-                                                                          "div",
-                                                                          {
-                                                                            staticClass:
-                                                                              "mx-auto w-50",
-                                                                          },
-                                                                          [
-                                                                            _vm._v(
-                                                                              "\n                                     Overdue"
-                                                                            ),
-                                                                          ]
-                                                                        ),
-                                                                      ]
-                                                                    ),
-                                                                  ],
-                                                                  1
-                                                                )
-                                                              : _vm._e(),
-                                                            _vm._v(" "),
-                                                            _vm.data
-                                                              .payment_status ==
-                                                            "Paid"
-                                                              ? _c(
-                                                                  "div",
-                                                                  {
-                                                                    staticClass:
-                                                                      "mb-5 ",
-                                                                  },
-                                                                  [
-                                                                    _c(
-                                                                      "center",
-                                                                      [
-                                                                        _c(
-                                                                          "div",
-                                                                          {
-                                                                            staticClass:
-                                                                              "mx-auto w-50",
-                                                                          },
-                                                                          [
-                                                                            _vm._v(
-                                                                              "\n                                                Paid\n                                         "
-                                                                            ),
-                                                                          ]
-                                                                        ),
-                                                                      ]
-                                                                    ),
-                                                                  ],
-                                                                  1
-                                                                )
-                                                              : _vm._e(),
-                                                          ]
-                                                        ),
-                                                      ]
-                                                    ),
+                                                          "rounded-full h-10 w-10 object-cover",
+                                                        attrs: {
+                                                          src:
+                                                            "/images/Profile/" +
+                                                            _vm.student_info
+                                                              .pic,
+                                                          alt: "Avatar",
+                                                        },
+                                                      }),
+                                                    ]),
                                                     _vm._v(" "),
                                                     _c(
-                                                      "tr",
+                                                      "div",
                                                       {
                                                         staticClass:
-                                                          "hover:bg-grey-lighter text-sm",
+                                                          "flex flex-col justify-items-start text-left space-y-1",
                                                       },
                                                       [
                                                         _c(
-                                                          "td",
+                                                          "p",
                                                           {
                                                             staticClass:
-                                                              "py-4 px-6 border-b border-grey-light border-r ",
+                                                              "text-base leading-4 text-white",
                                                           },
                                                           [
                                                             _vm._v(
-                                                              "Penalty Fees "
-                                                            ),
-                                                            _c(
-                                                              "p",
-                                                              {
-                                                                staticClass:
-                                                                  "font-bold",
-                                                              },
-                                                              [
-                                                                _vm._v(
-                                                                  "RM " +
-                                                                    _vm._s(
-                                                                      _vm.data.penalty_fees.toFixed(
-                                                                        2
-                                                                      )
-                                                                    )
-                                                                ),
-                                                              ]
+                                                              _vm._s(
+                                                                _vm.student_info
+                                                                  .name
+                                                              )
                                                             ),
                                                           ]
                                                         ),
                                                         _vm._v(" "),
                                                         _c(
-                                                          "td",
+                                                          "p",
                                                           {
                                                             staticClass:
-                                                              "py-4 px-6 border-b border-grey-light border-r ",
+                                                              "text-xs leading-3 text-white",
                                                           },
                                                           [
-                                                            _vm._v("Bill Due "),
-                                                            _c(
-                                                              "p",
-                                                              {
-                                                                staticClass:
-                                                                  "font-bold",
-                                                              },
-                                                              [
-                                                                _vm._v(
-                                                                  _vm._s(
-                                                                    _vm
-                                                                      .moment(
-                                                                        _vm.data
-                                                                          .due_date
-                                                                      )
-                                                                      .format(
-                                                                        "d-MMM-YYYY"
-                                                                      )
-                                                                  ) + " "
-                                                                ),
-                                                              ]
+                                                            _vm._v(
+                                                              _vm._s(
+                                                                _vm.student_info
+                                                                  .email
+                                                              )
                                                             ),
                                                           ]
                                                         ),
                                                       ]
                                                     ),
-                                                  ]),
-                                                ]
-                                              ),
-                                            ]
-                                          ),
-                                        ]
-                                      ),
-                                    ],
-                                    1
-                                  ),
-                                ]
-                              ),
-                            ]
-                          ),
-                        ]
-                      ),
-                    ]),
-              ]
-            ),
-          ]),
-          _vm._v(" "),
-          _c(
-            "div",
-            { staticClass: "flex justify-end items-center w-100 border-t p-3" },
-            [
-              _c(
-                "button",
-                {
-                  staticClass:
-                    "bg-red-600 hover:bg-red-700 px-3 py-1 rounded text-white mr-1 close-modal",
-                  on: { click: _vm.closeModal },
-                },
-                [_vm._v("Cancel")]
+                                                  ]
+                                                ),
+                                              ]
+                                            ),
+                                            _vm._v(" "),
+                                            _c(
+                                              "div",
+                                              {
+                                                staticClass:
+                                                  "py-4 text-base leading-6 space-y-4 text-gray-700 sm:text-lg sm:leading-7",
+                                              },
+                                              [
+                                                _c(
+                                                  "p",
+                                                  { staticClass: "text-sm" },
+                                                  [
+                                                    _vm._v(
+                                                      "Here’s a summary of tenant's " +
+                                                        _vm._s(
+                                                          _vm
+                                                            .moment(
+                                                              _vm.data
+                                                                .bills_date
+                                                            )
+                                                            .format("MMM-YYYY")
+                                                        ) +
+                                                        "  UOCA rental bill " +
+                                                        _vm._s(
+                                                          _vm.data.bills_id
+                                                        ) +
+                                                        ":"
+                                                    ),
+                                                  ]
+                                                ),
+                                                _vm._v(" "),
+                                                _c(
+                                                  "div",
+                                                  {
+                                                    staticClass:
+                                                      "shadow-md rounded my-6",
+                                                  },
+                                                  [
+                                                    _c(
+                                                      "table",
+                                                      {
+                                                        staticClass:
+                                                          "text-center w-full border-2 rounded-lg ",
+                                                      },
+                                                      [
+                                                        _c("thead", [
+                                                          _c("tr", [
+                                                            _c(
+                                                              "th",
+                                                              {
+                                                                staticClass:
+                                                                  "py-4 px-6 bg-grey-lightest font-bold uppercase text-sm text-grey-dark border-b border-r  border-grey-light ",
+                                                                attrs: {
+                                                                  colspan: "2",
+                                                                },
+                                                              },
+                                                              [
+                                                                _vm._v(
+                                                                  "Bills Date "
+                                                                ),
+                                                                _c(
+                                                                  "p",
+                                                                  {
+                                                                    staticClass:
+                                                                      "font-extrabold",
+                                                                  },
+                                                                  [
+                                                                    _vm._v(
+                                                                      _vm._s(
+                                                                        _vm
+                                                                          .moment(
+                                                                            _vm
+                                                                              .data
+                                                                              .bills_date
+                                                                          )
+                                                                          .format(
+                                                                            "MMM-YYYY"
+                                                                          )
+                                                                      ) + "  "
+                                                                    ),
+                                                                  ]
+                                                                ),
+                                                              ]
+                                                            ),
+                                                            _vm._v(" "),
+                                                            _c(
+                                                              "th",
+                                                              {
+                                                                staticClass:
+                                                                  "py-4 px-6 bg-grey-lightest font-bold uppercase text-sm text-grey-dark border-b border-r border-grey-light",
+                                                              },
+                                                              [
+                                                                _vm._v(
+                                                                  "Tenant ID"
+                                                                ),
+                                                                _c(
+                                                                  "p",
+                                                                  {
+                                                                    staticClass:
+                                                                      "font-extrabold",
+                                                                  },
+                                                                  [
+                                                                    _vm._v(
+                                                                      _vm._s(
+                                                                        _vm.data
+                                                                          .tenant_id
+                                                                      ) + " "
+                                                                    ),
+                                                                  ]
+                                                                ),
+                                                              ]
+                                                            ),
+                                                          ]),
+                                                        ]),
+                                                        _vm._v(" "),
+                                                        _c("tbody", [
+                                                          _c(
+                                                            "tr",
+                                                            {
+                                                              staticClass:
+                                                                "hover:bg-grey-lighter text-sm",
+                                                            },
+                                                            [
+                                                              _c(
+                                                                "td",
+                                                                {
+                                                                  staticClass:
+                                                                    "py-4 px-6 border-b border-grey-light border-r ",
+                                                                },
+                                                                [
+                                                                  _vm._v(
+                                                                    "Outstanding"
+                                                                  ),
+                                                                  _c(
+                                                                    "p",
+                                                                    {
+                                                                      staticClass:
+                                                                        "font-bold text-red-500",
+                                                                    },
+                                                                    [
+                                                                      _vm._v(
+                                                                        "RM " +
+                                                                          _vm._s(
+                                                                            _vm.data.outstanding_bills.toFixed(
+                                                                              2
+                                                                            )
+                                                                          )
+                                                                      ),
+                                                                    ]
+                                                                  ),
+                                                                ]
+                                                              ),
+                                                              _vm._v(" "),
+                                                              _c(
+                                                                "td",
+                                                                {
+                                                                  staticClass:
+                                                                    "py-4 px-6 border-b border-grey-light border-r ",
+                                                                },
+                                                                [
+                                                                  _vm._v(
+                                                                    "Bills Status"
+                                                                  ),
+                                                                  _c(
+                                                                    "p",
+                                                                    {
+                                                                      staticClass:
+                                                                        "font-bold",
+                                                                    },
+                                                                    [
+                                                                      _vm._v(
+                                                                        _vm._s(
+                                                                          _vm
+                                                                            .data
+                                                                            .bills_status
+                                                                        )
+                                                                      ),
+                                                                    ]
+                                                                  ),
+                                                                ]
+                                                              ),
+                                                              _vm._v(" "),
+                                                              _c(
+                                                                "td",
+                                                                {
+                                                                  staticClass:
+                                                                    "py-4 px-6 border-b border-grey-light border-r ",
+                                                                  attrs: {
+                                                                    rowspan:
+                                                                      "2",
+                                                                  },
+                                                                },
+                                                                [
+                                                                  _vm._v(
+                                                                    "Total Amount"
+                                                                  ),
+                                                                  _c(
+                                                                    "p",
+                                                                    {
+                                                                      staticClass:
+                                                                        "font-black text-xl text-ump-green",
+                                                                    },
+                                                                    [
+                                                                      _vm._v(
+                                                                        "RM " +
+                                                                          _vm._s(
+                                                                            _vm.data.total_bills.toFixed(
+                                                                              2
+                                                                            )
+                                                                          )
+                                                                      ),
+                                                                    ]
+                                                                  ),
+                                                                  _vm._v(" "),
+                                                                  _vm.data
+                                                                    .bills_status ==
+                                                                  "Overdue"
+                                                                    ? _c(
+                                                                        "div",
+                                                                        {
+                                                                          staticClass:
+                                                                            "mb-5 ",
+                                                                        },
+                                                                        [
+                                                                          _c(
+                                                                            "center",
+                                                                            [
+                                                                              _c(
+                                                                                "div",
+                                                                                {
+                                                                                  staticClass:
+                                                                                    "mx-auto bg-red-500 px-4 py-1 rounded-full text-white",
+                                                                                },
+                                                                                [
+                                                                                  _vm._v(
+                                                                                    "\n                                         Overdue\n                                    "
+                                                                                  ),
+                                                                                ]
+                                                                              ),
+                                                                            ]
+                                                                          ),
+                                                                        ],
+                                                                        1
+                                                                      )
+                                                                    : _vm._e(),
+                                                                  _vm._v(" "),
+                                                                  _vm.data
+                                                                    .payment_status ==
+                                                                  "Paid"
+                                                                    ? _c(
+                                                                        "div",
+                                                                        {
+                                                                          staticClass:
+                                                                            "mb-5 ",
+                                                                        },
+                                                                        [
+                                                                          _c(
+                                                                            "center",
+                                                                            [
+                                                                              _c(
+                                                                                "div",
+                                                                                {
+                                                                                  staticClass:
+                                                                                    "mx-auto bg-green-400 px-4 py-1 rounded-full text-white",
+                                                                                },
+                                                                                [
+                                                                                  _vm._v(
+                                                                                    "\n                                         Paid\n                                    "
+                                                                                  ),
+                                                                                ]
+                                                                              ),
+                                                                            ]
+                                                                          ),
+                                                                        ],
+                                                                        1
+                                                                      )
+                                                                    : _vm._e(),
+                                                                  _vm._v(" "),
+                                                                  _vm.data
+                                                                    .payment_status ==
+                                                                  "Unpaid"
+                                                                    ? _c(
+                                                                        "div",
+                                                                        {
+                                                                          staticClass:
+                                                                            "mb-5 ",
+                                                                        },
+                                                                        [
+                                                                          _c(
+                                                                            "center",
+                                                                            [
+                                                                              _c(
+                                                                                "div",
+                                                                                {
+                                                                                  staticClass:
+                                                                                    "mx-auto bg-yellow-400 px-4 py-1 rounded-full text-white",
+                                                                                },
+                                                                                [
+                                                                                  _vm._v(
+                                                                                    "\n                                         Unpaid\n                                    "
+                                                                                  ),
+                                                                                ]
+                                                                              ),
+                                                                            ]
+                                                                          ),
+                                                                        ],
+                                                                        1
+                                                                      )
+                                                                    : _vm._e(),
+                                                                ]
+                                                              ),
+                                                            ]
+                                                          ),
+                                                          _vm._v(" "),
+                                                          _c(
+                                                            "tr",
+                                                            {
+                                                              staticClass:
+                                                                "hover:bg-grey-lighter text-sm",
+                                                            },
+                                                            [
+                                                              _c(
+                                                                "td",
+                                                                {
+                                                                  staticClass:
+                                                                    "py-4 px-6 border-b border-grey-light border-r ",
+                                                                },
+                                                                [
+                                                                  _vm._v(
+                                                                    "Penalty Fees "
+                                                                  ),
+                                                                  _c(
+                                                                    "p",
+                                                                    {
+                                                                      staticClass:
+                                                                        "font-bold text-red-500",
+                                                                    },
+                                                                    [
+                                                                      _vm._v(
+                                                                        "RM " +
+                                                                          _vm._s(
+                                                                            _vm.data.penalty_fees.toFixed(
+                                                                              2
+                                                                            )
+                                                                          )
+                                                                      ),
+                                                                    ]
+                                                                  ),
+                                                                ]
+                                                              ),
+                                                              _vm._v(" "),
+                                                              _c(
+                                                                "td",
+                                                                {
+                                                                  staticClass:
+                                                                    "py-4 px-6 border-b border-grey-light border-r ",
+                                                                },
+                                                                [
+                                                                  _vm._v(
+                                                                    "Bill Due "
+                                                                  ),
+                                                                  _c(
+                                                                    "p",
+                                                                    {
+                                                                      staticClass:
+                                                                        "font-bold",
+                                                                    },
+                                                                    [
+                                                                      _vm._v(
+                                                                        _vm._s(
+                                                                          _vm
+                                                                            .moment(
+                                                                              _vm
+                                                                                .data
+                                                                                .due_date
+                                                                            )
+                                                                            .format(
+                                                                              "d-MMM-YYYY"
+                                                                            )
+                                                                        ) + " "
+                                                                      ),
+                                                                    ]
+                                                                  ),
+                                                                ]
+                                                              ),
+                                                            ]
+                                                          ),
+                                                        ]),
+                                                      ]
+                                                    ),
+                                                  ]
+                                                ),
+                                              ]
+                                            ),
+                                          ],
+                                          1
+                                        ),
+                                      ]
+                                    ),
+                                  ]
+                                ),
+                              ]
+                            ),
+                          ]),
+                    ]
+                  ),
+                ]),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  {
+                    staticClass:
+                      "flex justify-end items-center w-100 border-t p-3",
+                  },
+                  [
+                    _c(
+                      "button",
+                      {
+                        staticClass:
+                          "bg-red-600 hover:bg-red-700 px-3 py-1 rounded text-white mr-1 close-modal",
+                        on: { click: _vm.closeModal },
+                      },
+                      [_vm._v("Cancel")]
+                    ),
+                  ]
+                ),
+              ])
+            : _c(
+                "div",
+                [
+                  _c("loader", {
+                    attrs: {
+                      object: "#4491ee",
+                      color1: "#e3851c",
+                      color2: "#e82dda",
+                      size: "8",
+                      speed: "1.3",
+                      bg: "#1e2337",
+                      objectbg: "#ff2d2d",
+                      opacity: "90",
+                      disableScrolling: "true",
+                      name: "dots",
+                    },
+                  }),
+                ],
+                1
               ),
-            ]
-          ),
         ]
       ),
     ]
@@ -1390,7 +1526,7 @@ var render = function () {
                       "div",
                       {
                         staticClass:
-                          "flex flex-col justify-center items-center relative h-full bg-black bg-opacity-20 text-white -mt-10",
+                          "flex flex-col justify-center items-center relative h-full bg-black bg-opacity-50 text-white -mt-10",
                       },
                       [
                         _c("img", {
@@ -1410,10 +1546,7 @@ var render = function () {
                           "router-link",
                           {
                             attrs: {
-                              to: {
-                                name: "land_profile_view",
-                                params: { role: 2, id: _vm.info.landlord_id },
-                              },
+                              to: { name: "profile_landlord" },
                               target: "_blank",
                             },
                           },
@@ -1422,7 +1555,7 @@ var render = function () {
                               "h4",
                               {
                                 staticClass:
-                                  "text-sm font-semibold hover:underline hover:text-yellow-500",
+                                  "text-sm font-semibold hover:underline hover:text-blue-700",
                               },
                               [
                                 _vm._v(
@@ -1549,19 +1682,43 @@ var render = function () {
                                                       "p",
                                                       {
                                                         staticClass:
-                                                          "text-purple-600 font-semibold ml-2 text-sm text-center md:text-left ",
+                                                          "text-purple-800 font-semibold ml-2 text-sm text-center md:text-left ",
                                                       },
                                                       [
-                                                        _vm._v(
-                                                          _vm._s(
-                                                            item.student.name
-                                                          ) + " "
+                                                        _c(
+                                                          "router-link",
+                                                          {
+                                                            staticClass:
+                                                              "text-purple-800 hover:underline hover:text-purple-900",
+                                                            attrs: {
+                                                              to: {
+                                                                name: "land_profile_view",
+                                                                params: {
+                                                                  role: 1,
+                                                                  id: item
+                                                                    .student.id,
+                                                                },
+                                                              },
+                                                              target: "_blank",
+                                                            },
+                                                          },
+                                                          [
+                                                            _vm._v(
+                                                              " " +
+                                                                _vm._s(
+                                                                  item.student
+                                                                    .name
+                                                                ) +
+                                                                " "
+                                                            ),
+                                                          ]
                                                         ),
+                                                        _vm._v(" (Tenant) "),
                                                         _c(
                                                           "span",
                                                           {
                                                             staticClass:
-                                                              "text-xs ml-5 text-black",
+                                                              "text-xs ml-2 text-gray-700",
                                                           },
                                                           [
                                                             _vm._v(
@@ -1579,7 +1736,8 @@ var render = function () {
                                                             ),
                                                           ]
                                                         ),
-                                                      ]
+                                                      ],
+                                                      1
                                                     ),
                                                   ]
                                                 ),
@@ -1588,7 +1746,7 @@ var render = function () {
                                                   "p",
                                                   {
                                                     staticClass:
-                                                      "text-gray-600 text-base text-center md:text-left ",
+                                                      "text-gray-800 text-base text-center md:text-left ",
                                                     staticStyle: {
                                                       width: "90%",
                                                     },
@@ -1615,62 +1773,14 @@ var render = function () {
                                                   "div",
                                                   {
                                                     staticClass:
-                                                      "flex flex-row  mr-2 w-full",
+                                                      "flex-row  mr-2  w-full flex justify-end",
                                                   },
                                                   [
-                                                    _c("img", {
-                                                      staticClass:
-                                                        "justify-self-start rounded-full w-5 h-5 shadow-lg mb-4",
-                                                      attrs: {
-                                                        alt: "avatar",
-                                                        src:
-                                                          "/images/Profile/" +
-                                                          item.landlord.pic,
-                                                      },
-                                                    }),
-                                                    _vm._v(" "),
-                                                    _c(
-                                                      "p",
-                                                      {
-                                                        staticClass:
-                                                          "justify-self-start text-white font-semibold ml-2 mr-5 text-sm text-center md:text-left ",
-                                                      },
-                                                      [
-                                                        _vm._v(
-                                                          _vm._s(
-                                                            item.landlord.name
-                                                          ) + " "
-                                                        ),
-                                                        _c(
-                                                          "span",
-                                                          {
-                                                            staticClass:
-                                                              "text-xs ml-5 text-black",
-                                                          },
-                                                          [
-                                                            _vm._v(
-                                                              " " +
-                                                                _vm._s(
-                                                                  _vm
-                                                                    .moment(
-                                                                      item.created_at
-                                                                    )
-                                                                    .format(
-                                                                      "DD-MM-YYYY, h:mm a"
-                                                                    )
-                                                                ) +
-                                                                " "
-                                                            ),
-                                                          ]
-                                                        ),
-                                                      ]
-                                                    ),
-                                                    _vm._v(" "),
                                                     _c(
                                                       "button",
                                                       {
                                                         staticClass:
-                                                          "justify-self-end w-5 h-5",
+                                                          "justify-self-end w-4 h-4",
                                                         on: {
                                                           click: function (
                                                             $event
@@ -1685,6 +1795,8 @@ var render = function () {
                                                         _c(
                                                           "svg",
                                                           {
+                                                            staticClass:
+                                                              "text-gray-700 ",
                                                             attrs: {
                                                               xmlns:
                                                                 "http://www.w3.org/2000/svg",
@@ -1711,6 +1823,56 @@ var render = function () {
                                                         ),
                                                       ]
                                                     ),
+                                                    _vm._v(" "),
+                                                    _c(
+                                                      "p",
+                                                      {
+                                                        staticClass:
+                                                          "justify-self-start text-blue-800 font-semibold ml-2 mr-5 text-sm text-center md:text-left ",
+                                                      },
+                                                      [
+                                                        _c(
+                                                          "span",
+                                                          {
+                                                            staticClass:
+                                                              "text-xs ml-2 text-gray-700",
+                                                          },
+                                                          [
+                                                            _vm._v(
+                                                              " " +
+                                                                _vm._s(
+                                                                  _vm
+                                                                    .moment(
+                                                                      item.created_at
+                                                                    )
+                                                                    .format(
+                                                                      "DD-MM-YYYY, h:mm a"
+                                                                    )
+                                                                ) +
+                                                                " "
+                                                            ),
+                                                          ]
+                                                        ),
+                                                        _vm._v(
+                                                          " " +
+                                                            _vm._s(
+                                                              item.landlord.name
+                                                            ) +
+                                                            " "
+                                                        ),
+                                                      ]
+                                                    ),
+                                                    _vm._v(" "),
+                                                    _c("img", {
+                                                      staticClass:
+                                                        "justify-self-start rounded-full w-5 h-5 shadow-lg mb-4",
+                                                      attrs: {
+                                                        alt: "avatar",
+                                                        src:
+                                                          "/images/Profile/" +
+                                                          item.landlord.pic,
+                                                      },
+                                                    }),
                                                   ]
                                                 ),
                                                 _vm._v(" "),
@@ -1718,7 +1880,7 @@ var render = function () {
                                                   "p",
                                                   {
                                                     staticClass:
-                                                      "text-gray-600 text-base text-center md:text-left ",
+                                                      "text-gray-800 text-base text-center md:text-left ",
                                                     staticStyle: {
                                                       width: "90%",
                                                     },
@@ -2272,49 +2434,49 @@ var render = function () {
                                                 ],
                                                 1
                                               ),
-                                              _vm._v(" "),
-                                              item.tenants.length == 0
-                                                ? _c("tr", [
-                                                    _c(
-                                                      "td",
-                                                      {
-                                                        attrs: { colspan: "7" },
-                                                      },
-                                                      [
-                                                        _c(
-                                                          "div",
-                                                          {
-                                                            staticClass:
-                                                              "bg-indigo-100 border-yellow-600 text-black-600  p-4",
-                                                            attrs: {
-                                                              role: "alert",
-                                                            },
-                                                          },
-                                                          [
-                                                            _c("center", [
-                                                              _c(
-                                                                "p",
-                                                                {
-                                                                  staticClass:
-                                                                    "font-bold text-base",
-                                                                },
-                                                                [
-                                                                  _vm._v(
-                                                                    "\n                                    No tenant occupy this room yet\n                                    "
-                                                                  ),
-                                                                ]
-                                                              ),
-                                                            ]),
-                                                          ],
-                                                          1
-                                                        ),
-                                                      ]
-                                                    ),
-                                                  ])
-                                                : _vm._e(),
                                             ]
                                           )
                                         }),
+                                        _vm._v(" "),
+                                        _c("tbody", [
+                                          item.tenants.length == 0
+                                            ? _c("tr", [
+                                                _c(
+                                                  "td",
+                                                  { attrs: { colspan: "7" } },
+                                                  [
+                                                    _c(
+                                                      "div",
+                                                      {
+                                                        staticClass:
+                                                          "bg-indigo-100 border-yellow-600 text-black-600  p-4",
+                                                        attrs: {
+                                                          role: "alert",
+                                                        },
+                                                      },
+                                                      [
+                                                        _c("center", [
+                                                          _c(
+                                                            "p",
+                                                            {
+                                                              staticClass:
+                                                                "font-bold text-base",
+                                                            },
+                                                            [
+                                                              _vm._v(
+                                                                "\n                                    No tenant occupy this room yet\n                                    "
+                                                              ),
+                                                            ]
+                                                          ),
+                                                        ]),
+                                                      ],
+                                                      1
+                                                    ),
+                                                  ]
+                                                ),
+                                              ])
+                                            : _vm._e(),
+                                        ]),
                                       ],
                                       2
                                     ),

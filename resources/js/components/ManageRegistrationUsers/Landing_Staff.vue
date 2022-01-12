@@ -24,13 +24,16 @@
                                 <div class="ml-2 w-full flex-1">
                                     <div>
                                         <div class="mt-3 text-3xl font-bold leading-8">
+                                             <div v-if="isReady==true && ready1==true && ready2==true && ready3==true && ready4==true">
                                             <number
 
                                              ref="number1"
                                             :from="0"
                                             :to="properties"
                                             :duration="1"
-                                            easing="Power1.easeOut"/> </div>
+                                            easing="Power1.easeOut"/>
+                                            </div>
+                                            </div>
 
                                         <div class="mt-1 text-base text-gray-600">units</div>
                                     </div>
@@ -53,7 +56,7 @@
                                 <div class="ml-2 w-full flex-1">
                                     <div>
                                         <div class="mt-3 text-3xl font-bold leading-8">
-                                        <div class="mt-3 text-3xl font-bold leading-8">
+                                       <div v-if="isReady==true && ready1==true && ready2==true && ready3==true && ready4==true">
                                             <number
                                              ref="number2"
                                             :from="0"
@@ -81,7 +84,7 @@
                                 <div class="ml-2 w-full flex-1">
                                     <div>
                                         <div class="mt-3 text-3xl font-bold leading-8">
-                                        <div class="mt-3 text-3xl font-bold leading-8">
+                                        <div v-if="isReady==true && ready1==true && ready2==true && ready3==true && ready4==true">
                                             <number
                                             ref="number3"
                                             :from="0"
@@ -107,7 +110,7 @@
                                 <div class="ml-2 w-full flex-1">
                                     <div>
                                         <div class="mt-3 text-3xl font-bold leading-8">
-                                        <div class="mt-3 text-3xl font-bold leading-8">
+                                         <div v-if="isReady==true && ready1==true && ready2==true && ready3==true && ready4==true">
                                             <number
                                             ref="number4"
                                             :from="0"
@@ -125,6 +128,7 @@
                     <div class="grid gap-2 grid-cols-1 lg:grid-cols-1">
                         <div class="bg-white p-4 shadow-lg rounded-lg">
                             <h1 class="font-bold text-base">Landlord's Property Applications</h1>
+                             <div v-if="isReady==true && ready1==true && ready2==true && ready3==true && ready4==true">
                             <div class="mt-4">
                                 <div class="flex flex-col">
                                     <div class="-my-2 overflow-x-auto">
@@ -240,6 +244,11 @@
                                     </div>
                                 </div>
                             </div>
+
+                        </div>
+                         <div v-else>
+                            <loader object="#4491ee" color1="#e3851c" color2="#e82dda" size="8" speed="1.3" bg="#1e2337" objectbg="#ff2d2d" opacity="90" disableScrolling="true" name="circular"></loader>
+                        </div>
                         </div>
                     </div>
                 </div>
@@ -267,36 +276,46 @@ export default {
           rooms: 0,
           landlords: 0,
           unverified: [],
+        isReady: false,
+        ready1: false,
+        ready2: false,
+        ready3: false,
+        ready4: false,
 
         }
     },
      methods:{
            getallpropertyCount(){
             axios.get('/api/getallpropertyCount').then((response)=>{
+                this.isReady=true;
                 this.properties=response.data;
 
             })
         },
            getalltenantsCount(){
             axios.get('/api/getalltenantsCount').then((response)=>{
+                this.ready1= true,
                 this.tenants=response.data;
 
             })
         },
            getallroomCount(){
             axios.get('/api/getallroomCount').then((response)=>{
+                this.ready2= true,
                 this.rooms=response.data;
 
             })
         },
            getalllandlordCount(){
             axios.get('/api/getalllandlordCount').then((response)=>{
+                this.ready3= true,
                 this.landlords=response.data;
 
             })
         },
            get_properties_list_Unverified(){
             axios.get('/api/get_properties_list_Unverified?land=1').then((response)=>{
+                this.ready4= true,
                 this.unverified=response.data.data;
 
             })

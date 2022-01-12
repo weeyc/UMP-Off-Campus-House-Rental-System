@@ -148,6 +148,15 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -166,6 +175,7 @@ __webpack_require__.r(__webpack_exports__);
       byGender: '',
       showSize: 10,
       toggleModal: false,
+      isReady: false,
       profile: {
         id: '',
         name: '',
@@ -211,6 +221,7 @@ __webpack_require__.r(__webpack_exports__);
         }
       }).then(function (response) {
         _this2.students = response.data.data;
+        _this2.isReady = true;
         console.warn(_this2.students.data);
       });
     },
@@ -411,569 +422,676 @@ var render = function () {
             "mx-auto container bg-white-500 dark:bg-gray-800 dark:bg-gray-800 shadow rounded ",
         },
         [
-          _c(
-            "div",
-            {
-              staticClass:
-                "flex flex-col lg:flex-row p-2 lg:p-8 justify-between items-start lg:items-stretch w-full shadow-inner",
-              staticStyle: { "background-image": "url(/images/BlueCoral.jpg)" },
-            },
-            [
-              _vm._m(0),
-              _vm._v(" "),
-              _c(
-                "div",
-                {
-                  staticClass:
-                    "w-full flex flex-col lg:flex-row items-start lg:items-center ",
-                },
-                [
-                  _vm.pageInfo
-                    ? _c("div", { staticClass: "flex items-center" }, [
-                        _vm.page == "[object MouseEvent]"
-                          ? _c(
-                              "p",
-                              {
-                                staticClass:
-                                  "font-medium text-dark-600 dark:text-gray-400",
-                              },
-                              [
-                                _vm._v(
-                                  "  Showing Page 1 of " + _vm._s(_vm.lastPage)
-                                ),
-                              ]
-                            )
-                          : _c(
-                              "p",
-                              {
-                                staticClass:
-                                  "font-medium text-dark-600 dark:text-gray-400",
-                              },
-                              [
-                                _vm._v(
-                                  "  Showing Page " +
-                                    _vm._s(_vm.page) +
-                                    " of " +
-                                    _vm._s(_vm.lastPage)
-                                ),
-                              ]
-                            ),
-                      ])
-                    : _vm._e(),
-                ]
-              ),
-              _vm._v(" "),
-              _c(
-                "div",
-                {
-                  staticClass:
-                    "w-full flex flex-col lg:flex-row items-start lg:items-center justify-center",
-                },
-                [
-                  _c("div", { staticClass: "relative w-32 z-10" }, [
-                    _c(
-                      "select",
-                      {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.filterGender,
-                            expression: "filterGender",
-                          },
-                        ],
-                        staticClass:
-                          "focus:outline-none border-transparent cursor-pointer focus:border-gray-800 hover:bg-pink-200 focus:shadow-outline-gray text-base form-select block w-full py-2 px-2 xl:px-3 rounded font-medium dark:text-gray-400 appearance-none bg-transparent",
-                        on: {
-                          change: function ($event) {
-                            var $$selectedVal = Array.prototype.filter
-                              .call($event.target.options, function (o) {
-                                return o.selected
-                              })
-                              .map(function (o) {
-                                var val = "_value" in o ? o._value : o.value
-                                return val
-                              })
-                            _vm.filterGender = $event.target.multiple
-                              ? $$selectedVal
-                              : $$selectedVal[0]
-                          },
-                        },
-                      },
-                      [
-                        _c("option", { attrs: { value: "" } }, [
-                          _vm._v("Gender"),
-                        ]),
-                        _vm._v(" "),
-                        _c("option", { attrs: { value: "male" } }, [
-                          _vm._v("Male"),
-                        ]),
-                        _vm._v(" "),
-                        _c("option", { attrs: { value: "female" } }, [
-                          _vm._v("Female"),
-                        ]),
-                      ]
-                    ),
-                  ]),
-                ]
-              ),
-            ]
-          ),
-          _vm._v(" "),
-          _c("div", { staticClass: "flex justify-center item-center mb-10" }, [
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.filterName,
-                  expression: "filterName",
-                },
-              ],
-              staticClass: "block w-5/12 py-2 px-2 text-lg rounded-lg",
-              attrs: { type: "text", name: "name", placeholder: "Search Name" },
-              domProps: { value: _vm.filterName },
-              on: {
-                input: function ($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.filterName = $event.target.value
-                },
-              },
-            }),
-          ]),
-          _vm._v(" "),
-          _c(
-            "div",
-            { staticClass: "w-full overflow-x-scroll xl:overflow-x-hidden" },
-            [
-              _c("table", { staticClass: "min-w-full shadow-lg border-b-2 " }, [
-                _c("thead", [
-                  _c(
-                    "tr",
-                    {
-                      staticClass:
-                        "border-b bg-pink-400 text-gray-900 uppercase text-base leading-normal",
-                      staticStyle: {
-                        "background-image": "url(/images/BlueCoral.jpg)",
-                      },
-                    },
-                    [
-                      _c("th", { staticClass: "py-3 px-3 text-left" }, [
-                        _vm._v("No."),
-                      ]),
-                      _vm._v(" "),
-                      _c(
-                        "button",
-                        {
-                          on: {
-                            click: function ($event) {
-                              return _vm.sorting(1)
-                            },
-                          },
-                        },
-                        [
-                          _c("th", { staticClass: "py-3 px-6 text-left" }, [
-                            _vm._v("User ID"),
-                          ]),
-                        ]
-                      ),
-                      _vm._v(" "),
-                      _c("th", { staticClass: "py-3 px-6 text-left" }, [
-                        _vm._v("Name"),
-                      ]),
-                      _vm._v(" "),
-                      _c("th", { staticClass: "py-3 px-6 text-left" }, [
-                        _vm._v("Email"),
-                      ]),
-                      _vm._v(" "),
-                      _c("th", { staticClass: "py-3 px-6 text-left" }, [
-                        _vm._v("Phone No."),
-                      ]),
-                      _vm._v(" "),
-                      _c(
-                        "button",
-                        {
-                          on: {
-                            click: function ($event) {
-                              return _vm.sorting(2)
-                            },
-                          },
-                        },
-                        [
-                          _c("th", { staticClass: "py-3 px-6 text-left" }, [
-                            _vm._v("Gender"),
-                          ]),
-                        ]
-                      ),
-                      _vm._v(" "),
-                      _c("th", { staticClass: "py-3 px-6 text-center" }, [
-                        _vm._v("Actions"),
-                      ]),
-                    ]
-                  ),
-                ]),
-                _vm._v(" "),
+          _vm.isReady == true
+            ? _c("div", [
                 _c(
-                  "tbody",
-                  { staticClass: "text-dark-600 text-sm font-light" },
+                  "div",
+                  {
+                    staticClass:
+                      "flex flex-col lg:flex-row p-2 lg:p-8 justify-between items-start lg:items-stretch w-full shadow-inner",
+                    staticStyle: {
+                      "background-image": "url(/images/BlueCoral.jpg)",
+                    },
+                  },
                   [
-                    _vm._l(_vm.filterUser, function (student, index) {
-                      return _c(
-                        "tr",
-                        {
-                          key: student.id,
-                          staticClass:
-                            "border-b border-gray-200 hover:bg-pink-200",
-                        },
-                        [
-                          _c(
-                            "td",
-                            {
-                              staticClass:
-                                "py-3 px-3 text-left whitespace-nowrap",
-                            },
-                            [_vm._v("  " + _vm._s(index + 1))]
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "td",
-                            {
-                              staticClass:
-                                "py-3 px-6 text-left whitespace-nowrap",
-                            },
-                            [
-                              _c("div", { staticClass: "flex items-center" }, [
-                                _c("span", { staticClass: "font-medium" }, [
-                                  _vm._v(_vm._s(student.id)),
-                                ]),
-                              ]),
-                            ]
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "td",
-                            { staticClass: "py-3 px-6 text-left" },
-                            [
-                              _c(
-                                "router-link",
-                                {
-                                  staticClass: "flex items-center",
-                                  attrs: {
-                                    to: {
-                                      name: "profile_view",
-                                      params: { role: 1, id: student.id },
-                                    },
-                                    target: "_blank",
-                                  },
-                                },
-                                [
-                                  _c("div", { staticClass: "mr-2" }, [
-                                    _c("img", {
-                                      staticClass:
-                                        "w-6 h-6 rounded-full hover:scale-150 hover:z-10 transform ease-in-out transition duration-500",
-                                      attrs: {
-                                        src: "/images/Profile/" + student.pic,
-                                      },
-                                    }),
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("span", [_vm._v(_vm._s(student.name))]),
-                                ]
-                              ),
-                            ],
-                            1
-                          ),
-                          _vm._v(" "),
-                          _c("td", { staticClass: "py-3 px-6 text-left" }, [
-                            _c("div", { staticClass: "flex items-center" }, [
-                              _c("span", [_vm._v(_vm._s(student.email))]),
-                            ]),
-                          ]),
-                          _vm._v(" "),
-                          _c("td", { staticClass: "py-3 px-6 text-left" }, [
-                            _c("div", { staticClass: "flex items-center" }, [
-                              _c("span", [_vm._v(_vm._s(student.phone_no))]),
-                            ]),
-                          ]),
-                          _vm._v(" "),
-                          _c("td", { staticClass: "py-3 px-6 text-left" }, [
-                            student.gender === "male"
-                              ? _c("span", [
-                                  _vm._v("🧑 " + _vm._s(student.gender)),
-                                ])
-                              : _vm._e(),
-                            _vm._v(" "),
-                            student.gender === "female"
-                              ? _c("span", [
-                                  _vm._v("👩‍🦰  " + _vm._s(student.gender)),
-                                ])
-                              : _vm._e(),
-                          ]),
-                          _vm._v(" "),
-                          _c("td", { staticClass: "py-3 px-6 text-center" }, [
-                            _c(
-                              "div",
-                              {
-                                staticClass: "flex item-center justify-center",
-                              },
-                              [
-                                _c(
-                                  "div",
-                                  {
-                                    staticClass:
-                                      "w-4 mr-2 transform hover:text-purple-500 hover:scale-110",
-                                  },
-                                  [
-                                    _c(
-                                      "button",
-                                      {
-                                        on: {
-                                          click: function ($event) {
-                                            _vm.readUser(student)
-                                            _vm.toggleModal = !_vm.toggleModal
-                                          },
-                                        },
-                                      },
-                                      [
-                                        _c(
-                                          "svg",
-                                          {
-                                            attrs: {
-                                              xmlns:
-                                                "http://www.w3.org/2000/svg",
-                                              fill: "none",
-                                              viewBox: "0 0 24 24",
-                                              stroke: "currentColor",
-                                            },
-                                          },
-                                          [
-                                            _c("path", {
-                                              attrs: {
-                                                "stroke-linecap": "round",
-                                                "stroke-linejoin": "round",
-                                                "stroke-width": "2",
-                                                d: "M15 12a3 3 0 11-6 0 3 3 0 016 0z",
-                                              },
-                                            }),
-                                            _vm._v(" "),
-                                            _c("path", {
-                                              attrs: {
-                                                "stroke-linecap": "round",
-                                                "stroke-linejoin": "round",
-                                                "stroke-width": "2",
-                                                d: "M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z",
-                                              },
-                                            }),
-                                          ]
-                                        ),
-                                      ]
-                                    ),
-                                  ]
-                                ),
-                                _vm._v(" "),
-                                _c(
-                                  "div",
-                                  {
-                                    staticClass:
-                                      "w-4 mr-2 transform hover:text-purple-500 hover:scale-110",
-                                  },
-                                  [
-                                    _c(
-                                      "button",
-                                      {
-                                        on: {
-                                          click: function ($event) {
-                                            return _vm.deleteUser(
-                                              student.id,
-                                              student.name
-                                            )
-                                          },
-                                        },
-                                      },
-                                      [
-                                        _c(
-                                          "svg",
-                                          {
-                                            attrs: {
-                                              xmlns:
-                                                "http://www.w3.org/2000/svg",
-                                              fill: "none",
-                                              viewBox: "0 0 24 24",
-                                              stroke: "currentColor",
-                                            },
-                                          },
-                                          [
-                                            _c("path", {
-                                              attrs: {
-                                                "stroke-linecap": "round",
-                                                "stroke-linejoin": "round",
-                                                "stroke-width": "2",
-                                                d: "M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16",
-                                              },
-                                            }),
-                                          ]
-                                        ),
-                                      ]
-                                    ),
-                                  ]
-                                ),
-                              ]
-                            ),
-                          ]),
-                        ]
-                      )
-                    }),
+                    _vm._m(0),
                     _vm._v(" "),
-                    _vm.filterUser.length == 0
-                      ? _c("tr", [
-                          _c("td", { attrs: { colspan: "7" } }, [
-                            _c(
-                              "div",
-                              {
-                                staticClass:
-                                  "bg-indigo-100 border-yellow-600 text-black-600  p-4",
-                                attrs: { role: "alert" },
-                              },
-                              [
-                                _c("center", [
-                                  _c(
-                                    "p",
-                                    { staticClass: "font-bold text-xl" },
-                                    [
-                                      _vm._v(
-                                        "\n                                        No data found!\n                                    "
-                                      ),
-                                    ]
-                                  ),
-                                ]),
-                              ],
-                              1
-                            ),
-                          ]),
-                        ])
-                      : _vm._e(),
-                  ],
-                  2
-                ),
-              ]),
-              _vm._v(" "),
-              _c("center", [
-                _vm.pageInfo
-                  ? _c(
+                    _c(
                       "div",
                       {
                         staticClass:
-                          "center mt-5 mb-5 w-1/2 flex flex-col lg:flex-row items-start lg:items-center justify-center",
+                          "w-full flex flex-col lg:flex-row items-start lg:items-center ",
                       },
                       [
-                        _c(
-                          "div",
-                          {
-                            staticClass:
-                              "w-1/2 flex flex-col lg:flex-row items-start lg:items-center justify-center",
-                          },
-                          [
-                            _c(
-                              "select",
-                              {
-                                directives: [
-                                  {
-                                    name: "model",
-                                    rawName: "v-model",
-                                    value: _vm.showSize,
-                                    expression: "showSize",
-                                  },
-                                ],
-                                staticClass:
-                                  "focus:outline-none border-transparent cursor-pointer focus:border-gray-800 hover:bg-pink-200 focus:shadow-outline-gray text-base py-2 px-8 w-1/2 xl:px-3 rounded font-medium  appearance-none bg-transparent",
-                                on: {
-                                  change: function ($event) {
-                                    var $$selectedVal = Array.prototype.filter
-                                      .call(
-                                        $event.target.options,
-                                        function (o) {
-                                          return o.selected
-                                        }
-                                      )
-                                      .map(function (o) {
-                                        var val =
-                                          "_value" in o ? o._value : o.value
-                                        return val
-                                      })
-                                    _vm.showSize = $event.target.multiple
-                                      ? $$selectedVal
-                                      : $$selectedVal[0]
-                                  },
+                        _vm.pageInfo
+                          ? _c("div", { staticClass: "flex items-center" }, [
+                              _vm.page == "[object MouseEvent]"
+                                ? _c(
+                                    "p",
+                                    {
+                                      staticClass:
+                                        "font-medium text-dark-600 dark:text-gray-400",
+                                    },
+                                    [
+                                      _vm._v(
+                                        "  Showing Page 1 of " +
+                                          _vm._s(_vm.lastPage)
+                                      ),
+                                    ]
+                                  )
+                                : _c(
+                                    "p",
+                                    {
+                                      staticClass:
+                                        "font-medium text-dark-600 dark:text-gray-400",
+                                    },
+                                    [
+                                      _vm._v(
+                                        "  Showing Page " +
+                                          _vm._s(_vm.page) +
+                                          " of " +
+                                          _vm._s(_vm.lastPage)
+                                      ),
+                                    ]
+                                  ),
+                            ])
+                          : _vm._e(),
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      {
+                        staticClass:
+                          "w-full flex flex-col lg:flex-row items-start lg:items-center justify-center",
+                      },
+                      [
+                        _c("div", { staticClass: "relative w-32 z-10" }, [
+                          _c(
+                            "select",
+                            {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.filterGender,
+                                  expression: "filterGender",
+                                },
+                              ],
+                              staticClass:
+                                "focus:outline-none border-transparent cursor-pointer focus:border-gray-800 hover:bg-pink-200 focus:shadow-outline-gray text-base form-select block w-full py-2 px-2 xl:px-3 rounded font-medium dark:text-gray-400 appearance-none bg-transparent",
+                              on: {
+                                change: function ($event) {
+                                  var $$selectedVal = Array.prototype.filter
+                                    .call($event.target.options, function (o) {
+                                      return o.selected
+                                    })
+                                    .map(function (o) {
+                                      var val =
+                                        "_value" in o ? o._value : o.value
+                                      return val
+                                    })
+                                  _vm.filterGender = $event.target.multiple
+                                    ? $$selectedVal
+                                    : $$selectedVal[0]
                                 },
                               },
-                              [
-                                _c(
-                                  "option",
-                                  {
-                                    attrs: { value: "10" },
-                                    on: { click: _vm.getStudent },
-                                  },
-                                  [_vm._v("Show Entries")]
-                                ),
-                                _vm._v(" "),
-                                _c(
-                                  "option",
-                                  {
-                                    attrs: { value: "10" },
-                                    on: { click: _vm.getStudent },
-                                  },
-                                  [_vm._v("10")]
-                                ),
-                                _vm._v(" "),
-                                _c(
-                                  "option",
-                                  {
-                                    attrs: { value: "20" },
-                                    on: { click: _vm.getStudent },
-                                  },
-                                  [_vm._v("20")]
-                                ),
-                                _vm._v(" "),
-                                _c(
-                                  "option",
-                                  {
-                                    attrs: { value: "50" },
-                                    on: { click: _vm.getStudent },
-                                  },
-                                  [_vm._v("50")]
-                                ),
-                                _vm._v(" "),
-                                _c(
-                                  "option",
-                                  {
-                                    attrs: { value: "100000" },
-                                    on: { click: _vm.getStudent },
-                                  },
-                                  [_vm._v("All")]
-                                ),
-                              ]
-                            ),
-                          ]
-                        ),
-                        _vm._v(" "),
-                        _c("Page", {
-                          attrs: {
-                            current: _vm.pageInfo.current_page,
-                            total: _vm.pageInfo.total,
-                            "page-size": parseInt(_vm.pageInfo.per_page),
-                          },
-                          on: { "on-change": _vm.getStudent },
-                        }),
+                            },
+                            [
+                              _c("option", { attrs: { value: "" } }, [
+                                _vm._v("Gender"),
+                              ]),
+                              _vm._v(" "),
+                              _c("option", { attrs: { value: "male" } }, [
+                                _vm._v("Male"),
+                              ]),
+                              _vm._v(" "),
+                              _c("option", { attrs: { value: "female" } }, [
+                                _vm._v("Female"),
+                              ]),
+                            ]
+                          ),
+                        ]),
+                      ]
+                    ),
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  { staticClass: "flex justify-center item-center mb-10" },
+                  [
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.filterName,
+                          expression: "filterName",
+                        },
                       ],
-                      1
-                    )
-                  : _vm._e(),
-              ]),
-            ],
-            1
-          ),
+                      staticClass: "block w-5/12 py-2 px-2 text-lg rounded-lg",
+                      attrs: {
+                        type: "text",
+                        name: "name",
+                        placeholder: "Search Name",
+                      },
+                      domProps: { value: _vm.filterName },
+                      on: {
+                        input: function ($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.filterName = $event.target.value
+                        },
+                      },
+                    }),
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  {
+                    staticClass:
+                      "w-full overflow-x-scroll xl:overflow-x-hidden",
+                  },
+                  [
+                    _c(
+                      "table",
+                      { staticClass: "min-w-full shadow-lg border-b-2 " },
+                      [
+                        _c("thead", [
+                          _c(
+                            "tr",
+                            {
+                              staticClass:
+                                "border-b bg-pink-400 text-gray-900 uppercase text-base leading-normal",
+                              staticStyle: {
+                                "background-image":
+                                  "url(/images/BlueCoral.jpg)",
+                              },
+                            },
+                            [
+                              _c("th", { staticClass: "py-3 px-3 text-left" }, [
+                                _vm._v("No."),
+                              ]),
+                              _vm._v(" "),
+                              _c(
+                                "button",
+                                {
+                                  on: {
+                                    click: function ($event) {
+                                      return _vm.sorting(1)
+                                    },
+                                  },
+                                },
+                                [
+                                  _c(
+                                    "th",
+                                    { staticClass: "py-3 px-6 text-left" },
+                                    [_vm._v("User ID")]
+                                  ),
+                                ]
+                              ),
+                              _vm._v(" "),
+                              _c("th", { staticClass: "py-3 px-6 text-left" }, [
+                                _vm._v("Name"),
+                              ]),
+                              _vm._v(" "),
+                              _c("th", { staticClass: "py-3 px-6 text-left" }, [
+                                _vm._v("Email"),
+                              ]),
+                              _vm._v(" "),
+                              _c("th", { staticClass: "py-3 px-6 text-left" }, [
+                                _vm._v("Phone No."),
+                              ]),
+                              _vm._v(" "),
+                              _c(
+                                "button",
+                                {
+                                  on: {
+                                    click: function ($event) {
+                                      return _vm.sorting(2)
+                                    },
+                                  },
+                                },
+                                [
+                                  _c(
+                                    "th",
+                                    { staticClass: "py-3 px-6 text-left" },
+                                    [_vm._v("Gender")]
+                                  ),
+                                ]
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "th",
+                                { staticClass: "py-3 px-6 text-center" },
+                                [_vm._v("Actions")]
+                              ),
+                            ]
+                          ),
+                        ]),
+                        _vm._v(" "),
+                        _c(
+                          "tbody",
+                          { staticClass: "text-dark-600 text-sm font-light" },
+                          [
+                            _vm._l(_vm.filterUser, function (student, index) {
+                              return _c(
+                                "tr",
+                                {
+                                  key: student.id,
+                                  staticClass:
+                                    "border-b border-gray-200 hover:bg-pink-200",
+                                },
+                                [
+                                  _c(
+                                    "td",
+                                    {
+                                      staticClass:
+                                        "py-3 px-3 text-left whitespace-nowrap",
+                                    },
+                                    [_vm._v("  " + _vm._s(index + 1))]
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "td",
+                                    {
+                                      staticClass:
+                                        "py-3 px-6 text-left whitespace-nowrap",
+                                    },
+                                    [
+                                      _c(
+                                        "div",
+                                        { staticClass: "flex items-center" },
+                                        [
+                                          _c(
+                                            "span",
+                                            { staticClass: "font-medium" },
+                                            [_vm._v(_vm._s(student.id))]
+                                          ),
+                                        ]
+                                      ),
+                                    ]
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "td",
+                                    { staticClass: "py-3 px-6 text-left" },
+                                    [
+                                      _c(
+                                        "router-link",
+                                        {
+                                          staticClass: "flex items-center",
+                                          attrs: {
+                                            to: {
+                                              name: "profile_view",
+                                              params: {
+                                                role: 1,
+                                                id: student.id,
+                                              },
+                                            },
+                                            target: "_blank",
+                                          },
+                                        },
+                                        [
+                                          _c("div", { staticClass: "mr-2" }, [
+                                            _c("img", {
+                                              staticClass:
+                                                "w-6 h-6 rounded-full hover:scale-150 hover:z-10 transform ease-in-out transition duration-500",
+                                              attrs: {
+                                                src:
+                                                  "/images/Profile/" +
+                                                  student.pic,
+                                              },
+                                            }),
+                                          ]),
+                                          _vm._v(" "),
+                                          _c("span", [
+                                            _vm._v(_vm._s(student.name)),
+                                          ]),
+                                        ]
+                                      ),
+                                    ],
+                                    1
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "td",
+                                    { staticClass: "py-3 px-6 text-left" },
+                                    [
+                                      _c(
+                                        "div",
+                                        { staticClass: "flex items-center" },
+                                        [
+                                          _c("span", [
+                                            _vm._v(_vm._s(student.email)),
+                                          ]),
+                                        ]
+                                      ),
+                                    ]
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "td",
+                                    { staticClass: "py-3 px-6 text-left" },
+                                    [
+                                      _c(
+                                        "div",
+                                        { staticClass: "flex items-center" },
+                                        [
+                                          _c("span", [
+                                            _vm._v(_vm._s(student.phone_no)),
+                                          ]),
+                                        ]
+                                      ),
+                                    ]
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "td",
+                                    { staticClass: "py-3 px-6 text-left" },
+                                    [
+                                      student.gender === "male"
+                                        ? _c("span", [
+                                            _vm._v(
+                                              "🧑 " + _vm._s(student.gender)
+                                            ),
+                                          ])
+                                        : _vm._e(),
+                                      _vm._v(" "),
+                                      student.gender === "female"
+                                        ? _c("span", [
+                                            _vm._v(
+                                              "👩‍🦰  " + _vm._s(student.gender)
+                                            ),
+                                          ])
+                                        : _vm._e(),
+                                    ]
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "td",
+                                    { staticClass: "py-3 px-6 text-center" },
+                                    [
+                                      _c(
+                                        "div",
+                                        {
+                                          staticClass:
+                                            "flex item-center justify-center",
+                                        },
+                                        [
+                                          _c(
+                                            "div",
+                                            {
+                                              staticClass:
+                                                "w-4 mr-2 transform hover:text-purple-500 hover:scale-110",
+                                            },
+                                            [
+                                              _c(
+                                                "button",
+                                                {
+                                                  on: {
+                                                    click: function ($event) {
+                                                      _vm.readUser(student)
+                                                      _vm.toggleModal =
+                                                        !_vm.toggleModal
+                                                    },
+                                                  },
+                                                },
+                                                [
+                                                  _c(
+                                                    "svg",
+                                                    {
+                                                      attrs: {
+                                                        xmlns:
+                                                          "http://www.w3.org/2000/svg",
+                                                        fill: "none",
+                                                        viewBox: "0 0 24 24",
+                                                        stroke: "currentColor",
+                                                      },
+                                                    },
+                                                    [
+                                                      _c("path", {
+                                                        attrs: {
+                                                          "stroke-linecap":
+                                                            "round",
+                                                          "stroke-linejoin":
+                                                            "round",
+                                                          "stroke-width": "2",
+                                                          d: "M15 12a3 3 0 11-6 0 3 3 0 016 0z",
+                                                        },
+                                                      }),
+                                                      _vm._v(" "),
+                                                      _c("path", {
+                                                        attrs: {
+                                                          "stroke-linecap":
+                                                            "round",
+                                                          "stroke-linejoin":
+                                                            "round",
+                                                          "stroke-width": "2",
+                                                          d: "M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z",
+                                                        },
+                                                      }),
+                                                    ]
+                                                  ),
+                                                ]
+                                              ),
+                                            ]
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "div",
+                                            {
+                                              staticClass:
+                                                "w-4 mr-2 transform hover:text-purple-500 hover:scale-110",
+                                            },
+                                            [
+                                              _c(
+                                                "button",
+                                                {
+                                                  on: {
+                                                    click: function ($event) {
+                                                      return _vm.deleteUser(
+                                                        student.id,
+                                                        student.name
+                                                      )
+                                                    },
+                                                  },
+                                                },
+                                                [
+                                                  _c(
+                                                    "svg",
+                                                    {
+                                                      attrs: {
+                                                        xmlns:
+                                                          "http://www.w3.org/2000/svg",
+                                                        fill: "none",
+                                                        viewBox: "0 0 24 24",
+                                                        stroke: "currentColor",
+                                                      },
+                                                    },
+                                                    [
+                                                      _c("path", {
+                                                        attrs: {
+                                                          "stroke-linecap":
+                                                            "round",
+                                                          "stroke-linejoin":
+                                                            "round",
+                                                          "stroke-width": "2",
+                                                          d: "M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16",
+                                                        },
+                                                      }),
+                                                    ]
+                                                  ),
+                                                ]
+                                              ),
+                                            ]
+                                          ),
+                                        ]
+                                      ),
+                                    ]
+                                  ),
+                                ]
+                              )
+                            }),
+                            _vm._v(" "),
+                            _vm.filterUser.length == 0
+                              ? _c("tr", [
+                                  _c("td", { attrs: { colspan: "7" } }, [
+                                    _c(
+                                      "div",
+                                      {
+                                        staticClass:
+                                          "bg-indigo-100 border-yellow-600 text-black-600  p-4",
+                                        attrs: { role: "alert" },
+                                      },
+                                      [
+                                        _c("center", [
+                                          _c(
+                                            "p",
+                                            {
+                                              staticClass: "font-bold text-xl",
+                                            },
+                                            [
+                                              _vm._v(
+                                                "\n                                        No data found!\n                                    "
+                                              ),
+                                            ]
+                                          ),
+                                        ]),
+                                      ],
+                                      1
+                                    ),
+                                  ]),
+                                ])
+                              : _vm._e(),
+                          ],
+                          2
+                        ),
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c("center", [
+                      _vm.pageInfo
+                        ? _c(
+                            "div",
+                            {
+                              staticClass:
+                                "center mt-5 mb-5 w-1/2 flex flex-col lg:flex-row items-start lg:items-center justify-center",
+                            },
+                            [
+                              _c(
+                                "div",
+                                {
+                                  staticClass:
+                                    "w-1/2 flex flex-col lg:flex-row items-start lg:items-center justify-center",
+                                },
+                                [
+                                  _c(
+                                    "select",
+                                    {
+                                      directives: [
+                                        {
+                                          name: "model",
+                                          rawName: "v-model",
+                                          value: _vm.showSize,
+                                          expression: "showSize",
+                                        },
+                                      ],
+                                      staticClass:
+                                        "focus:outline-none border-transparent cursor-pointer focus:border-gray-800 hover:bg-pink-200 focus:shadow-outline-gray text-base py-2 px-8 w-1/2 xl:px-3 rounded font-medium  appearance-none bg-transparent",
+                                      on: {
+                                        change: function ($event) {
+                                          var $$selectedVal =
+                                            Array.prototype.filter
+                                              .call(
+                                                $event.target.options,
+                                                function (o) {
+                                                  return o.selected
+                                                }
+                                              )
+                                              .map(function (o) {
+                                                var val =
+                                                  "_value" in o
+                                                    ? o._value
+                                                    : o.value
+                                                return val
+                                              })
+                                          _vm.showSize = $event.target.multiple
+                                            ? $$selectedVal
+                                            : $$selectedVal[0]
+                                        },
+                                      },
+                                    },
+                                    [
+                                      _c(
+                                        "option",
+                                        {
+                                          attrs: { value: "10" },
+                                          on: { click: _vm.getStudent },
+                                        },
+                                        [_vm._v("Show Entries")]
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "option",
+                                        {
+                                          attrs: { value: "10" },
+                                          on: { click: _vm.getStudent },
+                                        },
+                                        [_vm._v("10")]
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "option",
+                                        {
+                                          attrs: { value: "20" },
+                                          on: { click: _vm.getStudent },
+                                        },
+                                        [_vm._v("20")]
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "option",
+                                        {
+                                          attrs: { value: "50" },
+                                          on: { click: _vm.getStudent },
+                                        },
+                                        [_vm._v("50")]
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "option",
+                                        {
+                                          attrs: { value: "100000" },
+                                          on: { click: _vm.getStudent },
+                                        },
+                                        [_vm._v("All")]
+                                      ),
+                                    ]
+                                  ),
+                                ]
+                              ),
+                              _vm._v(" "),
+                              _c("Page", {
+                                attrs: {
+                                  current: _vm.pageInfo.current_page,
+                                  total: _vm.pageInfo.total,
+                                  "page-size": parseInt(_vm.pageInfo.per_page),
+                                },
+                                on: { "on-change": _vm.getStudent },
+                              }),
+                            ],
+                            1
+                          )
+                        : _vm._e(),
+                    ]),
+                  ],
+                  1
+                ),
+              ])
+            : _c(
+                "div",
+                [
+                  _c("loader", {
+                    attrs: {
+                      object: "#dc4ae8",
+                      color1: "#e3851c",
+                      color2: "#e82dda",
+                      size: "8",
+                      speed: "1.3",
+                      bg: "#1e2337",
+                      objectbg: "#ff2d2d",
+                      opacity: "90",
+                      disableScrolling: "true",
+                      name: "dots",
+                    },
+                  }),
+                ],
+                1
+              ),
         ]
       ),
       _vm._v(" "),

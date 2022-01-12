@@ -812,7 +812,9 @@ __webpack_require__.r(__webpack_exports__);
         furnishing: '',
         status: '',
         photo: []
-      }
+      },
+      margin: '',
+      object: ''
     };
   },
   methods: {
@@ -845,11 +847,22 @@ __webpack_require__.r(__webpack_exports__);
       this.form.id = house.id, this.form.landlord_id = house.landlord_id, this.form.name = house.name, this.form.lat = house.lat, this.form.log = house.log, this.form.address = house.address, this.form.postcode = house.postcode, this.form.des = house.des, this.form.campus = house.campus, this.form.furnishing = house.furnishing, this.form.status = house.status, this.form.photo = house.photo;
       this.form.gender_preferences = house.gender_preferences;
       this.form.toilet_num = house.toilet_num;
+    },
+    getRole: function getRole() {
+      if (this.role == 1) {
+        this.object = '#dd7755';
+      } else if (this.role == 2) {
+        this.margin = 'mt-5 mb-5 mb-10';
+        this.object = '#4491ee';
+      } else {
+        this.object = '#dc4ae8';
+      }
     }
   },
   mounted: function mounted() {
     this.getProperty();
     this.getRooms();
+    this.getRole();
   }
 });
 
@@ -2914,7 +2927,7 @@ var render = function () {
     "div",
     {
       staticClass:
-        "max-w-5xl pt-5 pb-8 pl-8 pr-8   mx-auto mt-5 bg-gray-200 rounded-md mb-10",
+        "max-w-5xl pt-5 pb-8 pl-8 pr-8   mx-auto  bg-gray-200 rounded-md ",
     },
     [
       _vm.role === 2
@@ -3255,9 +3268,7 @@ var render = function () {
                           [
                             _c("center", [
                               _c("p", { staticClass: "font-bold text-lg" }, [
-                                _vm._v(
-                                  "You don't have room listing yet. Please add room"
-                                ),
+                                _vm._v("No room is added yet"),
                               ]),
                             ]),
                           ],
@@ -3429,7 +3440,7 @@ var render = function () {
             [
               _c("loader", {
                 attrs: {
-                  object: "#4491ee",
+                  object: [_vm.object],
                   color1: "#e3851c",
                   color2: "#e82dda",
                   size: "8",

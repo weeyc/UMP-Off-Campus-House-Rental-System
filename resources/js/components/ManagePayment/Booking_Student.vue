@@ -1,10 +1,13 @@
 <!-- This example requires Tailwind CSS v2.0+ -->
 <template>
-  <div class="p-6 ml-5">
-         <div class="max-w-6xl p-6 mx-auto mt-3  bg-gray-100 rounded-md shadow-xl mb-5" >
+  <div class="ml-5 ">
+            <div class="overflow-x-auto max-w-6xl p-6 mx-auto  bg-gray-100 rounded-md shadow-xl mb-5 rounded-tl-none">
                <h2 class=" font-bold text-gray-700 capitalize text-center text-xl">My Bookings</h2>
+               <div v-if="isReady==true">
             <div class="flex items-center justify-center w-full overflow-hidden">
-            <div v-if="data.length==0"> You don't having any booking yet.</div>
+               <div v-if="data.length==0" class="bg-yellow-200 border-yellow-600 text-gray-600  p-10 mt-3 w-full rounded-md " role="alert">
+                   <center><p class="font-bold text-base">You don't having any booking yet.</p></center>
+            </div>
 
             <div v-else class="grid md:grid-cols-2 sm:grid-cols-1 lg:grid-cols-3 xl:grid-cols-3 gap-2 m-5 mb-10">
                 <div  v-for="item in data" :key="item.id" >
@@ -99,6 +102,10 @@
                 </div>
                 </div>
                 </div>
+                 </div>
+  <div v-else>
+           <loader object="#dd7755" color1="#e3851c" color2="#e82dda" size="8" speed="1.3" bg="#1e2337" objectbg="#ff2d2d" opacity="90" disableScrolling="true" name="dots"></loader>
+    </div>
     </div>
 
 
@@ -132,6 +139,7 @@ export default {
             showSize: 10,
             payments: [],
             toggleModal: false,
+            isReady: false,
 
                 updateDetails:{
                     room_id: '',
@@ -155,6 +163,7 @@ export default {
                     showSize: this.showSize
                 }}).then((response)=>{
                     this.data=response.data.data;
+                    this.isReady=true;
                     console.warn(this.data.data);
                 })
             },

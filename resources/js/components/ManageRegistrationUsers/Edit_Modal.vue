@@ -5,12 +5,12 @@
     <div :class="[modalBackground]" class="rounded max-h-full overflow-y-auto shadow-lg w-11/12 md:w-1/3" >
       <!-- modal header -->
       <div class="border-b px-4 py-2 flex justify-between items-center">
-        <h3 class="font-semibold text-lg">Edit Profile</h3>
+        <h3 class="text-lg  tracking-normal leading-tight font-bold">Edit Profile</h3>
         <button class="text-black " @click="closeModal">&cross;</button>
       </div>
       <!-- modal body -->
         <div class="p-3">
-            <h1 class="text-gray-800 font-lg font-bold tracking-normal leading-tight mb-4">Profile Details</h1>
+            <h1 class="text-gray-800 font-semibold text-base tracking-normal leading-tight mb-4">Profile Details</h1>
 
                <div>
                    <center>
@@ -184,7 +184,7 @@ components: {
          },
         getRole(){
             if(this.role == 1){
-                this.modalBackground = 'bg-gradient-to-b from-pink-300 via-purple-300 to-indigo-400'
+                this.modalBackground = 'bg-gradient-to-bl from-yellow-200 via-yellow-300 to-yellow-400  '
             }else if (this.role == 2){
                 this.modalBackground = 'bg-gradient-to-br from-sky-400 to-cyan-300'
             }else{

@@ -1,5 +1,5 @@
 <template>
-    <div class="max-w-5xl pt-5 pb-8 pl-8 pr-8   mx-auto mt-5 bg-gray-200 rounded-md mb-10" >
+    <div class="max-w-5xl pt-5 pb-8 pl-8 pr-8   mx-auto  bg-gray-200 rounded-md " >
         <div v-if="role===2">
             <div v-for= "house in property" :key="house.id"  class="flex justify-end items-center">
                 <button @click="$router.go(-1)" class=" bg-teal-500 shadow-lg hover:bg-teal-500 text-xs text-white px-4 py-3 rounded-md mb-2 mr-auto flex items-center">
@@ -76,7 +76,7 @@
 
             <div v-if="!rooms.length">
                 <div class="bg-blue-200 border-yellow-600 text-gray-600  p-10 mt-3 " role="alert">
-                   <center><p class="font-bold text-lg">You don't have room listing yet. Please add room</p></center>
+                   <center><p class="font-bold text-lg">No room is added yet</p></center>
             </div>
 
             </div>
@@ -110,7 +110,7 @@
             <!-- loading -->
     </div>
     <div v-else>
-     <loader object="#4491ee" color1="#e3851c" color2="#e82dda" size="8" speed="1.3" bg="#1e2337" objectbg="#ff2d2d" opacity="90" disableScrolling="true" name="dots"></loader>
+     <loader :object="[object]" color1="#e3851c" color2="#e82dda" size="8" speed="1.3" bg="#1e2337" objectbg="#ff2d2d" opacity="90" disableScrolling="true" name="dots"></loader>
     </div>
   <!-- loading -->
 
@@ -192,6 +192,8 @@ export default {
                 status: '',
                 photo: [],
             },
+            margin: '',
+            object: '',
         }
     },
      methods:{
@@ -236,11 +238,22 @@ export default {
 
 
         },
+        getRole(){
+        if(this.role == 1){
+            this.object = '#dd7755'
+        }else if (this.role == 2){
+            this.margin = 'mt-5 mb-5 mb-10'
+            this.object = '#4491ee'
+        }else{
+            this.object = '#dc4ae8'
+        }
+        },
 
     },
       mounted: function(){
         this.getProperty();
         this.getRooms();
+        this.getRole();
     },
 
 

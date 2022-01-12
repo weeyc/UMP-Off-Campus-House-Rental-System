@@ -190,6 +190,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {},
@@ -215,6 +221,7 @@ __webpack_require__.r(__webpack_exports__);
       convertedRole: '',
       totalNotifications: '',
       text: '',
+      object: '',
       chat: {
         id: '',
         avatar: '',
@@ -232,7 +239,8 @@ __webpack_require__.r(__webpack_exports__);
         put_msg: '',
         receiver_id: '',
         receiver_role: ''
-      }
+      },
+      isReady: false
     };
   },
   methods: {
@@ -388,11 +396,15 @@ __webpack_require__.r(__webpack_exports__);
       if (this.role == 1) {
         this.margin = 'mt-5 mb-5';
         this.text = 'bg-yellow-200';
+        this.object = '#dd7755';
       } else if (this.role == 2) {
         this.margin = 'mt-5 mb-5';
         this.text = 'bg-blue-200';
+        this.object = '#4491ee';
       } else {
         this.text = 'bg-pink-200';
+        this.margin = 'w-full';
+        this.object = '#dc4ae8';
       }
     },
     convertRole: function convertRole() {
@@ -412,6 +424,7 @@ __webpack_require__.r(__webpack_exports__);
       }
 
       this.totalNotifications = sum;
+      this.isReady = true;
     },
     checkNewContact: function checkNewContact() {
       var _this7 = this;
@@ -600,796 +613,879 @@ var render = function () {
           [_vm._v("My Chat Messenger")]
         ),
         _vm._v(" "),
-        _c("div", { staticClass: "w-full" }, [
-          _c(
-            "div",
-            { staticClass: "grid grid-cols-3 min-w-full border rounded" },
-            [
-              _c(
-                "div",
-                { staticClass: "col-span-1 bg-white border-r border-gray-300" },
-                [
-                  _c("div", { staticClass: "my-3 mx-3 " }, [
+        _vm.isReady == true
+          ? _c("div", [
+              _c("div", { staticClass: "w-full" }, [
+                _c(
+                  "div",
+                  { staticClass: "grid grid-cols-3 min-w-full border rounded" },
+                  [
                     _c(
                       "div",
                       {
                         staticClass:
-                          "relative text-gray-600 focus-within:text-gray-400",
+                          "col-span-1 bg-white border-r border-gray-300",
                       },
                       [
-                        _c(
-                          "span",
-                          {
-                            staticClass:
-                              "absolute inset-y-0 left-0 flex items-center pl-2",
-                          },
-                          [
-                            _c(
-                              "svg",
-                              {
-                                staticClass: "w-6 h-6 text-gray-500",
-                                attrs: {
-                                  fill: "none",
-                                  stroke: "currentColor",
-                                  "stroke-linecap": "round",
-                                  "stroke-linejoin": "round",
-                                  "stroke-width": "2",
-                                  viewBox: "0 0 24 24",
-                                },
-                              },
-                              [
-                                _c("path", {
-                                  attrs: {
-                                    d: "M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z",
-                                  },
-                                }),
-                              ]
-                            ),
-                          ]
-                        ),
-                        _vm._v(" "),
-                        _c("input", {
-                          directives: [
-                            {
-                              name: "model",
-                              rawName: "v-model",
-                              value: _vm.filterName,
-                              expression: "filterName",
-                            },
-                          ],
-                          staticClass:
-                            "py-2 pl-10 block w-full rounded bg-gray-100 outline-none focus:text-gray-700",
-                          attrs: {
-                            "aria-placeholder": "Search contact",
-                            placeholder: "Search contact",
-                            type: "search",
-                            name: "search",
-                            required: "",
-                            autocomplete: "search",
-                          },
-                          domProps: { value: _vm.filterName },
-                          on: {
-                            input: function ($event) {
-                              if ($event.target.composing) {
-                                return
-                              }
-                              _vm.filterName = $event.target.value
-                            },
-                          },
-                        }),
-                      ]
-                    ),
-                  ]),
-                  _vm._v(" "),
-                  _c(
-                    "ul",
-                    {
-                      staticClass: "overflow-auto",
-                      staticStyle: { height: "400px" },
-                    },
-                    [
-                      _c(
-                        "h2",
-                        { staticClass: "ml-2 mb-2 text-gray-600 text-lg my-2" },
-                        [_vm._v("Chats")]
-                      ),
-                      _vm._v(" "),
-                      _c("li", [
-                        _vm.filterContact.length > 0
-                          ? _c(
-                              "div",
-                              _vm._l(_vm.filterContact, function (list, index) {
-                                return _c("div", { key: index }, [
-                                  _c(
-                                    "a",
-                                    {
-                                      staticClass:
-                                        "hover:bg-gray-100 border-b border-gray-300 px-3 py-2 cursor-pointer flex items-center justify-start text-sm focus:outline-none focus:border-gray-300 transition duration-150 ease-in-out",
-                                    },
-                                    [
-                                      list.user1_role == _vm.role &&
-                                      list.user1_id == _vm.user_id
-                                        ? _c(
-                                            "div",
-                                            {
-                                              staticClass: "w-full",
-                                              on: {
-                                                click: function ($event) {
-                                                  _vm.selectConversations(
-                                                    list,
-                                                    list.user2_id,
-                                                    list.user2_name,
-                                                    list.user2_photo,
-                                                    list.user2_role
-                                                  )
-                                                  _vm.getMessages(list.id)
-                                                },
-                                              },
-                                            },
-                                            [
-                                              _c("img", {
-                                                staticClass:
-                                                  "h-10 w-10 ml-2 rounded-full object-cover",
-                                                attrs: {
-                                                  src:
-                                                    "/images/Profile/" +
-                                                    list.user2_photo,
-                                                  alt: "Avatar",
-                                                },
-                                              }),
-                                              _vm._v(" "),
-                                              _c(
-                                                "div",
-                                                { staticClass: "w-full pb-2" },
-                                                [
-                                                  _c(
-                                                    "div",
-                                                    {
-                                                      staticClass:
-                                                        "flex justify-between",
-                                                    },
-                                                    [
-                                                      _c(
-                                                        "span",
-                                                        {
-                                                          staticClass:
-                                                            "msg block ml-2 font-semibold text-base text-gray-600 ",
-                                                        },
-                                                        [
-                                                          _vm._v(
-                                                            _vm._s(
-                                                              list.user2_name
-                                                            )
-                                                          ),
-                                                        ]
-                                                      ),
-                                                      _vm._v(" "),
-                                                      list.get_msg_relation
-                                                        .length != 0
-                                                        ? _c(
-                                                            "span",
-                                                            {
-                                                              staticClass:
-                                                                "block ml-24 text-sm text-gray-600",
-                                                            },
-                                                            [
-                                                              _vm._v(
-                                                                _vm._s(
-                                                                  _vm
-                                                                    .moment(
-                                                                      list
-                                                                        .get_msg_relation[0]
-                                                                        .created_at
-                                                                    )
-                                                                    .format(
-                                                                      "h:mm a"
-                                                                    )
-                                                                )
-                                                              ),
-                                                            ]
-                                                          )
-                                                        : _vm._e(),
-                                                    ]
-                                                  ),
-                                                  _vm._v(" "),
-                                                  _c(
-                                                    "div",
-                                                    {
-                                                      staticClass:
-                                                        "flex justify-between",
-                                                      attrs: { id: "msg" },
-                                                    },
-                                                    [
-                                                      list.get_msg_relation
-                                                        .length != 0
-                                                        ? _c(
-                                                            "span",
-                                                            {
-                                                              staticClass:
-                                                                "msg block ml-2 text-sm text-gray-600",
-                                                            },
-                                                            [
-                                                              _vm._v(
-                                                                _vm._s(
-                                                                  list
-                                                                    .get_msg_relation[0]
-                                                                    .msg
-                                                                )
-                                                              ),
-                                                            ]
-                                                          )
-                                                        : _vm._e(),
-                                                      _vm._v(" "),
-                                                      list.get_msg_relation_count >
-                                                      0
-                                                        ? _c(
-                                                            "span",
-                                                            {
-                                                              staticClass:
-                                                                "badge mb-3 bg-red-800 shrink-0 grow-0 rounded-full px-3 py-1 text-center object-right-top text-white text-sm mr-1",
-                                                            },
-                                                            [
-                                                              _vm._v(
-                                                                _vm._s(
-                                                                  list.get_msg_relation_count
-                                                                )
-                                                              ),
-                                                            ]
-                                                          )
-                                                        : _vm._e(),
-                                                    ]
-                                                  ),
-                                                ]
-                                              ),
-                                            ]
-                                          )
-                                        : _vm._e(),
-                                      _vm._v(" "),
-                                      list.user2_role == _vm.role &&
-                                      list.user2_id == _vm.user_id
-                                        ? _c(
-                                            "div",
-                                            {
-                                              on: {
-                                                click: function ($event) {
-                                                  _vm.selectConversations(
-                                                    list,
-                                                    list.user1_id,
-                                                    list.user1_name,
-                                                    list.user1_photo,
-                                                    list.user1_role
-                                                  )
-                                                  _vm.getMessages(list.id)
-                                                },
-                                              },
-                                            },
-                                            [
-                                              _c("img", {
-                                                staticClass:
-                                                  "h-10 w-10 ml-2 rounded-full object-cover",
-                                                attrs: {
-                                                  src:
-                                                    "/images/Profile/" +
-                                                    list.user1_photo,
-                                                  alt: "username",
-                                                },
-                                              }),
-                                              _vm._v(" "),
-                                              _c(
-                                                "div",
-                                                { staticClass: "w-full pb-2" },
-                                                [
-                                                  _c(
-                                                    "div",
-                                                    {
-                                                      staticClass:
-                                                        "flex justify-between",
-                                                    },
-                                                    [
-                                                      _c(
-                                                        "span",
-                                                        {
-                                                          staticClass:
-                                                            "msg block ml-2 font-semibold text-base text-gray-600 ",
-                                                        },
-                                                        [
-                                                          _vm._v(
-                                                            _vm._s(
-                                                              list.user1_name
-                                                            )
-                                                          ),
-                                                        ]
-                                                      ),
-                                                      _vm._v(" "),
-                                                      list.get_msg_relation
-                                                        .length != 0
-                                                        ? _c(
-                                                            "span",
-                                                            {
-                                                              staticClass:
-                                                                "block  text-sm text-gray-600 ml-24",
-                                                            },
-                                                            [
-                                                              _vm._v(
-                                                                _vm._s(
-                                                                  _vm
-                                                                    .moment(
-                                                                      list
-                                                                        .get_msg_relation[0]
-                                                                        .created_at
-                                                                    )
-                                                                    .format(
-                                                                      "h:mm a"
-                                                                    )
-                                                                )
-                                                              ),
-                                                            ]
-                                                          )
-                                                        : _vm._e(),
-                                                    ]
-                                                  ),
-                                                  _vm._v(" "),
-                                                  _c(
-                                                    "div",
-                                                    {
-                                                      staticClass:
-                                                        "flex justify-between",
-                                                      attrs: { id: "msg" },
-                                                    },
-                                                    [
-                                                      list.get_msg_relation
-                                                        .length != 0
-                                                        ? _c(
-                                                            "span",
-                                                            {
-                                                              staticClass:
-                                                                "msg block ml-2 text-sm text-gray-600",
-                                                            },
-                                                            [
-                                                              _vm._v(
-                                                                _vm._s(
-                                                                  list
-                                                                    .get_msg_relation[0]
-                                                                    .msg
-                                                                )
-                                                              ),
-                                                            ]
-                                                          )
-                                                        : _vm._e(),
-                                                      _vm._v(" "),
-                                                      list.get_msg_relation_count >
-                                                      0
-                                                        ? _c(
-                                                            "span",
-                                                            {
-                                                              staticClass:
-                                                                "badge mb-3 bg-red-800 shrink-0 grow-0 rounded-full px-3 py-1 text-center object-right-top text-white text-sm mr-1",
-                                                            },
-                                                            [
-                                                              _vm._v(
-                                                                _vm._s(
-                                                                  list.get_msg_relation_count
-                                                                )
-                                                              ),
-                                                            ]
-                                                          )
-                                                        : _vm._e(),
-                                                    ]
-                                                  ),
-                                                ]
-                                              ),
-                                            ]
-                                          )
-                                        : _vm._e(),
-                                    ]
-                                  ),
-                                ])
-                              }),
-                              0
-                            )
-                          : _c("div", { staticClass: "p-2" }, [
-                              _vm._v("No conversations "),
-                            ]),
-                      ]),
-                    ]
-                  ),
-                ]
-              ),
-              _vm._v(" "),
-              _c("div", { staticClass: "col-span-2 bg-white" }, [
-                _vm.checkContact == false &&
-                _vm.filterContact.length > 0 &&
-                _vm.chat.name != ""
-                  ? _c(
-                      "div",
-                      { staticClass: "w-full", attrs: { id: "Profile" } },
-                      [
-                        _c(
-                          "div",
-                          {
-                            staticClass:
-                              "flex items-center border-b border-gray-300 pl-3 py-3",
-                          },
-                          [
-                            _vm.chat.avatar != ""
-                              ? _c("img", {
-                                  staticClass:
-                                    "h-10 w-10 rounded-full object-cover cursor-pointer",
-                                  attrs: {
-                                    src: "/images/Profile/" + _vm.chat.avatar,
-                                    alt: "username",
-                                  },
-                                  on: {
-                                    click: function ($event) {
-                                      return _vm.viewProfile(
-                                        _vm.chat.u_id,
-                                        _vm.chat.u_role
-                                      )
-                                    },
-                                  },
-                                })
-                              : _vm._e(),
-                            _vm._v(" "),
-                            _c(
-                              "span",
-                              {
-                                staticClass:
-                                  "cursor-pointer block ml-2 font-bold text-base text-gray-600 hover:underline",
-                                on: {
-                                  click: function ($event) {
-                                    return _vm.viewProfile(
-                                      _vm.chat.u_id,
-                                      _vm.chat.u_role
-                                    )
-                                  },
-                                },
-                              },
-                              [_vm._v(_vm._s(_vm.chat.name) + " ")]
-                            ),
-                          ]
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "div",
-                          {
-                            ref: "feed",
-                            staticClass: "w-full overflow-y-auto p-10 relative",
-                            staticStyle: { height: "400px" },
-                            attrs: { id: "chat" },
-                          },
-                          [
-                            _c(
-                              "ul",
-                              _vm._l(_vm.messages, function (msg) {
-                                return _c(
-                                  "li",
-                                  { key: msg.id, staticClass: "clearfix2" },
-                                  [
-                                    msg.receiver_role == _vm.role &&
-                                    msg.receiver_id == _vm.user_id
-                                      ? _c("div", [
-                                          _c(
-                                            "div",
-                                            {
-                                              staticClass:
-                                                "w-full flex justify-start",
-                                            },
-                                            [
-                                              _c(
-                                                "div",
-                                                {
-                                                  staticClass:
-                                                    "bg-gray-100 rounded px-5 py-2 my-2 text-gray-700 relative",
-                                                  staticStyle: {
-                                                    "max-width": "300px",
-                                                  },
-                                                },
-                                                [
-                                                  _c(
-                                                    "span",
-                                                    { staticClass: "block" },
-                                                    [_vm._v(_vm._s(msg.msg))]
-                                                  ),
-                                                  _vm._v(" "),
-                                                  _c(
-                                                    "span",
-                                                    {
-                                                      staticClass:
-                                                        "block text-xs text-right",
-                                                    },
-                                                    [
-                                                      _vm._v(
-                                                        _vm._s(
-                                                          _vm
-                                                            .moment(
-                                                              msg.created_at
-                                                            )
-                                                            .format("h:mm a")
-                                                        )
-                                                      ),
-                                                    ]
-                                                  ),
-                                                ]
-                                              ),
-                                            ]
-                                          ),
-                                        ])
-                                      : _c("div", [
-                                          _c(
-                                            "div",
-                                            {
-                                              staticClass:
-                                                "w-full flex justify-end",
-                                            },
-                                            [
-                                              _c(
-                                                "div",
-                                                {
-                                                  staticClass:
-                                                    "rounded px-5 py-2 my-2 text-gray-700 relative",
-                                                  class: [_vm.text],
-                                                  staticStyle: {
-                                                    "max-width": "300px",
-                                                  },
-                                                },
-                                                [
-                                                  _c(
-                                                    "span",
-                                                    { staticClass: "block" },
-                                                    [_vm._v(_vm._s(msg.msg))]
-                                                  ),
-                                                  _vm._v(" "),
-                                                  _c(
-                                                    "span",
-                                                    {
-                                                      staticClass:
-                                                        "block text-xs text-left",
-                                                    },
-                                                    [
-                                                      _vm._v(
-                                                        _vm._s(
-                                                          _vm
-                                                            .moment(
-                                                              msg.created_at
-                                                            )
-                                                            .format("h:mm a")
-                                                        )
-                                                      ),
-                                                    ]
-                                                  ),
-                                                ]
-                                              ),
-                                            ]
-                                          ),
-                                        ]),
-                                  ]
-                                )
-                              }),
-                              0
-                            ),
-                          ]
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "div",
-                          {
-                            staticClass:
-                              "w-full py-3 px-3 flex items-center justify-between border-t border-gray-300",
-                          },
-                          [
-                            _c("input", {
-                              directives: [
-                                {
-                                  name: "model",
-                                  rawName: "v-model",
-                                  value: _vm.formSend.put_msg,
-                                  expression: "formSend.put_msg",
-                                },
-                              ],
-                              staticClass:
-                                "py-2 mx-3 pl-5 block w-full rounded-full bg-gray-100 outline-none focus:text-gray-700",
-                              attrs: {
-                                "aria-placeholder": "Type a message",
-                                placeholder: "Type a message",
-                                type: "text",
-                                name: "message",
-                                required: "",
-                              },
-                              domProps: { value: _vm.formSend.put_msg },
-                              on: {
-                                input: function ($event) {
-                                  if ($event.target.composing) {
-                                    return
-                                  }
-                                  _vm.$set(
-                                    _vm.formSend,
-                                    "put_msg",
-                                    $event.target.value
-                                  )
-                                },
-                              },
-                            }),
-                            _vm._v(" "),
-                            _vm.formSend.put_msg.length != 0
-                              ? _c(
-                                  "button",
-                                  {
-                                    staticClass:
-                                      "outline-none focus:outline-none",
-                                    attrs: { type: "submit" },
-                                    on: { click: _vm.send },
-                                  },
-                                  [
-                                    _c(
-                                      "svg",
-                                      {
-                                        staticClass:
-                                          "text-gray-400 h-7 w-7 origin-center transform rotate-90",
-                                        attrs: {
-                                          xmlns: "http://www.w3.org/2000/svg",
-                                          viewBox: "0 0 20 20",
-                                          fill: "currentColor",
-                                        },
-                                      },
-                                      [
-                                        _c("path", {
-                                          attrs: {
-                                            d: "M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z",
-                                          },
-                                        }),
-                                      ]
-                                    ),
-                                  ]
-                                )
-                              : _vm._e(),
-                          ]
-                        ),
-                      ]
-                    )
-                  : _vm._e(),
-                _vm._v(" "),
-                _vm.checkContact == true
-                  ? _c("div", { staticClass: "w-full" }, [
-                      _c(
-                        "div",
-                        {
-                          staticClass:
-                            "flex items-center border-b border-gray-300 pl-3 py-3",
-                        },
-                        [
-                          _vm.photo != undefined
-                            ? _c("img", {
-                                staticClass:
-                                  "h-10 w-10 rounded-full object-cover",
-                                attrs: {
-                                  src: "/images/Profile/" + _vm.photo,
-                                  alt: "username",
-                                },
-                              })
-                            : _vm._e(),
-                          _vm._v(" "),
+                        _c("div", { staticClass: "my-3 mx-3 " }, [
                           _c(
-                            "span",
+                            "div",
                             {
                               staticClass:
-                                "block ml-2 font-bold text-base text-gray-600",
+                                "relative text-gray-600 focus-within:text-gray-400",
                             },
-                            [_vm._v(" " + _vm._s(_vm.name))]
-                          ),
-                        ]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "div",
-                        {
-                          ref: "feed",
-                          staticClass: "w-full overflow-y-auto p-10 relative",
-                          staticStyle: { height: "400px" },
-                          attrs: { id: "chat" },
-                        },
-                        [_vm._m(0)]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "div",
-                        {
-                          staticClass:
-                            "w-full py-3 px-3 flex items-center justify-between border-t border-gray-300",
-                        },
-                        [
-                          _c("input", {
-                            directives: [
-                              {
-                                name: "model",
-                                rawName: "v-model",
-                                value: _vm.form.enter_msg,
-                                expression: "form.enter_msg",
-                              },
-                            ],
-                            staticClass:
-                              "py-2 mx-3 pl-5 block w-full rounded-full bg-gray-100 outline-none focus:text-gray-700",
-                            attrs: {
-                              "aria-placeholder": "Type a message",
-                              placeholder: "Type a message",
-                              type: "text",
-                              name: "message",
-                              required: "",
-                            },
-                            domProps: { value: _vm.form.enter_msg },
-                            on: {
-                              input: function ($event) {
-                                if ($event.target.composing) {
-                                  return
-                                }
-                                _vm.$set(
-                                  _vm.form,
-                                  "enter_msg",
-                                  $event.target.value
-                                )
-                              },
-                            },
-                          }),
-                          _vm._v(" "),
-                          _vm.form.enter_msg.length != 0
-                            ? _c(
-                                "button",
+                            [
+                              _c(
+                                "span",
                                 {
                                   staticClass:
-                                    "outline-none focus:outline-none",
-                                  attrs: { type: "sendNew" },
-                                  on: { click: _vm.sendNew },
+                                    "absolute inset-y-0 left-0 flex items-center pl-2",
                                 },
                                 [
                                   _c(
                                     "svg",
                                     {
-                                      staticClass:
-                                        "text-gray-400 h-7 w-7 origin-center transform rotate-90",
+                                      staticClass: "w-6 h-6 text-gray-500",
                                       attrs: {
-                                        xmlns: "http://www.w3.org/2000/svg",
-                                        viewBox: "0 0 20 20",
-                                        fill: "currentColor",
+                                        fill: "none",
+                                        stroke: "currentColor",
+                                        "stroke-linecap": "round",
+                                        "stroke-linejoin": "round",
+                                        "stroke-width": "2",
+                                        viewBox: "0 0 24 24",
                                       },
                                     },
                                     [
                                       _c("path", {
                                         attrs: {
-                                          d: "M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z",
+                                          d: "M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z",
                                         },
                                       }),
                                     ]
                                   ),
                                 ]
-                              )
-                            : _vm._e(),
-                        ]
-                      ),
-                    ])
-                  : _vm.checkContact == false && _vm.filterContact.length == 0
-                  ? _c("div", { staticClass: "w-full" }, [
-                      _vm._m(1),
+                              ),
+                              _vm._v(" "),
+                              _c("input", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.filterName,
+                                    expression: "filterName",
+                                  },
+                                ],
+                                staticClass:
+                                  "py-2 pl-10 block w-full rounded bg-gray-100 outline-none focus:text-gray-700",
+                                attrs: {
+                                  "aria-placeholder": "Search contact",
+                                  placeholder: "Search contact",
+                                  type: "search",
+                                  name: "search",
+                                  required: "",
+                                  autocomplete: "search",
+                                },
+                                domProps: { value: _vm.filterName },
+                                on: {
+                                  input: function ($event) {
+                                    if ($event.target.composing) {
+                                      return
+                                    }
+                                    _vm.filterName = $event.target.value
+                                  },
+                                },
+                              }),
+                            ]
+                          ),
+                        ]),
+                        _vm._v(" "),
+                        _c(
+                          "ul",
+                          {
+                            staticClass: "overflow-auto",
+                            staticStyle: { height: "400px" },
+                          },
+                          [
+                            _c(
+                              "h2",
+                              {
+                                staticClass:
+                                  "ml-2 mb-2 text-gray-600 text-lg my-2",
+                              },
+                              [_vm._v("Chats")]
+                            ),
+                            _vm._v(" "),
+                            _c("li", [
+                              _vm.filterContact.length > 0
+                                ? _c(
+                                    "div",
+                                    _vm._l(
+                                      _vm.filterContact,
+                                      function (list, index) {
+                                        return _c("div", { key: index }, [
+                                          _c(
+                                            "a",
+                                            {
+                                              staticClass:
+                                                "hover:bg-gray-100 border-b border-gray-300 px-3 py-2 cursor-pointer flex items-center justify-start text-sm focus:outline-none focus:border-gray-300 transition duration-150 ease-in-out",
+                                            },
+                                            [
+                                              list.user1_role == _vm.role &&
+                                              list.user1_id == _vm.user_id
+                                                ? _c(
+                                                    "div",
+                                                    {
+                                                      staticClass: "w-full",
+                                                      on: {
+                                                        click: function (
+                                                          $event
+                                                        ) {
+                                                          _vm.selectConversations(
+                                                            list,
+                                                            list.user2_id,
+                                                            list.user2_name,
+                                                            list.user2_photo,
+                                                            list.user2_role
+                                                          )
+                                                          _vm.getMessages(
+                                                            list.id
+                                                          )
+                                                        },
+                                                      },
+                                                    },
+                                                    [
+                                                      _c("img", {
+                                                        staticClass:
+                                                          "h-10 w-10 ml-2 rounded-full object-cover",
+                                                        attrs: {
+                                                          src:
+                                                            "/images/Profile/" +
+                                                            list.user2_photo,
+                                                          alt: "Avatar",
+                                                        },
+                                                      }),
+                                                      _vm._v(" "),
+                                                      _c(
+                                                        "div",
+                                                        {
+                                                          staticClass:
+                                                            "w-full pb-2",
+                                                        },
+                                                        [
+                                                          _c(
+                                                            "div",
+                                                            {
+                                                              staticClass:
+                                                                "flex justify-between",
+                                                            },
+                                                            [
+                                                              _c(
+                                                                "span",
+                                                                {
+                                                                  staticClass:
+                                                                    "msg block ml-2 font-semibold text-base text-gray-600 ",
+                                                                },
+                                                                [
+                                                                  _vm._v(
+                                                                    _vm._s(
+                                                                      list.user2_name
+                                                                    )
+                                                                  ),
+                                                                ]
+                                                              ),
+                                                              _vm._v(" "),
+                                                              list
+                                                                .get_msg_relation
+                                                                .length != 0
+                                                                ? _c(
+                                                                    "span",
+                                                                    {
+                                                                      staticClass:
+                                                                        "block ml-24 text-sm text-gray-600",
+                                                                    },
+                                                                    [
+                                                                      _vm._v(
+                                                                        _vm._s(
+                                                                          _vm
+                                                                            .moment(
+                                                                              list
+                                                                                .get_msg_relation[0]
+                                                                                .created_at
+                                                                            )
+                                                                            .format(
+                                                                              "h:mm a"
+                                                                            )
+                                                                        )
+                                                                      ),
+                                                                    ]
+                                                                  )
+                                                                : _vm._e(),
+                                                            ]
+                                                          ),
+                                                          _vm._v(" "),
+                                                          _c(
+                                                            "div",
+                                                            {
+                                                              staticClass:
+                                                                "flex justify-between",
+                                                              attrs: {
+                                                                id: "msg",
+                                                              },
+                                                            },
+                                                            [
+                                                              list
+                                                                .get_msg_relation
+                                                                .length != 0
+                                                                ? _c(
+                                                                    "span",
+                                                                    {
+                                                                      staticClass:
+                                                                        "msg block ml-2 text-sm text-gray-600",
+                                                                    },
+                                                                    [
+                                                                      _vm._v(
+                                                                        _vm._s(
+                                                                          list
+                                                                            .get_msg_relation[0]
+                                                                            .msg
+                                                                        )
+                                                                      ),
+                                                                    ]
+                                                                  )
+                                                                : _vm._e(),
+                                                              _vm._v(" "),
+                                                              list.get_msg_relation_count >
+                                                              0
+                                                                ? _c(
+                                                                    "span",
+                                                                    {
+                                                                      staticClass:
+                                                                        "badge mb-3 bg-red-800 shrink-0 grow-0 rounded-full px-3 py-1 text-center object-right-top text-white text-sm mr-1",
+                                                                    },
+                                                                    [
+                                                                      _vm._v(
+                                                                        _vm._s(
+                                                                          list.get_msg_relation_count
+                                                                        )
+                                                                      ),
+                                                                    ]
+                                                                  )
+                                                                : _vm._e(),
+                                                            ]
+                                                          ),
+                                                        ]
+                                                      ),
+                                                    ]
+                                                  )
+                                                : _vm._e(),
+                                              _vm._v(" "),
+                                              list.user2_role == _vm.role &&
+                                              list.user2_id == _vm.user_id
+                                                ? _c(
+                                                    "div",
+                                                    {
+                                                      on: {
+                                                        click: function (
+                                                          $event
+                                                        ) {
+                                                          _vm.selectConversations(
+                                                            list,
+                                                            list.user1_id,
+                                                            list.user1_name,
+                                                            list.user1_photo,
+                                                            list.user1_role
+                                                          )
+                                                          _vm.getMessages(
+                                                            list.id
+                                                          )
+                                                        },
+                                                      },
+                                                    },
+                                                    [
+                                                      _c("img", {
+                                                        staticClass:
+                                                          "h-10 w-10 ml-2 rounded-full object-cover",
+                                                        attrs: {
+                                                          src:
+                                                            "/images/Profile/" +
+                                                            list.user1_photo,
+                                                          alt: "username",
+                                                        },
+                                                      }),
+                                                      _vm._v(" "),
+                                                      _c(
+                                                        "div",
+                                                        {
+                                                          staticClass:
+                                                            "w-full pb-2",
+                                                        },
+                                                        [
+                                                          _c(
+                                                            "div",
+                                                            {
+                                                              staticClass:
+                                                                "flex justify-between",
+                                                            },
+                                                            [
+                                                              _c(
+                                                                "span",
+                                                                {
+                                                                  staticClass:
+                                                                    "msg block ml-2 font-semibold text-base text-gray-600 ",
+                                                                },
+                                                                [
+                                                                  _vm._v(
+                                                                    _vm._s(
+                                                                      list.user1_name
+                                                                    )
+                                                                  ),
+                                                                ]
+                                                              ),
+                                                              _vm._v(" "),
+                                                              list
+                                                                .get_msg_relation
+                                                                .length != 0
+                                                                ? _c(
+                                                                    "span",
+                                                                    {
+                                                                      staticClass:
+                                                                        "block  text-sm text-gray-600 ml-24",
+                                                                    },
+                                                                    [
+                                                                      _vm._v(
+                                                                        _vm._s(
+                                                                          _vm
+                                                                            .moment(
+                                                                              list
+                                                                                .get_msg_relation[0]
+                                                                                .created_at
+                                                                            )
+                                                                            .format(
+                                                                              "h:mm a"
+                                                                            )
+                                                                        )
+                                                                      ),
+                                                                    ]
+                                                                  )
+                                                                : _vm._e(),
+                                                            ]
+                                                          ),
+                                                          _vm._v(" "),
+                                                          _c(
+                                                            "div",
+                                                            {
+                                                              staticClass:
+                                                                "flex justify-between",
+                                                              attrs: {
+                                                                id: "msg",
+                                                              },
+                                                            },
+                                                            [
+                                                              list
+                                                                .get_msg_relation
+                                                                .length != 0
+                                                                ? _c(
+                                                                    "span",
+                                                                    {
+                                                                      staticClass:
+                                                                        "msg block ml-2 text-sm text-gray-600",
+                                                                    },
+                                                                    [
+                                                                      _vm._v(
+                                                                        _vm._s(
+                                                                          list
+                                                                            .get_msg_relation[0]
+                                                                            .msg
+                                                                        )
+                                                                      ),
+                                                                    ]
+                                                                  )
+                                                                : _vm._e(),
+                                                              _vm._v(" "),
+                                                              list.get_msg_relation_count >
+                                                              0
+                                                                ? _c(
+                                                                    "span",
+                                                                    {
+                                                                      staticClass:
+                                                                        "badge mb-3 bg-red-800 shrink-0 grow-0 rounded-full px-3 py-1 text-center object-right-top text-white text-sm mr-1",
+                                                                    },
+                                                                    [
+                                                                      _vm._v(
+                                                                        _vm._s(
+                                                                          list.get_msg_relation_count
+                                                                        )
+                                                                      ),
+                                                                    ]
+                                                                  )
+                                                                : _vm._e(),
+                                                            ]
+                                                          ),
+                                                        ]
+                                                      ),
+                                                    ]
+                                                  )
+                                                : _vm._e(),
+                                            ]
+                                          ),
+                                        ])
+                                      }
+                                    ),
+                                    0
+                                  )
+                                : _c("div", { staticClass: "p-2" }, [
+                                    _vm._v("No conversations "),
+                                  ]),
+                            ]),
+                          ]
+                        ),
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-span-2 bg-white" }, [
+                      _vm.checkContact == false &&
+                      _vm.filterContact.length > 0 &&
+                      _vm.chat.name != ""
+                        ? _c(
+                            "div",
+                            { staticClass: "w-full", attrs: { id: "Profile" } },
+                            [
+                              _c(
+                                "div",
+                                {
+                                  staticClass:
+                                    "flex items-center border-b border-gray-300 pl-3 py-3",
+                                },
+                                [
+                                  _vm.chat.avatar != ""
+                                    ? _c("img", {
+                                        staticClass:
+                                          "h-10 w-10 rounded-full object-cover cursor-pointer",
+                                        attrs: {
+                                          src:
+                                            "/images/Profile/" +
+                                            _vm.chat.avatar,
+                                          alt: "username",
+                                        },
+                                        on: {
+                                          click: function ($event) {
+                                            return _vm.viewProfile(
+                                              _vm.chat.u_id,
+                                              _vm.chat.u_role
+                                            )
+                                          },
+                                        },
+                                      })
+                                    : _vm._e(),
+                                  _vm._v(" "),
+                                  _c(
+                                    "span",
+                                    {
+                                      staticClass:
+                                        "cursor-pointer block ml-2 font-bold text-base text-gray-600 hover:underline",
+                                      on: {
+                                        click: function ($event) {
+                                          return _vm.viewProfile(
+                                            _vm.chat.u_id,
+                                            _vm.chat.u_role
+                                          )
+                                        },
+                                      },
+                                    },
+                                    [_vm._v(_vm._s(_vm.chat.name) + " ")]
+                                  ),
+                                ]
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "div",
+                                {
+                                  ref: "feed",
+                                  staticClass:
+                                    "w-full overflow-y-auto p-10 relative",
+                                  staticStyle: { height: "400px" },
+                                  attrs: { id: "chat" },
+                                },
+                                [
+                                  _c(
+                                    "ul",
+                                    _vm._l(_vm.messages, function (msg) {
+                                      return _c(
+                                        "li",
+                                        {
+                                          key: msg.id,
+                                          staticClass: "clearfix2",
+                                        },
+                                        [
+                                          msg.receiver_role == _vm.role &&
+                                          msg.receiver_id == _vm.user_id
+                                            ? _c("div", [
+                                                _c(
+                                                  "div",
+                                                  {
+                                                    staticClass:
+                                                      "w-full flex justify-start",
+                                                  },
+                                                  [
+                                                    _c(
+                                                      "div",
+                                                      {
+                                                        staticClass:
+                                                          "bg-gray-100 rounded px-5 py-2 my-2 text-gray-700 relative",
+                                                        staticStyle: {
+                                                          "max-width": "300px",
+                                                        },
+                                                      },
+                                                      [
+                                                        _c(
+                                                          "span",
+                                                          {
+                                                            staticClass:
+                                                              "block",
+                                                          },
+                                                          [
+                                                            _vm._v(
+                                                              _vm._s(msg.msg)
+                                                            ),
+                                                          ]
+                                                        ),
+                                                        _vm._v(" "),
+                                                        _c(
+                                                          "span",
+                                                          {
+                                                            staticClass:
+                                                              "block text-xs text-right",
+                                                          },
+                                                          [
+                                                            _vm._v(
+                                                              _vm._s(
+                                                                _vm
+                                                                  .moment(
+                                                                    msg.created_at
+                                                                  )
+                                                                  .format(
+                                                                    "h:mm a"
+                                                                  )
+                                                              )
+                                                            ),
+                                                          ]
+                                                        ),
+                                                      ]
+                                                    ),
+                                                  ]
+                                                ),
+                                              ])
+                                            : _c("div", [
+                                                _c(
+                                                  "div",
+                                                  {
+                                                    staticClass:
+                                                      "w-full flex justify-end",
+                                                  },
+                                                  [
+                                                    _c(
+                                                      "div",
+                                                      {
+                                                        staticClass:
+                                                          "rounded px-5 py-2 my-2 text-gray-700 relative",
+                                                        class: [_vm.text],
+                                                        staticStyle: {
+                                                          "max-width": "300px",
+                                                        },
+                                                      },
+                                                      [
+                                                        _c(
+                                                          "span",
+                                                          {
+                                                            staticClass:
+                                                              "block",
+                                                          },
+                                                          [
+                                                            _vm._v(
+                                                              _vm._s(msg.msg)
+                                                            ),
+                                                          ]
+                                                        ),
+                                                        _vm._v(" "),
+                                                        _c(
+                                                          "span",
+                                                          {
+                                                            staticClass:
+                                                              "block text-xs text-left",
+                                                          },
+                                                          [
+                                                            _vm._v(
+                                                              _vm._s(
+                                                                _vm
+                                                                  .moment(
+                                                                    msg.created_at
+                                                                  )
+                                                                  .format(
+                                                                    "h:mm a"
+                                                                  )
+                                                              )
+                                                            ),
+                                                          ]
+                                                        ),
+                                                      ]
+                                                    ),
+                                                  ]
+                                                ),
+                                              ]),
+                                        ]
+                                      )
+                                    }),
+                                    0
+                                  ),
+                                ]
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "div",
+                                {
+                                  staticClass:
+                                    "w-full py-3 px-3 flex items-center justify-between border-t border-gray-300",
+                                },
+                                [
+                                  _c("input", {
+                                    directives: [
+                                      {
+                                        name: "model",
+                                        rawName: "v-model",
+                                        value: _vm.formSend.put_msg,
+                                        expression: "formSend.put_msg",
+                                      },
+                                    ],
+                                    staticClass:
+                                      "py-2 mx-3 pl-5 block w-full rounded-full bg-gray-100 outline-none focus:text-gray-700",
+                                    attrs: {
+                                      "aria-placeholder": "Type a message",
+                                      placeholder: "Type a message",
+                                      type: "text",
+                                      name: "message",
+                                      required: "",
+                                    },
+                                    domProps: { value: _vm.formSend.put_msg },
+                                    on: {
+                                      input: function ($event) {
+                                        if ($event.target.composing) {
+                                          return
+                                        }
+                                        _vm.$set(
+                                          _vm.formSend,
+                                          "put_msg",
+                                          $event.target.value
+                                        )
+                                      },
+                                    },
+                                  }),
+                                  _vm._v(" "),
+                                  _vm.formSend.put_msg.length != 0
+                                    ? _c(
+                                        "button",
+                                        {
+                                          staticClass:
+                                            "outline-none focus:outline-none",
+                                          attrs: { type: "submit" },
+                                          on: { click: _vm.send },
+                                        },
+                                        [
+                                          _c(
+                                            "svg",
+                                            {
+                                              staticClass:
+                                                "text-gray-400 h-7 w-7 origin-center transform rotate-90",
+                                              attrs: {
+                                                xmlns:
+                                                  "http://www.w3.org/2000/svg",
+                                                viewBox: "0 0 20 20",
+                                                fill: "currentColor",
+                                              },
+                                            },
+                                            [
+                                              _c("path", {
+                                                attrs: {
+                                                  d: "M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z",
+                                                },
+                                              }),
+                                            ]
+                                          ),
+                                        ]
+                                      )
+                                    : _vm._e(),
+                                ]
+                              ),
+                            ]
+                          )
+                        : _vm._e(),
                       _vm._v(" "),
-                      _c(
-                        "div",
-                        {
-                          ref: "feed",
-                          staticClass: "w-full overflow-y-auto p-10 relative",
-                          staticStyle: { height: "400px" },
-                          attrs: { id: "chat" },
-                        },
-                        [_vm._m(2)]
-                      ),
-                      _vm._v(" "),
-                      _c("div", {
-                        staticClass:
-                          "w-full py-3 px-3 flex items-center justify-between border-t border-gray-300",
-                      }),
-                    ])
-                  : _vm._e(),
+                      _vm.checkContact == true
+                        ? _c("div", { staticClass: "w-full" }, [
+                            _c(
+                              "div",
+                              {
+                                staticClass:
+                                  "flex items-center border-b border-gray-300 pl-3 py-3",
+                              },
+                              [
+                                _vm.photo != undefined
+                                  ? _c("img", {
+                                      staticClass:
+                                        "h-10 w-10 rounded-full object-cover",
+                                      attrs: {
+                                        src: "/images/Profile/" + _vm.photo,
+                                        alt: "username",
+                                      },
+                                    })
+                                  : _vm._e(),
+                                _vm._v(" "),
+                                _c(
+                                  "span",
+                                  {
+                                    staticClass:
+                                      "block ml-2 font-bold text-base text-gray-600",
+                                  },
+                                  [_vm._v(" " + _vm._s(_vm.name))]
+                                ),
+                              ]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "div",
+                              {
+                                ref: "feed",
+                                staticClass:
+                                  "w-full overflow-y-auto p-10 relative",
+                                staticStyle: { height: "400px" },
+                                attrs: { id: "chat" },
+                              },
+                              [_vm._m(0)]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "div",
+                              {
+                                staticClass:
+                                  "w-full py-3 px-3 flex items-center justify-between border-t border-gray-300",
+                              },
+                              [
+                                _c("input", {
+                                  directives: [
+                                    {
+                                      name: "model",
+                                      rawName: "v-model",
+                                      value: _vm.form.enter_msg,
+                                      expression: "form.enter_msg",
+                                    },
+                                  ],
+                                  staticClass:
+                                    "py-2 mx-3 pl-5 block w-full rounded-full bg-gray-100 outline-none focus:text-gray-700",
+                                  attrs: {
+                                    "aria-placeholder": "Type a message",
+                                    placeholder: "Type a message",
+                                    type: "text",
+                                    name: "message",
+                                    required: "",
+                                  },
+                                  domProps: { value: _vm.form.enter_msg },
+                                  on: {
+                                    input: function ($event) {
+                                      if ($event.target.composing) {
+                                        return
+                                      }
+                                      _vm.$set(
+                                        _vm.form,
+                                        "enter_msg",
+                                        $event.target.value
+                                      )
+                                    },
+                                  },
+                                }),
+                                _vm._v(" "),
+                                _vm.form.enter_msg.length != 0
+                                  ? _c(
+                                      "button",
+                                      {
+                                        staticClass:
+                                          "outline-none focus:outline-none",
+                                        attrs: { type: "sendNew" },
+                                        on: { click: _vm.sendNew },
+                                      },
+                                      [
+                                        _c(
+                                          "svg",
+                                          {
+                                            staticClass:
+                                              "text-gray-400 h-7 w-7 origin-center transform rotate-90",
+                                            attrs: {
+                                              xmlns:
+                                                "http://www.w3.org/2000/svg",
+                                              viewBox: "0 0 20 20",
+                                              fill: "currentColor",
+                                            },
+                                          },
+                                          [
+                                            _c("path", {
+                                              attrs: {
+                                                d: "M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z",
+                                              },
+                                            }),
+                                          ]
+                                        ),
+                                      ]
+                                    )
+                                  : _vm._e(),
+                              ]
+                            ),
+                          ])
+                        : _vm.checkContact == false &&
+                          _vm.filterContact.length == 0
+                        ? _c("div", { staticClass: "w-full" }, [
+                            _vm._m(1),
+                            _vm._v(" "),
+                            _c(
+                              "div",
+                              {
+                                ref: "feed",
+                                staticClass:
+                                  "w-full overflow-y-auto p-10 relative",
+                                staticStyle: { height: "400px" },
+                                attrs: { id: "chat" },
+                              },
+                              [_vm._m(2)]
+                            ),
+                            _vm._v(" "),
+                            _c("div", {
+                              staticClass:
+                                "w-full py-3 px-3 flex items-center justify-between border-t border-gray-300",
+                            }),
+                          ])
+                        : _vm._e(),
+                    ]),
+                  ]
+                ),
               ]),
-            ]
-          ),
-        ]),
+            ])
+          : _c(
+              "div",
+              [
+                _c("loader", {
+                  attrs: {
+                    object: [_vm.object],
+                    color1: "#e3851c",
+                    color2: "#e82dda",
+                    size: "8",
+                    speed: "1.3",
+                    bg: "#1e2337",
+                    objectbg: "#ff2d2d",
+                    opacity: "90",
+                    disableScrolling: "true",
+                    name: "dots",
+                  },
+                }),
+              ],
+              1
+            ),
       ]
     ),
   ])

@@ -4,7 +4,7 @@
 
         <!-- change background here top table -->
         <div class="mx-auto container bg-white-500 dark:bg-gray-800 dark:bg-gray-800 shadow rounded " >
-
+ <div v-if="isReady==true">
             <div class="flex flex-col lg:flex-row p-2 lg:p-8 justify-between items-start lg:items-stretch w-full shadow-inner" style="background-image: url(/images/BlueCoral.jpg);">
 
                 <div class=" grid-cols-3 gap-5 lg:w-1/5 w-full p-4 lg:p-8  flex flex-col lg:flex-row items-start lg:items-center">
@@ -106,11 +106,15 @@
                                         <span>{{ prop.name }}</span>
                                    </router-link>
                                 </td>
-                                        <td class="py-3 px-6 text-left">
-                                         <div class="flex items-center">
-                                        <span>{{ prop.land.landlord_name }}</span>
-                                    </div>
+                                <td class="py-3 px-6 text-left">
+                                       <router-link :to="{ name: 'profile_view', params:{role: 2, id: prop.landlord_id}}" target="_blank" class="flex items-center">
+                                          <div class="mr-2">
+                                            <img :src="'/images/Profile/'+prop.land.landlord_pic"  class="w-6 h-6 rounded-full hover:scale-150 hover:z-10 transform ease-in-out transition duration-500">
+                                        </div>
+                                        <span class="text-blue-700">{{ prop.land.landlord_name }}</span>
+                                    </router-link>
                                 </td>
+
 
                                     <td class="py-3 px-6 text-left">
                                     <div class="flex items-center">
@@ -165,6 +169,13 @@
 
 
             </div>
+
+                <!-- loading -->
+    </div>
+    <div v-else>
+        <loader object="#4491ee" color1="#e3851c" color2="#e82dda" size="8" speed="1.3" bg="#1e2337" objectbg="#ff2d2d" opacity="90" disableScrolling="true" name="circular"></loader>
+    </div>
+  <!-- loading -->
         </div>
 
         <StatusModal
@@ -204,6 +215,7 @@ export default {
             top_btn_style: 'p-3 rounded bg-pink-100 text-pink-500 hover:bg-pink-500 hover:text-white :active:bg-pink-500 active:text-white active:outline-none transition duration-150 ease-in-out shadow-xl',
             getCampus: 'Gambang',
             toggleModal: false,
+            isReady: false,
 
                 property:{
                     id: '',
@@ -235,6 +247,7 @@ export default {
             getPropertiesList(){
             axios.get('/api/get_properties_list/'+this.getCampus+'?land=1?page='+this.page).then((response)=>{
                 this.properties=response.data.data;
+                this.isReady=true;
                 console.warn(this.properties.data);
                 })
             },
@@ -278,8 +291,8 @@ export default {
                      this.page=1;
                 }
                 else
-                    this.page=this.page -1;
-                 this.getPropertiesList();
+                this.page=this.page -1;
+                this.getPropertiesList();
             },
         updateStatus(prop){
             this.property.id = prop.id;

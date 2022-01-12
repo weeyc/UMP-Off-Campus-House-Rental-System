@@ -1,11 +1,12 @@
 <!-- This example requires Tailwind CSS v2.0+ -->
 <template>
-  <div class="p-6 ml-5">
-
-         <div class="max-w-6xl p-6 mx-auto mt-3  bg-gray-100 rounded-md shadow-xl mb-5" >
+  <div class="ml-5 ">
+            <div class="overflow-x-auto max-w-6xl p-6 mx-auto  bg-gray-100 rounded-md shadow-xl mb-5 rounded-tl-none">
                <h2 class=" font-bold text-gray-700 capitalize text-center text-xl">My Bills</h2>
-            <!-- <div class="flex items-center justify-center w-full overflow-hidden"> -->
-            <div v-if="data.length==0"> You don't having any bills yet.</div>
+<div v-if="isReady==true">
+               <div v-if="data.length==0" class="bg-yellow-200 border-yellow-600 text-gray-600  p-10 mt-3 w-full rounded-md " role="alert">
+                   <center><p class="font-bold text-base">You don't having any bills yet.</p></center>
+            </div>
             <div v-else class=" m-5 mb-10">
 
                     <div class="w-full flex justify-center mb-3 ">
@@ -36,7 +37,7 @@
 
                 <div class="shadow-md rounded my-6">
 
-                    <table class="text-center w-full border-2 rounded-lg "> <!--Border collapse doesn't work on this site yet but it's available in newer tailwind versions -->
+                    <table class="text-center max-w-full w-full border-2 rounded-lg "> <!--Border collapse doesn't work on this site yet but it's available in newer tailwind versions -->
                     <thead>
                       <tr>
                         <th  colspan="2" class="py-4 px-6 bg-grey-lightest font-bold uppercase text-sm text-grey-dark border-b border-r  border-grey-light ">Bills Date <p class="font-extrabold">{{moment(data.bills_date).format("MMM-YYYY") }}  </p></th>
@@ -45,28 +46,32 @@
                     </thead>
                     <tbody>
                       <tr class="hover:bg-grey-lighter text-sm">
-                        <td class="py-4 px-6 border-b border-grey-light border-r ">Outstanding<p class="font-bold">RM {{(data.outstanding_bills).toFixed(2)}}</p> </td>
-                        <td class="py-4 px-6 border-b border-grey-light border-r ">Bills Status<p class="font-bold">{{data.bills_status}}</p></td>
-                        <td rowspan="2" class="py-4 px-6 border-b border-grey-light border-r ">Total Amount<p class="font-bold">RM {{(data.total_bills).toFixed(2)}}</p>
+                        <td class="py-4 px-6 border-b border-grey-light border-r ">Outstanding<p class="font-bold text-red-500">RM {{(data.outstanding_bills).toFixed(2)}}</p> </td>
+                        <td class="py-4 px-6 border-b border-grey-light border-r ">Bills Status<p class="font-bold ">{{data.bills_status}}</p></td>
+                        <td rowspan="2" class="py-4 px-6 border-b border-grey-light border-r ">Total Amount<p class="font-black text-xl text-ump-green">RM {{(data.total_bills).toFixed(2)}}</p>
                             <div v-if="data.payment_status==='Unpaid' && data.bills_status==='Ready'" class="mb-5 ">
                                 <center><div  class="mx-auto" ref="paypal"></div></center>
                             </div>
                             <div v-if="data.bills_status=='Overdue'" class="mb-5 ">
-                                <center><div class="mx-auto w-50">
-                                     Overdue</div></center>
+                                <center>
+                                    <div class="mx-auto bg-red-500 px-4 py-1 rounded-full text-white" >
+                                         Overdue
+                                    </div>
+                                </center>
                             </div>
                             <div v-if="data.payment_status=='Paid'"  class="mb-5 ">
-                                <center><div class="mx-auto w-50" >
-                                                Paid
-                                         </div>
-                                    </center>
+                                <center>
+                                    <div class="mx-auto bg-green-400 px-4 py-1 rounded-full text-white" >
+                                         Paid
+                                    </div>
+                                </center>
                             </div>
 
                             </td>
                       </tr>
                       <tr class="hover:bg-grey-lighter text-sm">
-                        <td class="py-4 px-6 border-b border-grey-light border-r ">Penalty Fees <p class="font-bold">RM {{(data.penalty_fees).toFixed(2)}}</p></td>
-                        <td class="py-4 px-6 border-b border-grey-light border-r ">Bill Due <p class="font-bold">{{moment(data.due_date).format("DD-MMM-YYYY") }} </p></td>
+                        <td class="py-4 px-6 border-b border-grey-light border-r ">Penalty Fees <p class="font-bold text-red-500">RM {{(data.penalty_fees).toFixed(2)}}</p></td>
+                        <td class="py-4 px-6 border-b border-grey-light border-r ">Bill Due <p class="font-bold  ">{{moment(data.due_date).format("DD-MMM-YYYY") }} </p></td>
 
 
                       </tr>
@@ -92,6 +97,10 @@
 
                 </div>
 
+  </div>
+  <div v-else>
+           <loader object="#dd7755" color1="#e3851c" color2="#e82dda" size="8" speed="1.3" bg="#1e2337" objectbg="#ff2d2d" opacity="90" disableScrolling="true" name="dots"></loader>
+    </div>
     </div>
 
 
@@ -136,7 +145,7 @@ export default {
                 payment_details: '',
                 total_payment: '',
             },
-
+             isReady: false,
 
         };
     },
@@ -155,6 +164,7 @@ export default {
                     this.form.payment_details= 'UOCA Bills (ID: '+this.data.bills_id+') Payment - Room ID: '+this.data.room_id;
                     this.form.total_payment= this.data.total_bills;
                     this.product.description= 'UOCA Bills (ID: '+this.data.bills_id+') Payment - Room ID: '+this.data.room_id;
+                      this.isReady=true;
                     if(this.data.payment_status=='Unpaid' && this.data.bills_status=='Ready'){
                         this.getPayPal();
                     }

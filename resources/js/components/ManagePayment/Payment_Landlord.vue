@@ -5,7 +5,7 @@
     <div class="overflow-x-auto max-w-6xl p-6 mx-auto  bg-gray-100 rounded-md shadow-xl mb-5 rounded-tl-none">
          <h2 class=" font-bold text-gray-700 capitalize text-center text-xl">Payment for Me</h2>
  <div v-if="isReady==true">
-          <div v-if="payments.length==0" class="bg-blue-200 border-yellow-600 text-gray-600  p-10 mt-3 " role="alert">
+          <div v-if="payments.length==0" class="bg-blue-200 border-yellow-600 text-gray-600  p-10 mt-3 w-full rounded-md " role="alert">
                    <center><p class="font-bold text-base"> There are no any payment transact to you yet.</p></center>
             </div>
       <div  v-else class="py-2 align-middle inline-block min-w-full">
@@ -117,7 +117,7 @@
           </table>
                <div v-if="pageInfo" class="mt-5 mb-5 flex justify-between ">
                         <div class="w-1/2 flex justify-start ">
-                                <select  v-model="showSize" class="focus:outline-none border-transparent cursor-pointer focus:border-gray-800 hover:bg-yellow-200 focus:shadow-outline-gray text-base py-2 px-8 w-1/2 xl:px-3 rounded font-medium  appearance-none bg-transparent">
+                                <select  v-model="showSize" class="focus:outline-none border-transparent cursor-pointer focus:border-gray-800 hover:bg-blue-200 focus:shadow-outline-gray text-base py-2 px-8 w-1/2 xl:px-3 rounded font-medium  appearance-none bg-transparent">
                                     <option @click="getPayment" value="10">Show Entries</option>
                                     <option @click="getPayment" value="10">10</option>
                                     <option @click="getPayment" value="20">20</option>
@@ -133,7 +133,7 @@
       </div>
   </div>
   <div v-else>
-            <loader object="#4491ee" color1="#e3851c" color2="#e82dda" size="8" speed="1.3" bg="#1e2337" objectbg="#ff2d2d" opacity="90" disableScrolling="true" name="circular"></loader>
+           <loader object="#4491ee" color1="#e3851c" color2="#e82dda" size="8" speed="1.3" bg="#1e2337" objectbg="#ff2d2d" opacity="90" disableScrolling="true" name="dots"></loader>
     </div>
 
     </div>
@@ -179,7 +179,7 @@ export default {
             showSize: 10,
             payments: [],
             toggleModal: false,
-              isReady: false,
+            isReady: false,
 
             form:{
                 id: '',

@@ -1,6 +1,6 @@
 <template>
 <div class="profile-page">
-
+<div v-if="isReady==true">
   <section class="relative block h-500-px">
     <div class="absolute top-0 w-full h-full bg-center bg-cover" style="
             background-image: url('https://images.unsplash.com/photo-1499336315816-097655dcfbda?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=2710&amp;q=80');
@@ -59,40 +59,40 @@
             </div>
           </div>
         <div class="text-center mt-12">
-            <h3 class="text-4xl font-semibold leading-normal text-blueGray-700 mb-2">
+            <h3 class="text-4xl font-semibold leading-normal text-blueGray-800 mb-2">
                     <div v-for= "(user, i) in userProfile" :key="i">
                       {{ user.name }}
                     </div>
             </h3>
-            <div class="text-sm leading-normal mt-0 mb-2 text-blueGray-400 font-bold uppercase">
-              <i class="fas fa-user-cog mr-2 text-lg text-blueGray-400"></i>
+            <div class="text-sm leading-normal mt-0 mb-2 text-blueGray-700 font-bold uppercase">
+              <i class="fas fa-user-cog mr-2 text-lg text-blueGray-700"></i>
                     {{ userRole }}
             </div>
-                <div v-for= "(user, i) in userProfile" :key="'A'+ i" class=" px-4 mb-2 text-blueGray-600 mt-10">
-              <i class="fas fa-id-card mr-2 text-lg text-blueGray-400"></i>  {{ user.id }}
+                <div v-for= "(user, i) in userProfile" :key="'A'+ i" class=" px-4 mb-2 text-blueGray-700 mt-10">
+              <i class="fas fa-id-card mr-2 text-lg text-blueGray-700"></i>  {{ user.id }}
             </div>
-               <div   v-for= "(user, i) in userProfile" :key="'B'+ i" class="  mb-2 text-blueGray-600">
-              <i class="fas fa-venus-mars mr-2 text-lg text-blueGray-400"></i>  {{ user.gender }}
+               <div   v-for= "(user, i) in userProfile" :key="'B'+ i" class="  mb-2 text-blueGray-700 capitalize">
+              <i class="fas fa-venus-mars mr-2 text-lg text-blueGray-700 "></i>  {{ user.gender }}
             </div>
-            <div   v-for= "(user, i) in userProfile" :key="'C'+ i" class=" mb-2 text-blueGray-600">
-              <i class="fas fa-phone-alt mr-2 text-lg text-blueGray-400"></i>{{ user.phone_no }}
+            <div   v-for= "(user, i) in userProfile" :key="'C'+ i" class=" mb-2 text-blueGray-700">
+              <i class="fas fa-phone-alt mr-2 text-lg text-blueGray-700"></i>{{ user.phone_no }}
             </div>
-            <div  v-for= "(user, i) in userProfile" :key="'D'+ i" class="mb-2 text-blueGray-600">
-              <i class="fas fa-envelope mr-2 text-lg text-blueGray-400"></i>{{ user.email }}
+            <div  v-for= "(user, i) in userProfile" :key="'D'+ i" class="mb-2 text-blueGray-700">
+              <i class="fas fa-envelope mr-2 text-lg text-blueGray-700"></i>{{ user.email }}
             </div>
 
 
         </div>
-          <div v-for= "(user, i) in userProfile" :key="'E'+ i" class="mt-3 py-5 border-t border-blueGray-200 text-center">
+          <div v-for= "(user, i) in userProfile" :key="'E'+ i" class="mt-3 py-5 border-t border-blueGray-300 text-center">
             <div class="flex flex-wrap justify-center">
               <div class="w-full lg:w-9/12 px-4">
                 <p class="mb-4 text-lg leading-relaxed text-blueGray-700">
                      {{ user.des }}
                 </p>
-
               </div>
             </div>
           </div>
+
         </div>
       </div>
     </div>
@@ -121,6 +121,12 @@
             @closeModal="closeEditModal">
 
         </EditModal>
+    <!-- loading -->
+    </div>
+    <div v-else>
+        <loader object="#4491ee" color1="#e3851c" color2="#e82dda" size="8" speed="1.3" bg="#1e2337" objectbg="#ff2d2d" opacity="90" disableScrolling="true" name="circular"></loader>
+    </div>
+  <!-- loading -->
 </div>
 
 
@@ -158,13 +164,15 @@ export default {
                 des: '',
 
             },
-             toggleModal: false,
+            toggleModal: false,
+            isReady: false,
         }
     },
     methods:{
         getProfile(){
             axios.get('/api/get_profile/'+this.route_id+'/'+this.route_role).then((response)=>{
                 this.userProfile=response.data.data;
+                this.isReady=true;
                 console.warn(this.userProfile.data);
                 }).catch((errors)=> {console.log(errors)})
             },

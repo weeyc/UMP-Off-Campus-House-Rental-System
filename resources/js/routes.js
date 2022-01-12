@@ -125,7 +125,7 @@ export default{
             component: Manage_Tenant,
         },
         {
-            path: '/staff/view-profile/:role/:id',
+            path: '/staff/manage-user/view-profile/:role/:id',
             name: 'profile_view',
             component: Profile_View,
         },
@@ -136,7 +136,7 @@ export default{
             component: ManageProperties_Staff,
         },
         {
-            path: '/staff/property/:property_id',
+            path: '/staff/manage_properties/property/:property_id',
             name: 'view_property',
             component: Property_Landlord,
         },
@@ -210,7 +210,7 @@ export default{
             props: true,
         },
         {
-            path: '/landlord/browse-rooms/room_list/:id',
+            path: '/landlord/property_list/browse-rooms/room_list/:id',
             name: 'view_room_list_land',
             component: View_Room_List,
         },

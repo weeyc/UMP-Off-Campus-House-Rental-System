@@ -4,7 +4,12 @@
   <!-- Room Result -->
      <div class="max-w-5xl p-6 mx-auto mt-5 bg-gray-100 rounded-md mb-5 shadow-inner" >
           <h2 class=" font-bold text-gray-700 capitalize text-center text-xl">My Rental Room</h2>
-        <div v-if="lists.length==0"> You are not renting any room yet.</div>
+        <div v-if="isReady==true">
+        <div v-if="lists.length==0">
+            <div class="bg-yellow-200 border-yellow-600 text-gray-600  p-10 mt-3 " role="alert">
+                   <center><p class="font-bold text-base"> You are not renting any room yet.</p></center>
+            </div>
+        </div>
         <div else>
             <div v-for="(list,index) in lists" :key="index.id" class="flex justify-start  ">
                     <router-link :to="{ name: 'HousePlatform_Std', params:{id: list.room.id}}"
@@ -28,6 +33,12 @@
             </div>
 
         </div>
+            <!-- loading -->
+    </div>
+    <div v-else>
+        <loader object="#4491ee" color1="#e3851c" color2="#e82dda" size="8" speed="1.3" bg="#1e2337" objectbg="#ff2d2d" opacity="90" disableScrolling="true" name="circular"></loader>
+    </div>
+  <!-- loading -->
 
     </div>
 
@@ -51,6 +62,7 @@ export default {
 
         return{
             lists: [],
+            isReady: false,
             top_btn_style: 'p-3 rounded bg-yellow-100 text-yellow-500 hover:bg-yellow-500 hover:text-white :active:bg-yellow-500 active:text-white active:outline-none transition duration-150 ease-in-out shadow-xl',
         }
     },
@@ -62,6 +74,7 @@ export default {
                 }
                 }).then((response)=>{
                 this.lists=response.data.data;
+                this.isReady=true;
                 console.warn(this.lists.data);
             })
 

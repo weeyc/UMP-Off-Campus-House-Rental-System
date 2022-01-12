@@ -2,6 +2,7 @@
     <div class="flex justify-center item-center pl-8 pb-10">
         <!-- change background here top table -->
         <div class="mx-auto container bg-white-500 dark:bg-gray-800 dark:bg-gray-800 shadow rounded " >
+            <div v-if="isReady==true">
             <div class="flex flex-col lg:flex-row p-2 lg:p-8 justify-between items-start lg:items-stretch w-full shadow-inner" style="background-image: url(/images/BlueCoral.jpg);">
                 <div class="w-full flex flex-col lg:flex-row items-start lg:items-center">
                     <div class="flex items-center ">
@@ -124,6 +125,14 @@
                 </center>
 
             </div>
+
+             <!-- loading -->
+            </div>
+            <div v-else>
+                <loader object="#dc4ae8" color1="#e3851c" color2="#e82dda" size="8" speed="1.3" bg="#1e2337" objectbg="#ff2d2d" opacity="90" disableScrolling="true" name="dots"></loader>
+            </div>
+        <!-- loading -->
+
         </div>
 
         <ReadModal
@@ -161,7 +170,7 @@ export default {
             showSize: 10,
 
             toggleModal: false,
-
+            isReady: false,
                 profile:{
                     id: '',
                     name: '',
@@ -206,6 +215,7 @@ export default {
                     showSize: this.showSize
                 }}).then((response)=>{
                 this.students=response.data.data;
+                this.isReady=true;
                 console.warn(this.students.data);
                 })
             },

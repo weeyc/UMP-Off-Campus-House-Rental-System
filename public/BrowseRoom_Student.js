@@ -244,6 +244,17 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {},
   data: function data() {
@@ -262,7 +273,8 @@ __webpack_require__.r(__webpack_exports__);
       page: 1,
       lastPage: '',
       pageInfo: '',
-      top_btn_style: 'p-3 rounded bg-yellow-100 text-yellow-500 hover:bg-yellow-500 hover:text-white :active:bg-yellow-500 active:text-white active:outline-none transition duration-150 ease-in-out shadow-xl'
+      isReady: false,
+      top_btn_style: 'p-3 rounded bg-yellow-200 text-yellow-700 hover:bg-yellow-500 hover:text-white :active:bg-yellow-500 active:text-white active:outline-none transition duration-150 ease-in-out shadow-xl'
     };
   },
   methods: {
@@ -285,6 +297,7 @@ __webpack_require__.r(__webpack_exports__);
         _this.lists = response.data.data;
         _this.pageInfo = response.data.meta;
         _this.lastPage = response.data.meta.last_page;
+        _this.isReady = true;
         console.warn(_this.lists.data);
       });
     },
@@ -388,1041 +401,63 @@ var render = function () {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _c(
-      "div",
-      {
-        staticClass:
-          "max-w-5xl p-6 mx-auto mt-5 bg-gray-100 rounded-md mb-5 shadow-xl",
-      },
-      [
-        _c("span", [_vm._v("Selected Campus: " + _vm._s(_vm.campus))]),
-        _vm._v(" "),
-        _c(
-          "div",
-          {
-            staticClass:
-              "flex items-center justify-center h-40 w-full overflow-hidden bg-gradient-to-b from-green-200 to-green-500",
-          },
-          [
-            _c(
-              "section",
-              { staticClass: "flex items-stretch h-40 w-full text-white " },
-              [
-                _c(
-                  "div",
-                  {
-                    staticClass:
-                      "relative items-center w-1/2 bg-gray-500 bg-no-repeat bg-cover lg:flex",
-                    staticStyle: {
-                      "background-image": "url(/images/UMP/Gambang.jpg)",
-                    },
-                  },
-                  [
-                    _c("div", { staticClass: "w-full justify-center flex" }, [
-                      _c(
-                        "button",
-                        {
-                          staticClass: "px-5 ",
-                          class: [_vm.top_btn_style],
-                          attrs: { "exact-active-class": "exact-active" },
-                          on: {
-                            click: function ($event) {
-                              return _vm.change_campus(0)
-                            },
-                          },
-                        },
-                        [
-                          _vm._v(
-                            "\n                            Gambang\n                        "
-                          ),
-                        ]
-                      ),
-                    ]),
-                  ]
-                ),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  {
-                    staticClass:
-                      "relative items-center w-1/2 bg-gray-500 bg-no-repeat bg-cover lg:flex",
-                    staticStyle: {
-                      "background-image": "url(/images/UMP/cancelori.jpg)",
-                    },
-                  },
-                  [
-                    _c("div", { staticClass: "w-full justify-center flex" }, [
-                      _c(
-                        "button",
-                        {
-                          staticClass: "px-10",
-                          class: [_vm.top_btn_style],
-                          attrs: { "exact-active-class": "exact-active" },
-                          on: {
-                            click: function ($event) {
-                              return _vm.change_campus(1)
-                            },
-                          },
-                        },
-                        [
-                          _vm._v(
-                            "\n                            Pekan\n                        "
-                          ),
-                        ]
-                      ),
-                    ]),
-                  ]
-                ),
-              ]
-            ),
-          ]
-        ),
-      ]
-    ),
-    _vm._v(" "),
-    _c(
-      "div",
-      {
-        staticClass:
-          "max-w-5xl p-6 mx-auto mt-5 bg-gray-100 rounded-md mb-5 shadow-xl",
-      },
-      [
-        _c("div", { staticClass: "flex justify-start" }, [
+    _vm.isReady == true
+      ? _c("div", [
           _c(
             "div",
             {
               staticClass:
-                "flex justify-center bg-white rounded-xl border-2 overflow-hidden",
+                "max-w-5xl p-6 mx-auto mt-5 bg-gray-100 rounded-md mb-5 shadow-xl",
             },
             [
-              _c("input", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.location,
-                    expression: "location",
-                  },
-                ],
-                staticClass:
-                  "block rounded-md border-0 focus:outline-none focus:ring-0 focus:border-blue-500 flex-grow p-2 px-3",
-                attrs: {
-                  type: "search",
-                  placeholder: "Search Area / Property Name",
-                },
-                domProps: { value: _vm.location },
-                on: {
-                  input: function ($event) {
-                    if ($event.target.composing) {
-                      return
-                    }
-                    _vm.location = $event.target.value
-                  },
-                },
-              }),
+              _c("span", [_vm._v("Selected Campus: " + _vm._s(_vm.campus))]),
               _vm._v(" "),
-              _c("button", { on: { click: _vm.getFilter } }, [
-                _c(
-                  "svg",
-                  {
-                    staticClass: "h-6 w-6 my-auto m-2",
-                    staticStyle: { color: "gray" },
-                    attrs: {
-                      xmlns: "http://www.w3.org/2000/svg",
-                      fill: "none",
-                      viewBox: "0 0 24 24",
-                      stroke: "currentColor",
-                    },
-                  },
-                  [
-                    _c("path", {
-                      attrs: {
-                        "stroke-linecap": "round",
-                        "stroke-linejoin": "round",
-                        "stroke-width": "2",
-                        d: "M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z",
-                      },
-                    }),
-                  ]
-                ),
-              ]),
-            ]
-          ),
-          _vm._v(" "),
-          _c(
-            "div",
-            {
-              staticClass: "hidden xl:flex items-center ",
-              attrs: { id: "room" },
-            },
-            [
-              _c("div", { staticClass: "ml-6 relative" }, [
-                _c(
-                  "div",
-                  {
-                    staticClass: "flex items-center relative",
-                    on: {
-                      click: function ($event) {
-                        return _vm.dropdownHandlerRoomType($event)
-                      },
-                    },
-                  },
-                  [
-                    _c(
-                      "ul",
-                      {
-                        staticClass:
-                          "w-52 p-2 border-r bg-yellow-100 absolute rounded right-0 top-0 shadow mt-16 hidden overflow-hidden z-10 ",
-                      },
-                      [
-                        _c(
-                          "li",
-                          {
-                            staticClass:
-                              "cursor-pointer text-yellow-500 text-sm leading-3 tracking-normal py-2",
-                          },
-                          [
-                            _c(
-                              "label",
-                              { staticClass: "flex radio p-2 cursor-pointer" },
-                              [
-                                _c("input", {
-                                  directives: [
-                                    {
-                                      name: "model",
-                                      rawName: "v-model",
-                                      value: _vm.room,
-                                      expression: "room",
-                                    },
-                                  ],
-                                  staticClass: "my-auto transform scale-125",
-                                  attrs: {
-                                    type: "radio",
-                                    name: "room_type",
-                                    value: "Single",
-                                  },
-                                  domProps: {
-                                    checked: _vm._q(_vm.room, "Single"),
-                                  },
-                                  on: {
-                                    change: function ($event) {
-                                      _vm.room = "Single"
-                                    },
-                                  },
-                                }),
-                                _vm._v(" "),
-                                _c("div", { staticClass: "title px-2" }, [
-                                  _vm._v("Single"),
-                                ]),
-                              ]
-                            ),
-                          ]
-                        ),
-                        _vm._v(" "),
-                        _c("hr", { staticClass: "border-yellow-300  " }),
-                        _vm._v(" "),
-                        _c(
-                          "li",
-                          {
-                            staticClass:
-                              "cursor-pointer text-yellow-500 text-sm leading-3 tracking-normal mt-2 py-2 hover:text-indigo-700 flex items-center focus:text-indigo-700 focus:outline-none",
-                          },
-                          [
-                            _c(
-                              "label",
-                              { staticClass: "flex radio p-2 cursor-pointer" },
-                              [
-                                _c("input", {
-                                  directives: [
-                                    {
-                                      name: "model",
-                                      rawName: "v-model",
-                                      value: _vm.room,
-                                      expression: "room",
-                                    },
-                                  ],
-                                  staticClass: "my-auto transform scale-125",
-                                  attrs: {
-                                    type: "radio",
-                                    name: "room_type",
-                                    value: "Shared",
-                                  },
-                                  domProps: {
-                                    checked: _vm._q(_vm.room, "Shared"),
-                                  },
-                                  on: {
-                                    change: function ($event) {
-                                      _vm.room = "Shared"
-                                    },
-                                  },
-                                }),
-                                _vm._v(" "),
-                                _c("div", { staticClass: "title px-2" }, [
-                                  _vm._v("Shared"),
-                                ]),
-                              ]
-                            ),
-                          ]
-                        ),
-                        _vm._v(" "),
-                        _c("hr", { staticClass: "border-yellow-300" }),
-                        _vm._v(" "),
-                        _c(
-                          "li",
-                          {
-                            staticClass:
-                              "cursor-pointer text-yellow-500 text-sm leading-3 tracking-normal mt-2 py-2 hover:text-indigo-700 items-center focus:text-indigo-700 focus:outline-none",
-                          },
-                          [
-                            _c(
-                              "label",
-                              {
-                                staticClass:
-                                  "flex justify-center cursor-pointer",
-                              },
-                              [
-                                _c(
-                                  "div",
-                                  {
-                                    staticClass:
-                                      "px-5 rounded-full text-yellow-500 mt-3 ",
-                                    on: {
-                                      click: function ($event) {
-                                        return _vm.clearFilter("room")
-                                      },
-                                    },
-                                  },
-                                  [_vm._v("✗ Clear")]
-                                ),
-                                _vm._v(" "),
-                                _c(
-                                  "button",
-                                  {
-                                    staticClass: "px-5 rounded-full ",
-                                    class: [_vm.top_btn_style],
-                                    on: { click: _vm.getFilter },
-                                  },
-                                  [_vm._v("Apply")]
-                                ),
-                              ]
-                            ),
-                          ]
-                        ),
-                      ]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "div",
-                      { staticClass: "flex justify-center text-gray-100" },
-                      [
-                        _c(
-                          "button",
-                          {
-                            staticClass: "px-5 rounded-full",
-                            class: [_vm.top_btn_style],
-                          },
-                          [_vm._v("Room Type")]
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "svg",
-                          {
-                            staticClass:
-                              "icon icon-tabler icon-tabler-chevron-down cursor-pointer",
-                            attrs: {
-                              xmlns: "http://www.w3.org/2000/svg",
-                              width: "20",
-                              height: "20",
-                              viewBox: "0 0 24 24",
-                              "stroke-width": "1.5",
-                              stroke: "currentColor",
-                              fill: "none",
-                              "stroke-linecap": "round",
-                              "stroke-linejoin": "round",
-                            },
-                          },
-                          [
-                            _c("path", {
-                              attrs: { stroke: "none", d: "M0 0h24v24H0z" },
-                            }),
-                            _vm._v(" "),
-                            _c("polyline", {
-                              attrs: { points: "6 9 12 15 18 9" },
-                            }),
-                          ]
-                        ),
-                      ]
-                    ),
-                  ]
-                ),
-              ]),
-            ]
-          ),
-          _vm._v(" "),
-          _c(
-            "div",
-            {
-              staticClass: "hidden xl:flex items-center ",
-              attrs: { id: "price" },
-            },
-            [
-              _c("div", { staticClass: "ml-6 relative" }, [
-                _c(
-                  "div",
-                  {
-                    staticClass: "flex items-center relative",
-                    on: {
-                      click: function ($event) {
-                        return _vm.dropdownHandlerPriceRange($event)
-                      },
-                    },
-                  },
-                  [
-                    _c(
-                      "ul",
-                      {
-                        staticClass:
-                          "w-52 p-2 border-r bg-yellow-100 absolute rounded right-0 top-0 shadow mt-16 hidden overflow-hidden z-10 ",
-                      },
-                      [
-                        _c(
-                          "li",
-                          {
-                            staticClass:
-                              "cursor-pointer text-yellow-500 text-sm leading-3 tracking-normal py-2",
-                          },
-                          [
-                            _c(
-                              "label",
-                              { staticClass: "flex radio p-2 cursor-pointer" },
-                              [
-                                _c("input", {
-                                  directives: [
-                                    {
-                                      name: "model",
-                                      rawName: "v-model",
-                                      value: _vm.price,
-                                      expression: "price",
-                                    },
-                                  ],
-                                  staticClass: "my-auto transform scale-125",
-                                  attrs: { type: "radio", name: "price" },
-                                  domProps: {
-                                    value: { min: 0, max: 200 },
-                                    checked: _vm._q(_vm.price, {
-                                      min: 0,
-                                      max: 200,
-                                    }),
-                                  },
-                                  on: {
-                                    change: function ($event) {
-                                      _vm.price = { min: 0, max: 200 }
-                                    },
-                                  },
-                                }),
-                                _vm._v(" "),
-                                _c("div", { staticClass: "title px-2" }, [
-                                  _vm._v("RM0 - RM200"),
-                                ]),
-                              ]
-                            ),
-                          ]
-                        ),
-                        _vm._v(" "),
-                        _c("hr", { staticClass: "border-yellow-300  " }),
-                        _vm._v(" "),
-                        _c(
-                          "li",
-                          {
-                            staticClass:
-                              "cursor-pointer text-yellow-500 text-sm leading-3 tracking-normal mt-2 py-2 hover:text-indigo-700 flex items-center focus:text-indigo-700 focus:outline-none",
-                          },
-                          [
-                            _c(
-                              "label",
-                              { staticClass: "flex radio p-2 cursor-pointer" },
-                              [
-                                _c("input", {
-                                  directives: [
-                                    {
-                                      name: "model",
-                                      rawName: "v-model",
-                                      value: _vm.price,
-                                      expression: "price",
-                                    },
-                                  ],
-                                  staticClass: "my-auto transform scale-125",
-                                  attrs: { type: "radio", name: "price" },
-                                  domProps: {
-                                    value: { min: 200, max: 500 },
-                                    checked: _vm._q(_vm.price, {
-                                      min: 200,
-                                      max: 500,
-                                    }),
-                                  },
-                                  on: {
-                                    change: function ($event) {
-                                      _vm.price = { min: 200, max: 500 }
-                                    },
-                                  },
-                                }),
-                                _vm._v(" "),
-                                _c("div", { staticClass: "title px-2" }, [
-                                  _vm._v("RM200 - RM500"),
-                                ]),
-                              ]
-                            ),
-                          ]
-                        ),
-                        _vm._v(" "),
-                        _c("hr", { staticClass: "border-yellow-300  " }),
-                        _vm._v(" "),
-                        _c(
-                          "li",
-                          {
-                            staticClass:
-                              "cursor-pointer text-yellow-500 text-sm leading-3 tracking-normal mt-2 py-2 hover:text-indigo-700 flex items-center focus:text-indigo-700 focus:outline-none",
-                          },
-                          [
-                            _c(
-                              "label",
-                              { staticClass: "flex radio p-2 cursor-pointer" },
-                              [
-                                _c("input", {
-                                  directives: [
-                                    {
-                                      name: "model",
-                                      rawName: "v-model",
-                                      value: _vm.price,
-                                      expression: "price",
-                                    },
-                                  ],
-                                  staticClass: "my-auto transform scale-125",
-                                  attrs: { type: "radio", name: "price" },
-                                  domProps: {
-                                    value: { min: 500, max: 800 },
-                                    checked: _vm._q(_vm.price, {
-                                      min: 500,
-                                      max: 800,
-                                    }),
-                                  },
-                                  on: {
-                                    change: function ($event) {
-                                      _vm.price = { min: 500, max: 800 }
-                                    },
-                                  },
-                                }),
-                                _vm._v(" "),
-                                _c("div", { staticClass: "title px-2" }, [
-                                  _vm._v("RM500 - RM800"),
-                                ]),
-                              ]
-                            ),
-                          ]
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "li",
-                          {
-                            staticClass:
-                              "cursor-pointer text-yellow-500 text-sm leading-3 tracking-normal mt-2 py-2 hover:text-indigo-700 flex items-center focus:text-indigo-700 focus:outline-none",
-                          },
-                          [
-                            _c(
-                              "label",
-                              { staticClass: "flex radio p-2 cursor-pointer" },
-                              [
-                                _c("input", {
-                                  directives: [
-                                    {
-                                      name: "model",
-                                      rawName: "v-model",
-                                      value: _vm.price,
-                                      expression: "price",
-                                    },
-                                  ],
-                                  staticClass: "my-auto transform scale-125",
-                                  attrs: { type: "radio", name: "price" },
-                                  domProps: {
-                                    value: { min: 800, max: 2000 },
-                                    checked: _vm._q(_vm.price, {
-                                      min: 800,
-                                      max: 2000,
-                                    }),
-                                  },
-                                  on: {
-                                    change: function ($event) {
-                                      _vm.price = { min: 800, max: 2000 }
-                                    },
-                                  },
-                                }),
-                                _vm._v(" "),
-                                _c("div", { staticClass: "title px-2" }, [
-                                  _vm._v("RM800 - RM2000"),
-                                ]),
-                              ]
-                            ),
-                          ]
-                        ),
-                        _vm._v(" "),
-                        _c("hr", { staticClass: "border-yellow-300" }),
-                        _vm._v(" "),
-                        _c(
-                          "li",
-                          {
-                            staticClass:
-                              "cursor-pointer text-yellow-500 text-sm leading-3 tracking-normal mt-2 py-2 hover:text-indigo-700 items-center focus:text-indigo-700 focus:outline-none",
-                          },
-                          [
-                            _c(
-                              "label",
-                              {
-                                staticClass:
-                                  "flex justify-center cursor-pointer",
-                              },
-                              [
-                                _c(
-                                  "div",
-                                  {
-                                    staticClass:
-                                      "px-5 rounded-full text-yellow-500 mt-3 ",
-                                    on: {
-                                      click: function ($event) {
-                                        return _vm.clearFilter("price")
-                                      },
-                                    },
-                                  },
-                                  [_vm._v("✗ Clear")]
-                                ),
-                                _vm._v(" "),
-                                _c(
-                                  "button",
-                                  {
-                                    staticClass: "px-5 rounded-full ",
-                                    class: [_vm.top_btn_style],
-                                    on: { click: _vm.getFilter },
-                                  },
-                                  [_vm._v("Apply")]
-                                ),
-                              ]
-                            ),
-                          ]
-                        ),
-                      ]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "div",
-                      { staticClass: "flex justify-center text-gray-100" },
-                      [
-                        _c(
-                          "button",
-                          {
-                            staticClass: "px-5 rounded-full",
-                            class: [_vm.top_btn_style],
-                          },
-                          [_vm._v("Price Range")]
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "svg",
-                          {
-                            staticClass:
-                              "icon icon-tabler icon-tabler-chevron-down cursor-pointer",
-                            attrs: {
-                              xmlns: "http://www.w3.org/2000/svg",
-                              width: "20",
-                              height: "20",
-                              viewBox: "0 0 24 24",
-                              "stroke-width": "1.5",
-                              stroke: "currentColor",
-                              fill: "none",
-                              "stroke-linecap": "round",
-                              "stroke-linejoin": "round",
-                            },
-                          },
-                          [
-                            _c("path", {
-                              attrs: { stroke: "none", d: "M0 0h24v24H0z" },
-                            }),
-                            _vm._v(" "),
-                            _c("polyline", {
-                              attrs: { points: "6 9 12 15 18 9" },
-                            }),
-                          ]
-                        ),
-                      ]
-                    ),
-                  ]
-                ),
-              ]),
-            ]
-          ),
-          _vm._v(" "),
-          _c(
-            "div",
-            {
-              staticClass: "hidden xl:flex items-center ",
-              attrs: { id: "gender" },
-            },
-            [
-              _c("div", { staticClass: "ml-6 relative" }, [
-                _c(
-                  "div",
-                  {
-                    staticClass: "flex items-center relative",
-                    on: {
-                      click: function ($event) {
-                        return _vm.dropdownHandlerGenderPreference($event)
-                      },
-                    },
-                  },
-                  [
-                    _c(
-                      "ul",
-                      {
-                        staticClass:
-                          "w-52 p-2 border-r bg-yellow-100 absolute rounded right-0 top-0 shadow mt-16 hidden overflow-hidden z-10 ",
-                      },
-                      [
-                        _c(
-                          "li",
-                          {
-                            staticClass:
-                              "cursor-pointer text-yellow-500 text-sm leading-3 tracking-normal py-2",
-                          },
-                          [
-                            _c(
-                              "label",
-                              { staticClass: "flex radio p-2 cursor-pointer" },
-                              [
-                                _c("input", {
-                                  directives: [
-                                    {
-                                      name: "model",
-                                      rawName: "v-model",
-                                      value: _vm.gender,
-                                      expression: "gender",
-                                    },
-                                  ],
-                                  staticClass: "my-auto transform scale-125",
-                                  attrs: {
-                                    type: "radio",
-                                    name: "gender",
-                                    value: "Male",
-                                  },
-                                  domProps: {
-                                    checked: _vm._q(_vm.gender, "Male"),
-                                  },
-                                  on: {
-                                    change: function ($event) {
-                                      _vm.gender = "Male"
-                                    },
-                                  },
-                                }),
-                                _vm._v(" "),
-                                _c("div", { staticClass: "title px-2" }, [
-                                  _vm._v("Male"),
-                                ]),
-                              ]
-                            ),
-                          ]
-                        ),
-                        _vm._v(" "),
-                        _c("hr", { staticClass: "border-yellow-300  " }),
-                        _vm._v(" "),
-                        _c(
-                          "li",
-                          {
-                            staticClass:
-                              "cursor-pointer text-yellow-500 text-sm leading-3 tracking-normal mt-2 py-2 hover:text-indigo-700 flex items-center focus:text-indigo-700 focus:outline-none",
-                          },
-                          [
-                            _c(
-                              "label",
-                              { staticClass: "flex radio p-2 cursor-pointer" },
-                              [
-                                _c("input", {
-                                  directives: [
-                                    {
-                                      name: "model",
-                                      rawName: "v-model",
-                                      value: _vm.gender,
-                                      expression: "gender",
-                                    },
-                                  ],
-                                  staticClass: "my-auto transform scale-125",
-                                  attrs: {
-                                    type: "radio",
-                                    name: "gender",
-                                    value: "Female",
-                                  },
-                                  domProps: {
-                                    checked: _vm._q(_vm.gender, "Female"),
-                                  },
-                                  on: {
-                                    change: function ($event) {
-                                      _vm.gender = "Female"
-                                    },
-                                  },
-                                }),
-                                _vm._v(" "),
-                                _c("div", { staticClass: "title px-2" }, [
-                                  _vm._v("Female"),
-                                ]),
-                              ]
-                            ),
-                          ]
-                        ),
-                        _vm._v(" "),
-                        _c("hr", { staticClass: "border-yellow-300" }),
-                        _vm._v(" "),
-                        _c(
-                          "li",
-                          {
-                            staticClass:
-                              "cursor-pointer text-yellow-500 text-sm leading-3 tracking-normal mt-2 py-2 hover:text-indigo-700 items-center focus:text-indigo-700 focus:outline-none",
-                          },
-                          [
-                            _c(
-                              "label",
-                              {
-                                staticClass:
-                                  "flex justify-center cursor-pointer",
-                              },
-                              [
-                                _c(
-                                  "div",
-                                  {
-                                    staticClass:
-                                      "px-5 rounded-full text-yellow-500 mt-3 ",
-                                    on: {
-                                      click: function ($event) {
-                                        return _vm.clearFilter("gender")
-                                      },
-                                    },
-                                  },
-                                  [_vm._v("✗ Clear")]
-                                ),
-                                _vm._v(" "),
-                                _c(
-                                  "button",
-                                  {
-                                    staticClass: "px-5 rounded-full ",
-                                    class: [_vm.top_btn_style],
-                                    on: { click: _vm.getFilter },
-                                  },
-                                  [_vm._v("Apply")]
-                                ),
-                              ]
-                            ),
-                          ]
-                        ),
-                      ]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "div",
-                      { staticClass: "flex justify-center text-gray-100" },
-                      [
-                        _c(
-                          "button",
-                          {
-                            staticClass: "px-5 rounded-full",
-                            class: [_vm.top_btn_style],
-                          },
-                          [_vm._v("Gender Preference")]
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "svg",
-                          {
-                            staticClass:
-                              "icon icon-tabler icon-tabler-chevron-down cursor-pointer",
-                            attrs: {
-                              xmlns: "http://www.w3.org/2000/svg",
-                              width: "20",
-                              height: "20",
-                              viewBox: "0 0 24 24",
-                              "stroke-width": "1.5",
-                              stroke: "currentColor",
-                              fill: "none",
-                              "stroke-linecap": "round",
-                              "stroke-linejoin": "round",
-                            },
-                          },
-                          [
-                            _c("path", {
-                              attrs: { stroke: "none", d: "M0 0h24v24H0z" },
-                            }),
-                            _vm._v(" "),
-                            _c("polyline", {
-                              attrs: { points: "6 9 12 15 18 9" },
-                            }),
-                          ]
-                        ),
-                      ]
-                    ),
-                  ]
-                ),
-              ]),
-            ]
-          ),
-        ]),
-      ]
-    ),
-    _vm._v(" "),
-    _c(
-      "div",
-      {
-        staticClass:
-          "max-w-5xl p-6 mx-auto mt-5 bg-gray-100 rounded-md mb-5 shadow-inner",
-      },
-      [
-        _c("div", { staticClass: "flex justify-between" }, [
-          _vm.page == "[object MouseEvent]"
-            ? _c(
-                "span",
-                { staticClass: "text-base font-bold flex justify-start" },
-                [
-                  _vm._v(
-                    "Rooms for rent (" +
-                      _vm._s(_vm.pageInfo.total) +
-                      ") | Showing Page 1 of " +
-                      _vm._s(_vm.lastPage) +
-                      " "
-                  ),
-                ]
-              )
-            : _c(
-                "span",
-                { staticClass: "text-base font-bold flex justify-start" },
-                [
-                  _vm._v(
-                    "Rooms for rent (" +
-                      _vm._s(_vm.pageInfo.total) +
-                      ") | Showing Page " +
-                      _vm._s(_vm.page) +
-                      " of " +
-                      _vm._s(_vm.lastPage) +
-                      " "
-                  ),
-                ]
-              ),
-          _vm._v(" "),
-          _c("div", { staticClass: "w-1/3 flex justify-end" }, [
-            _c(
-              "select",
-              {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.sort,
-                    expression: "sort",
-                  },
-                ],
-                staticClass:
-                  "focus:outline-none border-transparent cursor-pointer focus:border-gray-800 hover:bg-yellow-200 focus:shadow-outline-gray text-base py-2 px-8 w-1/2 xl:px-3 rounded font-medium  appearance-none bg-transparent",
-                on: {
-                  change: function ($event) {
-                    var $$selectedVal = Array.prototype.filter
-                      .call($event.target.options, function (o) {
-                        return o.selected
-                      })
-                      .map(function (o) {
-                        var val = "_value" in o ? o._value : o.value
-                        return val
-                      })
-                    _vm.sort = $event.target.multiple
-                      ? $$selectedVal
-                      : $$selectedVal[0]
-                  },
+              _c(
+                "div",
+                {
+                  staticClass:
+                    "flex items-center justify-center h-40 w-full overflow-hidden bg-gradient-to-b from-green-200 to-green-500",
                 },
-              },
-              [
-                _c(
-                  "option",
-                  {
-                    attrs: { selected: "", value: "" },
-                    on: { click: _vm.getList },
-                  },
-                  [_vm._v("Order By")]
-                ),
-                _vm._v(" "),
-                _c(
-                  "option",
-                  { attrs: { value: "asc" }, on: { click: _vm.getList } },
-                  [_vm._v("Price: Lowest to Highest")]
-                ),
-                _vm._v(" "),
-                _c(
-                  "option",
-                  { attrs: { value: "desc" }, on: { click: _vm.getList } },
-                  [_vm._v("Price: Highest to Lowest")]
-                ),
-              ]
-            ),
-          ]),
-        ]),
-        _vm._v(" "),
-        _vm.lists.length == 0
-          ? _c("div", [_vm._v(" Sorry, result not found")])
-          : _vm._e(),
-        _vm._v(" "),
-        _c(
-          "div",
-          { attrs: { else: "" } },
-          _vm._l(_vm.lists, function (list, index) {
-            return _c(
-              "div",
-              { key: index.id, staticClass: "flex justify-start  " },
-              [
-                _c(
-                  "router-link",
-                  {
-                    staticClass:
-                      "flex justify-center w-full px-8 py-4 overflow-hidden bg-white rounded-lg shadow-lg mt-5 cursor-pointer transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-105 duration-200 hover:bg-yellow-400 hover:shadow-2xl",
-                    attrs: {
-                      to: { name: "view_room_list", params: { id: list.id } },
+                [
+                  _c(
+                    "section",
+                    {
+                      staticClass: "flex items-stretch h-40 w-full text-white ",
                     },
-                  },
-                  [
-                    _c("div", { staticClass: "w-1/3 bg-cover" }, [
-                      _c("img", {
-                        staticClass: "h-48 w-full object-cover",
-                        attrs: {
-                          src:
-                            "/images/Properties/" +
-                            list.photo_room[0].photo_name,
-                          alt: "Avatar",
-                        },
-                      }),
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "w-2/3 p-4 md:p-4" }, [
+                    [
                       _c(
                         "div",
-                        { staticClass: "flex justify-between item-center" },
+                        {
+                          staticClass:
+                            "relative items-center w-1/2 bg-gray-500 bg-no-repeat bg-cover lg:flex",
+                          staticStyle: {
+                            "background-image": "url(/images/UMP/Gambang.jpg)",
+                          },
+                        },
                         [
                           _c(
-                            "h1",
-                            {
-                              staticClass:
-                                "text-2xl font-bold text-gray-800 dark:text-white",
-                            },
-                            [_vm._v(" " + _vm._s(list.listing_name))]
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "h1",
-                            {
-                              staticClass:
-                                "text-2xl font-bold text-yellow-800 dark:text-white",
-                            },
+                            "div",
+                            { staticClass: "w-full justify-center flex" },
                             [
-                              _vm._v(
-                                "RM" + _vm._s(list.monthly_rent) + "/Month"
+                              _c(
+                                "button",
+                                {
+                                  staticClass: "px-5 ",
+                                  class: [_vm.top_btn_style],
+                                  attrs: {
+                                    "exact-active-class": "exact-active",
+                                  },
+                                  on: {
+                                    click: function ($event) {
+                                      return _vm.change_campus(0)
+                                    },
+                                  },
+                                },
+                                [
+                                  _vm._v(
+                                    "\n                            Gambang\n                        "
+                                  ),
+                                ]
                               ),
                             ]
                           ),
@@ -1430,67 +465,929 @@ var render = function () {
                       ),
                       _vm._v(" "),
                       _c(
-                        "p",
+                        "div",
                         {
                           staticClass:
-                            "mt-2 text-sm text-gray-600 dark:text-gray-400",
+                            "relative items-center w-1/2 bg-gray-500 bg-no-repeat bg-cover lg:flex",
+                          staticStyle: {
+                            "background-image":
+                              "url(/images/UMP/cancelori.jpg)",
+                          },
                         },
                         [
-                          _vm._v(
-                            _vm._s(list.property.name) +
-                              " | " +
-                              _vm._s(list.campus)
+                          _c(
+                            "div",
+                            { staticClass: "w-full justify-center flex" },
+                            [
+                              _c(
+                                "button",
+                                {
+                                  staticClass: "px-10",
+                                  class: [_vm.top_btn_style],
+                                  attrs: {
+                                    "exact-active-class": "exact-active",
+                                  },
+                                  on: {
+                                    click: function ($event) {
+                                      return _vm.change_campus(1)
+                                    },
+                                  },
+                                },
+                                [
+                                  _vm._v(
+                                    "\n                            Pekan\n                        "
+                                  ),
+                                ]
+                              ),
+                            ]
                           ),
                         ]
                       ),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "flex mt-2 item-center" }, [
-                        _c(
-                          "p",
-                          {
-                            staticClass:
-                              "mt-2 text-sm text-gray-600 dark:text-gray-400",
+                    ]
+                  ),
+                ]
+              ),
+            ]
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass:
+                "max-w-5xl p-6 mx-auto mt-5 bg-gray-100 rounded-md mb-5 shadow-xl",
+            },
+            [
+              _c("div", { staticClass: "flex justify-start" }, [
+                _c(
+                  "div",
+                  {
+                    staticClass:
+                      "flex justify-center bg-white rounded-xl border-2 overflow-hidden",
+                  },
+                  [
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.location,
+                          expression: "location",
+                        },
+                      ],
+                      staticClass:
+                        "block rounded-md border-0 focus:outline-none focus:ring-0 focus:border-blue-500 flex-grow p-2 px-3",
+                      attrs: {
+                        type: "search",
+                        placeholder: "Search Area / Property Name",
+                      },
+                      domProps: { value: _vm.location },
+                      on: {
+                        input: function ($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.location = $event.target.value
+                        },
+                      },
+                    }),
+                    _vm._v(" "),
+                    _c("button", { on: { click: _vm.getFilter } }, [
+                      _c(
+                        "svg",
+                        {
+                          staticClass: "h-6 w-6 my-auto m-2",
+                          staticStyle: { color: "gray" },
+                          attrs: {
+                            xmlns: "http://www.w3.org/2000/svg",
+                            fill: "none",
+                            viewBox: "0 0 24 24",
+                            stroke: "currentColor",
                           },
-                          [
-                            _vm._v(
-                              _vm._s(list.room_type) +
-                                " | " +
-                                _vm._s(list.property.gender_preferences)
-                            ),
-                          ]
-                        ),
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "flex mt-2 item-center" }, [
-                        _c(
-                          "p",
-                          {
-                            staticClass:
-                              "mt-2 text-sm text-gray-600 dark:text-gray-400",
-                          },
-                          [
-                            _vm._v(
-                              _vm._s(list.property.furnishing) +
-                                "| " +
-                                _vm._s(list.room_furnishing)
-                            ),
-                          ]
-                        ),
-                      ]),
+                        },
+                        [
+                          _c("path", {
+                            attrs: {
+                              "stroke-linecap": "round",
+                              "stroke-linejoin": "round",
+                              "stroke-width": "2",
+                              d: "M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z",
+                            },
+                          }),
+                        ]
+                      ),
                     ]),
                   ]
                 ),
-              ],
-              1
-            )
-          }),
-          0
-        ),
-        _vm._v(" "),
-        _c("center", [
-          _vm.lists.length != 0
-            ? _c("div", { staticClass: "mt-5 mb-5 flex justify-between " }, [
-                _c("div", { staticClass: "w-1/2 flex justify-start " }, [
+                _vm._v(" "),
+                _c(
+                  "div",
+                  {
+                    staticClass: "hidden xl:flex items-center ",
+                    attrs: { id: "room" },
+                  },
+                  [
+                    _c("div", { staticClass: "ml-6 relative" }, [
+                      _c(
+                        "div",
+                        {
+                          staticClass: "flex items-center relative",
+                          on: {
+                            click: function ($event) {
+                              return _vm.dropdownHandlerRoomType($event)
+                            },
+                          },
+                        },
+                        [
+                          _c(
+                            "ul",
+                            {
+                              staticClass:
+                                "w-52 p-2 border-r bg-yellow-100 absolute rounded right-0 top-0 shadow mt-16 hidden overflow-hidden z-10 ",
+                            },
+                            [
+                              _c(
+                                "li",
+                                {
+                                  staticClass:
+                                    "cursor-pointer text-yellow-500 text-sm leading-3 tracking-normal py-2",
+                                },
+                                [
+                                  _c(
+                                    "label",
+                                    {
+                                      staticClass:
+                                        "flex radio p-2 cursor-pointer",
+                                    },
+                                    [
+                                      _c("input", {
+                                        directives: [
+                                          {
+                                            name: "model",
+                                            rawName: "v-model",
+                                            value: _vm.room,
+                                            expression: "room",
+                                          },
+                                        ],
+                                        staticClass:
+                                          "my-auto transform scale-125",
+                                        attrs: {
+                                          type: "radio",
+                                          name: "room_type",
+                                          value: "Single",
+                                        },
+                                        domProps: {
+                                          checked: _vm._q(_vm.room, "Single"),
+                                        },
+                                        on: {
+                                          change: function ($event) {
+                                            _vm.room = "Single"
+                                          },
+                                        },
+                                      }),
+                                      _vm._v(" "),
+                                      _c("div", { staticClass: "title px-2" }, [
+                                        _vm._v("Single"),
+                                      ]),
+                                    ]
+                                  ),
+                                ]
+                              ),
+                              _vm._v(" "),
+                              _c("hr", { staticClass: "border-yellow-300  " }),
+                              _vm._v(" "),
+                              _c(
+                                "li",
+                                {
+                                  staticClass:
+                                    "cursor-pointer text-yellow-500 text-sm leading-3 tracking-normal mt-2 py-2 hover:text-indigo-700 flex items-center focus:text-indigo-700 focus:outline-none",
+                                },
+                                [
+                                  _c(
+                                    "label",
+                                    {
+                                      staticClass:
+                                        "flex radio p-2 cursor-pointer",
+                                    },
+                                    [
+                                      _c("input", {
+                                        directives: [
+                                          {
+                                            name: "model",
+                                            rawName: "v-model",
+                                            value: _vm.room,
+                                            expression: "room",
+                                          },
+                                        ],
+                                        staticClass:
+                                          "my-auto transform scale-125",
+                                        attrs: {
+                                          type: "radio",
+                                          name: "room_type",
+                                          value: "Shared",
+                                        },
+                                        domProps: {
+                                          checked: _vm._q(_vm.room, "Shared"),
+                                        },
+                                        on: {
+                                          change: function ($event) {
+                                            _vm.room = "Shared"
+                                          },
+                                        },
+                                      }),
+                                      _vm._v(" "),
+                                      _c("div", { staticClass: "title px-2" }, [
+                                        _vm._v("Shared"),
+                                      ]),
+                                    ]
+                                  ),
+                                ]
+                              ),
+                              _vm._v(" "),
+                              _c("hr", { staticClass: "border-yellow-300" }),
+                              _vm._v(" "),
+                              _c(
+                                "li",
+                                {
+                                  staticClass:
+                                    "cursor-pointer text-yellow-500 text-sm leading-3 tracking-normal mt-2 py-2 hover:text-indigo-700 items-center focus:text-indigo-700 focus:outline-none",
+                                },
+                                [
+                                  _c(
+                                    "label",
+                                    {
+                                      staticClass:
+                                        "flex justify-center cursor-pointer",
+                                    },
+                                    [
+                                      _c(
+                                        "div",
+                                        {
+                                          staticClass:
+                                            "px-5 rounded-full text-yellow-500 mt-3 ",
+                                          on: {
+                                            click: function ($event) {
+                                              return _vm.clearFilter("room")
+                                            },
+                                          },
+                                        },
+                                        [_vm._v("✗ Clear")]
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "button",
+                                        {
+                                          staticClass: "px-5 rounded-full ",
+                                          class: [_vm.top_btn_style],
+                                          on: { click: _vm.getFilter },
+                                        },
+                                        [_vm._v("Apply")]
+                                      ),
+                                    ]
+                                  ),
+                                ]
+                              ),
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "div",
+                            {
+                              staticClass: "flex justify-center text-gray-100",
+                            },
+                            [
+                              _c(
+                                "button",
+                                {
+                                  staticClass: "px-5 rounded-full",
+                                  class: [_vm.top_btn_style],
+                                },
+                                [_vm._v("Room Type")]
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "svg",
+                                {
+                                  staticClass:
+                                    "icon icon-tabler icon-tabler-chevron-down cursor-pointer",
+                                  attrs: {
+                                    xmlns: "http://www.w3.org/2000/svg",
+                                    width: "20",
+                                    height: "20",
+                                    viewBox: "0 0 24 24",
+                                    "stroke-width": "1.5",
+                                    stroke: "currentColor",
+                                    fill: "none",
+                                    "stroke-linecap": "round",
+                                    "stroke-linejoin": "round",
+                                  },
+                                },
+                                [
+                                  _c("path", {
+                                    attrs: {
+                                      stroke: "none",
+                                      d: "M0 0h24v24H0z",
+                                    },
+                                  }),
+                                  _vm._v(" "),
+                                  _c("polyline", {
+                                    attrs: { points: "6 9 12 15 18 9" },
+                                  }),
+                                ]
+                              ),
+                            ]
+                          ),
+                        ]
+                      ),
+                    ]),
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  {
+                    staticClass: "hidden xl:flex items-center ",
+                    attrs: { id: "price" },
+                  },
+                  [
+                    _c("div", { staticClass: "ml-6 relative" }, [
+                      _c(
+                        "div",
+                        {
+                          staticClass: "flex items-center relative",
+                          on: {
+                            click: function ($event) {
+                              return _vm.dropdownHandlerPriceRange($event)
+                            },
+                          },
+                        },
+                        [
+                          _c(
+                            "ul",
+                            {
+                              staticClass:
+                                "w-52 p-2 border-r bg-yellow-100 absolute rounded right-0 top-0 shadow mt-16 hidden overflow-hidden z-10 ",
+                            },
+                            [
+                              _c(
+                                "li",
+                                {
+                                  staticClass:
+                                    "cursor-pointer text-yellow-500 text-sm leading-3 tracking-normal py-2",
+                                },
+                                [
+                                  _c(
+                                    "label",
+                                    {
+                                      staticClass:
+                                        "flex radio p-2 cursor-pointer",
+                                    },
+                                    [
+                                      _c("input", {
+                                        directives: [
+                                          {
+                                            name: "model",
+                                            rawName: "v-model",
+                                            value: _vm.price,
+                                            expression: "price",
+                                          },
+                                        ],
+                                        staticClass:
+                                          "my-auto transform scale-125",
+                                        attrs: { type: "radio", name: "price" },
+                                        domProps: {
+                                          value: { min: 0, max: 200 },
+                                          checked: _vm._q(_vm.price, {
+                                            min: 0,
+                                            max: 200,
+                                          }),
+                                        },
+                                        on: {
+                                          change: function ($event) {
+                                            _vm.price = { min: 0, max: 200 }
+                                          },
+                                        },
+                                      }),
+                                      _vm._v(" "),
+                                      _c("div", { staticClass: "title px-2" }, [
+                                        _vm._v("RM0 - RM200"),
+                                      ]),
+                                    ]
+                                  ),
+                                ]
+                              ),
+                              _vm._v(" "),
+                              _c("hr", { staticClass: "border-yellow-300  " }),
+                              _vm._v(" "),
+                              _c(
+                                "li",
+                                {
+                                  staticClass:
+                                    "cursor-pointer text-yellow-500 text-sm leading-3 tracking-normal mt-2 py-2 hover:text-indigo-700 flex items-center focus:text-indigo-700 focus:outline-none",
+                                },
+                                [
+                                  _c(
+                                    "label",
+                                    {
+                                      staticClass:
+                                        "flex radio p-2 cursor-pointer",
+                                    },
+                                    [
+                                      _c("input", {
+                                        directives: [
+                                          {
+                                            name: "model",
+                                            rawName: "v-model",
+                                            value: _vm.price,
+                                            expression: "price",
+                                          },
+                                        ],
+                                        staticClass:
+                                          "my-auto transform scale-125",
+                                        attrs: { type: "radio", name: "price" },
+                                        domProps: {
+                                          value: { min: 200, max: 500 },
+                                          checked: _vm._q(_vm.price, {
+                                            min: 200,
+                                            max: 500,
+                                          }),
+                                        },
+                                        on: {
+                                          change: function ($event) {
+                                            _vm.price = { min: 200, max: 500 }
+                                          },
+                                        },
+                                      }),
+                                      _vm._v(" "),
+                                      _c("div", { staticClass: "title px-2" }, [
+                                        _vm._v("RM200 - RM500"),
+                                      ]),
+                                    ]
+                                  ),
+                                ]
+                              ),
+                              _vm._v(" "),
+                              _c("hr", { staticClass: "border-yellow-300  " }),
+                              _vm._v(" "),
+                              _c(
+                                "li",
+                                {
+                                  staticClass:
+                                    "cursor-pointer text-yellow-500 text-sm leading-3 tracking-normal mt-2 py-2 hover:text-indigo-700 flex items-center focus:text-indigo-700 focus:outline-none",
+                                },
+                                [
+                                  _c(
+                                    "label",
+                                    {
+                                      staticClass:
+                                        "flex radio p-2 cursor-pointer",
+                                    },
+                                    [
+                                      _c("input", {
+                                        directives: [
+                                          {
+                                            name: "model",
+                                            rawName: "v-model",
+                                            value: _vm.price,
+                                            expression: "price",
+                                          },
+                                        ],
+                                        staticClass:
+                                          "my-auto transform scale-125",
+                                        attrs: { type: "radio", name: "price" },
+                                        domProps: {
+                                          value: { min: 500, max: 800 },
+                                          checked: _vm._q(_vm.price, {
+                                            min: 500,
+                                            max: 800,
+                                          }),
+                                        },
+                                        on: {
+                                          change: function ($event) {
+                                            _vm.price = { min: 500, max: 800 }
+                                          },
+                                        },
+                                      }),
+                                      _vm._v(" "),
+                                      _c("div", { staticClass: "title px-2" }, [
+                                        _vm._v("RM500 - RM800"),
+                                      ]),
+                                    ]
+                                  ),
+                                ]
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "li",
+                                {
+                                  staticClass:
+                                    "cursor-pointer text-yellow-500 text-sm leading-3 tracking-normal mt-2 py-2 hover:text-indigo-700 flex items-center focus:text-indigo-700 focus:outline-none",
+                                },
+                                [
+                                  _c(
+                                    "label",
+                                    {
+                                      staticClass:
+                                        "flex radio p-2 cursor-pointer",
+                                    },
+                                    [
+                                      _c("input", {
+                                        directives: [
+                                          {
+                                            name: "model",
+                                            rawName: "v-model",
+                                            value: _vm.price,
+                                            expression: "price",
+                                          },
+                                        ],
+                                        staticClass:
+                                          "my-auto transform scale-125",
+                                        attrs: { type: "radio", name: "price" },
+                                        domProps: {
+                                          value: { min: 800, max: 2000 },
+                                          checked: _vm._q(_vm.price, {
+                                            min: 800,
+                                            max: 2000,
+                                          }),
+                                        },
+                                        on: {
+                                          change: function ($event) {
+                                            _vm.price = { min: 800, max: 2000 }
+                                          },
+                                        },
+                                      }),
+                                      _vm._v(" "),
+                                      _c("div", { staticClass: "title px-2" }, [
+                                        _vm._v("RM800 - RM2000"),
+                                      ]),
+                                    ]
+                                  ),
+                                ]
+                              ),
+                              _vm._v(" "),
+                              _c("hr", { staticClass: "border-yellow-300" }),
+                              _vm._v(" "),
+                              _c(
+                                "li",
+                                {
+                                  staticClass:
+                                    "cursor-pointer text-yellow-500 text-sm leading-3 tracking-normal mt-2 py-2 hover:text-indigo-700 items-center focus:text-indigo-700 focus:outline-none",
+                                },
+                                [
+                                  _c(
+                                    "label",
+                                    {
+                                      staticClass:
+                                        "flex justify-center cursor-pointer",
+                                    },
+                                    [
+                                      _c(
+                                        "div",
+                                        {
+                                          staticClass:
+                                            "px-5 rounded-full text-yellow-500 mt-3 ",
+                                          on: {
+                                            click: function ($event) {
+                                              return _vm.clearFilter("price")
+                                            },
+                                          },
+                                        },
+                                        [_vm._v("✗ Clear")]
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "button",
+                                        {
+                                          staticClass: "px-5 rounded-full ",
+                                          class: [_vm.top_btn_style],
+                                          on: { click: _vm.getFilter },
+                                        },
+                                        [_vm._v("Apply")]
+                                      ),
+                                    ]
+                                  ),
+                                ]
+                              ),
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "div",
+                            {
+                              staticClass: "flex justify-center text-gray-100",
+                            },
+                            [
+                              _c(
+                                "button",
+                                {
+                                  staticClass: "px-5 rounded-full",
+                                  class: [_vm.top_btn_style],
+                                },
+                                [_vm._v("Price Range")]
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "svg",
+                                {
+                                  staticClass:
+                                    "icon icon-tabler icon-tabler-chevron-down cursor-pointer",
+                                  attrs: {
+                                    xmlns: "http://www.w3.org/2000/svg",
+                                    width: "20",
+                                    height: "20",
+                                    viewBox: "0 0 24 24",
+                                    "stroke-width": "1.5",
+                                    stroke: "currentColor",
+                                    fill: "none",
+                                    "stroke-linecap": "round",
+                                    "stroke-linejoin": "round",
+                                  },
+                                },
+                                [
+                                  _c("path", {
+                                    attrs: {
+                                      stroke: "none",
+                                      d: "M0 0h24v24H0z",
+                                    },
+                                  }),
+                                  _vm._v(" "),
+                                  _c("polyline", {
+                                    attrs: { points: "6 9 12 15 18 9" },
+                                  }),
+                                ]
+                              ),
+                            ]
+                          ),
+                        ]
+                      ),
+                    ]),
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  {
+                    staticClass: "hidden xl:flex items-center ",
+                    attrs: { id: "gender" },
+                  },
+                  [
+                    _c("div", { staticClass: "ml-6 relative" }, [
+                      _c(
+                        "div",
+                        {
+                          staticClass: "flex items-center relative",
+                          on: {
+                            click: function ($event) {
+                              return _vm.dropdownHandlerGenderPreference($event)
+                            },
+                          },
+                        },
+                        [
+                          _c(
+                            "ul",
+                            {
+                              staticClass:
+                                "w-52 p-2 border-r bg-yellow-100 absolute rounded right-0 top-0 shadow mt-16 hidden overflow-hidden z-10 ",
+                            },
+                            [
+                              _c(
+                                "li",
+                                {
+                                  staticClass:
+                                    "cursor-pointer text-yellow-500 text-sm leading-3 tracking-normal py-2",
+                                },
+                                [
+                                  _c(
+                                    "label",
+                                    {
+                                      staticClass:
+                                        "flex radio p-2 cursor-pointer",
+                                    },
+                                    [
+                                      _c("input", {
+                                        directives: [
+                                          {
+                                            name: "model",
+                                            rawName: "v-model",
+                                            value: _vm.gender,
+                                            expression: "gender",
+                                          },
+                                        ],
+                                        staticClass:
+                                          "my-auto transform scale-125",
+                                        attrs: {
+                                          type: "radio",
+                                          name: "gender",
+                                          value: "Male",
+                                        },
+                                        domProps: {
+                                          checked: _vm._q(_vm.gender, "Male"),
+                                        },
+                                        on: {
+                                          change: function ($event) {
+                                            _vm.gender = "Male"
+                                          },
+                                        },
+                                      }),
+                                      _vm._v(" "),
+                                      _c("div", { staticClass: "title px-2" }, [
+                                        _vm._v("Male"),
+                                      ]),
+                                    ]
+                                  ),
+                                ]
+                              ),
+                              _vm._v(" "),
+                              _c("hr", { staticClass: "border-yellow-300  " }),
+                              _vm._v(" "),
+                              _c(
+                                "li",
+                                {
+                                  staticClass:
+                                    "cursor-pointer text-yellow-500 text-sm leading-3 tracking-normal mt-2 py-2 hover:text-indigo-700 flex items-center focus:text-indigo-700 focus:outline-none",
+                                },
+                                [
+                                  _c(
+                                    "label",
+                                    {
+                                      staticClass:
+                                        "flex radio p-2 cursor-pointer",
+                                    },
+                                    [
+                                      _c("input", {
+                                        directives: [
+                                          {
+                                            name: "model",
+                                            rawName: "v-model",
+                                            value: _vm.gender,
+                                            expression: "gender",
+                                          },
+                                        ],
+                                        staticClass:
+                                          "my-auto transform scale-125",
+                                        attrs: {
+                                          type: "radio",
+                                          name: "gender",
+                                          value: "Female",
+                                        },
+                                        domProps: {
+                                          checked: _vm._q(_vm.gender, "Female"),
+                                        },
+                                        on: {
+                                          change: function ($event) {
+                                            _vm.gender = "Female"
+                                          },
+                                        },
+                                      }),
+                                      _vm._v(" "),
+                                      _c("div", { staticClass: "title px-2" }, [
+                                        _vm._v("Female"),
+                                      ]),
+                                    ]
+                                  ),
+                                ]
+                              ),
+                              _vm._v(" "),
+                              _c("hr", { staticClass: "border-yellow-300" }),
+                              _vm._v(" "),
+                              _c(
+                                "li",
+                                {
+                                  staticClass:
+                                    "cursor-pointer text-yellow-500 text-sm leading-3 tracking-normal mt-2 py-2 hover:text-indigo-700 items-center focus:text-indigo-700 focus:outline-none",
+                                },
+                                [
+                                  _c(
+                                    "label",
+                                    {
+                                      staticClass:
+                                        "flex justify-center cursor-pointer",
+                                    },
+                                    [
+                                      _c(
+                                        "div",
+                                        {
+                                          staticClass:
+                                            "px-5 rounded-full text-yellow-500 mt-3 ",
+                                          on: {
+                                            click: function ($event) {
+                                              return _vm.clearFilter("gender")
+                                            },
+                                          },
+                                        },
+                                        [_vm._v("✗ Clear")]
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "button",
+                                        {
+                                          staticClass: "px-5 rounded-full ",
+                                          class: [_vm.top_btn_style],
+                                          on: { click: _vm.getFilter },
+                                        },
+                                        [_vm._v("Apply")]
+                                      ),
+                                    ]
+                                  ),
+                                ]
+                              ),
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "div",
+                            {
+                              staticClass: "flex justify-center text-gray-100",
+                            },
+                            [
+                              _c(
+                                "button",
+                                {
+                                  staticClass: "px-5 rounded-full",
+                                  class: [_vm.top_btn_style],
+                                },
+                                [_vm._v("Gender Preference")]
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "svg",
+                                {
+                                  staticClass:
+                                    "icon icon-tabler icon-tabler-chevron-down cursor-pointer",
+                                  attrs: {
+                                    xmlns: "http://www.w3.org/2000/svg",
+                                    width: "20",
+                                    height: "20",
+                                    viewBox: "0 0 24 24",
+                                    "stroke-width": "1.5",
+                                    stroke: "currentColor",
+                                    fill: "none",
+                                    "stroke-linecap": "round",
+                                    "stroke-linejoin": "round",
+                                  },
+                                },
+                                [
+                                  _c("path", {
+                                    attrs: {
+                                      stroke: "none",
+                                      d: "M0 0h24v24H0z",
+                                    },
+                                  }),
+                                  _vm._v(" "),
+                                  _c("polyline", {
+                                    attrs: { points: "6 9 12 15 18 9" },
+                                  }),
+                                ]
+                              ),
+                            ]
+                          ),
+                        ]
+                      ),
+                    ]),
+                  ]
+                ),
+              ]),
+            ]
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass:
+                "max-w-5xl p-6 mx-auto mt-5 bg-gray-100 rounded-md mb-5 shadow-inner",
+            },
+            [
+              _c("div", { staticClass: "flex justify-between" }, [
+                _vm.page == "[object MouseEvent]"
+                  ? _c(
+                      "span",
+                      { staticClass: "text-base font-bold flex justify-start" },
+                      [
+                        _vm._v(
+                          "Rooms for rent (" +
+                            _vm._s(_vm.pageInfo.total) +
+                            ") | Showing Page 1 of " +
+                            _vm._s(_vm.lastPage) +
+                            " "
+                        ),
+                      ]
+                    )
+                  : _c(
+                      "span",
+                      { staticClass: "text-base font-bold flex justify-start" },
+                      [
+                        _vm._v(
+                          "Rooms for rent (" +
+                            _vm._s(_vm.pageInfo.total) +
+                            ") | Showing Page " +
+                            _vm._s(_vm.page) +
+                            " of " +
+                            _vm._s(_vm.lastPage) +
+                            " "
+                        ),
+                      ]
+                    ),
+                _vm._v(" "),
+                _c("div", { staticClass: "w-1/3 flex justify-end" }, [
                   _c(
                     "select",
                     {
@@ -1498,8 +1395,8 @@ var render = function () {
                         {
                           name: "model",
                           rawName: "v-model",
-                          value: _vm.showSize,
-                          expression: "showSize",
+                          value: _vm.sort,
+                          expression: "sort",
                         },
                       ],
                       staticClass:
@@ -1514,7 +1411,7 @@ var render = function () {
                               var val = "_value" in o ? o._value : o.value
                               return val
                             })
-                          _vm.showSize = $event.target.multiple
+                          _vm.sort = $event.target.multiple
                             ? $$selectedVal
                             : $$selectedVal[0]
                         },
@@ -1523,55 +1420,310 @@ var render = function () {
                     [
                       _c(
                         "option",
-                        { attrs: { value: "10" }, on: { click: _vm.getList } },
-                        [_vm._v("Show Entries")]
+                        {
+                          attrs: { selected: "", value: "" },
+                          on: { click: _vm.getList },
+                        },
+                        [_vm._v("Order By")]
                       ),
                       _vm._v(" "),
                       _c(
                         "option",
-                        { attrs: { value: "10" }, on: { click: _vm.getList } },
-                        [_vm._v("10")]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "option",
-                        { attrs: { value: "20" }, on: { click: _vm.getList } },
-                        [_vm._v("20")]
+                        { attrs: { value: "asc" }, on: { click: _vm.getList } },
+                        [_vm._v("Price: Lowest to Highest")]
                       ),
                       _vm._v(" "),
                       _c(
                         "option",
                         {
-                          attrs: { value: "100000" },
+                          attrs: { value: "desc" },
                           on: { click: _vm.getList },
                         },
-                        [_vm._v("All")]
+                        [_vm._v("Price: Highest to Lowest")]
                       ),
                     ]
                   ),
                 ]),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  { staticClass: "w-1/2 flex justify-end " },
-                  [
-                    _c("Page", {
-                      attrs: {
-                        current: _vm.pageInfo.current_page,
-                        total: _vm.pageInfo.total,
-                        "page-size": parseInt(_vm.pageInfo.per_page),
-                      },
-                      on: { "on-change": _vm.getList },
-                    }),
-                  ],
-                  1
-                ),
-              ])
-            : _vm._e(),
-        ]),
-      ],
-      1
-    ),
+              ]),
+              _vm._v(" "),
+              _vm.lists.length == 0
+                ? _c(
+                    "div",
+                    {
+                      staticClass:
+                        "bg-yellow-200 border-yellow-600 text-gray-600  p-10 mt-7 rounded-md",
+                      attrs: { role: "alert" },
+                    },
+                    [
+                      _c("center", [
+                        _c("p", { staticClass: "font-bold text-base" }, [
+                          _vm._v(" Sorry, no result is found."),
+                        ]),
+                      ]),
+                    ],
+                    1
+                  )
+                : _vm._e(),
+              _vm._v(" "),
+              _c(
+                "div",
+                { attrs: { else: "" } },
+                _vm._l(_vm.lists, function (list, index) {
+                  return _c(
+                    "div",
+                    { key: index.id, staticClass: "flex justify-start  " },
+                    [
+                      _c(
+                        "router-link",
+                        {
+                          staticClass:
+                            "flex justify-center w-full px-8 py-4 overflow-hidden bg-white rounded-lg shadow-lg mt-5 cursor-pointer transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-105 duration-200 hover:bg-yellow-400 hover:shadow-2xl",
+                          attrs: {
+                            to: {
+                              name: "view_room_list",
+                              params: { id: list.id },
+                            },
+                          },
+                        },
+                        [
+                          _c("div", { staticClass: "w-1/3 bg-cover" }, [
+                            _c("img", {
+                              staticClass: "h-48 w-full object-cover",
+                              attrs: {
+                                src:
+                                  "/images/Properties/" +
+                                  list.photo_room[0].photo_name,
+                                alt: "Avatar",
+                              },
+                            }),
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "w-2/3 p-4 md:p-4" }, [
+                            _c(
+                              "div",
+                              {
+                                staticClass: "flex justify-between item-center",
+                              },
+                              [
+                                _c(
+                                  "h1",
+                                  {
+                                    staticClass:
+                                      "text-2xl font-bold text-gray-800 dark:text-white",
+                                  },
+                                  [_vm._v(" " + _vm._s(list.listing_name))]
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "h1",
+                                  {
+                                    staticClass:
+                                      "text-2xl font-bold text-yellow-800 dark:text-white",
+                                  },
+                                  [
+                                    _vm._v(
+                                      "RM" +
+                                        _vm._s(list.monthly_rent) +
+                                        "/Month"
+                                    ),
+                                  ]
+                                ),
+                              ]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "p",
+                              {
+                                staticClass:
+                                  "mt-2 text-sm text-gray-600 dark:text-gray-400",
+                              },
+                              [
+                                _vm._v(
+                                  _vm._s(list.property.name) +
+                                    " | " +
+                                    _vm._s(list.campus)
+                                ),
+                              ]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "div",
+                              { staticClass: "flex mt-2 item-center" },
+                              [
+                                _c(
+                                  "p",
+                                  {
+                                    staticClass:
+                                      "mt-2 text-sm text-gray-600 dark:text-gray-400",
+                                  },
+                                  [
+                                    _vm._v(
+                                      _vm._s(list.room_type) +
+                                        " | " +
+                                        _vm._s(list.property.gender_preferences)
+                                    ),
+                                  ]
+                                ),
+                              ]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "div",
+                              { staticClass: "flex mt-2 item-center" },
+                              [
+                                _c(
+                                  "p",
+                                  {
+                                    staticClass:
+                                      "mt-2 text-sm text-gray-600 dark:text-gray-400",
+                                  },
+                                  [
+                                    _vm._v(
+                                      _vm._s(list.property.furnishing) +
+                                        "| " +
+                                        _vm._s(list.room_furnishing)
+                                    ),
+                                  ]
+                                ),
+                              ]
+                            ),
+                          ]),
+                        ]
+                      ),
+                    ],
+                    1
+                  )
+                }),
+                0
+              ),
+              _vm._v(" "),
+              _c("center", [
+                _vm.lists.length != 0
+                  ? _c(
+                      "div",
+                      { staticClass: "mt-5 mb-5 flex justify-between " },
+                      [
+                        _c(
+                          "div",
+                          { staticClass: "w-1/2 flex justify-start " },
+                          [
+                            _c(
+                              "select",
+                              {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.showSize,
+                                    expression: "showSize",
+                                  },
+                                ],
+                                staticClass:
+                                  "focus:outline-none border-transparent cursor-pointer focus:border-gray-800 hover:bg-yellow-200 focus:shadow-outline-gray text-base py-2 px-8 w-1/2 xl:px-3 rounded font-medium  appearance-none bg-transparent",
+                                on: {
+                                  change: function ($event) {
+                                    var $$selectedVal = Array.prototype.filter
+                                      .call(
+                                        $event.target.options,
+                                        function (o) {
+                                          return o.selected
+                                        }
+                                      )
+                                      .map(function (o) {
+                                        var val =
+                                          "_value" in o ? o._value : o.value
+                                        return val
+                                      })
+                                    _vm.showSize = $event.target.multiple
+                                      ? $$selectedVal
+                                      : $$selectedVal[0]
+                                  },
+                                },
+                              },
+                              [
+                                _c(
+                                  "option",
+                                  {
+                                    attrs: { value: "10" },
+                                    on: { click: _vm.getList },
+                                  },
+                                  [_vm._v("Show Entries")]
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "option",
+                                  {
+                                    attrs: { value: "10" },
+                                    on: { click: _vm.getList },
+                                  },
+                                  [_vm._v("10")]
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "option",
+                                  {
+                                    attrs: { value: "20" },
+                                    on: { click: _vm.getList },
+                                  },
+                                  [_vm._v("20")]
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "option",
+                                  {
+                                    attrs: { value: "100000" },
+                                    on: { click: _vm.getList },
+                                  },
+                                  [_vm._v("All")]
+                                ),
+                              ]
+                            ),
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          { staticClass: "w-1/2 flex justify-end " },
+                          [
+                            _c("Page", {
+                              attrs: {
+                                current: _vm.pageInfo.current_page,
+                                total: _vm.pageInfo.total,
+                                "page-size": parseInt(_vm.pageInfo.per_page),
+                              },
+                              on: { "on-change": _vm.getList },
+                            }),
+                          ],
+                          1
+                        ),
+                      ]
+                    )
+                  : _vm._e(),
+              ]),
+            ],
+            1
+          ),
+        ])
+      : _c(
+          "div",
+          [
+            _c("loader", {
+              attrs: {
+                object: "#4491ee",
+                color1: "#e3851c",
+                color2: "#e82dda",
+                size: "8",
+                speed: "1.3",
+                bg: "#1e2337",
+                objectbg: "#ff2d2d",
+                opacity: "90",
+                disableScrolling: "true",
+                name: "circular",
+              },
+            }),
+          ],
+          1
+        ),
   ])
 }
 var staticRenderFns = []

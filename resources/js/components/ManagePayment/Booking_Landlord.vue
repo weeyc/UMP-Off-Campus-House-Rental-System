@@ -96,7 +96,7 @@
           </table>
                <div v-if="pageInfo" class="mt-5 mb-5 flex justify-between ">
                         <div class="w-1/2 flex justify-start ">
-                                <select  v-model="showSize" class="focus:outline-none border-transparent cursor-pointer focus:border-gray-800 hover:bg-yellow-200 focus:shadow-outline-gray text-base py-2 px-8 w-1/2 xl:px-3 rounded font-medium  appearance-none bg-transparent">
+                                <select  v-model="showSize" class="focus:outline-none border-transparent cursor-pointer focus:border-gray-800 hover:bg-blue-200 focus:shadow-outline-gray text-base py-2 px-8 w-1/2 xl:px-3 rounded font-medium  appearance-none bg-transparent">
                                     <option @click="getPayment" value="10">Show Entries</option>
                                     <option @click="getPayment" value="10">10</option>
                                     <option @click="getPayment" value="20">20</option>
