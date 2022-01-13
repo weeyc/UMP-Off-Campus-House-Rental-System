@@ -11,7 +11,7 @@
       <!-- modal body -->
         <div class="p-3">
             <!-- <h1 class="text-gray-800 font-lg font-bold tracking-normal leading-tight mb-4">Property Details</h1> -->
-            <section id="propertyDetail" v-show="activePhase == 1" class=" w-full  p-6 mx-auto bg-gray-200 rounded-md shadow-md">
+            <section id="propertyDetail" v-show="activePhase == 1" class=" w-full  p-6 mx-auto bg-transparent rounded-md shadow-md">
 
                 <h2 class=" font-bold text-gray-700 capitalize text-center text-xl">Edit Property</h2>
                     <h2 class=" font-bold text-gray-700 capitalize text-center text-base ">-Property Details-</h2>
@@ -61,7 +61,7 @@
             </section>
 
 
-            <section id="Uploader" v-if="activePhase == 2"  class=" max-w-4xl p-6 mx-auto bg-gray-200 rounded-md shadow-md ">
+            <section id="Uploader" v-if="activePhase == 2"  class=" max-w-4xl p-6 mx-auto bg-transparent rounded-md shadow-md ">
                 <h2 class=" font-bold text-gray-700 capitalize text-center text-xl">Add Photos</h2>
                     <h2 class=" font-bold text-gray-700 capitalize text-center text-base mb-5">-Property Image-</h2>
                       <button v-if="replace==false" @click.prevent="get_replace(0)" class="px-6 py-2 justify-end mr-5 leading-5 text-white transition-colors
@@ -75,7 +75,7 @@
                                 <slideritem   v-for="(item,index) in propertyPhoto" :key="index" >
 
                                     <img class="h-70 w-full  relative" :src="'/images/Properties/'+item.photo_name" alt="Avatar"/>
-                                        <p class=" absolute bottom-0 text-xs text-black pt-5 bg-gray-200 w-full ">{{ item.photo_label }}</p>
+                                        <p class=" absolute bottom-0 text-xs text-black pt-5 bg-transparent w-full ">{{ item.photo_label }}</p>
 
                                 </slideritem>
                                 <div slot="loading">loading...</div>
@@ -91,7 +91,7 @@
                 </div>
             </section>
 
-                <section id="Furnisher" v-if="activePhase == 3"  class="max-w-4xl p-6 mx-auto bg-gray-200 rounded-md shadow-md">
+                <section id="Furnisher" v-if="activePhase == 3"  class="max-w-4xl p-6 mx-auto bg-transparent rounded-md shadow-md">
                 <h2 class=" font-bold text-gray-700 capitalize text-center text-xl">Furnishing and Description</h2>
                     <div>
                     <h2 class=" font-bold text-gray-700 capitalize text-center text-base mt-6">-Furnishing-</h2>
@@ -138,7 +138,7 @@
                 </div>
             </section>
 
-            <section id="gps" v-if="activePhase == 4"  class="max-w-4xl p-6 mx-auto bg-gray-200 rounded-md shadow-md ">
+            <section id="gps" v-if="activePhase == 4"  class="max-w-4xl p-6 mx-auto bg-transparent rounded-md shadow-md ">
                 <h2 class=" font-bold text-gray-700 capitalize text-center text-xl">Add Property Location </h2>
                     <div>
                     <h2 class=" font-bold text-gray-700 capitalize text-center text-base mt-6">-GPS Coordinate-</h2>
@@ -211,8 +211,31 @@ components: {
         }
     },
     methods: {
-            goToNext(pg){
+        goToNext(pg){
+        if (pg==1) {
             this.activePhase = pg;
+        }else if (pg==2){
+            if(this.form.propertyName=='' || this.form.address=='' || this.form.postcode=='' ||this.form.gender_preferences=='' ||this.form.campus=='' ||this.form.toilet_num==''){
+                 this.$toaster.error('Please fill all  the required fields')
+            }else{
+              this.activePhase = pg;
+            }
+        }else if (pg==3){
+            if(this.replace == true){
+                if(this.form.images.length<=0 || this.form.imageLabel.length<=0 ){
+                    this.$toaster.error('Please upload and label the picture')
+                }else{
+                    this.activePhase = pg;
+                }
+            }else{
+                this.activePhase = pg
+            };
+
+        }else if (pg==4){
+             this.activePhase = pg;
+        }
+
+
         },
         getImages(event, event2){
             this.form.images = event;

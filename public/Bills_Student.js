@@ -128,6 +128,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
 //import ReadModal from './Modal_Student.vue';
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -641,7 +644,10 @@ var render = function () {
                                                             "Unpaid" &&
                                                           _vm.data
                                                             .bills_status ===
-                                                            "Ready"
+                                                            "Ready" &&
+                                                          _vm.data
+                                                            .bills_status !=
+                                                            "Overdue"
                                                             ? _c(
                                                                 "div",
                                                                 {
@@ -656,6 +662,19 @@ var render = function () {
                                                                         "mx-auto",
                                                                     }),
                                                                   ]),
+                                                                  _vm._v(" "),
+                                                                  _c(
+                                                                    "span",
+                                                                    {
+                                                                      staticClass:
+                                                                        "text-xs font-thin mt-2 text-yellow-900",
+                                                                    },
+                                                                    [
+                                                                      _vm._v(
+                                                                        "*Pay now before due date to avoid getting penalized."
+                                                                      ),
+                                                                    ]
+                                                                  ),
                                                                 ],
                                                                 1
                                                               )
@@ -681,6 +700,19 @@ var render = function () {
                                                                       [
                                                                         _vm._v(
                                                                           "\n                                         Overdue\n                                    "
+                                                                        ),
+                                                                      ]
+                                                                    ),
+                                                                    _vm._v(" "),
+                                                                    _c(
+                                                                      "span",
+                                                                      {
+                                                                        staticClass:
+                                                                          "text-xs font-thin mt-2 text-yellow-900",
+                                                                      },
+                                                                      [
+                                                                        _vm._v(
+                                                                          "*Please clear you bills on next date."
                                                                         ),
                                                                       ]
                                                                     ),
@@ -710,6 +742,19 @@ var render = function () {
                                                                       [
                                                                         _vm._v(
                                                                           "\n                                         Paid\n                                    "
+                                                                        ),
+                                                                      ]
+                                                                    ),
+                                                                    _vm._v(" "),
+                                                                    _c(
+                                                                      "span",
+                                                                      {
+                                                                        staticClass:
+                                                                          "text-xs font-thin mt-2 text-yellow-900",
+                                                                      },
+                                                                      [
+                                                                        _vm._v(
+                                                                          "*Great! You had paid your bills."
                                                                         ),
                                                                       ]
                                                                     ),

@@ -444,7 +444,7 @@ var render = function () {
                   },
                 ],
                 staticClass:
-                  "w-full p-6 mx-auto bg-gray-200 rounded-md shadow-md dark:bg-gray-800",
+                  "w-full p-6 mx-auto bg-transparent rounded-md shadow-md dark:bg-gray-800",
                 attrs: { id: "propertyDetail" },
               },
               [
@@ -780,7 +780,7 @@ var render = function () {
                   "section",
                   {
                     staticClass:
-                      "w-full max-w-4xl p-6 mx-auto bg-gray-200 rounded-md shadow-md dark:bg-gray-800",
+                      "w-full max-w-4xl p-6 mx-auto bg-transparent rounded-md shadow-md dark:bg-gray-800",
                     attrs: { id: "Uploader" },
                   },
                   [
@@ -859,7 +859,7 @@ var render = function () {
                   "section",
                   {
                     staticClass:
-                      "w-full p-6 mx-auto bg-gray-200 rounded-md shadow-md dark:bg-gray-800",
+                      "w-full p-6 mx-auto bg-transparent rounded-md shadow-md dark:bg-gray-800",
                     attrs: { id: "Furnisher" },
                   },
                   [
@@ -1370,7 +1370,7 @@ var render = function () {
                   "section",
                   {
                     staticClass:
-                      "w-full p-6 mx-auto bg-gray-200 rounded-md shadow-md dark:bg-gray-800",
+                      "w-full p-6 mx-auto bg-transparent rounded-md shadow-md dark:bg-gray-800",
                     attrs: { id: "gps" },
                   },
                   [

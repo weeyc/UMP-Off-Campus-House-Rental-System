@@ -10,8 +10,6 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class Landlord extends Authenticatable
 {
-    // include  public $timestamps = false; //
-    public $timestamps = false;
     protected $guard = 'landlord';
     use Notifiable;
     protected $hidden = ['landlord_password', 'remember_token'];

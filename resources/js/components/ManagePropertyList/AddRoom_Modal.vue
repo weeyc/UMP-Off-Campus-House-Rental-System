@@ -12,7 +12,7 @@
         <div class="p-3 min-w-1/2">
 
 
-            <section ref="section1"  class=" w-full p-6 mx-auto h-full bg-gray-200 rounded-md shadow-md ">
+            <section ref="section1"  class=" w-full p-6 mx-auto h-full bg-transparent rounded-md shadow-md ">
 
                 <h2 class=" font-bold text-gray-700 capitalize text-center text-xl">Room Listing</h2>
                     <h2 class=" font-bold text-gray-700 capitalize text-center text-base ">-Room Details-</h2>
@@ -57,7 +57,7 @@
 
 
 
-            <section ref="section2" class=" w-full p-6 bg-gray-200 rounded-md shadow-md h-full hidden">
+            <section ref="section2" class=" w-full p-6 bg-transparent rounded-md shadow-md h-full hidden">
                 <h2 class=" font-bold text-gray-700 capitalize text-center text-xl">Add Photos</h2>
                 <h2 class=" font-bold text-gray-700 capitalize text-center text-base mb-5">-Room Images-</h2>
                 <div>
@@ -73,7 +73,7 @@
 
 
 
-            <section ref="section3"   class="w-full p-6  bg-gray-200 rounded-md shadow-md h-full hidden">
+            <section ref="section3"   class="w-full p-6  bg-transparent rounded-md shadow-md h-full hidden">
                 <h2 class=" font-bold text-gray-700 capitalize text-center text-xl">Furnishing and Description</h2>
                     <div>
                     <h2 class=" font-bold text-gray-700 capitalize text-center text-base mt-6">-Furnishing-</h2>

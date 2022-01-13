@@ -57,7 +57,7 @@
                                         <p class="justify-self-start text-blue-800 font-semibold ml-5 mr-5 text-sm text-center md:text-left "><span class="text-xs ml-auto text-gray-700"> {{ moment(item.created_at ).format("DD-MM-YYYY, h:mm a") }} </span> {{ item.student.name }}  </p>
                                         <img alt="avatar" class="justify-self-start rounded-full w-5 h-5 shadow-lg mb-4" :src="'/images/Profile/'+item.student.pic">
                                 </div>
-                                    <p style="width: 90%" class="text-gray-800 text-base md:text-left text-right justify-end ">{{ item.post }}   </p>
+                                    <p style="width: 90%" class="text-gray-800 text-base md:text-left mr-auto ">{{ item.post }}   </p>
                             </div>
 
                             </div>

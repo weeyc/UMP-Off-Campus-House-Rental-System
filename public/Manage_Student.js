@@ -655,7 +655,7 @@ var render = function () {
                         _vm._v(" "),
                         _c(
                           "tbody",
-                          { staticClass: "text-dark-600 text-sm font-light" },
+                          { staticClass: "text-gray-800 text-sm font-base" },
                           [
                             _vm._l(_vm.filterUser, function (student, index) {
                               return _c(

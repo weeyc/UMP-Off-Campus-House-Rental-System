@@ -47,7 +47,7 @@
                                 <th class="py-3 px-6 text-center">Actions</th>
                             </tr>
                         </thead>
-                        <tbody class="text-dark-600 text-sm font-light">
+                        <tbody class="text-gray-800 text-sm font-base">
                             <tr  v-for= "(student, index) in filterUser" :key="student.id"   class="border-b border-gray-200 hover:bg-pink-200" >
                                  <td class="py-3 px-3 text-left whitespace-nowrap">  {{ index + 1 }}</td >
                                 <td class="py-3 px-6 text-left whitespace-nowrap">

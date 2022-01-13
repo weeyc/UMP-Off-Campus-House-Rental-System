@@ -1,4 +1,5 @@
 import Axios from 'axios';
+import { roundToNearestMinutes } from 'date-fns';
 
 const Register_Landlord = () => import(/* webpackChunkName: "Register_Landlord" */'./components/ManageRegistrationUsers/Register_Landlord');
 const Register_Student = () => import(/* webpackChunkName: "Register_Student" */'./components/ManageRegistrationUsers/Register_Student');
@@ -139,6 +140,11 @@ export default{
             path: '/staff/manage_properties/property/:property_id',
             name: 'view_property',
             component: Property_Landlord,
+        },
+        {
+            path: '/staff/manage_properties/property_list/:property_id/room/:room_id',
+            name: 'room_staff',
+            component: Room_Landlord,
         },
         {
             path: '/staff/chat',

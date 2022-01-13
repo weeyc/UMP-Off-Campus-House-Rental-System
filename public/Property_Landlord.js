@@ -539,7 +539,29 @@ var Errors = /*#__PURE__*/function () {
   },
   methods: {
     goToNext: function goToNext(pg) {
-      this.activePhase = pg;
+      if (pg == 1) {
+        this.activePhase = pg;
+      } else if (pg == 2) {
+        if (this.form.propertyName == '' || this.form.address == '' || this.form.postcode == '' || this.form.gender_preferences == '' || this.form.campus == '' || this.form.toilet_num == '') {
+          this.$toaster.error('Please fill all  the required fields');
+        } else {
+          this.activePhase = pg;
+        }
+      } else if (pg == 3) {
+        if (this.replace == true) {
+          if (this.form.images.length <= 0 || this.form.imageLabel.length <= 0) {
+            this.$toaster.error('Please upload and label the picture');
+          } else {
+            this.activePhase = pg;
+          }
+        } else {
+          this.activePhase = pg;
+        }
+
+        ;
+      } else if (pg == 4) {
+        this.activePhase = pg;
+      }
     },
     getImages: function getImages(event, event2) {
       this.form.images = event;
@@ -814,7 +836,8 @@ __webpack_require__.r(__webpack_exports__);
         photo: []
       },
       margin: '',
-      object: ''
+      object: '',
+      route: ''
     };
   },
   methods: {
@@ -854,8 +877,10 @@ __webpack_require__.r(__webpack_exports__);
       } else if (this.role == 2) {
         this.margin = 'mt-5 mb-5 mb-10';
         this.object = '#4491ee';
+        this.route = 'room_landlord';
       } else {
         this.object = '#dc4ae8';
+        this.route = 'room_staff';
       }
     }
   },
@@ -920,7 +945,7 @@ var render = function () {
               {
                 ref: "section1",
                 staticClass:
-                  " w-full p-6 mx-auto h-full bg-gray-200 rounded-md shadow-md ",
+                  " w-full p-6 mx-auto h-full bg-transparent rounded-md shadow-md ",
               },
               [
                 _c(
@@ -1229,7 +1254,7 @@ var render = function () {
               {
                 ref: "section2",
                 staticClass:
-                  " w-full p-6 bg-gray-200 rounded-md shadow-md h-full hidden",
+                  " w-full p-6 bg-transparent rounded-md shadow-md h-full hidden",
               },
               [
                 _c(
@@ -1306,7 +1331,7 @@ var render = function () {
               {
                 ref: "section3",
                 staticClass:
-                  "w-full p-6  bg-gray-200 rounded-md shadow-md h-full hidden",
+                  "w-full p-6  bg-transparent rounded-md shadow-md h-full hidden",
               },
               [
                 _c(
@@ -1742,7 +1767,7 @@ var render = function () {
                   },
                 ],
                 staticClass:
-                  " w-full  p-6 mx-auto bg-gray-200 rounded-md shadow-md",
+                  " w-full  p-6 mx-auto bg-transparent rounded-md shadow-md",
                 attrs: { id: "propertyDetail" },
               },
               [
@@ -2074,7 +2099,7 @@ var render = function () {
                   "section",
                   {
                     staticClass:
-                      " max-w-4xl p-6 mx-auto bg-gray-200 rounded-md shadow-md ",
+                      " max-w-4xl p-6 mx-auto bg-transparent rounded-md shadow-md ",
                     attrs: { id: "Uploader" },
                   },
                   [
@@ -2169,7 +2194,7 @@ var render = function () {
                                           "p",
                                           {
                                             staticClass:
-                                              " absolute bottom-0 text-xs text-black pt-5 bg-gray-200 w-full ",
+                                              " absolute bottom-0 text-xs text-black pt-5 bg-transparent w-full ",
                                           },
                                           [_vm._v(_vm._s(item.photo_label))]
                                         ),
@@ -2254,7 +2279,7 @@ var render = function () {
                   "section",
                   {
                     staticClass:
-                      "max-w-4xl p-6 mx-auto bg-gray-200 rounded-md shadow-md",
+                      "max-w-4xl p-6 mx-auto bg-transparent rounded-md shadow-md",
                     attrs: { id: "Furnisher" },
                   },
                   [
@@ -2761,7 +2786,7 @@ var render = function () {
                   "section",
                   {
                     staticClass:
-                      "max-w-4xl p-6 mx-auto bg-gray-200 rounded-md shadow-md ",
+                      "max-w-4xl p-6 mx-auto bg-transparent rounded-md shadow-md ",
                     attrs: { id: "gps" },
                   },
                   [
@@ -3292,7 +3317,7 @@ var render = function () {
                                     "flex justify-center w-full px-8 py-4 overflow-hidden bg-blue-100 rounded-lg shadow-lg mt-5 cursor-pointer transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-105 duration-200 hover:bg-blue-400 hover:shadow-2xl",
                                   attrs: {
                                     to: {
-                                      name: "room_landlord",
+                                      name: _vm.route,
                                       params: { room_id: room.id },
                                     },
                                   },

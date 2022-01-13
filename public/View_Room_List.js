@@ -1013,7 +1013,7 @@ var render = function () {
         "div",
         {
           staticClass:
-            "rounded max-h-full overflow-y-auto shadow-lg max-w-5xl p-6 mx-auto min-w-full bg-gradient-to-bl from-yellow-200 via-yellow-300 to-yellow-400",
+            "rounded max-h-full overflow-y-auto shadow-lg  p-6 w-2/3 min-h-2/3  bg-gradient-to-bl from-yellow-200 via-yellow-300 to-yellow-400",
           class: [_vm.modalBackground],
         },
         [
@@ -1049,7 +1049,7 @@ var render = function () {
                   },
                 ],
                 staticClass:
-                  " max-w-4xl p-6 mx-auto bg-gray-200 rounded-md shadow-md",
+                  " max-w-4xl p-6 mx-auto bg-transparent rounded-md shadow-md",
                 attrs: { id: "bookingDetail" },
               },
               [
@@ -1382,7 +1382,7 @@ var render = function () {
                   "div",
                   {
                     staticClass:
-                      "mt-10 max-w-4xl p-6 mx-auto bg-transparent rounded-md shadow-inner",
+                      "p-6 mx-auto bg-transparent rounded-md shadow-inner w-2/3 h-1/2",
                   },
                   [
                     _c(
@@ -1403,7 +1403,7 @@ var render = function () {
                       [_vm._v("-Room Details-")]
                     ),
                     _vm._v(" "),
-                    _c("div", [
+                    _c("div", {}, [
                       _c(
                         "div",
                         {
@@ -1650,7 +1650,7 @@ var render = function () {
                                       "tr",
                                       {
                                         staticClass:
-                                          "border-yellow-500 font-bold text-green-400 border-t-2 border-b-2  mt-5",
+                                          "border-yellow-500 font-bold text-ump-green border-t-2 border-b-2  mt-5",
                                       },
                                       [
                                         _c(

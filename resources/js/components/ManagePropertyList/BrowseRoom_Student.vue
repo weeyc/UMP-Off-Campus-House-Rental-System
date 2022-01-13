@@ -272,7 +272,7 @@ export default {
             isReady: false,
 
 
-            top_btn_style: 'p-3 rounded bg-yellow-200 text-yellow-700 hover:bg-yellow-500 hover:text-white :active:bg-yellow-500 active:text-white active:outline-none transition duration-150 ease-in-out shadow-xl',
+            top_btn_style: 'p-3 rounded bg-yellow-100 text-yellow-500 hover:bg-yellow-500 hover:text-white :active:bg-yellow-500 active:text-white active:outline-none transition duration-150 ease-in-out shadow-xl',
         }
     },
      methods:{

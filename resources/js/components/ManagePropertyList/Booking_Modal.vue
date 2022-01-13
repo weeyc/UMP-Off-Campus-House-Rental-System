@@ -2,7 +2,7 @@
 <template>
    <div class="modal h-screen w-full  fixed left-0 top-0 flex justify-center z-10 items-center bg-black bg-opacity-50" >
     <!-- modal -->
-    <div :class="[modalBackground]" class="rounded max-h-full overflow-y-auto shadow-lg max-w-5xl p-6 mx-auto min-w-full bg-gradient-to-bl from-yellow-200 via-yellow-300 to-yellow-400" >
+    <div :class="[modalBackground]" class="rounded max-h-full overflow-y-auto shadow-lg  p-6 w-2/3 min-h-2/3  bg-gradient-to-bl from-yellow-200 via-yellow-300 to-yellow-400" >
       <!-- modal header -->
       <div class="border-b px-4 py-2 flex justify-between items-center">
         <h3 class="font-semibold text-lg">Booking Detail</h3>
@@ -11,7 +11,7 @@
       <!-- modal body -->
         <div class="p-3 ">
             <!-- <h1 class="text-gray-800 font-lg font-bold tracking-normal leading-tight mb-4">Property Details</h1> -->
-            <section id="bookingDetail" v-show="activePhase == 1" class=" max-w-4xl p-6 mx-auto bg-gray-200 rounded-md shadow-md">
+            <section id="bookingDetail" v-show="activePhase == 1" class=" max-w-4xl p-6 mx-auto bg-transparent rounded-md shadow-md">
 
                 <h2 class=" font-bold text-gray-700 capitalize text-center text-xl">Enter details</h2>
                     <h2 class=" font-bold text-gray-700 capitalize text-center text-base ">-Booking Details-</h2>
@@ -64,10 +64,10 @@
             </section>
 
 
-            <div v-if="activePhase == 2"  class="mt-10 max-w-4xl p-6 mx-auto bg-transparent rounded-md shadow-inner">
+            <div v-if="activePhase == 2"  class="p-6 mx-auto bg-transparent rounded-md shadow-inner w-2/3 h-1/2">
                 <h2 class=" font-bold text-gray-700 capitalize text-center text-xl">Booking Summary</h2>
                 <h2 class=" font-bold text-gray-700 capitalize text-center text-base mb-5">-Room Details-</h2>
-                <div>
+                <div class="">
                         <div  class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-lg">
 
                     <img class="h-48 w-full object-cover"  :src="'/images/Properties/'+roomDetails.photo_room[0].photo_name"
@@ -130,7 +130,7 @@
                                         <td class="text-right">Included</td>
                                     </tr>
 
-                                    <tr class="border-yellow-500 font-bold text-green-400 border-t-2 border-b-2  mt-5">
+                                    <tr class="border-yellow-500 font-bold text-ump-green border-t-2 border-b-2  mt-5">
                                         <td class="text-left ">Booking Fees</td>
                                         <td class="text-right">RM {{ roomDetails.booking_fees }}</td>
                                     </tr>

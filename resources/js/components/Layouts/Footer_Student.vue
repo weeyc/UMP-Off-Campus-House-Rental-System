@@ -11,15 +11,20 @@
                         </div>
 
 
-                <p class=" text-xs bg-gradient-to-r from-yellow-100 via-yellow-300 to-yellow-500      text-transparent bg-clip-text lg:text-sm leading-none ">Copyright © 2021 - All rights reserved by UOCA.</p>
+                <p class=" text-xs bg-gradient-to-r from-yellow-100 via-yellow-300 to-yellow-500      text-transparent bg-clip-text lg:text-sm leading-none ">Copyright © {{ moment().format('YYYY') }}  - All rights reserved by UOCA.</p>
             </div>
         </footer>
     </div>
 </template>
 
 <script>
+import moment from "moment";
 export default {
-
+    data(){
+        return{
+            moment: moment,
+        }
+    },
 };
 </script>
 

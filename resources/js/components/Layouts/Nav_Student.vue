@@ -290,10 +290,19 @@
 
 
         <!-- Content -->
-                <div class="bg-gradient-to-bl from-yellow-200 via-yellow-300 to-yellow-400  overflow-y-auto" >
-                    <router-view :user_id="user_id" :role="role"  class="min-h-screen"></router-view>
+                <div :class="[screen]" class="bg-gradient-to-bl from-yellow-200 via-yellow-300 to-yellow-400  overflow-y-auto " >
+                    <div v-if="isReady==true">
+                         <router-view :user_id="user_id" :role="role"  class="min-h-screen"/>
+                      <!-- loading -->
+                    </div>
+                    <div v-else>
+                          <loader object="#dd7755" color1="#e3851c" color2="#e82dda" size="8" speed="1.3" bg="#1e2337" objectbg="#ff2d2d" opacity="90" disableScrolling="true" name="dots"></loader>
+                    </div>
+                <!-- loading -->
 
-                     <foot-std class="bottom-0 w-full"/>
+                    <div v-if="footer">
+                         <foot-std class="bottom-0 w-full"/>
+                     </div>
                 </div>
 
 
@@ -321,10 +330,17 @@ export default {
             user_id: Number,
             role: Number
         },
-
+ watch: {
+        $route() {
+            this.$nextTick(this.routeLoaded);
+         }
+    },
     data() {
 
         return {
+            screen: 'min-h-screen',
+            footer: false,
+            isReady: false,
             userProfile: [],
             toggleNoti: false,
             transition:'',
@@ -360,6 +376,7 @@ export default {
 
         }
     },
+
     methods: {
            notificationHandler(flag) {
             let notification = this.$refs.notification;
@@ -385,6 +402,12 @@ export default {
 
 
             },
+        routeLoaded() {
+           //Execute this when router-view is loaded
+            this.screen = '';
+            this.footer = true;
+            this.isReady=true;
+        },
         showNav() {
             this.indicator = ! this.indicator
             if(this.indicator==true){
@@ -574,7 +597,7 @@ export default {
         document.getElementById("myDate").min = new Date().getFullYear() + "-" +  parseInt(new Date().getMonth() + 1 ) + "-" + new Date().getDate()
 
 
-
+            this.$router.onReady(() => this.routeLoaded());
 
 
 
@@ -586,6 +609,7 @@ export default {
             })
         }
     },
+
 };
 </script>
 

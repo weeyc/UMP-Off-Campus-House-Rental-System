@@ -798,7 +798,7 @@ var render = function () {
                     "div",
                     {
                       staticClass:
-                        "max-w-6xl p-6 mx-auto mt-3  bg-gray-100 rounded-md shadow-xl mb-5",
+                        "max-w-6xl p-6 mx-auto mt-3  bg-transparent rounded-md shadow-xl mb-5",
                     },
                     [
                       _c(
@@ -907,7 +907,7 @@ var render = function () {
                               "div",
                               {
                                 staticClass:
-                                  "min-h-screen p-5 bg-gray-100  rounded-lg border-collapse flex flex-col justify-center w-full h-full bg-no-repeat bg-cover",
+                                  "min-h-screen p-5 bg-transparent  rounded-lg border-collapse flex flex-col justify-center w-full h-full bg-no-repeat bg-cover",
                                 staticStyle: {
                                   "background-image":
                                     "url(/images/UMP/clock.jpg)",

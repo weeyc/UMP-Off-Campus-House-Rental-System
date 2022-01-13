@@ -13,7 +13,7 @@
       <!-- modal body -->
          <div class="p-6 ml-5">
 
-         <div class="max-w-6xl p-6 mx-auto mt-3  bg-gray-100 rounded-md shadow-xl mb-5" >
+         <div class="max-w-6xl p-6 mx-auto mt-3  bg-transparent rounded-md shadow-xl mb-5" >
                <h2 class=" font-bold text-gray-700 capitalize text-center text-xl">Tenant Bills</h2>
             <!-- <div class="flex items-center justify-center w-full overflow-hidden"> -->
 
@@ -31,7 +31,7 @@
                                 </select>
                         </div>
 
-    <div class="min-h-screen p-5 bg-gray-100  rounded-lg border-collapse flex flex-col justify-center w-full h-full bg-no-repeat bg-cover" style="background-image: url(/images/UMP/clock.jpg);">
+    <div class="min-h-screen p-5 bg-transparent  rounded-lg border-collapse flex flex-col justify-center w-full h-full bg-no-repeat bg-cover" style="background-image: url(/images/UMP/clock.jpg);">
     <div class="flex max-h-full sm:max-w-xl sm:mx-auto">
       <div class="flex  max-h-full  bg-white shadow-lg sm:rounded-3xl sm:p-20 bg-clip-padding bg-opacity-80 border border-gray-200" style="backdrop-filter: blur(20px);">
         <div class="max-w-md mx-auto ">

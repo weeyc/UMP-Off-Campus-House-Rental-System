@@ -9,7 +9,7 @@ use Illuminate\Notifications\Notifiable;
 
 class Student extends Authenticatable
 {
-    public $timestamps = false;
+
     use Notifiable;
     protected $guard = 'student';
     protected $primaryKey = 'std_id';

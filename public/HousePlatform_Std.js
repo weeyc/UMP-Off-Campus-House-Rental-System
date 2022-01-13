@@ -1685,7 +1685,7 @@ var render = function () {
                                                         "p",
                                                         {
                                                           staticClass:
-                                                            "text-gray-800 text-base md:text-left text-right justify-end ",
+                                                            "text-gray-800 text-base md:text-left mr-auto ",
                                                           staticStyle: {
                                                             width: "90%",
                                                           },

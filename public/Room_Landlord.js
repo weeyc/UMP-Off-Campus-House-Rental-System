@@ -533,7 +533,9 @@ __webpack_require__.r(__webpack_exports__);
         monthly_rent: '',
         property_id: '',
         status: ''
-      }
+      },
+      margin: '',
+      object: ''
     };
   },
   methods: {
@@ -607,10 +609,21 @@ __webpack_require__.r(__webpack_exports__);
       this.form.number_of_tenant = list.number_of_tenant;
       this.form.property_id = this.property_id;
       this.form.status = list.room_status;
+    },
+    getRole: function getRole() {
+      if (this.role == 1) {
+        this.object = '#dd7755';
+      } else if (this.role == 2) {
+        this.margin = 'mt-5 mb-5 mb-10';
+        this.object = '#4491ee';
+      } else {
+        this.object = '#dc4ae8';
+      }
     }
   },
   mounted: function mounted() {
     this.getRoom();
+    this.getRole();
   }
 });
 
@@ -678,7 +691,7 @@ var render = function () {
                   },
                 ],
                 staticClass:
-                  " w-full p-6 mx-auto bg-gray-200 rounded-md shadow-md",
+                  " w-full p-6 mx-auto bg-transparent rounded-md shadow-md",
                 attrs: { id: "propertyDetail" },
               },
               [
@@ -1090,7 +1103,7 @@ var render = function () {
                   "section",
                   {
                     staticClass:
-                      " w-full p-6 mx-auto bg-gray-200 rounded-md shadow-md ",
+                      " w-full p-6 mx-auto bg-transparent rounded-md shadow-md ",
                     attrs: { id: "Uploader" },
                   },
                   [
@@ -1258,7 +1271,7 @@ var render = function () {
                   "section",
                   {
                     staticClass:
-                      "w-full p-6 mx-auto bg-gray-200 rounded-md shadow-md dark:bg-gray-800",
+                      "w-full p-6 mx-auto bg-transparent rounded-md shadow-md dark:bg-gray-800",
                     attrs: { id: "Furnisher" },
                   },
                   [
@@ -1821,7 +1834,8 @@ var render = function () {
     "div",
     {
       staticClass:
-        "max-w-5xl pt-5 pb-8 pl-8 pr-8  mx-auto mt-5 bg-gray-200 rounded-md mb-10",
+        "max-w-5xl pt-5 pb-8 pl-8 pr-8  mx-auto  bg-gray-200 rounded-md ",
+      class: [_vm.margin],
     },
     [
       _vm.role === 2
@@ -2133,7 +2147,7 @@ var render = function () {
             [
               _c("loader", {
                 attrs: {
-                  object: "#4491ee",
+                  object: [_vm.object],
                   color1: "#e3851c",
                   color2: "#e82dda",
                   size: "8",

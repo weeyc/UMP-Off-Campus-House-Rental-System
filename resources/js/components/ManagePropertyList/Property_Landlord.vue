@@ -83,7 +83,7 @@
             <div v-else>
 
             <div v-for= "room in rooms" :key="room.id"  class="flex justify-start  ">
-                <router-link :to="{ name: 'room_landlord', params:{room_id: room.id}}" class="flex justify-center w-full px-8 py-4 overflow-hidden bg-blue-100 rounded-lg shadow-lg mt-5 cursor-pointer transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-105 duration-200 hover:bg-blue-400 hover:shadow-2xl">
+                <router-link :to="{ name: route, params:{room_id: room.id}}" class="flex justify-center w-full px-8 py-4 overflow-hidden bg-blue-100 rounded-lg shadow-lg mt-5 cursor-pointer transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-105 duration-200 hover:bg-blue-400 hover:shadow-2xl">
 
                     <div v-if="room.photo_room != null" class="w-1/3 bg-cover" > <img class="h-48 w-full object-cover"   :src="'/images/Properties/'+room.photo_room[0].photo_name"  /></div>
                     <div v-else class="w-1/3 bg-cover" > <img class="h-48 w-full object-cover" alt="Avatar"  /></div>
@@ -194,6 +194,7 @@ export default {
             },
             margin: '',
             object: '',
+            route: '',
         }
     },
      methods:{
@@ -244,8 +245,10 @@ export default {
         }else if (this.role == 2){
             this.margin = 'mt-5 mb-5 mb-10'
             this.object = '#4491ee'
+            this.route = 'room_landlord'
         }else{
             this.object = '#dc4ae8'
+             this.route = 'room_staff'
         }
         },
 

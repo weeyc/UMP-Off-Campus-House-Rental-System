@@ -49,14 +49,16 @@
                         <td class="py-4 px-6 border-b border-grey-light border-r ">Outstanding<p class="font-bold text-red-500">RM {{(data.outstanding_bills).toFixed(2)}}</p> </td>
                         <td class="py-4 px-6 border-b border-grey-light border-r ">Bills Status<p class="font-bold ">{{data.bills_status}}</p></td>
                         <td rowspan="2" class="py-4 px-6 border-b border-grey-light border-r ">Total Amount<p class="font-black text-xl text-ump-green">RM {{(data.total_bills).toFixed(2)}}</p>
-                            <div v-if="data.payment_status==='Unpaid' && data.bills_status==='Ready'" class="mb-5 ">
+                            <div v-if="data.payment_status==='Unpaid' && data.bills_status==='Ready' && data.bills_status!='Overdue'" class="mb-5 ">
                                 <center><div  class="mx-auto" ref="paypal"></div></center>
+                                 <span class="text-xs font-thin mt-2 text-yellow-900">*Pay now before due date to avoid getting penalized.</span>
                             </div>
                             <div v-if="data.bills_status=='Overdue'" class="mb-5 ">
                                 <center>
                                     <div class="mx-auto bg-red-500 px-4 py-1 rounded-full text-white" >
                                          Overdue
                                     </div>
+                                    <span class="text-xs font-thin mt-2 text-yellow-900">*Please clear you bills on next date.</span>
                                 </center>
                             </div>
                             <div v-if="data.payment_status=='Paid'"  class="mb-5 ">
@@ -64,6 +66,7 @@
                                     <div class="mx-auto bg-green-400 px-4 py-1 rounded-full text-white" >
                                          Paid
                                     </div>
+                                      <span class="text-xs font-thin mt-2 text-yellow-900">*Great! You had paid your bills.</span>
                                 </center>
                             </div>
 

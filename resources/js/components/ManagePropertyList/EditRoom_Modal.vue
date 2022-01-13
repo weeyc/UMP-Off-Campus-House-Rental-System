@@ -11,7 +11,7 @@
       <!-- modal body -->
         <div class="p-3 ">
             <!-- <h1 class="text-gray-800 font-lg font-bold tracking-normal leading-tight mb-4">Property Details</h1> -->
-            <section id="propertyDetail" v-show="activePhase == 1" class=" w-full p-6 mx-auto bg-gray-200 rounded-md shadow-md">
+            <section id="propertyDetail" v-show="activePhase == 1" class=" w-full p-6 mx-auto bg-transparent rounded-md shadow-md">
 
                 <h2 class=" font-bold text-gray-700 capitalize text-center text-xl">Room List Edit</h2>
                     <h2 class=" font-bold text-gray-700 capitalize text-center text-base ">-Room Details-</h2>
@@ -69,7 +69,7 @@
 
 
 
-                <section id="Uploader" v-if="activePhase == 2"  class=" w-full p-6 mx-auto bg-gray-200 rounded-md shadow-md ">
+                <section id="Uploader" v-if="activePhase == 2"  class=" w-full p-6 mx-auto bg-transparent rounded-md shadow-md ">
                 <h2 class=" font-bold text-gray-700 capitalize text-center text-xl">Add Photos</h2>
                     <h2 class=" font-bold text-gray-700 capitalize text-center text-base mb-5">-Room Images-</h2>
                       <button v-if="replace==false" @click.prevent="get_replace(0)" class="px-6 py-2 justify-end mr-5 leading-5 text-white transition-colors
@@ -98,7 +98,7 @@
                 </div>
             </section>
 
-            <section id="Furnisher" v-if="activePhase == 3"  class="w-full p-6 mx-auto bg-gray-200 rounded-md shadow-md dark:bg-gray-800">
+            <section id="Furnisher" v-if="activePhase == 3"  class="w-full p-6 mx-auto bg-transparent rounded-md shadow-md dark:bg-gray-800">
                 <h2 class=" font-bold text-gray-700 capitalize text-center text-xl">Furnishing and Description</h2>
                     <div class="w-full">
                     <h2 class=" font-bold text-gray-700 capitalize text-center text-base mt-6">-Furnishing-</h2>

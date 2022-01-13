@@ -1,5 +1,5 @@
 <template>
-    <div  class="bg-gradient-to-l from-gray-700 via-gray-900 to-black" >
+    <div  class="bg-gray-800" >
         <footer class="relative  pt-5">
 
             <div class="flex flex-col justify-center items-center pb-1">
@@ -11,15 +11,20 @@
                     </div>
 
 
-                <p class=" text-xs text-blue-300 lg:text-sm leading-none ">Copyright © 2021 - All rights reserved by UOCA.</p>
+                <p class=" text-xs text-blue-300 lg:text-sm leading-none ">Copyright © {{ moment().format('YYYY') }}  - All rights reserved by UOCA.</p>
             </div>
         </footer>
     </div>
 </template>
 
 <script>
+import moment from "moment";
 export default {
-
+    data(){
+        return{
+            moment: moment,
+        }
+    },
 };
 </script>
 

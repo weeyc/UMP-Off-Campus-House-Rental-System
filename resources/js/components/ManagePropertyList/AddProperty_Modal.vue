@@ -10,7 +10,7 @@
       <!-- modal body -->
         <div class="p-3 min-w-1/2">
 
-    <section id="propertyDetail" v-show="activePhase == 1" class="w-full p-6 mx-auto bg-gray-200 rounded-md shadow-md dark:bg-gray-800">
+    <section id="propertyDetail" v-show="activePhase == 1" class="w-full p-6 mx-auto bg-transparent rounded-md shadow-md dark:bg-gray-800">
         <h2 class=" font-bold text-gray-700 capitalize text-center text-xl">Property Application</h2>
           <h2 class=" font-bold text-gray-700 capitalize text-center text-base ">-Property Details-</h2>
         <div>
@@ -59,7 +59,7 @@
     </section>
 
 
-    <section id="Uploader" v-if="activePhase == 2"  class="w-full max-w-4xl p-6 mx-auto bg-gray-200 rounded-md shadow-md dark:bg-gray-800">
+    <section id="Uploader" v-if="activePhase == 2"  class="w-full max-w-4xl p-6 mx-auto bg-transparent rounded-md shadow-md dark:bg-gray-800">
         <h2 class=" font-bold text-gray-700 capitalize text-center text-xl">Add Photos</h2>
           <h2 class=" font-bold text-gray-700 capitalize text-center text-base mb-5">-Property Image-</h2>
         <div>
@@ -73,7 +73,7 @@
         </div>
     </section>
 
-    <section id="Furnisher" v-if="activePhase == 3"  class="w-full p-6 mx-auto bg-gray-200 rounded-md shadow-md dark:bg-gray-800">
+    <section id="Furnisher" v-if="activePhase == 3"  class="w-full p-6 mx-auto bg-transparent rounded-md shadow-md dark:bg-gray-800">
         <h2 class=" font-bold text-gray-700 capitalize text-center text-xl">Furnishing and Description</h2>
             <div>
             <h2 class=" font-bold text-gray-700 capitalize text-center text-base mt-6">-Furnishing-</h2>
@@ -119,7 +119,7 @@
         </div>
     </section>
 
-      <section id="gps" v-if="activePhase == 4"  class="w-full p-6 mx-auto bg-gray-200 rounded-md shadow-md dark:bg-gray-800">
+      <section id="gps" v-if="activePhase == 4"  class="w-full p-6 mx-auto bg-transparent rounded-md shadow-md dark:bg-gray-800">
         <h2 class=" font-bold text-gray-700 capitalize text-center text-xl">Add Property Location </h2>
             <div>
             <h2 class=" font-bold text-gray-700 capitalize text-center text-base mt-6">-GPS Coordinate-</h2>
