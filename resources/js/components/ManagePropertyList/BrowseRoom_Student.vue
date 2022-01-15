@@ -1,9 +1,9 @@
 <template>
-<div>
+<div ref="section">
     <div v-if="isReady==true">
     <div class="max-w-5xl p-6 mx-auto mt-5 bg-gray-100 rounded-md mb-5 shadow-xl" >
         <!-- Top Campuses -->
-        <span>Selected Campus: {{campus}}</span>
+        <span class="text-xl font-black">Selected Campus: <span class="text-yellow-500">{{campus}}</span></span>
         <div class="flex items-center justify-center h-40 w-full overflow-hidden bg-gradient-to-b from-green-200 to-green-500">
             <section class="flex items-stretch h-40 w-full text-white ">
                 <div class="relative items-center w-1/2 bg-gray-500 bg-no-repeat bg-cover lg:flex" style="background-image: url(/images/UMP/Gambang.jpg);">
@@ -36,6 +36,43 @@
                     </svg>
                 </button>
 
+            </div>
+               <div id="gender" class="hidden xl:flex items-center ">
+                <div class="ml-6 relative">
+                            <div class="flex items-center relative" @click="dropdownHandlerGenderPreference($event)"  >
+                                <ul class="w-52 p-2 border-r bg-yellow-100 absolute rounded right-0 top-0 shadow mt-16 hidden overflow-hidden z-10 ">
+                                    <li class="cursor-pointer text-yellow-500 text-sm leading-3 tracking-normal py-2">
+                                        <label class="flex radio p-2 cursor-pointer">
+                                            <input class="my-auto transform scale-125" type="radio" name="gender" v-model="gender" value="Male"/>
+                                            <div class="title px-2">Male</div>
+                                        </label>
+                                    </li>
+
+                                <hr class="border-yellow-300  ">
+                                    <li class="cursor-pointer text-yellow-500 text-sm leading-3 tracking-normal mt-2 py-2 hover:text-indigo-700 flex items-center focus:text-indigo-700 focus:outline-none">
+                                        <label class="flex radio p-2 cursor-pointer">
+                                                <input class="my-auto transform scale-125" type="radio" name="gender"  v-model="gender" value="Female"/>
+                                                <div class="title px-2">Female</div>
+                                        </label>
+                                    </li>
+                                    <hr class="border-yellow-300">
+                                    <li class="cursor-pointer text-yellow-500 text-sm leading-3 tracking-normal mt-2 py-2 hover:text-indigo-700 items-center focus:text-indigo-700 focus:outline-none">
+                                          <label class="flex justify-center cursor-pointer">
+                                            <div @click="clearFilter('gender')" class="px-5 rounded-full text-yellow-500 mt-3 ">&cross; Clear</div>
+                                            <button :class="[top_btn_style]" @click="getFilter" class="px-5 rounded-full ">Apply</button>
+                                       </label>
+
+                                    </li>
+                                </ul>
+                                <div class="flex justify-center text-gray-100">
+                                    <button :class="[top_btn_style]" class="px-5 rounded-full">Gender</button>
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-down cursor-pointer" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                        <path stroke="none" d="M0 0h24v24H0z"></path>
+                                        <polyline points="6 9 12 15 18 9"></polyline>
+                                    </svg>
+                                </div>
+                            </div>
+                </div>
             </div>
             <div id="room" class="hidden xl:flex items-center ">
                 <div class="ml-6 relative">
@@ -130,43 +167,7 @@
                             </div>
                 </div>
             </div>
-            <div id="gender" class="hidden xl:flex items-center ">
-                <div class="ml-6 relative">
-                            <div class="flex items-center relative" @click="dropdownHandlerGenderPreference($event)"  >
-                                <ul class="w-52 p-2 border-r bg-yellow-100 absolute rounded right-0 top-0 shadow mt-16 hidden overflow-hidden z-10 ">
-                                    <li class="cursor-pointer text-yellow-500 text-sm leading-3 tracking-normal py-2">
-                                        <label class="flex radio p-2 cursor-pointer">
-                                            <input class="my-auto transform scale-125" type="radio" name="gender" v-model="gender" value="Male"/>
-                                            <div class="title px-2">Male</div>
-                                        </label>
-                                    </li>
 
-                                <hr class="border-yellow-300  ">
-                                    <li class="cursor-pointer text-yellow-500 text-sm leading-3 tracking-normal mt-2 py-2 hover:text-indigo-700 flex items-center focus:text-indigo-700 focus:outline-none">
-                                        <label class="flex radio p-2 cursor-pointer">
-                                                <input class="my-auto transform scale-125" type="radio" name="gender"  v-model="gender" value="Female"/>
-                                                <div class="title px-2">Female</div>
-                                        </label>
-                                    </li>
-                                    <hr class="border-yellow-300">
-                                    <li class="cursor-pointer text-yellow-500 text-sm leading-3 tracking-normal mt-2 py-2 hover:text-indigo-700 items-center focus:text-indigo-700 focus:outline-none">
-                                          <label class="flex justify-center cursor-pointer">
-                                            <div @click="clearFilter('gender')" class="px-5 rounded-full text-yellow-500 mt-3 ">&cross; Clear</div>
-                                            <button :class="[top_btn_style]" @click="getFilter" class="px-5 rounded-full ">Apply</button>
-                                       </label>
-
-                                    </li>
-                                </ul>
-                                <div class="flex justify-center text-gray-100">
-                                    <button :class="[top_btn_style]" class="px-5 rounded-full">Gender Preference</button>
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-down cursor-pointer" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                        <path stroke="none" d="M0 0h24v24H0z"></path>
-                                        <polyline points="6 9 12 15 18 9"></polyline>
-                                    </svg>
-                                </div>
-                            </div>
-                </div>
-            </div>
         </div>
     </div>
  <!-- filter bar -->
@@ -190,7 +191,7 @@
             </div>
         <div else>
             <div v-for="(list,index) in lists" :key="index.id" class="flex justify-start  ">
-                <router-link :to="{ name: 'view_room_list', params:{id: list.id}}" class="flex justify-center w-full px-8 py-4 overflow-hidden bg-white rounded-lg shadow-lg mt-5 cursor-pointer transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-105 duration-200 hover:bg-yellow-400 hover:shadow-2xl">
+                <router-link @click.native="scrollToTop" :to="{ name: 'view_room_list', params:{id: list.id}}" class="flex justify-center w-full px-8 py-4 overflow-hidden bg-white rounded-lg shadow-lg mt-5 cursor-pointer transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-105 duration-200 hover:bg-yellow-400 hover:shadow-2xl">
                 <!-- flex justify-center bg-white rounded-xl border-2 overflow-hidden -->
                     <div class="w-1/3 bg-cover" > <img class="h-48 w-full object-cover"  :src="'/images/Properties/'+list.photo_room[0].photo_name" alt="Avatar"  /></div>
                     <div class="w-2/3 p-4 md:p-4">
@@ -233,6 +234,7 @@
 
 
 
+
    <!-- loading -->
     </div>
     <div v-else>
@@ -270,6 +272,7 @@ export default {
             lastPage: '',
             pageInfo: '',
             isReady: false,
+            noScroll: false,
 
 
             top_btn_style: 'p-3 rounded bg-yellow-100 text-yellow-500 hover:bg-yellow-500 hover:text-white :active:bg-yellow-500 active:text-white active:outline-none transition duration-150 ease-in-out shadow-xl',
@@ -293,9 +296,17 @@ export default {
                 this.pageInfo = response.data.meta
                 this.lastPage=response.data.meta.last_page
                 this.isReady=true;
+
+                     this.scrollToTop();
+
+
                 console.warn(this.lists.data);
             })
 
+        },
+        scrollToTop() {
+            //this.$refs.section.scrollTo(0, 0);
+            this.$root.$emit("scroll",this.user_id);
         },
 
         change_campus(c){
@@ -366,6 +377,7 @@ export default {
     },
        mounted: function(){
         this.getList();
+        this.scrollToTop();
 
     },
 

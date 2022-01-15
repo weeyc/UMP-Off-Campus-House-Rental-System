@@ -254,7 +254,7 @@ __webpack_require__.r(__webpack_exports__);
     getPropertiesList: function getPropertiesList() {
       var _this2 = this;
 
-      axios.get('/api/get_properties_list/' + this.getCampus + '?land=1?page=' + this.page).then(function (response) {
+      axios.get('/api/get_properties_list/' + this.getCampus + '?page=' + this.page + '&land=1').then(function (response) {
         _this2.properties = response.data.data;
         _this2.isReady = true;
         console.warn(_this2.properties.data);
@@ -271,10 +271,14 @@ __webpack_require__.r(__webpack_exports__);
     campus: function campus(cue) {
       if (cue == 0) {
         this.getCampus = 'Gambang';
+        this.page = 1;
         this.getPropertiesList();
+        this.getMeta();
       } else {
         this.getCampus = 'Pekan';
+        this.page = 1;
         this.getPropertiesList();
+        this.getMeta();
       }
     },
     firstPg: function firstPg() {

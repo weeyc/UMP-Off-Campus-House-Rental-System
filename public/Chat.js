@@ -205,7 +205,8 @@ __webpack_require__.r(__webpack_exports__);
     user_role: String,
     id: Number,
     name: String,
-    photo: String
+    photo: String,
+    path: String
   },
   data: function data() {
     return {
@@ -271,6 +272,10 @@ __webpack_require__.r(__webpack_exports__);
       })["catch"](function (error) {
         return _this2.errors.record(error.response.data);
       });
+    },
+    scrollToTop: function scrollToTop() {
+      //this.$refs.section.scrollTo(0, 0);
+      this.$root.$emit("scroll", this.user_id);
     },
     sendNew: function sendNew() {
       var _this3 = this;
@@ -471,6 +476,7 @@ __webpack_require__.r(__webpack_exports__);
 
     // this.getProperty();
     this.getRole();
+    this.scrollToTop();
     this.getConverstations();
     this.convertRole();
 

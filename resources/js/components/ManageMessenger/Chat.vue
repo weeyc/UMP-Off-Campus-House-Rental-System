@@ -199,6 +199,7 @@ export default {
         id: Number,
         name: String,
         photo: String,
+        path: String,
     },
 
     data(){
@@ -216,6 +217,7 @@ export default {
             totalNotifications:'',
             text: '',
             object: '',
+
 
 
             chat: {
@@ -266,6 +268,11 @@ export default {
                 this.scrollToBottom();
         }).catch(error =>this.errors.record(error.response.data));
 
+
+        },
+           scrollToTop() {
+            //this.$refs.section.scrollTo(0, 0);
+            this.$root.$emit("scroll",this.user_id);
         },
         sendNew(){
               if(this.user_role=="student"){
@@ -447,6 +454,7 @@ export default {
       mounted: function(){
            // this.getProperty();
         this.getRole();
+        this.scrollToTop();
         this.getConverstations();
         this.convertRole();
         if(this.conversations.length>0){

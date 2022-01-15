@@ -245,7 +245,8 @@ export default {
 
     methods: {
             getPropertiesList(){
-            axios.get('/api/get_properties_list/'+this.getCampus+'?land=1?page='+this.page).then((response)=>{
+
+            axios.get('/api/get_properties_list/'+this.getCampus+'?page='+this.page+'&land=1').then((response)=>{
                 this.properties=response.data.data;
                 this.isReady=true;
                 console.warn(this.properties.data);
@@ -261,10 +262,14 @@ export default {
             campus(cue){
                 if(cue==0){
                     this.getCampus= 'Gambang'
+                    this.page=1;
                     this.getPropertiesList()
+                    this.getMeta()
                 }else{
-                     this.getCampus= 'Pekan'
+                    this.getCampus= 'Pekan'
+                    this.page=1;
                     this.getPropertiesList()
+                    this.getMeta()
                 }
             },
         firstPg(){

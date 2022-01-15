@@ -1,5 +1,5 @@
 <template>
-    <div class="max-w-5xl pt-5 pb-8 pl-8 pr-8   mx-auto  bg-gray-200 rounded-md " >
+    <div :class="[margin]" class="max-w-5xl pt-5 pb-8 pl-8 pr-8   mx-auto  bg-gray-200 rounded-md " >
         <div v-if="role===2">
             <div v-for= "house in property" :key="house.id"  class="flex justify-end items-center">
                 <button @click="$router.go(-1)" class=" bg-teal-500 shadow-lg hover:bg-teal-500 text-xs text-white px-4 py-3 rounded-md mb-2 mr-auto flex items-center">

@@ -885,6 +885,9 @@ __webpack_require__.r(__webpack_exports__);
         console.warn(_this.lists.data);
       });
     },
+    scrollToTop: function scrollToTop() {
+      this.$refs.section.scrollTo(0, 0);
+    },
     toastBook: function toastBook() {
       this.$toaster.info('This Room is Rented Out');
     },
@@ -930,6 +933,7 @@ __webpack_require__.r(__webpack_exports__);
     var _this3 = this;
 
     this.getList();
+    this.scrollToTop();
     setTimeout(function () {
       return _this3.getRecommendation();
     }, 2000);
@@ -1858,7 +1862,7 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
+  return _c("div", { ref: "section" }, [
     _vm.isReady == true
       ? _c(
           "div",
@@ -2572,6 +2576,7 @@ var render = function () {
                                                         photo:
                                                           _vm.lists.property
                                                             .land.landlord_pic,
+                                                        path: _vm.$route.path,
                                                       },
                                                     },
                                                   },

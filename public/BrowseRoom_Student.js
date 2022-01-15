@@ -255,6 +255,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {},
   data: function data() {
@@ -274,6 +276,7 @@ __webpack_require__.r(__webpack_exports__);
       lastPage: '',
       pageInfo: '',
       isReady: false,
+      noScroll: false,
       top_btn_style: 'p-3 rounded bg-yellow-100 text-yellow-500 hover:bg-yellow-500 hover:text-white :active:bg-yellow-500 active:text-white active:outline-none transition duration-150 ease-in-out shadow-xl'
     };
   },
@@ -298,8 +301,15 @@ __webpack_require__.r(__webpack_exports__);
         _this.pageInfo = response.data.meta;
         _this.lastPage = response.data.meta.last_page;
         _this.isReady = true;
+
+        _this.scrollToTop();
+
         console.warn(_this.lists.data);
       });
+    },
+    scrollToTop: function scrollToTop() {
+      //this.$refs.section.scrollTo(0, 0);
+      this.$root.$emit("scroll", this.user_id);
     },
     change_campus: function change_campus(c) {
       if (c == 0) {
@@ -380,6 +390,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   mounted: function mounted() {
     this.getList();
+    this.scrollToTop();
   }
 });
 
@@ -400,7 +411,7 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
+  return _c("div", { ref: "section" }, [
     _vm.isReady == true
       ? _c("div", [
           _c(
@@ -410,7 +421,12 @@ var render = function () {
                 "max-w-5xl p-6 mx-auto mt-5 bg-gray-100 rounded-md mb-5 shadow-xl",
             },
             [
-              _c("span", [_vm._v("Selected Campus: " + _vm._s(_vm.campus))]),
+              _c("span", { staticClass: "text-xl font-black" }, [
+                _vm._v("Selected Campus: "),
+                _c("span", { staticClass: "text-yellow-500" }, [
+                  _vm._v(_vm._s(_vm.campus)),
+                ]),
+              ]),
               _vm._v(" "),
               _c(
                 "div",
@@ -573,6 +589,229 @@ var render = function () {
                               d: "M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z",
                             },
                           }),
+                        ]
+                      ),
+                    ]),
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  {
+                    staticClass: "hidden xl:flex items-center ",
+                    attrs: { id: "gender" },
+                  },
+                  [
+                    _c("div", { staticClass: "ml-6 relative" }, [
+                      _c(
+                        "div",
+                        {
+                          staticClass: "flex items-center relative",
+                          on: {
+                            click: function ($event) {
+                              return _vm.dropdownHandlerGenderPreference($event)
+                            },
+                          },
+                        },
+                        [
+                          _c(
+                            "ul",
+                            {
+                              staticClass:
+                                "w-52 p-2 border-r bg-yellow-100 absolute rounded right-0 top-0 shadow mt-16 hidden overflow-hidden z-10 ",
+                            },
+                            [
+                              _c(
+                                "li",
+                                {
+                                  staticClass:
+                                    "cursor-pointer text-yellow-500 text-sm leading-3 tracking-normal py-2",
+                                },
+                                [
+                                  _c(
+                                    "label",
+                                    {
+                                      staticClass:
+                                        "flex radio p-2 cursor-pointer",
+                                    },
+                                    [
+                                      _c("input", {
+                                        directives: [
+                                          {
+                                            name: "model",
+                                            rawName: "v-model",
+                                            value: _vm.gender,
+                                            expression: "gender",
+                                          },
+                                        ],
+                                        staticClass:
+                                          "my-auto transform scale-125",
+                                        attrs: {
+                                          type: "radio",
+                                          name: "gender",
+                                          value: "Male",
+                                        },
+                                        domProps: {
+                                          checked: _vm._q(_vm.gender, "Male"),
+                                        },
+                                        on: {
+                                          change: function ($event) {
+                                            _vm.gender = "Male"
+                                          },
+                                        },
+                                      }),
+                                      _vm._v(" "),
+                                      _c("div", { staticClass: "title px-2" }, [
+                                        _vm._v("Male"),
+                                      ]),
+                                    ]
+                                  ),
+                                ]
+                              ),
+                              _vm._v(" "),
+                              _c("hr", { staticClass: "border-yellow-300  " }),
+                              _vm._v(" "),
+                              _c(
+                                "li",
+                                {
+                                  staticClass:
+                                    "cursor-pointer text-yellow-500 text-sm leading-3 tracking-normal mt-2 py-2 hover:text-indigo-700 flex items-center focus:text-indigo-700 focus:outline-none",
+                                },
+                                [
+                                  _c(
+                                    "label",
+                                    {
+                                      staticClass:
+                                        "flex radio p-2 cursor-pointer",
+                                    },
+                                    [
+                                      _c("input", {
+                                        directives: [
+                                          {
+                                            name: "model",
+                                            rawName: "v-model",
+                                            value: _vm.gender,
+                                            expression: "gender",
+                                          },
+                                        ],
+                                        staticClass:
+                                          "my-auto transform scale-125",
+                                        attrs: {
+                                          type: "radio",
+                                          name: "gender",
+                                          value: "Female",
+                                        },
+                                        domProps: {
+                                          checked: _vm._q(_vm.gender, "Female"),
+                                        },
+                                        on: {
+                                          change: function ($event) {
+                                            _vm.gender = "Female"
+                                          },
+                                        },
+                                      }),
+                                      _vm._v(" "),
+                                      _c("div", { staticClass: "title px-2" }, [
+                                        _vm._v("Female"),
+                                      ]),
+                                    ]
+                                  ),
+                                ]
+                              ),
+                              _vm._v(" "),
+                              _c("hr", { staticClass: "border-yellow-300" }),
+                              _vm._v(" "),
+                              _c(
+                                "li",
+                                {
+                                  staticClass:
+                                    "cursor-pointer text-yellow-500 text-sm leading-3 tracking-normal mt-2 py-2 hover:text-indigo-700 items-center focus:text-indigo-700 focus:outline-none",
+                                },
+                                [
+                                  _c(
+                                    "label",
+                                    {
+                                      staticClass:
+                                        "flex justify-center cursor-pointer",
+                                    },
+                                    [
+                                      _c(
+                                        "div",
+                                        {
+                                          staticClass:
+                                            "px-5 rounded-full text-yellow-500 mt-3 ",
+                                          on: {
+                                            click: function ($event) {
+                                              return _vm.clearFilter("gender")
+                                            },
+                                          },
+                                        },
+                                        [_vm._v("✗ Clear")]
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "button",
+                                        {
+                                          staticClass: "px-5 rounded-full ",
+                                          class: [_vm.top_btn_style],
+                                          on: { click: _vm.getFilter },
+                                        },
+                                        [_vm._v("Apply")]
+                                      ),
+                                    ]
+                                  ),
+                                ]
+                              ),
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "div",
+                            {
+                              staticClass: "flex justify-center text-gray-100",
+                            },
+                            [
+                              _c(
+                                "button",
+                                {
+                                  staticClass: "px-5 rounded-full",
+                                  class: [_vm.top_btn_style],
+                                },
+                                [_vm._v("Gender")]
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "svg",
+                                {
+                                  staticClass:
+                                    "icon icon-tabler icon-tabler-chevron-down cursor-pointer",
+                                  attrs: {
+                                    xmlns: "http://www.w3.org/2000/svg",
+                                    width: "20",
+                                    height: "20",
+                                    viewBox: "0 0 24 24",
+                                    "stroke-width": "1.5",
+                                    stroke: "currentColor",
+                                    fill: "none",
+                                    "stroke-linecap": "round",
+                                    "stroke-linejoin": "round",
+                                  },
+                                },
+                                [
+                                  _c("path", {
+                                    attrs: {
+                                      stroke: "none",
+                                      d: "M0 0h24v24H0z",
+                                    },
+                                  }),
+                                  _vm._v(" "),
+                                  _c("polyline", {
+                                    attrs: { points: "6 9 12 15 18 9" },
+                                  }),
+                                ]
+                              ),
+                            ]
+                          ),
                         ]
                       ),
                     ]),
@@ -1122,229 +1361,6 @@ var render = function () {
                     ]),
                   ]
                 ),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  {
-                    staticClass: "hidden xl:flex items-center ",
-                    attrs: { id: "gender" },
-                  },
-                  [
-                    _c("div", { staticClass: "ml-6 relative" }, [
-                      _c(
-                        "div",
-                        {
-                          staticClass: "flex items-center relative",
-                          on: {
-                            click: function ($event) {
-                              return _vm.dropdownHandlerGenderPreference($event)
-                            },
-                          },
-                        },
-                        [
-                          _c(
-                            "ul",
-                            {
-                              staticClass:
-                                "w-52 p-2 border-r bg-yellow-100 absolute rounded right-0 top-0 shadow mt-16 hidden overflow-hidden z-10 ",
-                            },
-                            [
-                              _c(
-                                "li",
-                                {
-                                  staticClass:
-                                    "cursor-pointer text-yellow-500 text-sm leading-3 tracking-normal py-2",
-                                },
-                                [
-                                  _c(
-                                    "label",
-                                    {
-                                      staticClass:
-                                        "flex radio p-2 cursor-pointer",
-                                    },
-                                    [
-                                      _c("input", {
-                                        directives: [
-                                          {
-                                            name: "model",
-                                            rawName: "v-model",
-                                            value: _vm.gender,
-                                            expression: "gender",
-                                          },
-                                        ],
-                                        staticClass:
-                                          "my-auto transform scale-125",
-                                        attrs: {
-                                          type: "radio",
-                                          name: "gender",
-                                          value: "Male",
-                                        },
-                                        domProps: {
-                                          checked: _vm._q(_vm.gender, "Male"),
-                                        },
-                                        on: {
-                                          change: function ($event) {
-                                            _vm.gender = "Male"
-                                          },
-                                        },
-                                      }),
-                                      _vm._v(" "),
-                                      _c("div", { staticClass: "title px-2" }, [
-                                        _vm._v("Male"),
-                                      ]),
-                                    ]
-                                  ),
-                                ]
-                              ),
-                              _vm._v(" "),
-                              _c("hr", { staticClass: "border-yellow-300  " }),
-                              _vm._v(" "),
-                              _c(
-                                "li",
-                                {
-                                  staticClass:
-                                    "cursor-pointer text-yellow-500 text-sm leading-3 tracking-normal mt-2 py-2 hover:text-indigo-700 flex items-center focus:text-indigo-700 focus:outline-none",
-                                },
-                                [
-                                  _c(
-                                    "label",
-                                    {
-                                      staticClass:
-                                        "flex radio p-2 cursor-pointer",
-                                    },
-                                    [
-                                      _c("input", {
-                                        directives: [
-                                          {
-                                            name: "model",
-                                            rawName: "v-model",
-                                            value: _vm.gender,
-                                            expression: "gender",
-                                          },
-                                        ],
-                                        staticClass:
-                                          "my-auto transform scale-125",
-                                        attrs: {
-                                          type: "radio",
-                                          name: "gender",
-                                          value: "Female",
-                                        },
-                                        domProps: {
-                                          checked: _vm._q(_vm.gender, "Female"),
-                                        },
-                                        on: {
-                                          change: function ($event) {
-                                            _vm.gender = "Female"
-                                          },
-                                        },
-                                      }),
-                                      _vm._v(" "),
-                                      _c("div", { staticClass: "title px-2" }, [
-                                        _vm._v("Female"),
-                                      ]),
-                                    ]
-                                  ),
-                                ]
-                              ),
-                              _vm._v(" "),
-                              _c("hr", { staticClass: "border-yellow-300" }),
-                              _vm._v(" "),
-                              _c(
-                                "li",
-                                {
-                                  staticClass:
-                                    "cursor-pointer text-yellow-500 text-sm leading-3 tracking-normal mt-2 py-2 hover:text-indigo-700 items-center focus:text-indigo-700 focus:outline-none",
-                                },
-                                [
-                                  _c(
-                                    "label",
-                                    {
-                                      staticClass:
-                                        "flex justify-center cursor-pointer",
-                                    },
-                                    [
-                                      _c(
-                                        "div",
-                                        {
-                                          staticClass:
-                                            "px-5 rounded-full text-yellow-500 mt-3 ",
-                                          on: {
-                                            click: function ($event) {
-                                              return _vm.clearFilter("gender")
-                                            },
-                                          },
-                                        },
-                                        [_vm._v("✗ Clear")]
-                                      ),
-                                      _vm._v(" "),
-                                      _c(
-                                        "button",
-                                        {
-                                          staticClass: "px-5 rounded-full ",
-                                          class: [_vm.top_btn_style],
-                                          on: { click: _vm.getFilter },
-                                        },
-                                        [_vm._v("Apply")]
-                                      ),
-                                    ]
-                                  ),
-                                ]
-                              ),
-                            ]
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "div",
-                            {
-                              staticClass: "flex justify-center text-gray-100",
-                            },
-                            [
-                              _c(
-                                "button",
-                                {
-                                  staticClass: "px-5 rounded-full",
-                                  class: [_vm.top_btn_style],
-                                },
-                                [_vm._v("Gender Preference")]
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "svg",
-                                {
-                                  staticClass:
-                                    "icon icon-tabler icon-tabler-chevron-down cursor-pointer",
-                                  attrs: {
-                                    xmlns: "http://www.w3.org/2000/svg",
-                                    width: "20",
-                                    height: "20",
-                                    viewBox: "0 0 24 24",
-                                    "stroke-width": "1.5",
-                                    stroke: "currentColor",
-                                    fill: "none",
-                                    "stroke-linecap": "round",
-                                    "stroke-linejoin": "round",
-                                  },
-                                },
-                                [
-                                  _c("path", {
-                                    attrs: {
-                                      stroke: "none",
-                                      d: "M0 0h24v24H0z",
-                                    },
-                                  }),
-                                  _vm._v(" "),
-                                  _c("polyline", {
-                                    attrs: { points: "6 9 12 15 18 9" },
-                                  }),
-                                ]
-                              ),
-                            ]
-                          ),
-                        ]
-                      ),
-                    ]),
-                  ]
-                ),
               ]),
             ]
           ),
@@ -1482,6 +1498,11 @@ var render = function () {
                             to: {
                               name: "view_room_list",
                               params: { id: list.id },
+                            },
+                          },
+                          nativeOn: {
+                            click: function ($event) {
+                              return _vm.scrollToTop.apply(null, arguments)
                             },
                           },
                         },

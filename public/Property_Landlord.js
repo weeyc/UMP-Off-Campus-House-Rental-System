@@ -2953,6 +2953,7 @@ var render = function () {
     {
       staticClass:
         "max-w-5xl pt-5 pb-8 pl-8 pr-8   mx-auto  bg-gray-200 rounded-md ",
+      class: [_vm.margin],
     },
     [
       _vm.role === 2

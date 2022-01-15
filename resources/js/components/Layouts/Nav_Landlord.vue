@@ -5,7 +5,7 @@
     <div class="flex flex-1 overflow-hidden">
          <div :class="[transition]" class=" transform  shadow  inset-y-0 left-0 h-auto  ease-in-out transition-none duration-75     bg-gradient-to-br from-cool-gray-900 to-bg-gradient-to-r-gray-600"  style="background-color: #2b2a33;">
 
-             <router-link  :to="{name: 'landlord_landing'}" class="hidden focus:outline-none hover:text-indigo-200 focus:text-indigo-200 text-white sm:flex justify-start p-6 items-center space-x-3 w-full">
+             <router-link @click.native="scrollToTop" :to="{name: 'landlord_landing'}" class="hidden focus:outline-none hover:text-indigo-200 focus:text-indigo-200 text-white sm:flex justify-start p-6 items-center space-x-3 w-full">
                    <div class="  row-span-2 justify-self-end animate-bounce">
                         <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
                         width="40" height="40"
@@ -26,7 +26,7 @@
                 </router-link >
 
 
-            <router-link  :to="{name: 'profile_landlord'}" v-for= "user in userProfile" :key="user.id"  class="focus:outline-none focus:text-white  flex justify-between sm:w-auto items-center space-x-10 text-white mx-6 p-3 rounded focus:bg-blue-800 bg-blue-700 hover:bg-blue-800">
+            <router-link @click.native="scrollToTop" :to="{name: 'profile_landlord'}" v-for= "user in userProfile" :key="user.id"  class="focus:outline-none focus:text-white  flex justify-between sm:w-auto items-center space-x-10 text-white mx-6 p-3 rounded focus:bg-blue-800 bg-blue-700 hover:bg-blue-800">
                     <div class="flex justify-start sm:w-auto items-center space-x-2">
                         <div>
                             <img class="rounded-full h-10 w-10 object-cover" :src="'/images/Profile/'+user.pic" alt="Avatar" />
@@ -39,7 +39,7 @@
             </router-link >
 
             <div class="mt-4 flex flex-col px-6 justify-start items-center  w-full">
-                 <router-link  :to="{name: 'dashboard_landlord'}" active-class="active" :class="[hover]" class="focus:outline-none flex jusitfy-start  py-3 items-center space-x-6 w-full">
+                 <router-link  @click.native="scrollToTop" :to="{name: 'dashboard_landlord'}" active-class="active" :class="[hover]" class="focus:outline-none flex jusitfy-start  py-3 items-center space-x-6 w-full">
                       <svg class="fill-stroke" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M9 4H5C4.44772 4 4 4.44772 4 5V9C4 9.55228 4.44772 10 5 10H9C9.55228 10 10 9.55228 10 9V5C10 4.44772 9.55228 4 9 4Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                             <path d="M19 4H15C14.4477 4 14 4.44772 14 5V9C14 9.55228 14.4477 10 15 10H19C19.5523 10 20 9.55228 20 9V5C20 4.44772 19.5523 4 19 4Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
@@ -49,20 +49,20 @@
                         <p class="text-base leading-4 ">Dashboard</p>
                     </router-link>
 
-                  <router-link  :to="{name: 'property_list'}" active-class="active" :class="[hover]" class="focus:outline-none flex jusitfy-start  py-3 items-center space-x-6 w-full">
+                  <router-link @click.native="scrollToTop" :to="{name: 'property_list'}" active-class="active" :class="[hover]" class="focus:outline-none flex jusitfy-start  py-3 items-center space-x-6 w-full">
                         <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-collection" viewBox="0 0 16 16">
                          <path d="M2.5 3.5a.5.5 0 0 1 0-1h11a.5.5 0 0 1 0 1h-11zm2-2a.5.5 0 0 1 0-1h7a.5.5 0 0 1 0 1h-7zM0 13a1.5 1.5 0 0 0 1.5 1.5h13A1.5 1.5 0 0 0 16 13V6a1.5 1.5 0 0 0-1.5-1.5h-13A1.5 1.5 0 0 0 0 6v7zm1.5.5A.5.5 0 0 1 1 13V6a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-.5.5h-13z"/>
                         </svg>
                         <p class="text-base leading-4">Property Lists</p>
                     </router-link >
-                 <router-link  :to="{name: 'RentalRoom_Landlord'}" active-class="active" :class="[hover]" class="focus:outline-none flex jusitfy-start  py-3 items-center space-x-6 w-full">
+                 <router-link @click.native="scrollToTop" :to="{name: 'RentalRoom_Landlord'}" active-class="active" :class="[hover]" class="focus:outline-none flex jusitfy-start  py-3 items-center space-x-6 w-full">
                          <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-door-open" viewBox="0 0 16 16">
                             <path d="M8.5 10c-.276 0-.5-.448-.5-1s.224-1 .5-1 .5.448.5 1-.224 1-.5 1z"/>
                             <path d="M10.828.122A.5.5 0 0 1 11 .5V1h.5A1.5 1.5 0 0 1 13 2.5V15h1.5a.5.5 0 0 1 0 1h-13a.5.5 0 0 1 0-1H3V1.5a.5.5 0 0 1 .43-.495l7-1a.5.5 0 0 1 .398.117zM11.5 2H11v13h1V2.5a.5.5 0 0 0-.5-.5zM4 1.934V15h6V1.077l-6 .857z"/>
                         </svg>
                         <p class="text-base leading-4">Rental Property</p>
                     </router-link>
-                    <router-link  :to="{name: 'payment_land'}" active-class="active" :class="[hover]" class="focus:outline-none flex jusitfy-start  py-3 items-center space-x-6 w-full">
+                    <router-link  @click.native="scrollToTop" :to="{name: 'payment_land'}" active-class="active" :class="[hover]" class="focus:outline-none flex jusitfy-start  py-3 items-center space-x-6 w-full">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-currency-dollar" viewBox="0 0 16 16">
                         <path d="M4 10.781c.148 1.667 1.513 2.85 3.591 3.003V15h1.043v-1.216c2.27-.179 3.678-1.438 3.678-3.3 0-1.59-.947-2.51-2.956-3.028l-.722-.187V3.467c1.122.11 1.879.714 2.07 1.616h1.47c-.166-1.6-1.54-2.748-3.54-2.875V1H7.591v1.233c-1.939.23-3.27 1.472-3.27 3.156 0 1.454.966 2.483 2.661 2.917l.61.162v4.031c-1.149-.17-1.94-.8-2.131-1.718H4zm3.391-3.836c-1.043-.263-1.6-.825-1.6-1.616 0-.944.704-1.641 1.8-1.828v3.495l-.2-.05zm1.591 1.872c1.287.323 1.852.859 1.852 1.769 0 1.097-.826 1.828-2.2 1.939V8.73l.348.086z"/>
                         </svg>
@@ -76,7 +76,7 @@
                 <p class="text-base leading-4 text-blue-500">Shortcuts</p>
             </div>
             <div class="mt-4 flex flex-col px-6 justify-start items-center w-full">
-                  <router-link  :to="{name: 'chat_landlord'}" active-class="active" :class="[hover]" class="focus:outline-none flex jusitfy-start  py-3 items-center space-x-6 w-full">
+                  <router-link @click.native="scrollToTop" :to="{name: 'chat_landlord'}" active-class="active" :class="[hover]" class="focus:outline-none flex jusitfy-start  py-3 items-center space-x-6 w-full">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M15 10L11 14L17 20L21 4L3 11L7 13L9 19L12 15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                         </svg>
@@ -117,14 +117,14 @@
 
             </div>
 
-             <router-link  :to="{name: 'dashboard_landlord'}" class="flex text-blue-400 text-2xl font-black tracking-wide hover:text-blue-500 focus:outline-none focus:text-blue-500 justify-between items-center space-x-3">
+             <router-link @click.native="scrollToTop" :to="{name: 'dashboard_landlord'}" class="flex text-blue-400 text-2xl font-black tracking-wide hover:text-blue-500 focus:outline-none focus:text-blue-500 justify-between items-center space-x-3">
                    <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" viewBox="0 0 20 20" fill="currentColor">
                         <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z" />
                     </svg>
                      <span>UMP Off-Campus Accomodation</span>
              </router-link >
             <div  class="flex justify-end items-center">
-                 <router-link  :to="{name: 'profile_landlord'}" class=" focus:text-white hover:text-white bg-blue-600 hover:bg-blue-700 text-xs text-white px-3 py-3 rounded-md">
+                 <router-link @click.native="scrollToTop" :to="{name: 'profile_landlord'}" class=" focus:text-white hover:text-white bg-blue-600 hover:bg-blue-700 text-xs text-white px-3 py-3 rounded-md">
                        I'm Landlord
                 </router-link >
             </div>
@@ -221,7 +221,7 @@
 
 
         <!-- Content -->
-                <div :class="[screen]" class="bg-gradient-to-r from-sky-400 to-cyan-300  overflow-y-auto" >
+                <div :class="[screen]" ref="section"  class="bg-gradient-to-r from-sky-400 to-cyan-300  overflow-y-auto" >
                      <div v-if="isReady==true">
                          <router-view :user_id="user_id" :role="role" class="min-h-screen"/>
                       <!-- loading -->
@@ -286,6 +286,9 @@ export default {
             this.screen = '';
             this.footer = true;
             this.isReady=true;
+        },
+        scrollToTop() {
+              this.$refs.section.scrollTo(0, 0);
         },
           notificationHandler(flag) {
             let notification = this.$refs.notification;

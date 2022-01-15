@@ -575,7 +575,11 @@ class PropertyListController extends Controller
               'logitude' => $request ->log,
           ]);
 
-
+          if (Room::where('property_id',$id)->exists()) {
+            Room::where('property_id',$id)->update([
+                'campus' => $request ->campus,
+            ]);
+          }
 
           $label = [];
           if ($request->images != null){

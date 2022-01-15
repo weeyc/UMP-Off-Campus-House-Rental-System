@@ -1,5 +1,5 @@
 <template>
-<div>
+<div ref="section">
      <!-- Top Section-->
       <div v-if="isReady==true">
     <div class="max-w-6xl p-5 mx-auto mt-3 bg-gray-100 rounded-md mb-5 shadow-xl" >
@@ -133,7 +133,7 @@
                             <div class="text-center font-normal text-lg text-white">Landlord</div>
                             <div v-if="role==1" class="p-3">
                                     <div class="w-full text-center mb-3 mt-2">
-                                        <router-link :to="{ name: 'chat_std', params:{user_role:'landlord' , id: lists.landlord_id, name: lists.property.land.landlord_name, photo:lists.property.land.landlord_pic }}" :class="[top_btn_style]" class="w-full font-bold rounded-full">Chat Now</router-link>
+                                        <router-link :to="{ name: 'chat_std', params:{user_role:'landlord' , id: lists.landlord_id, name: lists.property.land.landlord_name, photo:lists.property.land.landlord_pic, path:$route.path }}" :class="[top_btn_style]" class="w-full font-bold rounded-full">Chat Now</router-link>
                                     </div>
                             </div>
 
@@ -315,6 +315,7 @@ export default {
               currentPage: 0
             },
 
+
             landlord_id: '',
 
             location: '',
@@ -348,6 +349,9 @@ export default {
                 this.isReady=true;
                 console.warn(this.lists.data);
             })
+        },
+        scrollToTop() {
+         this.$refs.section.scrollTo(0, 0);
         },
         toastBook(){
              this.$toaster.info('This Room is Rented Out')
@@ -392,6 +396,7 @@ export default {
     },
        mounted: function(){
         this.getList();
+        this.scrollToTop();
         setTimeout(() => this.getRecommendation(), 2000);
 
     },
