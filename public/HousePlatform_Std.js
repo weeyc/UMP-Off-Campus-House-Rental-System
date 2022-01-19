@@ -525,6 +525,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 
 
@@ -632,11 +633,7 @@ __webpack_require__.r(__webpack_exports__);
     getBills: function getBills() {
       var _this5 = this;
 
-      axios.get('/api/get_bills/' + this.user_id + '/' + this.role, {
-        params: {
-          date: this.bydate
-        }
-      }).then(function (response) {
+      axios.get('/api/get_bill_at_platform/' + this.user_id).then(function (response) {
         _this5.bills = response.data;
         console.warn(_this5.data);
       });
@@ -1750,7 +1747,9 @@ var render = function () {
                                             [_vm._v("Rent This Month:")]
                                           ),
                                           _vm._v(" "),
-                                          _vm.bills.payment_status == "Unpaid"
+                                          _vm.bills.payment_status ==
+                                            "Unpaid" &&
+                                          _vm.bills.bills_status == "Ready"
                                             ? _c(
                                                 "span",
                                                 {
@@ -1765,6 +1764,16 @@ var render = function () {
                                                       )
                                                   ),
                                                 ]
+                                              )
+                                            : _vm.bills.bills_status ==
+                                              "Unready"
+                                            ? _c(
+                                                "span",
+                                                {
+                                                  staticClass:
+                                                    "text-white text-center text-2xl",
+                                                },
+                                                [_vm._v("No bills yet")]
                                               )
                                             : _c(
                                                 "span",

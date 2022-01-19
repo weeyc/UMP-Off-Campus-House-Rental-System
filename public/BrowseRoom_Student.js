@@ -257,6 +257,26 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {},
   data: function data() {
@@ -277,7 +297,8 @@ __webpack_require__.r(__webpack_exports__);
       pageInfo: '',
       isReady: false,
       noScroll: false,
-      top_btn_style: 'p-3 rounded bg-yellow-100 text-yellow-500 hover:bg-yellow-500 hover:text-white :active:bg-yellow-500 active:text-white active:outline-none transition duration-150 ease-in-out shadow-xl'
+      top_btn_style: 'p-3 rounded bg-yellow-400 text-white hover:bg-yellow-600 hover:text-white transition duration-150 ease-in-out shadow-xl',
+      top2_btn_style: 'p-3 rounded bg-yellow-500 text-white hover:bg-yellow-700 hover:text-white transition duration-150 ease-in-out shadow-xl'
     };
   },
   methods: {
@@ -300,9 +321,7 @@ __webpack_require__.r(__webpack_exports__);
         _this.lists = response.data.data;
         _this.pageInfo = response.data.meta;
         _this.lastPage = response.data.meta.last_page;
-        _this.isReady = true;
-
-        _this.scrollToTop();
+        _this.isReady = true; //this.scrollToTop();
 
         console.warn(_this.lists.data);
       });
@@ -421,12 +440,19 @@ var render = function () {
                 "max-w-5xl p-6 mx-auto mt-5 bg-gray-100 rounded-md mb-5 shadow-xl",
             },
             [
-              _c("span", { staticClass: "text-xl font-black" }, [
-                _vm._v("Selected Campus: "),
-                _c("span", { staticClass: "text-yellow-500" }, [
-                  _vm._v(_vm._s(_vm.campus)),
-                ]),
-              ]),
+              _vm.campus == "Gambang"
+                ? _c("span", { staticClass: "text-xl font-black" }, [
+                    _vm._v("Selected Campus: "),
+                    _c("span", { staticClass: "text-yellow-500" }, [
+                      _vm._v(_vm._s(_vm.campus)),
+                    ]),
+                  ])
+                : _c("span", { staticClass: "text-xl font-black" }, [
+                    _vm._v("Selected Campus: "),
+                    _c("span", { staticClass: "text-ump-green" }, [
+                      _vm._v(_vm._s(_vm.campus)),
+                    ]),
+                  ]),
               _vm._v(" "),
               _c(
                 "div",
@@ -458,11 +484,9 @@ var render = function () {
                               _c(
                                 "button",
                                 {
-                                  staticClass: "px-5 ",
-                                  class: [_vm.top_btn_style],
-                                  attrs: {
-                                    "exact-active-class": "exact-active",
-                                  },
+                                  staticClass:
+                                    " px-5 border-b-4 hover:border-b-2 hover:border-t-2 border-yellow-600 hover:border-yellow-800 rounded",
+                                  class: [_vm.top2_btn_style],
                                   on: {
                                     click: function ($event) {
                                       return _vm.change_campus(0)
@@ -498,11 +522,9 @@ var render = function () {
                               _c(
                                 "button",
                                 {
-                                  staticClass: "px-10",
-                                  class: [_vm.top_btn_style],
-                                  attrs: {
-                                    "exact-active-class": "exact-active",
-                                  },
+                                  staticClass:
+                                    "px-10 border-b-4 hover:border-b-2 hover:border-t-2 border-yellow-600 hover:border-yellow-800 rounded",
+                                  class: [_vm.top2_btn_style],
                                   on: {
                                     click: function ($event) {
                                       return _vm.change_campus(1)
@@ -618,7 +640,7 @@ var render = function () {
                             "ul",
                             {
                               staticClass:
-                                "w-52 p-2 border-r bg-yellow-100 absolute rounded right-0 top-0 shadow mt-16 hidden overflow-hidden z-10 ",
+                                "w-52 p-2 border-r bg-gray-800 absolute rounded right-0 top-0 shadow mt-16 hidden overflow-hidden z-10 ",
                             },
                             [
                               _c(
@@ -841,7 +863,7 @@ var render = function () {
                             "ul",
                             {
                               staticClass:
-                                "w-52 p-2 border-r bg-yellow-100 absolute rounded right-0 top-0 shadow mt-16 hidden overflow-hidden z-10 ",
+                                "w-52 p-2 border-r bg-gray-800 absolute rounded right-0 top-0 shadow mt-16 hidden overflow-hidden z-10 ",
                             },
                             [
                               _c(
@@ -1064,7 +1086,7 @@ var render = function () {
                             "ul",
                             {
                               staticClass:
-                                "w-52 p-2 border-r bg-yellow-100 absolute rounded right-0 top-0 shadow mt-16 hidden overflow-hidden z-10 ",
+                                "w-52 p-2 border-r bg-gray-800 absolute rounded right-0 top-0 shadow mt-16 hidden overflow-hidden z-10 ",
                             },
                             [
                               _c(
@@ -1171,7 +1193,7 @@ var render = function () {
                                 "li",
                                 {
                                   staticClass:
-                                    "cursor-pointer text-yellow-500 text-sm leading-3 tracking-normal mt-2 py-2 hover:text-indigo-700 flex items-center focus:text-indigo-700 focus:outline-none",
+                                    "cursor-pointer text-yellow-500 text-sm leading-3 tracking-normal mt-2 py-2 hover:text-yellow-700 flex items-center focus:text-yellow-700 focus:outline-none",
                                 },
                                 [
                                   _c(
@@ -1553,35 +1575,43 @@ var render = function () {
                             ),
                             _vm._v(" "),
                             _c(
-                              "p",
+                              "div",
                               {
                                 staticClass:
-                                  "mt-2 text-sm text-gray-600 dark:text-gray-400",
+                                  "flex mt-2 text-sm text-gray-700 items-center",
                               },
                               [
-                                _vm._v(
-                                  _vm._s(list.property.name) +
-                                    " | " +
-                                    _vm._s(list.campus)
-                                ),
-                              ]
-                            ),
-                            _vm._v(" "),
-                            _c(
-                              "div",
-                              { staticClass: "flex mt-2 item-center" },
-                              [
                                 _c(
-                                  "p",
+                                  "svg",
                                   {
-                                    staticClass:
-                                      "mt-2 text-sm text-gray-600 dark:text-gray-400",
+                                    staticClass: "bi bi-geo-alt-fill mx-1",
+                                    attrs: {
+                                      xmlns: "http://www.w3.org/2000/svg",
+                                      width: "14",
+                                      height: "14",
+                                      fill: "currentColor",
+                                      viewBox: "0 0 16 16",
+                                    },
                                   },
                                   [
+                                    _c("path", {
+                                      attrs: {
+                                        d: "M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z",
+                                      },
+                                    }),
+                                  ]
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "div",
+                                  { staticClass: "mx-1 text-green-700" },
+                                  [
                                     _vm._v(
-                                      _vm._s(list.room_type) +
+                                      "\n                                 " +
+                                        _vm._s(list.property.name) +
                                         " | " +
-                                        _vm._s(list.property.gender_preferences)
+                                        _vm._s(list.campus) +
+                                        "\n                             "
                                     ),
                                   ]
                                 ),
@@ -1590,22 +1620,87 @@ var render = function () {
                             _vm._v(" "),
                             _c(
                               "div",
-                              { staticClass: "flex mt-2 item-center" },
+                              {
+                                staticClass:
+                                  "flex mt-2 item-center text-gray-700  items-center",
+                              },
                               [
                                 _c(
-                                  "p",
+                                  "svg",
                                   {
-                                    staticClass:
-                                      "mt-2 text-sm text-gray-600 dark:text-gray-400",
+                                    staticClass: "bi bi-door-open-fill mx-1",
+                                    attrs: {
+                                      xmlns: "http://www.w3.org/2000/svg",
+                                      width: "14",
+                                      height: "14",
+                                      fill: "currentColor",
+                                      viewBox: "0 0 16 16",
+                                    },
                                   },
                                   [
+                                    _c("path", {
+                                      attrs: {
+                                        d: "M1.5 15a.5.5 0 0 0 0 1h13a.5.5 0 0 0 0-1H13V2.5A1.5 1.5 0 0 0 11.5 1H11V.5a.5.5 0 0 0-.57-.495l-7 1A.5.5 0 0 0 3 1.5V15H1.5zM11 2h.5a.5.5 0 0 1 .5.5V15h-1V2zm-2.5 8c-.276 0-.5-.448-.5-1s.224-1 .5-1 .5.448.5 1-.224 1-.5 1z",
+                                      },
+                                    }),
+                                  ]
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "div",
+                                  { staticClass: "mx-1 text-sm text-blue-700" },
+                                  [
                                     _vm._v(
-                                      _vm._s(list.property.furnishing) +
-                                        "| " +
-                                        _vm._s(list.room_furnishing)
+                                      "\n                                 " +
+                                        _vm._s(list.room_type) +
+                                        " | " +
+                                        _vm._s(
+                                          list.property.gender_preferences
+                                        ) +
+                                        "\n                            "
                                     ),
                                   ]
                                 ),
+                              ]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "div",
+                              {
+                                staticClass:
+                                  "flex mt-2 item-center  text-gray-700  items-center",
+                              },
+                              [
+                                _c(
+                                  "svg",
+                                  {
+                                    staticClass: "bi bi-plus-square-fill mx-1",
+                                    attrs: {
+                                      xmlns: "http://www.w3.org/2000/svg",
+                                      width: "14",
+                                      height: "14",
+                                      fill: "currentColor",
+                                      viewBox: "0 0 16 16",
+                                    },
+                                  },
+                                  [
+                                    _c("path", {
+                                      attrs: {
+                                        d: "M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm6.5 4.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3a.5.5 0 0 1 1 0z",
+                                      },
+                                    }),
+                                  ]
+                                ),
+                                _vm._v(" "),
+                                _c("div", { staticClass: "mx-1 text-sm " }, [
+                                  _vm._v(
+                                    "\n                               " +
+                                      _vm._s(list.property.furnishing) +
+                                      "| " +
+                                      _vm._s(list.room_furnishing) +
+                                      "\n                             "
+                                  ),
+                                ]),
                               ]
                             ),
                           ]),

@@ -26,6 +26,10 @@ use App\Http\Resources\PaymentResource;
 use App\Http\Resources\StudentResource;
 use App\Http\Resources\LandlordResource;
 use App\Http\Resources\PropertyResource;
+use App\Notifications\PaymentNotification;
+use Illuminate\Support\Facades\Notification;
+use App\Notifications\PropertyStatusNotification;
+
 
 class PaymentController extends Controller
 {
@@ -152,6 +156,19 @@ class PaymentController extends Controller
 
         }
    }
+     public function get_bill_at_platform($id,Request $request){
+
+        $bills_status_first =  Bill::where('student_id', $id)->where('previous_bill_id',null)->orderBy('bills_date','desc')->value('bills_status');
+        if($bills_status_first=='Unready'){
+            $data = Bill::where('student_id', $id)->where('previous_bill_id',null)->orderBy('bills_date','desc')->first();
+        }else {
+            $data =  Bill::where('student_id', $id)->where('bills_status','Ready')->orderBy('bills_date','desc')->first();
+        }
+        return  $data;
+
+
+
+   }
      public function get_bills_months($id, $role){
 
         if($role == 1){
@@ -177,11 +194,23 @@ class PaymentController extends Controller
         $Payment->total_payment = $request ->total_payment;
         $Payment->save();
 
-
+        $prop_id = $request ->property_id;
         Bill::where('bills_id',  $request ->bills_id)
         ->update([
             'payment_status' => 'Paid'
         ]);
+
+        if($Payment){
+         //notification
+        $ID = $request -> session()->get('ID');
+        $Sender_std = Student::find($ID);
+        $Sender_land = null;;
+        $Landlord = Landlord::with('getPaymentRelation')->whereHas('getPaymentRelation', function($query) use($prop_id) {
+            $query->where('property_id', $prop_id);
+        ;})->first();
+        Notification::send($Sender_std, new PaymentNotification($Payment, $Sender_std,$Sender_land));
+        $Landlord->notify(new PaymentNotification($Payment, $Sender_std,$Sender_land));
+    }
 
 
    }

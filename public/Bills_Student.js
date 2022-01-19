@@ -159,7 +159,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         property_id: '',
         landlord_id: '',
         payment_details: '',
-        total_payment: ''
+        total_payment: '',
+        room_id: ''
       },
       isReady: false
     };
@@ -178,6 +179,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         _this.form.bills_id = _this.data.bills_id;
         _this.form.tenant_id = _this.data.tenant_id;
         _this.form.property_id = _this.data.property_id;
+        _this.form.landlord_id = _this.data.landlord_id;
+        _this.form.room_id = _this.data.room_id;
         _this.form.payment_details = 'UOCA Bills (ID: ' + _this.data.bills_id + ') Payment - Room ID: ' + _this.data.room_id;
         _this.form.total_payment = _this.data.total_bills;
         _this.product.description = 'UOCA Bills (ID: ' + _this.data.bills_id + ') Payment - Room ID: ' + _this.data.room_id;

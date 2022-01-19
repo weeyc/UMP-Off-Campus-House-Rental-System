@@ -64,6 +64,7 @@ Route::get('get_bookings/{id}/{role}', 'PaymentController@get_bookings');
 Route::post('cancel_booking/{id}', 'PaymentController@cancel_booking');
 Route::delete('delete_booking/{id}', 'PaymentController@delete_booking');
 Route::get('get_bills/{id}/{role}', 'PaymentController@get_bills');
+Route::get('get_bill_at_platform/{id}', 'PaymentController@get_bill_at_platform');
 Route::get('get_bills_months/{id}/{role}', 'PaymentController@get_bills_months');
 Route::post('pay_bill', 'PaymentController@pay_bill');
 

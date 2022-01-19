@@ -3,12 +3,13 @@
     <div v-if="isReady==true">
     <div class="max-w-5xl p-6 mx-auto mt-5 bg-gray-100 rounded-md mb-5 shadow-xl" >
         <!-- Top Campuses -->
-        <span class="text-xl font-black">Selected Campus: <span class="text-yellow-500">{{campus}}</span></span>
+        <span v-if="campus=='Gambang'" class="text-xl font-black">Selected Campus: <span class="text-yellow-500">{{campus}}</span></span>
+        <span v-else class="text-xl font-black">Selected Campus: <span class="text-ump-green">{{campus}}</span></span>
         <div class="flex items-center justify-center h-40 w-full overflow-hidden bg-gradient-to-b from-green-200 to-green-500">
             <section class="flex items-stretch h-40 w-full text-white ">
                 <div class="relative items-center w-1/2 bg-gray-500 bg-no-repeat bg-cover lg:flex" style="background-image: url(/images/UMP/Gambang.jpg);">
                     <div class="w-full justify-center flex">
-                        <button @click="change_campus(0);" exact-active-class="exact-active" :class="[top_btn_style]" class="px-5 " >
+                        <button @click="change_campus(0);" :class="[top2_btn_style]"  class=" px-5 border-b-4 hover:border-b-2 hover:border-t-2 border-yellow-600 hover:border-yellow-800 rounded" >
                             Gambang
                         </button>
                     </div>
@@ -16,7 +17,7 @@
                 </div>
                 <div class="relative items-center w-1/2 bg-gray-500 bg-no-repeat bg-cover lg:flex" style="background-image: url(/images/UMP/cancelori.jpg);">
                         <div class="w-full justify-center flex">
-                        <button @click="change_campus(1);" exact-active-class="exact-active" :class="[top_btn_style]" class="px-10" >
+                        <button @click="change_campus(1);"  :class="[top2_btn_style]" class="px-10 border-b-4 hover:border-b-2 hover:border-t-2 border-yellow-600 hover:border-yellow-800 rounded" >
                             Pekan
                         </button>
                     </div>
@@ -26,6 +27,7 @@
     </div>
 
     <!-- filter bar -->
+
     <div class="max-w-5xl p-6 mx-auto mt-5 bg-gray-100 rounded-md mb-5 shadow-xl" >
         <div class="flex justify-start">
             <div class="flex justify-center bg-white rounded-xl border-2 overflow-hidden">
@@ -40,7 +42,7 @@
                <div id="gender" class="hidden xl:flex items-center ">
                 <div class="ml-6 relative">
                             <div class="flex items-center relative" @click="dropdownHandlerGenderPreference($event)"  >
-                                <ul class="w-52 p-2 border-r bg-yellow-100 absolute rounded right-0 top-0 shadow mt-16 hidden overflow-hidden z-10 ">
+                                <ul class="w-52 p-2 border-r bg-gray-800 absolute rounded right-0 top-0 shadow mt-16 hidden overflow-hidden z-10 ">
                                     <li class="cursor-pointer text-yellow-500 text-sm leading-3 tracking-normal py-2">
                                         <label class="flex radio p-2 cursor-pointer">
                                             <input class="my-auto transform scale-125" type="radio" name="gender" v-model="gender" value="Male"/>
@@ -77,7 +79,7 @@
             <div id="room" class="hidden xl:flex items-center ">
                 <div class="ml-6 relative">
                             <div class="flex items-center relative" @click="dropdownHandlerRoomType($event)"  >
-                                <ul class="w-52 p-2 border-r bg-yellow-100 absolute rounded right-0 top-0 shadow mt-16 hidden overflow-hidden z-10 ">
+                                <ul class="w-52 p-2 border-r bg-gray-800 absolute rounded right-0 top-0 shadow mt-16 hidden overflow-hidden z-10 ">
                                     <li class="cursor-pointer text-yellow-500 text-sm leading-3 tracking-normal py-2">
                                         <label class="flex radio p-2 cursor-pointer">
                                             <input class="my-auto transform scale-125" type="radio" name="room_type"  v-model="room" value="Single"/>
@@ -117,7 +119,7 @@
             <div id="price" class="hidden xl:flex items-center ">
                 <div class="ml-6 relative">
                             <div class="flex items-center relative" @click="dropdownHandlerPriceRange($event)"  >
-                                <ul class="w-52 p-2 border-r bg-yellow-100 absolute rounded right-0 top-0 shadow mt-16 hidden overflow-hidden z-10 ">
+                                <ul class="w-52 p-2 border-r bg-gray-800 absolute rounded right-0 top-0 shadow mt-16 hidden overflow-hidden z-10 ">
                                     <li class="cursor-pointer text-yellow-500 text-sm leading-3 tracking-normal py-2">
                                        <label class="flex radio p-2 cursor-pointer">
                                                 <input class="my-auto transform scale-125" type="radio" name="price"  v-model="price" v-bind:value="{min: 0, max: 200}"/>
@@ -133,7 +135,7 @@
                                         </label>
                                     </li>
                                        <hr class="border-yellow-300  ">
-                                    <li class="cursor-pointer text-yellow-500 text-sm leading-3 tracking-normal mt-2 py-2 hover:text-indigo-700 flex items-center focus:text-indigo-700 focus:outline-none">
+                                    <li class="cursor-pointer text-yellow-500 text-sm leading-3 tracking-normal mt-2 py-2 hover:text-yellow-700 flex items-center focus:text-yellow-700 focus:outline-none">
                                         <label class="flex radio p-2 cursor-pointer">
                                           <input class="my-auto transform scale-125" type="radio" name="price"  v-model="price" v-bind:value="{min: 500, max: 800}"/>
                                                 <div class="title px-2">RM500 - RM800</div>
@@ -199,12 +201,30 @@
                             <h1 class="text-2xl font-bold text-gray-800 dark:text-white"> {{ list.listing_name }}</h1>
                             <h1 class="text-2xl font-bold text-yellow-800 dark:text-white">RM{{list.monthly_rent}}/Month</h1>
                         </div>
-                        <p class="mt-2 text-sm text-gray-600 dark:text-gray-400">{{ list.property.name }} | {{ list.campus }}</p>
-                        <div class="flex mt-2 item-center">
-                            <p class="mt-2 text-sm text-gray-600 dark:text-gray-400">{{ list.room_type }} | {{ list.property.gender_preferences }}</p>
+
+                        <div class="flex mt-2 text-sm text-gray-700 items-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-geo-alt-fill mx-1" viewBox="0 0 16 16">
+                                <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"/>
+                            </svg>
+                             <div class="mx-1 text-green-700">
+                                 {{ list.property.name }} | {{ list.campus }}
+                             </div>
                         </div>
-                        <div class="flex mt-2 item-center">
-                            <p class="mt-2 text-sm text-gray-600 dark:text-gray-400">{{ list.property.furnishing }}| {{ list.room_furnishing }}</p>
+                        <div class="flex mt-2 item-center text-gray-700  items-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-door-open-fill mx-1" viewBox="0 0 16 16">
+                                 <path d="M1.5 15a.5.5 0 0 0 0 1h13a.5.5 0 0 0 0-1H13V2.5A1.5 1.5 0 0 0 11.5 1H11V.5a.5.5 0 0 0-.57-.495l-7 1A.5.5 0 0 0 3 1.5V15H1.5zM11 2h.5a.5.5 0 0 1 .5.5V15h-1V2zm-2.5 8c-.276 0-.5-.448-.5-1s.224-1 .5-1 .5.448.5 1-.224 1-.5 1z"/>
+                            </svg>
+                             <div class="mx-1 text-sm text-blue-700">
+                                 {{ list.room_type }} | {{ list.property.gender_preferences }}
+                            </div>
+                        </div>
+                        <div class="flex mt-2 item-center  text-gray-700  items-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-plus-square-fill mx-1" viewBox="0 0 16 16">
+                                <path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm6.5 4.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3a.5.5 0 0 1 1 0z"/>
+                            </svg>
+                            <div class="mx-1 text-sm ">
+                               {{ list.property.furnishing }}| {{ list.room_furnishing }}
+                             </div>
                         </div>
                     </div>
                 </router-link>
@@ -275,7 +295,8 @@ export default {
             noScroll: false,
 
 
-            top_btn_style: 'p-3 rounded bg-yellow-100 text-yellow-500 hover:bg-yellow-500 hover:text-white :active:bg-yellow-500 active:text-white active:outline-none transition duration-150 ease-in-out shadow-xl',
+            top_btn_style: 'p-3 rounded bg-yellow-400 text-white hover:bg-yellow-600 hover:text-white transition duration-150 ease-in-out shadow-xl',
+            top2_btn_style: 'p-3 rounded bg-yellow-500 text-white hover:bg-yellow-700 hover:text-white transition duration-150 ease-in-out shadow-xl',
         }
     },
      methods:{
@@ -297,7 +318,7 @@ export default {
                 this.lastPage=response.data.meta.last_page
                 this.isReady=true;
 
-                     this.scrollToTop();
+                //this.scrollToTop();
 
 
                 console.warn(this.lists.data);

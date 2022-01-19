@@ -147,6 +147,7 @@ export default {
                 landlord_id: '',
                 payment_details: '',
                 total_payment: '',
+                room_id: '',
             },
              isReady: false,
 
@@ -164,6 +165,8 @@ export default {
                     this.form.bills_id= this.data.bills_id;
                     this.form.tenant_id= this.data.tenant_id;
                     this.form.property_id= this.data.property_id;
+                    this.form.landlord_id= this.data.landlord_id;
+                    this.form.room_id= this.data.room_id;
                     this.form.payment_details= 'UOCA Bills (ID: '+this.data.bills_id+') Payment - Room ID: '+this.data.room_id;
                     this.form.total_payment= this.data.total_bills;
                     this.product.description= 'UOCA Bills (ID: '+this.data.bills_id+') Payment - Room ID: '+this.data.room_id;
