@@ -5,21 +5,21 @@
     <div :class="[modalBackground]" class="rounded max-h-full overflow-y-auto shadow-lg w-11/12 md:w-1/3" >
       <!-- modal header -->
       <div class="border-b px-4 py-2 flex justify-between items-center">
-        <h3 class="font-semibold text-lg">Write a Post</h3>
+        <h3 class="font-semibold text-lg text-gray-800 ">Write a Post</h3>
         <button class="text-black " @click="closeModal">&cross;</button>
       </div>
       <!-- modal body -->
         <div class="p-3">
                 <div class="flex items-center mb-5">
                     <label for="name" class="inline-block w-20 mr-6 text-right font-bold text-gray-600">Post</label>
-                    <textarea name="des" rows="4" cols="20" placeholder="Profile descriptions"
+                    <textarea name="des" rows="4" cols="20" placeholder="Write post to bulletin board"
                     class="flex-1 mr-5 px-3 py-2 border-2 border-gray-400 focus:border-green-400 text-gray-600 placeholder-gray-400 outline-none" v-model="form.post"/>
                 </div>
 
             </div>
             <div class="flex justify-end items-center w-100 border-t p-3">
                 <button @click="closeModal" class="bg-red-600 hover:bg-red-700 px-3 py-1 rounded text-white mr-1 close-modal">Cancel</button>
-                <button @click.prevent="posting"  class="bg-green-600 hover:bg-green-700 px-3 py-1 rounded text-white">Post</button>
+                <button @click.prevent="posting"  class="bg-green-600 hover:bg-green-700 px-5 py-1 rounded text-white">Post</button>
             </div>
     </div>
 </div>

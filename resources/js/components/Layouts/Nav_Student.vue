@@ -163,7 +163,7 @@
         <!-- top bar -->
 
         <!-- notification -->
-<div class="flex justify-items-end justify-end z-10">
+<div class="flex justify-items-end justify-end z-50">
      <div class="w-full h-full bg-gray-800 bg-opacity-90 top-0 overflow-y-auto overflow-x-hidden fixed sticky-0 hidden" id="chec-div" ref="chec">
       <div class="w-full absolute z-10 right-0 h-full overflow-x-hidden transform translate-x-0 transition ease-in-out duration-700" id="notification" ref="notification">
         <div class=" 2xl:w-4/12 bg-gray-200 h-screen overflow-y-auto p-8 absolute right-0 " >
@@ -249,7 +249,7 @@
             <div class="pl-3 w-full">
               <div class="flex items-center justify-between">
                 <div tabindex="0" class="focus:outline-none text-sm leading-snug text-green-700 pr-2" > You have made a payment for <span class="font-medium">{{ n.data.Content.payment_details }}</span> </div>
-                <div tabindex="0" class=" focus:outline-none focus:text-indigo-600 text-xs leading-3 underline cursor-pointer text-green-700 font-medium" @click="notificationHandler(false); redirectFromNoti(2)" > View </div>
+                <div tabindex="0" class=" focus:outline-none focus:text-indigo-600 text-xs leading-3 underline cursor-pointer text-green-700 font-medium" @click="notificationHandler(false); redirectFromNoti(4)" > View </div>
               </div>
                <p tabindex="0" class="focus:outline-none text-xs leading-3 pt-1 text-gray-500 mt-2" > {{ moment( n.created_at ).fromNow() }} </p>
             </div>

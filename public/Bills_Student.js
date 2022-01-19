@@ -655,16 +655,14 @@ var render = function () {
                                                                 "div",
                                                                 {
                                                                   staticClass:
-                                                                    "mb-5 ",
+                                                                    "mb-5 z-10 relative ",
                                                                 },
                                                                 [
-                                                                  _c("center", [
-                                                                    _c("div", {
-                                                                      ref: "paypal",
-                                                                      staticClass:
-                                                                        "mx-auto",
-                                                                    }),
-                                                                  ]),
+                                                                  _c("div", {
+                                                                    ref: "paypal",
+                                                                    staticClass:
+                                                                      "mx-auto ",
+                                                                  }),
                                                                   _vm._v(" "),
                                                                   _c(
                                                                     "span",
@@ -678,14 +676,11 @@ var render = function () {
                                                                       ),
                                                                     ]
                                                                   ),
-                                                                ],
-                                                                1
+                                                                ]
                                                               )
-                                                            : _vm._e(),
-                                                          _vm._v(" "),
-                                                          _vm.data
-                                                            .bills_status ==
-                                                          "Overdue"
+                                                            : _vm.data
+                                                                .bills_status ==
+                                                              "Overdue"
                                                             ? _c(
                                                                 "div",
                                                                 {
@@ -723,11 +718,9 @@ var render = function () {
                                                                 ],
                                                                 1
                                                               )
-                                                            : _vm._e(),
-                                                          _vm._v(" "),
-                                                          _vm.data
-                                                            .payment_status ==
-                                                          "Paid"
+                                                            : _vm.data
+                                                                .payment_status ==
+                                                              "Paid"
                                                             ? _c(
                                                                 "div",
                                                                 {

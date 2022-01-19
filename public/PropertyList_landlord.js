@@ -345,6 +345,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -1649,7 +1652,7 @@ var render = function () {
                                     "h1",
                                     {
                                       staticClass:
-                                        "text-2xl font-bold text-yellow-800 dark:text-white",
+                                        "capitalize text-2xl font-bold text-yellow-800 dark:text-white",
                                     },
                                     [_vm._v(_vm._s(property.status))]
                                   ),
@@ -1658,10 +1661,7 @@ var render = function () {
                               _vm._v(" "),
                               _c(
                                 "p",
-                                {
-                                  staticClass:
-                                    "mt-2 text-sm text-gray-600 dark:text-gray-400",
-                                },
+                                { staticClass: "mt-2 text-sm text-gray-700 " },
                                 [
                                   _vm._v(
                                     _vm._s(property.address) +
@@ -1679,7 +1679,7 @@ var render = function () {
                                     "p",
                                     {
                                       staticClass:
-                                        "mt-2 text-sm text-gray-600 dark:text-gray-400",
+                                        "mt-2 text-sm text-gray-700 ",
                                     },
                                     [
                                       _vm._v(
@@ -1700,16 +1700,30 @@ var render = function () {
                                     "p",
                                     {
                                       staticClass:
-                                        "mt-2 text-sm text-gray-600 dark:text-gray-400",
+                                        "mt-2 text-sm text-gray-700 ",
+                                    },
+                                    [_vm._v(_vm._s(property.furnishing))]
+                                  ),
+                                ]
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "div",
+                                { staticClass: "flex mt-2 item-center" },
+                                [
+                                  _c(
+                                    "p",
+                                    {
+                                      staticClass:
+                                        "mt-2 text-sm text-yellow-700 ",
                                     },
                                     [
                                       _vm._v(
-                                        _vm._s(property.furnishing) +
-                                          "| Created at: " +
+                                        "Created at: " +
                                           _vm._s(
                                             _vm
                                               .moment(property.created_at)
-                                              .format("MMM-YYYY")
+                                              .format("DD-MMM-YYYY")
                                           )
                                       ),
                                     ]

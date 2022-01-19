@@ -3,8 +3,8 @@
          <div v-if="role===2">
         <div v-for= "list in room" :key="list.id"  class="flex justify-end items-center">
             <button @click="$router.go(-1)" class=" bg-teal-500 shadow-lg hover:bg-teal-500 text-xs text-white px-4 py-3 rounded-md mb-2 mr-auto flex items-center">
-                <svg class="h-5 w-5 mr-2 fill-current" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="-49 141 512 512" style="enable-background:new -49 141 512 512;" xml:space="preserve">
-                    <path id="XMLID_10_" d="M438,372H36.355l72.822-72.822c9.763-9.763,9.763-25.592,0-35.355c-9.763-9.764-25.593-9.762-35.355,0 l-115.5,115.5C-46.366,384.01-49,390.369-49,397s2.634,12.989,7.322,17.678l115.5,115.5c9.763,9.762,25.593,9.763,35.355,0 c9.763-9.763,9.763-25.592,0-35.355L36.355,422H438c13.808,0,25-11.193,25-25S451.808,372,438,372z"></path>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left mx-1" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
                 </svg>
                 Back
             </button>
@@ -28,12 +28,12 @@
         <div  v-for= "list in room" :key="list.id"  class="overflow-hidden bg-white rounded-lg shadow-lg mt-3 p-8">
             <div class="w-full p-4 md:p-4">
                 <div class="flex justify-between item-center">
-                    <h1 class="text-2xl font-bold text-gray-800 dark:text-white">Listing Room Name: {{ list.listing_name }}</h1>
+                    <h1 class="text-2xl font-bold text-gray-800 dark:text-white">Listing Name: {{ list.listing_name }}</h1>
 
-                     <button class="px-2 py-1 text-xs font-bold text-white uppercase transition-colors duration-200
-                             transform bg-gray-800 rounded hover:bg-gray-700">
+                     <div class="px-2 py-1 text-base font-bold text-white capitalize transition-colors duration-200
+                             transform bg-yellow-800 rounded">
                              {{ list.room_status }}
-                    </button >
+                    </div >
                 </div>
                       <!-- Images Carousel -->
             <div class="border-double border-4 border-light-blue-500" style="width:100%;margin:10px auto;height:300px">
@@ -50,27 +50,26 @@
             </div>
             <!-- Images Carousel -->
               <div class="flex mt-2 item-center">
-                   <p class="mt-2 text-sm text-gray-600 "><span class="font-black"> Room Type: </span>  {{ list.room_name }}</p>
+                   <p class="text-base text-gray-600 "><span class="font-black">Name: </span>  {{ list.room_name }}</p>
                 </div>
               <div class="flex mt-2 item-center">
-                   <p class="mt-2 text-sm text-gray-600 "><span class="font-black"> Room Type: </span>  {{ list.room_type }}</p>
+                   <p class="text-base text-gray-600 "><span class="font-black">Type: </span>  {{ list.room_type }}</p>
                 </div>
-
+                    <div class="flex mt-2 item-center">
+                    <p class=" text-base text-gray-600"><span class="font-black">Furnishing: </span>{{ list.room_furnishing }}</p>
+                </div>
                 <div class="flex mt-2 item-center">
-                    <p class="mt-2 text-sm text-gray-600 "><span class="font-black"> Room Description:</span> {{ list.room_description }}</p>
-                </div>
-                    <div class="flex item-center">
-                    <p class="mt-2 text-sm text-gray-600"><span class="font-black">Room Furnishing: </span>{{ list.room_furnishing }}</p>
-                </div>
-                <div class="flex item-center">
-                    <p class="mt-2 text-sm text-gray-600"><span class="font-black"> Room Max. Tenant: </span>{{ list.number_of_tenant }}</p>
+                    <p class=" text-base text-gray-600"><span class="font-black">Max. Tenants: </span>{{ list.number_of_tenant }}</p>
                 </div>
 
-                   <div class="flex item-center">
-                    <p class="mt-2 text-sm text-gray-600"><span class="font-black"> Room Monthly Rent: RM </span>{{ list.monthly_rent }}</p>
+                   <div class="flex mt-2 item-center">
+                    <p class=" text-base text-gray-600"><span class="font-black"> Room Monthly Rent: RM </span>{{ list.monthly_rent }}</p>
+                </div>
+                <div class="flex mt-2 item-center">
+                    <p class="text-base text-gray-600 whitespace-pre-wrap"><span class="font-black">Descriptions:</span> {{ list.room_description }}</p>
                 </div>
                    <div class="flex item-center">
-                    <p class="mt-2 text-sm text-gray-600"><span class="font-black"> Booking Key: </span>{{ list.booking_key }}</p>
+                    <p class="mt-3 text-base text-blue-600"><span class="font-black"> Booking Key: </span>{{ list.booking_key }}</p>
                 </div>
 
 
@@ -184,9 +183,14 @@ export default {
                 this.roomPhoto = response.data.data[0].photo_room;
                 this.landlord_id = response.data.data[0].landlord_id;
                 this.isReady=true;
+                this.scrollToTop();
                 console.warn(this.rooms.data);
             })
         },
+          scrollToTop() {
+            this.$root.$emit("scroll",this.user_id);
+        },
+
           deleteRoom(id){
               if(this.room[0].room_status!='rented'){
                      Swal.fire({
@@ -259,6 +263,7 @@ export default {
 
         this.getRoom();
         this.getRole();
+        this.scrollToTop();
     },
 
 

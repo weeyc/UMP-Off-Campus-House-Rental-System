@@ -536,7 +536,38 @@ __webpack_require__.r(__webpack_exports__);
         _this3.tenant_bills = response.data;
 
         if (_this3.tenant_bills.payment_status == "Unpaid") {
-          _this3.$toaster.error('This tenant have not yet pay bills');
+          //this.$toaster.error('This tenant have not yet pay bills');
+          Swal.fire({
+            title: 'This Tenant have not yet pay bills. Are you sure you want to kick this tenant?!',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, kick the tenant'
+          }).then(function (result) {
+            if (result.isConfirmed) {
+              Swal.fire({
+                title: 'Confirm Kick Tenant?!',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, Confirm'
+              }).then(function (results) {
+                if (results.isConfirmed) {
+                  axios["delete"]('/api/kick_tenant/' + tenant_id).then(function (response) {
+                    _this3.getData();
+
+                    setTimeout(function () {
+                      return _this3.$toaster.success('Tenant kicked');
+                    }, 1000);
+                  })["catch"](function (errors) {
+                    console.log(errors);
+                  });
+                }
+              });
+            }
+          });
         } else if (_this3.tenant_bills.payment_status == 'Paid' || _this3.tenant_bills == [] || _this3.tenant_bills == "Pending") {
           Swal.fire({
             title: 'Kick tenant from this room?!',
@@ -547,14 +578,25 @@ __webpack_require__.r(__webpack_exports__);
             confirmButtonText: 'Yes, kick the tenant'
           }).then(function (result) {
             if (result.isConfirmed) {
-              axios["delete"]('/api/kick_tenant/' + tenant_id).then(function (response) {
-                _this3.getData();
+              Swal.fire({
+                title: 'Confirm Kick Tenant?!',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, Confirm'
+              }).then(function (results) {
+                if (results.isConfirmed) {
+                  axios["delete"]('/api/kick_tenant/' + tenant_id).then(function (response) {
+                    _this3.getData();
 
-                setTimeout(function () {
-                  return _this3.$toaster.success('Tenant kicked');
-                }, 1000);
-              })["catch"](function (errors) {
-                console.log(errors);
+                    setTimeout(function () {
+                      return _this3.$toaster.success('Tenant kicked');
+                    }, 1000);
+                  })["catch"](function (errors) {
+                    console.log(errors);
+                  });
+                }
               });
             }
           });
@@ -616,8 +658,15 @@ __webpack_require__.r(__webpack_exports__);
     $route: function $route() {}
   },
   mounted: function mounted() {
+    var _this6 = this;
+
     this.getData();
     this.getBills();
+    Echo["private"]('App.Models.Landlord.' + this.user_id).notification(function (notification) {
+      console.log(notification);
+
+      _this6.getPost();
+    });
   }
 });
 
@@ -1539,7 +1588,12 @@ var render = function () {
                         }),
                         _vm._v(" "),
                         _c("h1", { staticClass: "text-2xl font-semibold" }, [
-                          _vm._v(_vm._s(_vm.info.property.address)),
+                          _vm._v(
+                            "(Property ID: " +
+                              _vm._s(_vm.info.property_id) +
+                              ") " +
+                              _vm._s(_vm.info.property.address)
+                          ),
                         ]),
                         _vm._v(" "),
                         _c(
@@ -2007,10 +2061,7 @@ var render = function () {
                                   "div",
                                   {
                                     staticClass:
-                                      "h-14 flex justify-center items-center p-5",
-                                    staticStyle: {
-                                      "background-color": "#2b2a33",
-                                    },
+                                      "h-14 flex justify-center items-center p-5 bg-indigo-800",
                                   },
                                   [
                                     _c(
@@ -2029,7 +2080,7 @@ var render = function () {
                                       [
                                         _c("img", {
                                           staticClass:
-                                            "h-7 w-7 mr-3 object-cover rounded-full",
+                                            "h-7 w-7 mr-3 object-cover rounded-md",
                                           attrs: {
                                             src:
                                               "/images/Properties/" +
@@ -2041,7 +2092,7 @@ var render = function () {
                                           "p",
                                           {
                                             staticClass:
-                                              "text-lg bg-gradient-to-r from-pink-300 via-purple-300 to-indigo-400 text-transparent bg-clip-text hover:underline ",
+                                              "text-lg text-white hover:underline ",
                                           },
                                           [
                                             _vm._v(
@@ -2773,9 +2824,11 @@ var render = function () {
                 "border-b px-4 py-2 flex justify-between items-center",
             },
             [
-              _c("h3", { staticClass: "font-semibold text-lg" }, [
-                _vm._v("Write a Post"),
-              ]),
+              _c(
+                "h3",
+                { staticClass: "font-semibold text-lg text-gray-800 " },
+                [_vm._v("Write a Post")]
+              ),
               _vm._v(" "),
               _c(
                 "button",
@@ -2812,7 +2865,7 @@ var render = function () {
                   name: "des",
                   rows: "4",
                   cols: "20",
-                  placeholder: "Profile descriptions",
+                  placeholder: "Write post to bulletin board",
                 },
                 domProps: { value: _vm.form.post },
                 on: {
@@ -2845,7 +2898,7 @@ var render = function () {
                 "button",
                 {
                   staticClass:
-                    "bg-green-600 hover:bg-green-700 px-3 py-1 rounded text-white",
+                    "bg-green-600 hover:bg-green-700 px-5 py-1 rounded text-white",
                   on: {
                     click: function ($event) {
                       $event.preventDefault()

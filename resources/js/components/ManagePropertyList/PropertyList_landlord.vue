@@ -24,14 +24,17 @@
                     <div class="w-2/3 p-4 md:p-4">
                         <div class="flex justify-between item-center">
                             <h1 class="text-2xl font-bold text-gray-800 dark:text-white"> {{ property.name }}</h1>
-                            <h1 class="text-2xl font-bold text-yellow-800 dark:text-white">{{property.status}}</h1>
+                            <h1 class="capitalize text-2xl font-bold text-yellow-800 dark:text-white">{{property.status}}</h1>
                         </div>
-                        <p class="mt-2 text-sm text-gray-600 dark:text-gray-400">{{ property.address }} | {{ property.campus }}</p>
+                        <p class="mt-2 text-sm text-gray-700 ">{{ property.address }} | {{ property.campus }}</p>
                         <div class="flex mt-2 item-center">
-                            <p class="mt-2 text-sm text-gray-600 dark:text-gray-400">{{ property.postcode }} | {{ property.gender_preferences }}</p>
+                            <p class="mt-2 text-sm text-gray-700 ">{{ property.postcode }} | {{ property.gender_preferences }}</p>
                         </div>
                         <div class="flex mt-2 item-center">
-                            <p class="mt-2 text-sm text-gray-600 dark:text-gray-400">{{ property.furnishing }}| Created at: {{  moment(property.created_at).format("MMM-YYYY") }}</p>
+                            <p class="mt-2 text-sm text-gray-700 ">{{ property.furnishing }}</p>
+                        </div>
+                        <div class="flex mt-2 item-center">
+                            <p class="mt-2 text-sm text-yellow-700 ">Created at: {{  moment(property.created_at).format("DD-MMM-YYYY") }}</p>
                         </div>
                     </div>
                 </router-link>

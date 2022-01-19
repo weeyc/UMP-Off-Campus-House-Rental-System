@@ -194,9 +194,6 @@ __webpack_require__.r(__webpack_exports__);
       isReady: false
     };
   },
-  mounted: function mounted() {
-    this.getPayment();
-  },
   methods: {
     getPayment: function getPayment() {
       var _this = this;
@@ -213,6 +210,9 @@ __webpack_require__.r(__webpack_exports__);
         _this.pageInfo = response.data.meta;
         _this.lastPage = response.data.meta.last_page;
         _this.isReady = true;
+
+        _this.scrollToTop();
+
         console.warn(_this.payments.data);
       });
     },
@@ -250,9 +250,17 @@ __webpack_require__.r(__webpack_exports__);
       this.form.total = data.total_payment;
       this.form.date = data.payment_date;
     },
+    scrollToTop: function scrollToTop() {
+      //this.$refs.section.scrollTo(0, 0);
+      this.$root.$emit("scroll", this.user_id);
+    },
     closeModal: function closeModal() {
       this.toggleModal = !this.toggleModal;
     }
+  },
+  mounted: function mounted() {
+    this.getPayment();
+    this.scrollToTop();
   }
 });
 

@@ -7,7 +7,7 @@
 
         <div class="flex flex-col justify-center items-center relative h-full bg-black bg-opacity-50 text-white -mt-10">
           <img :src="'/images/Profile/'+info.property.land.landlord_pic" class="h-20 w-20 object-cover rounded-full">
-          <h1 class="text-2xl font-semibold">{{info.property.address}}</h1>
+          <h1 class="text-2xl font-semibold">(Property ID: {{ info.property_id }}) {{info.property.address}}</h1>
             <router-link :to="{ name: 'profile_landlord'}" target="_blank" class="" >
                 <h4 class="text-sm font-semibold hover:underline hover:text-blue-700">{{info.property.land.landlord_name}}</h4>
             </router-link>
@@ -86,10 +86,10 @@
 
         <div id="Housemates" class="p-5">
             <div v-for="item in housemates" :key="item.id" class="bg-white w-full mx-auto rounded-2xl overflow-hidden shadow-lg mb-10">
-                <div class="h-14 flex justify-center items-center p-5" style="background-color: #2b2a33;">
+                <div class="h-14 flex justify-center items-center p-5 bg-indigo-800">
                          <router-link :to="{ name: 'view_room_list_land', params:{id: item.id}}"  target="_blank"  class="flex justify-center items-center">
-                            <img :src="'/images/Properties/'+item.photo_room[0].photo_name" class="h-7 w-7 mr-3 object-cover rounded-full">
-                            <p class="text-lg bg-gradient-to-r from-pink-300 via-purple-300 to-indigo-400 text-transparent bg-clip-text hover:underline ">{{ item.room_name}} | ID: {{item.id }}</p>
+                            <img :src="'/images/Properties/'+item.photo_room[0].photo_name" class="h-7 w-7 mr-3 object-cover rounded-md">
+                            <p class="text-lg text-white hover:underline ">{{ item.room_name}} | ID: {{item.id }}</p>
                         </router-link>
                 </div>
                     <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
@@ -304,7 +304,37 @@ export default {
             axios.get('/api/get_tenant_payment_status/'+room_id+'/'+tenant_id).then((response)=>{
                 this.tenant_bills=response.data;
                 if(  this.tenant_bills.payment_status=="Unpaid"){
-                     this.$toaster.error('This tenant have not yet pay bills');
+                     //this.$toaster.error('This tenant have not yet pay bills');
+                    Swal.fire({
+                    title: 'This Tenant have not yet pay bills. Are you sure you want to kick this tenant?!',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, kick the tenant'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            Swal.fire({
+                            title: 'Confirm Kick Tenant?!',
+                            icon: 'warning',
+                            showCancelButton: true,
+                            confirmButtonColor: '#3085d6',
+                            cancelButtonColor: '#d33',
+                            confirmButtonText: 'Yes, Confirm'
+                            }).then((results) => {
+                                if (results.isConfirmed) {
+                                    axios.delete('/api/kick_tenant/'+tenant_id).then((response)=>{
+                                        this.getData();
+                                        setTimeout(() =>  this.$toaster.success('Tenant kicked'), 1000);
+                                    }).catch((errors)=> {
+                                        console.log(errors)
+                                    })
+
+                                }
+                        })
+
+                        }
+                })
                 }else if(this.tenant_bills.payment_status == 'Paid' || this.tenant_bills==[] || this.tenant_bills=="Pending")
                 {
                     Swal.fire({
@@ -316,12 +346,24 @@ export default {
                     confirmButtonText: 'Yes, kick the tenant'
                     }).then((result) => {
                         if (result.isConfirmed) {
-                            axios.delete('/api/kick_tenant/'+tenant_id).then((response)=>{
-                                this.getData();
-                                setTimeout(() =>  this.$toaster.success('Tenant kicked'), 1000);
-                            }).catch((errors)=> {
-                                console.log(errors)
-                            })
+                            Swal.fire({
+                            title: 'Confirm Kick Tenant?!',
+                            icon: 'warning',
+                            showCancelButton: true,
+                            confirmButtonColor: '#3085d6',
+                            cancelButtonColor: '#d33',
+                            confirmButtonText: 'Yes, Confirm'
+                            }).then((results) => {
+                                if (results.isConfirmed) {
+                                    axios.delete('/api/kick_tenant/'+tenant_id).then((response)=>{
+                                        this.getData();
+                                        setTimeout(() =>  this.$toaster.success('Tenant kicked'), 1000);
+                                    }).catch((errors)=> {
+                                        console.log(errors)
+                                    })
+
+                                }
+                        })
 
                         }
                 })
@@ -384,6 +426,11 @@ export default {
         this.getData();
         this.getBills();
 
+        Echo.private('App.Models.Landlord.' + this.user_id)
+        .notification((notification) => {
+            console.log(notification);
+            this.getPost();
+        });
 
     },
 

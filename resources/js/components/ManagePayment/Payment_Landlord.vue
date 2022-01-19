@@ -21,7 +21,7 @@
                   No.
                 </th>
                     <button @click="sorting(2)"><th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  payment_date
+                  payment date
                 </th></button>
                 <!-- <button @click="sorting(2)"><th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Payment_id
@@ -38,8 +38,11 @@
                 <!-- <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   landlord_id
                 </th> -->
+                 <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                   Student name
+                </th>
                 <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  room_id
+                  Room ID
                 </th>
                 <!-- <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   booking_id
@@ -48,13 +51,13 @@
                   bill_id
                 </th> -->
                 <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  payment_details
+                  payment details
                 </th>
+                <!-- <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  payment status
+                </th> -->
                 <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  payment_status
-                </th>
-                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  total_payment
+                  total payment
                 </th>
 
                 <!-- <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
@@ -75,9 +78,9 @@
                   <div class="text-sm text-gray-900">{{ data.payment_id }}</div>
                 </td> -->
 
-                <!-- <td class="px-6 py-4 whitespace-nowrap">
-                  <div class="text-sm text-gray-900">{{ data.landlord_id }}</div>
-                </td> -->
+                <td class="px-6 py-4 whitespace-nowrap">
+                  <div class="text-sm text-gray-900">{{ data.student.name }}</div>
+                </td>
                 <td class="px-6 py-4 whitespace-nowrap">
                   <div class="text-sm text-gray-900">{{ data.room_id  }}</div>
                 </td>
@@ -90,9 +93,9 @@
                 <td class="px-6 py-4 whitespace-nowrap">
                   <div class="text-sm text-gray-900">{{ data.payment_details}}</div>
                 </td>
-                <td class="px-6 py-4 whitespace-nowrap">
+                <!-- <td class="px-6 py-4 whitespace-nowrap">
                   <div class="text-sm text-gray-900">{{data.payment_status }}</div>
-                </td>
+                </td> -->
                 <td class="px-6 py-4 whitespace-nowrap">
                   <div class="text-sm text-gray-900">RM {{(data.total_payment).toFixed(2) }}</div>
                 </td>

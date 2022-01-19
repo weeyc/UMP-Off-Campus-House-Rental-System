@@ -526,6 +526,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 
 
@@ -583,6 +589,25 @@ __webpack_require__.r(__webpack_exports__);
         console.warn(_this.info.data);
       });
     },
+    calculateNextDate: function calculateNextDate(date, status) {
+      if (status == 'Unready') {
+        return date;
+      } else {
+        var currentDate = moment__WEBPACK_IMPORTED_MODULE_2___default()(date, "YYYY-MM-DD");
+        var futureMonth = moment__WEBPACK_IMPORTED_MODULE_2___default()(currentDate).add(1, 'M');
+        var futureMonthEnd = moment__WEBPACK_IMPORTED_MODULE_2___default()(futureMonth).endOf('month');
+
+        if (currentDate.date() != futureMonth.date() && futureMonth.isSame(futureMonthEnd.format('YYYY-MM-DD'))) {
+          futureMonth = futureMonth.add(1, 'd');
+        }
+
+        return futureMonth; // moment.addRealMonth = function addRealMonth(date) {
+        // var fm = moment(date).add(1, 'M');
+        // var fmEnd = moment(fm).endOf('month');
+        // return date.date() != fm.date() && fm.isSame(fmEnd.format('YYYY-MM-DD')) ? fm.add(1, 'd') : fm;
+        //     }
+      }
+    },
     getPost: function getPost() {
       var _this2 = this;
 
@@ -633,7 +658,7 @@ __webpack_require__.r(__webpack_exports__);
     getBills: function getBills() {
       var _this5 = this;
 
-      axios.get('/api/get_bill_at_platform/' + this.user_id).then(function (response) {
+      axios.get('/api/get_bill_at_platform/' + this.user_id + '/' + this.room_id).then(function (response) {
         _this5.bills = response.data;
         console.warn(_this5.data);
       });
@@ -648,8 +673,15 @@ __webpack_require__.r(__webpack_exports__);
     $route: function $route() {}
   },
   mounted: function mounted() {
+    var _this6 = this;
+
     this.getData();
     this.getBills();
+    Echo["private"]('App.Models.Student.' + this.user_id).notification(function (notification) {
+      console.log(notification);
+
+      _this6.getPost();
+    });
   }
 });
 
@@ -1217,9 +1249,21 @@ var render = function () {
                           },
                         }),
                         _vm._v(" "),
-                        _c("h1", { staticClass: "text-2xl font-semibold" }, [
-                          _vm._v(_vm._s(_vm.info.property.address)),
-                        ]),
+                        _c(
+                          "h1",
+                          {
+                            staticClass:
+                              "text-indigo-100 text-2xl font-semibold",
+                          },
+                          [
+                            _vm._v(
+                              "(Property ID: " +
+                                _vm._s(_vm.info.property_id) +
+                                ") " +
+                                _vm._s(_vm.info.property.address)
+                            ),
+                          ]
+                        ),
                         _vm._v(" "),
                         _c(
                           "router-link",
@@ -1785,6 +1829,30 @@ var render = function () {
                                               ),
                                           _vm._v(" "),
                                           _c(
+                                            "span",
+                                            {
+                                              staticClass:
+                                                "text-blue-100 italic  text-center text-sm",
+                                            },
+                                            [
+                                              _vm._v(
+                                                " next bill date: " +
+                                                  _vm._s(
+                                                    _vm
+                                                      .moment(
+                                                        _vm.calculateNextDate(
+                                                          _vm.bills.bills_date,
+                                                          _vm.bills.bills_status
+                                                        )
+                                                      )
+                                                      .format("DD-MM-YYYY")
+                                                  ) +
+                                                  " "
+                                              ),
+                                            ]
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
                                             "button",
                                             {
                                               staticClass:
@@ -1834,10 +1902,7 @@ var render = function () {
                                   "div",
                                   {
                                     staticClass:
-                                      "h-14 flex justify-center items-center p-5",
-                                    staticStyle: {
-                                      "background-color": "#2b2a33",
-                                    },
+                                      "h-14 flex justify-center items-center p-5 bg-yellow-900",
                                   },
                                   [
                                     _c(
@@ -1856,7 +1921,7 @@ var render = function () {
                                       [
                                         _c("img", {
                                           staticClass:
-                                            "h-7 w-7 mr-3 object-cover rounded-full",
+                                            "h-7 w-7 mr-3 object-cover rounded-md",
                                           attrs: {
                                             src:
                                               "/images/Properties/" +
@@ -1868,7 +1933,7 @@ var render = function () {
                                           "p",
                                           {
                                             staticClass:
-                                              "text-lg bg-gradient-to-r from-pink-300 via-purple-300 to-indigo-400 text-transparent bg-clip-text hover:underline ",
+                                              "text-lg text-white hover:underline ",
                                           },
                                           [
                                             _vm._v(
@@ -1956,53 +2021,106 @@ var render = function () {
                                                       ]
                                                     ),
                                                     _vm._v(" "),
-                                                    _c(
-                                                      "router-link",
-                                                      {
-                                                        staticClass:
-                                                          "flex items-center",
-                                                        attrs: {
-                                                          to: {
-                                                            name: "std_profile_view",
-                                                            params: {
-                                                              role: 1,
-                                                              id: item.student_id,
-                                                            },
-                                                          },
-                                                          target: "_blank",
-                                                        },
-                                                      },
-                                                      [
-                                                        _c(
-                                                          "td",
+                                                    item.student_id ==
+                                                    _vm.user_id
+                                                      ? _c(
+                                                          "router-link",
                                                           {
                                                             staticClass:
-                                                              "flex px-6 py-4",
+                                                              "flex items-center",
+                                                            attrs: {
+                                                              to: {
+                                                                name: "profile_student",
+                                                                params: {
+                                                                  role: 1,
+                                                                  id: item.student_id,
+                                                                },
+                                                              },
+                                                              target: "_blank",
+                                                            },
                                                           },
                                                           [
-                                                            _c("img", {
-                                                              staticClass:
-                                                                "mr-2 w-6 h-6 rounded-full hover:scale-150 hover:z-10 transform ease-in-out transition duration-500",
-                                                              attrs: {
-                                                                src:
-                                                                  "/images/Profile/" +
-                                                                  item.student
-                                                                    .pic,
+                                                            _c(
+                                                              "td",
+                                                              {
+                                                                staticClass:
+                                                                  "flex px-6 py-4",
                                                               },
-                                                            }),
-                                                            _vm._v(" "),
-                                                            _c("span", [
-                                                              _vm._v(
-                                                                _vm._s(
-                                                                  item.student
-                                                                    .name
-                                                                )
-                                                              ),
-                                                            ]),
+                                                              [
+                                                                _c("img", {
+                                                                  staticClass:
+                                                                    "mr-2 w-6 h-6 rounded-full hover:scale-150 hover:z-10 transform ease-in-out transition duration-500",
+                                                                  attrs: {
+                                                                    src:
+                                                                      "/images/Profile/" +
+                                                                      item
+                                                                        .student
+                                                                        .pic,
+                                                                  },
+                                                                }),
+                                                                _vm._v(" "),
+                                                                _c("span", [
+                                                                  _vm._v(
+                                                                    _vm._s(
+                                                                      item
+                                                                        .student
+                                                                        .name
+                                                                    )
+                                                                  ),
+                                                                ]),
+                                                              ]
+                                                            ),
+                                                          ]
+                                                        )
+                                                      : _c(
+                                                          "router-link",
+                                                          {
+                                                            staticClass:
+                                                              "flex items-center",
+                                                            attrs: {
+                                                              to: {
+                                                                name: "std_profile_view",
+                                                                params: {
+                                                                  role: 1,
+                                                                  id: item.student_id,
+                                                                },
+                                                              },
+                                                              target: "_blank",
+                                                            },
+                                                          },
+                                                          [
+                                                            _c(
+                                                              "td",
+                                                              {
+                                                                staticClass:
+                                                                  "flex px-6 py-4",
+                                                              },
+                                                              [
+                                                                _c("img", {
+                                                                  staticClass:
+                                                                    "mr-2 w-6 h-6 rounded-full hover:scale-150 hover:z-10 transform ease-in-out transition duration-500",
+                                                                  attrs: {
+                                                                    src:
+                                                                      "/images/Profile/" +
+                                                                      item
+                                                                        .student
+                                                                        .pic,
+                                                                  },
+                                                                }),
+                                                                _vm._v(" "),
+                                                                _c("span", [
+                                                                  _vm._v(
+                                                                    _vm._s(
+                                                                      item
+                                                                        .student
+                                                                        .name
+                                                                    )
+                                                                  ),
+                                                                ]),
+                                                              ]
+                                                            ),
                                                           ]
                                                         ),
-                                                      ]
-                                                    ),
                                                     _vm._v(" "),
                                                     _c(
                                                       "td",
@@ -2046,7 +2164,13 @@ var render = function () {
                                                             _vm._v(
                                                               " " +
                                                                 _vm._s(
-                                                                  item.move_in_date
+                                                                  _vm
+                                                                    .moment(
+                                                                      item.move_in_date
+                                                                    )
+                                                                    .format(
+                                                                      "DD-MM-YYYY"
+                                                                    )
                                                                 )
                                                             ),
                                                           ]
@@ -2136,10 +2260,7 @@ var render = function () {
                                   "div",
                                   {
                                     staticClass:
-                                      "h-14 flex justify-center items-center p-5",
-                                    staticStyle: {
-                                      "background-color": "#2b2a33",
-                                    },
+                                      "h-14 flex justify-center items-center p-5 bg-blue-900",
                                   },
                                   [
                                     _c(
@@ -2158,7 +2279,7 @@ var render = function () {
                                       [
                                         _c("img", {
                                           staticClass:
-                                            "h-7 w-7 mr-3 object-cover rounded-full",
+                                            "h-7 w-7 mr-3 object-cover rounded-md",
                                           attrs: {
                                             src:
                                               "/images/Properties/" +
@@ -2170,7 +2291,7 @@ var render = function () {
                                           "p",
                                           {
                                             staticClass:
-                                              "text-lg bg-gradient-to-r from-pink-300 via-purple-300 to-indigo-400 text-transparent bg-clip-text hover:underline ",
+                                              "text-lg text-white hover:underline ",
                                           },
                                           [
                                             _vm._v(
@@ -2829,9 +2950,11 @@ var render = function () {
                 "border-b px-4 py-2 flex justify-between items-center",
             },
             [
-              _c("h3", { staticClass: "font-semibold text-lg" }, [
-                _vm._v("Write a Post"),
-              ]),
+              _c(
+                "h3",
+                { staticClass: "font-semibold text-lg text-gray-800 " },
+                [_vm._v("Write a Post")]
+              ),
               _vm._v(" "),
               _c(
                 "button",
@@ -2868,7 +2991,7 @@ var render = function () {
                   name: "des",
                   rows: "4",
                   cols: "20",
-                  placeholder: "Profile descriptions",
+                  placeholder: "Write post to bulletin board",
                 },
                 domProps: { value: _vm.form.post },
                 on: {
@@ -2901,7 +3024,7 @@ var render = function () {
                 "button",
                 {
                   staticClass:
-                    "bg-green-600 hover:bg-green-700 px-3 py-1 rounded text-white",
+                    "bg-green-600 hover:bg-green-700 px-5 py-1 rounded text-white",
                   on: {
                     click: function ($event) {
                       $event.preventDefault()

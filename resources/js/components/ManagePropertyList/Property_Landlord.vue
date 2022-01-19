@@ -3,9 +3,9 @@
         <div v-if="role===2">
             <div v-for= "house in property" :key="house.id"  class="flex justify-end items-center">
                 <button @click="$router.go(-1)" class=" bg-teal-500 shadow-lg hover:bg-teal-500 text-xs text-white px-4 py-3 rounded-md mb-2 mr-auto flex items-center">
-                    <svg class="h-5 w-5 mr-2 fill-current" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="-49 141 512 512" style="enable-background:new -49 141 512 512;" xml:space="preserve">
-                        <path id="XMLID_10_" d="M438,372H36.355l72.822-72.822c9.763-9.763,9.763-25.592,0-35.355c-9.763-9.764-25.593-9.762-35.355,0 l-115.5,115.5C-46.366,384.01-49,390.369-49,397s2.634,12.989,7.322,17.678l115.5,115.5c9.763,9.762,25.593,9.763,35.355,0 c9.763-9.763,9.763-25.592,0-35.355L36.355,422H438c13.808,0,25-11.193,25-25S451.808,372,438,372z"></path>
-                    </svg>
+                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left mx-1" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
+                </svg>
                     Back
                 </button>
                  <button @click="clickEdit(house); toggleModal = !toggleModal" class=" flex items-center bg-blue-600 shadow-lg hover:bg-blue-700 text-xs text-white px-4 py-3 rounded-md mb-2">
@@ -43,25 +43,28 @@
                 </slider>
             </div>
             <!-- Images Carousel -->
-                <p class="mt-2 text-sm text-gray-600 "><span class="font-black"> Address: </span>  {{ house.address }}</p>
                 <div class="flex mt-2 item-center">
-                    <p class="mt-2 text-sm text-gray-600 "><span class="font-black"> Description:</span> {{ house.des }}</p>
+                     <p class="text-base text-gray-600 "><span class="font-black"> Address: </span>  {{ house.address }}</p>
                 </div>
                 <div class="flex item-center">
-                    <p class="mt-2 text-sm text-gray-600"><span class="font-black"> Furnishing: </span>{{ house.furnishing }}</p>
+                    <p class="mt-2 text-base text-gray-600  whitespace-pre-wrap"><span class="font-black">Description:</span> {{ house.des }}</p>
+                </div>
+
+                <div class="flex item-center">
+                    <p class="mt-2 text-base text-gray-600"><span class="font-black"> Furnishing: </span>{{ house.furnishing }}</p>
                 </div>
                 <div class="flex item-center">
-                    <p class="mt-2 text-sm text-gray-600"><span class="font-black"> No. of Toilet: </span>{{ house.toilet_num }}</p>
+                    <p class="mt-2 text-base text-gray-600"><span class="font-black"> No. of Toilet: </span>{{ house.toilet_num }}</p>
                 </div>
                 <div class="flex item-center">
-                    <p class="mt-2 text-sm text-gray-600"><span class="font-black"> Gender Preferences: </span>{{ house.gender_preferences }}</p>
+                    <p class="mt-2 text-base text-gray-600"><span class="font-black"> Gender Preferences: </span>{{ house.gender_preferences }}</p>
                 </div>
                 <div class="flex item-center">
-                    <p class="mt-2 text-sm text-gray-600"><span class="font-black"> Location: </span></p>
+                    <p class="mt-2 text-base text-gray-600"><span class="font-black"> Location: </span></p>
                 </div>
                  <GoogleMap :latitude="parseFloat(house.lat)" :logitude="parseFloat(house.log)" :registered="true"  />
                 <div class="flex item-center mt-10  justify-between w-full p-6 items-center">
-                     <p class="mt-2 text-sm text-gray-600 flex justify-start items-center"><span class="font-black"> Rooms Listing: </span></p>
+                     <p class="mt-2 text-xl font-bold text-gray-600 flex justify-start items-center"><span class="font-black"> Rooms Listing: </span></p>
 
                      <div v-if="role===2" class="flex justify-end items-center">
                         <button @click="toggleAddModal = !toggleAddModal"  class=" bg-blue-600 shadow-lg hover:bg-blue-700 text-xs text-white px-5 py-3 rounded-md">
@@ -90,14 +93,14 @@
                     <div class="w-2/3 p-4 md:p-4">
                         <div class="flex justify-between item-center">
                             <h1 class="text-2xl font-bold text-gray-800 dark:text-white"> {{ room.listing_name  }}</h1>
-                            <h1 class="text-2xl font-bold text-yellow-800 dark:text-white">{{ room.room_status}}</h1>
+                            <h1 class="capitalize text-2xl font-bold text-yellow-800 dark:text-white">{{ room.room_status}}</h1>
                         </div>
-                        <p class="mt-2 text-sm text-gray-600 dark:text-gray-400">Room Name {{ room.room_name }}</p>
+                        <p class="mt-2 text-sm text-gray-700 dark:text-gray-400">Room Name {{ room.room_name }}</p>
                         <div class="flex mt-2 item-center">
-                            <p class="mt-2 text-sm text-gray-600 dark:text-gray-400">Room Type: {{ room.room_type }}Room Type: {{ room.room_type }}</p>
+                            <p class="mt-2 text-sm text-gray-700 dark:text-gray-400">Room Type: {{ room.room_type }}</p>
                         </div>
                         <div class="flex mt-2 item-center">
-                            <p class="mt-2 text-sm text-gray-600 dark:text-gray-400">Monthly Rent: RM {{ room.monthly_rent }}</p>
+                            <p class="mt-2 text-sm text-gray-700 dark:text-gray-400">Monthly Rent: RM {{ room.monthly_rent }}</p>
                         </div>
                     </div>
                 </router-link>

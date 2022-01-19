@@ -187,10 +187,7 @@ export default {
             isReady: false,
         };
     },
-     mounted: function(){
-            this.getPayment();
 
-    },
 
     methods: {
         getPayment(page=1){
@@ -204,6 +201,7 @@ export default {
                 this.pageInfo = response.data.meta
                 this.lastPage=response.data.meta.last_page
                 this.isReady=true;
+                this.scrollToTop();
                 console.warn(this.payments.data);
 
                 })
@@ -245,11 +243,18 @@ export default {
 
 
         },
-
-
+        scrollToTop() {
+            //this.$refs.section.scrollTo(0, 0);
+            this.$root.$emit("scroll",this.user_id);
+        },
         closeModal(){
             this.toggleModal =!  this.toggleModal ;
         },
+
+    },
+        mounted: function(){
+        this.getPayment();
+        this.scrollToTop();
 
     },
 

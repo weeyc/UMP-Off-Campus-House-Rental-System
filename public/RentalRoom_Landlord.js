@@ -69,6 +69,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
@@ -227,7 +230,7 @@ var render = function () {
                                   "h1",
                                   {
                                     staticClass:
-                                      "text-2xl font-bold text-red-500",
+                                      "text-2xl font-bold text-red-500 capitalize",
                                   },
                                   [_vm._v(_vm._s(list.status))]
                                 ),
@@ -237,11 +240,23 @@ var render = function () {
                             _c(
                               "p",
                               { staticClass: "mt-2 text-sm text-white " },
+                              [_vm._v(_vm._s(list.address) + " ")]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "div",
+                              { staticClass: "flex mt-2 item-center" },
                               [
-                                _vm._v(
-                                  _vm._s(list.address) +
-                                    " | " +
-                                    _vm._s(list.campus)
+                                _c(
+                                  "p",
+                                  { staticClass: "mt-2 text-sm text-white " },
+                                  [
+                                    _vm._v(
+                                      _vm._s(list.campus) +
+                                        " | " +
+                                        _vm._s(list.gender_preferences)
+                                    ),
+                                  ]
                                 ),
                               ]
                             ),
@@ -275,9 +290,7 @@ var render = function () {
                                   },
                                   [
                                     _vm._v(
-                                      "Toilet number: " +
-                                        _vm._s(list.toilet_num) +
-                                        " | Created at: " +
+                                      "Created at: " +
                                         _vm._s(
                                           _vm
                                             .moment(list.created_at)

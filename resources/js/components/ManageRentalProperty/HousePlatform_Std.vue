@@ -7,7 +7,7 @@
 
         <div class="flex flex-col justify-center items-center relative h-full bg-black bg-opacity-50 text-white -mt-10">
           <img :src="'/images/Profile/'+info.property.land.landlord_pic" class="h-20 w-20 object-cover rounded-full">
-          <h1 class="text-2xl font-semibold">{{info.property.address}}</h1>
+          <h1 class="text-indigo-100 text-2xl font-semibold">(Property ID: {{ info.property_id }}) {{info.property.address}}</h1>
             <router-link :to="{ name: 'std_profile_view', params:{role: 2, id: info.landlord_id}}" target="_blank" class="" >
                 <h4 class="text-sm font-semibold hover:underline hover:text-yellow-700 text-yellow-500">{{info.property.land.landlord_name}}</h4>
             </router-link>
@@ -77,6 +77,7 @@
                                 <span v-if="bills.payment_status=='Unpaid' && bills.bills_status=='Ready'" class="text-white text-center text-2xl" >RM {{bills.total_bills}}</span>
                                 <span v-else-if="bills.bills_status=='Unready'" class="text-white text-center text-2xl" >No bills yet</span>
                                 <span v-else class="text-white text-center text-2xl" > Paid</span>
+                                <span class="text-blue-100 italic  text-center text-sm" > next bill date: {{ moment(calculateNextDate(bills.bills_date,bills.bills_status)).format("DD-MM-YYYY")  }} </span>
                                  <button @click="checkBill" class="p-2 mt-5 w-1/2 rounded-md bg-blue-500 text-white hover:bg-blue-600 justify-self-center">Check</button>
                             </div>
 
@@ -99,11 +100,10 @@
 
             <div id="My Rooms" class="p-5">
                 <div class="bg-white w-full mx-auto rounded-2xl overflow-hidden shadow-lg">
-
-                    <div class="h-14 flex justify-center items-center p-5" style="background-color: #2b2a33;">
+                    <div class="h-14 flex justify-center items-center p-5 bg-yellow-900">
                         <router-link :to="{ name: 'view_room_list', params:{id: info.id}}"  target="_blank"  class="flex justify-center items-center">
-                            <img :src="'/images/Properties/'+info.photo_room[0].photo_name" class="h-7 w-7 mr-3 object-cover rounded-full">
-                            <p class="text-lg bg-gradient-to-r from-pink-300 via-purple-300 to-indigo-400 text-transparent bg-clip-text hover:underline ">{{ info.room_name}} | ID: {{info.id }}</p>
+                            <img :src="'/images/Properties/'+info.photo_room[0].photo_name" class="h-7 w-7 mr-3 object-cover rounded-md">
+                            <p class="text-lg text-white hover:underline ">{{ info.room_name}} | ID: {{info.id }}</p>
                         </router-link>
 
                             <button v-if="info.tenants.length < info.number_of_tenant" @click="toggleRModal = !toggleRModal" class="ml-48 px-2 rounded-md bg-blue-500 text-white hover:bg-blue-600 grow-0 justify-self-end">Add Roommate</button>
@@ -139,7 +139,13 @@
                             <td class="px-6 py-4">
                                 <div class="text-sm text-gray-900">{{ item.student_id }}</div>
                             </td>
-                            <router-link :to="{ name: 'std_profile_view', params:{role: 1, id: item.student_id}}" target="_blank" class="flex items-center">
+                            <router-link v-if="item.student_id==user_id" :to="{ name: 'profile_student', params:{role: 1, id: item.student_id}}" target="_blank" class="flex items-center">
+                            <td class="flex px-6 py-4">
+                                <img :src="'/images/Profile/'+item.student.pic"  class="mr-2 w-6 h-6 rounded-full hover:scale-150 hover:z-10 transform ease-in-out transition duration-500">
+                                <span>{{item.student.name }}</span>
+                            </td>
+                            </router-link>
+                             <router-link v-else :to="{ name: 'std_profile_view', params:{role: 1, id: item.student_id}}" target="_blank" class="flex items-center">
                             <td class="flex px-6 py-4">
                                 <img :src="'/images/Profile/'+item.student.pic"  class="mr-2 w-6 h-6 rounded-full hover:scale-150 hover:z-10 transform ease-in-out transition duration-500">
                                 <span>{{item.student.name }}</span>
@@ -151,7 +157,7 @@
                             <div class="text-sm text-gray-900">{{ item.student.phone_no }}</div>
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap">
-                            <div class="text-sm text-gray-900"> {{ item.move_in_date }}</div>
+                            <div class="text-sm text-gray-900"> {{ moment(item.move_in_date ).format("DD-MM-YYYY")  }}</div>
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap">
                             <div class="text-sm text-gray-900">{{  item.tenancy_period }} Months</div>
@@ -176,10 +182,10 @@
 
         <div id="Housemates" class="p-5">
             <div v-for="item in housemates" :key="item.id" class="bg-white w-full mx-auto rounded-2xl overflow-hidden shadow-lg mb-10">
-                <div class="h-14 flex justify-center items-center p-5" style="background-color: #2b2a33;">
+                <div class="h-14 flex justify-center items-center p-5 bg-blue-900">
                          <router-link :to="{ name: 'view_room_list', params:{id: item.id}}"  target="_blank"  class="flex justify-center items-center">
-                            <img :src="'/images/Properties/'+item.photo_room[0].photo_name" class="h-7 w-7 mr-3 object-cover rounded-full">
-                            <p class="text-lg bg-gradient-to-r from-pink-300 via-purple-300 to-indigo-400 text-transparent bg-clip-text hover:underline ">{{ item.room_name}} | ID: {{item.id }}</p>
+                            <img :src="'/images/Properties/'+item.photo_room[0].photo_name" class="h-7 w-7 mr-3 object-cover rounded-md">
+                            <p class="text-lg text-white hover:underline ">{{ item.room_name}} | ID: {{item.id }}</p>
                         </router-link>
                 </div>
                     <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
@@ -359,6 +365,28 @@ export default {
             })
 
         },
+        calculateNextDate(date, status){
+            if(status=='Unready'){
+                return date
+            }else{
+                var currentDate =  moment(date, "YYYY-MM-DD")
+                var futureMonth = moment(currentDate).add(1, 'M');
+                var futureMonthEnd = moment(futureMonth).endOf('month');
+
+                if(currentDate.date() != futureMonth.date() && futureMonth.isSame(futureMonthEnd.format('YYYY-MM-DD'))) {
+                    futureMonth = futureMonth.add(1, 'd');
+                }
+                return futureMonth;
+
+                // moment.addRealMonth = function addRealMonth(date) {
+                // var fm = moment(date).add(1, 'M');
+                // var fmEnd = moment(fm).endOf('month');
+                // return date.date() != fm.date() && fm.isSame(fmEnd.format('YYYY-MM-DD')) ? fm.add(1, 'd') : fm;
+                //     }
+            }
+
+
+        },
         getPost(){
             axios.get('/api/get_post/'+this.user_id+'/'+this.prop_id+'?land=1&imej=1').then((response)=>{
                 this.posts=response.data.data;
@@ -404,7 +432,7 @@ export default {
             this.toggleRModal =!  this.toggleRModal ;
         },
         getBills(){
-            axios.get('/api/get_bill_at_platform/'+this.user_id).then((response)=>{
+            axios.get('/api/get_bill_at_platform/'+this.user_id+'/'+this.room_id).then((response)=>{
                     this.bills=response.data;
                     console.warn(this.data);
                 })
@@ -422,6 +450,13 @@ export default {
        mounted: function(){
         this.getData();
         this.getBills();
+
+         Echo.private('App.Models.Student.' + this.user_id)
+            .notification((notification) => {
+                console.log(notification);
+                this.getPost();
+
+            });
 
 
     },

@@ -56,6 +56,7 @@ class PaymentController extends Controller
                         $query->orderBy('payment_id',$byID);})
                     ->when($bydate!=null,function($query) use($bydate){
                         $query->orderBy('payment_date',$bydate);})
+                    ->with('getStudentRelation')
                     ->where('landlord_id', $id)
                     ->orderBy('payment_date','desc')
                     ->paginate( $showSize );
@@ -156,13 +157,13 @@ class PaymentController extends Controller
 
         }
    }
-     public function get_bill_at_platform($id,Request $request){
+     public function get_bill_at_platform($id, $room_id, Request $request){
 
-        $bills_status_first =  Bill::where('student_id', $id)->where('previous_bill_id',null)->orderBy('bills_date','desc')->value('bills_status');
+        $bills_status_first =  Bill::where('student_id', $id)->where('previous_bill_id',null)->where('room_id',$room_id)->orderBy('bills_date','desc')->value('bills_status');
         if($bills_status_first=='Unready'){
-            $data = Bill::where('student_id', $id)->where('previous_bill_id',null)->orderBy('bills_date','desc')->first();
+            $data = Bill::where('student_id', $id)->where('previous_bill_id',null)->where('room_id',$room_id)->orderBy('bills_date','desc')->first();
         }else {
-            $data =  Bill::where('student_id', $id)->where('bills_status','Ready')->orderBy('bills_date','desc')->first();
+            $data =  Bill::where('student_id', $id)->where('bills_status','Ready')->where('room_id',$room_id)->orderBy('bills_date','desc')->first();
         }
         return  $data;
 

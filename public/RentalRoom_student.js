@@ -83,8 +83,15 @@ __webpack_require__.r(__webpack_exports__);
       }).then(function (response) {
         _this.lists = response.data.data;
         _this.isReady = true;
+
+        _this.scrollToTop();
+
         console.warn(_this.lists.data);
       });
+    },
+    scrollToTop: function scrollToTop() {
+      //this.$refs.section.scrollTo(0, 0);
+      this.$root.$emit("scroll", this.user_id);
     }
   },
   watch: {
@@ -92,6 +99,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   mounted: function mounted() {
     this.getList();
+    this.scrollToTop();
   }
 });
 

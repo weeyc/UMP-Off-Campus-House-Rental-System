@@ -7,18 +7,27 @@
             <div class="mx-5 p-5">
             <div class="flex justify-between item-center">
             <h1 class="text-2xl font-black text-gray-800"> {{ lists.listing_name }}</h1>
-            <div class="text-xl bg-yellow-500 px-5 py-1 rounded-md shadow-sm font-bold text-white capitalize">{{lists.room_status}}</div>
+            <div v-if="lists.room_status=='listing'" class="text-xl bg-yellow-500 px-5 py-1 rounded-md shadow-sm font-bold text-white capitalize">{{lists.room_status}}</div>
+            <div v-else class="text-xl bg-red-600 px-5 py-1 rounded-md shadow-sm font-bold text-white capitalize">{{lists.room_status}}</div>
             </div>
             <div class="flex items-center">
-                <svg class="h-6 w-6 text-yellow-500"  width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">  <path stroke="none" d="M0 0h24v24H0z"/>  <line x1="18" y1="6" x2="18" y2="6.01" />  <path d="M18 13l-3.5 -5a4 4 0 1 1 7 0l-3.5 5" />  <polyline points="10.5 4.75 9 4 3 7 3 20 9 17 15 20 21 17 21 15" />  <line x1="9" y1="4" x2="9" y2="17" />  <line x1="15" y1="15" x2="15" y2="20" /></svg>
+               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pin-map-fill" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M3.1 11.2a.5.5 0 0 1 .4-.2H6a.5.5 0 0 1 0 1H3.75L1.5 15h13l-2.25-3H10a.5.5 0 0 1 0-1h2.5a.5.5 0 0 1 .4.2l3 4a.5.5 0 0 1-.4.8H.5a.5.5 0 0 1-.4-.8l3-4z"/>
+                    <path fill-rule="evenodd" d="M4 4a4 4 0 1 1 4.5 3.969V13.5a.5.5 0 0 1-1 0V7.97A4 4 0 0 1 4 3.999z"/>
+                    </svg>
                 <span class="ml-2 font-bold ">{{ lists.property.name }}</span>
             </div>
             <div class="flex items-center">
-                <svg class="h-6 w-6 text-yellow-700"  width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">  <path stroke="none" d="M0 0h24v24H0z"/>  <line x1="3" y1="21" x2="21" y2="21" />  <line x1="3" y1="10" x2="21" y2="10" />  <polyline points="5 6 12 3 19 6" />  <line x1="4" y1="10" x2="4" y2="21" />  <line x1="20" y1="10" x2="20" y2="21" />  <line x1="8" y1="14" x2="8" y2="17" />  <line x1="12" y1="14" x2="12" y2="17" />  <line x1="16" y1="14" x2="16" y2="17" /></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-mortarboard-fill" viewBox="0 0 16 16">
+                    <path d="M8.211 2.047a.5.5 0 0 0-.422 0l-7.5 3.5a.5.5 0 0 0 .025.917l7.5 3a.5.5 0 0 0 .372 0L14 7.14V13a1 1 0 0 0-1 1v2h3v-2a1 1 0 0 0-1-1V6.739l.686-.275a.5.5 0 0 0 .025-.917l-7.5-3.5Z"/>
+                    <path d="M4.176 9.032a.5.5 0 0 0-.656.327l-.5 1.7a.5.5 0 0 0 .294.605l4.5 1.8a.5.5 0 0 0 .372 0l4.5-1.8a.5.5 0 0 0 .294-.605l-.5-1.7a.5.5 0 0 0-.656-.327L8 10.466 4.176 9.032Z"/>
+                    </svg>
                 <span class="ml-2 font-bold">   {{ lists.campus }}</span>
             </div>
             <div class="flex items-center">
-                <svg class="h-6 w-6 text-yellow-700"  width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">  <path stroke="none" d="M0 0h24v24H0z"/>  <path d="M3 7v11m0 -4h18m0 4v-8a2 2 0 0 0 -2 -2h-8v6" />  <circle cx="7" cy="10" r="1" /></svg>
+               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-door-open-fill" viewBox="0 0 16 16">
+                <path d="M1.5 15a.5.5 0 0 0 0 1h13a.5.5 0 0 0 0-1H13V2.5A1.5 1.5 0 0 0 11.5 1H11V.5a.5.5 0 0 0-.57-.495l-7 1A.5.5 0 0 0 3 1.5V15H1.5zM11 2h.5a.5.5 0 0 1 .5.5V15h-1V2zm-2.5 8c-.276 0-.5-.448-.5-1s.224-1 .5-1 .5.448.5 1-.224 1-.5 1z"/>
+                </svg>
                 <span class="ml-2 font-bold">   {{ lists.room_type }} | Preferable {{ lists.property.gender_preferences }}</span>
             </div>
 
@@ -70,45 +79,45 @@
             <!-- Beginning of the Description -->
             <div  class="bg-white lg:order-1 lg:row-span-1 lg:col-span-2 rounded-lg shadow-xl mb-5 lg:mb-0">
             <div class="mx-5 my-5 ">
-                    <div class="flex mt-2 item-center">
-                        <span class="text-2xl font-bold">RM{{ lists.monthly_rent }}/Months</span>
+                    <div class="flex mt-2 item-center text-yellow-800">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" class="bi bi-currency-dollar mx-1" viewBox="0 0 16 16">
+                        <path d="M4 10.781c.148 1.667 1.513 2.85 3.591 3.003V15h1.043v-1.216c2.27-.179 3.678-1.438 3.678-3.3 0-1.59-.947-2.51-2.956-3.028l-.722-.187V3.467c1.122.11 1.879.714 2.07 1.616h1.47c-.166-1.6-1.54-2.748-3.54-2.875V1H7.591v1.233c-1.939.23-3.27 1.472-3.27 3.156 0 1.454.966 2.483 2.661 2.917l.61.162v4.031c-1.149-.17-1.94-.8-2.131-1.718H4zm3.391-3.836c-1.043-.263-1.6-.825-1.6-1.616 0-.944.704-1.641 1.8-1.828v3.495l-.2-.05zm1.591 1.872c1.287.323 1.852.859 1.852 1.769 0 1.097-.826 1.828-2.2 1.939V8.73l.348.086z"/>
+                        </svg>
+                        <span class="text-2xl font-bold ">RM{{ lists.monthly_rent }}/Months</span>
                     </div>
                     <div class="flex mt-2 item-center">
-                        <p class="mt-2 text-base text-blue-500">{{ lists.property.address }}</p>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-geo-alt-fill mx-1" viewBox="0 0 16 16">
+                        <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"/>
+                        </svg>
+                        <p class=" text-base text-blue-500">{{ lists.property.address }}</p>
                     </div>
                     <hr class="border-gray-500   mt-5">
                     <div class="flex mt-2 item-center">
-                        <span class="text-xl font-bold">Description</span>
+                        <span class="text-xl font-bold">Descriptions</span>
                     </div>
                     <div class="flex mt-2 item-center">
                         <p class="mt-2 whitespace-pre-wrap text-base text-gray-600 dark:text-gray-400">{{ lists.property.des }}</p>
                     </div>
                         <div class="flex mt-2 item-center">
                         <p class="mt-2 whitespace-pre-wrap text-base text-gray-600 dark:text-gray-400">{{ lists.room_description }}</p>
+
                     </div>
                     <hr class="border-gray-500   mt-5 ">
                     <div class="flex mt-2 item-center">
                         <span class="text-xl font-bold">Furnishing</span>
                     </div>
                     <div class="flex mt-2 item-center">
-                        <p class="mt-2 text-base text-gray-600 dark:text-gray-400">{{ lists.property.furnishing }}| {{ lists.room_furnishing }}</p>
+                        <p class="mt-2 text-base text-gray-600 dark:text-gray-400">{{ lists.property.furnishing }} | {{ lists.room_furnishing }}</p>
                     </div>
-                    <div class="flex mt-2 item-center">
-                        <p class="mt-2 text-base text-gray-600 dark:text-gray-400">Toilet: {{ lists.property.toilet_num }}</p>
+                     <div class="flex mt-2 item-center">
+                        <p class="mt-2 text-base text-gray-600 dark:text-gray-400">Number of toilets: {{ lists.property.toilet_num }}</p>
                     </div>
-                    <div class="flex mt-2 item-center">
-                        <p class="mt-2 text-sm text-gray-600 dark:text-gray-400">{{ lists.number_of_tenant }}</p>
-                    </div>
-                    <div class="flex mt-2 item-center">
-                        <p class="mt-2 text-sm text-gray-600 dark:text-gray-400">{{ lists.penalty_fees }}</p>
-                    </div>
-
                     <hr class="border-gray-500 mt-5">
                     <div class="flex mt-2 item-center">
-                        <p class="mt-2 text-sm text-gray-600 ">Posted at: {{ moment(lists.created_at).format("DD-MM-YYYY HH:mm:ss") }}</p>
+                        <div class="mt-2 text-sm text-gray-600 font-medium">Posted at: <span class="font-normal">{{  moment(lists.created_at ).format("DD-MM-YYYY, h:mm a") }}</span></div>
                     </div>
                     <div class="flex item-center">
-                        <p class="mt-2 text-sm text-gray-600 ">Last updated at: {{ moment(lists.updated_at).format("DD-MM-YYYY HH:mm:ss") }}</p>
+                        <div class="mt-2 text-sm text-gray-600 font-medium">Last updated at: <span class="font-normal"> {{ moment(lists.updated_at).format("DD-MM-YYYY, h:mm a") }}</span></div>
                     </div>
 
 
@@ -121,7 +130,7 @@
             <div class="bg-white lg:order-1 lg:row-span-2 lg:col-span-1 rounded-lg shadow-xl pb-4 mb-5 lg:mb-0 ">
             <div class="mx-5 my-5">
                     <div class="w-full flex flex-row justify-center items-center">
-                        <div class="card w-96 mx-autorounded-md shadow-xl hover:shadow rounded-sm bg-gradient-to-br from-cool-gray-900 to-blue-gray-600">
+                        <div class="card w-96 mx-auto rounded-md shadow-xl hover:shadow bg-gradient-to-br from-cool-gray-900 to-blue-gray-600">
                             <img class=" h-28 w-28 object-cover mx-auto rounded-full -mt-14 border-2 border-blue-500  " :src="'/images/Profile/'+lists.property.land.landlord_pic" alt="Avatar">
 
                             <div  class="text-center mt-2 text-3xl cursor-pointer text-yellow-500 font-medium hover:underline hover:text-blue-500">
@@ -143,7 +152,7 @@
             <!-- Rental Details -->
             <div class="relative mx-5 my-5">
                     <div class="w-full flex flex-row justify-center items-center">
-                        <div class="mb-40 card w-96 mx-autorounded-md shadow-xl hover:shadow rounded-sm" style="background-color: #2b2a33;">
+                        <div class="mb-40 card w-96 mx-auto rounded-md shadow-xl hover:shadow" style="background-color: #2b2a33;">
                             <div class="mt-2 text-center text-xl text-yellow-500 font-bold">
                                 Room Rental Details
                             </div>
@@ -187,7 +196,7 @@
                            <div v-if="role==1">
                             <div v-if="lists.room_status!='rented'" class="flex mx-5 my-5">
                                 <div class="w-full text-center ">
-                                    <button @click="toggleModal = !toggleModal" class="p-3 font-bold rounded-full text-green-900 bg-green-100 hover:bg-green-500 hover:text-white transition duration-150 ease-in-out shadow-xl w-full">Book Room Now</button>
+                                    <button @click="toggleModal = !toggleModal" class="p-3 font-bold rounded-full text-white bg-green-500 hover:bg-green-600 hover:text-white transition duration-150 ease-in-out shadow-xl w-full">Book Room Now</button>
                                 </div>
                             </div>
                             <div v-else class="flex mx-5 my-5">
@@ -247,7 +256,7 @@
 
                         </div>
                         <p class="text-right text-base font-bold text-yellow-700">RM{{similar.monthly_rent}}/Months</p>
-                        <h2 class=" font-bold mb-5 mt-2 text-lg text-center"> {{similar.listing_name}}</h2>
+                        <h2 class=" font-bold mb-5 mt-2 text-lg text-center text-blue-700"> {{similar.listing_name}}</h2>
 
                         <div class="text-base text-left text-gray-600 mb-5">
                             <p class="mt-2 px-3">{{ similar.property.name }} | {{ similar.campus }}</p>
@@ -332,7 +341,7 @@ export default {
             isReady: false,
 
 
-            top_btn_style: 'p-3 rounded text-yellow-900 bg-yellow-100 hover:bg-yellow-500 hover:text-white transition duration-150 ease-in-out shadow-xl',
+            top_btn_style: 'p-3 rounded text-white bg-yellow-500 hover:bg-yellow-600 hover:text-white transition duration-150 ease-in-out shadow-xl',
         }
     },
      methods:{
@@ -347,11 +356,12 @@ export default {
                 this.propertyPhoto = response.data.data[0].property.photo;
                 this.roomPhoto = response.data.data[0].photo_room;
                 this.isReady=true;
+                this.scrollToTop();
                 console.warn(this.lists.data);
             })
         },
         scrollToTop() {
-         this.$refs.section.scrollTo(0, 0);
+         this.$root.$emit("scroll",this.user_id);
         },
         toastBook(){
              this.$toaster.info('This Room is Rented Out')

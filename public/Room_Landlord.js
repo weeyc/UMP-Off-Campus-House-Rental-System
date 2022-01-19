@@ -483,7 +483,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 
 
 
@@ -557,8 +556,14 @@ __webpack_require__.r(__webpack_exports__);
         _this2.roomPhoto = response.data.data[0].photo_room;
         _this2.landlord_id = response.data.data[0].landlord_id;
         _this2.isReady = true;
+
+        _this2.scrollToTop();
+
         console.warn(_this2.rooms.data);
       });
+    },
+    scrollToTop: function scrollToTop() {
+      this.$root.$emit("scroll", this.user_id);
     },
     deleteRoom: function deleteRoom(id) {
       var _this3 = this;
@@ -624,6 +629,7 @@ __webpack_require__.r(__webpack_exports__);
   mounted: function mounted() {
     this.getRoom();
     this.getRole();
+    this.scrollToTop();
   }
 });
 
@@ -1861,26 +1867,20 @@ var render = function () {
                       _c(
                         "svg",
                         {
-                          staticClass: "h-5 w-5 mr-2 fill-current",
-                          staticStyle: {
-                            "enable-background": "new -49 141 512 512",
-                          },
+                          staticClass: "bi bi-arrow-left mx-1",
                           attrs: {
-                            version: "1.1",
-                            id: "Layer_1",
                             xmlns: "http://www.w3.org/2000/svg",
-                            "xmlns:xlink": "http://www.w3.org/1999/xlink",
-                            x: "0px",
-                            y: "0px",
-                            viewBox: "-49 141 512 512",
-                            "xml:space": "preserve",
+                            width: "16",
+                            height: "16",
+                            fill: "currentColor",
+                            viewBox: "0 0 16 16",
                           },
                         },
                         [
                           _c("path", {
                             attrs: {
-                              id: "XMLID_10_",
-                              d: "M438,372H36.355l72.822-72.822c9.763-9.763,9.763-25.592,0-35.355c-9.763-9.764-25.593-9.762-35.355,0 l-115.5,115.5C-46.366,384.01-49,390.369-49,397s2.634,12.989,7.322,17.678l115.5,115.5c9.763,9.762,25.593,9.763,35.355,0 c9.763-9.763,9.763-25.592,0-35.355L36.355,422H438c13.808,0,25-11.193,25-25S451.808,372,438,372z",
+                              "fill-rule": "evenodd",
+                              d: "M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z",
                             },
                           }),
                         ]
@@ -2005,18 +2005,14 @@ var render = function () {
                             staticClass:
                               "text-2xl font-bold text-gray-800 dark:text-white",
                           },
-                          [
-                            _vm._v(
-                              "Listing Room Name: " + _vm._s(list.listing_name)
-                            ),
-                          ]
+                          [_vm._v("Listing Name: " + _vm._s(list.listing_name))]
                         ),
                         _vm._v(" "),
                         _c(
-                          "button",
+                          "div",
                           {
                             staticClass:
-                              "px-2 py-1 text-xs font-bold text-white uppercase transition-colors duration-200\n                             transform bg-gray-800 rounded hover:bg-gray-700",
+                              "px-2 py-1 text-base font-bold text-white capitalize transition-colors duration-200\n                             transform bg-yellow-800 rounded",
                           },
                           [
                             _vm._v(
@@ -2075,52 +2071,43 @@ var render = function () {
                     ),
                     _vm._v(" "),
                     _c("div", { staticClass: "flex mt-2 item-center" }, [
-                      _c("p", { staticClass: "mt-2 text-sm text-gray-600 " }, [
+                      _c("p", { staticClass: "text-base text-gray-600 " }, [
                         _c("span", { staticClass: "font-black" }, [
-                          _vm._v(" Room Type: "),
+                          _vm._v("Name: "),
                         ]),
                         _vm._v("  " + _vm._s(list.room_name)),
                       ]),
                     ]),
                     _vm._v(" "),
                     _c("div", { staticClass: "flex mt-2 item-center" }, [
-                      _c("p", { staticClass: "mt-2 text-sm text-gray-600 " }, [
+                      _c("p", { staticClass: "text-base text-gray-600 " }, [
                         _c("span", { staticClass: "font-black" }, [
-                          _vm._v(" Room Type: "),
+                          _vm._v("Type: "),
                         ]),
                         _vm._v("  " + _vm._s(list.room_type)),
                       ]),
                     ]),
                     _vm._v(" "),
                     _c("div", { staticClass: "flex mt-2 item-center" }, [
-                      _c("p", { staticClass: "mt-2 text-sm text-gray-600 " }, [
+                      _c("p", { staticClass: " text-base text-gray-600" }, [
                         _c("span", { staticClass: "font-black" }, [
-                          _vm._v(" Room Description:"),
-                        ]),
-                        _vm._v(" " + _vm._s(list.room_description)),
-                      ]),
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "flex item-center" }, [
-                      _c("p", { staticClass: "mt-2 text-sm text-gray-600" }, [
-                        _c("span", { staticClass: "font-black" }, [
-                          _vm._v("Room Furnishing: "),
+                          _vm._v("Furnishing: "),
                         ]),
                         _vm._v(_vm._s(list.room_furnishing)),
                       ]),
                     ]),
                     _vm._v(" "),
-                    _c("div", { staticClass: "flex item-center" }, [
-                      _c("p", { staticClass: "mt-2 text-sm text-gray-600" }, [
+                    _c("div", { staticClass: "flex mt-2 item-center" }, [
+                      _c("p", { staticClass: " text-base text-gray-600" }, [
                         _c("span", { staticClass: "font-black" }, [
-                          _vm._v(" Room Max. Tenant: "),
+                          _vm._v("Max. Tenants: "),
                         ]),
                         _vm._v(_vm._s(list.number_of_tenant)),
                       ]),
                     ]),
                     _vm._v(" "),
-                    _c("div", { staticClass: "flex item-center" }, [
-                      _c("p", { staticClass: "mt-2 text-sm text-gray-600" }, [
+                    _c("div", { staticClass: "flex mt-2 item-center" }, [
+                      _c("p", { staticClass: " text-base text-gray-600" }, [
                         _c("span", { staticClass: "font-black" }, [
                           _vm._v(" Room Monthly Rent: RM "),
                         ]),
@@ -2128,8 +2115,24 @@ var render = function () {
                       ]),
                     ]),
                     _vm._v(" "),
+                    _c("div", { staticClass: "flex mt-2 item-center" }, [
+                      _c(
+                        "p",
+                        {
+                          staticClass:
+                            "text-base text-gray-600 whitespace-pre-wrap",
+                        },
+                        [
+                          _c("span", { staticClass: "font-black" }, [
+                            _vm._v("Descriptions:"),
+                          ]),
+                          _vm._v(" " + _vm._s(list.room_description)),
+                        ]
+                      ),
+                    ]),
+                    _vm._v(" "),
                     _c("div", { staticClass: "flex item-center" }, [
-                      _c("p", { staticClass: "mt-2 text-sm text-gray-600" }, [
+                      _c("p", { staticClass: "mt-3 text-base text-blue-600" }, [
                         _c("span", { staticClass: "font-black" }, [
                           _vm._v(" Booking Key: "),
                         ]),

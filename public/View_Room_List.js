@@ -829,6 +829,15 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -865,7 +874,7 @@ __webpack_require__.r(__webpack_exports__);
       roomPhoto: [],
       room_id: this.$route.params.id,
       isReady: false,
-      top_btn_style: 'p-3 rounded text-yellow-900 bg-yellow-100 hover:bg-yellow-500 hover:text-white transition duration-150 ease-in-out shadow-xl'
+      top_btn_style: 'p-3 rounded text-white bg-yellow-500 hover:bg-yellow-600 hover:text-white transition duration-150 ease-in-out shadow-xl'
     };
   },
   methods: {
@@ -882,11 +891,14 @@ __webpack_require__.r(__webpack_exports__);
         _this.propertyPhoto = response.data.data[0].property.photo;
         _this.roomPhoto = response.data.data[0].photo_room;
         _this.isReady = true;
+
+        _this.scrollToTop();
+
         console.warn(_this.lists.data);
       });
     },
     scrollToTop: function scrollToTop() {
-      this.$refs.section.scrollTo(0, 0);
+      this.$root.$emit("scroll", this.user_id);
     },
     toastBook: function toastBook() {
       this.$toaster.info('This Room is Rented Out');
@@ -1886,14 +1898,23 @@ var render = function () {
                           [_vm._v(" " + _vm._s(_vm.lists.listing_name))]
                         ),
                         _vm._v(" "),
-                        _c(
-                          "div",
-                          {
-                            staticClass:
-                              "text-xl bg-yellow-500 px-5 py-1 rounded-md shadow-sm font-bold text-white capitalize",
-                          },
-                          [_vm._v(_vm._s(_vm.lists.room_status))]
-                        ),
+                        _vm.lists.room_status == "listing"
+                          ? _c(
+                              "div",
+                              {
+                                staticClass:
+                                  "text-xl bg-yellow-500 px-5 py-1 rounded-md shadow-sm font-bold text-white capitalize",
+                              },
+                              [_vm._v(_vm._s(_vm.lists.room_status))]
+                            )
+                          : _c(
+                              "div",
+                              {
+                                staticClass:
+                                  "text-xl bg-red-600 px-5 py-1 rounded-md shadow-sm font-bold text-white capitalize",
+                              },
+                              [_vm._v(_vm._s(_vm.lists.room_status))]
+                            ),
                       ]
                     ),
                     _vm._v(" "),
@@ -1901,44 +1922,28 @@ var render = function () {
                       _c(
                         "svg",
                         {
-                          staticClass: "h-6 w-6 text-yellow-500",
+                          staticClass: "bi bi-pin-map-fill",
                           attrs: {
-                            width: "24",
-                            height: "24",
-                            viewBox: "0 0 24 24",
-                            "stroke-width": "2",
-                            stroke: "currentColor",
-                            fill: "none",
-                            "stroke-linecap": "round",
-                            "stroke-linejoin": "round",
+                            xmlns: "http://www.w3.org/2000/svg",
+                            width: "16",
+                            height: "16",
+                            fill: "currentColor",
+                            viewBox: "0 0 16 16",
                           },
                         },
                         [
                           _c("path", {
-                            attrs: { stroke: "none", d: "M0 0h24v24H0z" },
-                          }),
-                          _vm._v(" "),
-                          _c("line", {
-                            attrs: { x1: "18", y1: "6", x2: "18", y2: "6.01" },
-                          }),
-                          _vm._v(" "),
-                          _c("path", {
-                            attrs: { d: "M18 13l-3.5 -5a4 4 0 1 1 7 0l-3.5 5" },
-                          }),
-                          _vm._v(" "),
-                          _c("polyline", {
                             attrs: {
-                              points:
-                                "10.5 4.75 9 4 3 7 3 20 9 17 15 20 21 17 21 15",
+                              "fill-rule": "evenodd",
+                              d: "M3.1 11.2a.5.5 0 0 1 .4-.2H6a.5.5 0 0 1 0 1H3.75L1.5 15h13l-2.25-3H10a.5.5 0 0 1 0-1h2.5a.5.5 0 0 1 .4.2l3 4a.5.5 0 0 1-.4.8H.5a.5.5 0 0 1-.4-.8l3-4z",
                             },
                           }),
                           _vm._v(" "),
-                          _c("line", {
-                            attrs: { x1: "9", y1: "4", x2: "9", y2: "17" },
-                          }),
-                          _vm._v(" "),
-                          _c("line", {
-                            attrs: { x1: "15", y1: "15", x2: "15", y2: "20" },
+                          _c("path", {
+                            attrs: {
+                              "fill-rule": "evenodd",
+                              d: "M4 4a4 4 0 1 1 4.5 3.969V13.5a.5.5 0 0 1-1 0V7.97A4 4 0 0 1 4 3.999z",
+                            },
                           }),
                         ]
                       ),
@@ -1952,53 +1957,26 @@ var render = function () {
                       _c(
                         "svg",
                         {
-                          staticClass: "h-6 w-6 text-yellow-700",
+                          staticClass: "bi bi-mortarboard-fill",
                           attrs: {
-                            width: "24",
-                            height: "24",
-                            viewBox: "0 0 24 24",
-                            "stroke-width": "2",
-                            stroke: "currentColor",
-                            fill: "none",
-                            "stroke-linecap": "round",
-                            "stroke-linejoin": "round",
+                            xmlns: "http://www.w3.org/2000/svg",
+                            width: "16",
+                            height: "16",
+                            fill: "currentColor",
+                            viewBox: "0 0 16 16",
                           },
                         },
                         [
                           _c("path", {
-                            attrs: { stroke: "none", d: "M0 0h24v24H0z" },
+                            attrs: {
+                              d: "M8.211 2.047a.5.5 0 0 0-.422 0l-7.5 3.5a.5.5 0 0 0 .025.917l7.5 3a.5.5 0 0 0 .372 0L14 7.14V13a1 1 0 0 0-1 1v2h3v-2a1 1 0 0 0-1-1V6.739l.686-.275a.5.5 0 0 0 .025-.917l-7.5-3.5Z",
+                            },
                           }),
                           _vm._v(" "),
-                          _c("line", {
-                            attrs: { x1: "3", y1: "21", x2: "21", y2: "21" },
-                          }),
-                          _vm._v(" "),
-                          _c("line", {
-                            attrs: { x1: "3", y1: "10", x2: "21", y2: "10" },
-                          }),
-                          _vm._v(" "),
-                          _c("polyline", {
-                            attrs: { points: "5 6 12 3 19 6" },
-                          }),
-                          _vm._v(" "),
-                          _c("line", {
-                            attrs: { x1: "4", y1: "10", x2: "4", y2: "21" },
-                          }),
-                          _vm._v(" "),
-                          _c("line", {
-                            attrs: { x1: "20", y1: "10", x2: "20", y2: "21" },
-                          }),
-                          _vm._v(" "),
-                          _c("line", {
-                            attrs: { x1: "8", y1: "14", x2: "8", y2: "17" },
-                          }),
-                          _vm._v(" "),
-                          _c("line", {
-                            attrs: { x1: "12", y1: "14", x2: "12", y2: "17" },
-                          }),
-                          _vm._v(" "),
-                          _c("line", {
-                            attrs: { x1: "16", y1: "14", x2: "16", y2: "17" },
+                          _c("path", {
+                            attrs: {
+                              d: "M4.176 9.032a.5.5 0 0 0-.656.327l-.5 1.7a.5.5 0 0 0 .294.605l4.5 1.8a.5.5 0 0 0 .372 0l4.5-1.8a.5.5 0 0 0 .294-.605l-.5-1.7a.5.5 0 0 0-.656-.327L8 10.466 4.176 9.032Z",
+                            },
                           }),
                         ]
                       ),
@@ -2012,31 +1990,20 @@ var render = function () {
                       _c(
                         "svg",
                         {
-                          staticClass: "h-6 w-6 text-yellow-700",
+                          staticClass: "bi bi-door-open-fill",
                           attrs: {
-                            width: "24",
-                            height: "24",
-                            viewBox: "0 0 24 24",
-                            "stroke-width": "2",
-                            stroke: "currentColor",
-                            fill: "none",
-                            "stroke-linecap": "round",
-                            "stroke-linejoin": "round",
+                            xmlns: "http://www.w3.org/2000/svg",
+                            width: "16",
+                            height: "16",
+                            fill: "currentColor",
+                            viewBox: "0 0 16 16",
                           },
                         },
                         [
                           _c("path", {
-                            attrs: { stroke: "none", d: "M0 0h24v24H0z" },
-                          }),
-                          _vm._v(" "),
-                          _c("path", {
                             attrs: {
-                              d: "M3 7v11m0 -4h18m0 4v-8a2 2 0 0 0 -2 -2h-8v6",
+                              d: "M1.5 15a.5.5 0 0 0 0 1h13a.5.5 0 0 0 0-1H13V2.5A1.5 1.5 0 0 0 11.5 1H11V.5a.5.5 0 0 0-.57-.495l-7 1A.5.5 0 0 0 3 1.5V15H1.5zM11 2h.5a.5.5 0 0 1 .5.5V15h-1V2zm-2.5 8c-.276 0-.5-.448-.5-1s.224-1 .5-1 .5.448.5 1-.224 1-.5 1z",
                             },
-                          }),
-                          _vm._v(" "),
-                          _c("circle", {
-                            attrs: { cx: "7", cy: "10", r: "1" },
                           }),
                         ]
                       ),
@@ -2259,11 +2226,35 @@ var render = function () {
                           _c("div", { staticClass: "mx-5 my-5 " }, [
                             _c(
                               "div",
-                              { staticClass: "flex mt-2 item-center" },
+                              {
+                                staticClass:
+                                  "flex mt-2 item-center text-yellow-800",
+                              },
                               [
                                 _c(
+                                  "svg",
+                                  {
+                                    staticClass: "bi bi-currency-dollar mx-1",
+                                    attrs: {
+                                      xmlns: "http://www.w3.org/2000/svg",
+                                      width: "28",
+                                      height: "28",
+                                      fill: "currentColor",
+                                      viewBox: "0 0 16 16",
+                                    },
+                                  },
+                                  [
+                                    _c("path", {
+                                      attrs: {
+                                        d: "M4 10.781c.148 1.667 1.513 2.85 3.591 3.003V15h1.043v-1.216c2.27-.179 3.678-1.438 3.678-3.3 0-1.59-.947-2.51-2.956-3.028l-.722-.187V3.467c1.122.11 1.879.714 2.07 1.616h1.47c-.166-1.6-1.54-2.748-3.54-2.875V1H7.591v1.233c-1.939.23-3.27 1.472-3.27 3.156 0 1.454.966 2.483 2.661 2.917l.61.162v4.031c-1.149-.17-1.94-.8-2.131-1.718H4zm3.391-3.836c-1.043-.263-1.6-.825-1.6-1.616 0-.944.704-1.641 1.8-1.828v3.495l-.2-.05zm1.591 1.872c1.287.323 1.852.859 1.852 1.769 0 1.097-.826 1.828-2.2 1.939V8.73l.348.086z",
+                                      },
+                                    }),
+                                  ]
+                                ),
+                                _vm._v(" "),
+                                _c(
                                   "span",
-                                  { staticClass: "text-2xl font-bold" },
+                                  { staticClass: "text-2xl font-bold " },
                                   [
                                     _vm._v(
                                       "RM" +
@@ -2280,10 +2271,29 @@ var render = function () {
                               { staticClass: "flex mt-2 item-center" },
                               [
                                 _c(
-                                  "p",
+                                  "svg",
                                   {
-                                    staticClass: "mt-2 text-base text-blue-500",
+                                    staticClass: "bi bi-geo-alt-fill mx-1",
+                                    attrs: {
+                                      xmlns: "http://www.w3.org/2000/svg",
+                                      width: "20",
+                                      height: "20",
+                                      fill: "currentColor",
+                                      viewBox: "0 0 16 16",
+                                    },
                                   },
+                                  [
+                                    _c("path", {
+                                      attrs: {
+                                        d: "M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z",
+                                      },
+                                    }),
+                                  ]
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "p",
+                                  { staticClass: " text-base text-blue-500" },
                                   [_vm._v(_vm._s(_vm.lists.property.address))]
                                 ),
                               ]
@@ -2342,7 +2352,7 @@ var render = function () {
                                   [
                                     _vm._v(
                                       _vm._s(_vm.lists.property.furnishing) +
-                                        "| " +
+                                        " | " +
                                         _vm._s(_vm.lists.room_furnishing)
                                     ),
                                   ]
@@ -2362,40 +2372,10 @@ var render = function () {
                                   },
                                   [
                                     _vm._v(
-                                      "Toilet: " +
+                                      "Number of toilets: " +
                                         _vm._s(_vm.lists.property.toilet_num)
                                     ),
                                   ]
-                                ),
-                              ]
-                            ),
-                            _vm._v(" "),
-                            _c(
-                              "div",
-                              { staticClass: "flex mt-2 item-center" },
-                              [
-                                _c(
-                                  "p",
-                                  {
-                                    staticClass:
-                                      "mt-2 text-sm text-gray-600 dark:text-gray-400",
-                                  },
-                                  [_vm._v(_vm._s(_vm.lists.number_of_tenant))]
-                                ),
-                              ]
-                            ),
-                            _vm._v(" "),
-                            _c(
-                              "div",
-                              { staticClass: "flex mt-2 item-center" },
-                              [
-                                _c(
-                                  "p",
-                                  {
-                                    staticClass:
-                                      "mt-2 text-sm text-gray-600 dark:text-gray-400",
-                                  },
-                                  [_vm._v(_vm._s(_vm.lists.penalty_fees))]
                                 ),
                               ]
                             ),
@@ -2407,19 +2387,22 @@ var render = function () {
                               { staticClass: "flex mt-2 item-center" },
                               [
                                 _c(
-                                  "p",
+                                  "div",
                                   {
-                                    staticClass: "mt-2 text-sm text-gray-600 ",
+                                    staticClass:
+                                      "mt-2 text-sm text-gray-600 font-medium",
                                   },
                                   [
-                                    _vm._v(
-                                      "Posted at: " +
+                                    _vm._v("Posted at: "),
+                                    _c("span", { staticClass: "font-normal" }, [
+                                      _vm._v(
                                         _vm._s(
                                           _vm
                                             .moment(_vm.lists.created_at)
-                                            .format("DD-MM-YYYY HH:mm:ss")
+                                            .format("DD-MM-YYYY, h:mm a")
                                         )
-                                    ),
+                                      ),
+                                    ]),
                                   ]
                                 ),
                               ]
@@ -2427,17 +2410,23 @@ var render = function () {
                             _vm._v(" "),
                             _c("div", { staticClass: "flex item-center" }, [
                               _c(
-                                "p",
-                                { staticClass: "mt-2 text-sm text-gray-600 " },
+                                "div",
+                                {
+                                  staticClass:
+                                    "mt-2 text-sm text-gray-600 font-medium",
+                                },
                                 [
-                                  _vm._v(
-                                    "Last updated at: " +
-                                      _vm._s(
-                                        _vm
-                                          .moment(_vm.lists.updated_at)
-                                          .format("DD-MM-YYYY HH:mm:ss")
-                                      )
-                                  ),
+                                  _vm._v("Last updated at: "),
+                                  _c("span", { staticClass: "font-normal" }, [
+                                    _vm._v(
+                                      " " +
+                                        _vm._s(
+                                          _vm
+                                            .moment(_vm.lists.updated_at)
+                                            .format("DD-MM-YYYY, h:mm a")
+                                        )
+                                    ),
+                                  ]),
                                 ]
                               ),
                             ]),
@@ -2464,7 +2453,7 @@ var render = function () {
                                   "div",
                                   {
                                     staticClass:
-                                      "card w-96 mx-autorounded-md shadow-xl hover:shadow rounded-sm bg-gradient-to-br from-cool-gray-900 to-blue-gray-600",
+                                      "card w-96 mx-auto rounded-md shadow-xl hover:shadow bg-gradient-to-br from-cool-gray-900 to-blue-gray-600",
                                   },
                                   [
                                     _c("img", {
@@ -2606,7 +2595,7 @@ var render = function () {
                                   "div",
                                   {
                                     staticClass:
-                                      "mb-40 card w-96 mx-autorounded-md shadow-xl hover:shadow rounded-sm",
+                                      "mb-40 card w-96 mx-auto rounded-md shadow-xl hover:shadow",
                                     staticStyle: {
                                       "background-color": "#2b2a33",
                                     },
@@ -2747,7 +2736,7 @@ var render = function () {
                                                         "button",
                                                         {
                                                           staticClass:
-                                                            "p-3 font-bold rounded-full text-green-900 bg-green-100 hover:bg-green-500 hover:text-white transition duration-150 ease-in-out shadow-xl w-full",
+                                                            "p-3 font-bold rounded-full text-white bg-green-500 hover:bg-green-600 hover:text-white transition duration-150 ease-in-out shadow-xl w-full",
                                                           on: {
                                                             click: function (
                                                               $event
@@ -2972,7 +2961,7 @@ var render = function () {
                                           "h2",
                                           {
                                             staticClass:
-                                              " font-bold mb-5 mt-2 text-lg text-center",
+                                              " font-bold mb-5 mt-2 text-lg text-center text-blue-700",
                                           },
                                           [
                                             _vm._v(
@@ -3108,7 +3097,9 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "flex mt-2 item-center" }, [
-      _c("span", { staticClass: "text-xl font-bold" }, [_vm._v("Description")]),
+      _c("span", { staticClass: "text-xl font-bold" }, [
+        _vm._v("Descriptions"),
+      ]),
     ])
   },
   function () {

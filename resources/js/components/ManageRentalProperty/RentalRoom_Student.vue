@@ -75,9 +75,14 @@ export default {
                 }).then((response)=>{
                 this.lists=response.data.data;
                 this.isReady=true;
+                this.scrollToTop();
                 console.warn(this.lists.data);
             })
 
+        },
+        scrollToTop() {
+            //this.$refs.section.scrollTo(0, 0);
+            this.$root.$emit("scroll",this.user_id);
         },
     },
 
@@ -88,6 +93,7 @@ export default {
     },
        mounted: function(){
         this.getList();
+        this.scrollToTop();
 
     },
 

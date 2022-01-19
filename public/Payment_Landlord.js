@@ -163,6 +163,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -522,7 +525,7 @@ var render = function () {
                                           },
                                           [
                                             _vm._v(
-                                              "\n                 payment_date\n               "
+                                              "\n                 payment date\n               "
                                             ),
                                           ]
                                         ),
@@ -538,7 +541,7 @@ var render = function () {
                                       },
                                       [
                                         _vm._v(
-                                          "\n                 room_id\n               "
+                                          "\n                  Student name\n               "
                                         ),
                                       ]
                                     ),
@@ -552,7 +555,7 @@ var render = function () {
                                       },
                                       [
                                         _vm._v(
-                                          "\n                 payment_details\n               "
+                                          "\n                 Room ID\n               "
                                         ),
                                       ]
                                     ),
@@ -566,7 +569,7 @@ var render = function () {
                                       },
                                       [
                                         _vm._v(
-                                          "\n                 payment_status\n               "
+                                          "\n                 payment details\n               "
                                         ),
                                       ]
                                     ),
@@ -580,7 +583,7 @@ var render = function () {
                                       },
                                       [
                                         _vm._v(
-                                          "\n                 total_payment\n               "
+                                          "\n                 total payment\n               "
                                         ),
                                       ]
                                     ),
@@ -654,6 +657,24 @@ var render = function () {
                                               staticClass:
                                                 "text-sm text-gray-900",
                                             },
+                                            [_vm._v(_vm._s(data.student.name))]
+                                          ),
+                                        ]
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "td",
+                                        {
+                                          staticClass:
+                                            "px-6 py-4 whitespace-nowrap",
+                                        },
+                                        [
+                                          _c(
+                                            "div",
+                                            {
+                                              staticClass:
+                                                "text-sm text-gray-900",
+                                            },
                                             [_vm._v(_vm._s(data.room_id))]
                                           ),
                                         ]
@@ -675,28 +696,6 @@ var render = function () {
                                             [
                                               _vm._v(
                                                 _vm._s(data.payment_details)
-                                              ),
-                                            ]
-                                          ),
-                                        ]
-                                      ),
-                                      _vm._v(" "),
-                                      _c(
-                                        "td",
-                                        {
-                                          staticClass:
-                                            "px-6 py-4 whitespace-nowrap",
-                                        },
-                                        [
-                                          _c(
-                                            "div",
-                                            {
-                                              staticClass:
-                                                "text-sm text-gray-900",
-                                            },
-                                            [
-                                              _vm._v(
-                                                _vm._s(data.payment_status)
                                               ),
                                             ]
                                           ),

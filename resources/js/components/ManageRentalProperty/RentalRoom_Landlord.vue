@@ -17,14 +17,17 @@
                     <div class="w-2/3 p-4 md:p-4">
                         <div class="flex justify-between item-center">
                             <h1 class="text-2xl font-bold text-yellow-500"> {{ list.name }}</h1>
-                            <h1 class="text-2xl font-bold text-red-500">{{list.status}}</h1>
+                            <h1 class="text-2xl font-bold text-red-500 capitalize">{{list.status}}</h1>
                         </div>
-                        <p class="mt-2 text-sm text-white ">{{ list.address }} | {{ list.campus }}</p>
+                        <p class="mt-2 text-sm text-white ">{{ list.address }} </p>
+                          <div class="flex mt-2 item-center">
+                            <p class="mt-2 text-sm text-white ">{{ list.campus }} | {{ list.gender_preferences }}</p>
+                        </div>
                         <div class="flex mt-2 item-center">
                             <p class="mt-2 text-sm text-white ">{{ list.furnishing }} | {{ list.gender_preferences }}</p>
                         </div>
                         <div class="flex mt-2 item-center">
-                            <p class="mt-2 text-sm text-blue-500 ">Toilet number: {{ list.toilet_num  }} | Created at: {{  moment(list.created_at).format("MMM-YYYY") }} </p>
+                            <p class="mt-2 text-sm text-blue-500 ">Created at: {{  moment(list.created_at).format("MMM-YYYY") }} </p>
                         </div>
                     </div>
                 </router-link >
