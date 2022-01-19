@@ -7,36 +7,33 @@
 <div v-if="isReady==true">
 <div class="w-full">
     <div class="grid grid-cols-3 min-w-full border rounded">
-            <div class="col-span-1 bg-white border-r border-gray-300">
+            <div class="col-span-1 bg-gray-800 border-r border-gray-300">
                 <div class="my-3 mx-3 ">
                     <div class="relative text-gray-600 focus-within:text-gray-400">
                         <span class="absolute inset-y-0 left-0 flex items-center pl-2">
                             <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" class="w-6 h-6 text-gray-500"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
                         </span>
                         <input aria-placeholder="Search contact" placeholder="Search contact"
-                        class="py-2 pl-10 block w-full rounded bg-gray-100 outline-none focus:text-gray-700" type="search" name="search" v-model="filterName"  required autocomplete="search" />
+                        class="py-2 pl-10 block w-full text-white rounded bg-gray-500 outline-none focus:text-white" type="search" name="search" v-model="filterName"  required autocomplete="search" />
                     </div>
                 </div>
 
                 <ul class="overflow-auto" style="height: 400px;">
-                    <h2 class="ml-2 mb-2 text-gray-600 text-lg my-2">Chats</h2>
+                    <h2 class="ml-2 mb-2 text-white text-lg my-2">Chats</h2>
                     <li>
-                            <!-- <div>{{ getContact(list.user1_id ,list.user1_role, list.user2_id, list.user2_role) }}</div> -->
                         <div v-if="filterContact.length>0">
                         <div v-for="(list,index) in filterContact" :key="index">
-                        <a class="hover:bg-gray-100 border-b border-gray-300 px-3 py-2 cursor-pointer flex items-center justify-start text-sm focus:outline-none focus:border-gray-300 transition duration-150 ease-in-out">
-
+                        <a class="hover:bg-gray-700 border-b border-blue-300 px-3 py-2 cursor-pointer flex items-center text-sm focus:outline-none focus:border-gray-300 transition duration-150 ease-in-out">
                                     <div  v-if="list.user1_role==role && list.user1_id==user_id" @click="selectConversations(list, list.user2_id,list.user2_name,list.user2_photo,list.user2_role);  getMessages(list.id)" class="w-full" >
-
                                         <img class="h-10 w-10 ml-2 rounded-full object-cover" :src="'/images/Profile/'+list.user2_photo" alt="Avatar" />
                                         <div class="w-full pb-2">
                                             <div class="flex justify-between">
-                                                <span class="msg block ml-2 font-semibold text-base text-gray-600 ">{{list.user2_name}}</span>
-                                                <span  v-if="list.get_msg_relation.length!=0" class="block ml-24 text-sm text-gray-600">{{moment(list.get_msg_relation[0].created_at  ).format("h:mm a")}}</span>
+                                                <span class="msg block ml-2 font-semibold text-base text-white ">{{list.user2_name}}</span>
+                                                <span  v-if="list.get_msg_relation.length!=0" class="ml-32  block text-sm text-ump-green">{{moment(list.get_msg_relation[0].created_at  ).format("h:mm a")}}</span>
 
                                             </div>
                                             <div id="msg" class="flex justify-between">
-                                                <span v-if="list.get_msg_relation.length!=0" class="msg block ml-2 text-sm text-gray-600">{{list.get_msg_relation[0].msg}}</span>
+                                                <span v-if="list.get_msg_relation.length!=0" class="msg block ml-2 text-sm text-gray-200">{{list.get_msg_relation[0].msg}}</span>
                                                 <span v-if="list.get_msg_relation_count>0" class="badge mb-3 bg-red-800 shrink-0 grow-0 rounded-full px-3 py-1 text-center object-right-top text-white text-sm mr-1">{{list.get_msg_relation_count }}</span>
                                             </div>
                                         </div>
@@ -46,27 +43,41 @@
                                          <img class="h-10 w-10 ml-2 rounded-full object-cover" :src="'/images/Profile/'+list.user1_photo" alt="username" />
                                         <div class="w-full pb-2">
                                             <div class="flex justify-between">
-                                                <span class="msg block ml-2 font-semibold text-base text-gray-600 ">{{list.user1_name}}</span>
-                                                <span  v-if="list.get_msg_relation.length!=0" class="block  text-sm text-gray-600 ml-24">{{ moment(list.get_msg_relation[0].created_at  ).format("h:mm a") }}</span>
+                                                <div class="nama block ml-2 font-semibold text-base text-white ">{{list.user1_name}}</div>
+                                                <div v-if="list.get_msg_relation.length!=0"  class="ml-32  text-sm text-ump-green">{{ moment(list.get_msg_relation[0].created_at  ).format("h:mm a") }}</div>
                                             </div>
                                             <div id="msg" class="flex justify-between">
-                                                <span v-if="list.get_msg_relation.length!=0"  class="msg block ml-2 text-sm text-gray-600">{{list.get_msg_relation[0].msg}}</span>
+                                                <span v-if="list.get_msg_relation.length!=0"  class="msg block ml-2 text-sm text-gray-200">{{list.get_msg_relation[0].msg}}</span>
                                                 <span v-if="list.get_msg_relation_count>0" class="badge mb-3 bg-red-800 shrink-0 grow-0 rounded-full px-3 py-1 text-center object-right-top text-white text-sm mr-1">{{ list.get_msg_relation_count }}</span>
                                             </div>
                                         </div>
                                         </div>
                         </a>
+                         <!-- <a class="hover:bg-gray-100 border-b border-gray-300 px-3 py-2 cursor-pointer flex items-center text-sm focus:outline-none focus:border-gray-300 transition duration-150 ease-in-out">
+                           <img class="h-10 w-10 ml-2 rounded-full object-cover" :src="'/images/Profile/'+list.user1_photo" alt="username" />
+                            <div class="w-full pb-2">
+                                <div class="flex justify-between">
+                                    <div class=" block ml-2 font-semibold text-base text-white ">{{list.user1_name}}</div>
+                                    <div v-if="list.get_msg_relation.length!=0"  class="ml-24 text-sm text-ump-green">{{ moment(list.get_msg_relation[0].created_at  ).format("h:mm a") }}</div>
+                                </div>
+                                 <div class="flex justify-between">
+                                   <span v-if="list.get_msg_relation.length!=0"  class="msg block ml-2 text-sm text-gray-200">{{list.get_msg_relation[0].msg}}</span>
+                                    <span v-if="list.get_msg_relation_count>0" class="badge mb-3 bg-red-800 shrink-0 grow-0 rounded-full px-3 py-1 text-center object-right-top text-white text-sm mr-1">{{ list.get_msg_relation_count }}</span>
+                             </div>
+                            </div>
+                        </a> -->
                         </div>
                         </div>
-                        <div v-else class="p-2">No conversations </div>
+                        <div v-else class="p-2 text-white"><center>No conversations </center> </div>
                     </li>
+
                 </ul>
             </div>
-            <div class="col-span-2 bg-white">
+            <div class="col-span-2 bg-conic-to-r from-indigo-200 via-blue-gray-600 to-indigo-200">
                 <div id="Profile" v-if=" checkContact==false && filterContact.length>0 && chat.name!=''" class="w-full">
-                    <div  class="flex items-center border-b border-gray-300 pl-3 py-3">
+                    <div  class="flex items-center border-b border-gray-300 bg-gray-800 pl-3 py-3">
                         <img v-if="chat.avatar!=''" @click="viewProfile(chat.u_id, chat.u_role)" class="h-10 w-10 rounded-full object-cover cursor-pointer" :src="'/images/Profile/'+chat.avatar" alt="username" />
-                        <span  @click="viewProfile(chat.u_id, chat.u_role)" class="cursor-pointer block ml-2 font-bold text-base text-gray-600 hover:underline">{{ chat.name }} </span>
+                        <span  @click="viewProfile(chat.u_id, chat.u_role)" class="cursor-pointer block ml-2 font-bold text-base text-white hover:underline">{{ chat.name }} </span>
 
                           <!-- <button class="p-2 ml-auto bg-pink-light">delete</button> -->
                     </div>
@@ -113,9 +124,9 @@
                             </li>
                         </ul>
                     </div>
-                    <div class="w-full py-3 px-3 flex items-center justify-between border-t border-gray-300">
+                    <div class="w-full py-3 px-3 flex items-center justify-between border-t border-gray-300 bg-gray-800 ">
                         <input aria-placeholder="Type a message" placeholder="Type a message"
-                            class="py-2 mx-3 pl-5 block w-full rounded-full bg-gray-100 outline-none focus:text-gray-700" type="text" name="message" v-model="formSend.put_msg" required/>
+                            class="py-2 mx-3 pl-5 block w-full rounded-full bg-gray-500 outline-none focus:text-white" type="text" name="message" v-model="formSend.put_msg" required/>
 
                         <button v-if="formSend.put_msg.length!=0" @click="send" class="outline-none focus:outline-none" type="submit">
                             <svg class="text-gray-400 h-7 w-7 origin-center transform rotate-90" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
@@ -125,11 +136,11 @@
                     </div>
                 </div>
                 <div v-if="checkContact==true"   class="w-full">
-                    <div class="flex items-center border-b border-gray-300 pl-3 py-3">
+                    <div class="flex items-center border-b border-gray-300 pl-3 py-3 bg-gray-800" >
                         <img v-if="photo!=undefined" class="h-10 w-10 rounded-full object-cover"
                         :src="'/images/Profile/'+photo"
                         alt="username" />
-                        <span class="block ml-2 font-bold text-base text-gray-600"> {{ name }}</span>
+                        <span class="block ml-2 font-bold text-base text-white"> {{ name }}</span>
 
                     </div>
                     <div id="chat" class="w-full overflow-y-auto p-10 relative" style="height: 400px;" ref="feed">
@@ -138,9 +149,9 @@
                             </li>
                         </ul>
                     </div>
-                    <div class="w-full py-3 px-3 flex items-center justify-between border-t border-gray-300">
+                    <div class="w-full py-3 px-3 flex items-center justify-between border-t border-gray-300 bg-gray-800">
                         <input aria-placeholder="Type a message" placeholder="Type a message"
-                            class="py-2 mx-3 pl-5 block w-full rounded-full bg-gray-100 outline-none focus:text-gray-700" type="text" name="message" v-model="form.enter_msg" required/>
+                            class="py-2 mx-3 pl-5 block w-full rounded-full bg-gray-500 outline-none focus:text-white" type="text" name="message" v-model="form.enter_msg" required/>
 
                         <button v-if="form.enter_msg.length!=0" @click="sendNew" class="outline-none focus:outline-none" type="sendNew">
                             <svg class="text-gray-400 h-7 w-7 origin-center transform rotate-90" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
@@ -150,7 +161,7 @@
                     </div>
                 </div>
                  <div v-else-if="checkContact==false && filterContact.length==0"   class="w-full">
-                    <div class="flex items-center border-b border-gray-300 pl-3 py-3">
+                    <div class="flex items-center border-b border-gray-300 pl-3 py-3 ">
 
                         <span class="block ml-2 font-bold text-base text-gray-600"> </span>
                     </div>
@@ -217,6 +228,7 @@ export default {
             totalNotifications:'',
             text: '',
             object: '',
+            contact_hover: '',
 
 
 
@@ -387,6 +399,7 @@ export default {
                 this.margin = 'mt-5 mb-5'
                 this.text= 'bg-blue-200'
                 this.object = '#4491ee'
+                this.contact_hover=''
             }else{
                 this.text= 'bg-pink-200'
                 this.margin = 'w-full'
@@ -530,5 +543,12 @@ export default {
    display: -webkit-box;
    -webkit-line-clamp: 1; /* number of lines to show */
    -webkit-box-orient: vertical;
+}
+.nama {
+   overflow: hidden;
+   text-overflow: ellipsis;
+   display: -webkit-box;
+   -webkit-line-clamp: 1; /* number of lines to show */
+   -webkit-box-orient: horizontal;
 }
 </style>

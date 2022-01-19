@@ -792,6 +792,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 
 
 
@@ -1152,7 +1156,7 @@ var render = function () {
                       _vm._v(" "),
                       _c("div", [
                         _c("label", { staticClass: "text-gray-700" }, [
-                          _vm._v("Monthly Rent (RM)"),
+                          _vm._v("Monthly Rent (Included utilities)"),
                         ]),
                         _vm._v(" "),
                         _c("input", {
@@ -1192,7 +1196,7 @@ var render = function () {
                       _vm._v(" "),
                       _c("div", [
                         _c("label", { staticClass: "text-gray-700" }, [
-                          _vm._v("Penalty Fees (Overdue)"),
+                          _vm._v("Penalty Fees (Overdue charged)"),
                         ]),
                         _vm._v(" "),
                         _c("input", {
@@ -3121,7 +3125,22 @@ var render = function () {
                                   ),
                                 ]
                               )
-                            : _vm._e(),
+                            : _c(
+                                "div",
+                                {
+                                  staticClass:
+                                    "capitalize px-3 py-2 text-xs font-bold text-white  flex items-center  bg-yellow-500 rounded  hover:text-white ",
+                                },
+                                [
+                                  _c(
+                                    "span",
+                                    {
+                                      staticClass: "mx-1 text-sm sm:text-base",
+                                    },
+                                    [_vm._v(_vm._s(house.status))]
+                                  ),
+                                ]
+                              ),
                         ]
                       ),
                       _vm._v(" "),

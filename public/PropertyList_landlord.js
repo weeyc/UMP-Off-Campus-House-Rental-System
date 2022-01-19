@@ -1442,16 +1442,10 @@ var render = function () {
                             ),
                           ]),
                           _vm._v(" "),
-                          _c(
-                            "keep-alive",
-                            [
-                              _c("GoogleMap", {
-                                attrs: { registered: false },
-                                on: { getCoordinate: _vm.getCoordinates },
-                              }),
-                            ],
-                            1
-                          ),
+                          _c("GoogleMap", {
+                            attrs: { registered: false },
+                            on: { getCoordinate: _vm.getCoordinates },
+                          }),
                         ],
                         1
                       ),

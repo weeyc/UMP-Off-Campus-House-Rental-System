@@ -28,6 +28,10 @@
                             </svg>
                             <span class="mx-1 text-sm sm:text-base">{{ house.status }}</span>
                     </div >
+                     <div v-else class="capitalize px-3 py-2 text-xs font-bold text-white  flex items-center  bg-yellow-500 rounded  hover:text-white ">
+
+                            <span class="mx-1 text-sm sm:text-base">{{ house.status }}</span>
+                    </div >
                 </div>
                       <!-- Images Carousel -->
             <div class="border-double border-4 border-light-blue-500" style="width:100%;margin:10px auto;height:300px">

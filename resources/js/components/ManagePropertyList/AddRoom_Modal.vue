@@ -39,12 +39,12 @@
                         </div>
 
                         <div>
-                            <label class="text-gray-700" >Monthly Rent (RM)</label>
+                            <label class="text-gray-700" >Monthly Rent (Included utilities)</label>
                             <input  type="number" v-model="form.monthly_rent" step="any" min="0" max="5000" placeholder="300"  class="number2 block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-black rounded-md   focus:border-blue-500 focus:outline-none focus:ring" required>
                         </div>
 
                         <div>
-                            <label class="text-gray-700" >Penalty Fees (Overdue)</label>
+                            <label class="text-gray-700" >Penalty Fees (Overdue charged)</label>
                             <input  type="number" v-model="form.penalty_fees" step=any min="0" max="5000" placeholder="20"  class="number3 block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-black rounded-md   focus:border-blue-500 focus:outline-none focus:ring" required>
                         </div>
                     </div>

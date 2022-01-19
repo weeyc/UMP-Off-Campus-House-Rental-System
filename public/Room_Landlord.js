@@ -897,7 +897,7 @@ var render = function () {
                       _vm._v(" "),
                       _c("div", [
                         _c("label", { staticClass: "text-gray-700" }, [
-                          _vm._v("Monthly Rent (RM)"),
+                          _vm._v("Monthly Rent (Include utilities)"),
                         ]),
                         _vm._v(" "),
                         _c("input", {
@@ -936,7 +936,7 @@ var render = function () {
                       _vm._v(" "),
                       _c("div", [
                         _c("label", { staticClass: "text-gray-700" }, [
-                          _vm._v("Penalty Fees (Overdue)"),
+                          _vm._v("Penalty Fees (Overdue charged)"),
                         ]),
                         _vm._v(" "),
                         _c("input", {
