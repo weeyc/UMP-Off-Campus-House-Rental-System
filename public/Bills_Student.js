@@ -190,8 +190,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           _this.getPayPal();
         }
 
+        _this.scrollToTop();
+
         console.warn(_this.data);
       });
+    },
+    scrollToTop: function scrollToTop() {
+      //this.$refs.section.scrollTo(0, 0);
+      this.$root.$emit("scroll", this.user_id);
     },
     getMonths: function getMonths() {
       var _this2 = this;
@@ -299,6 +305,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   mounted: function mounted() {
     this.getData();
     this.getMonths();
+    this.scrollToTop();
   }
 });
 

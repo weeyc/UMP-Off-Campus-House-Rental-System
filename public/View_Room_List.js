@@ -451,8 +451,8 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       center: {
-        lat: 39.7837304,
-        lng: -100.4458825
+        lat: 3.706191482691462,
+        lng: 103.09759902763368
       },
       locationMarkers: [],
       locPlaces: [],

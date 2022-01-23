@@ -1786,7 +1786,7 @@ var render = function () {
                                             "span",
                                             {
                                               staticClass:
-                                                "text-white text-center text-2xl",
+                                                "text-gray-800 text-center text-2xl",
                                             },
                                             [_vm._v("Rent This Month:")]
                                           ),
@@ -1815,15 +1815,15 @@ var render = function () {
                                                 "span",
                                                 {
                                                   staticClass:
-                                                    "text-white text-center text-2xl",
+                                                    "text-white text-center text-2xl font-bold",
                                                 },
-                                                [_vm._v("No bills yet")]
+                                                [_vm._v("No bill yet")]
                                               )
                                             : _c(
                                                 "span",
                                                 {
                                                   staticClass:
-                                                    "text-white text-center text-2xl",
+                                                    "text-white text-center text-2xl font-bold",
                                                 },
                                                 [_vm._v(" Paid")]
                                               ),

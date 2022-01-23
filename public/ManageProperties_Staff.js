@@ -1313,7 +1313,7 @@ var render = function () {
                 "border-b px-4 py-2 flex justify-between items-center",
             },
             [
-              _c("h3", { staticClass: "font-semibold text-lg" }, [
+              _c("h3", { staticClass: "font-semibold text-black text-lg" }, [
                 _vm._v("Update Status"),
               ]),
               _vm._v(" "),
@@ -1326,15 +1326,6 @@ var render = function () {
           ),
           _vm._v(" "),
           _c("div", { staticClass: "p-3" }, [
-            _c(
-              "h1",
-              {
-                staticClass:
-                  "text-gray-800 font-lg font-bold tracking-normal leading-tight mb-4",
-              },
-              [_vm._v("Property Details")]
-            ),
-            _vm._v(" "),
             _c("div", { staticClass: "flex items-center" }, [
               _c(
                 "label",

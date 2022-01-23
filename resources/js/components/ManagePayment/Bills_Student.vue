@@ -174,10 +174,15 @@ export default {
                     if(this.data.payment_status=='Unpaid' && this.data.bills_status=='Ready'){
                         this.getPayPal();
                     }
+                    this.scrollToTop();
 
                     console.warn(this.data);
                 })
             },
+                scrollToTop() {
+            //this.$refs.section.scrollTo(0, 0);
+            this.$root.$emit("scroll",this.user_id);
+        },
         getMonths(){
             axios.get('/api/get_bills_months/'+this.user_id+'/'+this.role,{
                 params: {
@@ -262,6 +267,7 @@ export default {
          mounted: function(){
             this.getData();
             this.getMonths();
+            this.scrollToTop();
 
 
     },

@@ -5,12 +5,12 @@
     <div :class="[modalBackground]" class="rounded max-h-full overflow-y-auto shadow-lg w-11/12 md:w-1/3" >
       <!-- modal header -->
       <div class="border-b px-4 py-2 flex justify-between items-center">
-        <h3 class="font-semibold text-lg">Update Status</h3>
+        <h3 class="font-semibold text-black text-lg">Update Status</h3>
         <button class="text-black " @click="closeModal">&cross;</button>
       </div>
       <!-- modal body -->
         <div class="p-3">
-            <h1 class="text-gray-800 font-lg font-bold tracking-normal leading-tight mb-4">Property Details</h1>
+            <!-- <h1 class="text-gray-800 font-base font-bold tracking-normal leading-tight mb-4">Property Status</h1> -->
                 <div class="flex items-center">
                     <label for="name" class="inline-block w-20 mr-6 text-right font-bold text-gray-600">Property Id</label>
                     <input type="text" placeholder="Name" v-model="form.id" readonly

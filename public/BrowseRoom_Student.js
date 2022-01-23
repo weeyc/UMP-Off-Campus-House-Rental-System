@@ -1696,7 +1696,7 @@ var render = function () {
                                   _vm._v(
                                     "\n                               " +
                                       _vm._s(list.property.furnishing) +
-                                      "| " +
+                                      " | " +
                                       _vm._s(list.room_furnishing) +
                                       "\n                             "
                                   ),
