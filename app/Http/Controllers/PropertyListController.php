@@ -560,6 +560,8 @@ class PropertyListController extends Controller
         //     'phone_num' => 'required|regex:/(01)[0-9]{8}/'
         // ]);
 
+        $furnish=Property::where('property_id',$id)
+          ->update(['property_furnishing' => null]);
 
           $data = Property::where('property_id',$id)
           ->update([

@@ -174,39 +174,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {},
@@ -729,7 +696,7 @@ var render = function () {
                               "h2",
                               {
                                 staticClass:
-                                  "ml-2 mb-2 text-white text-lg my-2",
+                                  "ml-5 mb-2 text-white text-lg my-2",
                               },
                               [_vm._v("Chats")]
                             ),

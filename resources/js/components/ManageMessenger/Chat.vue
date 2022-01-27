@@ -19,7 +19,7 @@
                 </div>
 
                 <ul class="overflow-auto" style="height: 400px;">
-                    <h2 class="ml-2 mb-2 text-white text-lg my-2">Chats</h2>
+                    <h2 class="ml-5 mb-2 text-white text-lg my-2">Chats</h2>
                     <li>
                         <div v-if="filterContact.length>0">
                         <div v-for="(list,index) in filterContact" :key="index">
@@ -53,19 +53,6 @@
                                         </div>
                                         </div>
                         </a>
-                         <!-- <a class="hover:bg-gray-100 border-b border-gray-300 px-3 py-2 cursor-pointer flex items-center text-sm focus:outline-none focus:border-gray-300 transition duration-150 ease-in-out">
-                           <img class="h-10 w-10 ml-2 rounded-full object-cover" :src="'/images/Profile/'+list.user1_photo" alt="username" />
-                            <div class="w-full pb-2">
-                                <div class="flex justify-between">
-                                    <div class=" block ml-2 font-semibold text-base text-white ">{{list.user1_name}}</div>
-                                    <div v-if="list.get_msg_relation.length!=0"  class="ml-24 text-sm text-ump-green">{{ moment(list.get_msg_relation[0].created_at  ).format("h:mm a") }}</div>
-                                </div>
-                                 <div class="flex justify-between">
-                                   <span v-if="list.get_msg_relation.length!=0"  class="msg block ml-2 text-sm text-gray-200">{{list.get_msg_relation[0].msg}}</span>
-                                    <span v-if="list.get_msg_relation_count>0" class="badge mb-3 bg-red-800 shrink-0 grow-0 rounded-full px-3 py-1 text-center object-right-top text-white text-sm mr-1">{{ list.get_msg_relation_count }}</span>
-                             </div>
-                            </div>
-                        </a> -->
                         </div>
                         </div>
                         <div v-else class="p-2 text-white"><center>No conversations </center> </div>
@@ -84,7 +71,6 @@
 
                     <div id="chat" class="w-full overflow-y-auto p-10 relative" style="height: 400px;" ref="feed">
                         <ul>
-
                             <li v-for="msg in messages" :key="msg.id" class="clearfix2">
                                 <div v-if="msg.receiver_role==role && msg.receiver_id==user_id">
                                       <div  class="w-full flex justify-start">
@@ -95,7 +81,6 @@
                                     </div>
                                 </div>
                                 <div v-else>
-
                                        <div  class="w-full flex justify-end" >
                                         <div :class="[text]" class="rounded px-5 py-2 my-2 text-gray-700 relative" style="max-width: 300px;">
                                             <span class="block">{{msg.msg}}</span>
@@ -103,24 +88,6 @@
                                         </div>
                                     </div>
                                 </div>
-
-                                <!-- <div class="w-full flex justify-end" >
-                                    <div class="bg-blue-200 rounded px-5 py-2 my-2 text-gray-700 relative" style="max-width: 300px;">
-                                         <div id="room" class="relative m-3 flex flex-wrap mx-auto justify-center">
-                                            <div class="relative max-w-sm min-w-[340px] bg-white shadow-md rounded-3xl p-2 mx-1 my-3 cursor-pointer">
-                                                <div class="overflow-x-hidden rounded-2xl relative">
-                                                    <img class="h-40 rounded-2xl w-full object-cover" src="https://pixahive.com/wp-content/uploads/2020/10/Gym-shoes-153180-pixahive.jpg">
-                                                </div>
-                                                <div class="mt-4 pl-2 mb-2 flex justify-between ">
-                                                    <div>
-                                                    <p class="text-lg font-semibold text-gray-900 mb-0">Master Bed</p>
-                                                    <p class="text-md text-gray-800 mt-0">RM130 / Months</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div> -->
                             </li>
                         </ul>
                     </div>
