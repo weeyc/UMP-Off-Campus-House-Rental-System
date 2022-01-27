@@ -23,7 +23,7 @@ use App\Http\Controllers\LoginUController;
 
 
 Route::get('/', function () {
-  return view('ManageRegistrationUsers.login');
+  return view('ManageRegistrationUsers.Login');
 })->name('log');
 
 Route::get('/bill', function () {
