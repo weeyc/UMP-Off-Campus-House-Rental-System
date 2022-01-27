@@ -86,7 +86,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".exact-active[data-v-19f1b257]{\n  /* --tw-bg-opacity: 1;\nbackground-color: rgba(236, 72, 153, var(--tw-bg-opacity)); */\n  /* --tw-text-opacity: 1;\ncolor: rgba(255, 255, 255, var(--tw-text-opacity));*/\n  /* When actived: (border border-b-0) */\n  background-color: rgb(243 244 246);\n  border-width: 1px;\n  border-bottom-width: 0px;\n}\n\n", ""]);
+exports.push([module.i, ".exact-active[data-v-19f1b257]{\n  /* --tw-bg-opacity: 1;\r\nbackground-color: rgba(236, 72, 153, var(--tw-bg-opacity)); */\n  /* --tw-text-opacity: 1;\r\ncolor: rgba(255, 255, 255, var(--tw-text-opacity));*/\n  /* When actived: (border border-b-0) */\n  background-color: rgb(243 244 246);\n  border-width: 1px;\n  border-bottom-width: 0px;\n}\r\n\r\n", ""]);
 
 // exports
 

@@ -1248,7 +1248,7 @@ var render = function () {
                                                                         _vm._s(
                                                                           room.listing_name
                                                                         ) +
-                                                                          "\n                                                                "
+                                                                          "\r\n                                                                "
                                                                       ),
                                                                     ]
                                                                   ),
@@ -1490,7 +1490,7 @@ var render = function () {
                                                                           },
                                                                           [
                                                                             _vm._v(
-                                                                              "\n                                                                   You have not register any property's room yet.\n                                                                "
+                                                                              "\r\n                                                                   You have not register any property's room yet.\r\n                                                                "
                                                                             ),
                                                                           ]
                                                                         ),
@@ -2218,11 +2218,11 @@ var render = function () {
                                                                 },
                                                                 [
                                                                   _vm._v(
-                                                                    "\n                                                                    " +
+                                                                    "\r\n                                                                    " +
                                                                       _vm._s(
                                                                         room.name
                                                                       ) +
-                                                                      "\n                                                            "
+                                                                      "\r\n                                                            "
                                                                   ),
                                                                 ]
                                                               ),
@@ -2471,7 +2471,7 @@ var render = function () {
                                                                           },
                                                                           [
                                                                             _vm._v(
-                                                                              "\n                                                                   There are no latest applications\n                                                                "
+                                                                              "\r\n                                                                   There are no latest applications\r\n                                                                "
                                                                             ),
                                                                           ]
                                                                         ),

@@ -966,7 +966,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".centerMarker[data-v-329938f7]{\n  position:absolute;\n  /*url of the marker*/\n  background:url(http://maps.gstatic.com/mapfiles/markers2/marker.png) no-repeat;\n  /*center the marker*/\n  top:50%;\n  left:50%;\n  z-index:1;\n  /*fix offset when needed*/\n  margin-left:-10px;\n  margin-top:-34px;\n  /*size of the image*/\n  height:34px;\n  width:20px;\n  cursor:pointer;\n}\n", ""]);
+exports.push([module.i, ".centerMarker[data-v-329938f7]{\n  position:absolute;\n  /*url of the marker*/\n  background:url(http://maps.gstatic.com/mapfiles/markers2/marker.png) no-repeat;\n  /*center the marker*/\n  top:50%;\n  left:50%;\n  z-index:1;\n  /*fix offset when needed*/\n  margin-left:-10px;\n  margin-top:-34px;\n  /*size of the image*/\n  height:34px;\n  width:20px;\n  cursor:pointer;\n}\r\n", ""]);
 
 // exports
 
@@ -2609,7 +2609,7 @@ var render = function () {
                                       },
                                       [
                                         _vm._v(
-                                          "\n                                Room Rental Details\n                            "
+                                          "\r\n                                Room Rental Details\r\n                            "
                                         ),
                                       ]
                                     ),
@@ -3127,13 +3127,13 @@ var staticRenderFns = [
     return _c("div", { staticClass: "text-sm text-indigo-200 font-light" }, [
       _c("div", { staticClass: "mt-5" }, [
         _vm._v(
-          "\n                                    The booking fees counted as 1st month of rental\n                                "
+          "\r\n                                    The booking fees counted as 1st month of rental\r\n                                "
         ),
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "mt-5" }, [
         _vm._v(
-          "\n                                    Monthly rental bills will be issues starting on 2nd months of rental\n                                "
+          "\r\n                                    Monthly rental bills will be issues starting on 2nd months of rental\r\n                                "
         ),
       ]),
       _vm._v(" "),

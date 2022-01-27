@@ -495,7 +495,7 @@ var render = function () {
                                 },
                                 [
                                   _vm._v(
-                                    "\n                            Gambang\n                        "
+                                    "\r\n                            Gambang\r\n                        "
                                   ),
                                 ]
                               ),
@@ -533,7 +533,7 @@ var render = function () {
                                 },
                                 [
                                   _vm._v(
-                                    "\n                            Pekan\n                        "
+                                    "\r\n                            Pekan\r\n                        "
                                   ),
                                 ]
                               ),
@@ -1607,11 +1607,11 @@ var render = function () {
                                   { staticClass: "mx-1 text-green-700" },
                                   [
                                     _vm._v(
-                                      "\n                                 " +
+                                      "\r\n                                 " +
                                         _vm._s(list.property.name) +
                                         " | " +
                                         _vm._s(list.campus) +
-                                        "\n                             "
+                                        "\r\n                             "
                                     ),
                                   ]
                                 ),
@@ -1651,13 +1651,13 @@ var render = function () {
                                   { staticClass: "mx-1 text-sm text-blue-700" },
                                   [
                                     _vm._v(
-                                      "\n                                 " +
+                                      "\r\n                                 " +
                                         _vm._s(list.room_type) +
                                         " | " +
                                         _vm._s(
                                           list.property.gender_preferences
                                         ) +
-                                        "\n                            "
+                                        "\r\n                            "
                                     ),
                                   ]
                                 ),
@@ -1694,11 +1694,11 @@ var render = function () {
                                 _vm._v(" "),
                                 _c("div", { staticClass: "mx-1 text-sm " }, [
                                   _vm._v(
-                                    "\n                               " +
+                                    "\r\n                               " +
                                       _vm._s(list.property.furnishing) +
                                       " | " +
                                       _vm._s(list.room_furnishing) +
-                                      "\n                             "
+                                      "\r\n                             "
                                   ),
                                 ]),
                               ]

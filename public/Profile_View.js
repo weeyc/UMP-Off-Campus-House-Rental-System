@@ -369,7 +369,7 @@ var render = function () {
                                               },
                                               [
                                                 _vm._v(
-                                                  "\n                    Chat\n                    "
+                                                  "\r\n                    Chat\r\n                    "
                                                 ),
                                               ]
                                             ),
@@ -403,7 +403,7 @@ var render = function () {
                                               },
                                               [
                                                 _vm._v(
-                                                  "\n                    Chat\n                    "
+                                                  "\r\n                    Chat\r\n                    "
                                                 ),
                                               ]
                                             ),
@@ -437,7 +437,7 @@ var render = function () {
                                               },
                                               [
                                                 _vm._v(
-                                                  "\n                    Chat\n                    "
+                                                  "\r\n                    Chat\r\n                    "
                                                 ),
                                               ]
                                             ),
@@ -468,9 +468,9 @@ var render = function () {
                               _vm._l(_vm.userProfile, function (user, i) {
                                 return _c("div", { key: i }, [
                                   _vm._v(
-                                    "\n                      " +
+                                    "\r\n                      " +
                                       _vm._s(user.name) +
-                                      "\n                    "
+                                      "\r\n                    "
                                   ),
                                 ])
                               }),
@@ -489,9 +489,9 @@ var render = function () {
                                     "fas fa-user-cog mr-2 text-lg text-blueGray-700",
                                 }),
                                 _vm._v(
-                                  "\n                    " +
+                                  "\r\n                    " +
                                     _vm._s(_vm.userRole) +
-                                    "\n            "
+                                    "\r\n            "
                                 ),
                               ]
                             ),
@@ -510,7 +510,7 @@ var render = function () {
                                       "fas fa-id-card mr-2 text-lg text-blueGray-700",
                                   }),
                                   _vm._v(
-                                    "  " + _vm._s(user.id) + "\n            "
+                                    "  " + _vm._s(user.id) + "\r\n            "
                                   ),
                                 ]
                               )
@@ -532,7 +532,7 @@ var render = function () {
                                   _vm._v(
                                     "  " +
                                       _vm._s(user.gender) +
-                                      "\n            "
+                                      "\r\n            "
                                   ),
                                 ]
                               )
@@ -551,7 +551,7 @@ var render = function () {
                                       "fas fa-phone-alt mr-2 text-lg text-blueGray-700",
                                   }),
                                   _vm._v(
-                                    _vm._s(user.phone_no) + "\n            "
+                                    _vm._s(user.phone_no) + "\r\n            "
                                   ),
                                 ]
                               )
@@ -569,7 +569,9 @@ var render = function () {
                                     staticClass:
                                       "fas fa-envelope mr-2 text-lg text-blueGray-700",
                                   }),
-                                  _vm._v(_vm._s(user.email) + "\n            "),
+                                  _vm._v(
+                                    _vm._s(user.email) + "\r\n            "
+                                  ),
                                 ]
                               )
                             }),
@@ -604,9 +606,9 @@ var render = function () {
                                         },
                                         [
                                           _vm._v(
-                                            "\n                     " +
+                                            "\r\n                     " +
                                               _vm._s(user.des) +
-                                              "\n                "
+                                              "\r\n                "
                                           ),
                                         ]
                                       ),
@@ -770,7 +772,7 @@ var staticRenderFns = [
                     },
                     [
                       _vm._v(
-                        "\n          If I were you, I would adore me.\n        "
+                        "\r\n          If I were you, I would adore me.\r\n        "
                       ),
                     ]
                   ),

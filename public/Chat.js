@@ -529,7 +529,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".msg[data-v-3b2b1224] {\n  overflow: hidden;\n  text-overflow: ellipsis;\n  display: -webkit-box;\n  -webkit-line-clamp: 1; /* number of lines to show */\n  -webkit-box-orient: vertical;\n}\n.nama[data-v-3b2b1224] {\n  overflow: hidden;\n  text-overflow: ellipsis;\n  display: -webkit-box;\n  -webkit-line-clamp: 1; /* number of lines to show */\n  -webkit-box-orient: horizontal;\n}\n", ""]);
+exports.push([module.i, ".msg[data-v-3b2b1224] {\n  overflow: hidden;\n  text-overflow: ellipsis;\n  display: -webkit-box;\n  -webkit-line-clamp: 1; /* number of lines to show */\n  -webkit-box-orient: vertical;\n}\n.nama[data-v-3b2b1224] {\n  overflow: hidden;\n  text-overflow: ellipsis;\n  display: -webkit-box;\n  -webkit-line-clamp: 1; /* number of lines to show */\n  -webkit-box-orient: horizontal;\n}\r\n", ""]);
 
 // exports
 

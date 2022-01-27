@@ -344,7 +344,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".centerMarker[data-v-329938f7]{\n  position:absolute;\n  /*url of the marker*/\n  background:url(http://maps.gstatic.com/mapfiles/markers2/marker.png) no-repeat;\n  /*center the marker*/\n  top:50%;\n  left:50%;\n  z-index:1;\n  /*fix offset when needed*/\n  margin-left:-10px;\n  margin-top:-34px;\n  /*size of the image*/\n  height:34px;\n  width:20px;\n  cursor:pointer;\n}\n", ""]);
+exports.push([module.i, ".centerMarker[data-v-329938f7]{\n  position:absolute;\n  /*url of the marker*/\n  background:url(http://maps.gstatic.com/mapfiles/markers2/marker.png) no-repeat;\n  /*center the marker*/\n  top:50%;\n  left:50%;\n  z-index:1;\n  /*fix offset when needed*/\n  margin-left:-10px;\n  margin-top:-34px;\n  /*size of the image*/\n  height:34px;\n  width:20px;\n  cursor:pointer;\n}\r\n", ""]);
 
 // exports
 

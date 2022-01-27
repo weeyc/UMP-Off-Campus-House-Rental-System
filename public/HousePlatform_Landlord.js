@@ -2515,7 +2515,7 @@ var render = function () {
                                                             },
                                                             [
                                                               _vm._v(
-                                                                "\n                                    No tenant occupy this room yet\n                                    "
+                                                                "\r\n                                    No tenant occupy this room yet\r\n                                    "
                                                               ),
                                                             ]
                                                           ),
@@ -2649,7 +2649,7 @@ var staticRenderFns = [
           },
           [
             _vm._v(
-              "\n                            Tenant ID\n                            "
+              "\r\n                            Tenant ID\r\n                            "
             ),
           ]
         ),
@@ -2663,7 +2663,7 @@ var staticRenderFns = [
           },
           [
             _vm._v(
-              "\n                            Name\n                            "
+              "\r\n                            Name\r\n                            "
             ),
           ]
         ),
@@ -2677,7 +2677,7 @@ var staticRenderFns = [
           },
           [
             _vm._v(
-              "\n                            Phone No.\n                            "
+              "\r\n                            Phone No.\r\n                            "
             ),
           ]
         ),
@@ -2691,7 +2691,7 @@ var staticRenderFns = [
           },
           [
             _vm._v(
-              "\n                            Move Date\n                            "
+              "\r\n                            Move Date\r\n                            "
             ),
           ]
         ),
@@ -2705,7 +2705,7 @@ var staticRenderFns = [
           },
           [
             _vm._v(
-              "\n                            Tenancy Period\n                            "
+              "\r\n                            Tenancy Period\r\n                            "
             ),
           ]
         ),
@@ -2719,7 +2719,7 @@ var staticRenderFns = [
           },
           [
             _vm._v(
-              "\n                            Tenancy Status\n                            "
+              "\r\n                            Tenancy Status\r\n                            "
             ),
           ]
         ),
@@ -2733,7 +2733,7 @@ var staticRenderFns = [
           },
           [
             _vm._v(
-              "\n                            Check Bills / Kick\n                            "
+              "\r\n                            Check Bills / Kick\r\n                            "
             ),
           ]
         ),
@@ -2768,7 +2768,7 @@ var staticRenderFns = [
                     },
                     [
                       _vm._v(
-                        "\n                    Home is where the heart is\n                "
+                        "\r\n                    Home is where the heart is\r\n                "
                       ),
                     ]
                   ),

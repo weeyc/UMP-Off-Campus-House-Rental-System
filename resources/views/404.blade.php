@@ -12,7 +12,7 @@
          <title>{{ config('app.name', 'Laravel') }}</title>
 
          <!-- Scripts -->
-         <script src="{{ asset('js/app.js') }}" defer></script>
+         <script src="{{ secure_asset('js/app.js') }}" defer></script>
          <script defer src="https://unpkg.com/alpinejs@3.2.3/dist/cdn.min.js"></script>
          <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.8.2/dist/alpine.min.js" defer></script>
 
